@@ -25,7 +25,8 @@ import {
   AlertOctagon,
   Minus,
   Plus,
-  ShieldCheck
+  ShieldCheck,
+  X
 } from 'lucide-react';
 
 interface WorldMapProps {
@@ -903,17 +904,29 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               return (
                 <div className="flex flex-col gap-3 h-full justify-between">
                   <div>
-                    {/* Statut du panneau (Survol vs Épinglé) */}
+                    {/* Statut du panneau (Survol vs Épinglé) avec bouton de fermeture */}
                     <div className="flex items-center justify-between pb-2 border-b border-slate-800">
                       <div className="flex items-center gap-1.5">
                         <span className={`w-2 h-2 rounded-full ${hoveredFeature ? 'bg-cyan-400 animate-pulse' : 'bg-amber-400'}`} />
                         <span className="text-[10.5px] uppercase tracking-wider font-semibold text-slate-400">
-                          {hoveredFeature ? 'Analyse en Direct (Survol)' : 'Territoire Épinglé'}
+                          {hoveredFeature ? 'Analyse en Direct (Survol)' : 'Territoire Sélectionné'}
                         </span>
                       </div>
-                      <span className="text-[10.5px] font-mono text-cyan-300 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">
-                        {activeCountryData.code}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10.5px] font-mono text-cyan-300 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 font-semibold">
+                          {activeCountryData.code}
+                        </span>
+                        {selectedCountryId && (
+                          <button
+                            onClick={() => onSelectCountry(null)}
+                            className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10.5px] transition-colors cursor-pointer"
+                            title="Désélectionner ce pays et revenir à la vue globale"
+                          >
+                            <X className="w-3 h-3" />
+                            <span>Désélectionner</span>
+                          </button>
+                        )}
+                      </div>
                     </div>
 
                     {/* Nom du pays & Région */}
@@ -939,21 +952,21 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <div className="flex items-center gap-1.5">
                           <AlertOctagon className="w-4 h-4 text-rose-400 shrink-0" />
                           <span className="font-bold text-white text-[11px] uppercase tracking-wide">
-                            🚨 Alerte Seuil Critique Dépassé (Tw &ge; {heatAlertThreshold.toFixed(1)}°C)
+                            🚨 Canicule Mortelle Dépassée (Tw &ge; {heatAlertThreshold.toFixed(1)}°C)
                           </span>
                         </div>
                         <p className="text-[10.5px] text-rose-200 leading-snug">
-                          <strong>Risque majeur d'inhabitabilité :</strong> Lors du pic caniculaire estival ({dyn.summerMaxTemp.toFixed(1)}°C / {dyn.summerHumidity}% HR), l'indice Stull Tw atteint <strong>{tw.toFixed(1)}°C</strong>.
-                          À ce niveau, l'air saturé bloque le refroidissement par sudation, provoquant une hyperthermie maligne fatale en &lt;6h sans climatisation permanente.
+                          <strong>Danger vital :</strong> Lors du pic estival ({dyn.summerMaxTemp.toFixed(1)}°C / {dyn.summerHumidity}% humidité), la chaleur ressentie atteint <strong>{tw.toFixed(1)}°C</strong>.
+                          L'air saturé empêche la sueur de s'évaporer, provoquant une surchauffe mortelle du corps humain en &lt;6h sans pièce climatisée.
                         </p>
                         <div className="flex items-center justify-between text-[10px] text-rose-300 pt-1 border-t border-rose-800/80 font-mono">
-                          <span>Pop. menacée : <strong>{dyn.cohorts.total.toFixed(0)} M</strong></span>
-                          <span>0-14 & 65+ ans : <strong>{(dyn.cohorts.p0 + dyn.cohorts.p2).toFixed(0)} M</strong></span>
+                          <span>Habitants menacés : <strong>{dyn.cohorts.total.toFixed(0)} M</strong></span>
+                          <span>Enfants &amp; Aînés : <strong>{(dyn.cohorts.p0 + dyn.cohorts.p2).toFixed(0)} M</strong></span>
                         </div>
                       </div>
                     )}
 
-                    {/* BLOC 1 : INDICE DE CHALEUR HUMIDE STULL TW */}
+                    {/* BLOC 1 : INDICE DE CHALEUR HUMIDE RESSENTIE */}
                     <div
                       className={`p-2.5 rounded-lg border mb-2.5 space-y-1.5 ${
                         isUninhabitable
@@ -969,10 +982,10 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <div>
                           <span className="text-[11px] font-medium text-slate-300 flex items-center gap-1.5">
                             <Flame className="w-4 h-4 text-rose-400" />
-                            <span>Chaleur Humide Ressentie (Stull Tw)</span>
+                            <span>Chaleur Humide Ressentie (Tw)</span>
                           </span>
                           <span className="text-[9.5px] text-slate-400 block mt-0.5">
-                            Pic estival à {dyn.summerMaxTemp.toFixed(1)}°C · {dyn.summerHumidity}% humidité (Roland Stull 2011)
+                            Pic estival à {dyn.summerMaxTemp.toFixed(1)}°C · {dyn.summerHumidity}% humidité (Formule Stull)
                           </span>
                         </div>
                         <div className="text-right">
@@ -999,7 +1012,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         </div>
                         <div className="flex justify-between text-[9px] font-mono text-slate-400">
                           <span>10°C</span>
-                          <span className="text-rose-400 font-semibold">Seuil Létal 31°C</span>
+                          <span className="text-rose-400 font-semibold">Seuil Mortel 31°C</span>
                           <span className={heatAlertThreshold === 32.0 ? 'text-amber-300 font-bold' : ''}>
                             {heatAlertThreshold.toFixed(1)}°C (Seuil)
                           </span>
@@ -1011,31 +1024,31 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="pt-0.5 text-[11px] font-semibold">
                         {isUninhabitable ? (
                           <p className="text-rose-300 leading-tight">
-                            ☠️ INHABITABLE : Hyperthermie mortelle en &lt;6h sans climatisation.
+                            ☠️ INHABITABLE : Décès par surchauffe corporelle en &lt;6h sans climatisation.
                           </p>
                         ) : isSevere ? (
                           <p className="text-amber-300 leading-tight">
-                            ⚠️ DANGER SÉVÈRE : Travail physique extérieur mortel.
+                            ⚠️ DANGER SÉVÈRE : Travailler dehors devient mortel pour le corps.
                           </p>
                         ) : isWarning ? (
                           <p className="text-yellow-300 leading-tight">
-                            ⚡ STRESS ÉLEVÉ : Inconfort thermique sévère.
+                            ⚡ STRESS ÉLEVÉ : Inconfort thermique sévère et risques sanitaires.
                           </p>
                         ) : (
                           <p className="text-emerald-300 leading-tight">
-                            ✅ VIVABLE : Évacuation métabolique efficace.
+                            ✅ VIVABLE : Le corps régule sa chaleur par la transpiration.
                           </p>
                         )}
                       </div>
                     </div>
 
-                    {/* BLOC 2 : MÉTRIQUES BIOPHYSIQUES DÉTAILLÉES */}
+                    {/* BLOC 2 : MÉTRIQUES CLIMATIQUES & DÉMOGRAPHIQUES SIMPLIFIÉES */}
                     <div className="space-y-1.5 text-xs">
                       {/* Pic caniculaire estival */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
                         <span className="text-slate-400 flex items-center gap-1">
                           <Sun className="w-3.5 h-3.5 text-amber-400" />
-                          Pic caniculaire estival (Tmax)
+                          Pic de chaleur à l'ombre (été)
                         </span>
                         <span className="font-mono text-amber-300 tabular-nums font-semibold">
                           {dyn.summerMaxTemp.toFixed(1)}°C{' '}
@@ -1049,7 +1062,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
                         <span className="text-slate-400 flex items-center gap-1">
                           <Droplets className="w-3.5 h-3.5 text-sky-400" />
-                          Humidité estivale (RH)
+                          Humidité dans l'air (en %)
                         </span>
                         <span className="font-mono text-sky-300 tabular-nums font-medium">
                           {dyn.summerHumidity}%
@@ -1060,7 +1073,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
                         <span className="text-slate-400 flex items-center gap-1">
                           <Thermometer className="w-3.5 h-3.5 text-slate-400" />
-                          Temp. moyenne annuelle (Tmoy)
+                          Température moyenne sur l'année
                         </span>
                         <span className="font-mono text-slate-200 tabular-nums font-medium">
                           {dyn.dryBulbTemp.toFixed(1)}°C{' '}
@@ -1072,7 +1085,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Population résidente */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400">Population résidente</span>
+                        <span className="text-slate-400">Nombre d'habitants</span>
                         <div className="text-right font-mono">
                           <span className="font-medium text-white tabular-nums">
                             {dyn.cohorts.total.toFixed(1)} M
@@ -1089,7 +1102,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Ration alimentaire */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400">Ration alimentaire</span>
+                        <span className="text-slate-400">Ration par personne</span>
                         <span
                           className={`font-mono tabular-nums font-medium ${
                             isFamine ? 'text-rose-400 font-bold' : 'text-emerald-400'
@@ -1101,7 +1114,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Surmortalité annuelle */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400">Surmortalité annuelle</span>
+                        <span className="text-slate-400">Décès annuels causés par les crises</span>
                         <span className="font-mono text-purple-300 font-medium tabular-nums">
                           {dyn.annualDeaths.total.toFixed(2)} M/an{' '}
                           <span className="text-slate-500 text-[10.5px]">
@@ -1112,7 +1125,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Solde migratoire */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400">Solde migratoire</span>
+                        <span className="text-slate-400">Départs / Arrivées de population</span>
                         <span
                           className={`font-mono tabular-nums ${
                             dyn.netMigration < 0 ? 'text-rose-400' : 'text-cyan-400'
@@ -1125,16 +1138,16 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       {/* Pyramide des âges */}
                       <div className="pt-1.5">
                         <div className="flex justify-between text-[11px] text-slate-400 mb-1">
-                          <span>Cohortes d'âge</span>
-                          <span className="font-mono text-slate-300">
-                            {Math.round(dyn.cohorts.p0)}M / {Math.round(dyn.cohorts.p1)}M / {Math.round(dyn.cohorts.p2)}M
+                          <span>Tranches d'âge de la population</span>
+                          <span className="font-mono text-slate-300 text-[10.5px]">
+                            {Math.round(dyn.cohorts.p0)}M enf. / {Math.round(dyn.cohorts.p1)}M act. / {Math.round(dyn.cohorts.p2)}M aînés
                           </span>
                         </div>
                         <div className="w-full h-2 bg-slate-900 rounded flex overflow-hidden">
                           <div
                             className="bg-cyan-500 h-full"
                             style={{ width: `${(dyn.cohorts.p0 / dyn.cohorts.total) * 100}%` }}
-                            title="0-14 ans (Jeunesse)"
+                            title="0-14 ans (Enfants)"
                           />
                           <div
                             className="bg-blue-500 h-full"
@@ -1144,13 +1157,13 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                           <div
                             className="bg-purple-500 h-full"
                             style={{ width: `${(dyn.cohorts.p2 / dyn.cohorts.total) * 100}%` }}
-                            title="65+ ans (Aînés vulnérables)"
+                            title="65+ ans (Aînés)"
                           />
                         </div>
-                        <div className="flex justify-between text-[9px] text-slate-500 mt-1">
-                          <span className="text-cyan-400">0-14 ans</span>
-                          <span className="text-blue-400">15-64 ans</span>
-                          <span className="text-purple-400">65+ ans</span>
+                        <div className="flex justify-between text-[9.5px] text-slate-400 mt-1">
+                          <span className="text-cyan-400">Enfants (0-14 ans)</span>
+                          <span className="text-blue-400">Actifs (15-64 ans)</span>
+                          <span className="text-purple-400">Aînés (65+ ans)</span>
                         </div>
                       </div>
                     </div>

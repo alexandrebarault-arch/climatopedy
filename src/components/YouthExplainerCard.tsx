@@ -299,16 +299,16 @@ export const YouthExplainerCard: React.FC = () => {
                   </p>
                   <ul className="space-y-2 text-slate-300">
                     <li className="flex items-start gap-2">
-                      <span className="font-bold text-emerald-400 font-mono">En 1930 :</span>
-                      <span>Les buissons sont juste devant la maison. Tu marches 20 mètres et tu ramènes un seau plein à ras bord. Tu as dépensé 1 calorie pour en rapporter 100 ! (EROI = 100:1). Tout le reste de la journée, tu es libre de construire une cabane.</span>
+                      <span className="font-bold text-emerald-400 font-mono">En 1900 :</span>
+                      <span>Les buissons sont juste devant la maison. Tu marches 20 mètres et tu ramènes un seau plein à ras bord. Tu as dépensé 1 calorie pour en rapporter 100 ! (Multiplicateur x100 : 100 calories obtenues pour 1 dépensée). Tout le reste de la journée, tu as 99% d'énergie pour construire une cabane.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-amber-400 font-mono">En 2026 :</span>
-                      <span>On a mangé toutes les mûres faciles. Maintenant, tu dois marcher 5 kilomètres, grimper sur des rochers et te piquer les bras. Tu dépenses 1 calorie pour en rapporter 15 (EROI = 15:1).</span>
+                      <span>On a mangé toutes les mûres faciles. Maintenant, tu dois marcher 5 kilomètres et grimper des rochers. Tu dépenses 1 calorie pour en rapporter 12 (Multiplicateur x12 : 12 calories obtenues pour 1 dépensée). Les 92% restants font rouler les camions et tourner les hôpitaux.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="font-bold text-rose-400 font-mono">En 2060 :</span>
-                      <span>Tu dois faire de l'escalade extrême pendant 8 heures pour trouver 2 petites baies. Tu dépenses presque autant d'énergie que ce que tu ramènes ! (EROI = 3:1).</span>
+                      <span>Tu dois faire de l'escalade extrême pendant 8 heures pour trouver 2 petites baies. Tu dépenses presque autant d'énergie que ce que tu ramènes ! (Multiplicateur x3 : seulement 3 calories obtenues pour 1 dépensée). Un tiers de l'énergie sert juste à chercher les baies !</span>
                     </li>
                   </ul>
                 </div>

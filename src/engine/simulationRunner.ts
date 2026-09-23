@@ -1,7 +1,38 @@
 import { GlobalBiophysicalState, MilestoneEvent, SimulationScenarioConfig } from '../types/simulation';
 import { initializeSimulationState, stepSimulation } from './physicsModel';
+import { generateHistoricalState } from './historicalData';
 
 export const SIMULATION_MILESTONES: MilestoneEvent[] = [
+  {
+    year: 1901,
+    category: 'energy',
+    title: 'Jaillissement de Spindletop & Début de l\'Ère Pétrolière',
+    description: 'Le gisement géant texan crache 100 000 barils/jour sous sa propre pression. L\'EROI initial dépasse 100:1 : 1 baril d\'énergie dépensé permet d\'en extraire 100.'
+  },
+  {
+    year: 1913,
+    category: 'agri',
+    title: 'Synthèse Industrielle de l\'Ammoniac (Haber-Bosch)',
+    description: 'Carl Bosch industrialise le procédé Fritz Haber chez BASF. L\'azote de l\'air est fixé avec du gaz naturel pour fabriquer des engrais de synthèse, brisant le plafond agricole naturel.'
+  },
+  {
+    year: 1950,
+    category: 'human',
+    title: 'Début de la Révolution Verte & Explosion Démographique',
+    description: 'Variétés céréalières à haut rendement (Borlaug), tracteurs au fioul et engrais azotés : la population passe de 2,5 à 8 milliards en quelques décennies.'
+  },
+  {
+    year: 1973,
+    category: 'energy',
+    title: 'Premier Choc Pétrolier & Rapport Meadows',
+    description: 'Fin du pétrole conventionnel bon marché aux USA (pic de Hubbert américain 1970). Première prise de conscience scientifique des limites de la planète.'
+  },
+  {
+    year: 2026,
+    category: 'energy',
+    title: 'Le Présent : Épuisement du Pétrole Facile & Réchauffement',
+    description: 'Consommation mondiale record de 100 millions de barils/jour. L\'EROI moyen est tombé à 12:1. Le CO2 dépasse 424 ppm et le réchauffement atteint +1.35°C.'
+  },
   {
     year: 2030,
     category: 'energy',
@@ -77,17 +108,27 @@ export const PRESET_SCENARIOS: SimulationScenarioConfig[] = [
 ];
 
 /**
- * Génère la trajectoire temporelle complète 2026-2100 pas à pas (annuelle)
+ * Génère la trajectoire temporelle complète 1900-2100 pas à pas (annuelle)
+ * Intègre la série historique réelle (1900-2025) et la projection biophysique (2026-2100)
  */
-export function generateFullTrajectory(): GlobalBiophysicalState[] {
+export function generateFullTrajectory(startYear = 1900): GlobalBiophysicalState[] {
   const trajectory: GlobalBiophysicalState[] = [];
+
+  // 1. Période historique 1900 à 2025
+  if (startYear <= 1900) {
+    for (let yr = 1900; yr < 2026; yr++) {
+      trajectory.push(generateHistoricalState(yr));
+    }
+  }
+
+  // 2. Point de référence 2026 (Présent calibré)
   let state = initializeSimulationState();
   trajectory.push(state);
 
-  const startYear = 2026;
+  // 3. Projection prospective 2026 à 2100
   const endYear = 2100;
-  const dt = 1.0; // Pas annuel pour la table de trajectoire
-  const steps = endYear - startYear;
+  const dt = 1.0;
+  const steps = endYear - 2026;
 
   for (let s = 0; s < steps; s++) {
     state = stepSimulation(state, dt);
@@ -96,3 +137,4 @@ export function generateFullTrajectory(): GlobalBiophysicalState[] {
 
   return trajectory;
 }
+

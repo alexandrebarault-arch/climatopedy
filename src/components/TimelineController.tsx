@@ -27,130 +27,168 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
   simulationState
 }) => {
   const currentMilestone = SIMULATION_MILESTONES.find(m => Math.abs(m.year - Math.floor(currentYear)) <= 2);
+  const isHistorical = currentYear < 2026;
+
+  // Calcul du format lisible pour les décès par canicule (en milliers ou en millions)
+  const thermalDeathsText = simulationState.worldDeathsAnnual.thermal >= 1
+    ? `${simulationState.worldDeathsAnnual.thermal.toFixed(1)} M/an`
+    : `${Math.round(simulationState.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`;
 
   return (
     <div className="w-full rounded-xl bg-[#0b101b] border border-slate-800 p-4 shadow-xl flex flex-col gap-3">
       {/* Ligne 1 : Résumé des 6 macro-indicateurs biophysiques en temps réel */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-xs">
         {/* Population Mondiale */}
-        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col">
-          <span className="text-[11px] text-slate-400 font-medium">Population Humaine</span>
-          <div className="flex items-baseline gap-1 mt-0.5">
-            <span className="text-lg font-bold font-mono text-white tabular-nums">
-              {(simulationState.worldPopulation / 1000).toFixed(2)}
-            </span>
-            <span className="text-[11px] text-slate-400">Milliards</span>
+        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
+          <div>
+            <span className="text-[11px] text-slate-300 font-medium">Population Humaine</span>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span className="text-lg font-bold font-mono text-white tabular-nums">
+                {(simulationState.worldPopulation / 1000).toFixed(2)}
+              </span>
+              <span className="text-[11px] text-slate-400">Milliards</span>
+            </div>
           </div>
-          <span className="text-[10px] text-slate-500 mt-0.5">
-            Naissances: {(simulationState.worldBirthsAnnual).toFixed(1)} M/an
+          <span className="text-[10px] text-slate-400 mt-1 pt-1 border-t border-slate-800/80">
+            Naissances : {(simulationState.worldBirthsAnnual).toFixed(1)} M/an
           </span>
         </div>
 
-        {/* EROI & Énergie Nette */}
-        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col">
-          <span className="text-[11px] text-slate-400 font-medium">EROI Moyen (Falaise)</span>
-          <div className="flex items-baseline gap-1 mt-0.5">
-            <span
-              className={`text-lg font-bold font-mono tabular-nums ${
-                simulationState.currentEroi < 8.0
-                  ? 'text-rose-400'
-                  : simulationState.currentEroi < 15.0
-                  ? 'text-amber-400'
-                  : 'text-emerald-400'
-              }`}
-            >
-              {simulationState.currentEroi.toFixed(1)} : 1
+        {/* EROI & Énergie Nette (Clarifié pour le grand public sans le jargon mathématique) */}
+        <div
+          className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between"
+          title="Multiplicateur d'énergie EROI : Indique combien de barils d'énergie on extrait pour 1 baril consommé à forer. En 1900, 1 baril en rapportait 100 (x100). En 2026, 1 baril n'en rapporte plus que 12 (x12). Les barils restants font rouler les transports, chauffer les maisons et tourner les hôpitaux."
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-slate-300 font-medium">Efficacité Pétrole (EROI)</span>
+              <span className="text-[9.5px] font-mono text-amber-300 bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-800/80 font-bold">
+                x{simulationState.currentEroi >= 20 ? Math.round(simulationState.currentEroi) : simulationState.currentEroi.toFixed(1)}
+              </span>
+            </div>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span
+                className={`text-lg font-bold font-mono tabular-nums ${
+                  simulationState.currentEroi < 8.0
+                    ? 'text-rose-400'
+                    : simulationState.currentEroi < 15.0
+                    ? 'text-amber-400'
+                    : 'text-emerald-400'
+                }`}
+              >
+                {simulationState.currentEroi >= 20 ? Math.round(simulationState.currentEroi) : simulationState.currentEroi.toFixed(1)} barils
+              </span>
+            </div>
+            <span className="text-[10px] text-slate-400 block leading-tight">
+              obtenus pour 1 baril dépensé à forer
             </span>
           </div>
-          <span className="text-[10px] text-slate-400 mt-0.5">
-            Énergie Nette: {(simulationState.netEnergyRatio * 100).toFixed(1)}% brute
+          <span className="text-[10px] text-emerald-400 mt-1 pt-1 border-t border-slate-800/80">
+            <strong>{(simulationState.netEnergyRatio * 100).toFixed(0)}%</strong> utile pour la société
           </span>
         </div>
 
         {/* CO2 Atmosphérique */}
-        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col">
-          <span className="text-[11px] text-slate-400 font-medium">CO2 FaIR Global</span>
-          <div className="flex items-baseline gap-1 mt-0.5">
-            <span className="text-lg font-bold font-mono text-cyan-300 tabular-nums">
-              {Math.round(simulationState.atmosphericCo2Ppm)}
-            </span>
-            <span className="text-[11px] text-slate-400">ppm</span>
+        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
+          <div>
+            <span className="text-[11px] text-slate-300 font-medium">Gaz à effet de serre (CO2)</span>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span className="text-lg font-bold font-mono text-cyan-300 tabular-nums">
+                {Math.round(simulationState.atmosphericCo2Ppm)}
+              </span>
+              <span className="text-[11px] text-slate-400">ppm</span>
+            </div>
           </div>
-          <span className="text-[10px] text-slate-500 mt-0.5">
-            Forçage: {simulationState.radiativeForcing.toFixed(2)} W/m²
+          <span className="text-[10px] text-slate-400 mt-1 pt-1 border-t border-slate-800/80">
+            {isHistorical ? 'Mesures carottes de glace / NOAA' : 'Concentration dans l\'atmosphère'}
           </span>
         </div>
 
-        {/* Anomalie Thermique Surface */}
-        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] text-slate-400 font-medium">Réchauffement (T1)</span>
-            <span
-              className="text-[9px] font-mono text-cyan-400 bg-cyan-950/80 px-1 py-0.2 rounded border border-cyan-800/80 cursor-help"
-              title="Calculé par le modèle climatique FaIR (Finite Amplitude Impulse Response, GIEC AR6)"
-            >
-              FaIR
-            </span>
+        {/* Réchauffement Mondial */}
+        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-slate-300 font-medium">Réchauffement Mondial</span>
+              <span
+                className="text-[9px] font-mono text-cyan-400 bg-cyan-950/80 px-1 py-0.2 rounded border border-cyan-800/80 cursor-help"
+                title="Modèle FaIR officiel validé par le GIEC AR6"
+              >
+                GIEC
+              </span>
+            </div>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span
+                className={`text-lg font-bold font-mono tabular-nums ${
+                  simulationState.surfaceTemperatureAnomaly >= 2.5
+                    ? 'text-rose-400'
+                    : simulationState.surfaceTemperatureAnomaly >= 1.5
+                    ? 'text-amber-400'
+                    : 'text-emerald-400'
+                }`}
+              >
+                {simulationState.surfaceTemperatureAnomaly >= 0 ? '+' : ''}{simulationState.surfaceTemperatureAnomaly.toFixed(2)}
+              </span>
+              <span className="text-[11px] text-slate-400">°C</span>
+            </div>
           </div>
-          <div className="flex items-baseline gap-1 mt-0.5">
-            <span
-              className={`text-lg font-bold font-mono tabular-nums ${
-                simulationState.surfaceTemperatureAnomaly >= 2.5
-                  ? 'text-rose-400'
-                  : simulationState.surfaceTemperatureAnomaly >= 1.5
-                  ? 'text-amber-400'
-                  : 'text-emerald-400'
-              }`}
-            >
-              +{simulationState.surfaceTemperatureAnomaly.toFixed(2)}
-            </span>
-            <span className="text-[11px] text-slate-400">°C</span>
-          </div>
-          <span className="text-[10px] text-slate-500 mt-0.5">
-            Océan profond: +{simulationState.deepOceanTemperatureAnomaly.toFixed(2)}°C
+          <span className="text-[10px] text-slate-400 mt-1 pt-1 border-t border-slate-800/80">
+            Par rapport à l'ère préindustrielle
           </span>
         </div>
 
-        {/* Élévation Marine */}
-        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col">
-          <span className="text-[11px] text-slate-400 font-medium">Niveau des Mers (VR09)</span>
-          <div className="flex items-baseline gap-1 mt-0.5">
-            <span className="text-lg font-bold font-mono text-sky-400 tabular-nums">
-              +{(simulationState.seaLevelRiseMeters * 100).toFixed(0)}
-            </span>
-            <span className="text-[11px] text-slate-400">cm</span>
+        {/* Montée des Océans (Chiffrée sans ambiguïté) */}
+        <div
+          className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between"
+          title="Élévation moyenne du niveau des océans. Fonte des glaciers terrestres et calottes + dilatation de l'eau chauffée."
+        >
+          <div>
+            <span className="text-[11px] text-slate-300 font-medium">Montée des Océans</span>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span className="text-lg font-bold font-mono text-sky-400 tabular-nums">
+                {simulationState.seaLevelRiseMeters >= 0 ? '+' : ''}{(simulationState.seaLevelRiseMeters * 100).toFixed(0)}
+              </span>
+              <span className="text-[11px] text-slate-400">cm</span>
+            </div>
           </div>
-          <span className="text-[10px] text-slate-500 mt-0.5">
-            Régression des deltas arables
+          <span className="text-[10px] text-slate-400 mt-1 pt-1 border-t border-slate-800/80">
+            {simulationState.year >= 2026 ? (
+              <span>+{Math.max(0, Math.round((simulationState.seaLevelRiseMeters - 0.12) * 100))} cm depuis 2026</span>
+            ) : (
+              <span>{Math.round((simulationState.seaLevelRiseMeters - 0.12) * 100)} cm vs 2026</span>
+            )}
           </span>
         </div>
 
-        {/* Surmortalité Annuelle Forcée */}
-        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col">
-          <span className="text-[11px] text-slate-400 font-medium">Surmortalité Annuelle</span>
-          <div className="flex items-baseline gap-1 mt-0.5">
-            <span className="text-lg font-bold font-mono text-purple-400 tabular-nums">
-              {(
-                simulationState.worldDeathsAnnual.thermal +
-                simulationState.worldDeathsAnnual.famine +
-                simulationState.worldDeathsAnnual.sanitary
-              ).toFixed(1)}
-            </span>
-            <span className="text-[11px] text-slate-400">M / an</span>
+        {/* Décès dus aux crises (Famines & Canicules explicites) */}
+        <div
+          className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between"
+          title="Surmortalités annuelles causées par les crises biophysiques : ruptures d'approvisionnement alimentaire et dômes de chaleur humide mortelle."
+        >
+          <div>
+            <span className="text-[11px] text-slate-300 font-medium">Décès dus aux crises</span>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span className="text-lg font-bold font-mono text-purple-400 tabular-nums">
+                {(
+                  simulationState.worldDeathsAnnual.thermal +
+                  simulationState.worldDeathsAnnual.famine
+                ).toFixed(1)}
+              </span>
+              <span className="text-[11px] text-slate-400">M / an</span>
+            </div>
           </div>
-          <span className="text-[10px] text-slate-500 mt-0.5">
-            Famines: {simulationState.worldDeathsAnnual.famine.toFixed(1)}M · Chaleur: {simulationState.worldDeathsAnnual.thermal.toFixed(1)}M
+          <span className="text-[10px] text-slate-400 mt-1 pt-1 border-t border-slate-800/80 leading-tight">
+            Famines: {simulationState.worldDeathsAnnual.famine.toFixed(1)}M · Canicule: {thermalDeathsText}
           </span>
         </div>
       </div>
 
-      {/* Ligne 2 : Commandes de lecture, scrubber temporel et jalons historiques */}
+      {/* Ligne 2 : Commandes de lecture, scrubber temporel séculaire (1900-2100) et jalons */}
       <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 border-t border-slate-800/80">
         {/* Contrôles de transport Play / Pause / Step / Reset */}
         <div className="flex items-center gap-2">
           <button
             onClick={onTogglePlay}
-            className={`flex items-center justify-center w-10 h-10 rounded-lg font-medium transition-all shadow-md ${
+            className={`flex items-center justify-center w-10 h-10 rounded-lg font-medium transition-all shadow-md cursor-pointer ${
               isPlaying
                 ? 'bg-amber-500 text-slate-950 hover:bg-amber-400'
                 : 'bg-cyan-500 text-slate-950 hover:bg-cyan-400'
@@ -163,7 +201,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
           <button
             onClick={onStepForward}
             disabled={currentYear >= 2100}
-            className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-40 transition-colors"
+            className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-40 transition-colors cursor-pointer"
             title="Avancer d'une année (+1 an)"
           >
             <SkipForward className="w-4 h-4" />
@@ -171,11 +209,23 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
 
           <button
             onClick={onReset}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-cyan-300 hover:bg-slate-700 transition-colors text-xs font-medium border border-slate-700/60"
-            title="Réinitialiser l'état de la carte à aujourd'hui (2026)"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-cyan-300 hover:bg-slate-700 transition-colors text-xs font-medium border border-slate-700/60 cursor-pointer"
+            title="Revenir au présent (2026)"
           >
             <RotateCcw className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="hidden md:inline">Aujourd'hui (2026)</span>
+            <span className="hidden md:inline">2026 (Auj.)</span>
+          </button>
+
+          <button
+            onClick={() => onSeekYear(1900)}
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
+              currentYear <= 1910
+                ? 'bg-blue-900/70 text-blue-200 border-blue-600'
+                : 'bg-slate-800 text-slate-300 hover:text-blue-300 hover:bg-slate-700 border-slate-700'
+            }`}
+            title="Remonter à 1900 (début de l'ère thermo-industrielle)"
+          >
+            <span>⏪ 1900</span>
           </button>
 
           {/* Vitesse de simulation */}
@@ -184,7 +234,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
               <button
                 key={s}
                 onClick={() => onSpeedChange(s)}
-                className={`px-2 py-1 rounded transition-colors ${
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
                   playbackSpeed === s
                     ? 'bg-cyan-500/20 text-cyan-300 font-semibold'
                     : 'text-slate-400 hover:text-slate-200'
@@ -196,47 +246,69 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
           </div>
         </div>
 
-        {/* Curseur temporel Scrubber (2026 - 2100) */}
+        {/* Curseur temporel Scrubber (1900 - 2100) */}
         <div className="flex-1 w-full flex flex-col gap-1.5">
           <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-            <span>2026 (Présent)</span>
-            <span className="text-base font-bold text-white px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono tabular-nums">
-              Année {Math.floor(currentYear)}
+            <span className="flex items-center gap-1.5 text-[11px] text-blue-300">
+              <span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />
+              1900 (Début pétrole)
             </span>
-            <span>2100 (Horizon)</span>
+            <div className="flex items-center gap-2">
+              {isHistorical ? (
+                <span className="text-[10px] font-sans font-semibold bg-blue-950 text-blue-300 border border-blue-800/80 px-2 py-0.5 rounded">
+                  Données réelles mesurées (1900–2026)
+                </span>
+              ) : (
+                <span className="text-[10px] font-sans font-semibold bg-cyan-950 text-cyan-300 border border-cyan-800/80 px-2 py-0.5 rounded">
+                  Modèle de projection biophysique (2026–2100)
+                </span>
+              )}
+              <span className="text-base font-bold text-white px-2.5 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono tabular-nums">
+                Année {Math.floor(currentYear)}
+              </span>
+            </div>
+            <span className="flex items-center gap-1.5 text-[11px] text-purple-300">
+              2100 (Horizon)
+              <span className="w-2 h-2 rounded-full bg-purple-400 inline-block" />
+            </span>
           </div>
 
           <div className="relative w-full flex items-center">
             <input
               type="range"
-              min={2026}
+              min={1900}
               max={2100}
               step={1}
               value={Math.floor(currentYear)}
               onChange={(e) => onSeekYear(Number(e.target.value))}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none"
+              className="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400 focus:outline-none"
             />
           </div>
 
-          {/* Points repères des ruptures biophysiques */}
+          {/* Points repères des ruptures biophysiques & historiques (1900-2100) */}
           <div className="relative w-full h-4 mt-0.5">
             {SIMULATION_MILESTONES.map((m) => {
-              const leftPercent = ((m.year - 2026) / (2100 - 2026)) * 100;
+              const leftPercent = ((m.year - 1900) / (2100 - 1900)) * 100;
               const isActive = Math.floor(currentYear) >= m.year;
+              const is2026 = m.year === 2026;
               return (
                 <button
                   key={m.year}
                   onClick={() => onSeekYear(m.year)}
                   style={{ left: `${leftPercent}%` }}
                   title={`${m.year}: ${m.title}`}
-                  className={`absolute -translate-x-1/2 top-0 flex flex-col items-center group cursor-pointer`}
+                  className="absolute -translate-x-1/2 top-0 flex flex-col items-center group cursor-pointer"
                 >
                   <span
                     className={`w-2 h-2 rounded-full transition-transform group-hover:scale-150 ${
-                      isActive ? 'bg-cyan-400 ring-2 ring-cyan-500/30' : 'bg-slate-600'
+                      is2026
+                        ? 'bg-cyan-300 ring-2 ring-cyan-400 ring-offset-1 ring-offset-slate-900'
+                        : isActive
+                        ? 'bg-amber-400 ring-1 ring-amber-400/50'
+                        : 'bg-slate-600'
                     }`}
                   />
-                  <span className="text-[9px] font-mono text-slate-500 group-hover:text-slate-300 hidden md:block">
+                  <span className="text-[8.5px] font-mono text-slate-500 group-hover:text-slate-300 hidden lg:block">
                     {m.year}
                   </span>
                 </button>
@@ -250,7 +322,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
       {currentMilestone && (
         <div className="mt-1 p-2.5 rounded-lg bg-amber-950/40 border border-amber-800/50 flex items-start gap-2.5 text-xs text-amber-200">
           <span className="font-mono font-bold text-amber-400 bg-amber-900/60 px-1.5 py-0.5 rounded text-[11px] shrink-0">
-            Jalon {currentMilestone.year}
+            {currentMilestone.year < 2026 ? 'Histoire' : 'Jalon'} {currentMilestone.year}
           </span>
           <div>
             <span className="font-semibold text-white mr-1.5">

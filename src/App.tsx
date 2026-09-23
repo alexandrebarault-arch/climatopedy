@@ -22,11 +22,13 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1); // 1x = 1 an/sec
 
-  // Index courant dans la table trajectoire
+  // Index courant dans la table trajectoire (supporte 1900 à 2100)
   const currentTrajectoryState = useMemo(() => {
     const yr = Math.floor(currentYear);
-    const index = Math.max(0, Math.min(trajectory.length - 1, yr - 2026));
-    return trajectory[index] || trajectory[0];
+    const found = trajectory.find((t) => t.year === yr);
+    if (found) return found;
+    if (trajectory.length > 0 && yr < trajectory[0].year) return trajectory[0];
+    return trajectory[trajectory.length - 1] || trajectory[0];
   }, [trajectory, currentYear]);
 
   // Boucle d'animation pour l'avancement temporel fluide
@@ -91,7 +93,7 @@ export default function App() {
   };
 
   const handleSeekYear = (year: number) => {
-    setCurrentYear(Math.max(2026, Math.min(2100, year)));
+    setCurrentYear(Math.max(1900, Math.min(2100, year)));
   };
 
   return (

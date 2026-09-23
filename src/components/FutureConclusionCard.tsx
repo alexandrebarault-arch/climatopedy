@@ -36,17 +36,17 @@ export const FutureConclusionCard: React.FC = () => {
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
-                Déchiffrage immédiat : Qu'est-ce que « Stull Tw » et « FaIR » ?
+                Déchiffrage immédiat : Stull Tw, FaIR, EROI et Montée des Océans
               </h2>
               <p className="text-xs text-slate-400">
-                Les deux concepts scientifiques clés du simulateur traduits en français courant sans jargon
+                Les concepts biophysiques clés traduits en français courant sans jargon
               </p>
             </div>
           </div>
 
           <button
             onClick={() => setGlossaryOpen(!glossaryOpen)}
-            className="flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 font-medium self-start sm:self-auto"
+            className="flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 font-medium self-start sm:self-auto cursor-pointer"
           >
             <span>{glossaryOpen ? 'Masquer les définitions' : 'Voir les explications détaillées'}</span>
             {glossaryOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -67,13 +67,13 @@ export const FutureConclusionCard: React.FC = () => {
                   <strong>• Que veut dire « Tw » ?</strong> « Tw » signifie en anglais <em>Wet-Bulb Temperature</em>, c'est-à-dire <strong>la température du thermomètre mouillé</strong>. C'est la température exacte que ressent la peau humaine mouillée par la sueur au contact de l'air.
                 </p>
                 <p>
-                  <strong>• Qui est Stull ?</strong> Le professeur <strong>Roland Stull</strong> est un chercheur renommé en sciences atmosphériques à l'Université de Colombie-Britannique. En 2011, il a publié dans le <em>Journal of Applied Meteorology and Climatology</em> la formule mathématique mondiale de référence permettant de calculer précisément ce thermomètre mouillé en combinant la température de l'air (en °C) et le taux d'humidité relative (en %).
+                  <strong>• Qui est Stull ?</strong> Le professeur <strong>Roland Stull</strong> est un chercheur renommé en sciences atmosphériques à l'Université de Colombie-Britannique. En 2011, il a publié la formule mathématique mondiale de référence permettant de calculer précisément ce thermomètre mouillé en combinant la température de l'air (en °C) et le taux d'humidité relative (en %).
                 </p>
                 <p>
-                  <strong>• Pourquoi parle-t-on d'un « Seuil » ?</strong> Notre corps régule sa température à 37°C en transpirant : quand l'eau de la sueur s'évapore, elle emporte de la chaleur. Mais si l'air est à la fois trop chaud et trop humide (saturation en vapeur d'eau), la sueur ne s'évapore plus du tout.
+                  <strong>• Pourquoi parle-t-on d'un « Seuil » ?</strong> Notre corps régule sa température à 37°C en transpirant : quand la sueur s'évapore, elle emporte de la chaleur. Mais si l'air est à la fois trop chaud et trop humide (saturation en vapeur d'eau), la sueur ne s'évapore plus du tout.
                 </p>
                 <div className="p-2.5 rounded-lg bg-rose-950/60 border border-rose-800/60 text-rose-200 text-[11.5px] font-medium">
-                  🚨 <strong>Le seuil létal de 31,0°C Tw (Raymond et al., 2020) :</strong> Au-delà de cette valeur, un être humain au repos à l'ombre ne peut plus évacuer sa chaleur métabolique. Sans climatisation artificielle alimentée en continu par l'électricité, la température interne grimpe à 42°C en 4 à 6 heures, entraînant le décès par hyperthermie.
+                  🚨 <strong>Le seuil létal de 31,0°C Tw (Raymond et al., 2020) :</strong> Au-delà de cette valeur, un être humain au repos à l'ombre ne peut plus évacuer sa chaleur corporelle. Sans climatisation électrique continue, la température interne grimpe à 42°C en quelques heures (coup de chaleur mortel).
                 </div>
               </div>
             </div>
@@ -90,13 +90,59 @@ export const FutureConclusionCard: React.FC = () => {
                   <strong>• Que veut dire l'acronyme FaIR ?</strong> FaIR signifie en anglais <em>« Finite Amplitude Impulse Response »</em> (Modèle de réponse impulsionnelle à amplitude finie).
                 </p>
                 <p>
-                  <strong>• À quoi sert-il ?</strong> Les supercalculateurs climatiques de pointe (comme ceux du CNRM ou de Météo-France) mettent des semaines à simuler le climat mondial. En 2018, une équipe de chercheurs menée par le Dr Chris Smith (Université de Leeds et Oxford) a conçu le modèle <strong>FaIR v1.1</strong> pour calculer avec exactitude l'effet de serre et la température de la Terre en quelques secondes, sans perte de précision.
+                  <strong>• À quoi sert-il ?</strong> Les supercalculateurs climatiques de pointe mettent des semaines à simuler le climat mondial. En 2018, l'équipe du Dr Chris Smith (Oxford/Leeds) a conçu <strong>FaIR v1.1</strong> pour calculer avec exactitude l'effet de serre et la température de la Terre en quelques millisecondes.
                 </p>
                 <p>
-                  <strong>• Quel est son rôle officiel ?</strong> FaIR est le modèle climatique simplifié officiel retenu par le <strong>GIEC (Groupe d'experts intergouvernemental sur l'évolution du climat)</strong> dans son 6e rapport d'évaluation (AR6, Groupe de travail I, chapitre 7).
+                  <strong>• Quel est son rôle officiel ?</strong> FaIR est le modèle simplifié officiel retenu par le <strong>GIEC</strong> dans son 6e rapport d'évaluation (AR6, Groupe de travail I).
                 </p>
                 <div className="p-2.5 rounded-lg bg-cyan-950/60 border border-cyan-800/60 text-cyan-200 text-[11.5px] font-medium">
-                  🌡️ <strong>L'« Anomalie Thermique FaIR » :</strong> C'est la hausse de température moyenne à la surface de la Terre calculée par FaIR en comparant l'année courante à l'ère préindustrielle (1850-1900). En 2026, nous sommes à <strong>+1,35°C</strong> d'anomalie.
+                  🌡️ <strong>L'« Anomalie Thermique » :</strong> C'est la hausse de température moyenne à la surface de la Terre comparée à l'ère préindustrielle (1850-1900). En 2026, nous sommes à <strong>+1,35°C</strong> d'anomalie mondiale.
+                </div>
+              </div>
+            </div>
+
+            {/* CARTE DÉCRYPTAGE : L'EROI & LE MULTIPLICATEUR PÉTROLE */}
+            <div className="bg-[#121c32] p-4 rounded-xl border border-amber-900/40 flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
+                <Zap className="w-4 h-4 text-amber-400" />
+                <span>3. « EROI » = Le Multiplicateur d'Énergie Pétrolière</span>
+              </div>
+
+              <div className="space-y-2 text-slate-300 leading-relaxed">
+                <p>
+                  <strong>• Que signifie « EROI » ?</strong> En anglais, <em>Energy Return on Investment</em> = Rendement énergétique du capital investi. C'est tout simplement : <strong>Combien de barils d'énergie récolte-t-on pour 1 baril dépensé à forer ?</strong>
+                </p>
+                <p>
+                  <strong>• Pourquoi n'utilise-t-on plus « 12.0 : 1 » ?</strong> Cette notation en ratio mathématique embrouille. On dit désormais <strong>« x12 »</strong> : 1 baril consommé permet d'en extraire 12.
+                </p>
+                <p>
+                  <strong>• L'histoire en 2 dates :</strong> En 1900, le pétrole de surface rapportait <strong>x100</strong> (1 baril pour 100). En 2026, avec les forages sous-marins profonds et les sables bitumineux, il ne rapporte plus que <strong>x12</strong>.
+                </p>
+                <div className="p-2.5 rounded-lg bg-amber-950/60 border border-amber-800/60 text-amber-200 text-[11.5px] font-medium">
+                  ⚡ <strong>L'Énergie Nette pour la société :</strong> Si un puits rapporte x12, 1/12e sert au forage, et les <strong>92% restants</strong> alimentent les tracteurs, les camions, les trains et les hôpitaux. En dessous de x5, la société n'a plus assez d'énergie pour assurer ses services de base.
+                </div>
+              </div>
+            </div>
+
+            {/* CARTE DÉCRYPTAGE : LA MONTÉE DU NIVEAU DES OCÉANS */}
+            <div className="bg-[#121c32] p-4 rounded-xl border border-sky-900/40 flex flex-col gap-3">
+              <div className="flex items-center gap-2 text-sky-300 font-bold text-sm">
+                <TrendingDown className="w-4 h-4 text-sky-400 rotate-180" />
+                <span>4. « Montée des Océans » = Combien de cm augmente la mer ?</span>
+              </div>
+
+              <div className="space-y-2 text-slate-300 leading-relaxed">
+                <p>
+                  <strong>• Pourquoi les mers montent-elles ?</strong> Pour deux raisons physiques : 1) La <em>dilatation thermique</em> (l'eau chaude prend plus de place que l'eau froide) ; 2) La fonte des calottes glaciaires terrestres (Groenland, Antarctique et glaciers de montagne).
+                </p>
+                <p>
+                  <strong>• Combien augmente-t-elle en chiffres concrets ?</strong> En 1900, la mer était 22 cm plus basse qu'aujourd'hui. En 2026, elle a déjà monté de <strong>+12 cm</strong> (référence 2000). D'ici 2100, les projections prévoient <strong>+60 à +75 cm supplémentaires</strong>.
+                </p>
+                <p>
+                  <strong>• Quels impacts sur les populations ?</strong> Une montée de +50 cm suffit à saliniser les nappes phréatiques côtières (eau potable impropre) et à inonder chaque année les grands deltas rizicoles d'Asie (Mékong, Gange-Brahmapoutre) nourrissant des centaines de millions de personnes.
+                </p>
+                <div className="p-2.5 rounded-lg bg-sky-950/60 border border-sky-800/60 text-sky-200 text-[11.5px] font-medium">
+                  🌊 <strong>Sur le simulateur :</strong> L'indicateur affiche la valeur globale en cm à l'instant T (+12 cm en 2026, jusqu'à +75 cm en 2100) ainsi que le delta exact par rapport à aujourd'hui.
                 </div>
               </div>
             </div>
