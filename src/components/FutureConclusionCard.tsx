@@ -44,13 +44,25 @@ export const FutureConclusionCard: React.FC = () => {
             </div>
           </div>
 
-          <button
-            onClick={() => setGlossaryOpen(!glossaryOpen)}
-            className="flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 font-medium self-start sm:self-auto cursor-pointer"
-          >
-            <span>{glossaryOpen ? 'Masquer les définitions' : 'Voir les explications détaillées'}</span>
-            {glossaryOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-          </button>
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <button
+              onClick={() => {
+                document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 font-semibold px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 border border-slate-700 transition-colors cursor-pointer"
+              title="Accéder directement à la FAQ et au lexique interactif complet"
+            >
+              <span>Consulter la FAQ complète</span>
+              <span className="text-[10px]">↗</span>
+            </button>
+            <button
+              onClick={() => setGlossaryOpen(!glossaryOpen)}
+              className="flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 font-medium cursor-pointer"
+            >
+              <span>{glossaryOpen ? 'Masquer' : 'Aperçu'}</span>
+              {glossaryOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
 
         {glossaryOpen && (

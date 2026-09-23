@@ -117,11 +117,18 @@ export interface MilestoneEvent {
 }
 
 export interface SimulationScenarioConfig {
+  id: string;
   name: string;
+  shortName: string;
+  tagline: string;
   description: string;
-  eroiInitial: number;
-  ultimateReservesQinf: number; // Barils
-  climateSensitivityECS: number; // °C par doublement
-  haberBoschDependency: number;
-  borderMilitarizationSpeed: number;
+  badgeColor: string;
+  lineColor: string;
+  dashArray?: string;
+  // Variables biophysiques et de politique de redirection :
+  oilDemandReductionRate: number; // % annuel de réduction planifiée de la demande fossile dès 2027 (0 = BAU, 4% = Sobriété)
+  agroEcologyAdoptionRate: number; // % d'autonomie azotée biologique via légumineuses/agroécologie (0% = BAU, 65% = Sobriété)
+  adaptationResilienceBoost: number; // Multiplicateur de résilience sociétale & climatisation passive (1.0 = standard, 1.8 = Sobriété)
+  climateSensitivityECS: number; // Sensibilité climatique à l'équilibre (°C par doublement CO2, 3.0°C standard)
+  ultimateReservesQinf: number; // Barils ultimes exploitables (2.80e12 par défaut)
 }

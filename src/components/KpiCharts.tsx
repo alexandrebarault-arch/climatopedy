@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
-import { Calendar, Info, Clock, AlertTriangle, Layers, ChevronRight, Activity } from 'lucide-react';
-import { GlobalBiophysicalState } from '../types/simulation';
+import { Calendar, Info, Clock, AlertTriangle, Layers, ChevronRight, Activity, GitCompare } from 'lucide-react';
+import { GlobalBiophysicalState, SimulationScenarioConfig } from '../types/simulation';
+import { TechTooltip } from './TechTooltip';
 
 interface KpiChartsProps {
   trajectory: GlobalBiophysicalState[];
+  compareTrajectory?: GlobalBiophysicalState[] | null;
+  scenarioA?: SimulationScenarioConfig;
+  scenarioB?: SimulationScenarioConfig;
+  isCompareMode?: boolean;
   currentYear: number;
   onSeekYear: (year: number) => void;
 }
 
 export const KpiCharts: React.FC<KpiChartsProps> = ({
   trajectory,
+  compareTrajectory,
+  scenarioA,
+  scenarioB,
+  isCompareMode = false,
   currentYear,
   onSeekYear
 }) => {
@@ -29,6 +38,9 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
   // Filtrer la trajectoire selon la plage temporelle choisie
   const visibleTrajectory = trajectory.filter(pt => pt.year >= startYear && pt.year <= endYear);
+  const visibleCompareTrajectory = (isCompareMode && compareTrajectory)
+    ? compareTrajectory.filter(pt => pt.year >= startYear && pt.year <= endYear)
+    : [];
 
   // Helper pour mapper une année vers les coordonnées horizontales X
   const getX = (year: number) => {
@@ -60,12 +72,14 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   };
 
   const pathPop = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYPop(pt.worldPopulation).toFixed(1)}`).join(' ');
+  const pathPopB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYPop(pt.worldPopulation).toFixed(1)}`).join(' ');
 
   const deathMax = 220; // Millions / an
   const getYDeath = (deathsM: number) => {
     return PAD.top + plotH - (deathsM / deathMax) * plotH;
   };
   const pathDeathThermal = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYDeath(pt.worldDeathsAnnual.thermal).toFixed(1)}`).join(' ');
+  const pathDeathThermalB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYDeath(pt.worldDeathsAnnual.thermal).toFixed(1)}`).join(' ');
   const pathDeathFamine = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYDeath(pt.worldDeathsAnnual.famine).toFixed(1)}`).join(' ');
   const pathDeathTotal = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYDeath(pt.worldDeathsAnnual.total).toFixed(1)}`).join(' ');
 
@@ -77,11 +91,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
     return PAD.top + plotH - (Math.min(eroiMax, eroi) / eroiMax) * plotH;
   };
   const pathEroi = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYEroi(pt.currentEroi).toFixed(1)}`).join(' ');
+  const pathEroiB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYEroi(pt.currentEroi).toFixed(1)}`).join(' ');
 
   const getYPct = (val0to1: number) => {
     return PAD.top + plotH - val0to1 * plotH;
   };
   const pathNetEnergy = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYPct(pt.netEnergyRatio).toFixed(1)}`).join(' ');
+  const pathNetEnergyB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYPct(pt.netEnergyRatio).toFixed(1)}`).join(' ');
   const pathHaberBosch = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYPct(pt.haberBoschNitrogenFactor).toFixed(1)}`).join(' ');
 
   // =========================================================
@@ -100,6 +116,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
     return PAD.top + plotH - ((temp - tempMin) / (tempMax - tempMin)) * plotH;
   };
   const pathTemp = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYTemp(pt.surfaceTemperatureAnomaly).toFixed(1)}`).join(' ');
+  const pathTempB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYTemp(pt.surfaceTemperatureAnomaly).toFixed(1)}`).join(' ');
 
   // Échelle Océan en mètres (-0.15 m à +1.0 m) => graduation directe en cm
   const slrMin = -0.15; // -15 cm vs 2000
@@ -108,6 +125,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
     return PAD.top + plotH - ((slr - slrMin) / (slrMax - slrMin)) * plotH;
   };
   const pathSlr = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYSlr(pt.seaLevelRiseMeters).toFixed(1)}`).join(' ');
+  const pathSlrB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYSlr(pt.seaLevelRiseMeters).toFixed(1)}`).join(' ');
 
   // =========================================================
   // 4. AGRONOMIE & CALORIES
@@ -118,6 +136,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
     return PAD.top + plotH - ((cal - calMin) / (calMax - calMin)) * plotH;
   };
   const pathCal = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYCal(pt.globalAverageCaloriesPerCapita).toFixed(1)}`).join(' ');
+  const pathCalB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYCal(pt.globalAverageCaloriesPerCapita).toFixed(1)}`).join(' ');
   const yCalorie2100 = getYCal(2100);
 
   const yieldMin = 0.1;
@@ -126,6 +145,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
     return PAD.top + plotH - ((yVal - yieldMin) / (yieldMax - yieldMin)) * plotH;
   };
   const pathCropYield = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYYield(pt.globalCropYieldComposite).toFixed(1)}`).join(' ');
+  const pathCropYieldB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYYield(pt.globalCropYieldComposite).toFixed(1)}`).join(' ');
 
   // Interaction Clic & Survol
   const handleSvgClick = (e: React.MouseEvent<SVGSVGElement>) => {
@@ -146,15 +166,25 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
   const displayYear = hoverYear ?? Math.floor(currentYear);
   const displayState = trajectory.find(t => t.year === displayYear) || trajectory[0];
+  const displayStateB = (isCompareMode && compareTrajectory)
+    ? (compareTrajectory.find(t => t.year === displayYear) || compareTrajectory[0])
+    : null;
 
   // Décès par canicule formatés
   const thermalDeathsFormatted = displayState.worldDeathsAnnual.thermal >= 1
     ? `${displayState.worldDeathsAnnual.thermal.toFixed(2)} M/an`
     : `${Math.round(displayState.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`;
 
+  const thermalDeathsFormattedB = displayStateB
+    ? (displayStateB.worldDeathsAnnual.thermal >= 1
+        ? `${displayStateB.worldDeathsAnnual.thermal.toFixed(2)} M/an`
+        : `${Math.round(displayStateB.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`)
+    : '';
+
   // Montée des océans formatée
   const seaLevelCm = Math.round(displayState.seaLevelRiseMeters * 100);
   const seaLevelVs2026 = Math.round((displayState.seaLevelRiseMeters - 0.12) * 100);
+  const seaLevelCmB = displayStateB ? Math.round(displayStateB.seaLevelRiseMeters * 100) : 0;
 
   // Rendu de l'axe des abscisses et des repères temporels
   const renderAbscisseAxis = () => (
@@ -476,8 +506,28 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <span className="text-rose-400 font-bold bg-rose-950/70 border border-rose-800/80 px-1.5 py-0.5 rounded flex items-center gap-1">
                   <span className="w-2 h-2 rounded-full bg-rose-500 inline-block animate-pulse" />
                   Canicules mortelles : {thermalDeathsFormatted}
+                  <TechTooltip term="stull" showIconOnly />
                 </span>
               </div>
+
+              {/* Ligne comparative Trajectoire B si activée */}
+              {isCompareMode && displayStateB && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300">
+                  <span className="font-bold flex items-center gap-1 text-emerald-400">
+                    <GitCompare className="w-3 h-3 text-emerald-400" />
+                    {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                    Pop : {(displayStateB.worldPopulation / 1000).toFixed(2)} Mds
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                    Canicules : {thermalDeathsFormattedB}
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                    Famines : {displayStateB.worldDeathsAnnual.famine.toFixed(1)} M/an
+                  </span>
+                </div>
+              )}
             </div>
 
             <p className="text-[10px] text-slate-400 leading-tight">
@@ -521,6 +571,27 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* Courbe 4 : Décès par Canicules mortelles (Rouge fluo bien visible) */}
                 <path d={pathDeathThermal} fill="none" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" />
 
+                {/* COURBES DE COMPARAISON TRAJECTOIRE B (Pointillés colorés) */}
+                {isCompareMode && visibleCompareTrajectory.length > 0 && (
+                  <g className="compare-layer">
+                    {/* Pop B (Vert Émeraude pointillé) */}
+                    <path d={pathPopB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
+                    {/* Canicules B (Rose/Rouge pointillé) */}
+                    <path d={pathDeathThermalB} fill="none" stroke="#fb7185" strokeWidth="2" strokeDasharray="3 3" strokeLinecap="round" />
+                  </g>
+                )}
+
+                {/* Mini-légende de comparaison intégrée */}
+                {isCompareMode && (
+                  <g className="select-none pointer-events-none">
+                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#080c14" fillOpacity="0.85" stroke="#1e293b" strokeWidth="0.8" />
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#ffffff" strokeWidth="2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#e2e8f0" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#34d399" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#34d399" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
+                  </g>
+                )}
+
                 {/* Marqueur interactif sur la courbe des canicules pour voir le nombre exact */}
                 <g>
                   <circle
@@ -562,6 +633,18 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   stroke="#ffffff"
                   strokeWidth="1.5"
                 />
+
+                {/* Marqueur sur la population B si comparaison */}
+                {isCompareMode && displayStateB && (
+                  <circle
+                    cx={currentX}
+                    cy={getYPop(displayStateB.worldPopulation)}
+                    r="3.5"
+                    fill="#34d399"
+                    stroke="#ffffff"
+                    strokeWidth="1.2"
+                  />
+                )}
               </svg>
             </div>
 
@@ -597,16 +680,37 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
               {/* Indicateurs numériques sans jargon */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5">
-                <span className="text-amber-300 font-bold bg-amber-950/70 border border-amber-800/80 px-1.5 py-0.5 rounded" title="Multiplicateur d'énergie EROI : Nombre de barils récoltés pour 1 baril dépensé à forer">
+                <span className="text-amber-300 font-bold bg-amber-950/70 border border-amber-800/80 px-1.5 py-0.5 rounded flex items-center gap-1" title="Multiplicateur d'énergie EROI : Nombre de barils récoltés pour 1 baril dépensé à forer">
                   Multiplicateur pétrole : x{displayState.currentEroi >= 20 ? Math.round(displayState.currentEroi) : displayState.currentEroi.toFixed(1)} ({displayState.currentEroi >= 20 ? Math.round(displayState.currentEroi) : displayState.currentEroi.toFixed(1)} barils pour 1 dépensé)
+                  <TechTooltip term="eroi" showIconOnly />
                 </span>
                 <span className="text-emerald-400 font-semibold">
                   Énergie utile société : {(displayState.netEnergyRatio * 100).toFixed(0)}%
                 </span>
-                <span className="text-sky-300">
+                <span className="text-sky-300 flex items-center gap-1">
                   Engrais de synthèse : {(displayState.haberBoschNitrogenFactor * 100).toFixed(0)}%
+                  <TechTooltip term="haber-bosch" showIconOnly />
                 </span>
               </div>
+
+              {/* Ligne comparative Trajectoire B si activée */}
+              {isCompareMode && displayStateB && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300">
+                  <span className="font-bold flex items-center gap-1 text-emerald-400">
+                    <GitCompare className="w-3 h-3 text-emerald-400" />
+                    {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                    EROI : x{displayStateB.currentEroi >= 20 ? Math.round(displayStateB.currentEroi) : displayStateB.currentEroi.toFixed(1)}
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                    Énergie utile : {(displayStateB.netEnergyRatio * 100).toFixed(0)}%
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                    Engrais / Azote : {(displayStateB.haberBoschNitrogenFactor * 100).toFixed(0)}%
+                  </span>
+                </div>
+              )}
             </div>
 
             <p className="text-[10px] text-slate-400 leading-tight">
@@ -668,6 +772,27 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* Courbe 3 : Engrais de synthèse Haber-Bosch (Pointillé bleu) */}
                 <path d={pathHaberBosch} fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeDasharray="4,3" strokeLinecap="round" />
 
+                {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
+                {isCompareMode && visibleCompareTrajectory.length > 0 && (
+                  <g className="compare-layer">
+                    {/* EROI B (Vert émeraude pointillé) */}
+                    <path d={pathEroiB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
+                    {/* Énergie nette B */}
+                    <path d={pathNetEnergyB} fill="none" stroke="#6ee7b7" strokeWidth="1.8" strokeDasharray="3 3" strokeLinecap="round" />
+                  </g>
+                )}
+
+                {/* Mini-légende de comparaison intégrée */}
+                {isCompareMode && (
+                  <g className="select-none pointer-events-none">
+                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#080c14" fillOpacity="0.85" stroke="#1e293b" strokeWidth="0.8" />
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#f59e0b" strokeWidth="2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#e2e8f0" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#34d399" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#34d399" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
+                  </g>
+                )}
+
                 {/* Marqueur interactif sur le multiplicateur pétrolier */}
                 <circle
                   cx={currentX}
@@ -677,6 +802,18 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   stroke="#ffffff"
                   strokeWidth="1.5"
                 />
+
+                {/* Marqueur sur l'EROI B si comparaison */}
+                {isCompareMode && displayStateB && (
+                  <circle
+                    cx={currentX}
+                    cy={getYEroi(displayStateB.currentEroi)}
+                    r="3.5"
+                    fill="#34d399"
+                    stroke="#ffffff"
+                    strokeWidth="1.2"
+                  />
+                )}
                 <rect
                   x={Math.max(PAD.left, Math.min(W - PAD.right - 42, currentX - 21))}
                   y={getYEroi(displayState.currentEroi) - 16}
@@ -733,14 +870,35 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <span className="text-cyan-400 font-semibold">
                   CO2 dans l'air : {Math.round(displayState.atmosphericCo2Ppm)} ppm
                 </span>
-                <span className="text-rose-400 font-semibold">
+                <span className="text-rose-400 font-semibold flex items-center gap-1">
                   Réchauffement : {displayState.surfaceTemperatureAnomaly >= 0 ? '+' : ''}{displayState.surfaceTemperatureAnomaly.toFixed(2)}°C
+                  <TechTooltip term="fair" showIconOnly />
                 </span>
                 {/* Montée des mers mise en avant de manière évidente */}
                 <span className="text-sky-300 font-bold bg-sky-950/80 border border-sky-800/80 px-2 py-0.5 rounded flex items-center gap-1">
                   🌊 Montée des océans : {seaLevelCm >= 0 ? '+' : ''}{seaLevelCm} cm ({seaLevelVs2026 >= 0 ? `+${seaLevelVs2026} cm depuis 2026` : `${seaLevelVs2026} cm vs 2026`})
+                  <TechTooltip term="slr" showIconOnly />
                 </span>
               </div>
+
+              {/* Ligne comparative Trajectoire B si activée */}
+              {isCompareMode && displayStateB && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300">
+                  <span className="font-bold flex items-center gap-1 text-emerald-400">
+                    <GitCompare className="w-3 h-3 text-emerald-400" />
+                    {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-cyan-300">
+                    CO2 : {Math.round(displayStateB.atmosphericCo2Ppm)} ppm
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-rose-300">
+                    Réchauffement : +{displayStateB.surfaceTemperatureAnomaly.toFixed(2)}°C
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-sky-300">
+                    Océans : +{seaLevelCmB} cm ({seaLevelCmB - seaLevelCm >= 0 ? `+${seaLevelCmB - seaLevelCm}` : `${seaLevelCmB - seaLevelCm}`} cm)
+                  </span>
+                </div>
+              )}
             </div>
 
             <p className="text-[10px] text-slate-400 leading-tight">
@@ -788,6 +946,39 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
                 {/* Courbe 3 : Montée des Océans (Pointillé bleu épais et visible) */}
                 <path d={pathSlr} fill="none" stroke="#38bdf8" strokeWidth="2.4" strokeDasharray="5,3" strokeLinecap="round" />
+
+                {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
+                {isCompareMode && visibleCompareTrajectory.length > 0 && (
+                  <g className="compare-layer">
+                    {/* Température B (Vert émeraude pointillé) */}
+                    <path d={pathTempB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
+                    {/* Montée de la mer B (Bleu ciel fin pointillé) */}
+                    <path d={pathSlrB} fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeDasharray="2 3" strokeLinecap="round" />
+                  </g>
+                )}
+
+                {/* Mini-légende de comparaison intégrée */}
+                {isCompareMode && (
+                  <g className="select-none pointer-events-none">
+                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#080c14" fillOpacity="0.85" stroke="#1e293b" strokeWidth="0.8" />
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#f43f5e" strokeWidth="2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#e2e8f0" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#34d399" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#34d399" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
+                  </g>
+                )}
+
+                {/* Marqueur interactif sur la température B si comparaison */}
+                {isCompareMode && displayStateB && (
+                  <circle
+                    cx={currentX}
+                    cy={getYTemp(displayStateB.surfaceTemperatureAnomaly)}
+                    r="3.5"
+                    fill="#34d399"
+                    stroke="#ffffff"
+                    strokeWidth="1.2"
+                  />
+                )}
 
                 {/* Marqueur interactif sur la montée des océans avec badge en cm */}
                 <g>
@@ -857,13 +1048,33 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <span className="text-emerald-400 font-semibold">
                   Nourriture par jour : {Math.round(displayState.globalAverageCaloriesPerCapita)} kcal/hab
                 </span>
-                <span className="text-amber-400 font-semibold">
+                <span className="text-amber-400 font-semibold flex items-center gap-1">
                   Rendement moyen mondial : {(displayState.globalCropYieldComposite * 100).toFixed(0)}% du pic
+                  <TechTooltip term="haber-bosch" showIconOnly />
                 </span>
                 <span className="text-rose-400 font-semibold">
                   Seuil de famine ONU : 2 100 kcal
                 </span>
               </div>
+
+              {/* Ligne comparative Trajectoire B si activée */}
+              {isCompareMode && displayStateB && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300">
+                  <span className="font-bold flex items-center gap-1 text-emerald-400">
+                    <GitCompare className="w-3 h-3 text-emerald-400" />
+                    {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                    Calories : {Math.round(displayStateB.globalAverageCaloriesPerCapita)} kcal/hab
+                  </span>
+                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-amber-300">
+                    Rendement : {(displayStateB.globalCropYieldComposite * 100).toFixed(0)}% du pic
+                  </span>
+                  <span className="text-slate-400 text-[9.5px]">
+                    (Écart : {Math.round(displayStateB.globalAverageCaloriesPerCapita - displayState.globalAverageCaloriesPerCapita) >= 0 ? '+' : ''}{Math.round(displayStateB.globalAverageCaloriesPerCapita - displayState.globalAverageCaloriesPerCapita)} kcal/j)
+                  </span>
+                </div>
+              )}
             </div>
 
             <p className="text-[10px] text-slate-400 leading-tight">
@@ -919,6 +1130,39 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
                 {/* Courbe 2 : Rendements agricoles combinés (Ambre) */}
                 <path d={pathCropYield} fill="none" stroke="#f59e0b" strokeWidth="2" strokeDasharray="3,2" strokeLinecap="round" />
+
+                {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
+                {isCompareMode && visibleCompareTrajectory.length > 0 && (
+                  <g className="compare-layer">
+                    {/* Calories B (Vert émeraude vif pointillé) */}
+                    <path d={pathCalB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
+                    {/* Rendements B (Ambre clair pointillé) */}
+                    <path d={pathCropYieldB} fill="none" stroke="#fcd34d" strokeWidth="1.8" strokeDasharray="3 3" strokeLinecap="round" />
+                  </g>
+                )}
+
+                {/* Mini-légende de comparaison intégrée */}
+                {isCompareMode && (
+                  <g className="select-none pointer-events-none">
+                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#080c14" fillOpacity="0.85" stroke="#1e293b" strokeWidth="0.8" />
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#10b981" strokeWidth="2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#e2e8f0" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#34d399" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#34d399" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
+                  </g>
+                )}
+
+                {/* Marqueur interactif sur les calories B si comparaison */}
+                {isCompareMode && displayStateB && (
+                  <circle
+                    cx={currentX}
+                    cy={getYCal(displayStateB.globalAverageCaloriesPerCapita)}
+                    r="3.5"
+                    fill="#34d399"
+                    stroke="#ffffff"
+                    strokeWidth="1.2"
+                  />
+                )}
 
                 {/* Marqueur interactif sur les calories */}
                 <circle

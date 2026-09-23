@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { COUNTRIES_DATA } from '../data/countriesData';
 import { GlobalBiophysicalState } from '../types/simulation';
 import { X, Thermometer, Utensils, Skull, Users, ShieldAlert, AlertTriangle } from 'lucide-react';
+import { TechTooltip } from './TechTooltip';
 
 interface CountryInspectorProps {
   countryId: string | null;
@@ -193,6 +194,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
                 <Thermometer className="w-3.5 h-3.5 text-rose-400" />
                 Chaleur Humide &amp; Canicules (Ce que ressent la peau)
               </span>
+              <TechTooltip term="stull" showIconOnly />
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
@@ -211,7 +213,9 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               </div>
 
               <div className="bg-[#0b101b] p-2 rounded border border-slate-800">
-                <span className="text-slate-400 block text-[10px]">Chaleur ressentie (Tw)</span>
+                <span className="text-slate-400 block text-[10px] flex items-center justify-between">
+                  <span>Chaleur ressentie (Tw)</span>
+                </span>
                 <span
                   className={`text-sm font-bold font-mono tabular-nums ${
                     dynState.wetBulbPeak >= 31.0 ? 'text-rose-400 font-extrabold' : 'text-emerald-400'
@@ -252,6 +256,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
                 <Utensils className="w-3.5 h-3.5 text-amber-400" />
                 Nourriture Disponible &amp; État des Récoltes
               </span>
+              <TechTooltip term="haber-bosch" showIconOnly />
             </div>
 
             <div className="grid grid-cols-2 gap-2 text-[11px]">

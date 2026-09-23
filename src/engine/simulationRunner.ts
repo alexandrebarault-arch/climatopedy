@@ -77,44 +77,86 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
   }
 ];
 
+export const SCENARIO_BAU: SimulationScenarioConfig = {
+  id: 'bau',
+  name: 'Scénario Actuel (SSP5-8.5 · Inertie Brute)',
+  shortName: 'Scénario Actuel',
+  tagline: 'Rigidité sociétale, extraction fossile continue et absence de sobriété',
+  description: 'Poursuite de la trajectoire actuelle : rigidité comportementale totale, consommation de pétrole poussée jusqu\'à la déplétion géologique, dépendance absolue aux engrais chimiques Haber-Bosch.',
+  badgeColor: 'border-sky-500/40 bg-sky-950/40 text-sky-300',
+  lineColor: '#38bdf8',
+  dashArray: 'none',
+  oilDemandReductionRate: 0,
+  agroEcologyAdoptionRate: 0,
+  adaptationResilienceBoost: 1.0,
+  climateSensitivityECS: 3.0,
+  ultimateReservesQinf: 2.80e12
+};
+
+export const SCENARIO_SOBRIETY: SimulationScenarioConfig = {
+  id: 'sobriety',
+  name: 'Scénario de Sobriété & Redirection Écologique',
+  shortName: 'Sobriété & Agroécologie',
+  tagline: 'Descente énergétique choisie (-4%/an), autonomie azotée et résilience collective',
+  description: 'Bifurcation résiliente : baisse planifiée de 4%/an de la soif de pétrole (préservant l\'EROI au-dessus de 8:1), reconversion massive vers l\'agroécologie (biofixation de l\'azote par légumineuses) et climatisation passive collective.',
+  badgeColor: 'border-emerald-500/50 bg-emerald-950/40 text-emerald-300',
+  lineColor: '#10b981',
+  dashArray: '5 3',
+  oilDemandReductionRate: 4.0,
+  agroEcologyAdoptionRate: 65,
+  adaptationResilienceBoost: 1.8,
+  climateSensitivityECS: 3.0,
+  ultimateReservesQinf: 2.80e12
+};
+
+export const SCENARIO_DELAYED: SimulationScenarioConfig = {
+  id: 'delayed',
+  name: 'Scénario de Transition Tardive & Modérée (SSP2-4.5)',
+  shortName: 'Transition Modérée',
+  tagline: 'Réduction partielle de la demande (-1.8%/an) et adaptation intermédiaire',
+  description: 'Politique de compromis : amorce de sobriété plus tardive et limitée (-1.8%/an), recours partiel à l\'agroécologie (30%), investissements modestes dans la résilience urbaine.',
+  badgeColor: 'border-amber-500/50 bg-amber-950/40 text-amber-300',
+  lineColor: '#f59e0b',
+  dashArray: '4 4',
+  oilDemandReductionRate: 1.8,
+  agroEcologyAdoptionRate: 30,
+  adaptationResilienceBoost: 1.3,
+  climateSensitivityECS: 3.0,
+  ultimateReservesQinf: 2.80e12
+};
+
 export const PRESET_SCENARIOS: SimulationScenarioConfig[] = [
-  {
-    name: 'SSP5-8.5 Inertie Brute (Standard)',
-    description: 'Hypothèse centrale du brief : rigidité comportementale totale, poursuite effrénée de l\'extraction et de la consommation matérielle jusqu\'aux limites physiques.',
-    eroiInitial: 32.0,
-    ultimateReservesQinf: 2.80e12,
-    climateSensitivityECS: 3.0,
-    haberBoschDependency: 1.0,
-    borderMilitarizationSpeed: 1.0
-  },
-  {
-    name: 'Stress Climatique Extrême (ECS = 4.2°C)',
-    description: 'Sensibilité climatique forte et dégel précoce du pergélisol arctique accélérant les dômes thermiques létaux (Tw > 31°C).',
-    eroiInitial: 32.0,
-    ultimateReservesQinf: 2.80e12,
-    climateSensitivityECS: 4.2,
-    haberBoschDependency: 1.0,
-    borderMilitarizationSpeed: 1.3
-  },
-  {
-    name: 'Falaise Énergétique Précoce (Q_inf = 2.3 T boe)',
-    description: 'Réserves ultimes géologiques inférieures aux estimations optimistes. Chute précipitée de l\'EROI sous 10:1 dès 2038.',
-    eroiInitial: 28.0,
-    ultimateReservesQinf: 2.30e12,
-    climateSensitivityECS: 3.0,
-    haberBoschDependency: 1.2,
-    borderMilitarizationSpeed: 1.1
-  }
+  SCENARIO_BAU,
+  SCENARIO_SOBRIETY,
+  SCENARIO_DELAYED
 ];
 
 /**
  * Génère la trajectoire temporelle complète 1900-2100 pas à pas (annuelle)
  * Intègre la série historique réelle (1900-2025) et la projection biophysique (2026-2100)
  */
-export function generateFullTrajectory(startYear = 1900): GlobalBiophysicalState[] {
+export function generateFullTrajectory(
+  configOrStartYear?: SimulationScenarioConfig | number,
+  secondArg?: SimulationScenarioConfig | number
+): GlobalBiophysicalState[] {
+  let startYear = 1900;
+  let scenarioConfig: SimulationScenarioConfig = SCENARIO_BAU;
+
+  if (typeof configOrStartYear === 'number') {
+    startYear = configOrStartYear;
+    if (secondArg && typeof secondArg === 'object') {
+      scenarioConfig = secondArg;
+    }
+  } else if (configOrStartYear && typeof configOrStartYear === 'object') {
+    scenarioConfig = configOrStartYear;
+    if (typeof secondArg === 'number') {
+      startYear = secondArg;
+    }
+  }
+
   const trajectory: GlobalBiophysicalState[] = [];
 
-  // 1. Période historique 1900 à 2025
+  // 1. Période historique 1900 à 2025 (identique pour tous les scénarios car déjà passée)
   if (startYear <= 1900) {
     for (let yr = 1900; yr < 2026; yr++) {
       trajectory.push(generateHistoricalState(yr));
@@ -122,16 +164,16 @@ export function generateFullTrajectory(startYear = 1900): GlobalBiophysicalState
   }
 
   // 2. Point de référence 2026 (Présent calibré)
-  let state = initializeSimulationState();
+  let state = initializeSimulationState(scenarioConfig);
   trajectory.push(state);
 
-  // 3. Projection prospective 2026 à 2100
+  // 3. Projection prospective 2026 à 2100 modulée selon le scénario biophysique
   const endYear = 2100;
   const dt = 1.0;
   const steps = endYear - 2026;
 
   for (let s = 0; s < steps; s++) {
-    state = stepSimulation(state, dt);
+    state = stepSimulation(state, dt, scenarioConfig);
     trajectory.push(state);
   }
 

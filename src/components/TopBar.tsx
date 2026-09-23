@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCcw, FileText, Network, Globe } from 'lucide-react';
+import { RotateCcw, FileText, Network, Globe, HelpCircle, GitCompare } from 'lucide-react';
 
 interface TopBarProps {
   currentTab: 'map' | 'causal' | 'spec';
@@ -15,7 +15,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   currentYear
 }) => {
   return (
-    <header className="flex items-center justify-between px-6 py-3 border-b border-slate-800 bg-[#0e1420]/95 backdrop-blur z-30">
+    <header className="flex items-center justify-between px-6 py-3 border-b border-slate-800 bg-[#0e1422]/95 backdrop-blur z-30">
       {/* Zone 1: Single text element wordmark */}
       <div className="flex items-center gap-3">
         <span className="text-base font-semibold tracking-tight text-white flex items-center gap-2">
@@ -39,6 +39,20 @@ export const TopBar: React.FC<TopBarProps> = ({
         </button>
 
         <button
+          onClick={() => {
+            onSelectTab('map');
+            setTimeout(() => {
+              document.getElementById('comparison-section')?.scrollIntoView({ behavior: 'smooth' });
+            }, 60);
+          }}
+          className="flex items-center gap-1.5 transition-colors pb-0.5 border-b-2 border-transparent text-slate-400 hover:text-emerald-300 whitespace-nowrap cursor-pointer"
+          title="Comparer deux trajectoires biophysiques (Actuel vs Sobriété)"
+        >
+          <GitCompare className="w-3.5 h-3.5 text-emerald-400" />
+          Mode Comparatif
+        </button>
+
+        <button
           onClick={() => onSelectTab('causal')}
           className={`flex items-center gap-1.5 transition-colors pb-0.5 border-b-2 whitespace-nowrap ${
             currentTab === 'causal'
@@ -59,7 +73,21 @@ export const TopBar: React.FC<TopBarProps> = ({
           }`}
         >
           <FileText className="w-3.5 h-3.5" />
-          Spécification & Algorithmes
+          Spécification &amp; Algorithmes
+        </button>
+
+        <button
+          onClick={() => {
+            onSelectTab('map');
+            setTimeout(() => {
+              document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' });
+            }, 60);
+          }}
+          className="flex items-center gap-1.5 transition-colors pb-0.5 border-b-2 border-transparent text-slate-400 hover:text-cyan-300 whitespace-nowrap cursor-pointer"
+          title="Consulter la FAQ et le lexique des termes techniques (EROI, FaIR, Stull Tw, Haber-Bosch)"
+        >
+          <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
+          FAQ &amp; Lexique
         </button>
       </nav>
 

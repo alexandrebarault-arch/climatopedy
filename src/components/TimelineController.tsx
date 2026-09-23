@@ -2,6 +2,7 @@ import React from 'react';
 import { Play, Pause, SkipForward, RotateCcw } from 'lucide-react';
 import { GlobalBiophysicalState, MilestoneEvent } from '../types/simulation';
 import { SIMULATION_MILESTONES } from '../engine/simulationRunner';
+import { TechTooltip } from './TechTooltip';
 
 interface TimelineControllerProps {
   currentYear: number;
@@ -55,13 +56,13 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
         </div>
 
         {/* EROI & Énergie Nette (Clarifié pour le grand public sans le jargon mathématique) */}
-        <div
-          className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between"
-          title="Multiplicateur d'énergie EROI : Indique combien de barils d'énergie on extrait pour 1 baril consommé à forer. En 1900, 1 baril en rapportait 100 (x100). En 2026, 1 baril n'en rapporte plus que 12 (x12). Les barils restants font rouler les transports, chauffer les maisons et tourner les hôpitaux."
-        >
+        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-[11px] text-slate-300 font-medium">Efficacité Pétrole (EROI)</span>
+              <span className="text-[11px] text-slate-300 font-medium flex items-center gap-1">
+                Efficacité Pétrole
+                <TechTooltip term="eroi" showIconOnly />
+              </span>
               <span className="text-[9.5px] font-mono text-amber-300 bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-800/80 font-bold">
                 x{simulationState.currentEroi >= 20 ? Math.round(simulationState.currentEroi) : simulationState.currentEroi.toFixed(1)}
               </span>
@@ -91,7 +92,13 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
         {/* CO2 Atmosphérique */}
         <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
           <div>
-            <span className="text-[11px] text-slate-300 font-medium">Gaz à effet de serre (CO2)</span>
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-slate-300 font-medium flex items-center gap-1">
+                Gaz effet de serre
+                <TechTooltip term="fair" showIconOnly />
+              </span>
+              <span className="text-[9px] font-mono text-slate-400">CO₂</span>
+            </div>
             <div className="flex items-baseline gap-1 mt-0.5">
               <span className="text-lg font-bold font-mono text-cyan-300 tabular-nums">
                 {Math.round(simulationState.atmosphericCo2Ppm)}
@@ -108,12 +115,15 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
         <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-[11px] text-slate-300 font-medium">Réchauffement Mondial</span>
+              <span className="text-[11px] text-slate-300 font-medium flex items-center gap-1">
+                Réchauffement
+                <TechTooltip term="fair" showIconOnly />
+              </span>
               <span
                 className="text-[9px] font-mono text-cyan-400 bg-cyan-950/80 px-1 py-0.2 rounded border border-cyan-800/80 cursor-help"
                 title="Modèle FaIR officiel validé par le GIEC AR6"
               >
-                GIEC
+                GIEC FaIR
               </span>
             </div>
             <div className="flex items-baseline gap-1 mt-0.5">
@@ -137,12 +147,14 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
         </div>
 
         {/* Montée des Océans (Chiffrée sans ambiguïté) */}
-        <div
-          className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between"
-          title="Élévation moyenne du niveau des océans. Fonte des glaciers terrestres et calottes + dilatation de l'eau chauffée."
-        >
+        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
           <div>
-            <span className="text-[11px] text-slate-300 font-medium">Montée des Océans</span>
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-slate-300 font-medium flex items-center gap-1">
+                Montée Océans
+                <TechTooltip term="slr" showIconOnly />
+              </span>
+            </div>
             <div className="flex items-baseline gap-1 mt-0.5">
               <span className="text-lg font-bold font-mono text-sky-400 tabular-nums">
                 {simulationState.seaLevelRiseMeters >= 0 ? '+' : ''}{(simulationState.seaLevelRiseMeters * 100).toFixed(0)}
@@ -160,12 +172,14 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
         </div>
 
         {/* Décès dus aux crises (Famines & Canicules explicites) */}
-        <div
-          className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between"
-          title="Surmortalités annuelles causées par les crises biophysiques : ruptures d'approvisionnement alimentaire et dômes de chaleur humide mortelle."
-        >
+        <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
           <div>
-            <span className="text-[11px] text-slate-300 font-medium">Décès dus aux crises</span>
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-slate-300 font-medium flex items-center gap-1">
+                Décès crises
+                <TechTooltip term="stull" showIconOnly />
+              </span>
+            </div>
             <div className="flex items-baseline gap-1 mt-0.5">
               <span className="text-lg font-bold font-mono text-purple-400 tabular-nums">
                 {(

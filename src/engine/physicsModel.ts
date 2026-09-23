@@ -3,7 +3,8 @@ import {
   CountryDynamicState,
   GlobalBiophysicalState,
   MortalityCauses,
-  DemographicCohorts
+  DemographicCohorts,
+  SimulationScenarioConfig
 } from '../types/simulation';
 
 // Constantes FaIR (Finite Amplitude Impulse Response) CMIP6
@@ -47,8 +48,9 @@ export function calculateWetBulbStull(ta: number, rh: number): number {
 /**
  * Calcule l'EROI au stade final et la fraction d'énergie nette disponible
  */
-export function calculateEroiAndNetEnergy(cumulExtracted: number) {
-  const depletionRatio = Math.min(0.96, cumulExtracted / Q_INF_BARRELS);
+export function calculateEroiAndNetEnergy(cumulExtracted: number, qInf: number = Q_INF_BARRELS) {
+  const effectiveQinf = qInf || Q_INF_BARRELS;
+  const depletionRatio = Math.min(0.96, cumulExtracted / effectiveQinf);
   const currentEroi = Math.max(1.05, EROI_INITIAL * Math.pow(1.0 - depletionRatio, EROI_EXPONENT_BETA));
   const netEnergyRatio = Math.max(0.01, 1.0 - (1.0 / currentEroi));
   return { currentEroi, netEnergyRatio };
@@ -57,7 +59,7 @@ export function calculateEroiAndNetEnergy(cumulExtracted: number) {
 /**
  * Initialise l'état biophysique complet pour l'année 2026
  */
-export function initializeSimulationState(): GlobalBiophysicalState {
+export function initializeSimulationState(scenarioConfig?: SimulationScenarioConfig): GlobalBiophysicalState {
   // Concentrations et réservoirs initiaux 2026
   // CO2 atmosphérique mesuré en 2026 : ~424.0 ppm (NOAA Mauna Loa)
   // Réservoirs FaIR étalonnés sur l'excédent historique (~146.0 ppm excédent * 2.123 GtC/ppm = 310 GtC)
@@ -68,7 +70,8 @@ export function initializeSimulationState(): GlobalBiophysicalState {
   const initialT2 = 0.55; // Océan profond
   const initialSeaLevel = 0.12; // Mètres depuis 2000
 
-  const { currentEroi, netEnergyRatio } = calculateEroiAndNetEnergy(Q_2026_CUMUL);
+  const qInf = scenarioConfig?.ultimateReservesQinf ?? Q_INF_BARRELS;
+  const { currentEroi, netEnergyRatio } = calculateEroiAndNetEnergy(Q_2026_CUMUL, qInf);
 
   const initialCountries: Record<string, CountryDynamicState> = {};
   let totalWorldPop = 0;
@@ -159,9 +162,19 @@ export function initializeSimulationState(): GlobalBiophysicalState {
 /**
  * Exécute un pas temporel complet de simulation d'une durée dt (ex: 0.2 an ou 1.0 an)
  */
-export function stepSimulation(currentState: GlobalBiophysicalState, dt: number): GlobalBiophysicalState {
+export function stepSimulation(
+  currentState: GlobalBiophysicalState,
+  dt: number,
+  scenarioConfig?: SimulationScenarioConfig
+): GlobalBiophysicalState {
   const next = structuredClone(currentState);
   next.year += dt;
+
+  const yearsSince2026 = Math.max(0, next.year - 2026);
+  const qInf = scenarioConfig?.ultimateReservesQinf ?? Q_INF_BARRELS;
+  const oilReductionPct = scenarioConfig?.oilDemandReductionRate ?? 0;
+  // Sobriété énergétique : réduction progressive et planifiée de la soif d'extraction
+  const sobrietyDemandFactor = Math.pow(Math.max(0.08, 1 - (oilReductionPct / 100)), yearsSince2026);
 
   // 1. DYNAMIQUE ÉNERGÉTIQUE & EXTRACTION INDUSTRIELLE
   // La demande énergétique est guidée par la population active et le capital physique
@@ -169,13 +182,13 @@ export function stepSimulation(currentState: GlobalBiophysicalState, dt: number)
   const baselineActive = 5200; // Millions en 2026
   const capitalDamping = Math.min(1.2, Math.max(0.2, next.industrialCapitalIndex));
   
-  // L'inertie sociétale maintient le besoin de forer et de consommer du brut
-  const targetExtraction = 36.5e9 * (globalActivePop / baselineActive) * capitalDamping * Math.pow(next.netEnergyRatio, 0.4);
+  // L'inertie sociétale ou la sobriété choisie module le besoin d'extraction
+  const targetExtraction = 36.5e9 * (globalActivePop / baselineActive) * capitalDamping * Math.pow(next.netEnergyRatio, 0.4) * sobrietyDemandFactor;
   next.oilAnnualExtraction = targetExtraction;
   next.oilCumulativeBarrels += targetExtraction * dt;
 
   // Mise à jour de l'EROI et de l'énergie nette
-  const { currentEroi, netEnergyRatio } = calculateEroiAndNetEnergy(next.oilCumulativeBarrels);
+  const { currentEroi, netEnergyRatio } = calculateEroiAndNetEnergy(next.oilCumulativeBarrels, qInf);
   next.currentEroi = currentEroi;
   next.netEnergyRatio = netEnergyRatio;
 
@@ -191,7 +204,8 @@ export function stepSimulation(currentState: GlobalBiophysicalState, dt: number)
   // 2. ÉMISSIONS & CYCLE DU CARBONE FaIR
   // Émissions fossiles annuelles (pétrole + charbon + gaz)
   const emissionsFossilOil = (next.oilAnnualExtraction * 1.15e-10); // ~4.2 GtC/an pour le pétrole
-  const emissionsGasCoal = 5.8 * (netEnergyRatio / 0.968) * next.industrialCapitalIndex; // Gaz + Charbon
+  const gasCoalSobrietyFactor = Math.pow(Math.max(0.08, 1 - ((oilReductionPct * 0.75) / 100)), yearsSince2026);
+  const emissionsGasCoal = 5.8 * (netEnergyRatio / 0.968) * next.industrialCapitalIndex * gasCoalSobrietyFactor;
   const totalAnnualGtC = emissionsFossilOil + emissionsGasCoal;
   
   // Équation FaIR avec ralentissement par saturation des puits de carbone
@@ -224,7 +238,11 @@ export function stepSimulation(currentState: GlobalBiophysicalState, dt: number)
   const t1 = next.surfaceTemperatureAnomaly;
   const t2 = next.deepOceanTemperatureAnomaly;
 
-  const dt1_dt = (forcingTotal - LAMBDA_FEEDBACK * t1 - GAMMA_HEAT_EXCH * (t1 - t2)) / C_TH1;
+  // Sensibilité climatique ECS paramétrable
+  const ecs = scenarioConfig?.climateSensitivityECS ?? 3.0;
+  const effectiveLambda = 3.71 / Math.max(1.5, Math.min(6.0, ecs));
+
+  const dt1_dt = (forcingTotal - effectiveLambda * t1 - GAMMA_HEAT_EXCH * (t1 - t2)) / C_TH1;
   const dt2_dt = (GAMMA_HEAT_EXCH * (t1 - t2)) / C_TH2;
 
   next.surfaceTemperatureAnomaly += dt1_dt * dt;
@@ -250,6 +268,11 @@ export function stepSimulation(currentState: GlobalBiophysicalState, dt: number)
 
   // Calcul préliminaire des push factors pour les migrations
   const countryPushFactors: Record<string, number> = {};
+
+  // Paramètres de politique de redirection :
+  const agroPct = (scenarioConfig?.agroEcologyAdoptionRate ?? 0) / 100;
+  const agroTransitionProgress = Math.min(1.0, yearsSince2026 / 20.0); // Déploiement progressif sur 20 ans
+  const resilienceBoost = scenarioConfig?.adaptationResilienceBoost ?? 1.0;
 
   COUNTRIES_DATA.forEach(staticC => {
     const cState = next.countries[staticC.id];
@@ -282,8 +305,9 @@ export function stepSimulation(currentState: GlobalBiophysicalState, dt: number)
     const thermalCropLoss = 
       (mix.maize * BETA_MAIZE + mix.wheat * BETA_WHEAT + mix.rice * BETA_RICE + mix.soy * BETA_SOY) * deltaTLocal;
     
-    // Facteur d'intrants matériels et énergétiques (traction diesel + engrais Haber-Bosch)
-    const inputsFactor = Math.pow(next.netEnergyRatio / 0.968, 0.65) * Math.pow(next.haberBoschNitrogenFactor, 0.35);
+    // Facteur d'intrants matériels et énergétiques (traction diesel + engrais Haber-Bosch ou biofixation agroécologique)
+    const effectiveNitrogen = Math.min(1.0, next.haberBoschNitrogenFactor + (1.0 - next.haberBoschNitrogenFactor) * agroPct * agroTransitionProgress);
+    const inputsFactor = Math.pow(next.netEnergyRatio / 0.968, 0.65) * Math.pow(effectiveNitrogen, 0.35);
     
     // Rendement net tenant compte du climat, de la perte des terres côtières et des intrants
     const compositeCropYield = Math.max(0.12, (1.0 - thermalCropLoss) * (1.0 - cState.floodedArablePct) * inputsFactor);
@@ -306,8 +330,9 @@ export function stepSimulation(currentState: GlobalBiophysicalState, dt: number)
     // SURMORTALITÉS NON-LINÉAIRES
     // 1. Chaleur humide létale : émergence au-delà du seuil critique de Roland Stull Tw
     // Amortie temporairement par les infrastructures si le pays a une haute résilience ET une énergie nette suffisante
-    const activeResilience = staticC.resilienceIndex * Math.pow(next.netEnergyRatio, 0.8);
-    const effectiveTwPeak = cState.wetBulbPeak - (activeResilience * 2.0);
+    // (accentuée si investissement en sobriété et climatisation passive collective)
+    const activeResilience = Math.min(0.95, staticC.resilienceIndex * resilienceBoost * Math.pow(next.netEnergyRatio, 0.8));
+    const effectiveTwPeak = cState.wetBulbPeak - (activeResilience * 2.2);
     let muThermal = 0;
     if (effectiveTwPeak >= 30.5) {
       muThermal = 0.35 / (1.0 + Math.exp(-2.2 * (effectiveTwPeak - 31.8)));

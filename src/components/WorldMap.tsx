@@ -28,6 +28,7 @@ import {
   ShieldCheck,
   X
 } from 'lucide-react';
+import { TechTooltip } from './TechTooltip';
 
 interface WorldMapProps {
   simulationState: GlobalBiophysicalState;
@@ -258,29 +259,35 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
         {/* Calques biophysiques commutables */}
         <div className="flex flex-wrap items-center gap-1 bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
-          <button
-            onClick={() => setActiveMetric('wet_bulb')}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
-              activeMetric === 'wet_bulb'
-                ? 'bg-rose-950/90 text-rose-300 font-semibold border border-rose-800/80'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Thermometer className="w-3.5 h-3.5" />
-            <span>Thermomètre Mouillé (Tw)</span>
-          </button>
+          <div className="flex items-center">
+            <button
+              onClick={() => setActiveMetric('wet_bulb')}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
+                activeMetric === 'wet_bulb'
+                  ? 'bg-rose-950/90 text-rose-300 font-semibold border border-rose-800/80'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Thermometer className="w-3.5 h-3.5" />
+              <span>Thermomètre Mouillé (Tw)</span>
+            </button>
+            <TechTooltip term="stull" showIconOnly className="ml-0.5 mr-1" />
+          </div>
 
-          <button
-            onClick={() => setActiveMetric('caloric_stress')}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
-              activeMetric === 'caloric_stress'
-                ? 'bg-amber-950/90 text-amber-300 font-semibold border border-amber-800/80'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Utensils className="w-3.5 h-3.5" />
-            <span>Déficit Alimentaire</span>
-          </button>
+          <div className="flex items-center">
+            <button
+              onClick={() => setActiveMetric('caloric_stress')}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
+                activeMetric === 'caloric_stress'
+                  ? 'bg-amber-950/90 text-amber-300 font-semibold border border-amber-800/80'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Utensils className="w-3.5 h-3.5" />
+              <span>Déficit Alimentaire</span>
+            </button>
+            <TechTooltip term="haber-bosch" showIconOnly className="ml-0.5 mr-1" />
+          </div>
 
           <button
             onClick={() => setActiveMetric('mortality')}
