@@ -13,7 +13,9 @@ import { CountryInspector } from './components/CountryInspector';
 import { CausalChainExplorer } from './components/CausalChainExplorer';
 import { SpecModal } from './components/SpecModal';
 import { TippingPointsView } from './components/TippingPointsView';
+import { ScientificSourcesView } from './components/ScientificSourcesView';
 import { PdfExportModal } from './components/PdfExportModal';
+import { BookOpen, CheckCircle, FileText, ShieldAlert } from 'lucide-react';
 import { generateFullTrajectory, SCENARIO_BAU, SCENARIO_SOBRIETY } from './engine/simulationRunner';
 import { SimulationScenarioConfig } from './types/simulation';
 import { 
@@ -285,6 +287,41 @@ export default function App() {
 
             {/* 7. Pour aller plus loin : L'IA peut-elle nous sauver ? Ou va-t-elle accélérer le changement ? */}
             <AiFutureDebateCard />
+
+            {/* 8. Vérification du travail & Sources Scientifiques */}
+            <div className="rounded-2xl bg-gradient-to-r from-blue-950/70 via-[#0a1222] to-cyan-950/70 border border-blue-700/50 p-5 sm:p-6 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1.5 max-w-2xl">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono bg-blue-900/70 text-blue-300 border border-blue-700/60 uppercase">
+                    Transparence &amp; Rigueur Académique
+                  </span>
+                  <span className="text-xs text-emerald-400 font-mono flex items-center gap-1">
+                    <CheckCircle className="w-3.5 h-3.5" />
+                    <span>100% Liens Vérifiés</span>
+                  </span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  Vérifier le Travail : Sources, Publications &amp; Données Réelles
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Consultez l'ensemble des 20+ publications à comité de lecture (<em>Nature, Science, PNAS</em>), 
+                  des rapports officiels d'institutions internationales (<em>GIEC AR6, ONU, FAO</em>) et des relevés d'observatoires satellites (<em>NOAA, Copernicus, NASA</em>) 
+                  qui fondent les équations biophysiques de GAIA-Sim.
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  setCurrentTab('sources');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs shadow-lg shadow-cyan-950/60 cursor-pointer transition-all shrink-0 hover:scale-105"
+              >
+                <BookOpen className="w-4 h-4 text-slate-950" />
+                <span>Consulter toutes les sources vérifiées</span>
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
           </div>
         )}
 
@@ -315,6 +352,16 @@ export default function App() {
         {currentTab === 'spec' && (
           <SpecModal />
         )}
+
+        {currentTab === 'sources' && (
+          <ScientificSourcesView
+            onNavigateTab={(tab) => {
+              setCurrentTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onSeekYear={handleSeekYear}
+          />
+        )}
       </main>
 
       {/* Tiroir d'inspection granulaire d'un pays */}
@@ -337,20 +384,70 @@ export default function App() {
         trajectoryB={trajectoryB}
       />
 
-      {/* Footer sobre et scientifique */}
-      <footer className="border-t border-slate-800/80 bg-[#070a10] py-4 px-6 text-center text-xs text-slate-500">
-        <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-          <span>GAIA-Sim · Moteur Biophysique Intégré</span>
-          <span aria-hidden="true">·</span>
-          <span>FaIR v1.1 CMIP6 (Smith et al.)</span>
-          <span aria-hidden="true">·</span>
-          <span>Thermomètre Mouillé Stull (2011)</span>
-          <span aria-hidden="true">·</span>
-          <span>Zhao et al. (PNAS 2017)</span>
-          <span aria-hidden="true">·</span>
-          <span>Vermeer &amp; Rahmstorf (2009)</span>
-          <span aria-hidden="true">·</span>
-          <span>Hypothèse de Rigidité Comportementale SSP5-8.5</span>
+      {/* Footer sobre et scientifique avec lien d'accès direct vers les sources */}
+      <footer className="border-t border-slate-800/80 bg-[#070a10] py-6 px-6 text-xs text-slate-400">
+        <div className="max-w-5xl mx-auto flex flex-col items-center gap-4">
+          {/* Navigation directe du footer pour vérification */}
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium">
+            <button
+              onClick={() => {
+                setCurrentTab('sources');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-cyan-400 hover:text-cyan-300 hover:underline flex items-center gap-1.5 cursor-pointer font-semibold transition-colors bg-cyan-950/40 px-3 py-1 rounded-lg border border-cyan-800/50"
+              title="Accéder à la liste complète des publications scientifiques pour vérifier le travail"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Vérifier le Travail &amp; Consulter les Sources (20+ Publications)</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setCurrentTab('spec');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-emerald-400 hover:text-emerald-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Spécifications &amp; Formules (ODEs)</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setCurrentTab('tipping-points');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-rose-400 hover:text-rose-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+            >
+              <ShieldAlert className="w-3.5 h-3.5" />
+              <span>9 Points de Bascule Planétaires</span>
+            </button>
+
+            <button
+              onClick={() => {
+                setCurrentTab('map');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-slate-400 hover:text-slate-200 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+            >
+              <span>Planisphère Interactif</span>
+            </button>
+          </div>
+
+          {/* Mentions scientifiques et crédits méthodologiques */}
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-slate-500 text-center max-w-4xl">
+            <span>GAIA-Sim · Moteur Biophysique Intégré Open-Science</span>
+            <span aria-hidden="true">·</span>
+            <span>FaIR v1.3 CMIP6 (Smith et al. 2018)</span>
+            <span aria-hidden="true">·</span>
+            <span>Thermomètre Mouillé Stull (2011)</span>
+            <span aria-hidden="true">·</span>
+            <span>Rendements Zhao et al. (PNAS 2017)</span>
+            <span aria-hidden="true">·</span>
+            <span>Niveau Marin Vermeer &amp; Rahmstorf (2009)</span>
+            <span aria-hidden="true">·</span>
+            <span>Points de Bascule McKay et al. (Science 2022)</span>
+          </div>
         </div>
       </footer>
     </div>

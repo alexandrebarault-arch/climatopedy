@@ -13,7 +13,8 @@ import {
   Calendar,
   CheckCircle2,
   ChevronRight,
-  Scale
+  Scale,
+  Info
 } from 'lucide-react';
 import { GlobalBiophysicalState, SimulationScenarioConfig } from '../types/simulation';
 import { TechTooltip } from './TechTooltip';
@@ -102,6 +103,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
   const deltaCalories = Math.round(stateB.globalAverageCaloriesPerCapita - stateA.globalAverageCaloriesPerCapita);
   const deltaYieldPct = Math.round((stateB.globalCropYieldComposite - stateA.globalCropYieldComposite) * 100);
   const deltaPopB = (stateB.worldPopulation - stateA.worldPopulation) / 1000;
+  const popA_Mds = (stateA.worldPopulation / 1000).toFixed(2);
+  const popB_Mds = (stateB.worldPopulation / 1000).toFixed(2);
+  const deltaPopMds = deltaPopB >= 0 ? `+${deltaPopB.toFixed(2)}` : deltaPopB.toFixed(2);
   const deltaAnnualDeathsM = (stateA.worldDeathsAnnual.total - stateB.worldDeathsAnnual.total);
   const deltaRefugeesM = (stateA.activeClimateRefugees - stateB.activeClimateRefugees);
 
@@ -149,8 +153,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       icon: <Users className="w-5 h-5 text-emerald-400" />,
       badge: 'Démographie & Survie',
       badgeColor: 'border-emerald-800/60 bg-emerald-950/60 text-emerald-300',
-      valA: `${habitablePopA_Mds} Mds (${(habitableFractionA * 100).toFixed(0)}%)`,
-      valB: `${habitablePopB_Mds} Mds (${(habitableFractionB * 100).toFixed(0)}%)`,
+      valA: `${habitablePopA_Mds} Mds (${(habitableFractionA * 100).toFixed(0)}% de la pop.)`,
+      valB: `${habitablePopB_Mds} Mds (${(habitableFractionB * 100).toFixed(0)}% de la pop.)`,
       deltaText: `+${gainHabitablePopMds} Mds d'humains viables`,
       deltaPositiveIsGood: true,
       benefitHeadline: `${cumulativeStats.livesSavedMillions.toFixed(0)} millions de vies préservées d'ici ${horizonYear}`,
@@ -166,8 +170,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       icon: <Droplets className="w-5 h-5 text-sky-400" />,
       badge: 'Eau & Ressources',
       badgeColor: 'border-sky-800/60 bg-sky-950/60 text-sky-300',
-      valA: `${waterStressPctA}% (${waterStressedPopA_B} Mds)`,
-      valB: `${waterStressPctB}% (${waterStressedPopB_B} Mds)`,
+      valA: `${waterStressedPopA_B} Mds (${waterStressPctA}% de la pop.)`,
+      valB: `${waterStressedPopB_B} Mds (${waterStressPctB}% de la pop.)`,
       deltaText: `${waterStressDeltaPct > 0 ? '+' : ''}${waterStressDeltaPct} points (${Math.abs(Number(waterStressedPopA_B) - Number(waterStressedPopB_B)).toFixed(1)} Mds épargnés)`,
       deltaPositiveIsGood: waterStressDeltaPct < 0,
       benefitHeadline: `Pression hydrique allégée de ${Math.abs(waterStressDeltaPct)} points`,
@@ -544,16 +548,44 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                 <td className="py-2.5 px-3 text-slate-300 text-[11px]">Évite l'emballement des feux boréaux et du dégel du pergélisol.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">Population Vivant en Zone Viable</td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">{habitablePopA_Mds} Mds ({(habitableFractionA * 100).toFixed(0)}%)</td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">{habitablePopB_Mds} Mds ({(habitableFractionB * 100).toFixed(0)}%)</td>
+                <td className="py-2.5 px-3 font-semibold text-white">
+                  <div>Population Mondiale Totale</div>
+                  <div className="text-[10px] text-slate-400 font-normal">Base démographique (dénominateur 100% ci-dessous)</div>
+                </td>
+                <td className="py-2.5 px-3 font-mono text-rose-300">{popA_Mds} Mds</td>
+                <td className="py-2.5 px-3 font-mono text-emerald-300">{popB_Mds} Mds</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">{deltaPopMds} Mds</td>
+                <td className="py-2.5 px-3 text-slate-300 text-[11px]">Évite les surmortalités massives par famines chroniques et stress thermique.</td>
+              </tr>
+              <tr>
+                <td className="py-2.5 px-3 font-semibold text-white">
+                  <div>Habitabilité Thermique (Zone Viable)</div>
+                  <div className="text-[10px] text-slate-400 font-normal">Zone où Tw &lt; 31°C (seuil de tolérance humaine Stull)</div>
+                </td>
+                <td className="py-2.5 px-3 font-mono text-rose-300">
+                  <span className="font-bold">{habitablePopA_Mds} Mds</span>
+                  <span className="text-[11px] text-rose-400/90 ml-1.5 font-normal">({(habitableFractionA * 100).toFixed(0)}% du total)</span>
+                </td>
+                <td className="py-2.5 px-3 font-mono text-emerald-300">
+                  <span className="font-bold">{habitablePopB_Mds} Mds</span>
+                  <span className="text-[11px] text-emerald-400/90 ml-1.5 font-normal">({(habitableFractionB * 100).toFixed(0)}% du total)</span>
+                </td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">+{gainHabitablePopMds} Mds</td>
                 <td className="py-2.5 px-3 text-slate-300 text-[11px]">Préserve l'habitabilité du sud asiatique et de l'Afrique sahélienne.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">Population en Stress Hydrique Sévère</td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">{waterStressPctA}% ({waterStressedPopA_B} Mds)</td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">{waterStressPctB}% ({waterStressedPopB_B} Mds)</td>
+                <td className="py-2.5 px-3 font-semibold text-white">
+                  <div>Vulnérabilité Eau (Stress Hydrique Sévère)</div>
+                  <div className="text-[10px] text-slate-400 font-normal">Déficit critique en eau douce &lt; 1 000 m³/an/habitant</div>
+                </td>
+                <td className="py-2.5 px-3 font-mono text-rose-300">
+                  <span className="font-bold">{waterStressedPopA_B} Mds</span>
+                  <span className="text-[11px] text-rose-400/90 ml-1.5 font-normal">({waterStressPctA}% du total)</span>
+                </td>
+                <td className="py-2.5 px-3 font-mono text-emerald-300">
+                  <span className="font-bold">{waterStressedPopB_B} Mds</span>
+                  <span className="text-[11px] text-emerald-400/90 ml-1.5 font-normal">({waterStressPctB}% du total)</span>
+                </td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">{waterStressDeltaPct} points</td>
                 <td className="py-2.5 px-3 text-slate-300 text-[11px]">Maintien des débits estivaux des grands fleuves d'origine glaciaire.</td>
               </tr>
@@ -580,6 +612,25 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               </tr>
             </tbody>
           </table>
+        </div>
+
+        {/* Note pédagogique sur l'indépendance des indicateurs biophysiques */}
+        <div className="mt-3 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-300 flex items-start gap-2.5 leading-relaxed">
+          <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <span className="font-semibold text-white block">
+              💡 Clarification Méthodologique : Pourquoi 79% et 45% ne font pas 100% ?
+            </span>
+            <p className="text-slate-300">
+              L'<strong className="text-emerald-300 font-medium">Habitabilité Thermique ({habitablePopA_Mds} Mds, soit {(habitableFractionA * 100).toFixed(0)}%)</strong> et le{' '}
+              <strong className="text-rose-300 font-medium">Stress Hydrique Sévère ({waterStressedPopA_B} Mds, soit {waterStressPctA}%)</strong> ne sont pas deux tranches d'un même camembert, mais <strong>deux dimensions biophysiques indépendantes</strong> rapportées chacune à 100% de la population mondiale du scénario ({popA_Mds} Mds).
+            </p>
+            <p className="text-slate-400 text-[10px]">
+              • <strong>Habitabilité ({(habitableFractionA * 100).toFixed(0)}%)</strong> : {((1 - habitableFractionA) * 100).toFixed(0)}% de la population vit dans une zone rendue inhabitable par le stress thermique létal (Tw &gt; 31°C).<br />
+              • <strong>Stress hydrique ({waterStressPctA}%)</strong> : {100 - waterStressPctA}% de la population conserve un approvisionnement en eau suffisant.<br />
+              Une personne peut tout à fait habiter une zone thermiquement supportable tout en subissant une pénurie d'eau douce (les deux phénomènes se superposent géographiquement).
+            </p>
+          </div>
         </div>
       </div>
     </div>

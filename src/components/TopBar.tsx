@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { RotateCcw, FileText, Network, Globe, HelpCircle, ShieldAlert, FileDown, LayoutDashboard, Menu, X } from 'lucide-react';
+import { RotateCcw, FileText, Network, Globe, HelpCircle, ShieldAlert, FileDown, LayoutDashboard, Menu, X, BookOpen } from 'lucide-react';
 
-export type AppTabType = 'map' | 'comparative-dashboard' | 'tipping-points' | 'causal' | 'spec';
+export type AppTabType = 'map' | 'comparative-dashboard' | 'tipping-points' | 'causal' | 'spec' | 'sources';
 
 interface TopBarProps {
   currentTab: AppTabType;
@@ -119,6 +119,19 @@ export const TopBar: React.FC<TopBarProps> = ({
           >
             <FileText className="w-3.5 h-3.5 text-emerald-400" />
             <span>Spécifications</span>
+          </button>
+
+          <button
+            onClick={() => handleTabClick('sources')}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
+              currentTab === 'sources'
+                ? 'text-cyan-300 bg-cyan-950/60 border border-cyan-700/50 font-semibold'
+                : 'hover:text-slate-200 hover:bg-slate-800/50'
+            }`}
+            title="Consulter l'ensemble des sources, données et publications scientifiques vérifiées"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Sources &amp; Données</span>
           </button>
 
           <button
@@ -274,6 +287,24 @@ export const TopBar: React.FC<TopBarProps> = ({
               </div>
             </div>
             {currentTab === 'spec' && <span className="w-2 h-2 rounded-full bg-emerald-400" />}
+          </button>
+
+          <button
+            onClick={() => handleTabClick('sources')}
+            className={`flex items-center justify-between p-2.5 rounded-lg text-xs font-medium text-left transition-colors ${
+              currentTab === 'sources'
+                ? 'bg-cyan-950/80 text-cyan-300 border border-cyan-800/80 font-semibold'
+                : 'text-slate-300 hover:bg-slate-800/60'
+            }`}
+          >
+            <div className="flex items-center gap-2.5">
+              <BookOpen className="w-4 h-4 text-cyan-400 shrink-0" />
+              <div>
+                <span className="block font-semibold">Sources &amp; Données Scientifiques</span>
+                <span className="block text-[11px] text-slate-400 font-normal">Publications à comité de lecture et bases de données vérifiées</span>
+              </div>
+            </div>
+            {currentTab === 'sources' && <span className="w-2 h-2 rounded-full bg-cyan-400" />}
           </button>
 
           <button
