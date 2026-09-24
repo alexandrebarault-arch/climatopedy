@@ -9,7 +9,6 @@ import {
   Sliders,
   ShieldAlert,
   BookOpen,
-  FileDown,
   Sparkles,
   CheckCircle,
   Eye,
@@ -175,10 +174,10 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
       id: 6,
       badge: 'Étape 6 · Transparence & Outils',
       badgeColor: 'border-purple-300 bg-purple-50 text-purple-800',
-      title: 'Rigueur Académique & Export de Rapport',
-      subtitle: 'Vérifiez le travail et partagez vos simulations',
+      title: 'Rigueur Académique & Transparence',
+      subtitle: 'Vérifiez les données et auditez le modèle',
       description:
-        'CLIMATOPEDY s\'inscrit dans une démarche d\'Open-Science intégrale. Vous pouvez auditer chaque formule, consulter les publications originales ou générer un rapport PDF complet.',
+        'CLIMATOPEDY s\'inscrit dans une démarche d\'Open-Science intégrale. Vous pouvez auditer chaque formule et consulter les publications originales de référence.',
       tips: [
         {
           icon: <BookOpen className="w-4 h-4 text-sky-600" />,
@@ -189,8 +188,8 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
           text: 'Onglet Spécifications : l\'ensemble des formules différentielles (ODE) et du modèle de Leontief documentés.'
         },
         {
-          icon: <FileDown className="w-4 h-4 text-purple-600" />,
-          text: 'Bouton Rapport PDF (en haut à droite) : téléchargez un document de synthèse synthétisant votre état de simulation.'
+          icon: <RotateCcw className="w-4 h-4 text-purple-600" />,
+          text: 'Bouton Aujourd\'hui (en haut à droite) : réinitialisez votre simulation en 2026 à tout moment pour repartir d\'une base fraîche.'
         }
       ],
       actionLabel: 'Terminer le tutoriel et explorer',

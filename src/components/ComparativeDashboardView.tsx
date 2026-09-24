@@ -8,7 +8,6 @@ import {
   Waves,
   Zap,
   AlertTriangle,
-  FileDown,
   Sparkles,
   Calendar,
   CheckCircle2,
@@ -26,7 +25,6 @@ interface ComparativeDashboardViewProps {
   trajectoryB: GlobalBiophysicalState[];
   currentYear: number;
   onSeekYear: (year: number) => void;
-  onOpenPdfExport?: () => void;
   onSelectScenarioB?: (scenario: SimulationScenarioConfig) => void;
 }
 
@@ -36,8 +34,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
   trajectoryA,
   trajectoryB,
   currentYear,
-  onSeekYear,
-  onOpenPdfExport
+  onSeekYear
 }) => {
   // Année d'évaluation sélectionnée pour les cartes d'impact
   const [horizonYear, setHorizonYear] = useState<number>(2100);
@@ -394,16 +391,6 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
             </button>
           ))}
         </div>
-
-        {onOpenPdfExport && (
-          <button
-            onClick={onOpenPdfExport}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-sky-700 border border-slate-300 transition-colors cursor-pointer self-start sm:self-auto shrink-0 shadow-2xs"
-          >
-            <FileDown className="w-3.5 h-3.5 text-sky-600" />
-            <span>Télécharger le comparatif complet (PDF)</span>
-          </button>
-        )}
       </div>
 
       {/* 4. Grille de Cartes d'Impact (Impact Cards) */}

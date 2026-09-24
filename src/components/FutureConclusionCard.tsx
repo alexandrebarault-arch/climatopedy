@@ -15,15 +15,10 @@ import {
   Sparkles,
   Layers,
   Zap,
-  TrendingDown,
-  FileDown
+  TrendingDown
 } from 'lucide-react';
 
-interface FutureConclusionCardProps {
-  onOpenPdfExport?: () => void;
-}
-
-export const FutureConclusionCard: React.FC<FutureConclusionCardProps> = ({ onOpenPdfExport }) => {
+export const FutureConclusionCard: React.FC = () => {
   const [activeEra, setActiveEra] = useState<'2050' | '2080' | '2100' | '2200'>('2050');
   const [glossaryOpen, setGlossaryOpen] = useState<boolean>(true);
   const [confidenceDetailsOpen, setConfidenceDetailsOpen] = useState<boolean>(false);
@@ -490,35 +485,6 @@ export const FutureConclusionCard: React.FC<FutureConclusionCardProps> = ({ onOp
           )}
         </div>
       </div>
-
-      {/* ========================================================================= */}
-      {/* BLOC 4 : EXPORT DU RAPPORT OFFICIEL EN PDF                                */}
-      {/* ========================================================================= */}
-      {onOpenPdfExport && (
-        <div className="bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-200 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-sky-100 text-sky-700 border border-sky-300">
-              <FileDown className="w-5 h-5" />
-            </div>
-            <div>
-              <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-tight">
-                Télécharger le Rapport Complet de Simulation (PDF)
-              </h3>
-              <p className="text-xs text-slate-600 mt-0.5">
-                Exporte tous les graphiques 1900–2100, les tableaux d'impacts comparatifs, l'indice de certitude de 88% et ces conclusions de fin de siècle.
-              </p>
-            </div>
-          </div>
-
-          <button
-            onClick={onOpenPdfExport}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-700 hover:bg-sky-800 text-white text-xs font-semibold shadow-xs cursor-pointer transition-all hover:scale-[1.02] shrink-0"
-          >
-            <FileDown className="w-4 h-4" />
-            <span>Générer le Rapport PDF (A4)</span>
-          </button>
-        </div>
-      )}
     </section>
   );
 };

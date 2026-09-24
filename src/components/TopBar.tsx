@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RotateCcw, FileText, Network, Globe, HelpCircle, ShieldAlert, FileDown, LayoutDashboard, Menu, X, BookOpen, Compass, Monitor } from 'lucide-react';
+import { RotateCcw, FileText, Network, Globe, HelpCircle, ShieldAlert, LayoutDashboard, Menu, X, BookOpen, Compass, Monitor } from 'lucide-react';
 
 export type AppTabType = 'map' | 'comparative-dashboard' | 'tipping-points' | 'causal' | 'spec' | 'sources';
 
@@ -8,7 +8,6 @@ interface TopBarProps {
   onSelectTab: (tab: AppTabType) => void;
   onReset: () => void;
   currentYear: number;
-  onOpenPdfExport?: () => void;
   onOpenTutorial?: () => void;
   onOpenMobileNotice?: () => void;
 }
@@ -18,7 +17,6 @@ export const TopBar: React.FC<TopBarProps> = ({
   onSelectTab,
   onReset,
   currentYear,
-  onOpenPdfExport,
   onOpenTutorial,
   onOpenMobileNotice
 }) => {
@@ -171,18 +169,6 @@ export const TopBar: React.FC<TopBarProps> = ({
             >
               <Compass className={`w-3.5 h-3.5 ${isDefaultTab ? 'text-emerald-600' : 'text-slate-400'}`} />
               <span className="hidden md:inline">Tutoriel</span>
-            </button>
-          )}
-
-          {/* Export PDF */}
-          {onOpenPdfExport && (
-            <button
-              onClick={onOpenPdfExport}
-              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-sky-800 bg-sky-50 hover:bg-sky-100 border border-sky-300 hover:border-sky-400 rounded-lg transition-all cursor-pointer shadow-xs shrink-0"
-              title="Exporter le rapport PDF de simulation"
-            >
-              <FileDown className="w-3.5 h-3.5 text-sky-600" />
-              <span className="hidden md:inline">Rapport PDF</span>
             </button>
           )}
 

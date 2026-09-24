@@ -14,7 +14,6 @@ import { CausalChainExplorer } from './components/CausalChainExplorer';
 import { SpecModal } from './components/SpecModal';
 import { TippingPointsView } from './components/TippingPointsView';
 import { ScientificSourcesView } from './components/ScientificSourcesView';
-import { PdfExportModal } from './components/PdfExportModal';
 import { MobileDeviceNoticeModal } from './components/MobileDeviceNoticeModal';
 import { DesktopInteractiveTour } from './components/DesktopInteractiveTour';
 import { ClimatopedyHeader } from './components/ClimatopedyHeader';
@@ -34,9 +33,6 @@ export default function App() {
   // Initialisation à partir des URL Search Params si disponibles
   const initialUrlState = useMemo(() => decodeSimulationParamsFromUrl(), []);
   const [sharedConfigLoaded, setSharedConfigLoaded] = useState<boolean>(initialUrlState.hasCustomUrlParams);
-
-  // Modal d'export du rapport de simulation PDF
-  const [isPdfModalOpen, setIsPdfModalOpen] = useState<boolean>(false);
 
   // Modales d'aide, de recommandation d'usage et de tutoriel
   const [isMobileNoticeOpen, setIsMobileNoticeOpen] = useState<boolean>(false);
@@ -207,7 +203,6 @@ export default function App() {
         onSelectTab={setCurrentTab}
         onReset={handleReset}
         currentYear={currentYear}
-        onOpenPdfExport={() => setIsPdfModalOpen(true)}
         onOpenTutorial={() => setIsTutorialOpen(true)}
         onOpenMobileNotice={() => setIsMobileNoticeOpen(true)}
       />
@@ -270,7 +265,6 @@ export default function App() {
               trajectoryA={trajectoryA}
               trajectoryB={trajectoryB}
               currentYear={currentYear}
-              onOpenPdfExport={() => setIsPdfModalOpen(true)}
               onNavigateToDashboard={() => {
                 setCurrentTab('comparative-dashboard');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -286,7 +280,6 @@ export default function App() {
               isCompareMode={isCompareMode}
               currentYear={currentYear}
               onSeekYear={handleSeekYear}
-              onOpenPdfExport={() => setIsPdfModalOpen(true)}
             />
 
             {/* 4. Fiche détaillée pédagogique : Comprendre comme à 12 ans */}
@@ -323,9 +316,7 @@ export default function App() {
             </div>
 
             {/* 5. Conclusion finale pour les habitants du futur (2050, 2080, 2100) + Déchiffrage FaIR/Stull Tw + Score de confiance */}
-            <FutureConclusionCard 
-              onOpenPdfExport={() => setIsPdfModalOpen(true)}
-            />
+            <FutureConclusionCard />
 
             {/* 6. Section FAQ Interactive & Lexique des termes techniques (EROI, Haber-Bosch, FaIR, Stull Tw) */}
             <InteractiveFaqSection />
@@ -378,7 +369,6 @@ export default function App() {
             trajectoryB={trajectoryB}
             currentYear={currentYear}
             onSeekYear={handleSeekYear}
-            onOpenPdfExport={() => setIsPdfModalOpen(true)}
             onSelectScenarioB={handleSelectScenarioB}
           />
         )}
@@ -415,18 +405,6 @@ export default function App() {
         onClose={() => setSelectedCountryId(null)}
         simulationState={currentTrajectoryState}
         onSelectCountry={setSelectedCountryId}
-      />
-
-      {/* Modal d'export du rapport de simulation PDF */}
-      <PdfExportModal
-        isOpen={isPdfModalOpen}
-        onClose={() => setIsPdfModalOpen(false)}
-        scenarioA={scenarioA}
-        scenarioB={scenarioB}
-        isCompareMode={isCompareMode}
-        currentYear={currentYear}
-        trajectoryA={trajectoryA}
-        trajectoryB={trajectoryB}
       />
 
       {/* Pop-up de recommandation d'usage pour utilisateurs mobiles */}

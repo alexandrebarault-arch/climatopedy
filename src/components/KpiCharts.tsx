@@ -8,7 +8,6 @@ import {
   ChevronRight,
   Activity,
   GitCompare,
-  FileDown,
   Maximize2,
   Minimize2,
   X,
@@ -27,7 +26,6 @@ interface KpiChartsProps {
   isCompareMode?: boolean;
   currentYear: number;
   onSeekYear: (year: number) => void;
-  onOpenPdfExport?: () => void;
 }
 
 export type TimeRangeType = '1900-2200' | '1900-2100' | '2026-2200' | '2026-2100';
@@ -39,8 +37,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   scenarioB,
   isCompareMode = false,
   currentYear,
-  onSeekYear,
-  onOpenPdfExport
+  onSeekYear
 }) => {
   const [activeTab, setActiveTab] = useState<'all' | 'demo' | 'energy' | 'climate' | 'agri'>('all');
   
@@ -1411,18 +1408,6 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               <Maximize2 className="w-3.5 h-3.5 text-sky-600" />
               <span>Plein écran</span>
             </button>
-
-            {/* Bouton direct d'exportation PDF des graphiques */}
-            {onOpenPdfExport && (
-              <button
-                onClick={onOpenPdfExport}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-300 transition-colors text-xs font-semibold cursor-pointer shadow-2xs"
-                title="Exporter ces graphiques et le bilan de simulation sous forme de rapport PDF imprimable"
-              >
-                <FileDown className="w-3.5 h-3.5 text-sky-600" />
-                <span>PDF</span>
-              </button>
-            )}
           </div>
         </div>
 

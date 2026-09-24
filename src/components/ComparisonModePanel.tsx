@@ -15,7 +15,6 @@ import {
   Share2,
   Copy,
   ExternalLink,
-  FileDown,
   LayoutDashboard
 } from 'lucide-react';
 import { GlobalBiophysicalState, SimulationScenarioConfig } from '../types/simulation';
@@ -33,7 +32,6 @@ interface ComparisonModePanelProps {
   trajectoryA: GlobalBiophysicalState[];
   trajectoryB: GlobalBiophysicalState[];
   currentYear: number;
-  onOpenPdfExport?: () => void;
   onNavigateToDashboard?: () => void;
 }
 
@@ -48,7 +46,6 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
   trajectoryA,
   trajectoryB,
   currentYear,
-  onOpenPdfExport,
   onNavigateToDashboard
 }) => {
   const [showSliders, setShowSliders] = useState<boolean>(false);
@@ -136,7 +133,7 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
           </div>
         </div>
 
-        {/* Boutons d'action : Partager l'URL persistante, Exporter PDF & Toggle On/Off */}
+        {/* Boutons d'action : Partager l'URL persistante & Toggle On/Off */}
         <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
           {/* Bouton Accès Dashboard Comparatif Global */}
           {onNavigateToDashboard && (
@@ -147,18 +144,6 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
             >
               <LayoutDashboard className="w-3.5 h-3.5 text-emerald-600" />
               <span>Dashboard Comparatif</span>
-            </button>
-          )}
-
-          {/* Bouton Export PDF */}
-          {onOpenPdfExport && (
-            <button
-              onClick={onOpenPdfExport}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-300 transition-all cursor-pointer shadow-2xs"
-              title="Exporter les résultats et graphiques des deux scénarios dans un rapport PDF imprimable"
-            >
-              <FileDown className="w-3.5 h-3.5 text-sky-600" />
-              <span>Exporter PDF</span>
             </button>
           )}
 

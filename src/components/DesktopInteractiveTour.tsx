@@ -9,8 +9,7 @@ import {
   Sparkles,
   MousePointerClick,
   Compass,
-  Eye,
-  FileDown
+  Eye
 } from 'lucide-react';
 import { AppTabType } from './TopBar';
 
@@ -189,24 +188,20 @@ export const DesktopInteractiveTour: React.FC<DesktopInteractiveTourProps> = ({
       id: 5,
       badge: 'Étape 5 sur 5 · À Vous de Jouer',
       badgeColor: 'border-purple-300 bg-purple-50 text-purple-800',
-      title: 'Revenir en 2026 ou Exporter votre Rapport',
+      title: 'Revenir en 2026 à tout moment',
       simpleExplanation:
-        'Deux boutons magiques en haut à droite : « Aujourd\'hui » vous ramène en 2026 à tout moment. Et « Rapport PDF » vous permet de télécharger un document illustré et prêt à imprimer pour partager votre simulation avec vos proches ou collègues.',
+        'Le bouton « Aujourd\'hui » en haut à droite vous ramène instantanément en 2026 à tout moment. Vous pouvez tester librement n\'importe quel scénario sans craindre de perdre vos repères.',
       targetElementId: 'tour-topbar-actions',
       tab: 'map',
       boxPlacement: 'left',
       boxVertical: 'bottom',
-      actionHint: 'Regardez en haut à droite de l\'écran pour trouver ces boutons ↗️',
+      actionHint: 'Regardez en haut à droite de l\'écran pour trouver ce bouton ↗️',
       mockupVisual: (
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs sm:text-sm flex flex-col gap-2.5 shadow-2xs">
-          <div className="flex items-center justify-end gap-2.5">
+          <div className="flex items-center justify-center gap-2.5">
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 text-xs font-semibold shadow-2xs">
               <RotateCcw className="w-4 h-4 text-sky-600" />
               <span>Aujourd'hui (2026)</span>
-            </div>
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-50 border border-sky-300 text-sky-700 text-xs font-black shadow-2xs">
-              <FileDown className="w-4 h-4 text-sky-600" />
-              <span>Rapport PDF</span>
             </div>
           </div>
           <p className="text-xs sm:text-sm text-slate-600 text-center pt-1 font-medium">
