@@ -109,80 +109,80 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
 
   // ÉTAPE 1 : FALAISE DE L'EROI
   const renderEroiSchematic = () => (
-    <div className="h-full w-full p-5 grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#090e1a] items-center">
-      <div className="p-3.5 rounded-lg bg-[#101728] border border-emerald-600/40 space-y-2">
-        <div className="flex justify-between items-center text-xs font-bold text-emerald-400">
+    <div className="h-full w-full p-5 grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 items-center">
+      <div className="p-3.5 rounded-lg bg-white border border-emerald-300 shadow-2xs space-y-2">
+        <div className="flex justify-between items-center text-xs font-bold text-emerald-700">
           <span>1930 · Spindletop</span>
-          <span className="font-mono text-[10px] bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800">100:1</span>
+          <span className="font-mono text-[10px] bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">100:1</span>
         </div>
-        <div className="h-2.5 w-full bg-slate-800 rounded-full overflow-hidden flex">
-          <div className="w-[99%] bg-emerald-400" />
+        <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden flex">
+          <div className="w-[99%] bg-emerald-500" />
           <div className="w-[1%] bg-rose-500" />
         </div>
-        <p className="text-[11px] text-slate-300 leading-snug"><strong>99% d'énergie nette</strong> pour bâtir l'économie mondiale moderne.</p>
+        <p className="text-[11px] text-slate-700 leading-snug"><strong>99% d'énergie nette</strong> pour bâtir l'économie mondiale moderne.</p>
       </div>
 
-      <div className="p-3.5 rounded-lg bg-[#101728] border border-cyan-600/40 space-y-2">
-        <div className="flex justify-between items-center text-xs font-bold text-cyan-400">
+      <div className="p-3.5 rounded-lg bg-white border border-sky-300 shadow-2xs space-y-2">
+        <div className="flex justify-between items-center text-xs font-bold text-sky-700">
           <span>1970 · Mer du Nord</span>
-          <span className="font-mono text-[10px] bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-800">35:1</span>
+          <span className="font-mono text-[10px] bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200">35:1</span>
         </div>
-        <div className="h-2.5 w-full bg-slate-800 rounded-full overflow-hidden flex">
-          <div className="w-[97%] bg-cyan-400" />
+        <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden flex">
+          <div className="w-[97%] bg-sky-500" />
           <div className="w-[3%] bg-rose-500" />
         </div>
-        <p className="text-[11px] text-slate-300 leading-snug"><strong>97% net.</strong> Grandes plateformes océaniques très rentables.</p>
+        <p className="text-[11px] text-slate-700 leading-snug"><strong>97% net.</strong> Grandes plateformes océaniques très rentables.</p>
       </div>
 
-      <div className="p-3.5 rounded-lg bg-[#101728] border border-amber-600/40 space-y-2">
-        <div className="flex justify-between items-center text-xs font-bold text-amber-400">
+      <div className="p-3.5 rounded-lg bg-white border border-amber-300 shadow-2xs space-y-2">
+        <div className="flex justify-between items-center text-xs font-bold text-amber-800">
           <span>2026 · Schiste & Deepwater</span>
-          <span className="font-mono text-[10px] bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">12:1</span>
+          <span className="font-mono text-[10px] bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">12:1</span>
         </div>
-        <div className="h-2.5 w-full bg-slate-800 rounded-full overflow-hidden flex">
-          <div className="w-[91.6%] bg-amber-400" />
+        <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden flex">
+          <div className="w-[91.6%] bg-amber-500" />
           <div className="w-[8.4%] bg-rose-500" />
         </div>
-        <p className="text-[11px] text-slate-300 leading-snug"><strong>8,4% de l'énergie</strong> consommée rien que pour forer et fracturer.</p>
+        <p className="text-[11px] text-slate-700 leading-snug"><strong>8,4% de l'énergie</strong> consommée rien que pour forer et fracturer.</p>
       </div>
 
-      <div className="p-3.5 rounded-lg bg-[#181119] border border-rose-600/60 space-y-2">
-        <div className="flex justify-between items-center text-xs font-bold text-rose-400">
+      <div className="p-3.5 rounded-lg bg-rose-50/60 border border-rose-300 shadow-2xs space-y-2">
+        <div className="flex justify-between items-center text-xs font-bold text-rose-800">
           <span>2050 · Sables bitumineux</span>
-          <span className="font-mono text-[10px] bg-rose-950 px-1.5 py-0.5 rounded border border-rose-800">4:1</span>
+          <span className="font-mono text-[10px] bg-rose-100 px-1.5 py-0.5 rounded border border-rose-200">4:1</span>
         </div>
-        <div className="h-2.5 w-full bg-slate-800 rounded-full overflow-hidden flex">
+        <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden flex">
           <div className="w-[75%] bg-amber-500" />
           <div className="w-[25%] bg-rose-500" />
         </div>
-        <p className="text-[11px] text-rose-200 leading-snug"><strong>25% réabsorbé :</strong> 1 baril sur 4 sert uniquement à extraire le suivant.</p>
+        <p className="text-[11px] text-rose-900 leading-snug"><strong>25% réabsorbé :</strong> 1 baril sur 4 sert uniquement à extraire le suivant.</p>
       </div>
     </div>
   );
 
   // ÉTAPE 2 : HABER-BOSCH
   const renderHaberBoschSchematic = () => (
-    <div className="h-full w-full p-5 bg-[#0a1222] flex flex-col justify-center">
+    <div className="h-full w-full p-5 bg-slate-50 flex flex-col justify-center">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="p-3 rounded-lg bg-[#0e192f] border border-cyan-800/80">
-          <span className="text-[10px] font-mono text-cyan-400 font-bold block">1. GAZ NATUREL</span>
-          <span className="text-xs font-bold text-white mt-1 block">Méthane CH₄</span>
-          <span className="text-[11px] text-slate-400 block mt-1">Four vaporeformeur à 850°C avec vapeur.</span>
+        <div className="p-3 rounded-lg bg-white border border-sky-200 shadow-2xs">
+          <span className="text-[10px] font-mono text-sky-700 font-bold block">1. GAZ NATUREL</span>
+          <span className="text-xs font-bold text-slate-800 mt-1 block">Méthane CH₄</span>
+          <span className="text-[11px] text-slate-600 block mt-1">Four vaporeformeur à 850°C avec vapeur.</span>
         </div>
-        <div className="p-3 rounded-lg bg-[#0e192f] border border-blue-800/80">
-          <span className="text-[10px] font-mono text-blue-400 font-bold block">2. CAPTURE AZOTE</span>
-          <span className="text-xs font-bold text-white mt-1 block">Air N₂ (-196°C)</span>
-          <span className="text-[11px] text-slate-400 block mt-1">Distillation cryogénique de l'atmosphère.</span>
+        <div className="p-3 rounded-lg bg-white border border-indigo-200 shadow-2xs">
+          <span className="text-[10px] font-mono text-indigo-700 font-bold block">2. CAPTURE AZOTE</span>
+          <span className="text-xs font-bold text-slate-800 mt-1 block">Air N₂ (-196°C)</span>
+          <span className="text-[11px] text-slate-600 block mt-1">Distillation cryogénique de l'atmosphère.</span>
         </div>
-        <div className="p-3 rounded-lg bg-[#142340] border border-amber-600/90">
-          <span className="text-[10px] font-mono text-amber-400 font-bold block">3. HAUTE PRESSION</span>
-          <span className="text-xs font-bold text-amber-200 mt-1 block">Haber-Bosch (200 bars)</span>
-          <span className="text-[11px] text-slate-300 block mt-1">450°C sur lit catalytique de fer magnétite.</span>
+        <div className="p-3 rounded-lg bg-amber-50/70 border border-amber-300 shadow-2xs">
+          <span className="text-[10px] font-mono text-amber-800 font-bold block">3. HAUTE PRESSION</span>
+          <span className="text-xs font-bold text-amber-900 mt-1 block">Haber-Bosch (200 bars)</span>
+          <span className="text-[11px] text-slate-700 block mt-1">450°C sur lit catalytique de fer magnétite.</span>
         </div>
-        <div className="p-3 rounded-lg bg-[#0f241a] border border-emerald-700">
-          <span className="text-[10px] font-mono text-emerald-400 font-bold block">4. ALIMENTATION</span>
-          <span className="text-xs font-bold text-emerald-200 mt-1 block">4 Md d'Humains</span>
-          <span className="text-[11px] text-slate-300 block mt-1">50% des atomes d'azote des corps humains.</span>
+        <div className="p-3 rounded-lg bg-emerald-50/70 border border-emerald-300 shadow-2xs">
+          <span className="text-[10px] font-mono text-emerald-800 font-bold block">4. ALIMENTATION</span>
+          <span className="text-xs font-bold text-emerald-900 mt-1 block">4 Md d'Humains</span>
+          <span className="text-[11px] text-slate-700 block mt-1">50% des atomes d'azote des corps humains.</span>
         </div>
       </div>
     </div>
@@ -190,29 +190,29 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
 
   // ÉTAPE 3 : MÉGAMACHINE
   const renderMegamachineSchematic = () => (
-    <div className="h-full w-full p-5 bg-[#0a0f1c] grid grid-cols-1 sm:grid-cols-3 gap-3.5 items-center">
-      <div className="p-3.5 rounded-lg bg-[#111728] border border-slate-800 space-y-1.5">
-        <div className="flex justify-between text-xs font-bold text-slate-200">
+    <div className="h-full w-full p-5 bg-slate-50 grid grid-cols-1 sm:grid-cols-3 gap-3.5 items-center">
+      <div className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5">
+        <div className="flex justify-between text-xs font-bold text-slate-800">
           <span>Parc Automobile</span>
-          <span className="font-mono text-cyan-300 font-bold">1,4 Milliard</span>
+          <span className="font-mono text-sky-700 font-bold">1,4 Milliard</span>
         </div>
-        <p className="text-[11px] text-slate-400">Véhicules thermiques en service. Renouvellement physique planétaire : 18 à 22 ans.</p>
+        <p className="text-[11px] text-slate-600">Véhicules thermiques en service. Renouvellement physique planétaire : 18 à 22 ans.</p>
       </div>
 
-      <div className="p-3.5 rounded-lg bg-[#111728] border border-slate-800 space-y-1.5">
-        <div className="flex justify-between text-xs font-bold text-slate-200">
+      <div className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5">
+        <div className="flex justify-between text-xs font-bold text-slate-800">
           <span>Marine Marchande</span>
-          <span className="font-mono text-amber-300 font-bold">105 000 navires</span>
+          <span className="font-mono text-amber-800 font-bold">105 000 navires</span>
         </div>
-        <p className="text-[11px] text-slate-400">Transportent 90% des biens matériels mondiaux avec du fioul lourd non électrifiable.</p>
+        <p className="text-[11px] text-slate-600">Transportent 90% des biens matériels mondiaux avec du fioul lourd non électrifiable.</p>
       </div>
 
-      <div className="p-3.5 rounded-lg bg-[#111728] border border-slate-800 space-y-1.5">
-        <div className="flex justify-between text-xs font-bold text-slate-200">
+      <div className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5">
+        <div className="flex justify-between text-xs font-bold text-slate-800">
           <span>Centrales Thermiques</span>
-          <span className="font-mono text-rose-300 font-bold">26 000 unités</span>
+          <span className="font-mono text-rose-700 font-bold">26 000 unités</span>
         </div>
-        <p className="text-[11px] text-slate-400">Actifs engagés pour 35 à 45 ans pour rentabiliser les investissements bancaires.</p>
+        <p className="text-[11px] text-slate-600">Actifs engagés pour 35 à 45 ans pour rentabiliser les investissements bancaires.</p>
       </div>
     </div>
   );
@@ -234,47 +234,47 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
 
   return (
     <>
-      <div className="relative rounded-xl overflow-hidden border border-slate-700/80 bg-[#070b14] shadow-2xl group flex flex-col transition-all duration-300">
+      <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-white shadow-xs group flex flex-col transition-all duration-300">
         {/* En-tête de la carte avec Titre & Sélecteur d'affichage */}
-        <div className="px-4 py-2.5 bg-[#0b101c] border-b border-slate-800 flex items-center justify-between gap-3">
+        <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
-            <span className="text-xs font-mono font-bold text-amber-300 uppercase tracking-wide truncate">
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
+            <span className="text-xs font-mono font-bold text-amber-900 uppercase tracking-wide truncate">
               {meta.title}
             </span>
           </div>
 
           {/* Boutons de bascule Photo Réelle / Schéma */}
-          <div className="flex rounded-lg p-0.5 bg-black/70 border border-slate-700 text-xs font-mono shrink-0">
+          <div className="flex rounded-lg p-0.5 bg-slate-100 border border-slate-200 text-xs font-mono shrink-0">
             <button
               onClick={() => setViewMode('photo')}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-all cursor-pointer ${
                 viewMode === 'photo'
-                  ? 'bg-amber-400 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-slate-800 font-bold shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-800'
               }`}
               title="Voir la photographie documentaire haute définition"
             >
-              <Camera className="w-3.5 h-3.5" />
+              <Camera className="w-3.5 h-3.5 text-sky-600" />
               <span>Photo Réelle</span>
             </button>
             <button
               onClick={() => setViewMode('schematic')}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-all cursor-pointer ${
                 viewMode === 'schematic'
-                  ? 'bg-amber-400 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-slate-800 font-bold shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-800'
               }`}
               title="Voir la coupe technique ou géotechnique"
             >
-              <Layers className="w-3.5 h-3.5" />
+              <Layers className="w-3.5 h-3.5 text-sky-600" />
               <span>Schéma d'Ingénierie</span>
             </button>
           </div>
         </div>
 
         {/* Zone Principale d'Affichage Visuel (hauteur optimisée 280-320px) */}
-        <div className="relative h-64 sm:h-76 md:h-80 w-full overflow-hidden bg-black flex items-center justify-center">
+        <div className="relative h-64 sm:h-76 md:h-80 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
           {viewMode === 'photo' ? (
             <div className="relative w-full h-full cursor-pointer group/img" onClick={() => setIsZoomed(true)}>
               <img
@@ -316,11 +316,11 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
         </div>
 
         {/* Barre de métrologie et d'ordre de grandeur en pied de carte */}
-        <div className="px-4 py-2.5 bg-[#0a0f1b] border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-          <span className="text-slate-300">
-            ⚙️ Grandeur physique : <strong className="text-amber-300">{meta.metric}</strong>
+        <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span className="text-slate-700">
+            ⚙️ Grandeur physique : <strong className="text-amber-800">{meta.metric}</strong>
           </span>
-          <span className="text-[11px] text-slate-400">
+          <span className="text-[11px] text-slate-500">
             {meta.subtitle}
           </span>
         </div>

@@ -18,8 +18,8 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
   eroi: {
     title: 'Rendement de l\'Énergie',
     subtitle: 'Combien de barils obtenus pour 1 baril dépensé à forer',
-    icon: <Zap className="w-3.5 h-3.5 text-amber-400" />,
-    badgeColor: 'border-amber-500/40 text-amber-300 bg-amber-950/60',
+    icon: <Zap className="w-3.5 h-3.5 text-amber-600" />,
+    badgeColor: 'border-amber-200 text-amber-800 bg-amber-50',
     definition:
       'Indique combien de barils d\'énergie brute on extrait pour 1 baril consommé à forer, pomper et raffiner (terme scientifique : EROI).',
     analogy:
@@ -31,8 +31,8 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
   'haber-bosch': {
     title: 'Procédé Haber-Bosch (Engrais Azotés)',
     subtitle: 'Chimie industrielle · N₂ + 3H₂ → 2NH₃',
-    icon: <Wheat className="w-3.5 h-3.5 text-emerald-400" />,
-    badgeColor: 'border-emerald-500/40 text-emerald-300 bg-emerald-950/60',
+    icon: <Wheat className="w-3.5 h-3.5 text-emerald-600" />,
+    badgeColor: 'border-emerald-200 text-emerald-800 bg-emerald-50',
     definition:
       'Procédé chimique qui combine le gaz fossile (méthane) et l\'azote de l\'air pour fabriquer les engrais de synthèse mondiaux.',
     analogy:
@@ -44,8 +44,8 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
   fair: {
     title: 'Modèle FaIR v1.1 (GIEC AR6)',
     subtitle: 'Finite Amplitude Impulse Response · Climatologie',
-    icon: <Wind className="w-3.5 h-3.5 text-cyan-400" />,
-    badgeColor: 'border-cyan-500/40 text-cyan-300 bg-cyan-950/60',
+    icon: <Wind className="w-3.5 h-3.5 text-sky-600" />,
+    badgeColor: 'border-sky-200 text-sky-800 bg-sky-50',
     definition:
       'Modèle climatique simplifié officiel retenu par le GIEC dans son 6e rapport (AR6) pour calculer l\'élévation de température selon les émissions de gaz à effet de serre.',
     analogy:
@@ -57,8 +57,8 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
   stull: {
     title: 'Thermomètre Mouillé Stull Tw',
     subtitle: 'Wet-Bulb Temperature · Formule Roland Stull (2011)',
-    icon: <Thermometer className="w-3.5 h-3.5 text-rose-400" />,
-    badgeColor: 'border-rose-500/40 text-rose-300 bg-rose-950/60',
+    icon: <Thermometer className="w-3.5 h-3.5 text-rose-600" />,
+    badgeColor: 'border-rose-200 text-rose-800 bg-rose-50',
     definition:
       'Température ressentie par la peau humaine humidifiée par la sueur au contact de l\'air, calculée en combinant chaleur (°C) et humidité relative (%).',
     analogy:
@@ -70,8 +70,8 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
   slr: {
     title: 'Montée des Océans (SLR)',
     subtitle: 'Sea Level Rise · Dilatation thermique & fonte',
-    icon: <Waves className="w-3.5 h-3.5 text-sky-400" />,
-    badgeColor: 'border-sky-500/40 text-sky-300 bg-sky-950/60',
+    icon: <Waves className="w-3.5 h-3.5 text-sky-600" />,
+    badgeColor: 'border-sky-200 text-sky-800 bg-sky-50',
     definition:
       'Élévation moyenne du niveau marin mondial sous l\'effet combiné de l\'expansion de l\'eau chauffée et de la fonte des glaces terrestres.',
     analogy:
@@ -83,8 +83,8 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
   ssp585: {
     title: 'Scénario SSP5-8.5 (Rigidité)',
     subtitle: 'Shared Socioeconomic Pathway 5 · GIEC',
-    icon: <AlertCircle className="w-3.5 h-3.5 text-orange-400" />,
-    badgeColor: 'border-orange-500/40 text-orange-300 bg-orange-950/60',
+    icon: <AlertCircle className="w-3.5 h-3.5 text-amber-600" />,
+    badgeColor: 'border-amber-200 text-amber-800 bg-amber-50',
     definition:
       'Trajectoire socio-économique de référence où la croissance thermo-industrielle intensive se poursuit sans rupture politique majeure jusqu\'à heurter les limites géologiques.',
     analogy:
@@ -166,11 +166,11 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
             e.stopPropagation();
             setIsOpen((prev) => !prev);
           }}
-          className="inline-flex items-center gap-1 text-inherit border-b border-dotted border-cyan-400/80 hover:border-cyan-300 hover:text-cyan-200 transition-colors cursor-help group text-left"
+          className="inline-flex items-center gap-1 text-inherit border-b border-dotted border-sky-400 hover:border-sky-600 hover:text-sky-700 transition-colors cursor-help group text-left"
           title={`Cliquez pour comprendre le terme « ${data.title} »`}
         >
           <span>{children}</span>
-          <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-slate-800 text-[9px] font-bold text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
+          <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-slate-100 text-[9px] font-bold text-sky-700 group-hover:bg-sky-600 group-hover:text-white transition-colors">
             ?
           </span>
         </button>
@@ -181,11 +181,11 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
             e.stopPropagation();
             setIsOpen((prev) => !prev);
           }}
-          className="p-0.5 rounded text-slate-400 hover:text-cyan-300 hover:bg-slate-800 transition-colors cursor-pointer"
+          className="p-0.5 rounded text-slate-400 hover:text-sky-600 hover:bg-slate-100 transition-colors cursor-pointer"
           title={`Définition : ${data.title}`}
           aria-label={`Comprendre ${data.title}`}
         >
-          <HelpCircle className="w-3.5 h-3.5 text-cyan-400/90" />
+          <HelpCircle className="w-3.5 h-3.5 text-sky-600" />
         </button>
       ) : (
         <button
@@ -194,7 +194,7 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
             e.stopPropagation();
             setIsOpen((prev) => !prev);
           }}
-          className={`inline-flex items-center gap-1 text-[10px] font-medium px-1.5 py-0.5 rounded border transition-all cursor-pointer ${data.badgeColor} hover:brightness-125`}
+          className={`inline-flex items-center gap-1 text-[10px] font-medium px-1.5 py-0.5 rounded border transition-all cursor-pointer ${data.badgeColor} hover:brightness-105`}
           title={`Définition rapide : ${data.title}`}
         >
           {data.icon}
@@ -207,29 +207,29 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
       {isOpen && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 sm:w-80 p-3.5 bg-[#0f172a] border border-slate-700 rounded-xl shadow-2xl text-left animate-in fade-in zoom-in-95 duration-150 backdrop-blur-md"
+          className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 sm:w-80 p-3.5 bg-white border border-slate-200 rounded-xl shadow-xl text-left animate-in fade-in zoom-in-95 duration-150 backdrop-blur-md"
         >
           {/* Flèche vers le bas */}
-          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-[#0f172a]" />
+          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-white" />
 
           {/* En-tête du tooltip */}
-          <div className="flex items-start justify-between gap-2 pb-2 border-b border-slate-800">
+          <div className="flex items-start justify-between gap-2 pb-2 border-b border-slate-200">
             <div className="flex items-center gap-2">
-              <div className="p-1 rounded bg-slate-800 border border-slate-700 shrink-0">
+              <div className="p-1 rounded bg-slate-50 border border-slate-200 shrink-0">
                 {data.icon}
               </div>
               <div>
-                <h4 className="text-xs font-bold text-white tracking-tight leading-tight">
+                <h4 className="text-xs font-bold text-slate-800 tracking-tight leading-tight">
                   {data.title}
                 </h4>
-                <p className="text-[9.5px] text-slate-400 font-mono">
+                <p className="text-[9.5px] text-slate-500 font-mono">
                   {data.subtitle}
                 </p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-slate-400 hover:text-white p-0.5 rounded transition-colors"
+              className="text-slate-400 hover:text-slate-700 p-0.5 rounded transition-colors"
               title="Fermer"
             >
               <X className="w-3.5 h-3.5" />
@@ -237,25 +237,25 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
           </div>
 
           {/* Définition en 1 phrase */}
-          <div className="py-2 text-[11px] text-slate-300 leading-snug space-y-2">
+          <div className="py-2 text-[11px] text-slate-600 leading-snug space-y-2">
             <p>
-              <strong className="text-white">Définition :</strong> {data.definition}
+              <strong className="text-slate-800">Définition :</strong> {data.definition}
             </p>
-            <div className="bg-slate-900/90 p-2 rounded-lg border border-slate-800 text-[10.5px] text-slate-300">
-              <span className="font-semibold text-cyan-300 block mb-0.5">💡 Analogie concrète :</span>
+            <div className="bg-slate-50 p-2 rounded-lg border border-slate-200 text-[10.5px] text-slate-700">
+              <span className="font-semibold text-sky-700 block mb-0.5">💡 Analogie concrète :</span>
               {data.analogy}
             </div>
-            <div className="p-1.5 rounded bg-amber-950/40 border border-amber-900/60 text-[10px] text-amber-200 font-medium">
+            <div className="p-1.5 rounded bg-amber-50 border border-amber-200 text-[10px] text-amber-800 font-medium">
               ⚡ {data.thresholdOrKeyFact}
             </div>
           </div>
 
           {/* Bouton de redirection vers la FAQ interactive complète */}
-          <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[10px]">
-            <span className="text-slate-500">Info-bulle CLIMATOPEDY</span>
+          <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px]">
+            <span className="text-slate-400">Info-bulle CLIMATOPEDY</span>
             <button
               onClick={handleOpenFaq}
-              className="inline-flex items-center gap-1 font-semibold text-cyan-400 hover:text-cyan-300 hover:underline cursor-pointer"
+              className="inline-flex items-center gap-1 font-semibold text-sky-600 hover:text-sky-700 hover:underline cursor-pointer"
             >
               <span>Lire l'explication complète dans la FAQ</span>
               <ExternalLink className="w-3 h-3" />

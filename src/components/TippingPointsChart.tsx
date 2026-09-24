@@ -93,19 +93,19 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
   };
 
   return (
-    <div className="bg-[#0b101c] border border-slate-800/90 rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden flex flex-col gap-4">
+    <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-xs relative overflow-hidden flex flex-col gap-4">
       {/* En-tête du graphique */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 border-b border-slate-800">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 border-b border-slate-100">
         <div>
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-rose-950/80 border border-rose-800/70 text-rose-400">
+            <span className="p-1.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-600">
               <Thermometer className="w-4 h-4" />
             </span>
-            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+            <h3 className="text-base sm:text-lg font-bold text-slate-800 tracking-tight">
               Graphique Synthétique : Les Seuils Thermiques Critiques
             </h3>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-600 mt-1">
             Représentation standardisée du consensus scientifique (Armstrong McKay et al., <em>Science</em> 2022). 
             La ligne verticale rouge indique le niveau de réchauffement testé.
           </p>
@@ -113,13 +113,13 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
 
         {/* Contrôles : mode d'affichage et rappel de la température */}
         <div className="flex items-center gap-2.5 flex-wrap">
-          <div className="bg-slate-900 border border-slate-800 p-0.5 rounded-lg flex items-center text-xs">
+          <div className="bg-slate-100 border border-slate-200 p-0.5 rounded-lg flex items-center text-xs">
             <button
               onClick={() => setViewMode('embers')}
               className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
                 viewMode === 'embers'
-                  ? 'bg-slate-700 text-white font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-slate-800 font-semibold shadow-xs'
+                  : 'text-slate-600 hover:text-slate-800'
               }`}
             >
               Échelle des Seuils
@@ -128,45 +128,45 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
               onClick={() => setViewMode('matrix')}
               className={`px-3 py-1 rounded-md transition-all cursor-pointer ${
                 viewMode === 'matrix'
-                  ? 'bg-slate-700 text-white font-semibold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white text-slate-800 font-semibold shadow-xs'
+                  : 'text-slate-600 hover:text-slate-800'
               }`}
             >
               Matrice Vitesse vs Température
             </button>
           </div>
 
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-950/60 border border-rose-700/80 text-rose-200 text-xs font-mono font-bold">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs font-mono font-bold shadow-2xs">
             <span>Réchauffement :</span>
-            <span className="text-white text-sm">+{currentTemp.toFixed(1)}°C</span>
+            <span className="text-rose-900 text-sm">+{currentTemp.toFixed(1)}°C</span>
           </div>
         </div>
       </div>
 
       {/* Bandeau Date prévisionnelle de franchissement de l'ensemble des points */}
-      <div className="bg-gradient-to-r from-rose-950/70 via-slate-900 to-slate-900 border border-rose-800/60 rounded-xl p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-md">
+      <div className="bg-gradient-to-r from-rose-50 via-slate-50 to-rose-50/40 border border-rose-200 rounded-xl p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-xs">
         <div className="flex items-start sm:items-center gap-2.5">
-          <div className="p-1.5 rounded-lg bg-rose-500/20 text-rose-400 border border-rose-500/30 shrink-0 mt-0.5 sm:mt-0">
-            <Calendar className="w-4 h-4 text-rose-400" />
+          <div className="p-1.5 rounded-lg bg-rose-100 text-rose-600 border border-rose-200 shrink-0 mt-0.5 sm:mt-0">
+            <Calendar className="w-4 h-4 text-rose-600" />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-bold text-rose-200">Date envisagée pour l'ENSEMBLE des points de bascule :</span>
-              <span className="text-white font-mono font-bold bg-rose-950 px-2 py-0.5 rounded border border-rose-700 text-rose-300">
+              <span className="font-bold text-rose-900">Date envisagée pour l'ENSEMBLE des points de bascule :</span>
+              <span className="text-rose-800 font-mono font-bold bg-white px-2 py-0.5 rounded border border-rose-300 shadow-2xs">
                 ~2085 – 2100 (+4,0°C)
               </span>
             </div>
-            <p className="text-[11px] text-slate-300 mt-0.5">
-              En trajectoire fossile, le dernier verrou (forêts boréales et AMOC) cède vers la fin du siècle. En sobriété, l'ensemble n'est <strong className="text-emerald-400">JAMAIS franchi</strong>.
+            <p className="text-[11px] text-slate-600 mt-0.5">
+              En trajectoire fossile, le dernier verrou (forêts boréales et AMOC) cède vers la fin du siècle. En sobriété, l'ensemble n'est <strong className="text-emerald-700">JAMAIS franchi</strong>.
             </p>
           </div>
         </div>
 
         <button
           onClick={() => setIsAllModalOpen(true)}
-          className="px-3.5 py-2 rounded-lg bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer shrink-0"
+          className="px-3.5 py-2 rounded-lg bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer shrink-0"
         >
-          <Flame className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+          <Flame className="w-3.5 h-3.5 text-amber-200" />
           <span>Conséquences si TOUS franchis</span>
         </button>
       </div>
@@ -175,14 +175,14 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
       {viewMode === 'embers' && (
         <div className="flex flex-col gap-2">
           {/* Légende du graphique */}
-          <div className="flex flex-wrap items-center justify-between text-[11px] text-slate-400 px-1 py-1 gap-y-2">
+          <div className="flex flex-wrap items-center justify-between text-[11px] text-slate-600 px-1 py-1 gap-y-2">
             <div className="flex flex-wrap items-center gap-4">
               <span className="flex items-center gap-1.5">
                 <span className="w-3.5 h-2.5 rounded-sm bg-gradient-to-r from-amber-500/30 to-amber-500/80 border border-amber-500/60 inline-block" />
                 <span>Zone d'incertitude (Début du risque)</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rotate-45 bg-rose-500 border border-white inline-block shadow-sm" />
+                <span className="w-2.5 h-2.5 rotate-45 bg-rose-500 border border-white inline-block shadow-xs" />
                 <span>Seuil central estimé (Basculement probable)</span>
               </span>
               <span className="flex items-center gap-1.5">
@@ -197,7 +197,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
           </div>
 
           {/* Conteneur SVG avec défilement horizontal sur mobile */}
-          <div className="w-full overflow-x-auto bg-[#070b13] border border-slate-800/80 rounded-xl p-2 sm:p-3">
+          <div className="w-full overflow-x-auto bg-slate-50/80 border border-slate-200 rounded-xl p-2 sm:p-3 shadow-2xs">
             <svg
               viewBox={`0 0 ${W} ${H}`}
               className="w-full min-w-[700px] h-auto select-none font-sans"
@@ -234,16 +234,16 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                 y={PAD.top}
                 width={tempToX(2.0) - tempToX(1.5)}
                 height={chartH}
-                fill="#38bdf8"
-                fillOpacity="0.04"
+                fill="#0284c7"
+                fillOpacity="0.06"
                 stroke="#0284c7"
-                strokeOpacity="0.2"
+                strokeOpacity="0.25"
                 strokeDasharray="3 3"
               />
               <text
                 x={(tempToX(1.5) + tempToX(2.0)) / 2}
                 y={PAD.top - 8}
-                fill="#38bdf8"
+                fill="#0369a1"
                 fontSize="9"
                 fontFamily="sans-serif"
                 textAnchor="middle"
@@ -264,14 +264,14 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                       y1={PAD.top}
                       x2={x}
                       y2={PAD.top + chartH}
-                      stroke={isMajor ? (t === 4.0 ? '#be123c' : '#334155') : '#1e293b'}
+                      stroke={isMajor ? (t === 4.0 ? '#f43f5e' : '#cbd5e1') : '#e2e8f0'}
                       strokeWidth={isMajor ? (t === 4.0 ? 1.5 : 1) : 0.6}
                       strokeDasharray={t === 4.0 ? '4 2' : isMajor ? undefined : '2 3'}
                     />
                     <text
                       x={x}
                       y={PAD.top + chartH + 16}
-                      fill={t === 4.0 ? '#f43f5e' : isMajor ? '#f1f5f9' : '#64748b'}
+                      fill={t === 4.0 ? '#e11d48' : isMajor ? '#1e293b' : '#64748b'}
                       fontSize={isMajor ? '10' : '9'}
                       fontFamily="monospace"
                       fontWeight={isMajor ? 'bold' : 'normal'}
@@ -287,31 +287,31 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                       </text>
                     )}
                     {t === 1.5 && (
-                      <text x={x} y={PAD.top + chartH + 28} fill="#f59e0b" fontSize="8" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+                      <text x={x} y={PAD.top + chartH + 28} fill="#d97706" fontSize="8" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
                         ~2030-38
                       </text>
                     )}
                     {t === 2.0 && (
-                      <text x={x} y={PAD.top + chartH + 28} fill="#fb923c" fontSize="8" fontFamily="monospace" textAnchor="middle">
+                      <text x={x} y={PAD.top + chartH + 28} fill="#ea580c" fontSize="8" fontFamily="monospace" textAnchor="middle">
                         ~2050
                       </text>
                     )}
                     {t === 2.5 && (
-                      <text x={x} y={PAD.top + chartH + 28} fill="#fb7185" fontSize="8" fontFamily="monospace" textAnchor="middle">
+                      <text x={x} y={PAD.top + chartH + 28} fill="#e11d48" fontSize="8" fontFamily="monospace" textAnchor="middle">
                         ~2060
                       </text>
                     )}
                     {t === 3.0 && (
-                      <text x={x} y={PAD.top + chartH + 28} fill="#f87171" fontSize="8" fontFamily="monospace" textAnchor="middle">
+                      <text x={x} y={PAD.top + chartH + 28} fill="#e11d48" fontSize="8" fontFamily="monospace" textAnchor="middle">
                         ~2070
                       </text>
                     )}
                     {t === 4.0 && (
                       <g>
-                        <text x={x} y={PAD.top + chartH + 28} fill="#fda4af" fontSize="8.5" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+                        <text x={x} y={PAD.top + chartH + 28} fill="#be123c" fontSize="8.5" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
                           ~2085-2100
                         </text>
-                        <text x={x} y={PAD.top + chartH + 39} fill="#f43f5e" fontSize="7.5" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">
+                        <text x={x} y={PAD.top + chartH + 39} fill="#e11d48" fontSize="7.5" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">
                           (TOUS franchis)
                         </text>
                       </g>
@@ -326,14 +326,14 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                 y1={PAD.top - 2}
                 x2={tempToX(1.3)}
                 y2={PAD.top + chartH}
-                stroke="#38bdf8"
+                stroke="#0284c7"
                 strokeWidth="1.2"
                 strokeDasharray="3 2"
               />
               <text
                 x={tempToX(1.3)}
                 y={PAD.top - 18}
-                fill="#38bdf8"
+                fill="#0369a1"
                 fontSize="8.5"
                 fontFamily="sans-serif"
                 textAnchor="middle"
@@ -344,11 +344,11 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
 
               {/* Repère : Franchissement de l'ensemble des points (+4.0°C) */}
               <g transform={`translate(${tempToX(4.0)}, ${PAD.top - 20})`}>
-                <rect x="-82" y="-12" width="164" height="15" rx="3" fill="#881337" stroke="#f43f5e" strokeWidth="0.8" />
+                <rect x="-82" y="-12" width="164" height="15" rx="3" fill="#ffe4e6" stroke="#f43f5e" strokeWidth="0.8" />
                 <text
                   x="0"
                   y="-1"
-                  fill="#fecdd3"
+                  fill="#9f1239"
                   fontSize="7.5"
                   fontFamily="sans-serif"
                   fontWeight="bold"
@@ -394,8 +394,8 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                       width={W - 16}
                       height={rowHeight - 2}
                       rx="4"
-                      fill={isSelected ? '#1e293b' : isHovered ? '#151e2e' : idx % 2 === 0 ? '#0b111e' : 'transparent'}
-                      stroke={isSelected ? '#38bdf8' : isHovered ? '#475569' : 'transparent'}
+                      fill={isSelected ? '#e0f2fe' : isHovered ? '#f1f5f9' : idx % 2 === 0 ? '#ffffff' : '#f8fafc'}
+                      stroke={isSelected ? '#38bdf8' : isHovered ? '#cbd5e1' : 'transparent'}
                       strokeWidth={isSelected ? 1.2 : 0.8}
                     />
 
@@ -407,14 +407,14 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                         cy="0"
                         r="5.5"
                         fill={
-                          elem.category === 'cryosphere' ? '#0891b2' :
+                          elem.category === 'cryosphere' ? '#0284c7' :
                           elem.category === 'biosphere' ? '#059669' : '#4f46e5'
                         }
                       />
                       <text
                         x="18"
                         y="3.5"
-                        fill={isSelected ? '#ffffff' : '#cbd5e1'}
+                        fill={isSelected ? '#0369a1' : '#1e293b'}
                         fontSize="10"
                         fontWeight={isSelected ? 'bold' : '500'}
                         fontFamily="sans-serif"
@@ -426,7 +426,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                       <text
                         x={PAD.left - 26}
                         y="3.5"
-                        fill="#94a3b8"
+                        fill="#64748b"
                         fontSize="8.5"
                         fontFamily="sans-serif"
                         textAnchor="end"
@@ -477,7 +477,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                     <text
                       x={xEst}
                       y={barY - 3}
-                      fill="#fca5a5"
+                      fill="#b91c1c"
                       fontSize="8"
                       fontFamily="monospace"
                       fontWeight="bold"
@@ -490,7 +490,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                     <text
                       x={W - PAD.right - 62}
                       y={barY + barH / 2 + 3}
-                      fill="#94a3b8"
+                      fill="#64748b"
                       fontSize="7.5"
                       fontFamily="monospace"
                       textAnchor="end"
@@ -504,7 +504,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                         <text
                           x="0"
                           y="0"
-                          fill="#f87171"
+                          fill="#dc2626"
                           fontSize="9"
                           fontWeight="bold"
                           fontFamily="sans-serif"
@@ -519,7 +519,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                         <text
                           x="0"
                           y="0"
-                          fill="#fbbf24"
+                          fill="#d97706"
                           fontSize="9"
                           fontWeight="bold"
                           fontFamily="sans-serif"
@@ -534,7 +534,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                         <text
                           x="0"
                           y="0"
-                          fill="#34d399"
+                          fill="#059669"
                           fontSize="8.5"
                           fontFamily="sans-serif"
                           textAnchor="end"
@@ -579,8 +579,8 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                     width="64"
                     height="18"
                     rx="4"
-                    fill="#991b1b"
-                    stroke="#f87171"
+                    fill="#dc2626"
+                    stroke="#b91c1c"
                     strokeWidth="1.2"
                   />
                   <text
@@ -594,7 +594,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                   >
                     +{currentTemp.toFixed(1)}°C
                   </text>
-                  <polygon points="-4,6 4,6 0,11" fill="#f87171" />
+                  <polygon points="-4,6 4,6 0,11" fill="#dc2626" />
                 </g>
               </g>
             </svg>
@@ -604,19 +604,19 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
           {(() => {
             const activeElem = elements.find(e => e.id === (hoveredElementId || selectedElementId)) || elements[0];
             return (
-              <div className="bg-gradient-to-r from-slate-900 via-[#111a2e] to-slate-900 border border-slate-700/80 rounded-xl p-4 sm:p-5 shadow-lg flex flex-col gap-3 transition-all">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-slate-800">
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 shadow-xs flex flex-col gap-3 transition-all">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-slate-200">
                   <div className="flex items-center gap-2.5">
-                    <span className="p-1.5 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400">
+                    <span className="p-1.5 rounded-lg bg-sky-50 border border-sky-200 text-sky-700">
                       <HelpCircle className="w-4 h-4" />
                     </span>
                     <div>
-                      <span className="text-[10px] text-cyan-400 uppercase font-mono tracking-wider font-semibold">
+                      <span className="text-[10px] text-sky-700 uppercase font-mono tracking-wider font-semibold">
                         Info-bulle pédagogique (Comprendre sans compétences techniques)
                       </span>
-                      <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                      <h4 className="text-sm sm:text-base font-bold text-slate-800 flex items-center gap-2">
                         {activeElem.name}
-                        <span className="text-xs font-mono font-bold text-rose-400 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-800">
+                        <span className="text-xs font-mono font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
                           Seuil : +{activeElem.thresholdEst.toFixed(1)}°C
                         </span>
                       </h4>
@@ -624,14 +624,14 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                   </div>
 
                   <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800/90 border border-slate-700 text-amber-300 font-mono text-[11px]">
-                      <Calendar className="w-3.5 h-3.5 text-amber-400" />
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-white border border-slate-200 text-amber-800 font-mono text-[11px] shadow-2xs">
+                      <Calendar className="w-3.5 h-3.5 text-amber-600" />
                       <span>{activeElem.estimatedYearTendency}</span>
                     </div>
 
                     <button
                       onClick={() => setModalElem(activeElem)}
-                      className="px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-colors cursor-pointer"
+                      className="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
                     >
                       <BookOpen className="w-3.5 h-3.5" />
                       <span>Fiche descriptive complète</span>
@@ -640,29 +640,29 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs leading-relaxed">
-                  <div className="bg-slate-900/70 p-3 rounded-lg border border-slate-800/80 flex flex-col gap-1">
-                    <div className="text-cyan-400 font-semibold flex items-center gap-1.5 text-xs">
+                  <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col gap-1">
+                    <div className="text-sky-700 font-semibold flex items-center gap-1.5 text-xs">
                       <span>💡</span> C'est quoi simplement ?
                     </div>
-                    <p className="text-slate-300 text-[11.5px] leading-snug">
+                    <p className="text-slate-700 text-[11.5px] leading-snug">
                       {activeElem.whatIsItSimple}
                     </p>
                   </div>
 
-                  <div className="bg-slate-900/70 p-3 rounded-lg border border-slate-800/80 flex flex-col gap-1">
-                    <div className="text-amber-400 font-semibold flex items-center gap-1.5 text-xs">
+                  <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col gap-1">
+                    <div className="text-amber-800 font-semibold flex items-center gap-1.5 text-xs">
                       <span>🔄</span> Pourquoi le non-retour ?
                     </div>
-                    <p className="text-slate-300 text-[11.5px] leading-snug">
+                    <p className="text-slate-700 text-[11.5px] leading-snug">
                       {activeElem.whyPointOfNoReturn}
                     </p>
                   </div>
 
-                  <div className="bg-slate-900/70 p-3 rounded-lg border border-slate-800/80 flex flex-col gap-1">
-                    <div className="text-rose-400 font-semibold flex items-center gap-1.5 text-xs">
+                  <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col gap-1">
+                    <div className="text-rose-700 font-semibold flex items-center gap-1.5 text-xs">
                       <span>🍽️</span> Impact dans votre vie
                     </div>
-                    <p className="text-slate-300 text-[11.5px] leading-snug">
+                    <p className="text-slate-700 text-[11.5px] leading-snug">
                       {activeElem.concreteImpactEveryday}
                     </p>
                   </div>
@@ -676,25 +676,25 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
       {/* VUE 2 : MATRICE 2D VITESSE DE BASCULEMENT VS SEUIL DE TEMPÉRATURE */}
       {viewMode === 'matrix' && (
         <div className="flex flex-col gap-3">
-          <div className="bg-slate-900/90 border border-slate-800 p-3 rounded-xl text-xs text-slate-300 leading-relaxed">
-            <span className="font-bold text-cyan-400">Pourquoi cette vue est cruciale :</span>{' '}
+          <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-xs text-slate-700 leading-relaxed shadow-2xs">
+            <span className="font-bold text-sky-800">Pourquoi cette vue est cruciale :</span>{' '}
             Tous les points de bascule ne vont pas à la même vitesse. Les récifs coralliens meurent en <strong>quelques années</strong>, 
             la forêt amazonienne peut dépérir en <strong>quelques décennies</strong>, tandis que les calottes polaires mettront des <strong>siècles ou des millénaires</strong> à fondre entièrement.
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {/* Colonne 1 : Ultra-rapide (1 à 30 ans) */}
-            <div className="bg-rose-950/20 border border-rose-900/40 rounded-xl p-3.5 flex flex-col gap-2.5">
-              <div className="flex items-center justify-between pb-2 border-b border-rose-900/40">
-                <span className="text-xs font-bold text-rose-300 flex items-center gap-1.5">
-                  <Zap className="w-3.5 h-3.5 text-rose-400" />
+            <div className="bg-rose-50/50 border border-rose-200 rounded-xl p-3.5 flex flex-col gap-2.5">
+              <div className="flex items-center justify-between pb-2 border-b border-rose-200">
+                <span className="text-xs font-bold text-rose-800 flex items-center gap-1.5">
+                  <Zap className="w-3.5 h-3.5 text-rose-600" />
                   Effets Rapides (1 à 30 ans)
                 </span>
-                <span className="text-[10px] font-mono text-rose-400 bg-rose-950 px-1.5 py-0.5 rounded border border-rose-800">
+                <span className="text-[10px] font-mono font-semibold text-rose-800 bg-rose-100 px-1.5 py-0.5 rounded border border-rose-200">
                   Immédiat
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 leading-snug">
+              <p className="text-[11px] text-slate-600 leading-snug">
                 Impacts sur notre génération même. Aucune inertie géologique pour amortir le choc.
               </p>
               <div className="flex flex-col gap-2 mt-1">
@@ -704,25 +704,25 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                     onClick={() => onSelectElement(elem.id)}
                     className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-all ${
                       elem.id === selectedElementId
-                        ? 'bg-rose-900/60 border-rose-500 text-white'
-                        : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:border-slate-700'
+                        ? 'bg-rose-100/70 border-rose-400 text-slate-800 shadow-xs'
+                        : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 shadow-2xs'
                     }`}
                   >
-                    <div className="font-semibold text-white flex items-center justify-between">
+                    <div className="font-semibold text-slate-800 flex items-center justify-between">
                       <span>{elem.name}</span>
-                      <span className="text-rose-400 font-mono text-[10px]">+{elem.thresholdEst}°C</span>
+                      <span className="text-rose-700 font-mono text-[10px] font-bold">+{elem.thresholdEst}°C</span>
                     </div>
-                    <div className="flex items-center justify-between text-[10px] text-slate-400 mt-1 font-mono">
+                    <div className="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-mono">
                       <span>Temps : {elem.timescaleYears}</span>
-                      <span className="text-amber-300">{elem.estimatedYearTendency.split('(')[0].trim()}</span>
+                      <span className="text-amber-800 font-semibold">{elem.estimatedYearTendency.split('(')[0].trim()}</span>
                     </div>
-                    <div className="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-end">
+                    <div className="mt-1.5 pt-1.5 border-t border-slate-100 flex items-center justify-end">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           setModalElem(elem);
                         }}
-                        className="text-[10.5px] text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-sans cursor-pointer"
+                        className="text-[10.5px] text-sky-700 hover:text-sky-900 flex items-center gap-1 font-sans cursor-pointer font-medium"
                       >
                         <HelpCircle className="w-3 h-3" /> Fiche débutant
                       </button>
@@ -733,17 +733,17 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
             </div>
 
             {/* Colonne 2 : Moyen terme (50 à 300 ans) */}
-            <div className="bg-amber-950/20 border border-amber-900/40 rounded-xl p-3.5 flex flex-col gap-2.5">
-              <div className="flex items-center justify-between pb-2 border-b border-amber-900/40">
-                <span className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-amber-400" />
+            <div className="bg-amber-50/50 border border-amber-200 rounded-xl p-3.5 flex flex-col gap-2.5">
+              <div className="flex items-center justify-between pb-2 border-b border-amber-200">
+                <span className="text-xs font-bold text-amber-900 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-amber-600" />
                   Effets Séculaires (50 à 300 ans)
                 </span>
-                <span className="text-[10px] font-mono text-amber-400 bg-amber-950 px-1.5 py-0.5 rounded border border-amber-800">
+                <span className="text-[10px] font-mono font-semibold text-amber-900 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-200">
                   Générations 2 à 4
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 leading-snug">
+              <p className="text-[11px] text-slate-600 leading-snug">
                 Déstabilisation progressive mais inexorable des écosystèmes et grands cycles.
               </p>
               <div className="flex flex-col gap-2 mt-1">
@@ -753,25 +753,25 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                     onClick={() => onSelectElement(elem.id)}
                     className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-all ${
                       elem.id === selectedElementId
-                        ? 'bg-amber-900/60 border-amber-500 text-white'
-                        : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:border-slate-700'
+                        ? 'bg-amber-100/70 border-amber-400 text-slate-800 shadow-xs'
+                        : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 shadow-2xs'
                     }`}
                   >
-                    <div className="font-semibold text-white flex items-center justify-between">
+                    <div className="font-semibold text-slate-800 flex items-center justify-between">
                       <span>{elem.name}</span>
-                      <span className="text-amber-400 font-mono text-[10px]">+{elem.thresholdEst}°C</span>
+                      <span className="text-amber-800 font-mono text-[10px] font-bold">+{elem.thresholdEst}°C</span>
                     </div>
-                    <div className="flex items-center justify-between text-[10px] text-slate-400 mt-1 font-mono">
+                    <div className="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-mono">
                       <span>Temps : {elem.timescaleYears}</span>
-                      <span className="text-amber-300">{elem.estimatedYearTendency.split('(')[0].trim()}</span>
+                      <span className="text-amber-800 font-semibold">{elem.estimatedYearTendency.split('(')[0].trim()}</span>
                     </div>
-                    <div className="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-end">
+                    <div className="mt-1.5 pt-1.5 border-t border-slate-100 flex items-center justify-end">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           setModalElem(elem);
                         }}
-                        className="text-[10.5px] text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-sans cursor-pointer"
+                        className="text-[10.5px] text-sky-700 hover:text-sky-900 flex items-center gap-1 font-sans cursor-pointer font-medium"
                       >
                         <HelpCircle className="w-3 h-3" /> Fiche débutant
                       </button>
@@ -782,17 +782,17 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
             </div>
 
             {/* Colonne 3 : Millénaire (500 à 10 000 ans) */}
-            <div className="bg-sky-950/20 border border-sky-900/40 rounded-xl p-3.5 flex flex-col gap-2.5">
-              <div className="flex items-center justify-between pb-2 border-b border-sky-900/40">
-                <span className="text-xs font-bold text-sky-300 flex items-center gap-1.5">
-                  <Snowflake className="w-3.5 h-3.5 text-sky-400" />
+            <div className="bg-sky-50/50 border border-sky-200 rounded-xl p-3.5 flex flex-col gap-2.5">
+              <div className="flex items-center justify-between pb-2 border-b border-sky-200">
+                <span className="text-xs font-bold text-sky-900 flex items-center gap-1.5">
+                  <Snowflake className="w-3.5 h-3.5 text-sky-600" />
                   Effets Millénaires (Calottes)
                 </span>
-                <span className="text-[10px] font-mono text-sky-400 bg-sky-950 px-1.5 py-0.5 rounded border border-sky-800">
+                <span className="text-[10px] font-mono font-semibold text-sky-900 bg-sky-100 px-1.5 py-0.5 rounded border border-sky-200">
                   Héritage lointain
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 leading-snug">
+              <p className="text-[11px] text-slate-600 leading-snug">
                 Seuil de fonte irréversible franchi aujourd'hui, mais la montée de 10 mètres s'étire sur des millénaires.
               </p>
               <div className="flex flex-col gap-2 mt-1">
@@ -802,25 +802,25 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                     onClick={() => onSelectElement(elem.id)}
                     className={`p-2.5 rounded-lg border text-xs cursor-pointer transition-all ${
                       elem.id === selectedElementId
-                        ? 'bg-sky-900/60 border-sky-500 text-white'
-                        : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:border-slate-700'
+                        ? 'bg-sky-100/70 border-sky-400 text-slate-800 shadow-xs'
+                        : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 shadow-2xs'
                     }`}
                   >
-                    <div className="font-semibold text-white flex items-center justify-between">
+                    <div className="font-semibold text-slate-800 flex items-center justify-between">
                       <span>{elem.name}</span>
-                      <span className="text-sky-400 font-mono text-[10px]">+{elem.thresholdEst}°C</span>
+                      <span className="text-sky-700 font-mono text-[10px] font-bold">+{elem.thresholdEst}°C</span>
                     </div>
-                    <div className="flex items-center justify-between text-[10px] text-slate-400 mt-1 font-mono">
+                    <div className="flex items-center justify-between text-[10px] text-slate-500 mt-1 font-mono">
                       <span>Temps : {elem.timescaleYears}</span>
-                      <span className="text-amber-300">{elem.estimatedYearTendency.split('(')[0].trim()}</span>
+                      <span className="text-amber-800 font-semibold">{elem.estimatedYearTendency.split('(')[0].trim()}</span>
                     </div>
-                    <div className="mt-1.5 pt-1.5 border-t border-slate-800/80 flex items-center justify-end">
+                    <div className="mt-1.5 pt-1.5 border-t border-slate-100 flex items-center justify-end">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           setModalElem(elem);
                         }}
-                        className="text-[10.5px] text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-sans cursor-pointer"
+                        className="text-[10.5px] text-sky-700 hover:text-sky-900 flex items-center gap-1 font-sans cursor-pointer font-medium"
                       >
                         <HelpCircle className="w-3 h-3" /> Fiche débutant
                       </button>
@@ -834,9 +834,9 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
       )}
 
       {/* Raccourcis de simulation de température intégrés sous le graphique */}
-      <div className="pt-2 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
-        <div className="flex items-center gap-2 text-slate-400">
-          <Info className="w-3.5 h-3.5 text-cyan-400" />
+      <div className="pt-2 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2 text-slate-600">
+          <Info className="w-3.5 h-3.5 text-sky-600" />
           <span>Tester l'impact sur le graphique :</span>
         </div>
 
@@ -845,8 +845,8 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
             onClick={() => onTempChange(1.3)}
             className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all cursor-pointer border ${
               Math.abs(currentTemp - 1.3) < 0.05
-                ? 'bg-cyan-900 text-cyan-200 border-cyan-400 font-bold'
-                : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border-slate-700'
+                ? 'bg-sky-100 text-sky-800 border-sky-400 font-bold shadow-2xs'
+                : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs'
             }`}
           >
             Aujourd'hui (+1,3°C)
@@ -855,8 +855,8 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
             onClick={() => onTempChange(1.5)}
             className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all cursor-pointer border ${
               Math.abs(currentTemp - 1.5) < 0.05
-                ? 'bg-amber-900 text-amber-200 border-amber-400 font-bold'
-                : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border-slate-700'
+                ? 'bg-amber-100 text-amber-900 border-amber-400 font-bold shadow-2xs'
+                : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs'
             }`}
           >
             Objectif Paris (+1,5°C)
@@ -865,8 +865,8 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
             onClick={() => onTempChange(2.0)}
             className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all cursor-pointer border ${
               Math.abs(currentTemp - 2.0) < 0.05
-                ? 'bg-orange-900 text-orange-200 border-orange-400 font-bold'
-                : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border-slate-700'
+                ? 'bg-orange-100 text-orange-900 border-orange-400 font-bold shadow-2xs'
+                : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs'
             }`}
           >
             Limite Haute (+2,0°C)
@@ -875,8 +875,8 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
             onClick={() => onTempChange(2.7)}
             className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all cursor-pointer border ${
               Math.abs(currentTemp - 2.7) < 0.05
-                ? 'bg-rose-900 text-rose-200 border-rose-400 font-bold'
-                : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border-slate-700'
+                ? 'bg-rose-100 text-rose-900 border-rose-400 font-bold shadow-2xs'
+                : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs'
             }`}
           >
             Politiques 2024 (+2,7°C)
@@ -885,8 +885,8 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
             onClick={() => onTempChange(4.0)}
             className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all cursor-pointer border ${
               Math.abs(currentTemp - 4.0) < 0.05
-                ? 'bg-purple-900 text-purple-200 border-purple-400 font-bold'
-                : 'bg-slate-900 hover:bg-slate-800 text-slate-300 border-slate-700'
+                ? 'bg-purple-100 text-purple-900 border-purple-400 font-bold shadow-2xs'
+                : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-2xs'
             }`}
           >
             Scénario Extrême (+4,0°C)

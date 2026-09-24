@@ -270,50 +270,50 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
     if (temp < elem.thresholdMin) {
       return {
         label: 'Zone encore épargnée',
-        badgeClass: 'bg-emerald-950/80 border-emerald-600/70 text-emerald-300',
-        dotClass: 'bg-emerald-400',
+        badgeClass: 'bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold',
+        dotClass: 'bg-emerald-600',
         level: 'safe'
       };
     }
     if (temp >= elem.thresholdMin && temp < elem.thresholdEst) {
       return {
         label: 'Zone d\'incertitude & Risque réel',
-        badgeClass: 'bg-amber-950/80 border-amber-600/70 text-amber-300',
-        dotClass: 'bg-amber-400 animate-pulse',
+        badgeClass: 'bg-amber-50 border-amber-300 text-amber-900 font-semibold',
+        dotClass: 'bg-amber-500 animate-pulse',
         level: 'uncertain'
       };
     }
     return {
       label: 'Seuil central dépassé : Basculement probable',
-      badgeClass: 'bg-rose-950/90 border-rose-600/80 text-rose-200',
-      dotClass: 'bg-rose-500 animate-ping',
+      badgeClass: 'bg-rose-50 border-rose-300 text-rose-800 font-semibold',
+      dotClass: 'bg-rose-600 animate-ping',
       level: 'tipped'
     };
   };
 
   return (
-    <div className="flex flex-col gap-8 text-slate-200 pb-16">
+    <div className="flex flex-col gap-8 text-slate-700 pb-16">
       {/* 1. En-tête pédagogique et solennel */}
-      <div className="bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#0b0f19] border border-slate-800/90 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-xs relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-rose-100/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl relative z-10">
           <div className="flex flex-wrap items-center gap-2.5 mb-3">
-            <span className="px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-rose-950/80 border border-rose-700/80 text-rose-300 flex items-center gap-1.5">
-              <ShieldAlert className="w-3.5 h-3.5" />
+            <span className="px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-rose-50 border border-rose-200 text-rose-800 flex items-center gap-1.5 shadow-2xs">
+              <ShieldAlert className="w-3.5 h-3.5 text-rose-600" />
               Consensus Scientifique (Science 2022 &amp; GIEC AR6)
             </span>
-            <span className="px-2.5 py-1 rounded-full text-xs font-mono bg-slate-800/90 border border-slate-700 text-slate-300">
+            <span className="px-2.5 py-1 rounded-full text-xs font-mono bg-slate-100 border border-slate-200 text-slate-700">
               Réchauffement actuel mesuré : +1,3°C (OMM 2024)
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 mb-4">
             Les Points de Bascule du Climat Terrestre
           </h1>
 
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6 font-normal">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 font-normal">
             Un <strong>point de bascule</strong> (ou <em>tipping point</em>) est le seuil au-delà duquel un élément de la planète
             bascule de manière autonome et durable vers un nouvel état, <strong>même si l'humanité arrêtait toutes ses émissions le lendemain</strong>.
             Ici, pas de conjectures ni de sensationnalisme : uniquement les observations physiques mesurées par satellites et les synthèses des plus grandes revues scientifiques.
@@ -321,32 +321,32 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
 
           {/* Les 3 analogies pour comprendre simplement */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 pt-2">
-            <div className="bg-slate-900/80 border border-slate-800/80 rounded-xl p-3.5">
-              <div className="flex items-center gap-2 text-cyan-400 font-semibold text-xs mb-1.5">
-                <span className="w-5 h-5 rounded-full bg-cyan-950 border border-cyan-800 flex items-center justify-center text-[11px] font-bold">1</span>
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
+              <div className="flex items-center gap-2 text-sky-800 font-semibold text-xs mb-1.5">
+                <span className="w-5 h-5 rounded-full bg-sky-100 border border-sky-300 flex items-center justify-center text-[11px] font-bold text-sky-800">1</span>
                 L'analogie de la chaise
               </div>
-              <p className="text-xs text-slate-400 leading-snug">
+              <p className="text-xs text-slate-600 leading-snug">
                 Vous vous balancez sur deux pieds : tant que l'angle reste raisonnable, vous revenez en avant. Mais passé un angle critique, la chute devient inévitable sans qu'on ait besoin de vous pousser.
               </p>
             </div>
 
-            <div className="bg-slate-900/80 border border-slate-800/80 rounded-xl p-3.5">
-              <div className="flex items-center gap-2 text-amber-400 font-semibold text-xs mb-1.5">
-                <span className="w-5 h-5 rounded-full bg-amber-950 border border-amber-800 flex items-center justify-center text-[11px] font-bold">2</span>
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
+              <div className="flex items-center gap-2 text-amber-800 font-semibold text-xs mb-1.5">
+                <span className="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-[11px] font-bold text-amber-900">2</span>
                 L'analogie du gros glaçon
               </div>
-              <p className="text-xs text-slate-400 leading-snug">
+              <p className="text-xs text-slate-600 leading-snug">
                 Sortir un bloc de glace de 100 kg d'un congélateur à -15°C et le poser dans une pièce à +20°C enclenche sa fonte certaine. Pourtant, il mettra des heures à fondre. Pour les calottes, cela prendra des siècles.
               </p>
             </div>
 
-            <div className="bg-slate-900/80 border border-slate-800/80 rounded-xl p-3.5">
-              <div className="flex items-center gap-2 text-rose-400 font-semibold text-xs mb-1.5">
-                <span className="w-5 h-5 rounded-full bg-rose-950 border border-rose-800 flex items-center justify-center text-[11px] font-bold">3</span>
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
+              <div className="flex items-center gap-2 text-rose-800 font-semibold text-xs mb-1.5">
+                <span className="w-5 h-5 rounded-full bg-rose-100 border border-rose-300 flex items-center justify-center text-[11px] font-bold text-rose-800">3</span>
                 L'effet domino (cascade)
               </div>
-              <p className="text-xs text-slate-400 leading-snug">
+              <p className="text-xs text-slate-600 leading-snug">
                 La fonte de la glace arctique déverse de l'eau douce qui ralentit le courant atlantique (AMOC), qui à son tour déplace les moussons tropicales et assèche la forêt amazonienne.
               </p>
             </div>
@@ -356,51 +356,51 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
 
       {/* 2. Ce que la science DIT vs ce qu'elle NE DIT PAS (Démystification factuelle) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-emerald-950/20 border border-emerald-800/40 rounded-xl p-5">
-          <div className="flex items-center gap-2 text-emerald-400 font-semibold text-sm mb-3">
-            <CheckCircle2 className="w-4 h-4 shrink-0" />
+        <div className="bg-emerald-50/60 border border-emerald-200 rounded-xl p-5 shadow-2xs">
+          <div className="flex items-center gap-2 text-emerald-800 font-semibold text-sm mb-3">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
             Ce que la science a MESURÉ et DÉMONTRÉ (Faits)
           </div>
-          <ul className="space-y-2 text-xs text-slate-300 leading-relaxed">
+          <ul className="space-y-2 text-xs text-slate-700 leading-relaxed">
             <li className="flex items-start gap-2">
-              <span className="text-emerald-400 font-bold">•</span>
+              <span className="text-emerald-600 font-bold">•</span>
               <span><strong>+1,3°C déjà atteint :</strong> La température moyenne mondiale observée a dépassé +1,28°C au-dessus de l'ère préindustrielle (Copernicus / OMM).</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-emerald-400 font-bold">•</span>
+              <span className="text-emerald-600 font-bold">•</span>
               <span><strong>5 points de bascule sont déjà dans la zone de danger</strong> dès +1,5°C : Groenland, Antarctique Ouest, coraux tropicaux, pergélisol, mer de Barents.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-emerald-400 font-bold">•</span>
+              <span className="text-emerald-600 font-bold">•</span>
               <span><strong>Perte nette continue de glace :</strong> Le Groenland perd 270 Gt/an et l'Antarctique 150 Gt/an mesurés au millimètre près par gravimétrie satellite.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-emerald-400 font-bold">•</span>
+              <span className="text-emerald-600 font-bold">•</span>
               <span><strong>Chaque dixième compte :</strong> Il n'y a pas de "falaise magique" où tout bascule d'un coup. Chaque fraction de degré évitée réduit les risques d'activation en chaîne.</span>
             </li>
           </ul>
         </div>
 
-        <div className="bg-rose-950/20 border border-rose-800/40 rounded-xl p-5">
-          <div className="flex items-center gap-2 text-rose-400 font-semibold text-sm mb-3">
-            <AlertTriangle className="w-4 h-4 shrink-0" />
+        <div className="bg-rose-50/60 border border-rose-200 rounded-xl p-5 shadow-2xs">
+          <div className="flex items-center gap-2 text-rose-800 font-semibold text-sm mb-3">
+            <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
             Ce que la science NE DIT PAS (Halte aux fausses suppositions)
           </div>
-          <ul className="space-y-2 text-xs text-slate-300 leading-relaxed">
+          <ul className="space-y-2 text-xs text-slate-700 leading-relaxed">
             <li className="flex items-start gap-2">
-              <span className="text-rose-400 font-bold">•</span>
+              <span className="text-rose-600 font-bold">•</span>
               <span><strong>PAS d'apocalypse en 24 heures :</strong> Franchir un seuil de bascule ne veut pas dire que la Terre explose le lendemain. La fonte des calottes mettra des siècles ou des millénaires.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-rose-400 font-bold">•</span>
+              <span className="text-rose-600 font-bold">•</span>
               <span><strong>PAS de fatalisme « tout est déjà foutu » :</strong> Dépasser temporairement +1,5°C pendant quelques années ne détruit pas instantanément le Groenland si la température redescend rapidement.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-rose-400 font-bold">•</span>
+              <span className="text-rose-600 font-bold">•</span>
               <span><strong>PAS de "bombe à méthane" instantanée :</strong> Le dégel du pergélisol libère des gaz sur plusieurs siècles, pas sous forme d'une gigantesque explosion subite.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-rose-400 font-bold">•</span>
+              <span className="text-rose-600 font-bold">•</span>
               <span><strong>Incertitudes documentées :</strong> La science donne des fourchettes (ex : AMOC entre +1,4°C et +8°C). Les chercheurs ne prétendent pas connaître le jour exact du basculement.</span>
             </li>
           </ul>
@@ -408,28 +408,28 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
       </div>
 
       {/* SECTION SPÉCIALE : DATE ESTIMÉE DE FRANCHISSEMENT TOTAL & CONSÉQUENCES */}
-      <div className="bg-gradient-to-r from-rose-950/60 via-[#180f1d] to-[#0e172a] border border-rose-800/70 rounded-2xl p-5 sm:p-6 shadow-xl">
+      <div className="bg-gradient-to-r from-rose-50 via-purple-50 to-slate-50 border border-rose-200 rounded-2xl p-5 sm:p-6 shadow-xs">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="flex items-start gap-3.5">
-            <div className="p-3 rounded-xl bg-rose-600/20 border border-rose-500/40 text-rose-400 shrink-0 mt-0.5">
-              <Calendar className="w-5 h-5 text-rose-400" />
+            <div className="p-3 rounded-xl bg-rose-100 border border-rose-300 text-rose-700 shrink-0 mt-0.5">
+              <Calendar className="w-5 h-5 text-rose-600" />
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap mb-1">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-rose-300 font-bold bg-rose-950/80 px-2 py-0.5 rounded border border-rose-800">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-rose-800 font-bold bg-rose-100 px-2.5 py-0.5 rounded border border-rose-300">
                   Chronologie Critique &amp; Projection
                 </span>
-                <span className="text-[11px] font-mono text-slate-400">
+                <span className="text-[11px] font-mono text-slate-500">
                   Évaluation scientifique CLIMATOPEDY
                 </span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                 Date envisagée pour le franchissement de l'ENSEMBLE des points de bascule
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
-                • <strong>Scénario Fossile sans rupture :</strong> Les 5 premiers points cèdent dès <span className="text-amber-300 font-bold">2030 – 2038 (+1,5°C)</span>, et l'ensemble des 9 points (AMOC et forêts boréales) est franchi vers <span className="text-rose-400 font-bold">2085 – 2100 (+4,0°C)</span>.
+              <p className="text-xs sm:text-sm text-slate-700 mt-1 max-w-2xl leading-relaxed">
+                • <strong>Scénario Fossile sans rupture :</strong> Les 5 premiers points cèdent dès <span className="text-amber-800 font-bold">2030 – 2038 (+1,5°C)</span>, et l'ensemble des 9 points (AMOC et forêts boréales) est franchi vers <span className="text-rose-700 font-bold">2085 – 2100 (+4,0°C)</span>.
                 <br />
-                • <strong>Scénario Sobriété (Accord de Paris) :</strong> Stabilisation sous +1,8°C = l'ensemble des points n'est <span className="text-emerald-400 font-bold">JAMAIS franchi</span>.
+                • <strong>Scénario Sobriété (Accord de Paris) :</strong> Stabilisation sous +1,8°C = l'ensemble des points n'est <span className="text-emerald-700 font-bold">JAMAIS franchi</span>.
               </p>
             </div>
           </div>
@@ -437,12 +437,12 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
           <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-2">
             <button
               onClick={() => setIsAllPointsModalOpen(true)}
-              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white text-xs font-bold shadow-lg shadow-rose-950/50 flex items-center justify-center gap-2 border border-rose-400/30 transition-all cursor-pointer hover:scale-[1.02]"
+              className="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
             >
-              <Flame className="w-4 h-4 text-amber-300 animate-pulse" />
+              <Flame className="w-4 h-4 text-amber-200 animate-pulse" />
               <span>Voir les conséquences si TOUS les points sont franchis</span>
             </button>
-            <div className="text-[10px] text-center text-rose-300/80 font-mono">
+            <div className="text-[10px] text-center text-rose-700 font-mono">
               Effondrement en chaîne (Hothouse Earth)
             </div>
           </div>
@@ -459,14 +459,14 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
       />
 
       {/* 4. Curseur thermique interactif et diagnostic numérique */}
-      <div className="bg-[#0b101b] border border-slate-800 rounded-xl p-5 sm:p-6 shadow-md">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-slate-800">
+      <div className="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-slate-200">
           <div>
-            <div className="flex items-center gap-2 text-white font-semibold text-base">
-              <Thermometer className="w-5 h-5 text-rose-400" />
+            <div className="flex items-center gap-2 text-slate-900 font-semibold text-base">
+              <Thermometer className="w-5 h-5 text-rose-600" />
               Réglage précis du réchauffement testé
             </div>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 mt-0.5">
               Déplacez le curseur pour déplacer la ligne rouge sur le graphique et actualiser les diagnostics ci-dessous.
             </p>
           </div>
@@ -474,25 +474,25 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
           <div className="flex items-center gap-2 self-start sm:self-auto">
             <button
               onClick={() => setCustomTempSlider(1.3)}
-              className="px-2.5 py-1 text-xs font-mono rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 cursor-pointer"
+              className="px-2.5 py-1 text-xs font-mono rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 shadow-2xs cursor-pointer"
             >
               Aujourd'hui (+1,3°C)
             </button>
             <button
               onClick={() => setCustomTempSlider(1.5)}
-              className="px-2.5 py-1 text-xs font-mono rounded bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-900/50 cursor-pointer"
+              className="px-2.5 py-1 text-xs font-mono rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 shadow-2xs cursor-pointer"
             >
               Accord Paris (+1,5°C)
             </button>
             <button
               onClick={() => setCustomTempSlider(2.0)}
-              className="px-2.5 py-1 text-xs font-mono rounded bg-slate-800 hover:bg-slate-700 text-orange-300 border border-orange-900/50 cursor-pointer"
+              className="px-2.5 py-1 text-xs font-mono rounded-lg bg-orange-50 hover:bg-orange-100 text-orange-900 border border-orange-300 shadow-2xs cursor-pointer"
             >
               Limite haute (+2,0°C)
             </button>
             <button
               onClick={() => setCustomTempSlider(2.7)}
-              className="px-2.5 py-1 text-xs font-mono rounded bg-slate-800 hover:bg-slate-700 text-rose-300 border border-rose-900/50 cursor-pointer"
+              className="px-2.5 py-1 text-xs font-mono rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-300 shadow-2xs cursor-pointer"
             >
               Tendanciel (+2,7°C)
             </button>
@@ -502,8 +502,8 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
         {/* Curseur thermique */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between text-xs font-mono">
-            <span className="text-slate-400">Élévation de température moyenne globale :</span>
-            <span className="text-base font-bold text-white px-2.5 py-0.5 rounded bg-rose-950/80 border border-rose-700 text-rose-300">
+            <span className="text-slate-500">Élévation de température moyenne globale :</span>
+            <span className="text-base font-bold px-2.5 py-0.5 rounded-lg bg-rose-50 border border-rose-300 text-rose-800 shadow-2xs">
               +{customTempSlider.toFixed(1)}°C
             </span>
           </div>
@@ -516,15 +516,15 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
               step="0.1"
               value={customTempSlider}
               onChange={(e) => setCustomTempSlider(parseFloat(e.target.value))}
-              className="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-500"
+              className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rose-600"
             />
             {/* Repères visuels */}
             <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-1 px-1">
               <span>+0,8°C (1980)</span>
-              <span className="text-cyan-400 font-semibold">+1,3°C (Aujourd'hui)</span>
-              <span className="text-amber-400 font-semibold">+1,5°C</span>
-              <span className="text-orange-400">+2,0°C</span>
-              <span className="text-rose-400 font-semibold">+3,0°C</span>
+              <span className="text-sky-700 font-semibold">+1,3°C (Aujourd'hui)</span>
+              <span className="text-amber-700 font-semibold">+1,5°C</span>
+              <span className="text-orange-700">+2,0°C</span>
+              <span className="text-rose-700 font-semibold">+3,0°C</span>
               <span>+4,5°C</span>
             </div>
           </div>
@@ -537,18 +537,18 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
           const tippedCount = TIPPING_ELEMENTS.filter(e => customTempSlider >= e.thresholdEst).length;
 
           return (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-4 pt-3 border-t border-slate-800/80">
-              <div className="bg-emerald-950/40 border border-emerald-800/50 rounded-lg p-2.5 flex items-center justify-between">
-                <span className="text-xs text-emerald-300">Hors zone de risque</span>
-                <span className="text-sm font-bold font-mono text-emerald-400">{safeCount} / {TIPPING_ELEMENTS.length}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-4 pt-3 border-t border-slate-200">
+              <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-2.5 flex items-center justify-between shadow-2xs">
+                <span className="text-xs text-emerald-800 font-medium">Hors zone de risque</span>
+                <span className="text-sm font-bold font-mono text-emerald-800">{safeCount} / {TIPPING_ELEMENTS.length}</span>
               </div>
-              <div className="bg-amber-950/40 border border-amber-800/50 rounded-lg p-2.5 flex items-center justify-between">
-                <span className="text-xs text-amber-300">Dans la zone d'incertitude</span>
-                <span className="text-sm font-bold font-mono text-amber-400">{uncertainCount} / {TIPPING_ELEMENTS.length}</span>
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-2.5 flex items-center justify-between shadow-2xs">
+                <span className="text-xs text-amber-900 font-medium">Dans la zone d'incertitude</span>
+                <span className="text-sm font-bold font-mono text-amber-900">{uncertainCount} / {TIPPING_ELEMENTS.length}</span>
               </div>
-              <div className="bg-rose-950/40 border border-rose-800/50 rounded-lg p-2.5 flex items-center justify-between">
-                <span className="text-xs text-rose-300">Seuil central franchi</span>
-                <span className="text-sm font-bold font-mono text-rose-400">{tippedCount} / {TIPPING_ELEMENTS.length}</span>
+              <div className="bg-rose-50 border border-rose-200 rounded-lg p-2.5 flex items-center justify-between shadow-2xs">
+                <span className="text-xs text-rose-800 font-medium">Seuil central franchi</span>
+                <span className="text-sm font-bold font-mono text-rose-800">{tippedCount} / {TIPPING_ELEMENTS.length}</span>
               </div>
             </div>
           );
@@ -560,20 +560,20 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
         {/* Barre de filtres par catégorie */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Layers className="w-4 h-4 text-cyan-400" />
+            <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+              <Layers className="w-4 h-4 text-sky-600" />
               État des Lieux des 9 Points de Bascule Majeurs
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-600">
               Sélectionnez un élément pour consulter ses mesures concrètes et ses conséquences pratiques.
             </p>
           </div>
 
-          <div className="flex items-center gap-1.5 p-1 bg-slate-900 border border-slate-800 rounded-lg self-start sm:self-auto text-xs">
+          <div className="flex items-center gap-1.5 p-1 bg-slate-100 border border-slate-200 rounded-lg self-start sm:self-auto text-xs">
             <button
               onClick={() => setSelectedCategory('all')}
               className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
-                selectedCategory === 'all' ? 'bg-slate-700 text-white font-medium' : 'text-slate-400 hover:text-slate-200'
+                selectedCategory === 'all' ? 'bg-white text-slate-800 font-semibold shadow-xs' : 'text-slate-600 hover:text-slate-800'
               }`}
             >
               Tous ({TIPPING_ELEMENTS.length})
@@ -581,28 +581,28 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
             <button
               onClick={() => setSelectedCategory('cryosphere')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
-                selectedCategory === 'cryosphere' ? 'bg-cyan-900/80 text-cyan-200 font-medium' : 'text-slate-400 hover:text-slate-200'
+                selectedCategory === 'cryosphere' ? 'bg-sky-100 text-sky-800 font-semibold shadow-xs' : 'text-slate-600 hover:text-slate-800'
               }`}
             >
-              <Snowflake className="w-3 h-3 text-cyan-400" />
+              <Snowflake className="w-3 h-3 text-sky-600" />
               Glaces & Pôles
             </button>
             <button
               onClick={() => setSelectedCategory('biosphere')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
-                selectedCategory === 'biosphere' ? 'bg-emerald-900/80 text-emerald-200 font-medium' : 'text-slate-400 hover:text-slate-200'
+                selectedCategory === 'biosphere' ? 'bg-emerald-100 text-emerald-800 font-semibold shadow-xs' : 'text-slate-600 hover:text-slate-800'
               }`}
             >
-              <TreePine className="w-3 h-3 text-emerald-400" />
+              <TreePine className="w-3 h-3 text-emerald-600" />
               Forêts & Vivant
             </button>
             <button
               onClick={() => setSelectedCategory('ocean_atmosphere')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
-                selectedCategory === 'ocean_atmosphere' ? 'bg-indigo-900/80 text-indigo-200 font-medium' : 'text-slate-400 hover:text-slate-200'
+                selectedCategory === 'ocean_atmosphere' ? 'bg-indigo-100 text-indigo-800 font-semibold shadow-xs' : 'text-slate-600 hover:text-slate-800'
               }`}
             >
-              <Waves className="w-3 h-3 text-indigo-400" />
+              <Waves className="w-3 h-3 text-indigo-600" />
               Océans & Climat
             </button>
           </div>
@@ -622,22 +622,22 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                   onClick={() => setActiveElementId(elem.id)}
                   className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer relative overflow-hidden ${
                     isSelected
-                      ? 'bg-slate-800/90 border-cyan-500/80 shadow-md ring-1 ring-cyan-500/40'
-                      : 'bg-[#0d131f]/80 hover:bg-slate-800/50 border-slate-800/80 hover:border-slate-700'
+                      ? 'bg-sky-50/80 border-sky-400 shadow-sm ring-2 ring-sky-300'
+                      : 'bg-white hover:bg-slate-50 border-slate-200 shadow-2xs'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2 mb-1.5">
-                    <span className="text-xs font-bold text-white line-clamp-1">{elem.name}</span>
+                    <span className="text-xs font-bold text-slate-800 line-clamp-1">{elem.name}</span>
                     <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${status.badgeClass}`}>
                       {elem.thresholdEst.toFixed(1)}°C
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] text-slate-400">
+                  <div className="flex items-center justify-between text-[11px] text-slate-600">
                     <span className="flex items-center gap-1">
-                      {elem.category === 'cryosphere' && <Snowflake className="w-3 h-3 text-cyan-400" />}
-                      {elem.category === 'biosphere' && <TreePine className="w-3 h-3 text-emerald-400" />}
-                      {elem.category === 'ocean_atmosphere' && <Waves className="w-3 h-3 text-indigo-400" />}
+                      {elem.category === 'cryosphere' && <Snowflake className="w-3 h-3 text-sky-600" />}
+                      {elem.category === 'biosphere' && <TreePine className="w-3 h-3 text-emerald-600" />}
+                      {elem.category === 'ocean_atmosphere' && <Waves className="w-3 h-3 text-indigo-600" />}
                       {elem.categoryLabel}
                     </span>
                     <span className="font-mono text-[10px] text-slate-500">
@@ -646,9 +646,9 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                   </div>
 
                   {/* Statut dynamique sous le thermomètre sélectionné */}
-                  <div className="mt-2 pt-2 border-t border-slate-800/60 flex items-center gap-1.5 text-[10px]">
+                  <div className="mt-2 pt-2 border-t border-slate-100 flex items-center gap-1.5 text-[10px]">
                     <span className={`w-2 h-2 rounded-full ${status.dotClass}`} />
-                    <span className={status.level === 'tipped' ? 'text-rose-400 font-semibold' : status.level === 'uncertain' ? 'text-amber-400' : 'text-emerald-400'}>
+                    <span className={status.level === 'tipped' ? 'text-rose-700 font-semibold' : status.level === 'uncertain' ? 'text-amber-800' : 'text-emerald-700'}>
                       À +{customTempSlider.toFixed(1)}°C : {status.label}
                     </span>
                   </div>
@@ -659,21 +659,21 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
 
           {/* Colonne droite (fiche complète pour l'élément actif) */}
           <div className="lg:col-span-7">
-            <div className="bg-[#0b101c] border border-slate-700/80 rounded-2xl p-6 sm:p-7 shadow-xl sticky top-20">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs sticky top-20">
               {/* En-tête de fiche */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-800">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
                 <div>
-                  <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider block mb-1">
+                  <span className="text-xs font-semibold text-sky-700 uppercase tracking-wider block mb-1">
                     {activeElement.categoryLabel} · {activeElement.location}
                   </span>
-                  <h3 className="text-xl font-bold text-white tracking-tight">
+                  <h3 className="text-xl font-bold text-slate-800 tracking-tight">
                     {activeElement.name}
                   </h3>
                 </div>
 
                 <div className="text-right">
-                  <div className="text-[10px] text-slate-400 uppercase font-mono">Seuil central estimé</div>
-                  <div className="text-xl font-black font-mono text-rose-400">
+                  <div className="text-[10px] text-slate-500 uppercase font-mono">Seuil central estimé</div>
+                  <div className="text-xl font-black font-mono text-rose-600">
                     +{activeElement.thresholdEst.toFixed(1)}°C
                   </div>
                   <div className="text-[10px] font-mono text-slate-500">
@@ -707,20 +707,20 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
               })()}
 
               {/* Bouton Fiche Débutant Accessible & Date Prévisionnelle */}
-              <div className="my-4 p-3.5 rounded-xl bg-gradient-to-r from-cyan-950/40 to-slate-900 border border-cyan-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="my-4 p-3.5 rounded-xl bg-gradient-to-r from-sky-50 to-slate-50 border border-sky-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <div className="flex items-center gap-1.5 text-cyan-300 font-semibold text-xs">
-                    <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                  <div className="flex items-center gap-1.5 text-sky-800 font-semibold text-xs">
+                    <Calendar className="w-3.5 h-3.5 text-sky-600" />
                     <span>Date estimée de franchissement (trajectoire actuelle) :</span>
                   </div>
-                  <div className="font-mono text-xs text-white font-bold mt-0.5">
+                  <div className="font-mono text-xs text-slate-800 font-bold mt-0.5">
                     {activeElement.estimatedYearTendency}
                   </div>
                 </div>
 
                 <button
                   onClick={() => setModalElement(activeElement)}
-                  className="px-3.5 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm cursor-pointer shrink-0"
+                  className="px-3.5 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer shrink-0"
                 >
                   <BookOpen className="w-3.5 h-3.5" />
                   <span>Fiche descriptive pour débutant</span>
@@ -729,63 +729,63 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
 
               {/* Explication vulgarisée */}
               <div className="mb-5">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+                <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5 text-sky-600" />
                   De quoi s'agit-il simplement ?
                 </h4>
-                <p className="text-sm text-slate-200 leading-relaxed bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+                <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-200">
                   {activeElement.summarySimple}
                 </p>
               </div>
 
               {/* Faits scientifiques mesurés aujourd'hui (SANS SUPPOSITION) */}
               <div className="mb-5">
-                <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <Activity className="w-3.5 h-3.5 text-amber-400" />
+                <h4 className="text-xs font-bold text-amber-800 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <Activity className="w-3.5 h-3.5 text-amber-600" />
                   Ce qui est MESURÉ aujourd'hui par les instruments (Faits réels)
                 </h4>
-                <div className="bg-amber-950/20 border border-amber-800/40 p-3.5 rounded-xl text-xs text-amber-100/90 leading-relaxed font-mono">
+                <div className="bg-amber-50/70 border border-amber-200 p-3.5 rounded-xl text-xs text-amber-900 leading-relaxed font-mono">
                   {activeElement.observedFactToday}
                 </div>
               </div>
 
               {/* Conséquences concrètes pour les humains */}
               <div className="mb-5">
-                <h4 className="text-xs font-bold text-rose-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+                <h4 className="text-xs font-bold text-rose-800 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
                   Ce que ça change concrètement pour nos vies
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed bg-rose-950/15 border border-rose-900/30 p-3.5 rounded-xl">
+                <p className="text-xs text-slate-700 leading-relaxed bg-rose-50/60 border border-rose-200 p-3.5 rounded-xl">
                   {activeElement.consequencePlain}
                 </p>
               </div>
 
               {/* Temps de réaction et irréversibilité */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 text-xs">
-                <div className="bg-slate-900/70 border border-slate-800 p-3 rounded-xl">
-                  <div className="flex items-center gap-1 text-slate-400 mb-1 font-mono text-[11px]">
-                    <Clock className="w-3 h-3 text-cyan-400" />
+                <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl">
+                  <div className="flex items-center gap-1 text-slate-600 mb-1 font-mono text-[11px]">
+                    <Clock className="w-3 h-3 text-sky-600" />
                     Temps de basculement complet
                   </div>
-                  <div className="font-semibold text-white font-mono">
+                  <div className="font-semibold text-slate-800 font-mono">
                     {activeElement.timescaleYears}
                   </div>
                 </div>
 
-                <div className="bg-slate-900/70 border border-slate-800 p-3 rounded-xl">
-                  <div className="text-slate-400 mb-1 font-mono text-[11px]">
+                <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl">
+                  <div className="text-slate-600 mb-1 font-mono text-[11px]">
                     Mécanisme d'auto-entretien
                   </div>
-                  <div className="text-slate-300 text-[11px] leading-snug">
+                  <div className="text-slate-700 text-[11px] leading-snug">
                     {activeElement.irreversibilityNotes}
                   </div>
                 </div>
               </div>
 
               {/* Source scientifique exacte */}
-              <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[10px] text-slate-500 font-mono">
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500 font-mono">
                 <span>Source : {activeElement.scientificSource}</span>
-                <span className="text-cyan-400/80">Données vérifiées</span>
+                <span className="text-sky-700 font-medium">Données vérifiées</span>
               </div>
             </div>
           </div>
@@ -793,21 +793,21 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
       </div>
 
       {/* 5. Tableau récapitulatif comparatif (Tous les éléments d'un coup d'œil) */}
-      <div className="bg-[#0b101b] border border-slate-800 rounded-xl overflow-hidden shadow-lg">
-        <div className="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between flex-wrap gap-2">
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
+        <div className="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-cyan-400" />
-            <h3 className="text-sm font-bold text-white">
+            <BookOpen className="w-4 h-4 text-sky-600" />
+            <h3 className="text-sm font-bold text-slate-800">
               Synthèse comparative des 9 points de bascule (Armstrong McKay et al. Science 2022)
             </h3>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-[11px] font-mono text-slate-400">Classés par seuil croissant</span>
+            <span className="text-[11px] font-mono text-slate-500">Classés par seuil croissant</span>
             <button
               onClick={() => setIsAllPointsModalOpen(true)}
-              className="px-2.5 py-1 rounded bg-rose-950/80 border border-rose-800/80 hover:bg-rose-900 text-rose-300 text-[11px] font-semibold flex items-center gap-1 transition-colors cursor-pointer"
+              className="px-2.5 py-1 rounded bg-rose-50 border border-rose-300 hover:bg-rose-100 text-rose-800 text-[11px] font-semibold flex items-center gap-1 transition-colors cursor-pointer shadow-2xs"
             >
-              <Flame className="w-3 h-3 text-amber-400" />
+              <Flame className="w-3 h-3 text-rose-600" />
               <span>Conséquences si TOUS franchis</span>
             </button>
           </div>
@@ -816,7 +816,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="bg-slate-900/90 text-slate-400 border-b border-slate-800 text-[11px] uppercase tracking-wider font-mono">
+              <tr className="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase tracking-wider font-mono">
                 <th className="py-3.5 px-4 min-w-[200px]">Élément de bascule</th>
                 <th className="py-3.5 px-3 whitespace-nowrap">Catégorie</th>
                 <th className="py-3.5 px-3 whitespace-nowrap">Seuil estimé</th>
@@ -827,35 +827,35 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                 <th className="py-3.5 px-3 text-center whitespace-nowrap">Fiche pour débutant</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80 text-slate-300">
+            <tbody className="divide-y divide-slate-100 text-slate-700">
               {TIPPING_ELEMENTS.map((elem) => (
                 <tr
                   key={elem.id}
                   onClick={() => setActiveElementId(elem.id)}
-                  className={`hover:bg-slate-800/40 cursor-pointer transition-colors ${
-                    elem.id === activeElementId ? 'bg-slate-800/60 font-medium' : ''
+                  className={`hover:bg-slate-50/70 cursor-pointer transition-colors ${
+                    elem.id === activeElementId ? 'bg-sky-50/60 font-medium' : ''
                   }`}
                 >
-                  <td className="py-3.5 px-4 font-semibold text-white">
+                  <td className="py-3.5 px-4 font-semibold text-slate-800">
                     <div className="flex items-center gap-2">
                       <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${
-                        elem.thresholdEst <= 1.5 ? 'bg-rose-500' : elem.thresholdEst <= 2.0 ? 'bg-amber-500' : 'bg-indigo-400'
+                        elem.thresholdEst <= 1.5 ? 'bg-rose-500' : elem.thresholdEst <= 2.0 ? 'bg-amber-500' : 'bg-indigo-500'
                       }`} />
                       <span>{elem.name}</span>
                     </div>
                   </td>
-                  <td className="py-3.5 px-3 text-slate-400 whitespace-nowrap">{elem.categoryLabel}</td>
-                  <td className="py-3.5 px-3 font-mono font-bold text-rose-300 whitespace-nowrap">+{elem.thresholdEst.toFixed(1)}°C</td>
-                  <td className="py-3.5 px-3 font-mono text-slate-400 text-[11px] whitespace-nowrap">{elem.thresholdMin}°C – {elem.thresholdMax}°C</td>
-                  <td className="py-3.5 px-3 font-mono text-amber-300 font-semibold text-xs whitespace-nowrap">
+                  <td className="py-3.5 px-3 text-slate-600 whitespace-nowrap">{elem.categoryLabel}</td>
+                  <td className="py-3.5 px-3 font-mono font-bold text-rose-700 whitespace-nowrap">+{elem.thresholdEst.toFixed(1)}°C</td>
+                  <td className="py-3.5 px-3 font-mono text-slate-500 text-[11px] whitespace-nowrap">{elem.thresholdMin}°C – {elem.thresholdMax}°C</td>
+                  <td className="py-3.5 px-3 font-mono text-amber-800 font-semibold text-xs whitespace-nowrap">
                     {elem.estimatedYearTendency.split('(')[0].trim()}
                   </td>
-                  <td className="py-3.5 px-3 font-mono text-slate-300 whitespace-nowrap">{elem.timescaleYears}</td>
-                  <td className="py-3.5 px-4 text-slate-200 text-xs leading-relaxed whitespace-normal min-w-[360px]">
-                    <div className="text-slate-200 font-normal">
+                  <td className="py-3.5 px-3 font-mono text-slate-700 whitespace-nowrap">{elem.timescaleYears}</td>
+                  <td className="py-3.5 px-4 text-slate-700 text-xs leading-relaxed whitespace-normal min-w-[360px]">
+                    <div className="text-slate-700 font-normal">
                       {elem.consequencePlain}
                     </div>
-                    <div className="mt-2 text-[11px] text-amber-300/95 font-medium bg-amber-950/30 p-2.5 rounded-lg border border-amber-900/40 leading-relaxed">
+                    <div className="mt-2 text-[11px] text-amber-900 font-medium bg-amber-50 p-2.5 rounded-lg border border-amber-200 leading-relaxed">
                       💡 <strong>Dans votre assiette &amp; votre ville :</strong> {elem.concreteImpactEveryday}
                     </div>
                   </td>
@@ -865,7 +865,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                         e.stopPropagation();
                         setModalElement(elem);
                       }}
-                      className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-cyan-900/70 border border-slate-700 hover:border-cyan-600 text-cyan-300 text-[11px] font-medium transition-colors cursor-pointer inline-flex items-center gap-1 shadow-sm"
+                      className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-sky-50 border border-slate-300 hover:border-sky-300 text-sky-700 text-[11px] font-medium transition-colors cursor-pointer inline-flex items-center gap-1 shadow-2xs"
                       title="Ouvrir la fiche descriptive pour débutant"
                     >
                       <HelpCircle className="w-3.5 h-3.5" />
@@ -880,16 +880,16 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
       </div>
 
       {/* 6. Conclusion et message d'action factuelle */}
-      <div className="bg-gradient-to-r from-slate-900 via-cyan-950/20 to-slate-900 border border-cyan-800/40 rounded-xl p-5 sm:p-6 text-xs text-slate-300 leading-relaxed">
-        <div className="flex items-center gap-2 text-cyan-400 font-bold text-sm mb-2">
-          <Info className="w-4 h-4" />
+      <div className="bg-gradient-to-r from-sky-50/60 via-slate-50 to-sky-50/60 border border-sky-200 rounded-xl p-5 sm:p-6 text-xs text-slate-700 leading-relaxed shadow-xs">
+        <div className="flex items-center gap-2 text-sky-800 font-bold text-sm mb-2">
+          <Info className="w-4 h-4 text-sky-600" />
           La conclusion des climatologues : Pas de fatalisme, mais une urgence physique
         </div>
         <p className="mb-2">
           Les points de bascule ne doivent pas être vus comme un interrupteur binaire « tout va bien / tout est perdu ».
           Chaque dixième de degré évité (+1,4°C plutôt que +1,5°C ; +1,7°C plutôt que +1,8°C) diminue la probabilité statistique de franchir le seuil d'un élément supplémentaire et ralentit la vitesse d'effondrement des calottes.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-500">
           Sources de référence : <em>Global Tipping Points Report 2023 (Université d'Exeter, COP28)</em> ; <em>Armstrong McKay et al., Science (2022)</em> ; <em>IPCC 6e Rapport d'Évaluation (Groupes I et II, 2021-2023)</em>.
         </p>
       </div>

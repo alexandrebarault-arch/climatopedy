@@ -355,9 +355,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
       {/* Bannière d'alerte contextuelle si l'utilisateur explore au-delà de 2100 (2100–2200) */}
       {simulationState.year > 2100 && (
-        <div className="p-3 rounded-xl bg-purple-950/40 border border-purple-800/60 flex flex-wrap items-center justify-between gap-2.5 text-xs text-purple-200 shadow-md">
+        <div className="p-3 rounded-xl bg-purple-50 border border-purple-200 flex flex-wrap items-center justify-between gap-2.5 text-xs text-purple-900 shadow-2xs">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded font-mono font-bold bg-purple-900 text-purple-300 border border-purple-700/60 text-[11px]">
+            <span className="px-2 py-0.5 rounded font-mono font-bold bg-purple-100 text-purple-800 border border-purple-300 text-[11px]">
               Horizon Séculaire {simulationState.year}
             </span>
             <span>
@@ -366,7 +366,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           </div>
           <button
             onClick={() => setShowGreenZonesModal(true)}
-            className="px-2.5 py-1 rounded-lg bg-purple-900/80 hover:bg-purple-800 text-purple-200 text-xs font-semibold border border-purple-700/60 transition-colors cursor-pointer"
+            className="px-2.5 py-1 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-900 text-xs font-semibold border border-purple-300 transition-colors cursor-pointer"
           >
             Fiche scientifique 2100–2200
           </button>
@@ -511,10 +511,10 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
         {/* Ligne 2 : Bandeau d'alerte et pilules cliquables des pays en dépassement */}
         {heatAlertsEnabled && thermalAnalysis.alertCount > 0 && (
-          <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="pt-2 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-semibold text-rose-300 flex items-center gap-1">
-                <AlertOctagon className="w-3.5 h-3.5 text-rose-400" />
+              <span className="text-[11px] font-semibold text-rose-800 flex items-center gap-1">
+                <AlertOctagon className="w-3.5 h-3.5 text-rose-600" />
                 Zones à risque d'inhabitabilité (Stull Tw &ge; {heatAlertThreshold.toFixed(1)}°C) :
               </span>
             </div>
@@ -528,14 +528,14 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   title={`Cliquer pour inspecter ${item.name} (Tmax canicule: ${item.summerMax.toFixed(1)}°C, HR: ${item.summerRh}%)`}
                   className={`px-2 py-0.5 rounded-full text-[11px] font-mono border transition-all flex items-center gap-1 ${
                     selectedCountryId === item.id
-                      ? 'bg-rose-500 text-white border-white shadow-md'
+                      ? 'bg-rose-600 text-white border-rose-700 shadow-sm'
                       : item.tw >= 35.0
-                      ? 'bg-purple-950/80 text-purple-200 border-purple-600 hover:bg-purple-900'
-                      : 'bg-rose-950/70 text-rose-200 border-rose-700/80 hover:bg-rose-900/90'
+                      ? 'bg-purple-100 text-purple-900 border-purple-300 hover:bg-purple-200'
+                      : 'bg-rose-100 text-rose-900 border-rose-300 hover:bg-rose-200'
                   }`}
                 >
                   <span>{item.name}</span>
-                  <span className="font-bold text-white bg-black/40 px-1 rounded">
+                  <span className="font-bold text-slate-900 bg-white/90 px-1 rounded shadow-2xs">
                     {item.tw >= 35.0 ? '☠️' : '🚨'} {item.tw.toFixed(1)}°C
                   </span>
                 </button>

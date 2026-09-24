@@ -133,9 +133,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       category: 'climate',
       title: 'Écart de Température Globale',
       subtitle: 'Anomalie thermique mondiale vs préindustriel (1850)',
-      icon: <Thermometer className="w-5 h-5 text-rose-400" />,
+      icon: <Thermometer className="w-5 h-5 text-rose-600" />,
       badge: 'Climat & Atmosphère',
-      badgeColor: 'border-rose-800/60 bg-rose-950/60 text-rose-300',
+      badgeColor: 'border-rose-300 bg-rose-50 text-rose-800',
       valA: `+${stateA.surfaceTemperatureAnomaly.toFixed(2)} °C`,
       valB: `+${stateB.surfaceTemperatureAnomaly.toFixed(2)} °C`,
       deltaText: `${deltaTemp >= 0 ? '+' : ''}${deltaTemp.toFixed(2)} °C`,
@@ -150,9 +150,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       category: 'demography',
       title: 'Population Vivable & Préservée',
       subtitle: 'Humains vivant dans des zones biophysiquement viables (Tw < 31°C)',
-      icon: <Users className="w-5 h-5 text-emerald-400" />,
+      icon: <Users className="w-5 h-5 text-emerald-600" />,
       badge: 'Démographie & Survie',
-      badgeColor: 'border-emerald-800/60 bg-emerald-950/60 text-emerald-300',
+      badgeColor: 'border-emerald-300 bg-emerald-50 text-emerald-800',
       valA: `${habitablePopA_Mds} Mds (${(habitableFractionA * 100).toFixed(0)}% de la pop.)`,
       valB: `${habitablePopB_Mds} Mds (${(habitableFractionB * 100).toFixed(0)}% de la pop.)`,
       deltaText: `+${gainHabitablePopMds} Mds d'humains viables`,
@@ -167,9 +167,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       category: 'food_water',
       title: 'Stress Hydrique Sévère',
       subtitle: 'Part et nombre de personnes subissant un déficit hydrique critique',
-      icon: <Droplets className="w-5 h-5 text-sky-400" />,
+      icon: <Droplets className="w-5 h-5 text-sky-600" />,
       badge: 'Eau & Ressources',
-      badgeColor: 'border-sky-800/60 bg-sky-950/60 text-sky-300',
+      badgeColor: 'border-sky-300 bg-sky-50 text-sky-800',
       valA: `${waterStressedPopA_B} Mds (${waterStressPctA}% de la pop.)`,
       valB: `${waterStressedPopB_B} Mds (${waterStressPctB}% de la pop.)`,
       deltaText: `${waterStressDeltaPct > 0 ? '+' : ''}${waterStressDeltaPct} points (${Math.abs(Number(waterStressedPopA_B) - Number(waterStressedPopB_B)).toFixed(1)} Mds épargnés)`,
@@ -183,9 +183,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       category: 'food_water',
       title: 'Sécurité Alimentaire & Calories',
       subtitle: 'Apport calorique moyen par habitant et rendements céréaliers',
-      icon: <Wheat className="w-5 h-5 text-amber-400" />,
+      icon: <Wheat className="w-5 h-5 text-amber-600" />,
       badge: 'Alimentation & Agriculture',
-      badgeColor: 'border-amber-800/60 bg-amber-950/60 text-amber-300',
+      badgeColor: 'border-amber-300 bg-amber-50 text-amber-900',
       valA: `${Math.round(stateA.globalAverageCaloriesPerCapita)} kcal/j (${(stateA.globalCropYieldComposite * 100).toFixed(0)}%)`,
       valB: `${Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/j (${(stateB.globalCropYieldComposite * 100).toFixed(0)}%)`,
       deltaText: `${deltaCalories >= 0 ? '+' : ''}${deltaCalories} kcal/j (${deltaYieldPct >= 0 ? '+' : ''}${deltaYieldPct} pts rendement)`,
@@ -200,9 +200,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       category: 'climate',
       title: 'Élévation Séculaire des Mers',
       subtitle: 'Montée du niveau moyen des océans et submersion côtière',
-      icon: <Waves className="w-5 h-5 text-cyan-400" />,
+      icon: <Waves className="w-5 h-5 text-blue-600" />,
       badge: 'Océans & Littoraux',
-      badgeColor: 'border-cyan-800/60 bg-cyan-950/60 text-cyan-300',
+      badgeColor: 'border-blue-300 bg-blue-50 text-blue-800',
       valA: `+${Math.round(stateA.seaLevelRiseMeters * 100)} cm`,
       valB: `+${Math.round(stateB.seaLevelRiseMeters * 100)} cm`,
       deltaText: `${deltaSlrCm >= 0 ? '+' : ''}${deltaSlrCm} cm (${Math.abs(deltaSlrCm)} cm épargnés)`,
@@ -217,9 +217,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       category: 'energy',
       title: 'Rendement de l\'Énergie (Énergie Nette)',
       subtitle: 'Barils obtenus pour 1 baril dépensé à forer, et énergie utile pour la société',
-      icon: <Zap className="w-5 h-5 text-yellow-400" />,
+      icon: <Zap className="w-5 h-5 text-amber-600" />,
       badge: 'Énergie & Métabolisme',
-      badgeColor: 'border-yellow-800/60 bg-yellow-950/60 text-yellow-300',
+      badgeColor: 'border-amber-300 bg-amber-50 text-amber-900',
       valA: `x${stateA.currentEroi >= 20 ? Math.round(stateA.currentEroi) : stateA.currentEroi.toFixed(1)} (${(stateA.netEnergyRatio * 100).toFixed(0)}% utile)`,
       valB: `x${stateB.currentEroi >= 20 ? Math.round(stateB.currentEroi) : stateB.currentEroi.toFixed(1)} (${(stateB.netEnergyRatio * 100).toFixed(0)}% utile)`,
       deltaText: `${deltaEroi >= 0 ? '+' : ''}${deltaEroi.toFixed(1)} pts de rendement (${deltaNetEnergyPct >= 0 ? '+' : ''}${deltaNetEnergyPct} pts utile)`,
@@ -234,9 +234,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       category: 'demography',
       title: 'Réfugiés Climatiques & Migrations',
       subtitle: 'Personnes déplacées sous pression thermique et alimentaire',
-      icon: <AlertTriangle className="w-5 h-5 text-purple-400" />,
+      icon: <AlertTriangle className="w-5 h-5 text-purple-600" />,
       badge: 'Stabilité Géopolitique',
-      badgeColor: 'border-purple-800/60 bg-purple-950/60 text-purple-300',
+      badgeColor: 'border-purple-300 bg-purple-50 text-purple-800',
       valA: `${stateA.activeClimateRefugees.toFixed(1)} M`,
       valB: `${stateB.activeClimateRefugees.toFixed(1)} M`,
       deltaText: `${deltaRefugeesM >= 0 ? '-' : '+'}${Math.abs(deltaRefugeesM).toFixed(1)} M d'exilés`,
@@ -250,9 +250,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       category: 'demography',
       title: 'Mortalité Annuelle Critique',
       subtitle: 'Décès annuels causés par les canicules létales et les famines',
-      icon: <HeartPulse className="w-5 h-5 text-rose-500" />,
+      icon: <HeartPulse className="w-5 h-5 text-rose-600" />,
       badge: 'Santé Publique Mondiale',
-      badgeColor: 'border-rose-800/60 bg-rose-950/60 text-rose-300',
+      badgeColor: 'border-rose-300 bg-rose-50 text-rose-800',
       valA: `${stateA.worldDeathsAnnual.total.toFixed(1)} M/an`,
       valB: `${stateB.worldDeathsAnnual.total.toFixed(1)} M/an`,
       deltaText: `-${deltaAnnualDeathsM.toFixed(1)} M décès/an en ${horizonYear}`,
@@ -270,36 +270,36 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
   });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-slate-700">
       {/* 1. En-tête héroïque du Dashboard Comparatif */}
-      <div className="bg-gradient-to-br from-[#0c1527] via-[#09101d] to-[#0d1f1f] border border-emerald-500/40 rounded-2xl p-5 sm:p-7 shadow-2xl relative overflow-hidden">
+      <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-7 shadow-xs relative overflow-hidden">
         {/* Glow décoratif d'arrière-plan */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-100/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-600/50 flex items-center gap-1.5 shadow-sm">
-                <Scale className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 flex items-center gap-1.5 shadow-2xs">
+                <Scale className="w-3.5 h-3.5 text-emerald-600" />
                 Tableau de Bord Stratégique
               </span>
-              <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono bg-slate-100 text-slate-700 border border-slate-200">
                 Comparatif Bilatéral A vs B
               </span>
             </div>
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
-              Dashboard Comparatif Global & Bénéfices de l'Action
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Dashboard Comparatif Global &amp; Bénéfices de l'Action
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Visualisez instantanément la divergence biophysique majeure entre la poursuite aveugle du modèle actuel (<strong className="text-rose-300">Scénario A - Fil de l'eau</strong>) et une politique délibérée de redirection écologique (<strong className="text-emerald-300">Scénario B - Sobriété & Agroécologie</strong>).
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Visualisez instantanément la divergence biophysique majeure entre la poursuite aveugle du modèle actuel (<strong className="text-rose-700">Scénario A - Fil de l'eau</strong>) et une politique délibérée de redirection écologique (<strong className="text-emerald-700">Scénario B - Sobriété &amp; Agroécologie</strong>).
             </p>
           </div>
 
           {/* Sélecteur de l'horizon temporel de calcul */}
-          <div className="flex flex-col sm:flex-row lg:flex-col gap-2 shrink-0 bg-[#080d17]/80 p-3 rounded-xl border border-slate-800">
-            <span className="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-2 shrink-0 bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-2xs">
+            <span className="text-[11px] font-semibold text-slate-600 flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5 text-sky-600" />
               Horizon temporel d'évaluation :
             </span>
             <div className="flex items-center gap-1.5 flex-wrap">
@@ -312,58 +312,58 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                   }}
                   className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
                     horizonYear === yr
-                      ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20 scale-105'
-                      : 'bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700/60'
+                      ? 'bg-emerald-600 text-white shadow-2xs scale-105'
+                      : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-300'
                   }`}
                 >
                   {yr}
                 </button>
               ))}
             </div>
-            <span className="text-[10px] text-slate-400 font-mono">
-              Année courante : <strong className="text-white">{Math.floor(currentYear)}</strong>
+            <span className="text-[10px] text-slate-500 font-mono">
+              Année courante : <strong className="text-slate-900">{Math.floor(currentYear)}</strong>
             </span>
           </div>
         </div>
 
         {/* 2. Bandeau synthèse macroscopique des gains majeurs */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6 pt-5 border-t border-slate-800/80">
-          <div className="bg-[#0b121e]/90 border border-slate-800 rounded-xl p-3 flex flex-col gap-1 shadow-sm">
-            <span className="text-[11px] text-slate-400 font-medium">🌡️ Réchauffement évité à {horizonYear}</span>
-            <span className="text-xl font-bold font-mono text-emerald-400">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6 pt-5 border-t border-slate-200">
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
+            <span className="text-[11px] text-slate-500 font-medium">🌡️ Réchauffement évité à {horizonYear}</span>
+            <span className="text-xl font-bold font-mono text-emerald-700">
               {Math.abs(deltaTemp).toFixed(2)} °C de moins
             </span>
-            <span className="text-[10px] text-slate-400">
+            <span className="text-[10px] text-slate-500">
               (A: +{stateA.surfaceTemperatureAnomaly.toFixed(2)}°C vs B: +{stateB.surfaceTemperatureAnomaly.toFixed(2)}°C)
             </span>
           </div>
 
-          <div className="bg-[#0b121e]/90 border border-emerald-900/60 rounded-xl p-3 flex flex-col gap-1 shadow-sm">
-            <span className="text-[11px] text-slate-400 font-medium">🛡️ Vies humaines épargnées (2026-{horizonYear})</span>
-            <span className="text-xl font-bold font-mono text-emerald-300">
+          <div className="bg-slate-50 border border-emerald-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
+            <span className="text-[11px] text-slate-500 font-medium">🛡️ Vies humaines épargnées (2026-{horizonYear})</span>
+            <span className="text-xl font-bold font-mono text-emerald-700">
               +{cumulativeStats.livesSavedMillions.toFixed(0)} Millions
             </span>
-            <span className="text-[10px] text-slate-400">
-              Mortalités thermique & famine évitées
+            <span className="text-[10px] text-slate-500">
+              Mortalités thermique &amp; famine évitées
             </span>
           </div>
 
-          <div className="bg-[#0b121e]/90 border border-slate-800 rounded-xl p-3 flex flex-col gap-1 shadow-sm">
-            <span className="text-[11px] text-slate-400 font-medium">💧 Pression sur l'eau douce</span>
-            <span className="text-xl font-bold font-mono text-sky-400">
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
+            <span className="text-[11px] text-slate-500 font-medium">💧 Pression sur l'eau douce</span>
+            <span className="text-xl font-bold font-mono text-sky-700">
               {Math.abs(waterStressDeltaPct)} points en moins
             </span>
-            <span className="text-[10px] text-slate-400">
+            <span className="text-[10px] text-slate-500">
               Moins de populations sous pénurie sévère
             </span>
           </div>
 
-          <div className="bg-[#0b121e]/90 border border-slate-800 rounded-xl p-3 flex flex-col gap-1 shadow-sm">
-            <span className="text-[11px] text-slate-400 font-medium">🌾 Sécurité calorique globale</span>
-            <span className="text-xl font-bold font-mono text-amber-400">
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
+            <span className="text-[11px] text-slate-500 font-medium">🌾 Sécurité calorique globale</span>
+            <span className="text-xl font-bold font-mono text-amber-800">
               +{deltaCalories} kcal/hab/jour
             </span>
-            <span className="text-[10px] text-slate-400">
+            <span className="text-[10px] text-slate-500">
               Stabilisation via l'agroécologie autonome
             </span>
           </div>
@@ -371,9 +371,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       </div>
 
       {/* 3. Barre de filtre thématique & actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0a101b] border border-slate-800 rounded-xl p-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white border border-slate-200 rounded-xl p-3 shadow-2xs">
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-xs text-slate-400 font-medium mr-2">Domaines d'impact :</span>
+          <span className="text-xs text-slate-500 font-medium mr-2">Domaines d'impact :</span>
           {[
             { id: 'all', label: 'Tous les domaines' },
             { id: 'climate', label: 'Climat & Océans' },
@@ -386,8 +386,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               onClick={() => setCategoryFilter(cat.id as any)}
               className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 categoryFilter === cat.id
-                  ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/70 shadow-sm'
-                  : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 border border-slate-800'
+                  ? 'bg-sky-50 text-sky-800 border border-sky-300 shadow-2xs'
+                  : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
               }`}
             >
               {cat.label}
@@ -398,9 +398,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
         {onOpenPdfExport && (
           <button
             onClick={onOpenPdfExport}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-950/80 hover:bg-cyan-900 text-cyan-200 border border-cyan-600/70 transition-colors cursor-pointer self-start sm:self-auto shrink-0 shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-100 text-sky-700 border border-slate-300 transition-colors cursor-pointer self-start sm:self-auto shrink-0 shadow-2xs"
           >
-            <FileDown className="w-3.5 h-3.5 text-cyan-400" />
+            <FileDown className="w-3.5 h-3.5 text-sky-600" />
             <span>Télécharger le comparatif complet (PDF)</span>
           </button>
         )}
@@ -411,20 +411,20 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
         {filteredCards.map((card) => (
           <div
             key={card.id}
-            className="bg-[#0c121e] border border-slate-800 hover:border-slate-700 rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all group"
+            className="bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 shadow-xs flex flex-col justify-between transition-all group"
           >
             <div className="space-y-3">
               {/* En-tête de la carte */}
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-xl bg-slate-900 border border-slate-700/60 shrink-0">
+                  <div className="p-2 rounded-xl bg-slate-100 border border-slate-200 shrink-0">
                     {card.icon}
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-sky-700 transition-colors">
                       {card.title}
                     </h3>
-                    <p className="text-[11px] text-slate-400 leading-tight">
+                    <p className="text-[11px] text-slate-500 leading-tight">
                       {card.subtitle}
                     </p>
                   </div>
@@ -443,64 +443,64 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               {/* Comparaison Visuelle Côte à Côte A vs B */}
               <div className="grid grid-cols-2 gap-2.5 pt-2">
                 {/* Scénario A (BAU) */}
-                <div className="p-3 rounded-xl bg-rose-950/20 border border-rose-900/40 flex flex-col gap-1">
-                  <div className="flex items-center justify-between text-[10px] text-rose-300 font-semibold">
+                <div className="p-3 rounded-xl bg-rose-50/70 border border-rose-200 flex flex-col gap-1">
+                  <div className="flex items-center justify-between text-[10px] text-rose-800 font-semibold">
                     <span>Scénario A (BAU)</span>
                     <span className="font-mono">{horizonYear}</span>
                   </div>
-                  <div className="text-base sm:text-lg font-bold font-mono text-rose-200 tabular-nums">
+                  <div className="text-base sm:text-lg font-bold font-mono text-rose-950 tabular-nums">
                     {card.valA}
                   </div>
-                  <span className="text-[9.5px] text-rose-400/80">
+                  <span className="text-[9.5px] text-rose-700">
                     Fil de l'eau fossile
                   </span>
                 </div>
 
                 {/* Scénario B (Sobriété) */}
-                <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-800/40 flex flex-col gap-1">
-                  <div className="flex items-center justify-between text-[10px] text-emerald-300 font-semibold">
+                <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200 flex flex-col gap-1">
+                  <div className="flex items-center justify-between text-[10px] text-emerald-800 font-semibold">
                     <span>Scénario B (Sobriété)</span>
                     <span className="font-mono">{horizonYear}</span>
                   </div>
-                  <div className="text-base sm:text-lg font-bold font-mono text-emerald-300 tabular-nums">
+                  <div className="text-base sm:text-lg font-bold font-mono text-emerald-950 tabular-nums">
                     {card.valB}
                   </div>
-                  <span className="text-[9.5px] text-emerald-400/80">
+                  <span className="text-[9.5px] text-emerald-700">
                     Redirection biophysique
                   </span>
                 </div>
               </div>
 
               {/* Badge d'écart / Bénéfice chiffré */}
-              <div className="p-2.5 rounded-xl bg-[#111928] border border-slate-700/80 flex items-center justify-between gap-2">
-                <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2 shadow-2xs">
+                <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   {card.benefitHeadline}
                 </span>
                 <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md ${
                   card.deltaPositiveIsGood 
-                    ? 'bg-emerald-950 text-emerald-300 border border-emerald-800/70' 
-                    : 'bg-rose-950 text-rose-300 border border-rose-800/70'
+                    ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' 
+                    : 'bg-rose-100 text-rose-800 border border-rose-300'
                 }`}>
                   {card.deltaText}
                 </span>
               </div>
 
               {/* Explication du mécanisme scientifique */}
-              <p className="text-[11px] text-slate-300 leading-relaxed pt-1">
-                <strong className="text-slate-200">Mécanisme sous-jacent : </strong>
+              <p className="text-[11px] text-slate-600 leading-relaxed pt-1">
+                <strong className="text-slate-800">Mécanisme sous-jacent : </strong>
                 {card.mechanism}
               </p>
             </div>
 
             {/* Référence scientifique en bas de carte */}
-            <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-400">
+            <div className="mt-3 pt-2.5 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500">
               <span className="font-mono truncate">
                 Source : {card.scientificRef}
               </span>
               <button
                 onClick={() => onSeekYear(horizonYear)}
-                className="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 cursor-pointer shrink-0 ml-2"
+                className="text-sky-700 hover:text-sky-800 font-semibold flex items-center gap-1 cursor-pointer shrink-0 ml-2"
                 title="Consulter l'année exacte sur le planisphère"
               >
                 <span>Voir en {horizonYear}</span>
@@ -512,18 +512,18 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       </div>
 
       {/* 5. Tableau Récapitulatif Structuré (Aide à la Décision) */}
-      <div className="bg-[#0b101c] border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
           <div>
-            <h3 className="text-base font-bold text-white flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
+            <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-sky-600" />
               Matrice Comparée des Scénarios à l'Horizon {horizonYear}
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               Synthèse intégrée pour les décideurs publics, chercheurs et citoyens éclairés.
             </p>
           </div>
-          <span className="text-xs font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-800/60 px-2.5 py-1 rounded-lg self-start sm:self-auto">
+          <span className="text-xs font-mono text-sky-800 bg-sky-50 border border-sky-300 px-2.5 py-1 rounded-lg self-start sm:self-auto font-semibold">
             Base CMIP6 / FaIR v1.1
           </span>
         </div>
@@ -531,101 +531,101 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left border-collapse">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 font-mono text-[11px]">
+              <tr className="border-b border-slate-200 text-slate-500 font-mono text-[11px]">
                 <th className="py-2.5 px-3">Indicateur Biophysique</th>
-                <th className="py-2.5 px-3 text-rose-300 bg-rose-950/20">Scénario A (Fil de l'eau)</th>
-                <th className="py-2.5 px-3 text-emerald-300 bg-emerald-950/20">Scénario B (Sobriété)</th>
-                <th className="py-2.5 px-3 text-cyan-300">Bénéfice Net de l'Action</th>
+                <th className="py-2.5 px-3 text-rose-800 bg-rose-50/60">Scénario A (Fil de l'eau)</th>
+                <th className="py-2.5 px-3 text-emerald-800 bg-emerald-50/60">Scénario B (Sobriété)</th>
+                <th className="py-2.5 px-3 text-sky-800 bg-sky-50/60">Bénéfice Net de l'Action</th>
                 <th className="py-2.5 px-3">Implication Concrète</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-200 tabular-nums">
+            <tbody className="divide-y divide-slate-200 text-slate-700 tabular-nums">
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">Anomalie Température Moyenne</td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">+{stateA.surfaceTemperatureAnomaly.toFixed(2)} °C</td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">+{stateB.surfaceTemperatureAnomaly.toFixed(2)} °C</td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">-{Math.abs(deltaTemp).toFixed(2)} °C</td>
-                <td className="py-2.5 px-3 text-slate-300 text-[11px]">Évite l'emballement des feux boréaux et du dégel du pergélisol.</td>
+                <td className="py-2.5 px-3 font-semibold text-slate-900">Anomalie Température Moyenne</td>
+                <td className="py-2.5 px-3 font-mono text-rose-800">+{stateA.surfaceTemperatureAnomaly.toFixed(2)} °C</td>
+                <td className="py-2.5 px-3 font-mono text-emerald-800">+{stateB.surfaceTemperatureAnomaly.toFixed(2)} °C</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">-{Math.abs(deltaTemp).toFixed(2)} °C</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Évite l'emballement des feux boréaux et du dégel du pergélisol.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">
+                <td className="py-2.5 px-3 font-semibold text-slate-900">
                   <div>Population Mondiale Totale</div>
-                  <div className="text-[10px] text-slate-400 font-normal">Base démographique (dénominateur 100% ci-dessous)</div>
+                  <div className="text-[10px] text-slate-500 font-normal">Base démographique (dénominateur 100% ci-dessous)</div>
                 </td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">{popA_Mds} Mds</td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">{popB_Mds} Mds</td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">{deltaPopMds} Mds</td>
-                <td className="py-2.5 px-3 text-slate-300 text-[11px]">Évite les surmortalités massives par famines chroniques et stress thermique.</td>
+                <td className="py-2.5 px-3 font-mono text-rose-800">{popA_Mds} Mds</td>
+                <td className="py-2.5 px-3 font-mono text-emerald-800">{popB_Mds} Mds</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{deltaPopMds} Mds</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Évite les surmortalités massives par famines chroniques et stress thermique.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">
+                <td className="py-2.5 px-3 font-semibold text-slate-900">
                   <div>Habitabilité Thermique (Zone Viable)</div>
-                  <div className="text-[10px] text-slate-400 font-normal">Zone où Tw &lt; 31°C (seuil de tolérance humaine Stull)</div>
+                  <div className="text-[10px] text-slate-500 font-normal">Zone où Tw &lt; 31°C (seuil de tolérance humaine Stull)</div>
                 </td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">
+                <td className="py-2.5 px-3 font-mono text-rose-800">
                   <span className="font-bold">{habitablePopA_Mds} Mds</span>
-                  <span className="text-[11px] text-rose-400/90 ml-1.5 font-normal">({(habitableFractionA * 100).toFixed(0)}% du total)</span>
+                  <span className="text-[11px] text-rose-700 ml-1.5 font-normal">({(habitableFractionA * 100).toFixed(0)}% du total)</span>
                 </td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">
+                <td className="py-2.5 px-3 font-mono text-emerald-800">
                   <span className="font-bold">{habitablePopB_Mds} Mds</span>
-                  <span className="text-[11px] text-emerald-400/90 ml-1.5 font-normal">({(habitableFractionB * 100).toFixed(0)}% du total)</span>
+                  <span className="text-[11px] text-emerald-700 ml-1.5 font-normal">({(habitableFractionB * 100).toFixed(0)}% du total)</span>
                 </td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">+{gainHabitablePopMds} Mds</td>
-                <td className="py-2.5 px-3 text-slate-300 text-[11px]">Préserve l'habitabilité du sud asiatique et de l'Afrique sahélienne.</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{gainHabitablePopMds} Mds</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Préserve l'habitabilité du sud asiatique et de l'Afrique sahélienne.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">
+                <td className="py-2.5 px-3 font-semibold text-slate-900">
                   <div>Vulnérabilité Eau (Stress Hydrique Sévère)</div>
-                  <div className="text-[10px] text-slate-400 font-normal">Déficit critique en eau douce &lt; 1 000 m³/an/habitant</div>
+                  <div className="text-[10px] text-slate-500 font-normal">Déficit critique en eau douce &lt; 1 000 m³/an/habitant</div>
                 </td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">
+                <td className="py-2.5 px-3 font-mono text-rose-800">
                   <span className="font-bold">{waterStressedPopA_B} Mds</span>
-                  <span className="text-[11px] text-rose-400/90 ml-1.5 font-normal">({waterStressPctA}% du total)</span>
+                  <span className="text-[11px] text-rose-700 ml-1.5 font-normal">({waterStressPctA}% du total)</span>
                 </td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">
+                <td className="py-2.5 px-3 font-mono text-emerald-800">
                   <span className="font-bold">{waterStressedPopB_B} Mds</span>
-                  <span className="text-[11px] text-emerald-400/90 ml-1.5 font-normal">({waterStressPctB}% du total)</span>
+                  <span className="text-[11px] text-emerald-700 ml-1.5 font-normal">({waterStressPctB}% du total)</span>
                 </td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">{waterStressDeltaPct} points</td>
-                <td className="py-2.5 px-3 text-slate-300 text-[11px]">Maintien des débits estivaux des grands fleuves d'origine glaciaire.</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{waterStressDeltaPct} points</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Maintien des débits estivaux des grands fleuves d'origine glaciaire.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">Apport Alimentaire Moyen</td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">{Math.round(stateA.globalAverageCaloriesPerCapita)} kcal/j</td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">{Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/j</td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">+{deltaCalories} kcal/j</td>
-                <td className="py-2.5 px-3 text-slate-300 text-[11px]">Sécurité alimentaire garantie au-dessus du plancher métabolique de 2100 kcal.</td>
+                <td className="py-2.5 px-3 font-semibold text-slate-900">Apport Alimentaire Moyen</td>
+                <td className="py-2.5 px-3 font-mono text-rose-800">{Math.round(stateA.globalAverageCaloriesPerCapita)} kcal/j</td>
+                <td className="py-2.5 px-3 font-mono text-emerald-800">{Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/j</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{deltaCalories} kcal/j</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Sécurité alimentaire garantie au-dessus du plancher métabolique de 2100 kcal.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">Élévation Séculaire des Mers</td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">+{Math.round(stateA.seaLevelRiseMeters * 100)} cm</td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">+{Math.round(stateB.seaLevelRiseMeters * 100)} cm</td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">{deltaSlrCm} cm</td>
-                <td className="py-2.5 px-3 text-slate-300 text-[11px]">Protection des deltas fertiles (Gange, Mékong, Nil, Pô) et mégapoles côtières.</td>
+                <td className="py-2.5 px-3 font-semibold text-slate-900">Élévation Séculaire des Mers</td>
+                <td className="py-2.5 px-3 font-mono text-rose-800">+{Math.round(stateA.seaLevelRiseMeters * 100)} cm</td>
+                <td className="py-2.5 px-3 font-mono text-emerald-800">+{Math.round(stateB.seaLevelRiseMeters * 100)} cm</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{deltaSlrCm} cm</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Protection des deltas fertiles (Gange, Mékong, Nil, Pô) et mégapoles côtières.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">Rendement de l'Énergie (Énergie Utile)</td>
-                <td className="py-2.5 px-3 font-mono text-rose-300">x{stateA.currentEroi >= 20 ? Math.round(stateA.currentEroi) : stateA.currentEroi.toFixed(1)}</td>
-                <td className="py-2.5 px-3 font-mono text-emerald-300">x{stateB.currentEroi >= 20 ? Math.round(stateB.currentEroi) : stateB.currentEroi.toFixed(1)}</td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">+{deltaEroi.toFixed(1)} pts</td>
-                <td className="py-2.5 px-3 text-slate-300 text-[11px]">Conserve un surplus d'énergie suffisant pour maintenir la médecine et l'éducation.</td>
+                <td className="py-2.5 px-3 font-semibold text-slate-900">Rendement de l'Énergie (Énergie Utile)</td>
+                <td className="py-2.5 px-3 font-mono text-rose-800">x{stateA.currentEroi >= 20 ? Math.round(stateA.currentEroi) : stateA.currentEroi.toFixed(1)}</td>
+                <td className="py-2.5 px-3 font-mono text-emerald-800">x{stateB.currentEroi >= 20 ? Math.round(stateB.currentEroi) : stateB.currentEroi.toFixed(1)}</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{deltaEroi.toFixed(1)} pts</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Conserve un surplus d'énergie suffisant pour maintenir la médecine et l'éducation.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         {/* Note pédagogique sur l'indépendance des indicateurs biophysiques */}
-        <div className="mt-3 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-300 flex items-start gap-2.5 leading-relaxed">
-          <Info className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+        <div className="mt-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-700 flex items-start gap-2.5 leading-relaxed">
+          <Info className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <span className="font-semibold text-white block">
+            <span className="font-semibold text-slate-900 block">
               💡 Clarification Méthodologique : Pourquoi 79% et 45% ne font pas 100% ?
             </span>
-            <p className="text-slate-300">
-              L'<strong className="text-emerald-300 font-medium">Habitabilité Thermique ({habitablePopA_Mds} Mds, soit {(habitableFractionA * 100).toFixed(0)}%)</strong> et le{' '}
-              <strong className="text-rose-300 font-medium">Stress Hydrique Sévère ({waterStressedPopA_B} Mds, soit {waterStressPctA}%)</strong> ne sont pas deux tranches d'un même camembert, mais <strong>deux dimensions biophysiques indépendantes</strong> rapportées chacune à 100% de la population mondiale du scénario ({popA_Mds} Mds).
+            <p className="text-slate-700">
+              L'<strong className="text-emerald-700 font-semibold">Habitabilité Thermique ({habitablePopA_Mds} Mds, soit {(habitableFractionA * 100).toFixed(0)}%)</strong> et le{' '}
+              <strong className="text-rose-700 font-semibold">Stress Hydrique Sévère ({waterStressedPopA_B} Mds, soit {waterStressPctA}%)</strong> ne sont pas deux tranches d'un même camembert, mais <strong>deux dimensions biophysiques indépendantes</strong> rapportées chacune à 100% de la population mondiale du scénario ({popA_Mds} Mds).
             </p>
-            <p className="text-slate-400 text-[10px]">
+            <p className="text-slate-500 text-[10px]">
               • <strong>Habitabilité ({(habitableFractionA * 100).toFixed(0)}%)</strong> : {((1 - habitableFractionA) * 100).toFixed(0)}% de la population vit dans une zone rendue inhabitable par le stress thermique létal (Tw &gt; 31°C).<br />
               • <strong>Stress hydrique ({waterStressPctA}%)</strong> : {100 - waterStressPctA}% de la population conserve un approvisionnement en eau suffisant.<br />
               Une personne peut tout à fait habiter une zone thermiquement supportable tout en subissant une pénurie d'eau douce (les deux phénomènes se superposent géographiquement).

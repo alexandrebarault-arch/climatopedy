@@ -222,23 +222,23 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
 
   return (
     <>
-      <div className={`relative rounded-xl overflow-hidden border border-slate-700/80 bg-[#090d16] shadow-2xl group flex flex-col transition-all duration-300 ${compact ? 'h-52 sm:h-60' : 'h-72 sm:h-80'}`}>
+      <div className={`relative rounded-xl overflow-hidden border border-slate-200 bg-white shadow-xs group flex flex-col transition-all duration-300 ${compact ? 'h-52 sm:h-60' : 'h-72 sm:h-80'}`}>
         {/* En-tête de la carte avec Satellite & Sélecteur */}
-        <div className="px-3.5 py-2 bg-[#0c1220] border-b border-slate-800 flex items-center justify-between gap-2">
+        <div className="px-3.5 py-2 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 min-w-0">
-            <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse shrink-0" />
-            <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wide truncate">
+            <Radio className="w-3.5 h-3.5 text-sky-600 animate-pulse shrink-0" />
+            <span className="text-xs font-mono font-bold text-sky-800 uppercase tracking-wide truncate">
               {meta.sensor}
             </span>
           </div>
 
           <div className="flex items-center gap-1.5 shrink-0">
-            <span className="hidden sm:inline-block px-2 py-0.5 rounded bg-black/60 border border-slate-800 text-[10px] font-mono text-slate-300">
+            <span className="hidden sm:inline-block px-2 py-0.5 rounded bg-white border border-slate-200 text-[10px] font-mono text-slate-600 shadow-2xs">
               {meta.coords}
             </span>
 
             {/* Bascule Photo / Schéma */}
-            <div className="flex rounded-lg p-0.5 bg-black/70 border border-slate-700 text-xs font-mono">
+            <div className="flex rounded-lg p-0.5 bg-slate-100 border border-slate-200 text-xs font-mono">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -246,12 +246,12 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
                 }}
                 className={`flex items-center gap-1 px-2 py-0.5 rounded-md transition-all cursor-pointer ${
                   displayMode === 'photo'
-                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-slate-800 font-bold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-800'
                 }`}
                 title="Voir la photographie réelle HD du lieu"
               >
-                <Camera className="w-3 h-3" />
+                <Camera className="w-3 h-3 text-sky-600" />
                 <span>Photo</span>
               </button>
               <button
@@ -261,12 +261,12 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
                 }}
                 className={`flex items-center gap-1 px-2 py-0.5 rounded-md transition-all cursor-pointer ${
                   displayMode === 'schematic'
-                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-slate-800 font-bold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-800'
                 }`}
                 title="Voir la coupe biophysique schématique"
               >
-                <Layers className="w-3 h-3" />
+                <Layers className="w-3 h-3 text-sky-600" />
                 <span>Schéma</span>
               </button>
             </div>
@@ -274,7 +274,7 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
         </div>
 
         {/* Zone Principale d'Affichage Visuel */}
-        <div className="relative flex-1 w-full overflow-hidden bg-black flex items-center justify-center">
+        <div className="relative flex-1 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
           {displayMode === 'photo' ? (
             <div
               className="relative w-full h-full cursor-pointer group/photo"
@@ -304,7 +304,7 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
                 <p className="text-xs text-slate-200 font-medium max-w-[85%] leading-snug drop-shadow-md">
                   🛰️ {meta.photoCredit}
                 </p>
-                <span className="text-[10px] font-mono text-cyan-300 hidden sm:inline-block shrink-0 ml-2 bg-black/60 px-2 py-0.5 rounded border border-cyan-500/30">
+                <span className="text-[10px] font-mono text-sky-300 hidden sm:inline-block shrink-0 ml-2 bg-black/60 px-2 py-0.5 rounded border border-sky-500/30">
                   Plein écran ⤢
                 </span>
               </div>
@@ -319,13 +319,13 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
         </div>
 
         {/* Barre de télémétrie en pied de carte */}
-        <div className="px-3.5 py-2 bg-[#0c1322] border-t border-slate-800 flex items-center justify-between text-xs font-mono">
-          <span className="text-slate-300 truncate">
-            Stress biophysique : <strong className="text-amber-300">{meta.stressMetric}</strong>
+        <div className="px-3.5 py-2 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs font-mono">
+          <span className="text-slate-700 truncate">
+            Stress biophysique : <strong className="text-amber-800">{meta.stressMetric}</strong>
           </span>
           <span className="text-[10px] uppercase tracking-wider shrink-0 flex items-center gap-1.5 font-bold">
-            <span className={`w-2 h-2 rounded-full ${isTipped ? 'bg-rose-500 shadow-sm shadow-rose-500/80 animate-ping' : isUncertain ? 'bg-amber-400 shadow-sm shadow-amber-400/80' : 'bg-emerald-400'}`} />
-            <span className={isTipped ? 'text-rose-400' : isUncertain ? 'text-amber-300' : 'text-emerald-400'}>
+            <span className={`w-2 h-2 rounded-full ${isTipped ? 'bg-rose-500 shadow-sm shadow-rose-500/80 animate-ping' : isUncertain ? 'bg-amber-500 shadow-sm shadow-amber-400/80' : 'bg-emerald-500'}`} />
+            <span className={isTipped ? 'text-rose-700' : isUncertain ? 'text-amber-800' : 'text-emerald-700'}>
               {isTipped ? 'Seuil Dépassé' : isUncertain ? 'Zone de Risque' : 'Équilibre Actuel'}
             </span>
           </span>

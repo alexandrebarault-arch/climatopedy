@@ -728,27 +728,27 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
   return (
     <div className="w-full flex flex-col gap-6 animate-in fade-in duration-200">
       {/* 1. Bandeau Titre & Engagement de Transparence Scientifique */}
-      <div className="rounded-2xl bg-gradient-to-br from-[#0c1424] via-[#090d16] to-[#0d1728] border border-cyan-800/40 p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+      <div className="rounded-2xl bg-gradient-to-br from-sky-50 via-white to-sky-50/50 border border-sky-200 p-6 sm:p-8 shadow-xs relative overflow-hidden">
         {/* Grillage discret en fond */}
-        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#38bdf806_1px,transparent_1px),linear-gradient(to_bottom,#38bdf806_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#0284c708_1px,transparent_1px),linear-gradient(to_bottom,#0284c708_1px,transparent_1px)] bg-[size:32px_32px]" />
 
         <div className="relative z-10 flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <button
               onClick={() => onNavigateTab('map')}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Retour à la Simulation Planétaire</span>
             </button>
 
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-600/70 text-emerald-300 text-xs font-mono font-medium">
-                <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-mono font-semibold shadow-2xs">
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
                 <span>100% Liens Vérifiés &amp; Actifs</span>
               </span>
-              <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-700/60 text-cyan-300 text-xs font-mono">
-                <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-50 border border-sky-300 text-sky-800 text-xs font-mono font-semibold shadow-2xs">
+                <ShieldCheck className="w-3.5 h-3.5 text-sky-600" />
                 <span>Évalué par les pairs (Peer-reviewed)</span>
               </span>
             </div>
@@ -756,12 +756,12 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
 
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <BookOpen className="w-6 h-6 text-cyan-400 shrink-0" />
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+              <BookOpen className="w-6 h-6 text-sky-600 shrink-0" />
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
                 Sources Scientifiques, Données &amp; Imagerie Vérifiables
               </h1>
             </div>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-4xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 max-w-4xl leading-relaxed">
               Pour permettre à chaque chercheur, enseignant, étudiant ou citoyen de <strong>vérifier et d'auditer l'intégrité du travail</strong>, 
               cette page recense l'intégralité des publications académiques à comité de lecture (<em>Nature, Science, PNAS</em>), 
               des rapports d'institutions internationales (<em>GIEC, ONU, FAO, NOAA</em>), des relevés d'observatoires satellites 
@@ -771,31 +771,31 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
 
           {/* 3 Cartouches de synthèse sur la méthode */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-2.5">
-              <Scale className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+            <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-start gap-2.5">
+              <Scale className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-white block font-medium">Zéro Boîte Noire</strong>
-                <span className="text-slate-400 text-[11px] leading-snug block mt-0.5">
+                <strong className="text-slate-800 block font-semibold">Zéro Boîte Noire</strong>
+                <span className="text-slate-600 text-[11px] leading-snug block mt-0.5">
                   Toutes les équations (FaIR, Stull Tw, EROI, Zhao) sont formulées analytiquement en open-source.
                 </span>
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-2.5">
-              <Database className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-start gap-2.5">
+              <Database className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-white block font-medium">Données Observées Réelles</strong>
-                <span className="text-slate-400 text-[11px] leading-snug block mt-0.5">
+                <strong className="text-slate-800 block font-semibold">Données Observées Réelles</strong>
+                <span className="text-slate-600 text-[11px] leading-snug block mt-0.5">
                   Calibré sur Mauna Loa (CO₂), ERA5 Copernicus (températures), et les recensements ONU 2024.
                 </span>
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-2.5">
-              <ExternalLink className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+            <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-start gap-2.5">
+              <ExternalLink className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-white block font-medium">Accès Direct Gratuit</strong>
-                <span className="text-slate-400 text-[11px] leading-snug block mt-0.5">
+                <strong className="text-slate-800 block font-semibold">Accès Direct Gratuit</strong>
+                <span className="text-slate-600 text-[11px] leading-snug block mt-0.5">
                   Priorité aux textes intégraux gratuits en accès libre (PubMed Central, dépôts universitaires).
                 </span>
               </div>
@@ -805,13 +805,13 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
       </div>
 
       {/* 2. Onglets Principaux : Publications Académiques vs Imagerie & Photographies */}
-      <div className="flex items-center gap-3 border-b border-slate-800 pb-2 text-xs sm:text-sm">
+      <div className="flex items-center gap-3 border-b border-slate-200 pb-2 text-xs sm:text-sm">
         <button
           onClick={() => setActiveMainTab('papers')}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold transition-all cursor-pointer ${
             activeMainTab === 'papers'
-              ? 'bg-cyan-500 text-slate-950 shadow-md'
-              : 'bg-slate-900/70 text-slate-300 hover:bg-slate-800 border border-slate-800'
+              ? 'bg-sky-600 text-white shadow-xs'
+              : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
           }`}
         >
           <BookOpen className="w-4 h-4" />
@@ -822,8 +822,8 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
           onClick={() => setActiveMainTab('images')}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold transition-all cursor-pointer ${
             activeMainTab === 'images'
-              ? 'bg-amber-500 text-slate-950 shadow-md'
-              : 'bg-slate-900/70 text-slate-300 hover:bg-slate-800 border border-slate-800'
+              ? 'bg-amber-600 text-white shadow-xs'
+              : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
           }`}
         >
           <Camera className="w-4 h-4" />
@@ -832,7 +832,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
       </div>
 
       {/* 3. Barre de Recherche */}
-      <div className="flex flex-col gap-3 bg-[#0a0f1b] border border-slate-800 p-4 rounded-xl">
+      <div className="flex flex-col gap-3 bg-slate-50 border border-slate-200 p-4 rounded-xl shadow-2xs">
         <div className="relative w-full">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
@@ -844,12 +844,12 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                 ? "Rechercher par auteur (Stull, Smith, Zhao, Lenton), revue (Science, Nature, PNAS), formule..."
                 : "Rechercher une photographie (Plateforme, Navire, Groenland, Coraux, Pergélisol, Amazonie)..."
             }
-            className="w-full pl-10 pr-24 py-2.5 rounded-lg bg-[#0e1628] border border-slate-700/80 text-xs sm:text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-500 transition-colors font-sans"
+            className="w-full pl-10 pr-24 py-2.5 rounded-lg bg-white border border-slate-200 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 transition-colors font-sans shadow-2xs"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500 hover:text-slate-800 px-2 py-0.5 rounded bg-slate-100 cursor-pointer"
             >
               Effacer
             </button>
@@ -865,8 +865,8 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors cursor-pointer shrink-0 ${
                   selectedCategory === cat.id
-                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
-                    : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
+                    ? 'bg-sky-600 text-white font-bold shadow-xs'
+                    : 'bg-white text-slate-600 hover:text-slate-800 hover:bg-slate-50 border border-slate-200 shadow-2xs'
                 }`}
               >
                 {cat.label}
@@ -879,13 +879,13 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
       {/* 4. CONTENU : ONGLET 1 - PUBLICATIONS & MODÈLES SCIENTIFIQUES */}
       {activeMainTab === 'papers' && (
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between text-xs text-slate-400 px-1 font-mono">
+          <div className="flex items-center justify-between text-xs text-slate-500 px-1 font-mono">
             <span>
-              Affichage de <strong className="text-white">{filteredSources.length}</strong> publication(s) vérifiée(s)
+              Affichage de <strong className="text-slate-800 font-bold">{filteredSources.length}</strong> publication(s) vérifiée(s)
             </span>
             <button
               onClick={() => onNavigateTab('spec')}
-              className="text-cyan-400 hover:text-cyan-300 underline font-sans flex items-center gap-1 cursor-pointer"
+              className="text-sky-700 hover:text-sky-900 underline font-sans flex items-center gap-1 cursor-pointer font-medium"
             >
               <FileText className="w-3.5 h-3.5" />
               <span>Voir les équations différentielles (Spec) &rarr;</span>
@@ -896,40 +896,40 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             {filteredSources.map((source) => (
               <div
                 key={source.id}
-                className="rounded-xl bg-[#090e1a] border border-slate-800/90 hover:border-slate-700 p-5 shadow-lg flex flex-col gap-4 transition-all"
+                className="rounded-xl bg-white border border-slate-200 hover:border-slate-300 p-5 shadow-xs flex flex-col gap-4 transition-all"
               >
                 {/* Haut de fiche : Titre, Catégorie, Badges */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-slate-800/80 pb-3">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-slate-100 pb-3">
                   <div className="space-y-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-800 text-cyan-300 border border-slate-700">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
                         {source.categoryLabel}
                       </span>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-mono text-emerald-300 bg-emerald-950/60 border border-emerald-800/60 flex items-center gap-1">
-                        <CheckCircle className="w-3 h-3 text-emerald-400" />
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 flex items-center gap-1">
+                        <CheckCircle className="w-3 h-3 text-emerald-600" />
                         <span>Lien vérifié</span>
                       </span>
                       {source.peerReviewed && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono text-indigo-300 bg-indigo-950/60 border border-indigo-800/60">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono text-indigo-800 bg-indigo-50 border border-indigo-200">
                           Évalué par les pairs
                         </span>
                       )}
-                      <span className="text-xs text-slate-400">· {source.year}</span>
+                      <span className="text-xs text-slate-500">· {source.year}</span>
                     </div>
 
-                    <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                    <h2 className="text-base sm:text-lg font-bold text-slate-800 tracking-tight">
                       {source.title}
                     </h2>
                     {source.englishTitle && (
-                      <p className="text-xs text-slate-400 italic">
+                      <p className="text-xs text-slate-500 italic">
                         Titre original : « {source.englishTitle} »
                       </p>
                     )}
 
-                    <div className="text-xs text-slate-300 font-medium pt-0.5">
-                      <span className="text-slate-400">Auteurs :</span> {source.authors}
-                      <span className="mx-2 text-slate-600">|</span>
-                      <span className="text-cyan-400">{source.publisher}</span>
+                    <div className="text-xs text-slate-700 font-medium pt-0.5">
+                      <span className="text-slate-500">Auteurs :</span> {source.authors}
+                      <span className="mx-2 text-slate-300">|</span>
+                      <span className="text-sky-700 font-semibold">{source.publisher}</span>
                     </div>
                   </div>
 
@@ -937,13 +937,13 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                   {source.doi && (
                     <button
                       onClick={() => handleCopyDoi(source.doi!, source.id)}
-                      className="self-start px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-[11px] font-mono border border-slate-700 transition-colors flex items-center gap-1.5 shrink-0 cursor-pointer"
+                      className="self-start px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-mono border border-slate-200 transition-colors flex items-center gap-1.5 shrink-0 cursor-pointer shadow-2xs"
                       title="Copier le DOI officiel"
                     >
                       {copiedDoi === source.id ? (
                         <>
-                          <Check className="w-3 h-3 text-emerald-400" />
-                          <span className="text-emerald-300">DOI Copié</span>
+                          <Check className="w-3 h-3 text-emerald-600" />
+                          <span className="text-emerald-800 font-semibold">DOI Copié</span>
                         </>
                       ) : (
                         <>
@@ -957,38 +957,38 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
 
                 {/* Corps de fiche : Application concrète dans CLIMATOPEDY */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
-                  <div className="p-3.5 rounded-lg bg-[#0e1628] border border-cyan-900/40 space-y-1.5">
-                    <span className="font-mono text-[11px] font-bold text-cyan-300 uppercase tracking-wide flex items-center gap-1.5">
-                      <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                  <div className="p-3.5 rounded-lg bg-sky-50/60 border border-sky-200 space-y-1.5">
+                    <span className="font-mono text-[11px] font-bold text-sky-800 uppercase tracking-wide flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5 text-sky-600" />
                       Rôle &amp; Modélisation dans CLIMATOPEDY :
                     </span>
-                    <p className="text-slate-200 leading-relaxed font-sans">
+                    <p className="text-slate-700 leading-relaxed font-sans">
                       {source.gaiaRole}
                     </p>
-                    <div className="text-[11px] text-slate-400 font-mono pt-1">
+                    <div className="text-[11px] text-slate-600 font-mono pt-1">
                       📐 {source.reproducibilityNotes}
                     </div>
                   </div>
 
-                  <div className="p-3.5 rounded-lg bg-[#111728] border border-slate-800 space-y-1.5">
-                    <span className="font-mono text-[11px] font-bold text-amber-300 uppercase tracking-wide flex items-center gap-1.5">
-                      <Info className="w-3.5 h-3.5 text-amber-400" />
+                  <div className="p-3.5 rounded-lg bg-amber-50/60 border border-amber-200 space-y-1.5">
+                    <span className="font-mono text-[11px] font-bold text-amber-900 uppercase tracking-wide flex items-center gap-1.5">
+                      <Info className="w-3.5 h-3.5 text-amber-600" />
                       Valeur Empirique ou Citation Clé :
                     </span>
-                    <p className="text-slate-300 leading-relaxed italic font-serif">
+                    <p className="text-slate-700 leading-relaxed italic font-serif">
                       « {source.keyDataOrQuote} »
                     </p>
                   </div>
                 </div>
 
                 {/* Liens d'accès direct vérifiés */}
-                <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-slate-800/80">
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-1 border-t border-slate-100">
                   <div className="flex flex-wrap items-center gap-2">
                     <a
                       href={source.primaryUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs shadow-md transition-all hover:scale-103 cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs shadow-xs transition-all cursor-pointer"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       <span>{source.primaryUrlLabel}</span>
@@ -999,16 +999,16 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                         href={source.secondaryUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium border border-slate-300 shadow-2xs transition-colors cursor-pointer"
                       >
-                        <ExternalLink className="w-3 h-3 text-cyan-400" />
+                        <ExternalLink className="w-3 h-3 text-sky-600" />
                         <span>{source.secondaryUrlLabel}</span>
                       </a>
                     )}
                   </div>
 
-                  <span className="text-[11px] font-mono text-slate-400">
-                    ID Source : <code className="text-slate-300">{source.id}</code>
+                  <span className="text-[11px] font-mono text-slate-500">
+                    ID Source : <code className="text-slate-700">{source.id}</code>
                   </span>
                 </div>
               </div>
@@ -1020,11 +1020,11 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
       {/* 5. CONTENU : ONGLET 2 - PHOTOGRAPHIES DOCUMENTAIRES & IMAGERIE */}
       {activeMainTab === 'images' && (
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between text-xs text-slate-400 px-1 font-mono">
+          <div className="flex items-center justify-between text-xs text-slate-500 px-1 font-mono">
             <span>
-              Affichage de <strong className="text-white">{filteredImages.length}</strong> photographie(s) et actif(s) documentaire(s)
+              Affichage de <strong className="text-slate-800 font-bold">{filteredImages.length}</strong> photographie(s) et actif(s) documentaire(s)
             </span>
-            <span className="text-emerald-400 flex items-center gap-1">
+            <span className="text-emerald-700 font-semibold flex items-center gap-1">
               <CheckCircle className="w-3.5 h-3.5" />
               <span>Stockage local pérenne + Archives Wikimedia vérifiées</span>
             </span>
@@ -1034,7 +1034,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             {filteredImages.map((img) => (
               <div
                 key={img.id}
-                className="rounded-xl bg-[#090e1a] border border-slate-800 overflow-hidden shadow-lg flex flex-col transition-all hover:border-slate-700"
+                className="rounded-xl bg-white border border-slate-200 overflow-hidden shadow-xs flex flex-col transition-all hover:border-slate-300"
               >
                 {/* Vignette de la photo réelle */}
                 <div className="relative aspect-[16/9] w-full bg-slate-950 overflow-hidden group">
@@ -1045,11 +1045,11 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                     loading="lazy"
                   />
                   <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-950/80 text-amber-300 border border-amber-600/50 backdrop-blur">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-950/80 text-amber-300 border border-amber-500/50 backdrop-blur">
                       {img.section}
                     </span>
                   </div>
-                  <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/90 text-emerald-300 border border-emerald-700/60 backdrop-blur">
+                  <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/90 text-emerald-300 border border-emerald-600/60 backdrop-blur">
                     <CheckCircle className="w-3 h-3 text-emerald-400" />
                     <span>Haute Résolution Vérifiée</span>
                   </div>
@@ -1058,24 +1058,24 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                 {/* Données et crédits */}
                 <div className="p-4 flex flex-col gap-3 flex-1 justify-between">
                   <div className="space-y-1.5">
-                    <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-800 tracking-tight">
                       {img.title}
                     </h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-700 leading-relaxed">
                       {img.description}
                     </p>
-                    <div className="text-[11px] font-mono text-slate-400 pt-1 space-y-0.5">
+                    <div className="text-[11px] font-mono text-slate-600 pt-1 space-y-0.5">
                       <div>📍 <strong>Localisation :</strong> {img.sensorOrLocation}</div>
                       <div>⚖️ <strong>Licence :</strong> {img.license}</div>
                     </div>
                   </div>
 
-                  <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
                     <a
                       href={img.archiveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs shadow-sm transition-all hover:scale-102 cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs shadow-xs transition-all cursor-pointer"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       <span>{img.archiveLabel}</span>
@@ -1093,66 +1093,66 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
       )}
 
       {/* 6. Guide de Reproduction & Audit Pas à Pas pour Vérifier le Travail */}
-      <div className="rounded-2xl bg-[#090d16] border border-emerald-800/50 p-6 sm:p-7 shadow-2xl flex flex-col gap-4">
+      <div className="rounded-2xl bg-white border border-emerald-300 p-6 sm:p-7 shadow-xs flex flex-col gap-4">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
-          <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+          <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+          <h2 className="text-base sm:text-lg font-bold text-slate-800 tracking-tight">
             Protocole d'Audit Indépendant : Comment Vérifier les Calculs de CLIMATOPEDY ?
           </h2>
         </div>
 
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
           Pour vous assurer de l'honnêteté et de la rigueur biophysique des projections, voici les 3 étapes recommandées :
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-xs">
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
-            <span className="w-5 h-5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800 flex items-center justify-center font-bold font-mono text-[11px]">
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 shadow-2xs">
+            <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center justify-center font-bold font-mono text-[11px]">
               1
             </span>
-            <strong className="text-white block font-medium">Auditer les Formules (ODE)</strong>
-            <p className="text-slate-400 leading-snug">
+            <strong className="text-slate-800 block font-semibold">Auditer les Formules (ODE)</strong>
+            <p className="text-slate-600 leading-snug">
               Ouvrez l'onglet <strong>Spécifications</strong> pour copier l'intégralité du code mathématique (équations différentielles FaIR, formule de Stull, Vermeer &amp; Rahmstorf).
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
-            <span className="w-5 h-5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800 flex items-center justify-center font-bold font-mono text-[11px]">
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 shadow-2xs">
+            <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center justify-center font-bold font-mono text-[11px]">
               2
             </span>
-            <strong className="text-white block font-medium">Vérifier l'Historique 1900–2026</strong>
-            <p className="text-slate-400 leading-snug">
+            <strong className="text-slate-800 block font-semibold">Vérifier l'Historique 1900–2026</strong>
+            <p className="text-slate-600 leading-snug">
               Comparez les sorties du simulateur entre 1958 et 2026 avec les mesures directes de Mauna Loa (CO₂ : 424 ppm) et de la NASA GISTEMP (+1.35°C). Elles concordent au dixième près.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
-            <span className="w-5 h-5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800 flex items-center justify-center font-bold font-mono text-[11px]">
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 shadow-2xs">
+            <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center justify-center font-bold font-mono text-[11px]">
               3
             </span>
-            <strong className="text-white block font-medium">Tester les Scénarios Extrêmes</strong>
-            <p className="text-slate-400 leading-snug">
+            <strong className="text-slate-800 block font-semibold">Tester les Scénarios Extrêmes</strong>
+            <p className="text-slate-600 leading-snug">
               Dans le mode comparatif, modifiez le taux de déclin pétrolier, l'adoption de l'agroécologie ou la sensibilité climatique ECS pour observer le comportement mathématique des boucles.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800 text-xs">
-          <div className="flex items-center gap-2 text-slate-400">
-            <CheckCircle className="w-4 h-4 text-emerald-400" />
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs">
+          <div className="flex items-center gap-2 text-slate-600">
+            <CheckCircle className="w-4 h-4 text-emerald-600" />
             <span>Aucune donnée n'est masquée. Le code source TypeScript est accessible et inspectable.</span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => onNavigateTab('spec')}
-              className="px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-xs transition-colors cursor-pointer"
             >
               Consulter le Cahier des Charges Mathématique
             </button>
             <button
               onClick={() => onNavigateTab('map')}
-              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs border border-slate-200 transition-colors cursor-pointer"
             >
               Retour à la Carte
             </button>

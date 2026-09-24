@@ -40,20 +40,20 @@ export const SpecModal: React.FC = () => {
   };
 
   return (
-    <div className="w-full rounded-xl bg-[#090d15] border border-slate-800 p-6 shadow-2xl flex flex-col gap-5">
+    <div className="w-full rounded-xl bg-white border border-slate-200 p-6 shadow-xl flex flex-col gap-5">
       {/* En-tête */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/60 uppercase">
+            <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 uppercase">
               Spécifications Mathématiques &amp; Algorithmes
             </span>
-            <span className="text-xs text-slate-500">·</span>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-400">·</span>
+            <span className="text-xs text-slate-500">
               Formulations analytiques exactes pour intégration numérique
             </span>
           </div>
-          <h2 className="text-lg font-bold text-white tracking-tight">
+          <h2 className="text-lg font-bold text-slate-800 tracking-tight">
             Cahier des Charges Biophysique &amp; Références Scientifiques
           </h2>
         </div>
@@ -62,22 +62,22 @@ export const SpecModal: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={copyFullSpecToClipboard}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-colors cursor-pointer"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copied ? 'Spécification Copiée !' : 'Copier les Formules'}</span>
           </button>
         </div>
       </div>
 
       {/* Onglets de sections */}
-      <div className="flex items-center gap-2 border-b border-slate-800 text-xs pb-2">
+      <div className="flex items-center gap-2 border-b border-slate-200 text-xs pb-2">
         <button
           onClick={() => setActiveSpecSection('equations')}
-          className={`flex items-center gap-1.5 pb-1 border-b-2 transition-colors ${
+          className={`flex items-center gap-1.5 pb-1 border-b-2 transition-colors cursor-pointer ${
             activeSpecSection === 'equations'
-              ? 'text-cyan-400 border-cyan-400 font-semibold'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'text-sky-600 border-sky-600 font-bold'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
           <Code2 className="w-3.5 h-3.5" />
@@ -86,10 +86,10 @@ export const SpecModal: React.FC = () => {
 
         <button
           onClick={() => setActiveSpecSection('algo')}
-          className={`flex items-center gap-1.5 pb-1 border-b-2 transition-colors ${
+          className={`flex items-center gap-1.5 pb-1 border-b-2 transition-colors cursor-pointer ${
             activeSpecSection === 'algo'
-              ? 'text-amber-400 border-amber-400 font-semibold'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'text-amber-600 border-amber-600 font-bold'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
           <BookOpen className="w-3.5 h-3.5" />
@@ -98,10 +98,10 @@ export const SpecModal: React.FC = () => {
 
         <button
           onClick={() => setActiveSpecSection('params')}
-          className={`flex items-center gap-1.5 pb-1 border-b-2 transition-colors ${
+          className={`flex items-center gap-1.5 pb-1 border-b-2 transition-colors cursor-pointer ${
             activeSpecSection === 'params'
-              ? 'text-purple-400 border-purple-400 font-semibold'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'text-purple-600 border-purple-600 font-bold'
+              : 'border-transparent text-slate-500 hover:text-slate-700'
           }`}
         >
           <Database className="w-3.5 h-3.5" />
@@ -110,14 +110,14 @@ export const SpecModal: React.FC = () => {
       </div>
 
       {/* CONTENU DE LA SECTION */}
-      <div className="bg-[#0b101b] rounded-xl border border-slate-800 p-5 font-mono text-xs text-slate-300 space-y-4 overflow-x-auto">
+      <div className="bg-slate-50 rounded-xl border border-slate-200 p-5 font-mono text-xs text-slate-700 space-y-4 overflow-x-auto">
         {activeSpecSection === 'equations' && (
           <div className="space-y-4">
-            <div className="bg-[#101726] p-4 rounded-lg border border-slate-800">
-              <span className="text-cyan-400 font-bold block mb-2 font-sans">
+            <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-2xs">
+              <span className="text-sky-700 font-bold block mb-2 font-sans">
                 1. Cycle du Carbone FaIR v1.1 (4 Réservoirs Atmosphériques) :
               </span>
-              <pre className="text-slate-300 leading-relaxed overflow-x-auto">
+              <pre className="text-slate-800 leading-relaxed overflow-x-auto">
 {`dR_i / dt = a_i * E_CO2(t) - R_i / (alpha(t) * tau_i)     pour i ∈ {0, 1, 2, 3}
 
 a = [0.2173, 0.2240, 0.2838, 0.2749]
@@ -129,11 +129,11 @@ Delta_F(t) = 5.35 * ln(C_CO2 / 278.0) + Delta_F_aux`}
               </pre>
             </div>
 
-            <div className="bg-[#101726] p-4 rounded-lg border border-slate-800">
-              <span className="text-amber-400 font-bold block mb-2 font-sans">
+            <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-2xs">
+              <span className="text-amber-700 font-bold block mb-2 font-sans">
                 2. Modèle Océanique Deux Couches &amp; Niveau Marin (Vermeer-Rahmstorf) :
               </span>
-              <pre className="text-slate-300 leading-relaxed overflow-x-auto">
+              <pre className="text-slate-800 leading-relaxed overflow-x-auto">
 {`C_th,1 * (dT_1 / dt) = Delta_F(t) - lambda * T_1(t) - gamma * (T_1(t) - T_2(t))
 C_th,2 * (dT_2 / dt) = gamma * (T_1(t) - T_2(t))
 
@@ -143,11 +143,11 @@ a = 0.0034 m/an/°C,  b = 0.0180 m/°C,  T_0,sl = -0.5°C`}
               </pre>
             </div>
 
-            <div className="bg-[#101726] p-4 rounded-lg border border-slate-800">
-              <span className="text-rose-400 font-bold block mb-2 font-sans">
+            <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-2xs">
+              <span className="text-rose-700 font-bold block mb-2 font-sans">
                 3. Thermomètre Mouillé de Roland Stull (2011) &amp; Survie Humaine :
               </span>
-              <pre className="text-slate-300 leading-relaxed overflow-x-auto">
+              <pre className="text-slate-800 leading-relaxed overflow-x-auto">
 {`Tw = Ta * atan(0.151977 * sqrt(RH + 8.313659))
    + atan(Ta + RH)
    - atan(RH - 1.676331)
@@ -160,11 +160,11 @@ Surmortalité thermique : mu_thermal = 0.40 / (1 + exp(-1.8 * (Tw_peak - 31.0)))
               </pre>
             </div>
 
-            <div className="bg-[#101726] p-4 rounded-lg border border-slate-800">
-              <span className="text-emerald-400 font-bold block mb-2 font-sans">
+            <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-2xs">
+              <span className="text-emerald-700 font-bold block mb-2 font-sans">
                 4. Rendements Céréaliers (Zhao et al. 2017) &amp; EROI :
               </span>
-              <pre className="text-slate-300 leading-relaxed overflow-x-auto">
+              <pre className="text-slate-800 leading-relaxed overflow-x-auto">
 {`Y_c,k(t) = Y_0,c,k * (1 - beta_c * Delta_T_k) * Psi_inputs(t)
 
 beta_maize = 7.4%/°C,  beta_wheat = 6.0%/°C,  beta_rice = 3.2%/°C,  beta_soy = 3.1%/°C
@@ -180,10 +180,10 @@ E_net(t) = E_gross(t) * (1 - 1 / EROI(t))`}
 
         {activeSpecSection === 'algo' && (
           <div className="space-y-3">
-            <span className="text-amber-400 font-sans font-bold block">
+            <span className="text-amber-700 font-sans font-bold block">
               Boucle d'Intégration d'un Pas Temporel (Discrétisation Euler / RK4) :
             </span>
-            <pre className="text-slate-300 bg-[#101726] p-4 rounded-lg border border-slate-800 leading-relaxed overflow-x-auto">
+            <pre className="text-slate-800 bg-white p-4 rounded-lg border border-slate-200 shadow-2xs leading-relaxed overflow-x-auto">
 {`def step_simulation(state, dt):
     # Phase 1 : Extraction pétrolière et EROI
     eroi = max(1.1, eroi_0 * ((1.0 - state.Q / Q_inf) ** 1.35))
@@ -224,12 +224,12 @@ E_net(t) = E_gross(t) * (1 - 1 / EROI(t))`}
 
         {activeSpecSection === 'params' && (
           <div className="space-y-3">
-            <span className="text-purple-400 font-sans font-bold block">
+            <span className="text-purple-700 font-sans font-bold block">
               Tableau des Constantes Biophysiques Calibrées (Horizon 2026) :
             </span>
             <div className="overflow-x-auto">
-              <table className="w-full text-left border border-slate-800 font-sans">
-                <thead className="bg-[#141b2a] text-slate-300 border-b border-slate-800 text-[11px]">
+              <table className="w-full text-left border border-slate-200 font-sans">
+                <thead className="bg-slate-100 text-slate-700 font-bold border-b border-slate-200 text-[11px]">
                   <tr>
                     <th className="p-2">Paramètre</th>
                     <th className="p-2">Symbole</th>
@@ -238,55 +238,55 @@ E_net(t) = E_gross(t) * (1 - 1 / EROI(t))`}
                     <th className="p-2">Source / Référence</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/80 text-[11px] font-mono text-slate-300">
-                  <tr>
-                    <td className="p-2 font-sans font-medium text-white">CO2 initial atmosphérique</td>
-                    <td className="p-2 text-cyan-400">C_CO2(0)</td>
-                    <td className="p-2">424.5</td>
+                <tbody className="divide-y divide-slate-200 text-[11px] font-mono text-slate-700">
+                  <tr className="hover:bg-slate-50">
+                    <td className="p-2 font-sans font-medium text-slate-900">CO2 initial atmosphérique</td>
+                    <td className="p-2 text-sky-700 font-semibold">C_CO2(0)</td>
+                    <td className="p-2 font-bold text-slate-800">424.5</td>
                     <td className="p-2">ppm</td>
-                    <td className="p-2 font-sans text-slate-400">Observatoire Mauna Loa</td>
+                    <td className="p-2 font-sans text-slate-500">Observatoire Mauna Loa</td>
                   </tr>
-                  <tr>
-                    <td className="p-2 font-sans font-medium text-white">Sensibilité climatique (ECS)</td>
-                    <td className="p-2 text-cyan-400">ECS</td>
-                    <td className="p-2">3.0</td>
+                  <tr className="hover:bg-slate-50">
+                    <td className="p-2 font-sans font-medium text-slate-900">Sensibilité climatique (ECS)</td>
+                    <td className="p-2 text-sky-700 font-semibold">ECS</td>
+                    <td className="p-2 font-bold text-slate-800">3.0</td>
                     <td className="p-2">°C / 2xCO2</td>
-                    <td className="p-2 font-sans text-slate-400">GIEC AR6 (SSP5-8.5)</td>
+                    <td className="p-2 font-sans text-slate-500">GIEC AR6 (SSP5-8.5)</td>
                   </tr>
-                  <tr>
-                    <td className="p-2 font-sans font-medium text-white">Réserves ultimes récupérables</td>
-                    <td className="p-2 text-amber-400">Q_inf</td>
-                    <td className="p-2">2.8 × 10¹²</td>
+                  <tr className="hover:bg-slate-50">
+                    <td className="p-2 font-sans font-medium text-slate-900">Réserves ultimes récupérables</td>
+                    <td className="p-2 text-amber-700 font-semibold">Q_inf</td>
+                    <td className="p-2 font-bold text-slate-800">2.8 × 10¹²</td>
                     <td className="p-2">barils équiv.</td>
-                    <td className="p-2 font-sans text-slate-400">Synthèse AIE &amp; USGS</td>
+                    <td className="p-2 font-sans text-slate-500">Synthèse AIE &amp; USGS</td>
                   </tr>
-                  <tr>
-                    <td className="p-2 font-sans font-medium text-white">Extraction cumulée passée</td>
-                    <td className="p-2 text-amber-400">Q(0)</td>
-                    <td className="p-2">1.45 × 10¹²</td>
+                  <tr className="hover:bg-slate-50">
+                    <td className="p-2 font-sans font-medium text-slate-900">Extraction cumulée passée</td>
+                    <td className="p-2 text-amber-700 font-semibold">Q(0)</td>
+                    <td className="p-2 font-bold text-slate-800">1.45 × 10¹²</td>
                     <td className="p-2">barils</td>
-                    <td className="p-2 font-sans text-slate-400">Bilan 1859–2026</td>
+                    <td className="p-2 font-sans text-slate-500">Bilan 1859–2026</td>
                   </tr>
-                  <tr>
-                    <td className="p-2 font-sans font-medium text-white">EROI initial du pétrole</td>
-                    <td className="p-2 text-amber-400">EROI_0</td>
-                    <td className="p-2">32.0</td>
+                  <tr className="hover:bg-slate-50">
+                    <td className="p-2 font-sans font-medium text-slate-900">EROI initial du pétrole</td>
+                    <td className="p-2 text-amber-700 font-semibold">EROI_0</td>
+                    <td className="p-2 font-bold text-slate-800">32.0</td>
                     <td className="p-2">ratio sans unité</td>
-                    <td className="p-2 font-sans text-slate-400">Cleveland, Hall et al.</td>
+                    <td className="p-2 font-sans text-slate-500">Cleveland, Hall et al.</td>
                   </tr>
-                  <tr>
-                    <td className="p-2 font-sans font-medium text-white">Seuil critique thermomètre mouillé</td>
-                    <td className="p-2 text-rose-400">Tw_crit</td>
-                    <td className="p-2">31.0</td>
+                  <tr className="hover:bg-slate-50">
+                    <td className="p-2 font-sans font-medium text-slate-900">Seuil critique thermomètre mouillé</td>
+                    <td className="p-2 text-rose-700 font-semibold">Tw_crit</td>
+                    <td className="p-2 font-bold text-slate-800">31.0</td>
                     <td className="p-2">°C</td>
-                    <td className="p-2 font-sans text-slate-400">Sherwood &amp; Huber (2010), Stull (2011)</td>
+                    <td className="p-2 font-sans text-slate-500">Sherwood &amp; Huber (2010), Stull (2011)</td>
                   </tr>
-                  <tr>
-                    <td className="p-2 font-sans font-medium text-white">Besoin calorique vital par personne</td>
-                    <td className="p-2 text-emerald-400">Cal_req</td>
-                    <td className="p-2">2 100</td>
+                  <tr className="hover:bg-slate-50">
+                    <td className="p-2 font-sans font-medium text-slate-900">Besoin calorique vital par personne</td>
+                    <td className="p-2 text-emerald-700 font-semibold">Cal_req</td>
+                    <td className="p-2 font-bold text-slate-800">2 100</td>
                     <td className="p-2">kcal / j / pers</td>
-                    <td className="p-2 font-sans text-slate-400">Seuil standard FAO / OMS</td>
+                    <td className="p-2 font-sans text-slate-500">Seuil standard FAO / OMS</td>
                   </tr>
                 </tbody>
               </table>

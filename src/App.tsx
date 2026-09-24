@@ -200,7 +200,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080c14] text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
       {/* Top Bar selon le Top Bar Contract */}
       <TopBar
         currentTab={currentTab}
@@ -216,16 +216,16 @@ export default function App() {
       <main className="flex-1 max-w-[1440px] w-full mx-auto p-4 sm:p-6 flex flex-col gap-6">
         {/* Bannière d'accueil lorsqu'une simulation a été ouverte via une URL partagée */}
         {sharedConfigLoaded && (
-          <div className="bg-purple-950/70 border border-purple-600/80 rounded-xl p-3.5 flex items-center justify-between gap-3 text-purple-200 text-xs shadow-lg animate-in fade-in duration-200">
+          <div className="bg-purple-50 border border-purple-200 rounded-xl p-3.5 flex items-center justify-between gap-3 text-purple-900 text-xs shadow-xs animate-in fade-in duration-200">
             <div className="flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-400 animate-ping inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-purple-600 animate-ping inline-block" />
               <span>
                 <strong>Simulation personnalisée chargée via le lien URL :</strong> Trajectoire B configurée avec -{customParams.oilDemandReductionRate}%/an de pétrole, {customParams.agroEcologyAdoptionRate}% d'agroécologie et résilience x{customParams.adaptationResilienceBoost.toFixed(1)} (ECS : {customParams.climateSensitivityECS.toFixed(1)}°C).
               </span>
             </div>
             <button
               onClick={() => setSharedConfigLoaded(false)}
-              className="px-2 py-1 rounded bg-purple-900/80 hover:bg-purple-800 text-purple-200 text-[11px] font-medium transition-colors cursor-pointer shrink-0"
+              className="px-2 py-1 rounded bg-purple-100 hover:bg-purple-200 text-purple-900 text-[11px] font-semibold border border-purple-300 transition-colors cursor-pointer shrink-0"
             >
               Fermer
             </button>
@@ -292,18 +292,18 @@ export default function App() {
             <YouthExplainerCard />
 
             {/* Bannière d'accès direct au Dossier Scientifique des Points de Bascule */}
-            <div className="bg-gradient-to-r from-rose-950/40 via-slate-900 to-indigo-950/40 border border-rose-800/40 hover:border-rose-600/70 transition-all rounded-2xl p-5 sm:p-6 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="bg-gradient-to-r from-rose-50 via-white to-indigo-50/50 border border-rose-200/90 rounded-2xl p-5 sm:p-6 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className="space-y-1.5 max-w-2xl">
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono bg-rose-900/60 text-rose-300 border border-rose-700/60 uppercase">
+                  <span className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono bg-rose-50 text-rose-800 border border-rose-200 uppercase">
                     Dossier Scientifique Factuel
                   </span>
-                  <span className="text-xs text-slate-400">Science 2022 / GIEC AR6</span>
+                  <span className="text-xs text-slate-500">Science 2022 / GIEC AR6</span>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                   Quels sont les points de non-retour du climat terrestre ?
                 </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Groenland, Antarctique, coraux tropicaux, forêt amazonienne, courant AMOC... 
                   Découvrez l'état des lieux rigoureux appuyé sur les mesures réelles par satellites et les faits démontrés, expliqué sans jargon ni supposition.
                 </p>
@@ -314,7 +314,7 @@ export default function App() {
                   setCurrentTab('tipping-points');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow-lg shadow-rose-950/50 cursor-pointer transition-all shrink-0 hover:scale-105"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow-xs cursor-pointer transition-all shrink-0 hover:scale-102"
               >
                 <span>Explorer les 9 points de bascule</span>
                 <span aria-hidden="true">&rarr;</span>
@@ -333,21 +333,21 @@ export default function App() {
             <AiFutureDebateCard />
 
             {/* 8. Vérification du travail & Sources Scientifiques */}
-            <div className="rounded-2xl bg-gradient-to-r from-blue-950/70 via-[#0a1222] to-cyan-950/70 border border-blue-700/50 p-5 sm:p-6 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="rounded-2xl bg-gradient-to-r from-sky-50 via-white to-blue-50/60 border border-sky-200/90 p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1.5 max-w-2xl">
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono bg-blue-900/70 text-blue-300 border border-blue-700/60 uppercase">
+                  <span className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono bg-sky-100 text-sky-800 border border-sky-200 uppercase">
                     Transparence &amp; Rigueur Académique
                   </span>
-                  <span className="text-xs text-emerald-400 font-mono flex items-center gap-1">
+                  <span className="text-xs text-emerald-700 font-mono flex items-center gap-1 font-semibold">
                     <CheckCircle className="w-3.5 h-3.5" />
                     <span>100% Liens Vérifiés</span>
                   </span>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                   Vérifier le Travail : Sources, Publications &amp; Données Réelles
                 </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Consultez l'ensemble des 20+ publications à comité de lecture (<em>Nature, Science, PNAS</em>), 
                   des rapports officiels d'institutions internationales (<em>GIEC AR6, ONU, FAO</em>) et des relevés d'observatoires satellites (<em>NOAA, Copernicus, NASA</em>) 
                   qui fondent les calculs de CLIMATOPEDY.
@@ -359,9 +359,9 @@ export default function App() {
                   setCurrentTab('sources');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs shadow-lg shadow-cyan-950/60 cursor-pointer transition-all shrink-0 hover:scale-105"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-xs cursor-pointer transition-all shrink-0 hover:scale-102"
               >
-                <BookOpen className="w-4 h-4 text-slate-950" />
+                <BookOpen className="w-4 h-4 text-white" />
                 <span>Consulter toutes les sources vérifiées</span>
                 <span aria-hidden="true">&rarr;</span>
               </button>
@@ -450,7 +450,7 @@ export default function App() {
       />
 
       {/* Footer sobre et scientifique avec lien d'accès direct vers les sources */}
-      <footer className="border-t border-slate-800/80 bg-[#070a10] py-6 px-6 text-xs text-slate-400">
+      <footer className="border-t border-slate-200 bg-white py-6 px-6 text-xs text-slate-600">
         <div className="max-w-5xl mx-auto flex flex-col items-center gap-4">
           {/* Navigation directe du footer pour vérification */}
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium">
@@ -459,28 +459,28 @@ export default function App() {
                 setCurrentTab('sources');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-cyan-400 hover:text-cyan-300 hover:underline flex items-center gap-1.5 cursor-pointer font-semibold transition-colors bg-cyan-950/40 px-3 py-1 rounded-lg border border-cyan-800/50"
+              className="text-sky-800 hover:text-sky-900 hover:underline flex items-center gap-1.5 cursor-pointer font-semibold transition-colors bg-sky-50 px-3 py-1 rounded-lg border border-sky-200"
               title="Accéder à la liste complète des publications scientifiques pour vérifier le travail"
             >
-              <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+              <BookOpen className="w-3.5 h-3.5 text-sky-600" />
               <span>Vérifier le Travail &amp; Consulter les Sources (20+ Publications)</span>
             </button>
 
             <button
               onClick={() => setIsTutorialOpen(true)}
-              className="text-emerald-400 hover:text-emerald-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="text-emerald-700 hover:text-emerald-800 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
               title="Ouvrir le tutoriel interactif de navigation pour ordinateur"
             >
-              <Compass className="w-3.5 h-3.5 text-emerald-400" />
+              <Compass className="w-3.5 h-3.5 text-emerald-600" />
               <span>Tutoriel de Navigation (PC)</span>
             </button>
 
             <button
               onClick={() => setIsMobileNoticeOpen(true)}
-              className="text-amber-400 hover:text-amber-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="text-amber-700 hover:text-amber-800 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
               title="Afficher la recommandation d'usage sur grand écran"
             >
-              <Monitor className="w-3.5 h-3.5 text-amber-400" />
+              <Monitor className="w-3.5 h-3.5 text-amber-600" />
               <span>Recommandation Grand Écran</span>
             </button>
 
@@ -489,7 +489,7 @@ export default function App() {
                 setCurrentTab('spec');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-slate-300 hover:text-white hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="text-slate-600 hover:text-slate-900 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
             >
               <FileText className="w-3.5 h-3.5" />
               <span>Spécifications (ODEs)</span>
@@ -500,7 +500,7 @@ export default function App() {
                 setCurrentTab('tipping-points');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-rose-400 hover:text-rose-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="text-rose-700 hover:text-rose-800 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
             >
               <ShieldAlert className="w-3.5 h-3.5" />
               <span>9 Points de Bascule</span>
@@ -511,7 +511,7 @@ export default function App() {
                 setCurrentTab('map');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-slate-400 hover:text-slate-200 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="text-slate-600 hover:text-slate-900 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
             >
               <span>Planisphère</span>
             </button>

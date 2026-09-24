@@ -900,15 +900,15 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         {/* GRAPHIQUE 3 : CLIMAT & OCÉANS (Montée de la mer chiffrée jusqu'en 2200) */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === 'climate') && (
-          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2 shadow-lg">
+          <div className="bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-200">
+                <span className="text-xs font-bold text-slate-900">
                   3. Réchauffement Mondial, Gaz à Effet de Serre &amp; Montée des Océans
                 </span>
-                <span className="text-[10.5px] font-mono text-slate-400 font-semibold flex items-center gap-1.5">
+                <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
                   {d3.isShowingHover ? (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-800/80 text-[10px] font-bold">
+                    <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
                       🔍 Survol : {d3.displayYear}
                     </span>
                   ) : (
@@ -919,15 +919,15 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
               {/* Chiffres précis dont la montée du niveau des mers */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
-                <span className="text-cyan-400 font-semibold min-w-[7.5rem]">
+                <span className="text-sky-800 font-semibold min-w-[7.5rem]">
                   CO2 : {Math.round(d3.stateA.atmosphericCo2Ppm)} ppm
                 </span>
-                <span className="text-rose-400 font-semibold flex items-center gap-1 min-w-[8.5rem]">
+                <span className="text-rose-700 font-semibold flex items-center gap-1 min-w-[8.5rem]">
                   Réchauffement : {d3.stateA.surfaceTemperatureAnomaly >= 0 ? '+' : ''}{d3.stateA.surfaceTemperatureAnomaly.toFixed(2)}°C
                   <TechTooltip term="fair" showIconOnly />
                 </span>
                 {/* Montée des mers */}
-                <span className="text-sky-300 font-bold bg-sky-950/80 border border-sky-800/80 px-2 py-0.5 rounded flex items-center gap-1 min-w-[11.5rem]">
+                <span className="text-sky-900 font-bold bg-sky-100/80 border border-sky-300 px-2 py-0.5 rounded flex items-center gap-1 min-w-[11.5rem]">
                   🌊 Montée des océans : {d3.seaLevelCm >= 0 ? '+' : ''}{d3.seaLevelCm} cm ({d3.seaLevelVs2026 >= 0 ? `+${d3.seaLevelVs2026} cm depuis 2026` : `${d3.seaLevelVs2026} cm vs 2026`})
                   <TechTooltip term="slr" showIconOnly />
                 </span>
@@ -935,30 +935,30 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
               {/* Ligne comparative Trajectoire B si activée */}
               {isCompareMode && d3.stateB && (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300 tabular-nums">
-                  <span className="font-bold flex items-center gap-1 text-emerald-400">
-                    <GitCompare className="w-3 h-3 text-emerald-400" />
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-200 text-[10px] font-mono text-emerald-800 tabular-nums">
+                  <span className="font-bold flex items-center gap-1 text-emerald-700">
+                    <GitCompare className="w-3 h-3 text-emerald-700" />
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-cyan-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-sky-900">
                     CO2 : {Math.round(d3.stateB.atmosphericCo2Ppm)} ppm
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-rose-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-rose-800">
                     Réchauffement : +{d3.stateB.surfaceTemperatureAnomaly.toFixed(2)}°C
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-sky-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-sky-800">
                     Océans : +{d3.seaLevelCmB} cm ({d3.seaLevelCmB - d3.seaLevelCm >= 0 ? `+${d3.seaLevelCmB - d3.seaLevelCm}` : `${d3.seaLevelCmB - d3.seaLevelCm}`} cm)
                   </span>
                 </div>
               )}
             </div>
 
-            <p className="text-[10px] text-slate-400 leading-tight">
+            <p className="text-[10px] text-slate-600 leading-tight">
               CO2 dans l'atmosphère (axe gauche), température mondiale depuis 1850 (axe droit) et élévation séculaire des océans (pointillé bleu chiffré en cm jusqu'en 2200).
             </p>
 
             {/* SVG Graphique 3 */}
-            <div className="relative w-full aspect-[540/205] bg-[#070b12] rounded-lg border border-slate-900 overflow-hidden cursor-crosshair">
+            <div className="relative w-full aspect-[540/205] bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner">
               <svg
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
@@ -967,66 +967,66 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 onMouseLeave={() => handleSvgLeave('climate')}
               >
                 {/* Axe vertical gauche : Concentration de CO2 (ppm) */}
-                <text x={PAD.left - 6} y={PAD.top + 4} fill="#22d3ee" fontSize="8" textAnchor="end" fontFamily="monospace">750 ppm</text>
-                <text x={PAD.left - 6} y={PAD.top + plotH / 2 + 3} fill="#22d3ee" fontSize="8" textAnchor="end" fontFamily="monospace">500</text>
-                <text x={PAD.left - 6} y={PAD.top + plotH} fill="#22d3ee" fontSize="8" textAnchor="end" fontFamily="monospace">{co2Min} ppm</text>
+                <text x={PAD.left - 6} y={PAD.top + 4} fill="#0284c7" fontSize="8" textAnchor="end" fontFamily="monospace">750 ppm</text>
+                <text x={PAD.left - 6} y={PAD.top + plotH / 2 + 3} fill="#0284c7" fontSize="8" textAnchor="end" fontFamily="monospace">500</text>
+                <text x={PAD.left - 6} y={PAD.top + plotH} fill="#0284c7" fontSize="8" textAnchor="end" fontFamily="monospace">{co2Min} ppm</text>
 
                 {/* Axe vertical droit : Anomalie thermique (°C) */}
-                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#f43f5e" fontSize="8" textAnchor="start" fontFamily="monospace">+5.0°C</text>
-                <text x={W - PAD.right + 6} y={getYTemp(2.0) + 3} fill="#f43f5e" fontSize="8" textAnchor="start" fontFamily="monospace">+2.0°C</text>
-                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#f43f5e" fontSize="8" textAnchor="start" fontFamily="monospace">{tempMin >= 0 ? `+${tempMin}` : tempMin}°C</text>
+                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#b91c1c" fontSize="8" textAnchor="start" fontFamily="monospace">+5.0°C</text>
+                <text x={W - PAD.right + 6} y={getYTemp(2.0) + 3} fill="#b91c1c" fontSize="8" textAnchor="start" fontFamily="monospace">+2.0°C</text>
+                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#b91c1c" fontSize="8" textAnchor="start" fontFamily="monospace">{tempMin >= 0 ? `+${tempMin}` : tempMin}°C</text>
 
                 {/* Repères horizontaux pour la montée des océans */}
                 {endYear === 2200 ? (
                   <>
                     <line x1={PAD.left} y1={getYSlr(2.5)} x2={W - PAD.right} y2={getYSlr(2.5)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.6" />
-                    <text x={PAD.left + 4} y={getYSlr(2.5) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.85">Repère océan séculaire : +250 cm (+2,5 m en 2200)</text>
+                    <text x={PAD.left + 4} y={getYSlr(2.5) - 2} fill="#0369a1" fontSize="6.5" opacity="0.85">Repère océan séculaire : +250 cm (+2,5 m en 2200)</text>
 
                     <line x1={PAD.left} y1={getYSlr(1.0)} x2={W - PAD.right} y2={getYSlr(1.0)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.5" />
-                    <text x={PAD.left + 4} y={getYSlr(1.0) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.75">Repère océan : +100 cm (+1 m)</text>
+                    <text x={PAD.left + 4} y={getYSlr(1.0) - 2} fill="#0369a1" fontSize="6.5" opacity="0.75">Repère océan : +100 cm (+1 m)</text>
                   </>
                 ) : (
                   <>
                     <line x1={PAD.left} y1={getYSlr(0.75)} x2={W - PAD.right} y2={getYSlr(0.75)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.5" />
-                    <text x={PAD.left + 4} y={getYSlr(0.75) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.8">Repère océan : +75 cm</text>
+                    <text x={PAD.left + 4} y={getYSlr(0.75) - 2} fill="#0369a1" fontSize="6.5" opacity="0.8">Repère océan : +75 cm</text>
 
                     <line x1={PAD.left} y1={getYSlr(0.25)} x2={W - PAD.right} y2={getYSlr(0.25)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.5" />
-                    <text x={PAD.left + 4} y={getYSlr(0.25) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.8">Repère océan : +25 cm</text>
+                    <text x={PAD.left + 4} y={getYSlr(0.25) - 2} fill="#0369a1" fontSize="6.5" opacity="0.8">Repère océan : +25 cm</text>
                   </>
                 )}
 
                 {/* Ligne seuil Accord de Paris +1.5°C et +2.0°C */}
-                <line x1={PAD.left} y1={getYTemp(1.5)} x2={W - PAD.right} y2={getYTemp(1.5)} stroke="#f43f5e" strokeWidth="0.8" strokeDasharray="3,3" opacity="0.4" />
-                <line x1={PAD.left} y1={getYTemp(2.0)} x2={W - PAD.right} y2={getYTemp(2.0)} stroke="#f43f5e" strokeWidth="1" strokeDasharray="4,3" opacity="0.6" />
+                <line x1={PAD.left} y1={getYTemp(1.5)} x2={W - PAD.right} y2={getYTemp(1.5)} stroke="#ef4444" strokeWidth="0.8" strokeDasharray="3,3" opacity="0.4" />
+                <line x1={PAD.left} y1={getYTemp(2.0)} x2={W - PAD.right} y2={getYTemp(2.0)} stroke="#dc2626" strokeWidth="1" strokeDasharray="4,3" opacity="0.6" />
 
                 {/* Axe des abscisses */}
                 {renderAbscisseAxis('climate')}
 
-                {/* Courbe 1 : CO2 Atmosphérique (Cyan) */}
-                <path d={pathCo2} fill="none" stroke="#22d3ee" strokeWidth="2.2" strokeLinecap="round" />
+                {/* Courbe 1 : CO2 Atmosphérique (Bleu Océan) */}
+                <path d={pathCo2} fill="none" stroke="#0284c7" strokeWidth="2.2" strokeLinecap="round" />
 
-                {/* Courbe 2 : Température Globale FaIR (Rouge/Rose) */}
-                <path d={pathTemp} fill="none" stroke="#f43f5e" strokeWidth="2.5" strokeLinecap="round" />
+                {/* Courbe 2 : Température Globale FaIR (Rouge Rubis) */}
+                <path d={pathTemp} fill="none" stroke="#dc2626" strokeWidth="2.5" strokeLinecap="round" />
 
-                {/* Courbe 3 : Montée des Océans (Pointillé bleu épais) */}
-                <path d={pathSlr} fill="none" stroke="#38bdf8" strokeWidth="2.4" strokeDasharray="5,3" strokeLinecap="round" />
+                {/* Courbe 3 : Montée des Océans (Pointillé bleu profond) */}
+                <path d={pathSlr} fill="none" stroke="#0369a1" strokeWidth="2.4" strokeDasharray="5,3" strokeLinecap="round" />
 
                 {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
-                    <path d={pathTempB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    <path d={pathSlrB} fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeDasharray="2 3" strokeLinecap="round" />
+                    <path d={pathTempB} fill="none" stroke="#16a34a" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
+                    <path d={pathSlrB} fill="none" stroke="#0ea5e9" strokeWidth="1.8" strokeDasharray="2 3" strokeLinecap="round" />
                   </g>
                 )}
 
                 {/* Mini-légende de comparaison intégrée */}
                 {isCompareMode && (
                   <g className="select-none pointer-events-none">
-                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#080c14" fillOpacity="0.85" stroke="#1e293b" strokeWidth="0.8" />
-                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#f43f5e" strokeWidth="2" />
-                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#e2e8f0" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
-                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#34d399" strokeWidth="2" strokeDasharray="4 2" />
-                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#34d399" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
+                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#ffffff" fillOpacity="0.9" stroke="#cbd5e1" strokeWidth="0.8" />
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#dc2626" strokeWidth="2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#1e293b" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#16a34a" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#16a34a" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
                   </g>
                 )}
 
@@ -1046,7 +1046,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                     width="58"
                     height="13"
                     rx="3"
-                    fill="#0369a1"
+                    fill="#0284c7"
                   />
                   <text
                     x={Math.max(PAD.left + 29, Math.min(W - PAD.right - 29, currentX))}
@@ -1064,12 +1064,12 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </div>
 
             {/* Légende avec explication claire de la montée */}
-            <div className="flex flex-col gap-1 text-[10.5px] text-slate-300 pt-1 border-t border-slate-800/80">
+            <div className="flex flex-col gap-1 text-[10.5px] text-slate-600 pt-1 border-t border-slate-200">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>🔵 <strong>Ligne cyan :</strong> Concentration de CO2 ({Math.round(d3.stateA.atmosphericCo2Ppm)} ppm)</span>
+                <span>🔵 <strong>Ligne bleue :</strong> Concentration de CO2 ({Math.round(d3.stateA.atmosphericCo2Ppm)} ppm)</span>
                 <span>🔴 <strong>Ligne rouge :</strong> Réchauffement (+{d3.stateA.surfaceTemperatureAnomaly.toFixed(2)}°C depuis 1850)</span>
               </div>
-              <div className="bg-sky-950/40 border border-sky-900/60 rounded p-1.5 text-sky-200 text-[10px]">
+              <div className="bg-sky-50 border border-sky-200 rounded p-1.5 text-sky-900 text-[10px]">
                 🌊 <strong>Pointillé bleu (Montée des océans) :</strong> {d3.seaLevelCm >= 0 ? '+' : ''}{d3.seaLevelCm} cm en {d3.displayYear} (soit {d3.seaLevelVs2026 >= 0 ? `+${d3.seaLevelVs2026} cm de plus qu'aujourd'hui` : `${d3.seaLevelVs2026} cm par rapport à aujourd'hui`}, projection jusqu'à +{endYear === 2200 ? '260 cm en 2200' : '75 cm en 2100'}).
                 <br />
                 Chaque tranche de 10 cm supplémentaire submerge les deltas côtiers très fertiles (Mékong, Bangladesh, Nil) et salinise les réserves d'eau douce souterraines.
@@ -1082,15 +1082,15 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         {/* GRAPHIQUE 4 : AGRONOMIE & ALIMENTATION */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === 'agri') && (
-          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2 shadow-lg">
+          <div className="bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-200">
+                <span className="text-xs font-bold text-slate-900">
                   4. Disponibilité Alimentaire Mondiale &amp; Rendements des Terres
                 </span>
-                <span className="text-[10.5px] font-mono text-slate-400 font-semibold flex items-center gap-1.5">
+                <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
                   {d4.isShowingHover ? (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-800/80 text-[10px] font-bold">
+                    <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
                       🔍 Survol : {d4.displayYear}
                     </span>
                   ) : (
@@ -1101,41 +1101,41 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
               {/* Indicateurs numériques avec tabular-nums */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
-                <span className="text-emerald-400 font-semibold min-w-[8.5rem]">
+                <span className="text-emerald-700 font-semibold min-w-[8.5rem]">
                   Nourriture : {Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/hab/j
                 </span>
-                <span className="text-amber-400 font-semibold flex items-center gap-1 min-w-[9.5rem]">
+                <span className="text-amber-800 font-semibold flex items-center gap-1 min-w-[9.5rem]">
                   Rendement moyen : {(d4.stateA.globalCropYieldComposite * 100).toFixed(0)}% du pic
                   <TechTooltip term="haber-bosch" showIconOnly />
                 </span>
-                <span className="text-rose-400 font-semibold min-w-[8.5rem]">
+                <span className="text-rose-700 font-semibold min-w-[8.5rem]">
                   Seuil de famine ONU : 2 100 kcal
                 </span>
               </div>
 
               {/* Ligne comparative Trajectoire B si activée */}
               {isCompareMode && d4.stateB && (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300 tabular-nums">
-                  <span className="font-bold flex items-center gap-1 text-emerald-400">
-                    <GitCompare className="w-3 h-3 text-emerald-400" />
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-200 text-[10px] font-mono text-emerald-800 tabular-nums">
+                  <span className="font-bold flex items-center gap-1 text-emerald-700">
+                    <GitCompare className="w-3 h-3 text-emerald-700" />
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
                     Calories : {Math.round(d4.stateB.globalAverageCaloriesPerCapita)} kcal/hab
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-amber-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-amber-800">
                     Rendement : {(d4.stateB.globalCropYieldComposite * 100).toFixed(0)}%
                   </span>
                 </div>
               )}
             </div>
 
-            <p className="text-[10px] text-slate-400 leading-tight">
+            <p className="text-[10px] text-slate-600 leading-tight">
               Calories quotidiennes disponibles par être humain comparées au minimum vital absolu de 2 100 kcal/jour fixé par l'Organisation des Nations Unies.
             </p>
 
             {/* SVG Graphique 4 */}
-            <div className="relative w-full aspect-[540/205] bg-[#070b12] rounded-lg border border-slate-900 overflow-hidden cursor-crosshair">
+            <div className="relative w-full aspect-[540/205] bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner">
               <svg
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
@@ -1144,14 +1144,14 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 onMouseLeave={() => handleSvgLeave('agri')}
               >
                 {/* Axe vertical gauche : Calories (kcal/jour) */}
-                <text x={PAD.left - 6} y={PAD.top + 4} fill="#10b981" fontSize="8" textAnchor="end" fontFamily="monospace">3500</text>
-                <text x={PAD.left - 6} y={yCalorie2100 + 3} fill="#ef4444" fontSize="8" textAnchor="end" fontFamily="monospace">2100</text>
-                <text x={PAD.left - 6} y={PAD.top + plotH} fill="#10b981" fontSize="8" textAnchor="end" fontFamily="monospace">1200 kcal</text>
+                <text x={PAD.left - 6} y={PAD.top + 4} fill="#059669" fontSize="8" textAnchor="end" fontFamily="monospace">3500</text>
+                <text x={PAD.left - 6} y={yCalorie2100 + 3} fill="#dc2626" fontSize="8" textAnchor="end" fontFamily="monospace">2100</text>
+                <text x={PAD.left - 6} y={PAD.top + plotH} fill="#059669" fontSize="8" textAnchor="end" fontFamily="monospace">1200 kcal</text>
 
                 {/* Axe vertical droit : Rendements (0.1 à 1.2) */}
-                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#f59e0b" fontSize="8" textAnchor="start" fontFamily="monospace">120%</text>
-                <text x={W - PAD.right + 6} y={getYYield(1.0) + 3} fill="#f59e0b" fontSize="8" textAnchor="start" fontFamily="monospace">100%</text>
-                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#f59e0b" fontSize="8" textAnchor="start" fontFamily="monospace">10%</text>
+                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#d97706" fontSize="8" textAnchor="start" fontFamily="monospace">120%</text>
+                <text x={W - PAD.right + 6} y={getYYield(1.0) + 3} fill="#d97706" fontSize="8" textAnchor="start" fontFamily="monospace">100%</text>
+                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#d97706" fontSize="8" textAnchor="start" fontFamily="monospace">10%</text>
 
                 {/* Ligne rouge ONU du seuil de malnutrition aiguë (2100 kcal) */}
                 <line
@@ -1167,7 +1167,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   x={W - PAD.right - 4}
                   y={yCalorie2100 - 3}
                   textAnchor="end"
-                  fill="#ef4444"
+                  fill="#dc2626"
                   fontSize="7"
                   fontFamily="sans-serif"
                   fontWeight="bold"
@@ -1179,27 +1179,27 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {renderAbscisseAxis('agri')}
 
                 {/* Courbe 1 : Calories par habitant (Verte) */}
-                <path d={pathCal} fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" />
+                <path d={pathCal} fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" />
 
                 {/* Courbe 2 : Rendements agricoles combinés (Ambre) */}
-                <path d={pathCropYield} fill="none" stroke="#f59e0b" strokeWidth="2" strokeDasharray="3,2" strokeLinecap="round" />
+                <path d={pathCropYield} fill="none" stroke="#d97706" strokeWidth="2" strokeDasharray="3,2" strokeLinecap="round" />
 
                 {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
-                    <path d={pathCalB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    <path d={pathCropYieldB} fill="none" stroke="#fcd34d" strokeWidth="1.8" strokeDasharray="3 3" strokeLinecap="round" />
+                    <path d={pathCalB} fill="none" stroke="#16a34a" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
+                    <path d={pathCropYieldB} fill="none" stroke="#f59e0b" strokeWidth="1.8" strokeDasharray="3 3" strokeLinecap="round" />
                   </g>
                 )}
 
                 {/* Mini-légende de comparaison intégrée */}
                 {isCompareMode && (
                   <g className="select-none pointer-events-none">
-                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#080c14" fillOpacity="0.85" stroke="#1e293b" strokeWidth="0.8" />
-                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#10b981" strokeWidth="2" />
-                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#e2e8f0" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
-                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#34d399" strokeWidth="2" strokeDasharray="4 2" />
-                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#34d399" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
+                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#ffffff" fillOpacity="0.9" stroke="#cbd5e1" strokeWidth="0.8" />
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#059669" strokeWidth="2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#1e293b" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#16a34a" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#16a34a" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
                   </g>
                 )}
 
@@ -1208,7 +1208,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   cx={currentX}
                   cy={getYCal(currentSimState.globalAverageCaloriesPerCapita)}
                   r="4"
-                  fill="#10b981"
+                  fill="#059669"
                   stroke="#ffffff"
                   strokeWidth="1.5"
                 />
@@ -1218,13 +1218,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   width="46"
                   height="12"
                   rx="3"
-                  fill="#064e3b"
+                  fill="#065f46"
                 />
                 <text
                   x={Math.max(PAD.left + 23, Math.min(W - PAD.right - 23, currentX))}
                   y={getYCal(currentSimState.globalAverageCaloriesPerCapita) - 7.5}
                   textAnchor="middle"
-                  fill="#a7f3d0"
+                  fill="#ffffff"
                   fontSize="7.5"
                   fontWeight="bold"
                   fontFamily="monospace"
@@ -1235,13 +1235,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </div>
 
             {/* Légende */}
-            <div className="flex flex-col gap-1 text-[10.5px] text-slate-300 pt-1 border-t border-slate-800/80">
+            <div className="flex flex-col gap-1 text-[10.5px] text-slate-600 pt-1 border-t border-slate-200">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <span>🟢 <strong>Ligne verte :</strong> Ration alimentaire moyenne ({Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/habitant/jour)</span>
                 <span>🟠 <strong>Pointillé ambre :</strong> Rendements mondiaux des récoltes ({(d4.stateA.globalCropYieldComposite * 100).toFixed(0)}%)</span>
                 <span>🔴 <strong>Ligne rouge pointillée :</strong> Seuil vital de subsistance ONU (2 100 kcal)</span>
               </div>
-              <p className="text-[10px] text-slate-400">
+              <p className="text-[10px] text-slate-500">
                 La chute calorique résulte de l'effet ciseau : baisse des engrais chimiques azotés (crise du gaz) combinée aux sécheresses et canicules sur les grands bassins céréaliers.
               </p>
             </div>
@@ -1254,17 +1254,17 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   return (
     <>
       {/* VUE STANDARD DES GRAPHIQUES */}
-      <div className="w-full rounded-xl bg-[#090d15] border border-slate-800 p-4 shadow-xl flex flex-col gap-3">
+      <div className="w-full rounded-xl bg-white border border-slate-200/90 p-4 shadow-xs flex flex-col gap-3">
         {/* En-tête des graphiques avec sélecteur d'échelle temporelle (jusqu'en 2200) */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-slate-800">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-sky-400" />
-              <h3 className="text-xs uppercase tracking-wider font-semibold text-slate-200">
+              <Clock className="w-4 h-4 text-sky-600" />
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-slate-800">
                 Trajectoires Biophysiques Couplées ({startYear} → {endYear})
               </h3>
             </div>
-            <p className="text-[11px] text-slate-400 mt-0.5">
+            <p className="text-[11px] text-slate-500 mt-0.5">
               Évolution continue du système Terre · Cliquez sur un graphique pour caler la simulation sur l'année voulue
             </p>
           </div>
@@ -1273,14 +1273,14 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
           <div className="flex flex-wrap items-center gap-2">
             
             {/* Sélecteur de période temporelle étendu jusqu'en 2200 */}
-            <div className="flex items-center bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
-              <span className="text-[10px] text-slate-400 px-1.5 font-medium">Période :</span>
+            <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+              <span className="text-[10px] text-slate-500 px-1.5 font-medium">Période :</span>
               <button
                 onClick={() => setTimeRange('1900-2200')}
                 className={`px-2 py-1 rounded transition-colors cursor-pointer ${
                   timeRange === '1900-2200'
-                    ? 'bg-blue-600 text-white font-semibold shadow'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-sky-600 text-white font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
                 title="Grand Siècle & Prospective séculaire (1900–2200 - 300 ans)"
               >
@@ -1290,8 +1290,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 onClick={() => setTimeRange('1900-2100')}
                 className={`px-2 py-1 rounded transition-colors cursor-pointer ${
                   timeRange === '1900-2100'
-                    ? 'bg-blue-700 text-white font-semibold shadow'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-sky-700 text-white font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
                 title="Vue 1900-2100 (200 ans)"
               >
@@ -1301,8 +1301,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 onClick={() => setTimeRange('2026-2200')}
                 className={`px-2 py-1 rounded transition-colors cursor-pointer ${
                   timeRange === '2026-2200'
-                    ? 'bg-cyan-600 text-white font-semibold shadow'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-sky-600 text-white font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
                 title="Prospective longue portée (2026-2200)"
               >
@@ -1312,8 +1312,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 onClick={() => setTimeRange('2026-2100')}
                 className={`px-2 py-1 rounded transition-colors cursor-pointer ${
                   timeRange === '2026-2100'
-                    ? 'bg-cyan-700 text-white font-semibold shadow'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-sky-700 text-white font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
                 title="Zoom prospectif 21e siècle (2026-2100)"
               >
@@ -1324,10 +1324,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             {/* Bouton de bascule du survol (Indépendant vs Synchronisé) */}
             <button
               onClick={() => setIsSyncHover(!isSyncHover)}
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-colors ${
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-colors shadow-2xs ${
                 !isSyncHover
-                  ? 'bg-emerald-950/60 border-emerald-600/60 text-emerald-300'
-                  : 'bg-indigo-950/60 border-indigo-600/60 text-indigo-300'
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-800'
+                  : 'bg-indigo-50 border-indigo-300 text-indigo-800'
               }`}
               title={
                 !isSyncHover
@@ -1337,65 +1337,65 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             >
               {!isSyncHover ? (
                 <>
-                  <Eye className="w-3.5 h-3.5 text-emerald-400" />
+                  <Eye className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Survol : Indépendant</span>
                 </>
               ) : (
                 <>
-                  <GitCompare className="w-3.5 h-3.5 text-indigo-400" />
+                  <GitCompare className="w-3.5 h-3.5 text-indigo-600" />
                   <span>Survol : Synchronisé</span>
                 </>
               )}
             </button>
 
             {/* Onglets thématiques */}
-            <div className="flex items-center gap-1 bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
+            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
               <button
                 onClick={() => setActiveTab('all')}
                 className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
                   activeTab === 'all'
-                    ? 'bg-slate-700 text-white font-medium'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-slate-900 font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Tous (4)
               </button>
               <button
                 onClick={() => setActiveTab('demo')}
-                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
                   activeTab === 'demo'
-                    ? 'bg-slate-700 text-white font-medium'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-slate-900 font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Démographie
               </button>
               <button
                 onClick={() => setActiveTab('energy')}
-                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
                   activeTab === 'energy'
-                    ? 'bg-slate-700 text-white font-medium'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-slate-900 font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Énergie
               </button>
               <button
                 onClick={() => setActiveTab('climate')}
-                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
                   activeTab === 'climate'
-                    ? 'bg-slate-700 text-white font-medium'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-slate-900 font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Climat
               </button>
               <button
                 onClick={() => setActiveTab('agri')}
-                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
                   activeTab === 'agri'
-                    ? 'bg-slate-700 text-white font-medium'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-slate-900 font-semibold shadow-2xs'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Alimentation
@@ -1405,10 +1405,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             {/* BOUTON PLEIN ÉCRAN */}
             <button
               onClick={() => setIsFullScreen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold cursor-pointer shadow-sm transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 text-xs font-semibold cursor-pointer shadow-2xs transition-colors"
               title="Afficher tous les graphiques en mode plein écran immersif"
             >
-              <Maximize2 className="w-3.5 h-3.5 text-cyan-400" />
+              <Maximize2 className="w-3.5 h-3.5 text-sky-600" />
               <span>Plein écran</span>
             </button>
 
@@ -1416,10 +1416,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             {onOpenPdfExport && (
               <button
                 onClick={onOpenPdfExport}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-cyan-950/70 hover:bg-cyan-900 text-cyan-300 hover:text-white border border-cyan-800/60 hover:border-cyan-600 transition-colors text-xs font-semibold cursor-pointer shadow-sm"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-300 transition-colors text-xs font-semibold cursor-pointer shadow-2xs"
                 title="Exporter ces graphiques et le bilan de simulation sous forme de rapport PDF imprimable"
               >
-                <FileDown className="w-3.5 h-3.5 text-cyan-400" />
+                <FileDown className="w-3.5 h-3.5 text-sky-600" />
                 <span>PDF</span>
               </button>
             )}
@@ -1432,22 +1432,22 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
       {/* MODAL / FENÊTRE EN PLEIN ÉCRAN IMMERSIF */}
       {isFullScreen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-[#070b13] text-slate-100 overflow-y-auto animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 flex flex-col bg-slate-50 text-slate-800 overflow-y-auto animate-in fade-in duration-200">
           {/* Barre supérieure d'en-tête du Plein Écran */}
-          <div className="sticky top-0 z-30 flex flex-wrap items-center justify-between gap-3 px-6 py-3.5 bg-[#0b101c]/95 backdrop-blur-md border-b border-slate-800 shadow-xl">
+          <div className="sticky top-0 z-30 flex flex-wrap items-center justify-between gap-3 px-6 py-3.5 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-xl bg-cyan-950/90 border border-cyan-500/50 text-cyan-400">
+              <div className="p-2 rounded-xl bg-sky-50 border border-sky-200 text-sky-600">
                 <Maximize2 className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-white flex items-center gap-2">
+                <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
                   Observatoire des Trajectoires Biophysiques en Plein Écran
-                  <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-cyan-900/60 text-cyan-300 border border-cyan-700/60">
+                  <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-sky-100 text-sky-800 border border-sky-200 font-semibold">
                     {startYear} → {endYear}
                   </span>
                 </h2>
-                <p className="text-xs text-slate-400">
-                  Visualisation haute résolution multi-trajectoires · Année visualisée : <strong className="text-white font-mono">{currentSimYear}</strong>
+                <p className="text-xs text-slate-500">
+                  Visualisation haute résolution multi-trajectoires · Année visualisée : <strong className="text-slate-900 font-mono">{currentSimYear}</strong>
                 </p>
               </div>
             </div>
@@ -1456,12 +1456,12 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             <div className="flex flex-wrap items-center gap-3">
               
               {/* Sélecteur de période */}
-              <div className="flex items-center bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
-                <span className="text-[10px] text-slate-400 px-1.5 font-medium">Période :</span>
+              <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+                <span className="text-[10px] text-slate-500 px-1.5 font-medium">Période :</span>
                 <button
                   onClick={() => setTimeRange('1900-2200')}
                   className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                    timeRange === '1900-2200' ? 'bg-blue-600 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                    timeRange === '1900-2200' ? 'bg-sky-600 text-white font-semibold shadow-2xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   1900–2200
@@ -1469,7 +1469,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <button
                   onClick={() => setTimeRange('1900-2100')}
                   className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                    timeRange === '1900-2100' ? 'bg-blue-700 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                    timeRange === '1900-2100' ? 'bg-sky-700 text-white font-semibold shadow-2xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   1900–2100
@@ -1477,7 +1477,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <button
                   onClick={() => setTimeRange('2026-2200')}
                   className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                    timeRange === '2026-2200' ? 'bg-cyan-600 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                    timeRange === '2026-2200' ? 'bg-sky-600 text-white font-semibold shadow-2xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   2026–2200
@@ -1485,7 +1485,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <button
                   onClick={() => setTimeRange('2026-2100')}
                   className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                    timeRange === '2026-2100' ? 'bg-cyan-700 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                    timeRange === '2026-2100' ? 'bg-sky-700 text-white font-semibold shadow-2xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   2026–2100
@@ -1495,35 +1495,35 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               {/* Sélecteur de survol */}
               <button
                 onClick={() => setIsSyncHover(!isSyncHover)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-colors ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-colors shadow-2xs ${
                   !isSyncHover
-                    ? 'bg-emerald-950/70 border-emerald-600/70 text-emerald-300'
-                    : 'bg-indigo-950/70 border-indigo-600/70 text-indigo-300'
+                    ? 'bg-emerald-50 border-emerald-300 text-emerald-800'
+                    : 'bg-indigo-50 border-indigo-300 text-indigo-800'
                 }`}
                 title="Activer ou désactiver la synchronisation du survol entre les graphiques"
               >
                 {!isSyncHover ? (
                   <>
-                    <Eye className="w-3.5 h-3.5 text-emerald-400" />
+                    <Eye className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Survol : Indépendant</span>
                   </>
                 ) : (
                   <>
-                    <GitCompare className="w-3.5 h-3.5 text-indigo-400" />
+                    <GitCompare className="w-3.5 h-3.5 text-indigo-600" />
                     <span>Survol : Synchronisé</span>
                   </>
                 )}
               </button>
 
-              {/* BOUTON FERMER LE PLEIN ÉCRAN DEMANDÉ PAR L'UTILISATEUR */}
+              {/* BOUTON FERMER LE PLEIN ÉCRAN */}
               <button
                 onClick={() => setIsFullScreen(false)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg transition-colors cursor-pointer"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-xs transition-colors cursor-pointer"
                 title="Fermer le mode plein écran (Touche Échap)"
               >
                 <X className="w-4 h-4" />
                 <span>Fermer le plein écran</span>
-                <span className="text-[10px] px-1 py-0.2 rounded bg-rose-800/80 font-mono">Échap</span>
+                <span className="text-[10px] px-1 py-0.2 rounded bg-rose-800 font-mono">Échap</span>
               </button>
             </div>
           </div>
@@ -1531,21 +1531,21 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
           {/* Corps du Plein Écran */}
           <div className="flex-1 p-6 space-y-6 max-w-[1750px] mx-auto w-full">
             {/* Barre de navigation temporelle rapide en plein écran */}
-            <div className="p-3.5 rounded-xl bg-[#0c1220] border border-slate-800 flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-xs text-slate-300 font-mono">
-                <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping inline-block" />
-                <span>Curseur temporel actif : <strong className="text-white text-sm">{currentSimYear}</strong></span>
+            <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-2 text-xs text-slate-700 font-mono">
+                <span className="w-2.5 h-2.5 rounded-full bg-sky-500 animate-ping inline-block" />
+                <span>Curseur temporel actif : <strong className="text-slate-900 text-sm">{currentSimYear}</strong></span>
               </div>
               <div className="flex flex-wrap items-center gap-2 text-xs">
-                <span className="text-slate-400">Aller directement à :</span>
+                <span className="text-slate-500 font-medium">Aller directement à :</span>
                 {[1900, 1950, 2000, 2026, 2050, 2075, 2100, 2150, 2200].filter(y => y >= startYear && y <= endYear).map((yr) => (
                   <button
                     key={`jump-${yr}`}
                     onClick={() => onSeekYear(yr)}
                     className={`px-2.5 py-1 rounded font-mono font-bold cursor-pointer transition-colors ${
                       currentSimYear === yr
-                        ? 'bg-cyan-500 text-slate-950 shadow-md'
-                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                        ? 'bg-sky-600 text-white shadow-2xs'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
                     }`}
                   >
                     {yr}
