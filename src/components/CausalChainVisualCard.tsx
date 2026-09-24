@@ -24,7 +24,7 @@ const STEP_DATA: Record<number, StepMeta> = {
     sourceCredit: 'Photographie documentaire haute définition - Mer du Nord'
   },
   1: {
-    title: 'La Falaise de l\'EROI & le Métabolisme du Raffinage',
+    title: 'La Falaise du Rendement Énergétique & le Raffinage',
     subtitle: 'Colonnes de distillation fractionnée et vapocraqueurs pétroliers',
     metric: 'Autoconsommation : de 1% (1930) à 8,4% (2026), puis 25% (2050)',
     photoUrl: '/images/visuals/eroi_energy.jpg',

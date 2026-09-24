@@ -305,7 +305,7 @@ export const AiFutureDebateCard: React.FC = () => {
                   « La véritable intelligence du XXIe siècle ne consistera pas à simuler un monde infini, mais à savoir habiter poétiquement et sobrement le seul que nous ayons. »
                 </span>
                 <span className="font-mono text-[10.5px] text-purple-400 shrink-0">
-                  Synthèse Biophysique GAIA-Sim
+                  Synthèse CLIMATOPEDY
                 </span>
               </div>
             </div>

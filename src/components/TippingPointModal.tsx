@@ -177,7 +177,7 @@ export const TippingPointModal: React.FC<TippingPointModalProps> = ({
         {/* Pied de modal avec bouton de fermeture */}
         <div className="p-4 border-t border-slate-800 bg-[#0c1220] flex items-center justify-between">
           <span className="text-[11px] text-slate-400">
-            Fiche pédagogique accessible à tous · GAIA-Sim
+            Fiche pédagogique accessible à tous · CLIMATOPEDY
           </span>
           <button
             onClick={onClose}

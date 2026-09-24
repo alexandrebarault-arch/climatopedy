@@ -46,7 +46,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
     ]
   },
   {
-    question: "Qu'est-ce que l'EROI dans l'histoire des mûres sauvages ?",
+    question: "Qu'est-ce que le « Rendement de l'Énergie » dans l'histoire des mûres sauvages ?",
     options: [
       {
         text: "La vitesse à laquelle on court pour trouver les mûres",
@@ -61,7 +61,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
       {
         text: "Le prix des mûres au supermarché",
         correct: false,
-        explanation: "Non, l'EROI est une mesure physique d'énergie, pas une étiquette en euros !"
+        explanation: "Non, le rendement énergétique est une mesure physique d'énergie, pas une étiquette en euros !"
       }
     ]
   },
@@ -280,7 +280,7 @@ export const YouthExplainerCard: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">
-                    L'histoire du panier de mûres et de la falaise de l'énergie (EROI)
+                    L'histoire du panier de mûres et du rendement de l'énergie
                   </h3>
                   <p className="text-xs text-slate-400">
                     Pourquoi extraire du pétrole devient de plus en plus difficile pour notre civilisation
@@ -336,7 +336,7 @@ export const YouthExplainerCard: React.FC = () => {
                     </li>
                   </ul>
                   <div className="mt-auto p-2.5 rounded-lg bg-amber-950/40 border border-amber-800/50 text-[11px] text-amber-200">
-                    <strong>La « falaise énergétique » :</strong> Si l'EROI tombe sous 10:1, l'industrie dépense tellement d'énergie pour simplement trouver de l'énergie qu'il ne reste plus assez pour faire tourner les hôpitaux ou les usines.
+                    <strong>La « falaise énergétique » :</strong> Si le rendement tombe trop bas (sous 8 barils gagnés pour 1 dépensé), l'industrie dépense tellement d'énergie pour simplement trouver de l'énergie qu'il ne reste plus assez pour faire tourner les hôpitaux ou les usines.
                   </div>
                 </div>
               </div>
@@ -465,7 +465,7 @@ export const YouthExplainerCard: React.FC = () => {
                     <span>⚡</span> 2. L'énergie disponible
                   </span>
                   <p className="text-slate-300">
-                    <strong>Ligne jaune :</strong> L'EROI (la facilité à extraire l'énergie).
+                    <strong>Ligne jaune :</strong> Le rendement de l'énergie (combien de barils on gagne pour 1 baril dépensé à forer).
                   </p>
                   <p className="text-slate-400">
                     <strong>Ligne verte :</strong> La part d'énergie qu'il nous reste pour faire rouler le monde (écoles, tracteurs, hôpitaux).

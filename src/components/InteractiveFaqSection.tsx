@@ -62,8 +62,8 @@ export const InteractiveFaqSection: React.FC = () => {
       }
     };
 
-    window.addEventListener('gaia-open-faq', handleOpenFaq);
-    return () => window.removeEventListener('gaia-open-faq', handleOpenFaq);
+    window.addEventListener('climatopedy-open-faq', handleOpenFaq);
+    return () => window.removeEventListener('climatopedy-open-faq', handleOpenFaq);
   }, []);
 
   const FAQ_ITEMS: FaqItem[] = [
@@ -167,7 +167,7 @@ export const InteractiveFaqSection: React.FC = () => {
             </li>
           </ul>
           <p>
-            Dans GAIA-Sim, FaIR est directement exécuté en temps réel pour calculer l'anomalie thermique mondiale (°C) à chaque pas temporel en fonction des émissions cumulées de gaz à effet de serre.
+            Dans CLIMATOPEDY, ce modèle est directement exécuté en temps réel pour calculer l'anomalie thermique mondiale (°C) à chaque pas temporel en fonction des émissions cumulées de gaz à effet de serre.
           </p>
         </div>
       )
@@ -202,7 +202,7 @@ export const InteractiveFaqSection: React.FC = () => {
             Tw = T · atan(0.151977·√(RH + 8.313659)) + atan(T + RH) - atan(RH - 1.676331) + 0.00391838·RH^(3/2)·atan(0.023101·RH) - 4.686035
           </div>
           <p>
-            Cette formule est utilisée dans GAIA-Sim pour chaque pays afin de déterminer avec rigueur les jours annuels de mortalité par hyperthermie.
+            Cette formule est utilisée dans CLIMATOPEDY pour chaque pays afin de déterminer avec rigueur les jours annuels de mortalité par hyperthermie.
           </p>
         </div>
       )
@@ -295,7 +295,7 @@ export const InteractiveFaqSection: React.FC = () => {
             Dans les rapports du GIEC, le scénario <strong>SSP5-8.5</strong> représente un monde axé sur la croissance économique par l'intensification des ressources conventionnelles, sans politique climatique globale contraignante.
           </p>
           <p>
-            Dans GAIA-Sim, nous l'adoptons non pas comme une prophétie inéluctable, mais comme une <strong>sonde de contrainte biophysique</strong> :
+            Dans CLIMATOPEDY, nous l'adoptons non pas comme une prophétie inéluctable, mais comme une <strong>sonde de contrainte biophysique</strong> :
           </p>
           <ul className="space-y-1.5 list-disc pl-5 text-slate-300">
             <li>

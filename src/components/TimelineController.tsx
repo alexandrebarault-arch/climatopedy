@@ -36,7 +36,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
     : `${Math.round(simulationState.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`;
 
   return (
-    <div className="w-full rounded-xl bg-[#0b101b] border border-slate-800 p-4 shadow-xl flex flex-col gap-3">
+    <div id="tour-timeline" className="w-full rounded-xl bg-[#0b101b] border border-slate-800 p-4 shadow-xl flex flex-col gap-3">
       {/* Ligne 1 : Résumé des 6 macro-indicateurs biophysiques en temps réel */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-xs">
         {/* Population Mondiale */}
@@ -55,12 +55,12 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
           </span>
         </div>
 
-        {/* EROI & Énergie Nette (Clarifié pour le grand public sans le jargon mathématique) */}
+        {/* Rendement de l'Énergie & Énergie Nette Utile (parfaitement compréhensible sans connaissances préalables) */}
         <div className="bg-[#111726] border border-slate-800/80 rounded-lg p-2.5 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-slate-300 font-medium flex items-center gap-1">
-                Efficacité Pétrole
+                Rendement de l'Énergie
                 <TechTooltip term="eroi" showIconOnly />
               </span>
               <span className="text-[9.5px] font-mono text-amber-300 bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-800/80 font-bold">
@@ -85,7 +85,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
             </span>
           </div>
           <span className="text-[10px] text-emerald-400 mt-1 pt-1 border-t border-slate-800/80">
-            <strong>{(simulationState.netEnergyRatio * 100).toFixed(0)}%</strong> utile pour la société
+            <strong>{(simulationState.netEnergyRatio * 100).toFixed(0)}%</strong> d'énergie utile pour la société
           </span>
         </div>
 

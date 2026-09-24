@@ -19,7 +19,7 @@ const countriesGeo = topojson.feature(atlas, atlas.objects.countries);
 // Tracé SVG complet du socle continental mondial (Natural Earth 110m)
 export const WORLD_LAND_PATH = pathGenerator(landGeo) || '';
 
-// Table de correspondance nom de pays Natural Earth -> ID de simulation GAIA
+// Table de correspondance nom de pays Natural Earth -> ID de simulation CLIMATOPEDY
 export const NAME_TO_SIM_ID: Record<string, string> = {
   // Amérique du Nord
   'United States of America': 'usa',
@@ -219,7 +219,7 @@ export const NAME_TO_SIM_ID: Record<string, string> = {
 export interface ProcessedCountryFeature {
   id: string; // ISO ou code de feature
   name: string; // Nom officiel
-  simCountryId: string; // ID région simulation GAIA (ex: 'fra', 'usa')
+  simCountryId: string; // ID région simulation CLIMATOPEDY (ex: 'fra', 'usa')
   path: string; // Tracé SVG haute précision issu de Natural Earth
   centroid: [number, number]; // [x, y] en pixels SVG [0..1000, 0..500]
 }

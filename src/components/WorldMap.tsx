@@ -163,22 +163,22 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   const getCountryFillColor = (simId: string): string => {
     const dyn = simulationState.countries[simId];
     const staticC = COUNTRIES_DATA.find((c) => c.id === simId);
-    if (!dyn || !staticC) return '#1e293b';
+    if (!dyn || !staticC) return '#cbd5e1';
 
     switch (activeMetric) {
       case 'wet_bulb': {
         const tw = dyn.wetBulbPeak;
         // Échelle thermodynamique Roland Stull (2011) progressive par bandes climatiques
-        if (tw < 8.0) return '#0369a1'; // Froid arctique/boréal (Bleu franc)
-        if (tw < 14.0) return '#0284c7'; // Tempéré froid (Bleu ciel profond)
-        if (tw < 18.0) return '#0891b2'; // Tempéré doux (Cyan-bleu)
+        if (tw < 8.0) return '#0284c7'; // Froid arctique/boréal (Bleu franc)
+        if (tw < 14.0) return '#0ea5e9'; // Tempéré froid (Bleu ciel)
+        if (tw < 18.0) return '#06b6d4'; // Tempéré doux (Cyan-bleu)
         if (tw < 22.0) return '#0d9488'; // Tempéré chaud / Méditerranée (Sarcelle)
-        if (tw < 25.0) return '#059669'; // Subtropical vivable (Émeraude)
-        if (tw < 27.0) return '#ca8a04'; // Début d'inconfort thermique (Jaune ambre)
-        if (tw < 29.0) return '#ea580c'; // Stress thermique élevé (Orange vif)
-        if (tw < 31.0) return '#dc2626'; // Danger thermique sévère (Rouge vif)
-        if (tw < 33.0) return '#991b1b'; // SEUIL LÉTAL DÉPASSÉ (Rouge cramoisi)
-        return '#581c87'; // Effondrement métabolique immédiat (Pourpre létal)
+        if (tw < 25.0) return '#10b981'; // Subtropical vivable (Émeraude)
+        if (tw < 27.0) return '#eab308'; // Début d'inconfort thermique (Jaune ambre)
+        if (tw < 29.0) return '#f97316'; // Stress thermique élevé (Orange vif)
+        if (tw < 31.0) return '#ef4444'; // Danger thermique sévère (Rouge vif)
+        if (tw < 33.0) return '#b91c1c'; // SEUIL LÉTAL DÉPASSÉ (Rouge cramoisi)
+        return '#701a75'; // Effondrement métabolique immédiat (Pourpre létal)
       }
 
       case 'caloric_stress': {
@@ -216,24 +216,24 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         const exposure = staticC.coastalExposureScore;
         const slr = simulationState.seaLevelRiseMeters;
         const threatIndex = exposure * slr;
-        if (threatIndex < 0.05) return '#1e293b';
-        if (threatIndex < 0.15) return '#0369a1';
-        if (threatIndex < 0.30) return '#0284c7';
+        if (threatIndex < 0.05) return '#cbd5e1';
+        if (threatIndex < 0.15) return '#0284c7';
+        if (threatIndex < 0.30) return '#0ea5e9';
         if (threatIndex < 0.50) return '#06b6d4';
         return '#38bdf8';
       }
 
       case 'migration': {
         const push = dyn.pushFactor;
-        if (push < 0.1) return '#1e293b';
-        if (push < 0.25) return '#ca8a04';
-        if (push < 0.45) return '#ea580c';
-        if (push < 0.65) return '#dc2626';
+        if (push < 0.1) return '#cbd5e1';
+        if (push < 0.25) return '#eab308';
+        if (push < 0.45) return '#f97316';
+        if (push < 0.65) return '#ef4444';
         return '#991b1b';
       }
 
       default:
-        return '#334155';
+        return '#cbd5e1';
     }
   };
 
@@ -246,29 +246,29 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   ];
 
   return (
-    <div className="w-full rounded-xl bg-[#090d14] border border-slate-800 p-4 shadow-2xl flex flex-col gap-3">
+    <div id="tour-worldmap" className="w-full rounded-xl bg-white border border-slate-200/90 p-4 shadow-xs flex flex-col gap-3">
       {/* 1. Barre supérieure : Calques biophysiques & Sélecteur de pastilles */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800/80">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-100">
         <div className="flex items-center gap-2">
-          <Globe2 className="w-4 h-4 text-cyan-400" />
-          <span className="text-xs uppercase tracking-wider font-semibold text-slate-200">
+          <Globe2 className="w-4 h-4 text-sky-600" />
+          <span className="text-xs uppercase tracking-wider font-semibold text-slate-800">
             Planisphère EPSG:4326
           </span>
-          <span className="text-slate-600">·</span>
-          <span className="text-xs text-slate-400">
+          <span className="text-slate-300">·</span>
+          <span className="text-xs text-slate-500">
             Natural Earth 110m vectoriel
           </span>
         </div>
 
         {/* Calques biophysiques commutables */}
-        <div className="flex flex-wrap items-center gap-1 bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
+        <div id="tour-map-metrics" className="flex flex-wrap items-center gap-1 bg-slate-100/90 p-1 rounded-lg border border-slate-200 text-xs">
           <div className="flex items-center">
             <button
               onClick={() => setActiveMetric('wet_bulb')}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
                 activeMetric === 'wet_bulb'
-                  ? 'bg-rose-950/90 text-rose-300 font-semibold border border-rose-800/80'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-rose-50 text-rose-800 font-semibold border border-rose-200 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <Thermometer className="w-3.5 h-3.5" />
@@ -282,8 +282,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               onClick={() => setActiveMetric('caloric_stress')}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
                 activeMetric === 'caloric_stress'
-                  ? 'bg-amber-950/90 text-amber-300 font-semibold border border-amber-800/80'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-amber-50 text-amber-800 font-semibold border border-amber-200 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <Utensils className="w-3.5 h-3.5" />
@@ -296,8 +296,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             onClick={() => setActiveMetric('mortality')}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
               activeMetric === 'mortality'
-                ? 'bg-purple-950/90 text-purple-300 font-semibold border border-purple-800/80'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-purple-50 text-purple-800 font-semibold border border-purple-200 shadow-2xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Skull className="w-3.5 h-3.5" />
@@ -308,8 +308,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             onClick={() => setActiveMetric('population')}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
               activeMetric === 'population'
-                ? 'bg-blue-950/90 text-blue-300 font-semibold border border-blue-800/80'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-sky-50 text-sky-800 font-semibold border border-sky-200 shadow-2xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Users className="w-3.5 h-3.5" />
@@ -320,8 +320,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             onClick={() => setActiveMetric('sea_level')}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
               activeMetric === 'sea_level'
-                ? 'bg-cyan-950/90 text-cyan-300 font-semibold border border-cyan-800/80'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-cyan-50 text-cyan-800 font-semibold border border-cyan-200 shadow-2xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Waves className="w-3.5 h-3.5" />
@@ -332,8 +332,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             onClick={() => setActiveMetric('migration')}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
               activeMetric === 'migration'
-                ? 'bg-orange-950/90 text-orange-300 font-semibold border border-orange-800/80'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-orange-50 text-orange-800 font-semibold border border-orange-200 shadow-2xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <ShieldAlert className="w-3.5 h-3.5" />
@@ -344,10 +344,10 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         {/* Bouton Explicatif Scientifique pour les Zones Vertes en 2100-2200 */}
         <button
           onClick={() => setShowGreenZonesModal(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-900 transition-colors shadow-sm cursor-pointer ml-auto"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 border border-emerald-300 text-emerald-800 hover:bg-emerald-100 transition-colors shadow-2xs cursor-pointer ml-auto"
           title="Pourquoi certaines régions (Canada, Scandinavie, etc.) restent vertes en 2100 et 2200 ? Explication basée sur le GIEC AR6"
         >
-          <TreePine className="w-3.5 h-3.5 text-emerald-400" />
+          <TreePine className="w-3.5 h-3.5 text-emerald-600" />
           <span className="hidden sm:inline">Pourquoi des zones restent vertes en 2100 & 2200 ?</span>
           <span className="sm:hidden">Zones vertes ?</span>
         </button>
@@ -374,40 +374,40 @@ export const WorldMap: React.FC<WorldMapProps> = ({
       )}
 
       {/* 2. SYSTÈME D'ALERTES VISUELLES DE STRESS THERMIQUE 'STULL TW' */}
-      <div className="bg-[#0b131f] border border-slate-800 rounded-xl p-3 shadow-lg flex flex-col gap-2.5">
+      <div className="bg-slate-50/90 border border-slate-200 rounded-xl p-3 shadow-2xs flex flex-col gap-2.5">
         {/* Ligne 1 : Interrupteur d'alerte, sélection du seuil critique et statut */}
         <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
           {/* Titre & Bouton d'activation */}
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => setHeatAlertsEnabled(!heatAlertsEnabled)}
-              className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg font-semibold transition-all border ${
+              className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg font-semibold transition-all border cursor-pointer ${
                 heatAlertsEnabled
-                  ? 'bg-rose-950/90 text-rose-200 border-rose-600 shadow-md shadow-rose-950/60'
-                  : 'bg-slate-900 text-slate-400 border-slate-700 hover:text-slate-200'
+                  ? 'bg-rose-50 text-rose-800 border-rose-300 shadow-2xs'
+                  : 'bg-white text-slate-600 border-slate-200 hover:text-slate-900'
               }`}
               title="Activer ou désactiver les alertes visuelles sur la carte"
             >
               {heatAlertsEnabled ? (
                 <>
-                  <BellRing className="w-4 h-4 text-rose-400 animate-bounce" />
+                  <BellRing className="w-4 h-4 text-rose-600 animate-bounce" />
                   <span>Alertes Visuelles : ACTIVES</span>
                 </>
               ) : (
                 <>
-                  <Radio className="w-4 h-4 text-slate-500" />
+                  <Radio className="w-4 h-4 text-slate-400" />
                   <span>Alertes : En Veille</span>
                 </>
               )}
             </button>
 
-            <span className="text-slate-500 hidden sm:inline">|</span>
+            <span className="text-slate-300 hidden sm:inline">|</span>
             <div className="hidden sm:flex items-center gap-1.5">
-              <span className="text-slate-300 font-medium">
+              <span className="text-slate-700 font-medium">
                 Seuil Chaleur Humide Ressentie (Tw) :
               </span>
               <span
-                className="text-[10px] text-sky-400 bg-sky-950/80 px-1.5 py-0.5 rounded border border-sky-800/80 cursor-help"
+                className="text-[10px] text-sky-800 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 cursor-help"
                 title="Tw = 'Wet-Bulb Temperature' (Thermomètre Mouillé). Formule de Roland Stull (2011) combinant température et humidité. À 31°C Tw, la sueur ne peut plus s'évaporer : c'est le seuil mortel d'hyperthermie."
               >
                 Stull Tw ?
@@ -416,11 +416,11 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           </div>
 
           {/* Sélecteur de seuil critique Stull Tw */}
-          <div className="flex items-center gap-1.5 bg-[#121927] p-1 rounded-lg border border-slate-700/80">
+          <div className="flex items-center gap-1.5 bg-white p-1 rounded-lg border border-slate-200 shadow-2xs">
             {/* Décrémenter seuil */}
             <button
               onClick={() => setHeatAlertThreshold((prev) => Math.max(26.0, Number((prev - 0.5).toFixed(1))))}
-              className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
+              className="p-1 rounded hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
               title="Diminuer le seuil de 0.5°C"
             >
               <Minus className="w-3.5 h-3.5" />
@@ -439,10 +439,10 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   key={preset.val}
                   onClick={() => setHeatAlertThreshold(preset.val)}
                   title={preset.tip}
-                  className={`px-2 py-0.5 rounded text-[11px] font-mono transition-all ${
+                  className={`px-2 py-0.5 rounded text-[11px] font-mono transition-all cursor-pointer ${
                     heatAlertThreshold === preset.val
-                      ? 'bg-rose-600 text-white font-bold shadow'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                      ? 'bg-rose-600 text-white font-bold shadow-2xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   {preset.label}
@@ -453,13 +453,13 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             {/* Incrémenter seuil */}
             <button
               onClick={() => setHeatAlertThreshold((prev) => Math.min(38.0, Number((prev + 0.5).toFixed(1))))}
-              className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
+              className="p-1 rounded hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
               title="Augmenter le seuil de 0.5°C"
             >
               <Plus className="w-3.5 h-3.5" />
             </button>
 
-            <span className="px-2 py-0.5 bg-rose-950/70 border border-rose-700/60 rounded text-rose-300 font-mono font-bold text-xs ml-1">
+            <span className="px-2 py-0.5 bg-rose-50 border border-rose-200 rounded text-rose-800 font-mono font-bold text-xs ml-1">
               {heatAlertThreshold.toFixed(1)}°C
             </span>
           </div>
@@ -468,39 +468,39 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           <div className="flex items-center gap-2">
             {heatAlertsEnabled ? (
               thermalAnalysis.alertCount > 0 ? (
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-rose-950/80 border border-rose-700 text-rose-200">
-                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-rose-50 border border-rose-300 text-rose-800">
+                  <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
                   <span className="font-semibold font-mono">
                     {thermalAnalysis.alertCount} pays en alerte ({ (thermalAnalysis.alertPop / 1000).toFixed(2) } Md hab.)
                   </span>
                 </div>
               ) : (
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-950/60 border border-emerald-700/80 text-emerald-300">
-                  <ShieldCheck className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-50 border border-emerald-200 text-emerald-800">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Aucun pays &ge; {heatAlertThreshold.toFixed(1)}°C</span>
                 </div>
               )
             ) : (
-              <span className="text-slate-500 font-mono text-[11px]">Alertes visuelles en pause</span>
+              <span className="text-slate-400 font-mono text-[11px]">Alertes visuelles en pause</span>
             )}
 
             {/* Sélecteur de badges permanents */}
-            <div className="flex items-center gap-1 bg-[#141b2a] p-0.5 rounded border border-slate-700/80 text-[10.5px]">
-              <span className="text-slate-400 px-1 flex items-center gap-1">
+            <div className="flex items-center gap-1 bg-white p-0.5 rounded border border-slate-200 text-[10.5px]">
+              <span className="text-slate-500 px-1 flex items-center gap-1">
                 <Eye className="w-2.5 h-2.5" /> Pins :
               </span>
               <button
                 onClick={() => setTwOverlayMode('uninhabitable')}
-                className={`px-1.5 py-0.5 rounded ${
-                  twOverlayMode === 'uninhabitable' ? 'bg-rose-700 text-white font-semibold' : 'text-slate-400'
+                className={`px-1.5 py-0.5 rounded cursor-pointer ${
+                  twOverlayMode === 'uninhabitable' ? 'bg-rose-600 text-white font-semibold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Létal (&ge;31°)
               </button>
               <button
                 onClick={() => setTwOverlayMode('off')}
-                className={`px-1.5 py-0.5 rounded ${
-                  twOverlayMode === 'off' ? 'bg-slate-700 text-white font-semibold' : 'text-slate-500'
+                className={`px-1.5 py-0.5 rounded cursor-pointer ${
+                  twOverlayMode === 'off' ? 'bg-slate-200 text-slate-800 font-semibold' : 'text-slate-500 hover:text-slate-800'
                 }`}
               >
                 Masquer
@@ -550,7 +550,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         {/* ========================================================= */}
         {/* ZONE GAUCHE : PLANISPHÈRE MONDIAL NET ET VECTORIEL        */}
         {/* ========================================================= */}
-        <div className="lg:col-span-8 xl:col-span-9 relative bg-[#070b13] rounded-xl border border-slate-800/80 p-2 overflow-hidden flex flex-col justify-between shadow-inner lg:h-[520px] lg:max-h-[520px]">
+        <div className="lg:col-span-8 xl:col-span-9 relative bg-[#e0f0f7] rounded-xl border border-slate-200 p-2 overflow-hidden flex flex-col justify-between shadow-xs lg:h-[520px] lg:max-h-[520px]">
           <svg
             viewBox="0 0 1000 500"
             className="w-full h-auto block select-none"
@@ -559,29 +559,29 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             <defs>
               {/* Grille océanique bathymétrique */}
               <pattern id="oceanGridClear" width="50" height="50" patternUnits="userSpaceOnUse">
-                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#0e1726" strokeWidth="0.6" />
+                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#c8e2ed" strokeWidth="0.6" />
               </pattern>
 
               {/* Hachures d'inhabitabilité létale standard */}
               <pattern id="uninhabitableStripe" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="0" x2="0" y2="10" stroke="#dc2626" strokeWidth="2.5" opacity="0.5" />
+                <line x1="0" y1="0" x2="0" y2="10" stroke="#dc2626" strokeWidth="2.5" opacity="0.6" />
               </pattern>
 
               {/* Hachures d'alerte critique de stress thermique Stull Tw (Haute visibilité) */}
               <pattern id="heatAlertHazardStripe" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
                 <rect width="10" height="10" fill="none" />
-                <line x1="0" y1="0" x2="0" y2="10" stroke="#f43f5e" strokeWidth="3" opacity="0.75" />
+                <line x1="0" y1="0" x2="0" y2="10" stroke="#e11d48" strokeWidth="3" opacity="0.8" />
               </pattern>
 
               {/* Halo d'alerte lumineuse pour pays en dépassement critique */}
               <filter id="alertGlowNeon" x="-25%" y="-25%" width="150%" height="150%">
-                <feDropShadow dx="0" dy="0" stdDeviation="3.2" floodColor="#f43f5e" floodOpacity="0.9" />
+                <feDropShadow dx="0" dy="0" stdDeviation="3.2" floodColor="#f43f5e" floodOpacity="0.8" />
               </filter>
 
               {/* Arcs migratoires */}
               <linearGradient id="migrGradient" x1="0%" y1="100%" x2="0%" y2="0%">
                 <stop offset="0%" stopColor="#ef4444" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#0284c7" stopOpacity="0.5" />
               </linearGradient>
 
               {/* Dôme thermique intertropical */}
@@ -594,31 +594,31 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               </linearGradient>
             </defs>
 
-            {/* Océan profond avec gestionnaire de temporisation apaisée */}
-            <rect width="1000" height="500" fill="#070c16" onPointerEnter={onOceanPointerEnter} />
-            <rect width="1000" height="500" fill="url(#oceanGridClear)" opacity="0.8" className="pointer-events-none" />
+            {/* Océan lumineux et doux avec gestionnaire de temporisation apaisée */}
+            <rect width="1000" height="500" fill="#e2f1f8" onPointerEnter={onOceanPointerEnter} />
+            <rect width="1000" height="500" fill="url(#oceanGridClear)" opacity="0.9" className="pointer-events-none" />
 
             {/* Bande de chaleur équatoriale */}
             <rect y="160" width="1000" height="180" fill="url(#equatorialMesh)" className="pointer-events-none" />
 
             {/* Parallèles géographiques discrets */}
-            <line x1="0" y1="250" x2="1000" y2="250" stroke="#334155" strokeWidth="0.8" strokeDasharray="3,3" opacity="0.35" />
+            <line x1="0" y1="250" x2="1000" y2="250" stroke="#64748b" strokeWidth="0.8" strokeDasharray="3,3" opacity="0.4" />
             <text x="10" y="246" fill="#475569" fontSize="8" fontFamily="monospace">Équateur 0°</text>
 
-            <line x1="0" y1="184.7" x2="1000" y2="184.7" stroke="#334155" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.25" />
+            <line x1="0" y1="184.7" x2="1000" y2="184.7" stroke="#64748b" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.35" />
             <text x="10" y="181" fill="#475569" fontSize="7" fontFamily="monospace">Tropique +23.5°</text>
 
-            <line x1="0" y1="315.3" x2="1000" y2="315.3" stroke="#334155" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.25" />
+            <line x1="0" y1="315.3" x2="1000" y2="315.3" stroke="#64748b" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.35" />
             <text x="10" y="311" fill="#475569" fontSize="7" fontFamily="monospace">Tropique -23.5°</text>
 
-            <line x1="500" y1="0" x2="500" y2="500" stroke="#334155" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.2" />
+            <line x1="500" y1="0" x2="500" y2="500" stroke="#64748b" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.3" />
             <text x="504" y="14" fill="#475569" fontSize="7" fontFamily="monospace">0° Greenwich</text>
 
             {/* SOCLE CONTINENTAL MONDIAL UNIFIÉ (Natural Earth 110m) */}
             <path
               d={WORLD_LAND_PATH}
-              fill="#131c2e"
-              stroke="#1e293b"
+              fill="#e2e8f0"
+              stroke="#cbd5e1"
               strokeWidth="0.5"
               className="pointer-events-none"
             />
@@ -634,20 +634,20 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               const fillColor = getCountryFillColor(feature.simCountryId);
 
               // Contour et style d'alerte
-              let strokeColor = 'rgba(255, 255, 255, 0.22)';
+              let strokeColor = '#ffffff';
               let strokeW = 0.8;
               let strokeDash: string | undefined = undefined;
 
               if (isSelected) {
-                strokeColor = '#38bdf8';
-                strokeW = 2.0;
+                strokeColor = '#0284c7';
+                strokeW = 2.2;
               } else if (isInHeatAlert) {
-                strokeColor = tw >= 35.0 ? '#c084fc' : tw >= 32.0 ? '#f43f5e' : '#fb923c';
-                strokeW = 1.9;
+                strokeColor = tw >= 35.0 ? '#9333ea' : tw >= 32.0 ? '#dc2626' : '#ea580c';
+                strokeW = 2.0;
                 strokeDash = '4,2.5';
               } else if (isHovered) {
-                strokeColor = '#ffffff';
-                strokeW = 1.0;
+                strokeColor = '#0f172a';
+                strokeW = 1.4;
               }
 
               return (
@@ -886,15 +886,16 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       width="96"
                       height="18"
                       rx="3"
-                      fill="#070d19"
-                      stroke={isAlert ? '#f43f5e' : '#38bdf8'}
+                      fill="#ffffff"
+                      stroke={isAlert ? '#dc2626' : '#0284c7'}
                       strokeWidth="1.2"
+                      filter="drop-shadow(0 2px 4px rgba(0,0,0,0.1))"
                     />
                     <text
                       x="0"
                       y="-3.5"
                       textAnchor="middle"
-                      fill="#ffffff"
+                      fill="#0f172a"
                       fontSize="8"
                       fontWeight="700"
                       fontFamily="monospace"
@@ -908,14 +909,14 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           </svg>
 
           {/* Légende horizontale en bas du planisphère */}
-          <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400 px-2 pt-2 border-t border-slate-800/60 mt-1">
+          <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 px-2 pt-2 border-t border-slate-200 mt-1">
             <div className="flex items-center gap-2">
-              <span className="font-medium text-slate-300 text-[11px]">Échelle Stull Tw :</span>
+              <span className="font-semibold text-slate-800 text-[11px]">Échelle Stull Tw :</span>
               <div className="flex items-center gap-1">
-                <span className="text-[10px] text-sky-400 font-mono">&lt;14°C Boréal</span>
-                <span className="text-[10px] text-emerald-400 font-mono">22°C Vivable</span>
+                <span className="text-[10px] text-sky-700 font-mono">&lt;14°C Boréal</span>
+                <span className="text-[10px] text-emerald-700 font-mono">22°C Vivable</span>
                 <div className="h-2 w-20 rounded bg-gradient-to-r from-sky-600 via-emerald-500 to-rose-600" />
-                <span className="text-[10px] text-rose-400 font-bold font-mono">&ge;31.0°C Seuil létal</span>
+                <span className="text-[10px] text-rose-700 font-bold font-mono">&ge;31.0°C Seuil létal</span>
               </div>
             </div>
 
@@ -928,7 +929,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         {/* ========================================================= */}
         {/* ZONE DROITE : COLONNE D'ANALYSE BIOPHYSIQUE EN TEMPS RÉEL */}
         {/* ========================================================= */}
-        <div className="lg:col-span-4 xl:col-span-3 flex flex-col bg-[#0b121e] border border-slate-800 rounded-xl p-3 shadow-xl justify-between lg:h-[520px] lg:max-h-[520px] overflow-y-auto">
+        <div className="lg:col-span-4 xl:col-span-3 flex flex-col bg-white border border-slate-200/90 rounded-xl p-3 shadow-xs justify-between lg:h-[520px] lg:max-h-[520px] overflow-y-auto">
           {activeCountryData ? (
             // CAS A : UN PAYS EST SURVOLÉ OU ÉPINGLÉ
             (() => {
@@ -946,21 +947,21 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                 <div className="flex flex-col gap-3 h-full justify-between">
                   <div>
                     {/* Statut du panneau (Survol vs Épinglé) avec bouton de fermeture */}
-                    <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                    <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                       <div className="flex items-center gap-1.5">
-                        <span className={`w-2 h-2 rounded-full ${hoveredFeature ? 'bg-cyan-400 animate-pulse' : 'bg-amber-400'}`} />
-                        <span className="text-[10.5px] uppercase tracking-wider font-semibold text-slate-400">
+                        <span className={`w-2 h-2 rounded-full ${hoveredFeature ? 'bg-sky-500 animate-pulse' : 'bg-amber-500'}`} />
+                        <span className="text-[10.5px] uppercase tracking-wider font-semibold text-slate-600">
                           {hoveredFeature ? 'Analyse en Direct (Survol)' : 'Territoire Sélectionné'}
                         </span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <span className="text-[10.5px] font-mono text-cyan-300 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 font-semibold">
+                        <span className="text-[10.5px] font-mono text-sky-800 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 font-semibold">
                           {activeCountryData.code}
                         </span>
                         {selectedCountryId && (
                           <button
                             onClick={() => onSelectCountry(null)}
-                            className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10.5px] transition-colors cursor-pointer"
+                            className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 text-[10.5px] transition-colors cursor-pointer"
                             title="Désélectionner ce pays et revenir à la vue globale"
                           >
                             <X className="w-3 h-3" />
@@ -973,34 +974,34 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     {/* Nom du pays & Région */}
                     <div className="mt-2 mb-2.5">
                       <div className="flex items-baseline gap-2">
-                        <h3 className="text-base font-bold text-white tracking-tight">
+                        <h3 className="text-base font-bold text-slate-900 tracking-tight">
                           {activeCountryData.frenchName}
                         </h3>
                         {activeFeature?.name && activeFeature.name !== activeCountryData.name && (
-                          <span className="text-xs text-slate-400">
+                          <span className="text-xs text-slate-500">
                             ({activeFeature.name})
                           </span>
                         )}
                       </div>
-                      <span className="text-[11px] text-slate-400">
+                      <span className="text-[11px] text-slate-500">
                         {activeCountryData.region} · Année {Math.floor(simulationState.year)}
                       </span>
                     </div>
 
                     {/* BANNIÈRE D'ALERTE DE STRESS THERMIQUE CRITIQUE SI SEUIL DÉPASSÉ */}
                     {heatAlertsEnabled && tw >= heatAlertThreshold && (
-                      <div className="mb-2.5 p-2.5 rounded-lg bg-gradient-to-r from-rose-950 via-red-950 to-purple-950 border border-rose-500 shadow-md text-xs space-y-1.5 animate-pulse">
+                      <div className="mb-2.5 p-2.5 rounded-lg bg-rose-50 border border-rose-300 shadow-2xs text-xs space-y-1.5 animate-pulse">
                         <div className="flex items-center gap-1.5">
-                          <AlertOctagon className="w-4 h-4 text-rose-400 shrink-0" />
-                          <span className="font-bold text-white text-[11px] uppercase tracking-wide">
+                          <AlertOctagon className="w-4 h-4 text-rose-600 shrink-0" />
+                          <span className="font-bold text-rose-900 text-[11px] uppercase tracking-wide">
                             🚨 Canicule Mortelle Dépassée (Tw &ge; {heatAlertThreshold.toFixed(1)}°C)
                           </span>
                         </div>
-                        <p className="text-[10.5px] text-rose-200 leading-snug">
+                        <p className="text-[10.5px] text-rose-800 leading-snug">
                           <strong>Danger vital :</strong> Lors du pic estival ({dyn.summerMaxTemp.toFixed(1)}°C / {dyn.summerHumidity}% humidité), la chaleur ressentie atteint <strong>{tw.toFixed(1)}°C</strong>.
                           L'air saturé empêche la sueur de s'évaporer, provoquant une surchauffe mortelle du corps humain en &lt;6h sans pièce climatisée.
                         </p>
-                        <div className="flex items-center justify-between text-[10px] text-rose-300 pt-1 border-t border-rose-800/80 font-mono">
+                        <div className="flex items-center justify-between text-[10px] text-rose-900 pt-1 border-t border-rose-200 font-mono">
                           <span>Habitants menacés : <strong>{dyn.cohorts.total.toFixed(0)} M</strong></span>
                           <span>Enfants &amp; Aînés : <strong>{(dyn.cohorts.p0 + dyn.cohorts.p2).toFixed(0)} M</strong></span>
                         </div>
@@ -1011,30 +1012,30 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     <div
                       className={`p-2.5 rounded-lg border mb-2.5 space-y-1.5 ${
                         isUninhabitable
-                          ? 'bg-rose-950/80 border-rose-600 shadow-md shadow-rose-950/60'
+                          ? 'bg-rose-50 border-rose-300 text-rose-950 shadow-2xs'
                           : isSevere
-                          ? 'bg-amber-950/80 border-amber-600'
+                          ? 'bg-amber-50 border-amber-300 text-amber-950'
                           : isWarning
-                          ? 'bg-yellow-950/60 border-yellow-700'
-                          : 'bg-emerald-950/60 border-emerald-700'
+                          ? 'bg-yellow-50 border-yellow-300 text-yellow-950'
+                          : 'bg-emerald-50 border-emerald-300 text-emerald-950'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <span className="text-[11px] font-medium text-slate-300 flex items-center gap-1.5">
-                            <Flame className="w-4 h-4 text-rose-400" />
+                          <span className="text-[11px] font-semibold text-slate-800 flex items-center gap-1.5">
+                            <Flame className="w-4 h-4 text-rose-600" />
                             <span>Chaleur Humide Ressentie (Tw)</span>
                           </span>
-                          <span className="text-[9.5px] text-slate-400 block mt-0.5">
+                          <span className="text-[9.5px] text-slate-600 block mt-0.5">
                             Pic estival à {dyn.summerMaxTemp.toFixed(1)}°C · {dyn.summerHumidity}% humidité (Formule Stull)
                           </span>
                         </div>
                         <div className="text-right">
-                          <span className="text-xl font-mono font-bold text-white tabular-nums">
+                          <span className="text-xl font-mono font-bold text-slate-900 tabular-nums">
                             {tw.toFixed(1)}°C
                           </span>
                           {heatAlertsEnabled && tw >= heatAlertThreshold && (
-                            <span className="block text-[9.5px] font-mono text-rose-400 font-bold">
+                            <span className="block text-[9.5px] font-mono text-rose-700 font-bold">
                               &gt; Seuil {heatAlertThreshold.toFixed(1)}°C ⚠️
                             </span>
                           )}
@@ -1043,18 +1044,18 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Jauge graphique de Tw par rapport au seuil létal de 31°C */}
                       <div className="space-y-1">
-                        <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden flex relative">
+                        <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden flex relative">
                           <div
                             className={`h-full transition-all duration-300 ${
-                              tw >= 35.0 ? 'bg-purple-500' : isUninhabitable ? 'bg-rose-500' : isSevere ? 'bg-amber-500' : 'bg-emerald-400'
+                              tw >= 35.0 ? 'bg-purple-600' : isUninhabitable ? 'bg-rose-600' : isSevere ? 'bg-amber-500' : 'bg-emerald-500'
                             }`}
                             style={{ width: `${Math.min(100, Math.max(5, ((tw - 10) / 25) * 100))}%` }}
                           />
                         </div>
-                        <div className="flex justify-between text-[9px] font-mono text-slate-400">
+                        <div className="flex justify-between text-[9px] font-mono text-slate-500">
                           <span>10°C</span>
-                          <span className="text-rose-400 font-semibold">Seuil Mortel 31°C</span>
-                          <span className={heatAlertThreshold === 32.0 ? 'text-amber-300 font-bold' : ''}>
+                          <span className="text-rose-700 font-semibold">Seuil Mortel 31°C</span>
+                          <span className={heatAlertThreshold === 32.0 ? 'text-amber-800 font-bold' : ''}>
                             {heatAlertThreshold.toFixed(1)}°C (Seuil)
                           </span>
                           <span>35°C</span>
@@ -1064,19 +1065,19 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       {/* Diagnostic physiologique */}
                       <div className="pt-0.5 text-[11px] font-semibold">
                         {isUninhabitable ? (
-                          <p className="text-rose-300 leading-tight">
+                          <p className="text-rose-800 leading-tight">
                             ☠️ INHABITABLE : Décès par surchauffe corporelle en &lt;6h sans climatisation.
                           </p>
                         ) : isSevere ? (
-                          <p className="text-amber-300 leading-tight">
+                          <p className="text-amber-800 leading-tight">
                             ⚠️ DANGER SÉVÈRE : Travailler dehors devient mortel pour le corps.
                           </p>
                         ) : isWarning ? (
-                          <p className="text-yellow-300 leading-tight">
+                          <p className="text-yellow-800 leading-tight">
                             ⚡ STRESS ÉLEVÉ : Inconfort thermique sévère et risques sanitaires.
                           </p>
                         ) : (
-                          <p className="text-emerald-300 leading-tight">
+                          <p className="text-emerald-800 leading-tight">
                             ✅ VIVABLE : Le corps régule sa chaleur par la transpiration.
                           </p>
                         )}
@@ -1086,12 +1087,12 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     {/* BLOC 2 : MÉTRIQUES CLIMATIQUES & DÉMOGRAPHIQUES SIMPLIFIÉES */}
                     <div className="space-y-1.5 text-xs">
                       {/* Pic caniculaire estival */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400 flex items-center gap-1">
-                          <Sun className="w-3.5 h-3.5 text-amber-400" />
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600 flex items-center gap-1">
+                          <Sun className="w-3.5 h-3.5 text-amber-600" />
                           Pic de chaleur à l'ombre (été)
                         </span>
-                        <span className="font-mono text-amber-300 tabular-nums font-semibold">
+                        <span className="font-mono text-amber-800 tabular-nums font-semibold">
                           {dyn.summerMaxTemp.toFixed(1)}°C{' '}
                           <span className="text-slate-500 font-normal text-[10.5px]">
                             (+{(dyn.summerMaxTemp - activeCountryData.summerMaxTemp).toFixed(1)}°C)
@@ -1100,23 +1101,23 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       </div>
 
                       {/* Humidité relative caniculaire */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400 flex items-center gap-1">
-                          <Droplets className="w-3.5 h-3.5 text-sky-400" />
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600 flex items-center gap-1">
+                          <Droplets className="w-3.5 h-3.5 text-sky-600" />
                           Humidité dans l'air (en %)
                         </span>
-                        <span className="font-mono text-sky-300 tabular-nums font-medium">
+                        <span className="font-mono text-sky-800 tabular-nums font-medium">
                           {dyn.summerHumidity}%
                         </span>
                       </div>
 
                       {/* Température moyenne annuelle */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400 flex items-center gap-1">
-                          <Thermometer className="w-3.5 h-3.5 text-slate-400" />
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600 flex items-center gap-1">
+                          <Thermometer className="w-3.5 h-3.5 text-slate-500" />
                           Température moyenne sur l'année
                         </span>
-                        <span className="font-mono text-slate-200 tabular-nums font-medium">
+                        <span className="font-mono text-slate-800 tabular-nums font-medium">
                           {dyn.dryBulbTemp.toFixed(1)}°C{' '}
                           <span className="text-slate-500 font-normal text-[10.5px]">
                             (+{(dyn.dryBulbTemp - activeCountryData.baseTemp).toFixed(1)}°C)
@@ -1125,15 +1126,15 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       </div>
 
                       {/* Population résidente */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400">Nombre d'habitants</span>
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600">Nombre d'habitants</span>
                         <div className="text-right font-mono">
-                          <span className="font-medium text-white tabular-nums">
+                          <span className="font-semibold text-slate-900 tabular-nums">
                             {dyn.cohorts.total.toFixed(1)} M
                           </span>
                           <span
                             className={`ml-1.5 text-[11px] font-semibold tabular-nums ${
-                              popChangePct < 0 ? 'text-rose-400' : 'text-emerald-400'
+                              popChangePct < 0 ? 'text-rose-700' : 'text-emerald-700'
                             }`}
                           >
                             {popChangePct > 0 ? `+${popChangePct.toFixed(1)}%` : `${popChangePct.toFixed(1)}%`}
@@ -1142,11 +1143,11 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       </div>
 
                       {/* Ration alimentaire */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400">Ration par personne</span>
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600">Ration par personne</span>
                         <span
                           className={`font-mono tabular-nums font-medium ${
-                            isFamine ? 'text-rose-400 font-bold' : 'text-emerald-400'
+                            isFamine ? 'text-rose-700 font-bold' : 'text-emerald-700'
                           }`}
                         >
                           {Math.round(dyn.calPerCapita)} kcal/j {isFamine && '(Famine)'}
@@ -1154,9 +1155,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       </div>
 
                       {/* Surmortalité annuelle */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400">Décès annuels causés par les crises</span>
-                        <span className="font-mono text-purple-300 font-medium tabular-nums">
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600">Décès annuels causés par les crises</span>
+                        <span className="font-mono text-purple-800 font-medium tabular-nums">
                           {dyn.annualDeaths.total.toFixed(2)} M/an{' '}
                           <span className="text-slate-500 text-[10.5px]">
                             ({(dyn.mortalityRates.total * 1000).toFixed(1)}‰)
@@ -1165,11 +1166,11 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       </div>
 
                       {/* Solde migratoire */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-800/80">
-                        <span className="text-slate-400">Départs / Arrivées de population</span>
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600">Départs / Arrivées de population</span>
                         <span
                           className={`font-mono tabular-nums ${
-                            dyn.netMigration < 0 ? 'text-rose-400' : 'text-cyan-400'
+                            dyn.netMigration < 0 ? 'text-rose-700' : 'text-sky-700'
                           }`}
                         >
                           {dyn.netMigration > 0 ? `+${dyn.netMigration.toFixed(2)}` : dyn.netMigration.toFixed(2)} M/an
@@ -1178,33 +1179,33 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Pyramide des âges */}
                       <div className="pt-1.5">
-                        <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                        <div className="flex justify-between text-[11px] text-slate-600 mb-1">
                           <span>Tranches d'âge de la population</span>
-                          <span className="font-mono text-slate-300 text-[10.5px]">
+                          <span className="font-mono text-slate-700 text-[10.5px]">
                             {Math.round(dyn.cohorts.p0)}M enf. / {Math.round(dyn.cohorts.p1)}M act. / {Math.round(dyn.cohorts.p2)}M aînés
                           </span>
                         </div>
-                        <div className="w-full h-2 bg-slate-900 rounded flex overflow-hidden">
+                        <div className="w-full h-2 bg-slate-200 rounded flex overflow-hidden">
                           <div
-                            className="bg-cyan-500 h-full"
+                            className="bg-sky-500 h-full"
                             style={{ width: `${(dyn.cohorts.p0 / dyn.cohorts.total) * 100}%` }}
                             title="0-14 ans (Enfants)"
                           />
                           <div
-                            className="bg-blue-500 h-full"
+                            className="bg-blue-600 h-full"
                             style={{ width: `${(dyn.cohorts.p1 / dyn.cohorts.total) * 100}%` }}
                             title="15-64 ans (Actifs)"
                           />
                           <div
-                            className="bg-purple-500 h-full"
+                            className="bg-purple-600 h-full"
                             style={{ width: `${(dyn.cohorts.p2 / dyn.cohorts.total) * 100}%` }}
                             title="65+ ans (Aînés)"
                           />
                         </div>
-                        <div className="flex justify-between text-[9.5px] text-slate-400 mt-1">
-                          <span className="text-cyan-400">Enfants (0-14 ans)</span>
-                          <span className="text-blue-400">Actifs (15-64 ans)</span>
-                          <span className="text-purple-400">Aînés (65+ ans)</span>
+                        <div className="flex justify-between text-[9.5px] text-slate-600 mt-1 font-medium">
+                          <span className="text-sky-700">Enfants (0-14 ans)</span>
+                          <span className="text-blue-700">Actifs (15-64 ans)</span>
+                          <span className="text-purple-700">Aînés (65+ ans)</span>
                         </div>
                       </div>
                     </div>
@@ -1213,7 +1214,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   {/* Bouton d'inspection granulaire */}
                   <button
                     onClick={() => onSelectCountry(activeCountryData.id)}
-                    className="w-full mt-2 py-2 px-3 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-medium text-xs rounded-lg border border-slate-700 flex items-center justify-center gap-1.5 transition-colors"
+                    className="w-full mt-2 py-2 px-3 bg-sky-50 hover:bg-sky-100 text-sky-800 font-semibold text-xs rounded-lg border border-sky-200 flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
                   >
                     <span>Ouvrir l'inspecteur complet</span>
                     <ChevronRight className="w-3.5 h-3.5" />
@@ -1226,32 +1227,32 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             <div className="flex flex-col gap-3 h-full justify-between">
               <div>
                 {/* En-tête Global */}
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                   <div className="flex items-center gap-1.5">
-                    <Globe2 className="w-4 h-4 text-cyan-400" />
-                    <span className="text-xs uppercase tracking-wider font-semibold text-slate-300">
+                    <Globe2 className="w-4 h-4 text-sky-600" />
+                    <span className="text-xs uppercase tracking-wider font-semibold text-slate-800">
                       Bilan Planétaire Global
                     </span>
                   </div>
-                  <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800/80">
+                  <span className="text-xs font-mono font-bold text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
                     {Math.floor(simulationState.year)}
                   </span>
                 </div>
 
-                <p className="text-[11px] text-slate-400 mt-2 mb-3 leading-relaxed">
+                <p className="text-[11px] text-slate-500 mt-2 mb-3 leading-relaxed">
                   Survolez n'importe quel pays sur le planisphère pour afficher ses indicateurs biophysiques en direct.
                 </p>
 
                 {/* Métriques globales en cartes compactes */}
                 <div className="space-y-2.5">
                   {/* Population mondiale */}
-                  <div className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800 space-y-1">
+                  <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-slate-400 flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5 text-blue-400" />
+                      <span className="text-slate-600 flex items-center gap-1.5">
+                        <Users className="w-3.5 h-3.5 text-sky-600" />
                         Population Mondiale
                       </span>
-                      <span className="font-mono font-bold text-white text-sm">
+                      <span className="font-mono font-bold text-slate-900 text-sm">
                         {(simulationState.worldPopulation / 1000).toFixed(2)} Md
                       </span>
                     </div>
@@ -1259,7 +1260,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <span className="text-slate-500">Pic 2026 : 8.15 Md</span>
                       <span
                         className={`font-mono ${
-                          simulationState.worldPopulation < 8150 ? 'text-rose-400' : 'text-emerald-400'
+                          simulationState.worldPopulation < 8150 ? 'text-rose-700' : 'text-emerald-700'
                         }`}
                       >
                         {simulationState.worldPopulation < 8150 ? (
@@ -1281,24 +1282,24 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   <div
                     className={`p-2.5 rounded-lg border space-y-1 ${
                       thermalAnalysis.uninhabitableCount > 0
-                        ? 'bg-rose-950/80 border-rose-700'
-                        : 'bg-slate-900/90 border-slate-800'
+                        ? 'bg-rose-50 border-rose-300'
+                        : 'bg-slate-50 border-slate-200'
                     }`}
                   >
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-slate-300 flex items-center gap-1.5">
-                        <Flame className="w-3.5 h-3.5 text-rose-400" />
+                      <span className="text-slate-800 flex items-center gap-1.5">
+                        <Flame className="w-3.5 h-3.5 text-rose-600" />
                         Dômes Létaux (Tw &ge; 31°C)
                       </span>
                       <span
                         className={`font-mono font-bold text-sm ${
-                          thermalAnalysis.uninhabitableCount > 0 ? 'text-rose-300' : 'text-emerald-400'
+                          thermalAnalysis.uninhabitableCount > 0 ? 'text-rose-800' : 'text-emerald-700'
                         }`}
                       >
                         {thermalAnalysis.uninhabitableCount} région(s)
                       </span>
                     </div>
-                    <p className="text-[10.5px] text-slate-400 leading-tight">
+                    <p className="text-[10.5px] text-slate-600 leading-tight">
                       {thermalAnalysis.uninhabitableCount > 0
                         ? `${(thermalAnalysis.uninhabitablePop / 1000).toFixed(2)} Md d'humains exposés à l'hyperthermie mortelle.`
                         : 'Aucune zone létale saisonnière permanente.'}
@@ -1306,44 +1307,50 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   </div>
 
                   {/* Réchauffement de surface FaIR */}
-                  <div className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800 space-y-1">
+                  <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-slate-400 flex items-center gap-1.5">
-                        <Thermometer className="w-3.5 h-3.5 text-rose-400" />
+                      <span className="text-slate-600 flex items-center gap-1.5">
+                        <Thermometer className="w-3.5 h-3.5 text-rose-600" />
                         <span>Réchauffement Mondial</span>
                         <span
-                          className="text-[9px] text-cyan-400 bg-cyan-950/80 px-1 py-0.5 rounded border border-cyan-800/80 cursor-help font-mono"
+                          className="text-[9px] text-sky-800 bg-sky-50 px-1 py-0.5 rounded border border-sky-200 cursor-help font-mono"
                           title="FaIR (Finite Amplitude Impulse Response) est le modèle climatique simplifié officiel du GIEC (AR6) simulant la hausse de température due aux émissions."
                         >
                           FaIR ?
                         </span>
                       </span>
-                      <span className="font-mono font-bold text-white text-sm">
+                      <span className="font-mono font-bold text-slate-900 text-sm">
                         +{simulationState.surfaceTemperatureAnomaly.toFixed(2)}°C
                       </span>
                     </div>
                     <div className="flex justify-between text-[10.5px] text-slate-500">
                       <span>CO₂ atmosphérique :</span>
-                      <span className="font-mono text-slate-300">
+                      <span className="font-mono text-slate-700">
                         {simulationState.atmosphericCo2Ppm.toFixed(0)} ppm
                       </span>
                     </div>
                   </div>
 
-                  {/* Énergie nette et EROI */}
-                  <div className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800 space-y-1">
+                  {/* Rendement de l'énergie et part nette utile */}
+                  <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-slate-400 flex items-center gap-1.5">
-                        <Zap className="w-3.5 h-3.5 text-amber-400" />
-                        EROI Pétrolier Net
+                      <span className="text-slate-600 flex items-center gap-1.5">
+                        <Zap className="w-3.5 h-3.5 text-amber-600" />
+                        Rendement de l'Énergie
                       </span>
-                      <span className="font-mono font-bold text-amber-400 text-sm">
-                        {simulationState.currentEroi.toFixed(1)}:1
+                      <span className="font-mono font-bold text-amber-800 text-sm">
+                        x{simulationState.currentEroi.toFixed(1)}
                       </span>
                     </div>
                     <div className="flex justify-between text-[10.5px] text-slate-500">
-                      <span>Part nette disponible :</span>
-                      <span className="font-mono text-slate-300">
+                      <span>Barils obtenus pour 1 dépensé :</span>
+                      <span className="font-mono text-amber-800 font-semibold">
+                        {simulationState.currentEroi.toFixed(1)} barils
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-[10.5px] text-slate-500">
+                      <span>Énergie utile pour la société :</span>
+                      <span className="font-mono text-emerald-700 font-semibold">
                         {(simulationState.netEnergyRatio * 100).toFixed(0)}%
                       </span>
                     </div>
@@ -1352,8 +1359,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               </div>
 
               {/* Raccourci d'aide */}
-              <div className="p-2 rounded bg-slate-900/70 border border-slate-800/80 text-[10.5px] text-slate-400 flex items-center gap-2">
-                <Activity className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+              <div className="p-2 rounded bg-slate-50 border border-slate-200 text-[10.5px] text-slate-500 flex items-center gap-2">
+                <Activity className="w-3.5 h-3.5 text-sky-600 shrink-0" />
                 <span>Déplacez la souris sur un continent pour inspecter ses métriques.</span>
               </div>
             </div>

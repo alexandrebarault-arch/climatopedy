@@ -528,13 +528,16 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
                 </span>
               </div>
 
-              {/* 4. EROI sauvé */}
+              {/* 4. Rendement de l'énergie sauvé */}
               <div className="bg-[#0d1322] p-2.5 rounded-lg border border-amber-900/60 flex flex-col items-center justify-center">
-                <span className="text-[10px] text-slate-400 font-medium">Multiplicateur EROI 2100</span>
+                <span className="text-[10px] text-slate-400 font-medium text-center">Rendement Énergie 2100</span>
                 <span className="text-base sm:text-lg font-extrabold font-mono text-amber-400 mt-0.5">
                   x{state2100B.currentEroi.toFixed(1)}
                 </span>
-                <span className="text-[10px] text-amber-300/80 font-mono">
+                <span className="text-[9.5px] text-slate-500 font-normal">
+                  (barils pour 1 dépensé)
+                </span>
+                <span className="text-[10px] text-amber-300/80 font-mono mt-0.5">
                   vs x{state2100A.currentEroi.toFixed(1)} ({deltaEroi2100 >= 0 ? `+${deltaEroi2100.toFixed(1)}` : deltaEroi2100.toFixed(1)})
                 </span>
               </div>

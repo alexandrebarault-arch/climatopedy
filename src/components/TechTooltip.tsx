@@ -16,16 +16,16 @@ interface TermData {
 
 export const TECH_TERMS: Record<TechTermKey, TermData> = {
   eroi: {
-    title: 'EROI (Multiplicateur Pétrole)',
-    subtitle: 'Energy Return on Investment · Rendement Énergétique',
+    title: 'Rendement de l\'Énergie',
+    subtitle: 'Combien de barils obtenus pour 1 baril dépensé à forer',
     icon: <Zap className="w-3.5 h-3.5 text-amber-400" />,
     badgeColor: 'border-amber-500/40 text-amber-300 bg-amber-950/60',
     definition:
-      'Indique combien de barils d\'énergie brute on extrait pour 1 baril consommé à forer, pomper et raffiner.',
+      'Indique combien de barils d\'énergie brute on extrait pour 1 baril consommé à forer, pomper et raffiner (terme scientifique : EROI).',
     analogy:
       'En 1900, 1 baril dépensé en rapportait 100 (x100). En 2026, il n\'en rapporte plus que 12 (x12). Les 92% d\'énergie restante font rouler camions, tracteurs et hôpitaux.',
     thresholdOrKeyFact:
-      'Seuil critique : en dessous de x5, la société n\'a plus assez d\'énergie nette pour assurer ses services de base.',
+      'Seuil critique : en dessous de x5, la société dépense tellement d\'énergie à forer qu\'elle n\'a plus assez d\'énergie utile pour faire tourner les hôpitaux ou les écoles.',
     faqId: 'faq-eroi'
   },
   'haber-bosch': {
@@ -140,7 +140,7 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
     setIsOpen(false);
     // Dispatch d'un événement global pour que la section FAQ déroule directement la question
     window.dispatchEvent(
-      new CustomEvent('gaia-open-faq', {
+      new CustomEvent('climatopedy-open-faq', {
         detail: { faqId: data.faqId }
       })
     );
@@ -252,7 +252,7 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
 
           {/* Bouton de redirection vers la FAQ interactive complète */}
           <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[10px]">
-            <span className="text-slate-500">Info-bulle GAIA-Sim</span>
+            <span className="text-slate-500">Info-bulle CLIMATOPEDY</span>
             <button
               onClick={handleOpenFaq}
               className="inline-flex items-center gap-1 font-semibold text-cyan-400 hover:text-cyan-300 hover:underline cursor-pointer"

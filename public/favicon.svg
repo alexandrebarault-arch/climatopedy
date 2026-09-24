@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Définitions d'effets et dégradés GAIA -->
+  <defs>
+    <!-- Dégradé biophysique pour les océans profonds -->
+    <radialGradient id="gaiaOcean" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="60%" stop-color="#0369a1" />
+      <stop offset="100%" stop-color="#082f49" />
+    </radialGradient>
+    
+    <!-- Lueur atmosphérique cyan -->
+    <radialGradient id="gaiaAtmosphere" cx="50%" cy="50%" r="50%">
+      <stop offset="85%" stop-color="#06b6d4" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.8" />
+    </radialGradient>
+    
+    <!-- Anneau orbital lumineux -->
+    <linearGradient id="orbitGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="50%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <filter id="glowEffect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Halo atmosphérique extérieur -->
+  <circle cx="32" cy="32" r="30" fill="#080e1a" stroke="#00f2fe" stroke-width="1.8" />
+  
+  <!-- Sphère planétaire principale -->
+  <circle cx="32" cy="32" r="23" fill="url(#gaiaOcean)" stroke="#38bdf8" stroke-width="1" />
+  <circle cx="32" cy="32" r="23" fill="url(#gaiaAtmosphere)" />
+
+  <!-- Continents stylisés haute visibilité (Émeraude / Biosphère) -->
+  <!-- Europe / Asie / Afrique du Nord -->
+  <path d="M25 15c2-1 6-1 8 1 2 2 4 1 6 3 1 2 0 4-2 5-2 1-4 1-5 3-2 1-3 3-5 3-2 0-3-2-4-3-2-1-3-3-2-5 1-2 2-3 4-4z" fill="#10b981" />
+  <!-- Amérique du Nord & Centrale -->
+  <path d="M15 22c2-2 4-2 6-1 2 1 2 3 1 5-1 2-3 3-4 4-2 1-3 0-4-2-1-2 0-4 1-6z" fill="#34d399" />
+  <!-- Amérique du Sud & Amazonie -->
+  <path d="M20 34c2 0 4 2 5 5 1 3 0 6-2 8-2 1-4 0-5-2-1-2-1-5 0-7 1-2 1-4 2-4z" fill="#10b981" />
+  <!-- Afrique Centrale & Australe -->
+  <path d="M30 26c3 0 5 2 6 5 1 3 0 6-2 8-1 1-3 2-4 2-2 0-3-2-3-4 0-2 0-5 1-7 1-2 1-4 2-4z" fill="#059669" />
+  <!-- Océanie & Indonésie -->
+  <path d="M42 37c2 0 4 1 4 3 0 2-2 3-4 3-2 0-3-1-3-3 0-2 1-3 3-3z" fill="#34d399" />
+  
+  <!-- Méridiens & parallèles fins (quadrillage planétaire) -->
+  <ellipse cx="32" cy="32" rx="14" ry="23" stroke="#38bdf8" stroke-width="0.75" stroke-dasharray="2 2" fill="none" opacity="0.4" />
+  <line x1="9" y1="32" x2="55" y2="32" stroke="#38bdf8" stroke-width="0.75" stroke-dasharray="2 2" opacity="0.4" />
+
+  <!-- Anneau orbital dynamique incliné (Symbole de la modélisation et du temps) -->
+  <ellipse cx="32" cy="32" rx="28" ry="11" stroke="url(#orbitGlow)" stroke-width="2.5" stroke-linecap="round" fill="none" transform="rotate(-24 32 32)" filter="url(#glowEffect)" />
+  
+  <!-- Marqueur satellite / balise temporelle 2026 -->
+  <circle cx="54" cy="22" r="3" fill="#38bdf8" />
+  <circle cx="54" cy="22" r="5" stroke="#22d3ee" stroke-width="1.2" opacity="0.7" />
+</svg>

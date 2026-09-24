@@ -100,7 +100,7 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
               <div className="bg-emerald-950/50 border border-emerald-700/60 rounded-xl p-3.5 flex flex-col justify-between">
                 <div>
                   <span className="text-[11px] font-semibold text-emerald-300 block">
-                    Trajectoire de Sobriété & Agroécologie (Scénario B GAIA-Sim)
+                    Trajectoire de Sobriété & Agroécologie (Scénario B CLIMATOPEDY)
                   </span>
                   <div className="text-xl sm:text-2xl font-black font-mono text-emerald-300 mt-1">
                     JAMAIS FRANCHI
@@ -206,7 +206,7 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
           <div className="bg-cyan-950/30 border border-cyan-800/50 rounded-xl p-4 flex items-start gap-3">
             <Info className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
             <div className="text-xs text-slate-300 leading-relaxed">
-              <strong className="text-white">Ce qu'il faut retenir :</strong> Le franchissement simultané de l'ensemble de ces points n'est pas une sentence inévitable. Chaque dixième de degré évité (+1,5°C plutôt que +1,8°C ; +2,0°C plutôt que +2,5°C) empêche un point de bascule supplémentaire de tomber et bloque l'effet domino. C'est tout le sens du modèle biophysique GAIA-Sim.
+              <strong className="text-white">Ce qu'il faut retenir :</strong> Le franchissement simultané de l'ensemble de ces points n'est pas une sentence inévitable. Chaque dixième de degré évité (+1,5°C plutôt que +1,8°C ; +2,0°C plutôt que +2,5°C) empêche un point de bascule supplémentaire de tomber et bloque l'effet domino. C'est tout le sens de l'encyclopédie CLIMATOPEDY.
             </div>
           </div>
         </div>

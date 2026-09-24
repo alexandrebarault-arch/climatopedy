@@ -420,7 +420,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                   Chronologie Critique &amp; Projection
                 </span>
                 <span className="text-[11px] font-mono text-slate-400">
-                  Évaluation biophysique GAIA-Sim
+                  Évaluation scientifique CLIMATOPEDY
                 </span>
               </div>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">

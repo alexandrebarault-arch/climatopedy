@@ -40,7 +40,7 @@ export interface ScientificSourceItem {
   secondaryUrl?: string;
   secondaryUrlLabel?: string;
   doi?: string;
-  gaiaRole: string; // Où et comment c'est appliqué dans GAIA-Sim
+  gaiaRole: string; // Où et comment c'est appliqué dans CLIMATOPEDY
   keyDataOrQuote: string; // Valeur empirique ou citation clé
   reproducibilityNotes: string; // Formule ou équation exacte concernée
 }
@@ -765,7 +765,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
               Pour permettre à chaque chercheur, enseignant, étudiant ou citoyen de <strong>vérifier et d'auditer l'intégrité du travail</strong>, 
               cette page recense l'intégralité des publications académiques à comité de lecture (<em>Nature, Science, PNAS</em>), 
               des rapports d'institutions internationales (<em>GIEC, ONU, FAO, NOAA</em>), des relevés d'observatoires satellites 
-              et des photographies documentaires libres qui fondent <strong>GAIA-Sim</strong>.
+              et des photographies documentaires libres qui fondent <strong>CLIMATOPEDY</strong>.
             </p>
           </div>
 
@@ -955,12 +955,12 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                   )}
                 </div>
 
-                {/* Corps de fiche : Application concrète dans GAIA-Sim */}
+                {/* Corps de fiche : Application concrète dans CLIMATOPEDY */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
                   <div className="p-3.5 rounded-lg bg-[#0e1628] border border-cyan-900/40 space-y-1.5">
                     <span className="font-mono text-[11px] font-bold text-cyan-300 uppercase tracking-wide flex items-center gap-1.5">
                       <Activity className="w-3.5 h-3.5 text-cyan-400" />
-                      Rôle &amp; Modélisation dans GAIA-Sim :
+                      Rôle &amp; Modélisation dans CLIMATOPEDY :
                     </span>
                     <p className="text-slate-200 leading-relaxed font-sans">
                       {source.gaiaRole}
@@ -1097,7 +1097,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
           <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
-            Protocole d'Audit Indépendant : Comment Vérifier les Calculs de GAIA-Sim ?
+            Protocole d'Audit Indépendant : Comment Vérifier les Calculs de CLIMATOPEDY ?
           </h2>
         </div>
 

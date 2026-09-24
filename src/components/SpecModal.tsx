@@ -6,7 +6,7 @@ export const SpecModal: React.FC = () => {
   const [activeSpecSection, setActiveSpecSection] = useState<'equations' | 'algo' | 'params' | 'sources'>('equations');
 
   const copyFullSpecToClipboard = () => {
-    const specText = `# SPÉCIFICATION TECHNIQUE DU MOTEUR BIOPHYSIQUE MONDIAL (GAIA-Sim)
+    const specText = `# SPÉCIFICATION TECHNIQUE DU MODÈLE SCIENTIFIQUE (CLIMATOPEDY)
 
 ## 1. Modèle Climatique Réduit FaIR v1.1
 - Équation différentielle des 4 réservoirs : dR_i/dt = a_i * E_CO2(t) - R_i / (alpha(t) * tau_i)

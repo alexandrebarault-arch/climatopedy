@@ -24,7 +24,7 @@ function cleanText(str: string): string {
 }
 
 /**
- * Générateur principal du rapport PDF complet GAIA-Sim
+ * Générateur principal du rapport PDF complet CLIMATOPEDY
  */
 export function generateSimulationPdfReport(options: GeneratePdfReportOptions): jsPDF {
   const {
@@ -70,7 +70,7 @@ export function generateSimulationPdfReport(options: GeneratePdfReportOptions): 
   doc.setTextColor(56, 189, 248); // cyan-400
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  doc.text('GAIA-Sim · RAPPORT DE SIMULATION BIOPHYSIQUE', marginX, 12);
+  doc.text('CLIMATOPEDY · RAPPORT DE SIMULATION DU CLIMAT & DE L\'ÉNERGIE', marginX, 12);
 
   doc.setTextColor(203, 213, 225); // slate-300
   doc.setFontSize(8.5);
@@ -277,7 +277,7 @@ export function generateSimulationPdfReport(options: GeneratePdfReportOptions): 
   // Footer page 1
   doc.setFontSize(7);
   doc.setTextColor(148, 163, 184);
-  doc.text('GAIA-Sim · Rapport de Simulation · Page 1 / 3', marginX, pageHeight - 8);
+  doc.text('CLIMATOPEDY · Rapport de Simulation · Page 1 / 3', marginX, pageHeight - 8);
 
   // =========================================================================
   // PAGE 2 : GRAPHIQUES BIOPHYSIQUES VECTORIELS DE PRÉCISION (1900–2100)
@@ -521,7 +521,7 @@ export function generateSimulationPdfReport(options: GeneratePdfReportOptions): 
   // Footer page 2
   doc.setFontSize(7);
   doc.setTextColor(148, 163, 184);
-  doc.text('GAIA-Sim · Rapport de Simulation · Page 2 / 3', marginX, pageHeight - 8);
+  doc.text('CLIMATOPEDY · Rapport de Simulation · Page 2 / 3', marginX, pageHeight - 8);
 
   // =========================================================================
   // PAGE 3 : DIAGNOSTIC DES POINTS DE BASCULE & CONCLUSIONS DE FIN DE SIÈCLE
@@ -647,7 +647,7 @@ export function generateSimulationPdfReport(options: GeneratePdfReportOptions): 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(15, 23, 42);
-  doc.text(cleanText('SYNTHÈSE FINALE DE GAIA-SIM :'), marginX + 4, p3Y + 5);
+  doc.text(cleanText('SYNTHÈSE FINALE DE CLIMATOPEDY :'), marginX + 4, p3Y + 5);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
@@ -659,7 +659,7 @@ export function generateSimulationPdfReport(options: GeneratePdfReportOptions): 
   // Footer page 3
   doc.setFontSize(7);
   doc.setTextColor(148, 163, 184);
-  doc.text('GAIA-Sim · Rapport de Simulation · Page 3 / 3 · Modèle ouvert et documenté', marginX, pageHeight - 8);
+  doc.text('CLIMATOPEDY · Rapport de Simulation · Page 3 / 3 · Modèle ouvert et documenté', marginX, pageHeight - 8);
 
   return doc;
 }
@@ -671,6 +671,6 @@ export function downloadSimulationPdfReport(options: GeneratePdfReportOptions, c
   const doc = generateSimulationPdfReport(options);
   const yr = Math.floor(options.currentYear);
   const scenName = options.scenarioA.shortName.replace(/[^a-zA-Z0-9]/g, '_');
-  const filename = customFilename || `GAIA-Sim_Rapport_Simulation_${scenName}_${yr}.pdf`;
+  const filename = customFilename || `CLIMATOPEDY_Rapport_Simulation_${scenName}_${yr}.pdf`;
   doc.save(filename);
 }

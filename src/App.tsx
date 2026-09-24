@@ -15,7 +15,10 @@ import { SpecModal } from './components/SpecModal';
 import { TippingPointsView } from './components/TippingPointsView';
 import { ScientificSourcesView } from './components/ScientificSourcesView';
 import { PdfExportModal } from './components/PdfExportModal';
-import { BookOpen, CheckCircle, FileText, ShieldAlert } from 'lucide-react';
+import { MobileDeviceNoticeModal } from './components/MobileDeviceNoticeModal';
+import { DesktopInteractiveTour } from './components/DesktopInteractiveTour';
+import { ClimatopedyHeader } from './components/ClimatopedyHeader';
+import { BookOpen, CheckCircle, FileText, ShieldAlert, Compass, Monitor } from 'lucide-react';
 import { generateFullTrajectory, SCENARIO_BAU, SCENARIO_SOBRIETY } from './engine/simulationRunner';
 import { SimulationScenarioConfig } from './types/simulation';
 import { 
@@ -34,6 +37,42 @@ export default function App() {
 
   // Modal d'export du rapport de simulation PDF
   const [isPdfModalOpen, setIsPdfModalOpen] = useState<boolean>(false);
+
+  // Modales d'aide, de recommandation d'usage et de tutoriel
+  const [isMobileNoticeOpen, setIsMobileNoticeOpen] = useState<boolean>(false);
+  const [isTutorialOpen, setIsTutorialOpen] = useState<boolean>(false);
+
+  // Détection automatique sur mobile ou affichage de bienvenue pour le tutoriel ordinateur
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const isMobileScreen = window.innerWidth < 768;
+    const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isMobile = isMobileScreen || isMobileUserAgent;
+
+    if (isMobile) {
+      try {
+        const dismissed = localStorage.getItem('climatopedy_mobile_notice_dismissed') || localStorage.getItem('gaia_mobile_notice_dismissed');
+        if (dismissed !== 'true') {
+          const timer = setTimeout(() => setIsMobileNoticeOpen(true), 600);
+          return () => clearTimeout(timer);
+        }
+      } catch (e) {
+        setIsMobileNoticeOpen(true);
+      }
+    } else {
+      // Pour les utilisateurs d'ordinateurs : lancer le tutoriel dynamique guidé lors de la première visite
+      try {
+        const tourCompleted = localStorage.getItem('climatopedy_desktop_tour_completed') || localStorage.getItem('gaia_desktop_tour_completed');
+        if (tourCompleted !== 'true') {
+          const timer = setTimeout(() => setIsTutorialOpen(true), 800);
+          return () => clearTimeout(timer);
+        }
+      } catch (e) {
+        // Mode privé ou localStorage bloqué
+      }
+    }
+  }, []);
 
   // Configuration des scénarios de simulation biophysique
   const [isCompareMode, setIsCompareMode] = useState<boolean>(true);
@@ -169,6 +208,8 @@ export default function App() {
         onReset={handleReset}
         currentYear={currentYear}
         onOpenPdfExport={() => setIsPdfModalOpen(true)}
+        onOpenTutorial={() => setIsTutorialOpen(true)}
+        onOpenMobileNotice={() => setIsMobileNoticeOpen(true)}
       />
 
       {/* Contenu principal */}
@@ -193,6 +234,9 @@ export default function App() {
 
         {currentTab === 'map' && (
           <div className="flex flex-col gap-6">
+            {/* 0. En-tête pédagogique : Qu'est-ce que CLIMATOPEDY et son objectif pour tous */}
+            <ClimatopedyHeader onOpenTutorial={() => setIsTutorialOpen(true)} />
+
             {/* 1. Planisphère à plat (Projection plane Plate Carrée) */}
             <WorldMap
               simulationState={currentTrajectoryState}
@@ -306,7 +350,7 @@ export default function App() {
                 <p className="text-xs text-slate-300 leading-relaxed">
                   Consultez l'ensemble des 20+ publications à comité de lecture (<em>Nature, Science, PNAS</em>), 
                   des rapports officiels d'institutions internationales (<em>GIEC AR6, ONU, FAO</em>) et des relevés d'observatoires satellites (<em>NOAA, Copernicus, NASA</em>) 
-                  qui fondent les équations biophysiques de GAIA-Sim.
+                  qui fondent les calculs de CLIMATOPEDY.
                 </p>
               </div>
 
@@ -384,6 +428,27 @@ export default function App() {
         trajectoryB={trajectoryB}
       />
 
+      {/* Pop-up de recommandation d'usage pour utilisateurs mobiles */}
+      <MobileDeviceNoticeModal
+        isOpen={isMobileNoticeOpen}
+        onClose={() => setIsMobileNoticeOpen(false)}
+        onOpenTutorial={() => {
+          setIsMobileNoticeOpen(false);
+          setIsTutorialOpen(true);
+        }}
+      />
+
+      {/* Tutoriel dynamique interactif avec interaction avec les pages pour ordinateur */}
+      <DesktopInteractiveTour
+        isOpen={isTutorialOpen}
+        onClose={() => setIsTutorialOpen(false)}
+        currentTab={currentTab}
+        onNavigateTab={(tab) => {
+          setCurrentTab(tab);
+        }}
+        onSeekYear={handleSeekYear}
+      />
+
       {/* Footer sobre et scientifique avec lien d'accès direct vers les sources */}
       <footer className="border-t border-slate-800/80 bg-[#070a10] py-6 px-6 text-xs text-slate-400">
         <div className="max-w-5xl mx-auto flex flex-col items-center gap-4">
@@ -402,14 +467,32 @@ export default function App() {
             </button>
 
             <button
+              onClick={() => setIsTutorialOpen(true)}
+              className="text-emerald-400 hover:text-emerald-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+              title="Ouvrir le tutoriel interactif de navigation pour ordinateur"
+            >
+              <Compass className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Tutoriel de Navigation (PC)</span>
+            </button>
+
+            <button
+              onClick={() => setIsMobileNoticeOpen(true)}
+              className="text-amber-400 hover:text-amber-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+              title="Afficher la recommandation d'usage sur grand écran"
+            >
+              <Monitor className="w-3.5 h-3.5 text-amber-400" />
+              <span>Recommandation Grand Écran</span>
+            </button>
+
+            <button
               onClick={() => {
                 setCurrentTab('spec');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-emerald-400 hover:text-emerald-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="text-slate-300 hover:text-white hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
             >
               <FileText className="w-3.5 h-3.5" />
-              <span>Spécifications &amp; Formules (ODEs)</span>
+              <span>Spécifications (ODEs)</span>
             </button>
 
             <button
@@ -420,7 +503,7 @@ export default function App() {
               className="text-rose-400 hover:text-rose-300 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
             >
               <ShieldAlert className="w-3.5 h-3.5" />
-              <span>9 Points de Bascule Planétaires</span>
+              <span>9 Points de Bascule</span>
             </button>
 
             <button
@@ -430,13 +513,13 @@ export default function App() {
               }}
               className="text-slate-400 hover:text-slate-200 hover:underline flex items-center gap-1.5 cursor-pointer transition-colors"
             >
-              <span>Planisphère Interactif</span>
+              <span>Planisphère</span>
             </button>
           </div>
 
           {/* Mentions scientifiques et crédits méthodologiques */}
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-slate-500 text-center max-w-4xl">
-            <span>GAIA-Sim · Moteur Biophysique Intégré Open-Science</span>
+            <span>CLIMATOPEDY · L'Encyclopédie Citoyenne du Climat &amp; de l'Énergie</span>
             <span aria-hidden="true">·</span>
             <span>FaIR v1.3 CMIP6 (Smith et al. 2018)</span>
             <span aria-hidden="true">·</span>

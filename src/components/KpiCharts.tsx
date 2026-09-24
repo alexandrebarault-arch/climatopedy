@@ -299,7 +299,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               width={x2026 - PAD.left}
               height={plotH}
               fill="#0284c7"
-              opacity="0.05"
+              opacity="0.06"
             />
             <line
               x1={x2026}
@@ -314,22 +314,22 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             <text
               x={PAD.left + 6}
               y={PAD.top + 10}
-              fill="#38bdf8"
+              fill="#0369a1"
               fontSize="6.8"
               fontWeight="bold"
               fontFamily="sans-serif"
-              opacity="0.85"
+              opacity="0.9"
             >
               ← Historique mesuré (1900–2026)
             </text>
             <text
               x={x2026 + 6}
               y={PAD.top + 10}
-              fill="#94a3b8"
+              fill="#64748b"
               fontSize="6.8"
               fontWeight="bold"
               fontFamily="sans-serif"
-              opacity="0.85"
+              opacity="0.9"
             >
               Modélisation prospective →
             </text>
@@ -344,15 +344,15 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               y1={PAD.top}
               x2={x2100}
               y2={PAD.top + plotH}
-              stroke="#a855f7"
+              stroke="#9333ea"
               strokeWidth="1.2"
               strokeDasharray="3,3"
-              opacity="0.7"
+              opacity="0.8"
             />
             <text
               x={x2100 + 4}
               y={PAD.top + 10}
-              fill="#c084fc"
+              fill="#7e22ce"
               fontSize="6.8"
               fontWeight="bold"
               fontFamily="sans-serif"
@@ -373,10 +373,9 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               y1={PAD.top}
               x2={x}
               y2={PAD.top + plotH}
-              stroke="#1e293b"
-              strokeWidth="0.6"
+              stroke="#e2e8f0"
+              strokeWidth="0.8"
               strokeDasharray="2,3"
-              opacity="0.6"
             />
           );
         })}
@@ -387,7 +386,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
           y1={PAD.top + plotH}
           x2={W - PAD.right}
           y2={PAD.top + plotH}
-          stroke="#334155"
+          stroke="#94a3b8"
           strokeWidth="1"
         />
 
@@ -404,14 +403,14 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 y1={PAD.top + plotH}
                 x2={x}
                 y2={PAD.top + plotH + 4}
-                stroke={isToday ? '#38bdf8' : isCentury ? '#c084fc' : isPast ? '#60a5fa' : '#64748b'}
+                stroke={isToday ? '#0284c7' : isCentury ? '#7e22ce' : isPast ? '#2563eb' : '#94a3b8'}
                 strokeWidth={isToday || isCentury ? '1.8' : '1'}
               />
               <text
                 x={x}
                 y={PAD.top + plotH + 14}
                 textAnchor={yr === startYear ? 'start' : yr === endYear ? 'end' : 'middle'}
-                fill={isToday ? '#38bdf8' : isCentury ? '#c084fc' : isPast ? '#93c5fd' : '#94a3b8'}
+                fill={isToday ? '#0284c7' : isCentury ? '#7e22ce' : isPast ? '#1d4ed8' : '#64748b'}
                 fontSize={isToday || isCentury ? '8.5' : '7.5'}
                 fontWeight={isToday || isCentury ? '800' : '600'}
                 fontFamily="monospace"
@@ -427,7 +426,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
           x={PAD.left + plotW / 2}
           y={PAD.top + plotH + 28}
           textAnchor="middle"
-          fill="#94a3b8"
+          fill="#64748b"
           fontSize="7.5"
           fontWeight="600"
           fontFamily="sans-serif"
@@ -442,7 +441,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
           y1={PAD.top - 6}
           x2={currentX}
           y2={PAD.top + plotH + 4}
-          stroke="#38bdf8"
+          stroke="#0284c7"
           strokeWidth="1.5"
           strokeDasharray="3,2"
         />
@@ -474,7 +473,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               y1={PAD.top - 6}
               x2={hoverX!}
               y2={PAD.top + plotH + 4}
-              stroke="#f59e0b"
+              stroke="#d97706"
               strokeWidth="1.2"
               strokeDasharray="2,2"
             />
@@ -517,15 +516,15 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         {/* GRAPHIQUE 1 : DÉMOGRAPHIE & TOUTES LES CAUSES DE DÉCÈS */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === 'demo') && (
-          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2 shadow-lg">
+          <div className="bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-200">
+                <span className="text-xs font-bold text-slate-900">
                   1. Population Mondiale &amp; Nombre de Décès par An
                 </span>
-                <span className="text-[10.5px] font-mono text-slate-400 font-semibold flex items-center gap-1.5">
+                <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
                   {d1.isShowingHover ? (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-800/80 text-[10px] font-bold">
+                    <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
                       🔍 Survol : {d1.displayYear}
                     </span>
                   ) : (
@@ -536,21 +535,21 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
               {/* Indicateurs numériques précis avec tabular-nums pour zéros tremblements */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
-                <span className="text-white font-semibold flex items-center gap-1 min-w-[7rem]">
-                  <span className="w-2 h-2 rounded-full bg-white inline-block shrink-0" />
+                <span className="text-slate-900 font-semibold flex items-center gap-1 min-w-[7rem]">
+                  <span className="w-2 h-2 rounded-full bg-slate-900 inline-block shrink-0" />
                   Pop : {(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds
                 </span>
-                <span className="text-purple-300 font-semibold flex items-center gap-1 min-w-[8.5rem]">
-                  <span className="w-2 h-2 rounded-full bg-purple-400 inline-block shrink-0" />
+                <span className="text-purple-800 font-semibold flex items-center gap-1 min-w-[8.5rem]">
+                  <span className="w-2 h-2 rounded-full bg-purple-600 inline-block shrink-0" />
                   Total Décès : {d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an
                 </span>
-                <span className="text-amber-400 font-semibold flex items-center gap-1 min-w-[7.5rem]">
-                  <span className="w-2 h-2 rounded-full bg-amber-500 inline-block shrink-0" />
+                <span className="text-amber-800 font-semibold flex items-center gap-1 min-w-[7.5rem]">
+                  <span className="w-2 h-2 rounded-full bg-amber-600 inline-block shrink-0" />
                   Famines : {d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an
                 </span>
                 {/* Décès Canicule */}
-                <span className="text-rose-400 font-bold bg-rose-950/70 border border-rose-800/80 px-1.5 py-0.5 rounded flex items-center gap-1 min-w-[9.5rem]">
-                  <span className="w-2 h-2 rounded-full bg-rose-500 inline-block animate-pulse shrink-0" />
+                <span className="text-rose-800 font-bold bg-rose-100/80 border border-rose-300 px-1.5 py-0.5 rounded flex items-center gap-1 min-w-[9.5rem]">
+                  <span className="w-2 h-2 rounded-full bg-rose-600 inline-block animate-pulse shrink-0" />
                   Canicules mortelles : {d1.thermalDeathsFormatted}
                   <TechTooltip term="stull" showIconOnly />
                 </span>
@@ -558,30 +557,30 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
               {/* Ligne comparative Trajectoire B si activée */}
               {isCompareMode && d1.stateB && (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300 tabular-nums">
-                  <span className="font-bold flex items-center gap-1 text-emerald-400">
-                    <GitCompare className="w-3 h-3 text-emerald-400" />
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-200 text-[10px] font-mono text-emerald-800 tabular-nums">
+                  <span className="font-bold flex items-center gap-1 text-emerald-700">
+                    <GitCompare className="w-3 h-3 text-emerald-700" />
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
                     Pop : {(d1.stateB.worldPopulation / 1000).toFixed(2)} Mds
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
                     Canicules : {d1.thermalDeathsFormattedB}
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
                     Famines : {d1.stateB.worldDeathsAnnual.famine.toFixed(1)} M/an
                   </span>
                 </div>
               )}
             </div>
 
-            <p className="text-[10px] text-slate-400 leading-tight">
+            <p className="text-[10px] text-slate-600 leading-tight">
               Nombre d'êtres humains sur Terre (axe gauche en Mds) comparé au rythme des décès annuels (axe droit en Millions/an).
             </p>
 
             {/* SVG Graphique 1 */}
-            <div className="relative w-full aspect-[540/205] bg-[#070b12] rounded-lg border border-slate-900 overflow-hidden cursor-crosshair">
+            <div className="relative w-full aspect-[540/205] bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner">
               <svg
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
@@ -590,49 +589,49 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 onMouseLeave={() => handleSvgLeave('demo')}
               >
                 {/* Axe vertical gauche : Population (Mds) */}
-                <text x={PAD.left - 6} y={PAD.top + 4} fill="#ffffff" fontSize="8" textAnchor="end" fontFamily="monospace">10 Mds</text>
-                <text x={PAD.left - 6} y={PAD.top + plotH / 2 + 3} fill="#ffffff" fontSize="8" textAnchor="end" fontFamily="monospace">6.5</text>
-                <text x={PAD.left - 6} y={PAD.top + plotH} fill="#ffffff" fontSize="8" textAnchor="end" fontFamily="monospace">{popMin} Mds</text>
+                <text x={PAD.left - 6} y={PAD.top + 4} fill="#0f172a" fontSize="8" textAnchor="end" fontFamily="monospace">10 Mds</text>
+                <text x={PAD.left - 6} y={PAD.top + plotH / 2 + 3} fill="#0f172a" fontSize="8" textAnchor="end" fontFamily="monospace">6.5</text>
+                <text x={PAD.left - 6} y={PAD.top + plotH} fill="#0f172a" fontSize="8" textAnchor="end" fontFamily="monospace">{popMin} Mds</text>
 
                 {/* Axe vertical droit : Décès annuels (M/an) */}
-                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#c084fc" fontSize="8" textAnchor="start" fontFamily="monospace">220M/an</text>
-                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#c084fc" fontSize="8" textAnchor="start" fontFamily="monospace">0M</text>
+                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#7e22ce" fontSize="8" textAnchor="start" fontFamily="monospace">220M/an</text>
+                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#7e22ce" fontSize="8" textAnchor="start" fontFamily="monospace">0M</text>
 
                 {/* Lignes horizontales discrètes */}
-                <line x1={PAD.left} y1={PAD.top} x2={W - PAD.right} y2={PAD.top} stroke="#1e293b" strokeWidth="0.8" strokeDasharray="3,3" />
-                <line x1={PAD.left} y1={PAD.top + plotH / 2} x2={W - PAD.right} y2={PAD.top + plotH / 2} stroke="#1e293b" strokeWidth="0.8" strokeDasharray="3,3" />
+                <line x1={PAD.left} y1={PAD.top} x2={W - PAD.right} y2={PAD.top} stroke="#e2e8f0" strokeWidth="0.8" strokeDasharray="3,3" />
+                <line x1={PAD.left} y1={PAD.top + plotH / 2} x2={W - PAD.right} y2={PAD.top + plotH / 2} stroke="#e2e8f0" strokeWidth="0.8" strokeDasharray="3,3" />
 
                 {/* Axe des abscisses et grilles temporelles */}
                 {renderAbscisseAxis('demo')}
 
-                {/* Courbe 1 : Population Mondiale (Blanche épaisse) */}
-                <path d={pathPop} fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
+                {/* Courbe 1 : Population Mondiale (Noir/Anthracite épais) */}
+                <path d={pathPop} fill="none" stroke="#0f172a" strokeWidth="2.5" strokeLinecap="round" />
 
                 {/* Courbe 2 : Total Décès Annuels (Violette) */}
-                <path d={pathDeathTotal} fill="none" stroke="#c084fc" strokeWidth="2" strokeLinecap="round" />
+                <path d={pathDeathTotal} fill="none" stroke="#9333ea" strokeWidth="2" strokeLinecap="round" />
 
                 {/* Courbe 3 : Décès dus aux Famines (Orange) */}
-                <path d={pathDeathFamine} fill="none" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" />
+                <path d={pathDeathFamine} fill="none" stroke="#d97706" strokeWidth="1.8" strokeLinecap="round" />
 
                 {/* Courbe 4 : Décès par Canicules mortelles (Rouge fluo bien visible) */}
-                <path d={pathDeathThermal} fill="none" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" />
+                <path d={pathDeathThermal} fill="none" stroke="#dc2626" strokeWidth="2.5" strokeLinecap="round" />
 
                 {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
-                    <path d={pathPopB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    <path d={pathDeathThermalB} fill="none" stroke="#fb7185" strokeWidth="2" strokeDasharray="3 3" strokeLinecap="round" />
+                    <path d={pathPopB} fill="none" stroke="#059669" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
+                    <path d={pathDeathThermalB} fill="none" stroke="#e11d48" strokeWidth="2" strokeDasharray="3 3" strokeLinecap="round" />
                   </g>
                 )}
 
                 {/* Mini-légende de comparaison intégrée */}
                 {isCompareMode && (
                   <g className="select-none pointer-events-none">
-                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#080c14" fillOpacity="0.85" stroke="#1e293b" strokeWidth="0.8" />
-                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#ffffff" strokeWidth="2" />
-                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#e2e8f0" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
-                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#34d399" strokeWidth="2" strokeDasharray="4 2" />
-                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#34d399" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
+                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#ffffff" fillOpacity="0.9" stroke="#cbd5e1" strokeWidth="0.8" />
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#0f172a" strokeWidth="2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#1e293b" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#059669" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#059669" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
                   </g>
                 )}
 
@@ -642,7 +641,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                     cx={currentX}
                     cy={getYDeath(currentSimState.worldDeathsAnnual.thermal)}
                     r="4"
-                    fill="#ef4444"
+                    fill="#dc2626"
                     stroke="#ffffff"
                     strokeWidth="1.5"
                   />
@@ -652,7 +651,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                     width="50"
                     height="12"
                     rx="3"
-                    fill="#991b1b"
+                    fill="#b91c1c"
                   />
                   <text
                     x={Math.max(PAD.left + 25, Math.min(W - PAD.right - 29, currentX + 31))}
@@ -672,7 +671,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   cx={currentX}
                   cy={getYPop(currentSimState.worldPopulation)}
                   r="4"
-                  fill="#38bdf8"
+                  fill="#0284c7"
                   stroke="#ffffff"
                   strokeWidth="1.5"
                 />
@@ -683,7 +682,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                     cx={currentX}
                     cy={getYPop(currentSimStateB.worldPopulation)}
                     r="3.5"
-                    fill="#34d399"
+                    fill="#059669"
                     stroke="#ffffff"
                     strokeWidth="1.2"
                   />
@@ -692,13 +691,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </div>
 
             {/* Légende détaillée sous le graphique */}
-            <div className="flex flex-col gap-1 text-[10.5px] text-slate-300 pt-1 border-t border-slate-800/80">
+            <div className="flex flex-col gap-1 text-[10.5px] text-slate-700 pt-1 border-t border-slate-200">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>⚪ <strong>Ligne blanche :</strong> Population mondiale ({(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds)</span>
+                <span>⚫ <strong>Ligne noire :</strong> Population mondiale ({(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds)</span>
                 <span>🟣 <strong>Ligne violette :</strong> Tous décès confondus ({d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an)</span>
                 <span>🟠 <strong>Ligne orange :</strong> Famines ({d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an)</span>
               </div>
-              <div className="bg-rose-950/40 border border-rose-900/60 rounded p-1.5 text-rose-200 text-[10px]">
+              <div className="bg-rose-50 border border-rose-200 rounded p-1.5 text-rose-900 text-[10px]">
                 🔴 <strong>Ligne rouge (Canicules mortelles) :</strong> {d1.thermalDeathsFormatted} en {d1.displayYear}. 
                 Ces décès surviennent lorsque la chaleur humide (thermomètre mouillé Tw) franchit 31°C, empêchant le corps d'évacuer sa chaleur par la transpiration.
               </div>
@@ -710,15 +709,15 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         {/* GRAPHIQUE 2 : ÉNERGIE & PÉTROLE */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === 'energy') && (
-          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2 shadow-lg">
+          <div className="bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-200">
+                <span className="text-xs font-bold text-slate-900">
                   2. Énergie &amp; Pétrole : Multiplicateur d'Énergie et Part Utile
                 </span>
-                <span className="text-[10.5px] font-mono text-slate-400 font-semibold flex items-center gap-1.5">
+                <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
                   {d2.isShowingHover ? (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-800/80 text-[10px] font-bold">
+                    <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
                       🔍 Survol : {d2.displayYear}
                     </span>
                   ) : (
@@ -729,14 +728,14 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
               {/* Indicateurs numériques avec tabular-nums */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
-                <span className="text-amber-300 font-bold bg-amber-950/70 border border-amber-800/80 px-1.5 py-0.5 rounded flex items-center gap-1 min-w-[12rem]" title="Multiplicateur d'énergie EROI">
-                  Multiplicateur pétrole : x{d2.stateA.currentEroi >= 20 ? Math.round(d2.stateA.currentEroi) : d2.stateA.currentEroi.toFixed(1)} ({d2.stateA.currentEroi >= 20 ? Math.round(d2.stateA.currentEroi) : d2.stateA.currentEroi.toFixed(1)} barils pour 1 dépensé)
+                <span className="text-amber-800 font-bold bg-amber-50 border border-amber-300 px-1.5 py-0.5 rounded flex items-center gap-1 min-w-[12rem]" title="Rendement de l'énergie (barils obtenus pour 1 baril dépensé)">
+                  Rendement pétrole : x{d2.stateA.currentEroi >= 20 ? Math.round(d2.stateA.currentEroi) : d2.stateA.currentEroi.toFixed(1)} ({d2.stateA.currentEroi >= 20 ? Math.round(d2.stateA.currentEroi) : d2.stateA.currentEroi.toFixed(1)} barils pour 1 dépensé)
                   <TechTooltip term="eroi" showIconOnly />
                 </span>
-                <span className="text-emerald-400 font-semibold min-w-[8.5rem]">
+                <span className="text-emerald-700 font-semibold min-w-[8.5rem]">
                   Énergie utile : {(d2.stateA.netEnergyRatio * 100).toFixed(0)}%
                 </span>
-                <span className="text-sky-300 flex items-center gap-1 min-w-[9.5rem]">
+                <span className="text-sky-700 flex items-center gap-1 min-w-[9.5rem]">
                   Engrais synthèse : {(d2.stateA.haberBoschNitrogenFactor * 100).toFixed(0)}%
                   <TechTooltip term="haber-bosch" showIconOnly />
                 </span>
@@ -744,30 +743,30 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
               {/* Ligne comparative Trajectoire B si activée */}
               {isCompareMode && d2.stateB && (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300 tabular-nums">
-                  <span className="font-bold flex items-center gap-1 text-emerald-400">
-                    <GitCompare className="w-3 h-3 text-emerald-400" />
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-200 text-[10px] font-mono text-emerald-800 tabular-nums">
+                  <span className="font-bold flex items-center gap-1 text-emerald-700">
+                    <GitCompare className="w-3 h-3 text-emerald-700" />
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
-                    EROI : x{d2.stateB.currentEroi >= 20 ? Math.round(d2.stateB.currentEroi) : d2.stateB.currentEroi.toFixed(1)}
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
+                    Rendement : x{d2.stateB.currentEroi >= 20 ? Math.round(d2.stateB.currentEroi) : d2.stateB.currentEroi.toFixed(1)}
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
                     Énergie utile : {(d2.stateB.netEnergyRatio * 100).toFixed(0)}%
                   </span>
-                  <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
+                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
                     Engrais : {(d2.stateB.haberBoschNitrogenFactor * 100).toFixed(0)}%
                   </span>
                 </div>
               )}
             </div>
 
-            <p className="text-[10px] text-slate-400 leading-tight">
+            <p className="text-[10px] text-slate-600 leading-tight">
               Pour 1 baril consommé à forer et raffiner, combien de barils d'énergie récolte-t-on ? (En 1900 : x100. En 2026 : x12. En dessous de x5, la société n'a plus assez d'énergie nette).
             </p>
 
             {/* SVG Graphique 2 */}
-            <div className="relative w-full aspect-[540/205] bg-[#070b12] rounded-lg border border-slate-900 overflow-hidden cursor-crosshair">
+            <div className="relative w-full aspect-[540/205] bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner">
               <svg
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
@@ -776,15 +775,15 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 onMouseLeave={() => handleSvgLeave('energy')}
               >
                 {/* Axe vertical gauche : Multiplicateur EROI */}
-                <text x={PAD.left - 6} y={PAD.top + 4} fill="#f59e0b" fontSize="8" textAnchor="end" fontFamily="monospace">x{eroiMax}</text>
-                <text x={PAD.left - 6} y={getYEroi(20) + 3} fill="#f59e0b" fontSize="8" textAnchor="end" fontFamily="monospace">x20</text>
-                <text x={PAD.left - 6} y={getYEroi(10) + 3} fill="#f59e0b" fontSize="8" textAnchor="end" fontFamily="monospace">x10</text>
-                <text x={PAD.left - 6} y={PAD.top + plotH} fill="#f59e0b" fontSize="8" textAnchor="end" fontFamily="monospace">x1</text>
+                <text x={PAD.left - 6} y={PAD.top + 4} fill="#d97706" fontSize="8" textAnchor="end" fontFamily="monospace">x{eroiMax}</text>
+                <text x={PAD.left - 6} y={getYEroi(20) + 3} fill="#d97706" fontSize="8" textAnchor="end" fontFamily="monospace">x20</text>
+                <text x={PAD.left - 6} y={getYEroi(10) + 3} fill="#d97706" fontSize="8" textAnchor="end" fontFamily="monospace">x10</text>
+                <text x={PAD.left - 6} y={PAD.top + plotH} fill="#d97706" fontSize="8" textAnchor="end" fontFamily="monospace">x1</text>
 
                 {/* Axe vertical droit : Pourcentage (0 à 100%) */}
-                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#10b981" fontSize="8" textAnchor="start" fontFamily="monospace">100%</text>
-                <text x={W - PAD.right + 6} y={PAD.top + plotH / 2 + 3} fill="#10b981" fontSize="8" textAnchor="start" fontFamily="monospace">50%</text>
-                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#10b981" fontSize="8" textAnchor="start" fontFamily="monospace">0%</text>
+                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#059669" fontSize="8" textAnchor="start" fontFamily="monospace">100%</text>
+                <text x={W - PAD.right + 6} y={PAD.top + plotH / 2 + 3} fill="#059669" fontSize="8" textAnchor="start" fontFamily="monospace">50%</text>
+                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#059669" fontSize="8" textAnchor="start" fontFamily="monospace">0%</text>
 
                 {/* Ligne de seuil d'alerte : x10 */}
                 <line
@@ -792,16 +791,16 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   y1={getYEroi(10)}
                   x2={W - PAD.right}
                   y2={getYEroi(10)}
-                  stroke="#ef4444"
+                  stroke="#dc2626"
                   strokeWidth="1"
                   strokeDasharray="4,3"
-                  opacity="0.6"
+                  opacity="0.8"
                 />
                 <text
                   x={W - PAD.right - 4}
                   y={getYEroi(10) - 3}
                   textAnchor="end"
-                  fill="#ef4444"
+                  fill="#dc2626"
                   fontSize="7"
                   fontFamily="sans-serif"
                   fontWeight="bold"
@@ -812,31 +811,31 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* Axe des abscisses */}
                 {renderAbscisseAxis('energy')}
 
-                {/* Courbe 1 : Multiplicateur EROI (Jaune) */}
-                <path d={pathEroi} fill="none" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round" />
+                {/* Courbe 1 : Multiplicateur EROI (Ambre soutenu) */}
+                <path d={pathEroi} fill="none" stroke="#d97706" strokeWidth="2.5" strokeLinecap="round" />
 
                 {/* Courbe 2 : Énergie nette civile restante (Verte) */}
-                <path d={pathNetEnergy} fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" />
+                <path d={pathNetEnergy} fill="none" stroke="#059669" strokeWidth="2" strokeLinecap="round" />
 
                 {/* Courbe 3 : Engrais de synthèse Haber-Bosch */}
-                <path d={pathHaberBosch} fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeDasharray="4,3" strokeLinecap="round" />
+                <path d={pathHaberBosch} fill="none" stroke="#0284c7" strokeWidth="1.8" strokeDasharray="4,3" strokeLinecap="round" />
 
                 {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
-                    <path d={pathEroiB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    <path d={pathNetEnergyB} fill="none" stroke="#6ee7b7" strokeWidth="1.8" strokeDasharray="3 3" strokeLinecap="round" />
+                    <path d={pathEroiB} fill="none" stroke="#10b981" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
+                    <path d={pathNetEnergyB} fill="none" stroke="#34d399" strokeWidth="1.8" strokeDasharray="3 3" strokeLinecap="round" />
                   </g>
                 )}
 
                 {/* Mini-légende de comparaison intégrée */}
                 {isCompareMode && (
                   <g className="select-none pointer-events-none">
-                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#080c14" fillOpacity="0.85" stroke="#1e293b" strokeWidth="0.8" />
-                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#f59e0b" strokeWidth="2" />
-                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#e2e8f0" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
-                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#34d399" strokeWidth="2" strokeDasharray="4 2" />
-                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#34d399" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
+                    <rect x={W - PAD.right - 136} y={PAD.top + 2} width="134" height="23" rx="3" fill="#ffffff" fillOpacity="0.9" stroke="#cbd5e1" strokeWidth="0.8" />
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 8} x2={W - PAD.right - 114} y2={PAD.top + 8} stroke="#d97706" strokeWidth="2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 10} fill="#1e293b" fontSize="6.8" fontFamily="sans-serif">A: {scenarioA?.shortName ?? 'Actuel'}</text>
+                    <line x1={W - PAD.right - 130} y1={PAD.top + 17} x2={W - PAD.right - 114} y2={PAD.top + 17} stroke="#059669" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x={W - PAD.right - 110} y={PAD.top + 19} fill="#059669" fontSize="6.8" fontFamily="sans-serif">B: {scenarioB?.shortName ?? 'Sobriété'}</text>
                   </g>
                 )}
 
@@ -845,7 +844,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   cx={currentX}
                   cy={getYEroi(currentSimState.currentEroi)}
                   r="4"
-                  fill="#f59e0b"
+                  fill="#d97706"
                   stroke="#ffffff"
                   strokeWidth="1.5"
                 />
@@ -856,7 +855,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                     cx={currentX}
                     cy={getYEroi(currentSimStateB.currentEroi)}
                     r="3.5"
-                    fill="#34d399"
+                    fill="#059669"
                     stroke="#ffffff"
                     strokeWidth="1.2"
                   />
@@ -867,13 +866,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   width="42"
                   height="12"
                   rx="3"
-                  fill="#78350f"
+                  fill="#92400e"
                 />
                 <text
                   x={Math.max(PAD.left + 21, Math.min(W - PAD.right - 21, currentX))}
                   y={getYEroi(currentSimState.currentEroi) - 7.5}
                   textAnchor="middle"
-                  fill="#fef3c7"
+                  fill="#ffffff"
                   fontSize="7.5"
                   fontWeight="bold"
                   fontFamily="monospace"
@@ -884,13 +883,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </div>
 
             {/* Légende explicative */}
-            <div className="flex flex-col gap-1 text-[10.5px] text-slate-300 pt-1 border-t border-slate-800/80">
+            <div className="flex flex-col gap-1 text-[10.5px] text-slate-700 pt-1 border-t border-slate-200">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <span>🟡 <strong>Ligne jaune :</strong> Multiplicateur pétrole (x{d2.stateA.currentEroi >= 20 ? Math.round(d2.stateA.currentEroi) : d2.stateA.currentEroi.toFixed(1)} barils extraits pour 1 baril consommé)</span>
                 <span>🟢 <strong>Ligne verte :</strong> Énergie utile disponible pour la société ({(d2.stateA.netEnergyRatio * 100).toFixed(0)}%)</span>
                 <span>🔵 <strong>Pointillé bleu :</strong> Engrais chimiques Haber-Bosch ({(d2.stateA.haberBoschNitrogenFactor * 100).toFixed(0)}%)</span>
               </div>
-              <p className="text-[10px] text-amber-200/90 bg-amber-950/30 p-1.5 rounded border border-amber-900/50">
+              <p className="text-[10px] text-amber-950 bg-amber-50 p-1.5 rounded border border-amber-200">
                 💡 <strong>Pourquoi ce chiffre baisse-t-il ?</strong> Les premiers gisements (1900) étaient sous pression naturelle et peu profonds (rendement x100). Aujourd'hui, il faut forer à 3 000 mètres sous les océans ou fracturer la roche étanche, ce qui dévore d'immenses quantités d'énergie.
               </p>
             </div>

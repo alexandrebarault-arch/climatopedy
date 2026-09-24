@@ -215,17 +215,17 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
     {
       id: 'energy_resilience',
       category: 'energy',
-      title: 'Résilience Énergétique (EROI)',
-      subtitle: 'Multiplicateur d\'énergie et fraction d\'énergie nette civile',
+      title: 'Rendement de l\'Énergie (Énergie Nette)',
+      subtitle: 'Barils obtenus pour 1 baril dépensé à forer, et énergie utile pour la société',
       icon: <Zap className="w-5 h-5 text-yellow-400" />,
       badge: 'Énergie & Métabolisme',
       badgeColor: 'border-yellow-800/60 bg-yellow-950/60 text-yellow-300',
       valA: `x${stateA.currentEroi >= 20 ? Math.round(stateA.currentEroi) : stateA.currentEroi.toFixed(1)} (${(stateA.netEnergyRatio * 100).toFixed(0)}% utile)`,
       valB: `x${stateB.currentEroi >= 20 ? Math.round(stateB.currentEroi) : stateB.currentEroi.toFixed(1)} (${(stateB.netEnergyRatio * 100).toFixed(0)}% utile)`,
-      deltaText: `${deltaEroi >= 0 ? '+' : ''}${deltaEroi.toFixed(1)} pts EROI (${deltaNetEnergyPct >= 0 ? '+' : ''}${deltaNetEnergyPct} pts net)`,
+      deltaText: `${deltaEroi >= 0 ? '+' : ''}${deltaEroi.toFixed(1)} pts de rendement (${deltaNetEnergyPct >= 0 ? '+' : ''}${deltaNetEnergyPct} pts utile)`,
       deltaPositiveIsGood: deltaEroi > 0,
-      benefitHeadline: `Préservation du stock de capital pour les usages vitaux`,
-      mechanism: `La baisse délibérée de la demande évite le gaspillage des derniers gisements conventionnels et préserve un EROI viable pour électrifier et isoler la société.`,
+      benefitHeadline: `Préservation de l'énergie pour les besoins vitaux`,
+      mechanism: `La baisse délibérée de la demande évite de gaspiller les derniers gisements et préserve un rendement suffisant pour isoler les logements et électrifier.`,
       scientificRef: 'Hall, Lambert & Balogh (Ecol. Econ. 2014)',
       tooltipTerm: 'eroi'
     },
@@ -379,7 +379,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
             { id: 'climate', label: 'Climat & Océans' },
             { id: 'demography', label: 'Démographie & Survie' },
             { id: 'food_water', label: 'Eau & Alimentation' },
-            { id: 'energy', label: 'Énergie & EROI' }
+            { id: 'energy', label: 'Rendement de l\'Énergie' }
           ].map((cat) => (
             <button
               key={cat.id}
@@ -604,7 +604,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                 <td className="py-2.5 px-3 text-slate-300 text-[11px]">Protection des deltas fertiles (Gange, Mékong, Nil, Pô) et mégapoles côtières.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-white">Multiplicateur Énergétique Résiduel (EROI)</td>
+                <td className="py-2.5 px-3 font-semibold text-white">Rendement de l'Énergie (Énergie Utile)</td>
                 <td className="py-2.5 px-3 font-mono text-rose-300">x{stateA.currentEroi >= 20 ? Math.round(stateA.currentEroi) : stateA.currentEroi.toFixed(1)}</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-300">x{stateB.currentEroi >= 20 ? Math.round(stateB.currentEroi) : stateB.currentEroi.toFixed(1)}</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-400">+{deltaEroi.toFixed(1)} pts</td>
