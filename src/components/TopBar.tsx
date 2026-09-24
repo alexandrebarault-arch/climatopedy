@@ -40,24 +40,8 @@ export const TopBar: React.FC<TopBarProps> = ({
   return (
     <>
       <header id="tour-topbar-header" className="flex items-center justify-between px-3 sm:px-6 py-2.5 border-b border-slate-200 bg-white/95 backdrop-blur z-30 relative shrink-0 shadow-xs">
-        {/* Zone 1: Wordmark / Logo */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0 mr-2 sm:mr-4">
-          <span className="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse shrink-0 inline-block shadow-sm shadow-sky-500/40" />
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="text-sm sm:text-base font-bold tracking-tight text-slate-900 whitespace-nowrap">
-              CLIMATOPEDY
-            </span>
-            <span className="hidden xl:inline text-xs font-normal text-slate-500 whitespace-nowrap">
-              · Comprendre le Climat &amp; l'Énergie simplement
-            </span>
-            <span className="hidden sm:inline xl:hidden text-[10px] font-mono text-sky-700 px-1.5 py-0.5 rounded bg-sky-50 border border-sky-200 whitespace-nowrap">
-              2026–2200
-            </span>
-          </div>
-        </div>
-
-        {/* Zone 2: Navigation Desktop (visible dès lg, sans AUCUNE barre de scroll native) */}
-        <nav id="tour-topbar-nav" className="hidden lg:flex items-center gap-1.5 xl:gap-2 2xl:gap-3 text-xs font-medium text-slate-600 min-w-0 overflow-x-auto no-scrollbar py-1 flex-1 justify-center">
+        {/* Navigation Desktop (visible dès lg, sans AUCUNE barre de scroll native) */}
+        <nav id="tour-topbar-nav" className="hidden lg:flex items-center gap-1.5 xl:gap-2 2xl:gap-3 text-xs font-medium text-slate-600 min-w-0 overflow-x-auto no-scrollbar py-1 flex-1">
           <button
             onClick={() => handleTabClick('map')}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
