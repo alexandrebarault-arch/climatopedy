@@ -46,8 +46,9 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   const [hoveredChartId, setHoveredChartId] = useState<string | null>(null);
   const [isSyncHover, setIsSyncHover] = useState<boolean>(false); // Par défaut: Survol indépendant = les autres graphiques ne bougent JAMAIS
 
-  // Mode Plein Écran
-  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+  // Mode Plein Écran par graphique individuel
+  type ChartId = 'demo' | 'energy' | 'climate' | 'agri';
+  const [expandedChartId, setExpandedChartId] = useState<ChartId | null>(null);
 
   // Plage temporelle : étendue jusqu'en 2200 selon les faits scientifiques IPCC AR6
   const [timeRange, setTimeRange] = useState<TimeRangeType>('1900-2200');
@@ -55,13 +56,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   // Fermeture du plein écran via la touche Échap
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isFullScreen) {
-        setIsFullScreen(false);
+      if (e.key === 'Escape' && expandedChartId) {
+        setExpandedChartId(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isFullScreen]);
+  }, [expandedChartId]);
 
   // Dimensions graphiques SVG de base
   const W = 540;
@@ -505,29 +506,73 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   const d3 = getChartDisplayData('climate');
   const d4 = getChartDisplayData('agri');
 
-  // Rendu du contenu des graphiques
-  const renderChartsGrid = (isModal: boolean = false) => {
+  const getChartTitle = (id: ChartId) => {
+    switch (id) {
+      case 'demo':
+        return '1. Population Mondiale & Nombre de Décès par An';
+      case 'energy':
+        return "2. Énergie & Pétrole : Multiplicateur d'Énergie et Part Utile";
+      case 'climate':
+        return '3. Réchauffement Mondial, Gaz à Effet de Serre & Montée des Océans';
+      case 'agri':
+        return '4. Disponibilité Alimentaire Mondiale & Rendements des Terres';
+    }
+  };
+
+  // Rendu du contenu des graphiques (standard en grille ou étiré en plein écran)
+  const renderChartsGrid = (expandedId: ChartId | null = null) => {
+    const isExpanded = expandedId !== null;
     return (
-      <div className={`grid grid-cols-1 ${isModal ? 'xl:grid-cols-2' : 'lg:grid-cols-2'} gap-4`}>
+      <div className={isExpanded ? 'w-full' : 'grid grid-cols-1 lg:grid-cols-2 gap-4'}>
         {/* ========================================================================= */}
         {/* GRAPHIQUE 1 : DÉMOGRAPHIE & TOUTES LES CAUSES DE DÉCÈS */}
         {/* ========================================================================= */}
-        {(activeTab === 'all' || activeTab === 'demo') && (
-          <div className="bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs">
+        {(!isExpanded ? (activeTab === 'all' || activeTab === 'demo') : expandedId === 'demo') && (
+          <div className={isExpanded ? 'bg-white border border-slate-300 rounded-2xl p-5 sm:p-7 shadow-sm w-full flex flex-col gap-3' : 'bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs'}>
             <div className="flex flex-col gap-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-900">
-                  1. Population Mondiale &amp; Nombre de Décès par An
-                </span>
-                <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
-                  {d1.isShowingHover ? (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
-                      🔍 Survol : {d1.displayYear}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className={`${isExpanded ? 'text-sm sm:text-base' : 'text-xs'} font-bold text-slate-900`}>
+                    1. Population Mondiale &amp; Nombre de Décès par An
+                  </span>
+                  {isExpanded && (
+                    <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-sky-100 text-sky-800 border border-sky-200 font-semibold">
+                      Démographie
                     </span>
-                  ) : (
-                    <span>Année {d1.displayYear}</span>
                   )}
-                </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
+                    {d1.isShowingHover ? (
+                      <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
+                        🔍 Survol : {d1.displayYear}
+                      </span>
+                    ) : (
+                      <span>Année {d1.displayYear}</span>
+                    )}
+                  </span>
+                  {!isExpanded ? (
+                    <button
+                      onClick={() => setExpandedChartId('demo')}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white hover:bg-sky-50 text-slate-700 hover:text-sky-700 border border-slate-200 hover:border-sky-300 transition-colors shadow-2xs cursor-pointer shrink-0"
+                      title="Agrandir ce graphique en plein écran"
+                      aria-label="Plein écran pour le graphique Démographie"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 text-sky-600" />
+                      <span className="hidden sm:inline">Plein écran</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setExpandedChartId(null)}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 hover:border-rose-300 transition-colors shadow-2xs cursor-pointer shrink-0"
+                      title="Fermer le plein écran"
+                      aria-label="Fermer le plein écran"
+                    >
+                      <X className="w-4 h-4 text-rose-600" />
+                      <span>Fermer</span>
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Indicateurs numériques précis avec tabular-nums pour zéros tremblements */}
@@ -577,7 +622,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </p>
 
             {/* SVG Graphique 1 */}
-            <div className="relative w-full aspect-[540/205] bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner">
+            <div className={`relative w-full ${isExpanded ? 'aspect-[540/220] sm:aspect-[540/210] max-h-[62vh]' : 'aspect-[540/205]'} bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner`}>
               <svg
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
@@ -705,22 +750,52 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         {/* ========================================================================= */}
         {/* GRAPHIQUE 2 : ÉNERGIE & PÉTROLE */}
         {/* ========================================================================= */}
-        {(activeTab === 'all' || activeTab === 'energy') && (
-          <div className="bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs">
+        {(!isExpanded ? (activeTab === 'all' || activeTab === 'energy') : expandedId === 'energy') && (
+          <div className={isExpanded ? 'bg-white border border-slate-300 rounded-2xl p-5 sm:p-7 shadow-sm w-full flex flex-col gap-3' : 'bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs'}>
             <div className="flex flex-col gap-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-900">
-                  2. Énergie &amp; Pétrole : Multiplicateur d'Énergie et Part Utile
-                </span>
-                <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
-                  {d2.isShowingHover ? (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
-                      🔍 Survol : {d2.displayYear}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className={`${isExpanded ? 'text-sm sm:text-base' : 'text-xs'} font-bold text-slate-900`}>
+                    2. Énergie &amp; Pétrole : Multiplicateur d'Énergie et Part Utile
+                  </span>
+                  {isExpanded && (
+                    <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-sky-100 text-sky-800 border border-sky-200 font-semibold">
+                      Énergie
                     </span>
-                  ) : (
-                    <span>Année {d2.displayYear}</span>
                   )}
-                </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
+                    {d2.isShowingHover ? (
+                      <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
+                        🔍 Survol : {d2.displayYear}
+                      </span>
+                    ) : (
+                      <span>Année {d2.displayYear}</span>
+                    )}
+                  </span>
+                  {!isExpanded ? (
+                    <button
+                      onClick={() => setExpandedChartId('energy')}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white hover:bg-sky-50 text-slate-700 hover:text-sky-700 border border-slate-200 hover:border-sky-300 transition-colors shadow-2xs cursor-pointer shrink-0"
+                      title="Agrandir ce graphique en plein écran"
+                      aria-label="Plein écran pour le graphique Énergie"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 text-sky-600" />
+                      <span className="hidden sm:inline">Plein écran</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setExpandedChartId(null)}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 hover:border-rose-300 transition-colors shadow-2xs cursor-pointer shrink-0"
+                      title="Fermer le plein écran"
+                      aria-label="Fermer le plein écran"
+                    >
+                      <X className="w-4 h-4 text-rose-600" />
+                      <span>Fermer</span>
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Indicateurs numériques avec tabular-nums */}
@@ -763,7 +838,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </p>
 
             {/* SVG Graphique 2 */}
-            <div className="relative w-full aspect-[540/205] bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner">
+            <div className={`relative w-full ${isExpanded ? 'aspect-[540/220] sm:aspect-[540/210] max-h-[62vh]' : 'aspect-[540/205]'} bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner`}>
               <svg
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
@@ -896,22 +971,52 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         {/* ========================================================================= */}
         {/* GRAPHIQUE 3 : CLIMAT & OCÉANS (Montée de la mer chiffrée jusqu'en 2200) */}
         {/* ========================================================================= */}
-        {(activeTab === 'all' || activeTab === 'climate') && (
-          <div className="bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs">
+        {(!isExpanded ? (activeTab === 'all' || activeTab === 'climate') : expandedId === 'climate') && (
+          <div className={isExpanded ? 'bg-white border border-slate-300 rounded-2xl p-5 sm:p-7 shadow-sm w-full flex flex-col gap-3' : 'bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs'}>
             <div className="flex flex-col gap-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-900">
-                  3. Réchauffement Mondial, Gaz à Effet de Serre &amp; Montée des Océans
-                </span>
-                <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
-                  {d3.isShowingHover ? (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
-                      🔍 Survol : {d3.displayYear}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className={`${isExpanded ? 'text-sm sm:text-base' : 'text-xs'} font-bold text-slate-900`}>
+                    3. Réchauffement Mondial, Gaz à Effet de Serre &amp; Montée des Océans
+                  </span>
+                  {isExpanded && (
+                    <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-sky-100 text-sky-800 border border-sky-200 font-semibold">
+                      Climat
                     </span>
-                  ) : (
-                    <span>Année {d3.displayYear}</span>
                   )}
-                </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
+                    {d3.isShowingHover ? (
+                      <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
+                        🔍 Survol : {d3.displayYear}
+                      </span>
+                    ) : (
+                      <span>Année {d3.displayYear}</span>
+                    )}
+                  </span>
+                  {!isExpanded ? (
+                    <button
+                      onClick={() => setExpandedChartId('climate')}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white hover:bg-sky-50 text-slate-700 hover:text-sky-700 border border-slate-200 hover:border-sky-300 transition-colors shadow-2xs cursor-pointer shrink-0"
+                      title="Agrandir ce graphique en plein écran"
+                      aria-label="Plein écran pour le graphique Climat"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 text-sky-600" />
+                      <span className="hidden sm:inline">Plein écran</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setExpandedChartId(null)}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 hover:border-rose-300 transition-colors shadow-2xs cursor-pointer shrink-0"
+                      title="Fermer le plein écran"
+                      aria-label="Fermer le plein écran"
+                    >
+                      <X className="w-4 h-4 text-rose-600" />
+                      <span>Fermer</span>
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Chiffres précis dont la montée du niveau des mers */}
@@ -955,7 +1060,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </p>
 
             {/* SVG Graphique 3 */}
-            <div className="relative w-full aspect-[540/205] bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner">
+            <div className={`relative w-full ${isExpanded ? 'aspect-[540/220] sm:aspect-[540/210] max-h-[62vh]' : 'aspect-[540/205]'} bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner`}>
               <svg
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
@@ -1078,22 +1183,52 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         {/* ========================================================================= */}
         {/* GRAPHIQUE 4 : AGRONOMIE & ALIMENTATION */}
         {/* ========================================================================= */}
-        {(activeTab === 'all' || activeTab === 'agri') && (
-          <div className="bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs">
+        {(!isExpanded ? (activeTab === 'all' || activeTab === 'agri') : expandedId === 'agri') && (
+          <div className={isExpanded ? 'bg-white border border-slate-300 rounded-2xl p-5 sm:p-7 shadow-sm w-full flex flex-col gap-3' : 'bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs'}>
             <div className="flex flex-col gap-1">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-900">
-                  4. Disponibilité Alimentaire Mondiale &amp; Rendements des Terres
-                </span>
-                <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
-                  {d4.isShowingHover ? (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
-                      🔍 Survol : {d4.displayYear}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className={`${isExpanded ? 'text-sm sm:text-base' : 'text-xs'} font-bold text-slate-900`}>
+                    4. Disponibilité Alimentaire Mondiale &amp; Rendements des Terres
+                  </span>
+                  {isExpanded && (
+                    <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-sky-100 text-sky-800 border border-sky-200 font-semibold">
+                      Alimentation
                     </span>
-                  ) : (
-                    <span>Année {d4.displayYear}</span>
                   )}
-                </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10.5px] font-mono text-slate-600 font-semibold flex items-center gap-1.5">
+                    {d4.isShowingHover ? (
+                      <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
+                        🔍 Survol : {d4.displayYear}
+                      </span>
+                    ) : (
+                      <span>Année {d4.displayYear}</span>
+                    )}
+                  </span>
+                  {!isExpanded ? (
+                    <button
+                      onClick={() => setExpandedChartId('agri')}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white hover:bg-sky-50 text-slate-700 hover:text-sky-700 border border-slate-200 hover:border-sky-300 transition-colors shadow-2xs cursor-pointer shrink-0"
+                      title="Agrandir ce graphique en plein écran"
+                      aria-label="Plein écran pour le graphique Alimentation"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 text-sky-600" />
+                      <span className="hidden sm:inline">Plein écran</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setExpandedChartId(null)}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 hover:border-rose-300 transition-colors shadow-2xs cursor-pointer shrink-0"
+                      title="Fermer le plein écran"
+                      aria-label="Fermer le plein écran"
+                    >
+                      <X className="w-4 h-4 text-rose-600" />
+                      <span>Fermer</span>
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Indicateurs numériques avec tabular-nums */}
@@ -1132,7 +1267,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </p>
 
             {/* SVG Graphique 4 */}
-            <div className="relative w-full aspect-[540/205] bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner">
+            <div className={`relative w-full ${isExpanded ? 'aspect-[540/220] sm:aspect-[540/210] max-h-[62vh]' : 'aspect-[540/205]'} bg-white rounded-lg border border-slate-200 overflow-hidden cursor-crosshair shadow-inner`}>
               <svg
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
@@ -1399,47 +1534,43 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               </button>
             </div>
 
-            {/* BOUTON PLEIN ÉCRAN */}
-            <button
-              onClick={() => setIsFullScreen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 text-xs font-semibold cursor-pointer shadow-2xs transition-colors"
-              title="Afficher tous les graphiques en mode plein écran immersif"
-            >
-              <Maximize2 className="w-3.5 h-3.5 text-sky-600" />
-              <span>Plein écran</span>
-            </button>
+
           </div>
         </div>
 
         {/* Grille des graphiques interactifs */}
-        {renderChartsGrid(false)}
+        {renderChartsGrid(null)}
       </div>
 
-      {/* MODAL / FENÊTRE EN PLEIN ÉCRAN IMMERSIF */}
-      {isFullScreen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-slate-50 text-slate-800 overflow-y-auto animate-in fade-in duration-200">
+      {/* MODAL / FENÊTRE EN PLEIN ÉCRAN POUR LE GRAPHIQUE ÉTIRÉ */}
+      {expandedChartId && (
+        <div 
+          className="fixed inset-0 z-50 flex flex-col bg-slate-100/95 backdrop-blur-md text-slate-800 overflow-y-auto animate-in fade-in duration-150"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Graphique en plein écran"
+        >
           {/* Barre supérieure d'en-tête du Plein Écran */}
-          <div className="sticky top-0 z-30 flex flex-wrap items-center justify-between gap-3 px-6 py-3.5 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+          <div className="sticky top-0 z-40 flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-xl bg-sky-50 border border-sky-200 text-sky-600">
                 <Maximize2 className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                  Observatoire des Trajectoires Biophysiques en Plein Écran
+                <h2 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+                  <span>Plein Écran : {getChartTitle(expandedChartId)}</span>
                   <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-sky-100 text-sky-800 border border-sky-200 font-semibold">
                     {startYear} → {endYear}
                   </span>
                 </h2>
-                <p className="text-xs text-slate-500">
-                  Visualisation haute résolution multi-trajectoires · Année visualisée : <strong className="text-slate-900 font-mono">{currentSimYear}</strong>
+                <p className="text-[11px] text-slate-500">
+                  Vue haute résolution étirée · Année visualisée : <strong className="text-slate-900 font-mono">{currentSimYear}</strong>
                 </p>
               </div>
             </div>
 
             {/* Outils & Commandes en Plein Écran */}
-            <div className="flex flex-wrap items-center gap-3">
-              
+            <div className="flex flex-wrap items-center gap-2.5">
               {/* Sélecteur de période */}
               <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
                 <span className="text-[10px] text-slate-500 px-1.5 font-medium">Période :</span>
@@ -1477,34 +1608,12 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 </button>
               </div>
 
-              {/* Sélecteur de survol */}
+              {/* BOUTON FERMER LE PLEIN ÉCRAN (CROIX) */}
               <button
-                onClick={() => setIsSyncHover(!isSyncHover)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-colors shadow-2xs ${
-                  !isSyncHover
-                    ? 'bg-emerald-50 border-emerald-300 text-emerald-800'
-                    : 'bg-indigo-50 border-indigo-300 text-indigo-800'
-                }`}
-                title="Activer ou désactiver la synchronisation du survol entre les graphiques"
-              >
-                {!isSyncHover ? (
-                  <>
-                    <Eye className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Survol : Indépendant</span>
-                  </>
-                ) : (
-                  <>
-                    <GitCompare className="w-3.5 h-3.5 text-indigo-600" />
-                    <span>Survol : Synchronisé</span>
-                  </>
-                )}
-              </button>
-
-              {/* BOUTON FERMER LE PLEIN ÉCRAN */}
-              <button
-                onClick={() => setIsFullScreen(false)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-xs transition-colors cursor-pointer"
+                onClick={() => setExpandedChartId(null)}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-xs transition-colors cursor-pointer"
                 title="Fermer le mode plein écran (Touche Échap)"
+                aria-label="Fermer le plein écran"
               >
                 <X className="w-4 h-4" />
                 <span>Fermer le plein écran</span>
@@ -1514,18 +1623,31 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
           </div>
 
           {/* Corps du Plein Écran */}
-          <div className="flex-1 p-6 space-y-6 max-w-[1750px] mx-auto w-full">
-            {/* Barre de navigation temporelle rapide en plein écran */}
+          <div className="flex-1 p-4 sm:p-6 space-y-4 max-w-[1600px] mx-auto w-full">
+            {/* Barre de navigation temporelle rapide avec slider interactif */}
             <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-xs text-slate-700 font-mono">
+              <div className="flex items-center gap-2 text-xs text-slate-700 font-mono shrink-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-sky-500 animate-ping inline-block" />
-                <span>Curseur temporel actif : <strong className="text-slate-900 text-sm">{currentSimYear}</strong></span>
+                <span>Curseur temporel : <strong className="text-slate-900 text-sm">{currentSimYear}</strong></span>
               </div>
-              <div className="flex flex-wrap items-center gap-2 text-xs">
-                <span className="text-slate-500 font-medium">Aller directement à :</span>
+              <div className="flex-1 min-w-[200px] max-w-lg flex items-center gap-3">
+                <span className="text-xs font-mono text-slate-500">{startYear}</span>
+                <input
+                  type="range"
+                  min={startYear}
+                  max={endYear}
+                  value={currentSimYear}
+                  onChange={(e) => onSeekYear(Number(e.target.value))}
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-sky-600"
+                  aria-label="Curseur temporel"
+                />
+                <span className="text-xs font-mono text-slate-500">{endYear}</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1 text-xs">
+                <span className="text-slate-500 font-medium mr-1">Aller à :</span>
                 {[1900, 1950, 2000, 2026, 2050, 2075, 2100, 2150, 2200].filter(y => y >= startYear && y <= endYear).map((yr) => (
                   <button
-                    key={`jump-${yr}`}
+                    key={`jump-exp-${yr}`}
                     onClick={() => onSeekYear(yr)}
                     className={`px-2.5 py-1 rounded font-mono font-bold cursor-pointer transition-colors ${
                       currentSimYear === yr
@@ -1539,8 +1661,19 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               </div>
             </div>
 
-            {/* Rendu des graphiques dans la fenêtre plein écran */}
-            {renderChartsGrid(true)}
+            {/* Rendu du graphique unique sélectionné, étiré et enrichi */}
+            {renderChartsGrid(expandedChartId)}
+
+            {/* Bouton secondaire en bas pour fermer confortablement */}
+            <div className="flex justify-center pt-2 pb-6">
+              <button
+                onClick={() => setExpandedChartId(null)}
+                className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold shadow-sm transition-all cursor-pointer hover:scale-102"
+              >
+                <X className="w-4 h-4 text-slate-400" />
+                <span>Quitter le plein écran (Échap)</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
