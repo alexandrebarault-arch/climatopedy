@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Wrench, Zap, Sprout, Anchor, Layers, Fuel, ArrowRight, ShieldAlert, Cpu } from 'lucide-react';
+import { CausalChainVisualCard } from './CausalChainVisualCard';
 
 export const CausalChainExplorer: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -96,6 +97,8 @@ export const CausalChainExplorer: React.FC = () => {
 
       {/* CONTENU DÉTAILLÉ DE L'ÉTAPE SÉLECTIONNÉE */}
       <div className="bg-[#0c121e] rounded-xl border border-slate-800 p-5 space-y-6 text-slate-300 text-xs leading-relaxed">
+        {/* Visualisation Technique & Coupe Réaliste Simulée */}
+        <CausalChainVisualCard stepIndex={activeStep} />
         {/* ÉTAPE 1 : ANATOMIE DU FORAGE PÉTROLIER */}
         {activeStep === 0 && (
           <div className="space-y-5 animate-in fade-in duration-200">

@@ -23,6 +23,7 @@ import {
 import { TippingPointsChart } from './TippingPointsChart';
 import { AllTippingPointsConsequencesModal } from './AllTippingPointsConsequencesModal';
 import { TippingPointModal } from './TippingPointModal';
+import { TippingPointVisualCard } from './TippingPointVisualCard';
 
 export interface TippingElement {
   id: string;
@@ -679,6 +680,16 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                     Fourchette : [{activeElement.thresholdMin}°C à {activeElement.thresholdMax}°C]
                   </div>
                 </div>
+              </div>
+
+              {/* Visualisation satellitaire haute fidélité simulée du lieu */}
+              <div className="my-4">
+                <TippingPointVisualCard
+                  elementId={activeElement.id}
+                  elementName={activeElement.name}
+                  isTipped={getRiskStatusAtTemp(activeElement, customTempSlider).level === 'tipped'}
+                  isUncertain={getRiskStatusAtTemp(activeElement, customTempSlider).level === 'uncertain'}
+                />
               </div>
 
               {/* Statut au réchauffement simulé */}

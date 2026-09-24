@@ -16,6 +16,7 @@ import {
   Waves
 } from 'lucide-react';
 import { TippingElement } from './TippingPointsView';
+import { TippingPointVisualCard } from './TippingPointVisualCard';
 
 interface TippingPointModalProps {
   element: TippingElement | null;
@@ -92,8 +93,17 @@ export const TippingPointModal: React.FC<TippingPointModalProps> = ({
 
         {/* Corps de la fiche : Explication pédagogique pour tout le monde */}
         <div className="p-5 sm:p-6 overflow-y-auto space-y-4 text-xs sm:text-sm">
+          {/* Visualisation d'observation satellitaire simulée */}
+          <TippingPointVisualCard
+            elementId={element.id}
+            elementName={element.name}
+            isTipped={isTipped}
+            isUncertain={isUncertain}
+          />
+
           {/* Ligne repère thermique et date estimée */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-[#131c31] border border-slate-800/80 rounded-xl p-3.5">
+
             <div className="flex items-center gap-2.5">
               <Thermometer className="w-4 h-4 text-rose-400 shrink-0" />
               <div>
