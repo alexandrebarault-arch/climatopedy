@@ -199,7 +199,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
       {/* Ligne 2 : Commandes de lecture, scrubber temporel séculaire (1900-2100) et jalons */}
       <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 border-t border-slate-800/80">
         {/* Contrôles de transport Play / Pause / Step / Reset */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap sm:flex-nowrap justify-center sm:justify-start">
           <button
             onClick={onTogglePlay}
             className={`flex items-center justify-center w-10 h-10 rounded-lg font-medium transition-all shadow-md cursor-pointer ${
