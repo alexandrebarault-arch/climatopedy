@@ -1,9 +1,11 @@
 import React from 'react';
-import { RotateCcw, FileText, Network, Globe, HelpCircle, GitCompare, ShieldAlert, FileDown } from 'lucide-react';
+import { RotateCcw, FileText, Network, Globe, HelpCircle, GitCompare, ShieldAlert, FileDown, LayoutDashboard } from 'lucide-react';
+
+export type AppTabType = 'map' | 'comparative-dashboard' | 'tipping-points' | 'causal' | 'spec';
 
 interface TopBarProps {
-  currentTab: 'map' | 'tipping-points' | 'causal' | 'spec';
-  onSelectTab: (tab: 'map' | 'tipping-points' | 'causal' | 'spec') => void;
+  currentTab: AppTabType;
+  onSelectTab: (tab: AppTabType) => void;
   onReset: () => void;
   currentYear: number;
   onOpenPdfExport?: () => void;
@@ -22,15 +24,15 @@ export const TopBar: React.FC<TopBarProps> = ({
       <div className="flex items-center gap-3">
         <span className="text-base font-semibold tracking-tight text-white flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse inline-block" />
-          GAIA-Sim · Biosphère & Démographie 2026–2100
+          GAIA-Sim · Biosphère &amp; Démographie 2026–2200
         </span>
       </div>
 
       {/* Zone 2: Clean text navigation links */}
-      <nav className="flex items-center gap-6 text-xs font-medium text-slate-400">
+      <nav className="flex items-center gap-5 lg:gap-6 text-xs font-medium text-slate-400 overflow-x-auto py-1">
         <button
           onClick={() => onSelectTab('map')}
-          className={`flex items-center gap-1.5 transition-colors pb-0.5 border-b-2 whitespace-nowrap ${
+          className={`flex items-center gap-1.5 transition-colors pb-0.5 border-b-2 whitespace-nowrap cursor-pointer ${
             currentTab === 'map'
               ? 'text-cyan-400 border-cyan-400 font-semibold'
               : 'border-transparent hover:text-slate-200'
@@ -40,18 +42,21 @@ export const TopBar: React.FC<TopBarProps> = ({
           Planisphère & Indicateurs
         </button>
 
+        {/* NOUVEAU TAB : Dashboard Comparatif Global */}
         <button
-          onClick={() => {
-            onSelectTab('map');
-            setTimeout(() => {
-              document.getElementById('comparison-section')?.scrollIntoView({ behavior: 'smooth' });
-            }, 60);
-          }}
-          className="flex items-center gap-1.5 transition-colors pb-0.5 border-b-2 border-transparent text-slate-400 hover:text-emerald-300 whitespace-nowrap cursor-pointer"
-          title="Comparer deux trajectoires biophysiques (Actuel vs Sobriété)"
+          onClick={() => onSelectTab('comparative-dashboard')}
+          className={`flex items-center gap-1.5 transition-colors pb-0.5 border-b-2 whitespace-nowrap cursor-pointer ${
+            currentTab === 'comparative-dashboard'
+              ? 'text-emerald-400 border-emerald-400 font-bold'
+              : 'border-transparent hover:text-emerald-300'
+          }`}
+          title="Dashboard Comparatif Global : Cartes d'impact synthétisant les différences majeures entre Scénario A (BAU) et B (Sobriété)"
         >
-          <GitCompare className="w-3.5 h-3.5 text-emerald-400" />
-          Mode Comparatif
+          <LayoutDashboard className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Dashboard Comparatif Global</span>
+          <span className="text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-emerald-950 text-emerald-300 border border-emerald-700/60 font-semibold">
+            A vs B
+          </span>
         </button>
 
         <button

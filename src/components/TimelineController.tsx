@@ -214,7 +214,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
 
           <button
             onClick={onStepForward}
-            disabled={currentYear >= 2100}
+            disabled={currentYear >= 2200}
             className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-40 transition-colors cursor-pointer"
             title="Avancer d'une année (+1 an)"
           >
@@ -232,14 +232,38 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
 
           <button
             onClick={() => onSeekYear(1900)}
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
+            className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
               currentYear <= 1910
                 ? 'bg-blue-900/70 text-blue-200 border-blue-600'
                 : 'bg-slate-800 text-slate-300 hover:text-blue-300 hover:bg-slate-700 border-slate-700'
             }`}
             title="Remonter à 1900 (début de l'ère thermo-industrielle)"
           >
-            <span>⏪ 1900</span>
+            <span>1900</span>
+          </button>
+
+          <button
+            onClick={() => onSeekYear(2100)}
+            className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
+              Math.floor(currentYear) === 2100
+                ? 'bg-purple-900/70 text-purple-200 border-purple-600'
+                : 'bg-slate-800 text-slate-300 hover:text-purple-300 hover:bg-slate-700 border-slate-700'
+            }`}
+            title="Sauter directement à l'année 2100 (fin du XXIe siècle)"
+          >
+            <span>2100</span>
+          </button>
+
+          <button
+            onClick={() => onSeekYear(2200)}
+            className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
+              Math.floor(currentYear) >= 2195
+                ? 'bg-rose-900/70 text-rose-200 border-rose-600'
+                : 'bg-slate-800 text-slate-300 hover:text-rose-300 hover:bg-slate-700 border-slate-700'
+            }`}
+            title="Projeter à l'horizon 2200 (prospective scientifique longue portée)"
+          >
+            <span>2200 🔭</span>
           </button>
 
           {/* Vitesse de simulation */}
@@ -260,7 +284,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
           </div>
         </div>
 
-        {/* Curseur temporel Scrubber (1900 - 2100) */}
+        {/* Curseur temporel Scrubber (1900 - 2200) */}
         <div className="flex-1 w-full flex flex-col gap-1.5">
           <div className="flex items-center justify-between text-xs font-mono text-slate-400">
             <span className="flex items-center gap-1.5 text-[11px] text-blue-300">
@@ -272,18 +296,22 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
                 <span className="text-[10px] font-sans font-semibold bg-blue-950 text-blue-300 border border-blue-800/80 px-2 py-0.5 rounded">
                   Données réelles mesurées (1900–2026)
                 </span>
-              ) : (
+              ) : currentYear <= 2100 ? (
                 <span className="text-[10px] font-sans font-semibold bg-cyan-950 text-cyan-300 border border-cyan-800/80 px-2 py-0.5 rounded">
-                  Modèle de projection biophysique (2026–2100)
+                  Modèle biophysique (2026–2100)
+                </span>
+              ) : (
+                <span className="text-[10px] font-sans font-semibold bg-purple-950 text-purple-300 border border-purple-800/80 px-2 py-0.5 rounded">
+                  Projection longue portée (2100–2200 · IPCC AR6)
                 </span>
               )}
               <span className="text-base font-bold text-white px-2.5 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono tabular-nums">
                 Année {Math.floor(currentYear)}
               </span>
             </div>
-            <span className="flex items-center gap-1.5 text-[11px] text-purple-300">
-              2100 (Horizon)
-              <span className="w-2 h-2 rounded-full bg-purple-400 inline-block" />
+            <span className="flex items-center gap-1.5 text-[11px] text-rose-300">
+              2200 (Horizon Long)
+              <span className="w-2 h-2 rounded-full bg-rose-400 inline-block" />
             </span>
           </div>
 
@@ -291,7 +319,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
             <input
               type="range"
               min={1900}
-              max={2100}
+              max={2200}
               step={1}
               value={Math.floor(currentYear)}
               onChange={(e) => onSeekYear(Number(e.target.value))}
@@ -299,12 +327,14 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
             />
           </div>
 
-          {/* Points repères des ruptures biophysiques & historiques (1900-2100) */}
+          {/* Points repères des ruptures biophysiques & historiques (1900-2200) */}
           <div className="relative w-full h-4 mt-0.5">
             {SIMULATION_MILESTONES.map((m) => {
-              const leftPercent = ((m.year - 1900) / (2100 - 1900)) * 100;
+              const leftPercent = ((m.year - 1900) / (2200 - 1900)) * 100;
               const isActive = Math.floor(currentYear) >= m.year;
               const is2026 = m.year === 2026;
+              const is2100 = m.year === 2100;
+              const is2200 = m.year === 2200;
               return (
                 <button
                   key={m.year}
@@ -317,6 +347,10 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
                     className={`w-2 h-2 rounded-full transition-transform group-hover:scale-150 ${
                       is2026
                         ? 'bg-cyan-300 ring-2 ring-cyan-400 ring-offset-1 ring-offset-slate-900'
+                        : is2100
+                        ? 'bg-purple-400 ring-1 ring-purple-400/50'
+                        : is2200
+                        ? 'bg-rose-400 ring-1 ring-rose-400/50'
                         : isActive
                         ? 'bg-amber-400 ring-1 ring-amber-400/50'
                         : 'bg-slate-600'

@@ -24,7 +24,7 @@ interface FutureConclusionCardProps {
 }
 
 export const FutureConclusionCard: React.FC<FutureConclusionCardProps> = ({ onOpenPdfExport }) => {
-  const [activeEra, setActiveEra] = useState<'2050' | '2080' | '2100'>('2050');
+  const [activeEra, setActiveEra] = useState<'2050' | '2080' | '2100' | '2200'>('2050');
   const [glossaryOpen, setGlossaryOpen] = useState<boolean>(true);
   const [confidenceDetailsOpen, setConfidenceDetailsOpen] = useState<boolean>(false);
 
@@ -317,7 +317,7 @@ export const FutureConclusionCard: React.FC<FutureConclusionCardProps> = ({ onOp
                   Conclusion Finale &amp; Bouteille à la Mer pour le Futur
                 </h2>
                 <span className="px-2 py-0.5 rounded bg-purple-950/80 border border-purple-700 text-purple-300 text-[11px] font-semibold">
-                  2050 · 2080 · 2100
+                  2050 · 2080 · 2100 · 2200
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
@@ -328,7 +328,7 @@ export const FutureConclusionCard: React.FC<FutureConclusionCardProps> = ({ onOp
 
           {/* Sélecteur de date future */}
           <div className="flex items-center gap-1.5 bg-[#080d17] p-1 rounded-xl border border-slate-800 shrink-0">
-            {(['2050', '2080', '2100'] as const).map((era) => (
+            {(['2050', '2080', '2100', '2200'] as const).map((era) => (
               <button
                 key={era}
                 onClick={() => setActiveEra(era)}
@@ -439,16 +439,51 @@ export const FutureConclusionCard: React.FC<FutureConclusionCardProps> = ({ onOp
                   <strong>Notre conclusion finale :</strong> La Terre n'était pas un réservoir infini à piller, mais un organisme vivant doté de lois physiques inviolables. Vous êtes la première génération de l'histoire moderne qui vit en harmonie mesurée avec les cycles du carbone, de l'eau et de l'azote. Vos ancêtres ont payé le prix lourd de l'apprentissage des limites, mais vous êtes désormais les gardiens éclairés de cet équilibre.
                 </p>
                 <p>
-                  Ce simulateur s'arrête ici, à l'abscisse 2100. Mais votre histoire humaine, elle, commence véritablement. Prenez soin de chaque hectare de forêt, de chaque rivière propre, de chaque brise d'été vivable. Nous vous transmettons notre admiration éternelle et notre bénédiction depuis les origines de cette prise de conscience.
+                  Ce simulateur clôture le XXIe siècle à cette borne symbolique et ouvre la projection séculaire jusqu'à l'horizon 2200. Mais votre histoire humaine, elle, commence véritablement. Prenez soin de chaque hectare de forêt, de chaque rivière propre, de chaque brise d'été vivable. Nous vous transmettons notre admiration éternelle et notre bénédiction depuis les origines de cette prise de conscience.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-purple-900/40 flex flex-wrap items-center justify-between gap-3 text-xs text-purple-300">
                 <span className="italic flex items-center gap-1.5">
-                  <Compass className="w-3.5 h-3.5 text-purple-400" /> Fin de la trajectoire simulée · Début du temps long régénéré.
+                  <Compass className="w-3.5 h-3.5 text-purple-400" /> Clôture du XXIe siècle · Début du temps long régénéré.
                 </span>
                 <span className="font-mono text-[11px] text-slate-400">
                   Paramètres repères : CO2 stabilisé · Régime post-fossile équilibré
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* MESSAGE POUR 2200 */}
+          {activeEra === '2200' && (
+            <div className="flex flex-col gap-4 animate-fadeIn">
+              <div className="flex items-center gap-2 text-purple-300 text-xs font-mono uppercase tracking-wider font-semibold">
+                <Calendar className="w-4 h-4 text-purple-400" />
+                <span>Message transmis depuis l'an 2026 · Aux bâtisseurs du XXIIIe siècle</span>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                « À l'horizon 2200 : Le grand rééquilibrage séculaire post-anthropocène. »
+              </h3>
+
+              <div className="space-y-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <p>
+                  L'an 2200. Près de deux siècles après la rédaction de ce modèle en 2026, vous vivez dans le temps long de la géophysique terrestre. Même après l'arrêt complet de l'extraction fossile, l'inertie thermique des abysses océaniques (Fox-Kemper et al. 2021) et la fonte lente des calottes de glace polaire ont continué leur travail séculaire.
+                </p>
+                <p>
+                  <strong>Les deux mondes possibles en 2200 :</strong> Si l'humanité a bifurqué vers la sobriété choisie, le réchauffement est stabilisé à <strong>+1,3°C</strong>, le niveau de la mer a contenu sa hausse séculaire sous <strong>+80 cm</strong>, et plus de 8 milliards d'êtres humains habitent des territoires apaisés grâce à l'agroécologie régénérative. Si au contraire l'inertie fossile a prévalu jusqu'à la dernière goutte, la biosphère à <strong>+4,5°C</strong> et <strong>+2,6 mètres de niveau marin</strong> a forcé la recomposition complète des deltas et des zones côtières mondiales.
+                </p>
+                <p>
+                  Quel que soit le chemin parcouru, vous êtes les témoins de la réconciliation finale entre la thermodynamique et la vie. Vous prouvez que la conscience humaine est capable de traverser le gouffre des siècles.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-purple-900/40 flex flex-wrap items-center justify-between gap-3 text-xs text-purple-300">
+                <span className="italic flex items-center gap-1.5">
+                  <Compass className="w-3.5 h-3.5 text-purple-400" /> Horizon ultime simulé · Équilibre biophysique planétaire.
+                </span>
+                <span className="font-mono text-[11px] text-slate-400">
+                  Paramètres repères : T1 +1.3°C à +4.5°C · Hausse marine +0.8m à +2.6m
                 </span>
               </div>
             </div>

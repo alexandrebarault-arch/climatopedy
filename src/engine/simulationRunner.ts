@@ -74,6 +74,36 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
     category: 'human',
     title: 'Régression Démographique & Recomposition Spatiale',
     description: 'Après plusieurs décennies de famines récurrentes et de dômes thermiques insoutenables, la population mondiale se stabilise vers un socle biophysique résilient compatible avec l\'agriculture post-chimique.'
+  },
+  {
+    year: 2100,
+    category: 'climate',
+    title: 'Clôture du XXIe Siècle & Bilan AR6 (Divergence 1,4°C vs 4,3°C)',
+    description: 'En trajectoire fossile, l\'épuisement des réserves de pétrole et de gaz scelle le réchauffement autour de +4.3°C. En sobriété, l\'anomalie est stabilisée à +1.4°C. Montée marine : 85 cm à 1 mètre.'
+  },
+  {
+    year: 2125,
+    category: 'climate',
+    title: 'Inertie Abyssale Océanique & Hausse Séculaire du Niveau Marin',
+    description: 'Même si les émissions nettes s\'épuisent, l\'océan profond continue d\'absorber la chaleur accumulée (Fox-Kemper et al. 2021). L\'élévation marine franchit +1.5 m en trajectoire fossile (+0.8 m en sobriété).'
+  },
+  {
+    year: 2150,
+    category: 'climate',
+    title: 'Fonte Engagée des Calottes Polaires (Groenland & WAIS)',
+    description: 'En scénario chaud, les seuils d\'instabilité marine des calottes du Groenland et de l\'Antarctique Ouest sont irréversiblement dépassés, engageant plusieurs mètres de hausse marine (Pattyn et al. 2018 Nature Climate Change).'
+  },
+  {
+    year: 2175,
+    category: 'agri',
+    title: 'Recomposition Radicale des Biomes & Verdissement Boréal',
+    description: 'La toundra arctique dégèle en profondeur et se boise (« verdissement arctique »), tandis que les marges sud de la taïga subissent mégafeux et dépérissement. L\'agriculture se replie vers les hautes latitudes (Burke et al. 2018 PNAS).'
+  },
+  {
+    year: 2200,
+    category: 'human',
+    title: 'Horizon 2200 : Nouvel Équilibre Biophysique Post-Anthropocène',
+    description: 'Stabilisation séculaire de la biosphère. En trajectoire de sobriété, 8 milliards d\'êtres humains vivent en symbiose régénératrice (+1.3°C). En scénario fossile, la population stabilisée à 2.8 milliards s\'adapte à un monde à +4.5°C et +2.6 m de niveau marin.'
   }
 ];
 
@@ -132,15 +162,17 @@ export const PRESET_SCENARIOS: SimulationScenarioConfig[] = [
 ];
 
 /**
- * Génère la trajectoire temporelle complète 1900-2100 pas à pas (annuelle)
- * Intègre la série historique réelle (1900-2025) et la projection biophysique (2026-2100)
+ * Génère la trajectoire temporelle complète 1900-2200 pas à pas (annuelle)
+ * Intègre la série historique réelle (1900-2025) et la projection biophysique (2026-2200)
  */
 export function generateFullTrajectory(
   configOrStartYear?: SimulationScenarioConfig | number,
-  secondArg?: SimulationScenarioConfig | number
+  secondArg?: SimulationScenarioConfig | number,
+  targetEndYear: number = 2200
 ): GlobalBiophysicalState[] {
   let startYear = 1900;
   let scenarioConfig: SimulationScenarioConfig = SCENARIO_BAU;
+  let endYear = targetEndYear;
 
   if (typeof configOrStartYear === 'number') {
     startYear = configOrStartYear;
@@ -167,8 +199,7 @@ export function generateFullTrajectory(
   let state = initializeSimulationState(scenarioConfig);
   trajectory.push(state);
 
-  // 3. Projection prospective 2026 à 2100 modulée selon le scénario biophysique
-  const endYear = 2100;
+  // 3. Projection prospective 2026 à 2200 modulée selon le scénario biophysique
   const dt = 1.0;
   const steps = endYear - 2026;
 

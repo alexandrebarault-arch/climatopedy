@@ -15,7 +15,8 @@ import {
   Share2,
   Copy,
   ExternalLink,
-  FileDown
+  FileDown,
+  LayoutDashboard
 } from 'lucide-react';
 import { GlobalBiophysicalState, SimulationScenarioConfig } from '../types/simulation';
 import { SCENARIO_BAU, SCENARIO_SOBRIETY, SCENARIO_DELAYED } from '../engine/simulationRunner';
@@ -33,6 +34,7 @@ interface ComparisonModePanelProps {
   trajectoryB: GlobalBiophysicalState[];
   currentYear: number;
   onOpenPdfExport?: () => void;
+  onNavigateToDashboard?: () => void;
 }
 
 export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
@@ -46,7 +48,8 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
   trajectoryA,
   trajectoryB,
   currentYear,
-  onOpenPdfExport
+  onOpenPdfExport,
+  onNavigateToDashboard
 }) => {
   const [showSliders, setShowSliders] = useState<boolean>(false);
   const [copiedUrl, setCopiedUrl] = useState<boolean>(false);
@@ -135,6 +138,18 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
 
         {/* Boutons d'action : Partager l'URL persistante, Exporter PDF & Toggle On/Off */}
         <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+          {/* Bouton Accès Dashboard Comparatif Global */}
+          {onNavigateToDashboard && (
+            <button
+              onClick={onNavigateToDashboard}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 hover:text-white border border-emerald-600/70 hover:border-emerald-400 transition-all cursor-pointer shadow-sm"
+              title="Ouvrir la page dédiée : Dashboard Comparatif Global avec toutes les cartes d'impact"
+            >
+              <LayoutDashboard className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Dashboard Comparatif</span>
+            </button>
+          )}
+
           {/* Bouton Export PDF */}
           {onOpenPdfExport && (
             <button

@@ -1,5 +1,21 @@
-import React, { useState } from 'react';
-import { Calendar, Info, Clock, AlertTriangle, Layers, ChevronRight, Activity, GitCompare, FileDown } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import {
+  Calendar,
+  Info,
+  Clock,
+  AlertTriangle,
+  Layers,
+  ChevronRight,
+  Activity,
+  GitCompare,
+  FileDown,
+  Maximize2,
+  Minimize2,
+  X,
+  SlidersHorizontal,
+  Eye,
+  CheckCircle2
+} from 'lucide-react';
 import { GlobalBiophysicalState, SimulationScenarioConfig } from '../types/simulation';
 import { TechTooltip } from './TechTooltip';
 
@@ -14,6 +30,8 @@ interface KpiChartsProps {
   onOpenPdfExport?: () => void;
 }
 
+export type TimeRangeType = '1900-2200' | '1900-2100' | '2026-2200' | '2026-2100';
+
 export const KpiCharts: React.FC<KpiChartsProps> = ({
   trajectory,
   compareTrajectory,
@@ -25,24 +43,48 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   onOpenPdfExport
 }) => {
   const [activeTab, setActiveTab] = useState<'all' | 'demo' | 'energy' | 'climate' | 'agri'>('all');
+  
+  // Gestion fine du survol pour ÉVITER de faire bouger les autres graphiques
   const [hoverYear, setHoverYear] = useState<number | null>(null);
-  const [timeRange, setTimeRange] = useState<'1900-2100' | '2026-2100'>('1900-2100');
+  const [hoveredChartId, setHoveredChartId] = useState<string | null>(null);
+  const [isSyncHover, setIsSyncHover] = useState<boolean>(false); // Par défaut: Survol indépendant = les autres graphiques ne bougent JAMAIS
 
-  // Dimensions graphiques SVG
+  // Mode Plein Écran
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+
+  // Plage temporelle : étendue jusqu'en 2200 selon les faits scientifiques IPCC AR6
+  const [timeRange, setTimeRange] = useState<TimeRangeType>('1900-2200');
+
+  // Fermeture du plein écran via la touche Échap
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isFullScreen) {
+        setIsFullScreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullScreen]);
+
+  // Dimensions graphiques SVG de base
   const W = 540;
   const H = 205;
-  const PAD = { top: 26, right: 42, bottom: 44, left: 48 };
+  const PAD = { top: 26, right: 44, bottom: 44, left: 48 };
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top - PAD.bottom;
 
-  const startYear = timeRange === '1900-2100' ? 1900 : 2026;
-  const endYear = 2100;
+  const startYear = (timeRange === '1900-2200' || timeRange === '1900-2100') ? 1900 : 2026;
+  const endYear = (timeRange === '1900-2200' || timeRange === '2026-2200') ? 2200 : 2100;
 
   // Filtrer la trajectoire selon la plage temporelle choisie
-  const visibleTrajectory = trajectory.filter(pt => pt.year >= startYear && pt.year <= endYear);
-  const visibleCompareTrajectory = (isCompareMode && compareTrajectory)
-    ? compareTrajectory.filter(pt => pt.year >= startYear && pt.year <= endYear)
-    : [];
+  const visibleTrajectory = useMemo(() => {
+    return trajectory.filter(pt => pt.year >= startYear && pt.year <= endYear);
+  }, [trajectory, startYear, endYear]);
+
+  const visibleCompareTrajectory = useMemo(() => {
+    if (!isCompareMode || !compareTrajectory) return [];
+    return compareTrajectory.filter(pt => pt.year >= startYear && pt.year <= endYear);
+  }, [isCompareMode, compareTrajectory, startYear, endYear]);
 
   // Helper pour mapper une année vers les coordonnées horizontales X
   const getX = (year: number) => {
@@ -53,20 +95,39 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   const currentX = getX(currentYear);
   const hoverX = hoverYear !== null ? getX(hoverYear) : null;
   const x2026 = getX(2026);
+  const x2100 = getX(2100);
 
   // Repères d'années sur l'axe des abscisses
-  const X_TICKS = timeRange === '1900-2100'
-    ? [1900, 1930, 1960, 1990, 2026, 2050, 2080, 2100]
-    : [2026, 2040, 2060, 2080, 2100];
+  const X_TICKS = useMemo(() => {
+    if (timeRange === '1900-2200') {
+      return [1900, 1950, 2000, 2026, 2060, 2100, 2150, 2200];
+    }
+    if (timeRange === '1900-2100') {
+      return [1900, 1930, 1960, 1990, 2026, 2050, 2080, 2100];
+    }
+    if (timeRange === '2026-2200') {
+      return [2026, 2050, 2080, 2100, 2130, 2160, 2200];
+    }
+    return [2026, 2040, 2060, 2080, 2100];
+  }, [timeRange]);
 
-  const X_GRID = timeRange === '1900-2100'
-    ? [1920, 1940, 1960, 1980, 2000, 2026, 2050, 2075, 2100]
-    : [2030, 2040, 2050, 2060, 2070, 2080, 2090, 2100];
+  const X_GRID = useMemo(() => {
+    if (timeRange === '1900-2200') {
+      return [1925, 1950, 1975, 2000, 2026, 2050, 2075, 2100, 2125, 2150, 2175, 2200];
+    }
+    if (timeRange === '1900-2100') {
+      return [1920, 1940, 1960, 1980, 2000, 2026, 2050, 2075, 2100];
+    }
+    if (timeRange === '2026-2200') {
+      return [2040, 2060, 2080, 2100, 2120, 2140, 2160, 2180, 2200];
+    }
+    return [2030, 2040, 2050, 2060, 2070, 2080, 2090, 2100];
+  }, [timeRange]);
 
   // =========================================================
   // 1. DÉMOGRAPHIE & MORTALITÉS
   // =========================================================
-  const popMin = timeRange === '1900-2100' ? 1.0 : 3.0; // Mds
+  const popMin = (startYear === 1900) ? 1.0 : 2.0; // Mds
   const popMax = 10.5; // Mds
   const getYPop = (popMillions: number) => {
     const popB = popMillions / 1000;
@@ -88,7 +149,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   // =========================================================
   // 2. ÉNERGIE & MULTIPLICATEUR EROI
   // =========================================================
-  const eroiMax = timeRange === '1900-2100' ? 105 : 35;
+  const eroiMax = (startYear === 1900) ? 105 : 35;
   const getYEroi = (eroi: number) => {
     return PAD.top + plotH - (Math.min(eroiMax, eroi) / eroiMax) * plotH;
   };
@@ -105,14 +166,14 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   // =========================================================
   // 3. CLIMAT & OCÉANS
   // =========================================================
-  const co2Min = timeRange === '1900-2100' ? 280 : 350;
+  const co2Min = (startYear === 1900) ? 280 : 350;
   const co2Max = 750;
   const getYCo2 = (co2: number) => {
     return PAD.top + plotH - ((co2 - co2Min) / (co2Max - co2Min)) * plotH;
   };
   const pathCo2 = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYCo2(pt.atmosphericCo2Ppm).toFixed(1)}`).join(' ');
 
-  const tempMin = timeRange === '1900-2100' ? -0.3 : 1.0;
+  const tempMin = (startYear === 1900) ? -0.3 : 1.0;
   const tempMax = 5.0;
   const getYTemp = (temp: number) => {
     return PAD.top + plotH - ((temp - tempMin) / (tempMax - tempMin)) * plotH;
@@ -120,9 +181,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   const pathTemp = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYTemp(pt.surfaceTemperatureAnomaly).toFixed(1)}`).join(' ');
   const pathTempB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYTemp(pt.surfaceTemperatureAnomaly).toFixed(1)}`).join(' ');
 
-  // Échelle Océan en mètres (-0.15 m à +1.0 m) => graduation directe en cm
-  const slrMin = -0.15; // -15 cm vs 2000
-  const slrMax = 0.95;  // +95 cm vs 2000
+  // Échelle Océan en mètres : FOX-KEMPER ET AL. 2021 (GIEC AR6 Ch 9)
+  // En 2200, sous scénario fossile haut, SLR atteint +2.6 à +3.0 mètres
+  const slrMin = -0.15; // -15 cm
+  const slrMax = endYear === 2200 ? 3.2 : 0.95; // jusqu'à +320 cm en 2200
   const getYSlr = (slr: number) => {
     return PAD.top + plotH - ((slr - slrMin) / (slrMax - slrMin)) * plotH;
   };
@@ -149,7 +211,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   const pathCropYield = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYYield(pt.globalCropYieldComposite).toFixed(1)}`).join(' ');
   const pathCropYieldB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYYield(pt.globalCropYieldComposite).toFixed(1)}`).join(' ');
 
-  // Interaction Clic & Survol
+  // Interaction Clic & Survol isolée par graphique
   const handleSvgClick = (e: React.MouseEvent<SVGSVGElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
@@ -158,387 +220,357 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
     onSeekYear(targetYear);
   };
 
-  const handleSvgHover = (e: React.MouseEvent<SVGSVGElement>) => {
+  const handleSvgHover = (e: React.MouseEvent<SVGSVGElement>, chartId: string) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const ratio = Math.max(0, Math.min(1, (clickX - PAD.left) / plotW));
     const targetYear = Math.round(startYear + ratio * (endYear - startYear));
     setHoverYear(targetYear);
+    setHoveredChartId(chartId);
   };
 
-  const displayYear = hoverYear ?? Math.floor(currentYear);
-  const displayState = trajectory.find(t => t.year === displayYear) || trajectory[0];
-  const displayStateB = (isCompareMode && compareTrajectory)
-    ? (compareTrajectory.find(t => t.year === displayYear) || compareTrajectory[0])
+  const handleSvgLeave = (chartId: string) => {
+    if (hoveredChartId === chartId) {
+      setHoverYear(null);
+      setHoveredChartId(null);
+    }
+  };
+
+  // État courant de la simulation (stable, ne saute JAMAIS)
+  const currentSimYear = Math.floor(currentYear);
+  const currentSimState = trajectory.find(t => t.year === currentSimYear) || trajectory[0];
+  const currentSimStateB = (isCompareMode && compareTrajectory)
+    ? (compareTrajectory.find(t => t.year === currentSimYear) || compareTrajectory[0])
     : null;
 
-  // Décès par canicule formatés
-  const thermalDeathsFormatted = displayState.worldDeathsAnnual.thermal >= 1
-    ? `${displayState.worldDeathsAnnual.thermal.toFixed(2)} M/an`
-    : `${Math.round(displayState.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`;
+  // Calcul d'état affiché pour un graphique spécifique
+  const getChartDisplayData = (chartId: string) => {
+    // Si la synchronisation est activée OU si ce graphique est celui directement survolé
+    const isThisChartHovered = hoveredChartId === chartId;
+    const isShowingHover = (isSyncHover || isThisChartHovered) && hoverYear !== null;
 
-  const thermalDeathsFormattedB = displayStateB
-    ? (displayStateB.worldDeathsAnnual.thermal >= 1
-        ? `${displayStateB.worldDeathsAnnual.thermal.toFixed(2)} M/an`
-        : `${Math.round(displayStateB.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`)
-    : '';
+    const displayYear = isShowingHover ? hoverYear! : currentSimYear;
+    const stateA = trajectory.find(t => t.year === displayYear) || currentSimState;
+    const stateB = (isCompareMode && compareTrajectory)
+      ? (compareTrajectory.find(t => t.year === displayYear) || currentSimStateB)
+      : null;
 
-  // Montée des océans formatée
-  const seaLevelCm = Math.round(displayState.seaLevelRiseMeters * 100);
-  const seaLevelVs2026 = Math.round((displayState.seaLevelRiseMeters - 0.12) * 100);
-  const seaLevelCmB = displayStateB ? Math.round(displayStateB.seaLevelRiseMeters * 100) : 0;
+    const thermalDeathsFormatted = stateA.worldDeathsAnnual.thermal >= 1
+      ? `${stateA.worldDeathsAnnual.thermal.toFixed(2)} M/an`
+      : `${Math.round(stateA.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`;
+
+    const thermalDeathsFormattedB = stateB
+      ? (stateB.worldDeathsAnnual.thermal >= 1
+          ? `${stateB.worldDeathsAnnual.thermal.toFixed(2)} M/an`
+          : `${Math.round(stateB.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`)
+      : '';
+
+    const seaLevelCm = Math.round(stateA.seaLevelRiseMeters * 100);
+    const seaLevelVs2026 = Math.round((stateA.seaLevelRiseMeters - 0.12) * 100);
+    const seaLevelCmB = stateB ? Math.round(stateB.seaLevelRiseMeters * 100) : 0;
+
+    return {
+      displayYear,
+      isShowingHover,
+      isThisChartHovered,
+      stateA,
+      stateB,
+      thermalDeathsFormatted,
+      thermalDeathsFormattedB,
+      seaLevelCm,
+      seaLevelVs2026,
+      seaLevelCmB
+    };
+  };
 
   // Rendu de l'axe des abscisses et des repères temporels
-  const renderAbscisseAxis = () => (
-    <g className="select-none pointer-events-none">
-      {/* Zone historique ombrée si timeRange = 1900-2100 */}
-      {timeRange === '1900-2100' && x2026 > PAD.left && (
-        <g>
-          <rect
-            x={PAD.left}
-            y={PAD.top}
-            width={x2026 - PAD.left}
-            height={plotH}
-            fill="#0284c7"
-            opacity="0.05"
-          />
-          <line
-            x1={x2026}
-            y1={PAD.top}
-            x2={x2026}
-            y2={PAD.top + plotH}
-            stroke="#0284c7"
-            strokeWidth="1.2"
-            strokeDasharray="3,3"
-            opacity="0.8"
-          />
-          <text
-            x={PAD.left + 6}
-            y={PAD.top + 10}
-            fill="#38bdf8"
-            fontSize="6.8"
-            fontWeight="bold"
-            fontFamily="sans-serif"
-            opacity="0.85"
-          >
-            ← Données historiques mesurées (1900–2026)
-          </text>
-          <text
-            x={x2026 + 6}
-            y={PAD.top + 10}
-            fill="#94a3b8"
-            fontSize="6.8"
-            fontWeight="bold"
-            fontFamily="sans-serif"
-            opacity="0.8"
-          >
-            Modèle prospectif (2026–2100) →
-          </text>
-        </g>
-      )}
+  // Note: La ligne de survol orange n'apparaît QUE sur le graphique survolé (ou sur tous si isSyncHover est activé)
+  const renderAbscisseAxis = (chartId: string) => {
+    const showHoverOnThisChart = (isSyncHover || hoveredChartId === chartId) && hoverX !== null && hoverYear !== null;
 
-      {/* Lignes de grille temporelle */}
-      {X_GRID.map((yr) => (
-        <line
-          key={`grid-x-${yr}`}
-          x1={getX(yr)}
-          y1={PAD.top}
-          x2={getX(yr)}
-          y2={PAD.top + plotH}
-          stroke="#1e293b"
-          strokeWidth="0.7"
-          strokeDasharray="2,3"
-        />
-      ))}
-
-      {/* Ligne de base horizontale */}
-      <line
-        x1={PAD.left}
-        y1={PAD.top + plotH}
-        x2={W - PAD.right}
-        y2={PAD.top + plotH}
-        stroke="#475569"
-        strokeWidth="1.2"
-      />
-
-      {/* Graduations de l'axe temporel */}
-      {X_TICKS.map((yr) => {
-        const x = getX(yr);
-        const isToday = yr === 2026;
-        const isPast = yr < 2026;
-        return (
-          <g key={`tick-x-${yr}`}>
+    return (
+      <g className="select-none pointer-events-none">
+        {/* Zone historique ombrée si timeRange commence en 1900 */}
+        {startYear === 1900 && x2026 > PAD.left && (
+          <g>
+            <rect
+              x={PAD.left}
+              y={PAD.top}
+              width={x2026 - PAD.left}
+              height={plotH}
+              fill="#0284c7"
+              opacity="0.05"
+            />
             <line
-              x1={x}
-              y1={PAD.top + plotH}
-              x2={x}
-              y2={PAD.top + plotH + 4}
-              stroke={isToday ? '#38bdf8' : isPast ? '#60a5fa' : '#64748b'}
-              strokeWidth={isToday ? '1.8' : '1'}
+              x1={x2026}
+              y1={PAD.top}
+              x2={x2026}
+              y2={PAD.top + plotH}
+              stroke="#0284c7"
+              strokeWidth="1.2"
+              strokeDasharray="3,3"
+              opacity="0.8"
             />
             <text
-              x={x}
-              y={PAD.top + plotH + 14}
-              textAnchor={yr === startYear ? 'start' : yr === endYear ? 'end' : 'middle'}
-              fill={isToday ? '#38bdf8' : isPast ? '#93c5fd' : '#94a3b8'}
-              fontSize={isToday ? '8.5' : '7.5'}
-              fontWeight={isToday ? '800' : '600'}
-              fontFamily="monospace"
+              x={PAD.left + 6}
+              y={PAD.top + 10}
+              fill="#38bdf8"
+              fontSize="6.8"
+              fontWeight="bold"
+              fontFamily="sans-serif"
+              opacity="0.85"
             >
-              {isToday ? '2026 (Auj.)' : yr}
+              ← Historique mesuré (1900–2026)
+            </text>
+            <text
+              x={x2026 + 6}
+              y={PAD.top + 10}
+              fill="#94a3b8"
+              fontSize="6.8"
+              fontWeight="bold"
+              fontFamily="sans-serif"
+              opacity="0.85"
+            >
+              Modélisation prospective →
             </text>
           </g>
-        );
-      })}
+        )}
 
-      {/* Libellé de l'axe X */}
-      <text
-        x={PAD.left + plotW / 2}
-        y={PAD.top + plotH + 28}
-        textAnchor="middle"
-        fill="#94a3b8"
-        fontSize="7.5"
-        fontWeight="600"
-        fontFamily="sans-serif"
-        letterSpacing="0.04em"
-      >
-        Axe temporel (X) : {timeRange === '1900-2100' ? '1900 → 2100 (200 ans d\'anthropocène)' : '2026 → 2100 (Projection prospective)'}
-      </text>
+        {/* Ligne repère 2100 si la projection va jusqu'en 2200 */}
+        {endYear === 2200 && x2100 > PAD.left && x2100 < W - PAD.right && (
+          <g>
+            <line
+              x1={x2100}
+              y1={PAD.top}
+              x2={x2100}
+              y2={PAD.top + plotH}
+              stroke="#a855f7"
+              strokeWidth="1.2"
+              strokeDasharray="3,3"
+              opacity="0.7"
+            />
+            <text
+              x={x2100 + 4}
+              y={PAD.top + 10}
+              fill="#c084fc"
+              fontSize="6.8"
+              fontWeight="bold"
+              fontFamily="sans-serif"
+            >
+              Horizon 2100–2200 →
+            </text>
+          </g>
+        )}
 
-      {/* Curseur de l'année sélectionnée avec badge flottant */}
-      <line
-        x1={currentX}
-        y1={PAD.top - 6}
-        x2={currentX}
-        y2={PAD.top + plotH + 4}
-        stroke="#38bdf8"
-        strokeWidth="1.5"
-        strokeDasharray="3,2"
-      />
-      <rect
-        x={Math.max(PAD.left - 2, Math.min(W - PAD.right - 36, currentX - 18))}
-        y={PAD.top - 18}
-        width="36"
-        height="13"
-        rx="3"
-        fill="#0284c7"
-      />
-      <text
-        x={Math.max(PAD.left + 16, Math.min(W - PAD.right - 18, currentX))}
-        y={PAD.top - 9}
-        textAnchor="middle"
-        fill="#ffffff"
-        fontSize="8"
-        fontWeight="800"
-        fontFamily="monospace"
-      >
-        {Math.floor(currentYear)}
-      </text>
+        {/* Lignes verticales de grille temporelle */}
+        {X_GRID.map((yr) => {
+          const x = getX(yr);
+          if (x <= PAD.left || x >= W - PAD.right) return null;
+          return (
+            <line
+              key={`grid-${yr}`}
+              x1={x}
+              y1={PAD.top}
+              x2={x}
+              y2={PAD.top + plotH}
+              stroke="#1e293b"
+              strokeWidth="0.6"
+              strokeDasharray="2,3"
+              opacity="0.6"
+            />
+          );
+        })}
 
-      {/* Repère de survol dynamique */}
-      {hoverX !== null && hoverYear !== null && hoverYear !== Math.floor(currentYear) && (
-        <g>
-          <line
-            x1={hoverX}
-            y1={PAD.top}
-            x2={hoverX}
-            y2={PAD.top + plotH}
-            stroke="#94a3b8"
-            strokeWidth="1"
-            strokeDasharray="2,2"
-            opacity="0.8"
-          />
-          <rect
-            x={Math.max(PAD.left - 2, Math.min(W - PAD.right - 32, hoverX - 16))}
-            y={PAD.top + plotH + 18}
-            width="32"
-            height="11"
-            rx="2"
-            fill="#334155"
-          />
-          <text
-            x={Math.max(PAD.left + 14, Math.min(W - PAD.right - 16, hoverX))}
-            y={PAD.top + plotH + 26.5}
-            textAnchor="middle"
-            fill="#f8fafc"
-            fontSize="7"
-            fontWeight="700"
-            fontFamily="monospace"
-          >
-            {hoverYear}
-          </text>
-        </g>
-      )}
-    </g>
-  );
+        {/* Ligne d'axe horizontal inférieur */}
+        <line
+          x1={PAD.left}
+          y1={PAD.top + plotH}
+          x2={W - PAD.right}
+          y2={PAD.top + plotH}
+          stroke="#334155"
+          strokeWidth="1"
+        />
 
-  return (
-    <div className="w-full rounded-xl bg-[#090d15] border border-slate-800 p-4 shadow-xl flex flex-col gap-3">
-      {/* En-tête des graphiques avec sélecteur d'échelle temporelle (1900-2100 vs 2026-2100) */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-slate-800">
-        <div>
-          <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-sky-400" />
-            <h3 className="text-xs uppercase tracking-wider font-semibold text-slate-200">
-              Trajectoires Biophysiques Couplées ({timeRange === '1900-2100' ? '1900–2100 : Histoire & Avenir' : '2026–2100 : Prospective'})
-            </h3>
-          </div>
-          <p className="text-[11px] text-slate-400 mt-0.5">
-            Évolution continue du système Terre · Cliquez sur un graphique pour caler immédiatement la simulation sur l'année voulue
-          </p>
-        </div>
+        {/* Graduations chiffrées de l'axe X */}
+        {X_TICKS.map((yr) => {
+          const x = getX(yr);
+          const isToday = yr === 2026;
+          const isPast = yr < 2026;
+          const isCentury = yr === 2100 || yr === 2200;
+          return (
+            <g key={`tick-${yr}`}>
+              <line
+                x1={x}
+                y1={PAD.top + plotH}
+                x2={x}
+                y2={PAD.top + plotH + 4}
+                stroke={isToday ? '#38bdf8' : isCentury ? '#c084fc' : isPast ? '#60a5fa' : '#64748b'}
+                strokeWidth={isToday || isCentury ? '1.8' : '1'}
+              />
+              <text
+                x={x}
+                y={PAD.top + plotH + 14}
+                textAnchor={yr === startYear ? 'start' : yr === endYear ? 'end' : 'middle'}
+                fill={isToday ? '#38bdf8' : isCentury ? '#c084fc' : isPast ? '#93c5fd' : '#94a3b8'}
+                fontSize={isToday || isCentury ? '8.5' : '7.5'}
+                fontWeight={isToday || isCentury ? '800' : '600'}
+                fontFamily="monospace"
+              >
+                {isToday ? '2026 (Auj.)' : yr}
+              </text>
+            </g>
+          );
+        })}
 
-        {/* Commandes : Échelle temporelle & Filtre par thématique */}
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Sélecteur de période temporelle demandé par l'utilisateur (départ 1900) */}
-          <div className="flex items-center bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
-            <span className="text-[10px] text-slate-400 px-1.5 font-medium">Période :</span>
-            <button
-              onClick={() => setTimeRange('1900-2100')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                timeRange === '1900-2100'
-                  ? 'bg-blue-600 text-white font-semibold shadow'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-              title="Affiche les données réelles depuis 1900 jusqu'au modèle de 2100 (vue sur 200 ans)"
-            >
-              📜 Depuis 1900 (200 ans)
-            </button>
-            <button
-              onClick={() => setTimeRange('2026-2100')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                timeRange === '2026-2100'
-                  ? 'bg-cyan-600 text-white font-semibold shadow'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-              title="Zoom sur les projections futures (2026-2100)"
-            >
-              🔭 2026–2100 (Zoom futur)
-            </button>
-          </div>
+        {/* Libellé de l'axe X */}
+        <text
+          x={PAD.left + plotW / 2}
+          y={PAD.top + plotH + 28}
+          textAnchor="middle"
+          fill="#94a3b8"
+          fontSize="7.5"
+          fontWeight="600"
+          fontFamily="sans-serif"
+          letterSpacing="0.04em"
+        >
+          Axe temporel (X) : {startYear} → {endYear} ({endYear - startYear} ans de modélisation biophysique)
+        </text>
 
-          {/* Onglets thématiques */}
-          <div className="flex items-center gap-1 bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
-            <button
-              onClick={() => setActiveTab('all')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                activeTab === 'all'
-                  ? 'bg-slate-700 text-white font-medium'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              Tous (4)
-            </button>
-            <button
-              onClick={() => setActiveTab('demo')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                activeTab === 'demo'
-                  ? 'bg-slate-700 text-white font-medium'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              1. Population &amp; Décès
-            </button>
-            <button
-              onClick={() => setActiveTab('energy')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                activeTab === 'energy'
-                  ? 'bg-slate-700 text-white font-medium'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              2. Énergie &amp; Pétrole
-            </button>
-            <button
-              onClick={() => setActiveTab('climate')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                activeTab === 'climate'
-                  ? 'bg-slate-700 text-white font-medium'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              3. Climat &amp; Mers
-            </button>
-            <button
-              onClick={() => setActiveTab('agri')}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
-                activeTab === 'agri'
-                  ? 'bg-slate-700 text-white font-medium'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              4. Alimentation
-            </button>
-          </div>
+        {/* Curseur de l'année active de la simulation */}
+        <line
+          x1={currentX}
+          y1={PAD.top - 6}
+          x2={currentX}
+          y2={PAD.top + plotH + 4}
+          stroke="#38bdf8"
+          strokeWidth="1.5"
+          strokeDasharray="3,2"
+        />
+        <rect
+          x={Math.max(PAD.left - 2, Math.min(W - PAD.right - 36, currentX - 18))}
+          y={PAD.top - 18}
+          width="36"
+          height="13"
+          rx="3"
+          fill="#0284c7"
+        />
+        <text
+          x={Math.max(PAD.left + 16, Math.min(W - PAD.right - 18, currentX))}
+          y={PAD.top - 9}
+          textAnchor="middle"
+          fill="#ffffff"
+          fontSize="8"
+          fontWeight="800"
+          fontFamily="monospace"
+        >
+          {currentSimYear}
+        </text>
 
-          {/* Bouton direct d'exportation PDF des graphiques */}
-          {onOpenPdfExport && (
-            <button
-              onClick={onOpenPdfExport}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-cyan-950/70 hover:bg-cyan-900 text-cyan-300 hover:text-white border border-cyan-800/60 hover:border-cyan-600 transition-colors text-xs font-semibold cursor-pointer shadow-sm"
-              title="Exporter ces graphiques et le bilan de simulation sous forme de rapport PDF imprimable"
+        {/* Curseur de survol isolé (visible UNIQUEMENT sur le graphique survolé) */}
+        {showHoverOnThisChart && hoverYear !== currentSimYear && (
+          <g>
+            <line
+              x1={hoverX!}
+              y1={PAD.top - 6}
+              x2={hoverX!}
+              y2={PAD.top + plotH + 4}
+              stroke="#f59e0b"
+              strokeWidth="1.2"
+              strokeDasharray="2,2"
+            />
+            <rect
+              x={Math.max(PAD.left - 2, Math.min(W - PAD.right - 36, hoverX! - 18))}
+              y={PAD.top - 18}
+              width="36"
+              height="13"
+              rx="3"
+              fill="#d97706"
+            />
+            <text
+              x={Math.max(PAD.left + 16, Math.min(W - PAD.right - 18, hoverX!))}
+              y={PAD.top - 9}
+              textAnchor="middle"
+              fill="#ffffff"
+              fontSize="8"
+              fontWeight="800"
+              fontFamily="monospace"
             >
-              <FileDown className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Exporter PDF</span>
-            </button>
-          )}
-        </div>
-      </div>
+              {hoverYear}
+            </text>
+          </g>
+        )}
+      </g>
+    );
+  };
 
-      {/* Grille des graphiques interactifs */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+  // Données prêtes pour chaque graphique
+  const d1 = getChartDisplayData('demo');
+  const d2 = getChartDisplayData('energy');
+  const d3 = getChartDisplayData('climate');
+  const d4 = getChartDisplayData('agri');
+
+  // Rendu du contenu des graphiques
+  const renderChartsGrid = (isModal: boolean = false) => {
+    return (
+      <div className={`grid grid-cols-1 ${isModal ? 'xl:grid-cols-2' : 'lg:grid-cols-2'} gap-4`}>
         {/* ========================================================================= */}
-        {/* GRAPHIQUE 1 : DÉMOGRAPHIE & TOUTES LES CAUSES DE DÉCÈS (Canicules visibles) */}
+        {/* GRAPHIQUE 1 : DÉMOGRAPHIE & TOUTES LES CAUSES DE DÉCÈS */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === 'demo') && (
-          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2">
+          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2 shadow-lg">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-slate-200">
                   1. Population Mondiale &amp; Nombre de Décès par An
                 </span>
-                <span className="text-[10.5px] font-mono text-slate-400 font-semibold">
-                  Année {displayYear}
+                <span className="text-[10.5px] font-mono text-slate-400 font-semibold flex items-center gap-1.5">
+                  {d1.isShowingHover ? (
+                    <span className="px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-800/80 text-[10px] font-bold">
+                      🔍 Survol : {d1.displayYear}
+                    </span>
+                  ) : (
+                    <span>Année {d1.displayYear}</span>
+                  )}
                 </span>
               </div>
 
-              {/* Indicateurs numériques précis (TOUTES les causes affichées clairement avec valeur) */}
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5">
-                <span className="text-white font-semibold flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-white inline-block" />
-                  Pop : {(displayState.worldPopulation / 1000).toFixed(2)} Mds
+              {/* Indicateurs numériques précis avec tabular-nums pour zéros tremblements */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
+                <span className="text-white font-semibold flex items-center gap-1 min-w-[7rem]">
+                  <span className="w-2 h-2 rounded-full bg-white inline-block shrink-0" />
+                  Pop : {(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds
                 </span>
-                <span className="text-purple-300 font-semibold flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-purple-400 inline-block" />
-                  Total Décès : {displayState.worldDeathsAnnual.total.toFixed(1)} M/an
+                <span className="text-purple-300 font-semibold flex items-center gap-1 min-w-[8.5rem]">
+                  <span className="w-2 h-2 rounded-full bg-purple-400 inline-block shrink-0" />
+                  Total Décès : {d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an
                 </span>
-                <span className="text-amber-400 font-semibold flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-amber-500 inline-block" />
-                  Famines : {displayState.worldDeathsAnnual.famine.toFixed(1)} M/an
+                <span className="text-amber-400 font-semibold flex items-center gap-1 min-w-[7.5rem]">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 inline-block shrink-0" />
+                  Famines : {d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an
                 </span>
-                {/* Décès Canicule rendus 100% visibles avec formatage dynamique */}
-                <span className="text-rose-400 font-bold bg-rose-950/70 border border-rose-800/80 px-1.5 py-0.5 rounded flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-rose-500 inline-block animate-pulse" />
-                  Canicules mortelles : {thermalDeathsFormatted}
+                {/* Décès Canicule */}
+                <span className="text-rose-400 font-bold bg-rose-950/70 border border-rose-800/80 px-1.5 py-0.5 rounded flex items-center gap-1 min-w-[9.5rem]">
+                  <span className="w-2 h-2 rounded-full bg-rose-500 inline-block animate-pulse shrink-0" />
+                  Canicules mortelles : {d1.thermalDeathsFormatted}
                   <TechTooltip term="stull" showIconOnly />
                 </span>
               </div>
 
               {/* Ligne comparative Trajectoire B si activée */}
-              {isCompareMode && displayStateB && (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300">
+              {isCompareMode && d1.stateB && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300 tabular-nums">
                   <span className="font-bold flex items-center gap-1 text-emerald-400">
                     <GitCompare className="w-3 h-3 text-emerald-400" />
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
-                    Pop : {(displayStateB.worldPopulation / 1000).toFixed(2)} Mds
+                    Pop : {(d1.stateB.worldPopulation / 1000).toFixed(2)} Mds
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
-                    Canicules : {thermalDeathsFormattedB}
+                    Canicules : {d1.thermalDeathsFormattedB}
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
-                    Famines : {displayStateB.worldDeathsAnnual.famine.toFixed(1)} M/an
+                    Famines : {d1.stateB.worldDeathsAnnual.famine.toFixed(1)} M/an
                   </span>
                 </div>
               )}
@@ -554,8 +586,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
                 onClick={handleSvgClick}
-                onMouseMove={handleSvgHover}
-                onMouseLeave={() => setHoverYear(null)}
+                onMouseMove={(e) => handleSvgHover(e, 'demo')}
+                onMouseLeave={() => handleSvgLeave('demo')}
               >
                 {/* Axe vertical gauche : Population (Mds) */}
                 <text x={PAD.left - 6} y={PAD.top + 4} fill="#ffffff" fontSize="8" textAnchor="end" fontFamily="monospace">10 Mds</text>
@@ -571,7 +603,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <line x1={PAD.left} y1={PAD.top + plotH / 2} x2={W - PAD.right} y2={PAD.top + plotH / 2} stroke="#1e293b" strokeWidth="0.8" strokeDasharray="3,3" />
 
                 {/* Axe des abscisses et grilles temporelles */}
-                {renderAbscisseAxis()}
+                {renderAbscisseAxis('demo')}
 
                 {/* Courbe 1 : Population Mondiale (Blanche épaisse) */}
                 <path d={pathPop} fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
@@ -585,12 +617,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* Courbe 4 : Décès par Canicules mortelles (Rouge fluo bien visible) */}
                 <path d={pathDeathThermal} fill="none" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" />
 
-                {/* COURBES DE COMPARAISON TRAJECTOIRE B (Pointillés colorés) */}
+                {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
-                    {/* Pop B (Vert Émeraude pointillé) */}
                     <path d={pathPopB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    {/* Canicules B (Rose/Rouge pointillé) */}
                     <path d={pathDeathThermalB} fill="none" stroke="#fb7185" strokeWidth="2" strokeDasharray="3 3" strokeLinecap="round" />
                   </g>
                 )}
@@ -606,20 +636,19 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   </g>
                 )}
 
-                {/* Marqueur interactif sur la courbe des canicules pour voir le nombre exact */}
+                {/* Marqueur interactif sur la courbe des canicules */}
                 <g>
                   <circle
                     cx={currentX}
-                    cy={getYDeath(displayState.worldDeathsAnnual.thermal)}
+                    cy={getYDeath(currentSimState.worldDeathsAnnual.thermal)}
                     r="4"
                     fill="#ef4444"
                     stroke="#ffffff"
                     strokeWidth="1.5"
                   />
-                  {/* Badge d'annotation lisible sur le point rouge */}
                   <rect
                     x={Math.max(PAD.left, Math.min(W - PAD.right - 54, currentX + 6))}
-                    y={Math.max(PAD.top, getYDeath(displayState.worldDeathsAnnual.thermal) - 16)}
+                    y={Math.max(PAD.top, getYDeath(currentSimState.worldDeathsAnnual.thermal) - 16)}
                     width="50"
                     height="12"
                     rx="3"
@@ -627,21 +656,21 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   />
                   <text
                     x={Math.max(PAD.left + 25, Math.min(W - PAD.right - 29, currentX + 31))}
-                    y={Math.max(PAD.top + 8.5, getYDeath(displayState.worldDeathsAnnual.thermal) - 7.5)}
+                    y={Math.max(PAD.top + 8.5, getYDeath(currentSimState.worldDeathsAnnual.thermal) - 7.5)}
                     textAnchor="middle"
                     fill="#ffffff"
                     fontSize="7.5"
                     fontWeight="bold"
                     fontFamily="monospace"
                   >
-                    🔴 {displayState.worldDeathsAnnual.thermal >= 1 ? displayState.worldDeathsAnnual.thermal.toFixed(1) + 'M' : Math.round(displayState.worldDeathsAnnual.thermal * 1000) + 'k'}
+                    🔴 {currentSimState.worldDeathsAnnual.thermal >= 1 ? currentSimState.worldDeathsAnnual.thermal.toFixed(1) + 'M' : Math.round(currentSimState.worldDeathsAnnual.thermal * 1000) + 'k'}
                   </text>
                 </g>
 
                 {/* Marqueur sur la population */}
                 <circle
                   cx={currentX}
-                  cy={getYPop(displayState.worldPopulation)}
+                  cy={getYPop(currentSimState.worldPopulation)}
                   r="4"
                   fill="#38bdf8"
                   stroke="#ffffff"
@@ -649,10 +678,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 />
 
                 {/* Marqueur sur la population B si comparaison */}
-                {isCompareMode && displayStateB && (
+                {isCompareMode && currentSimStateB && (
                   <circle
                     cx={currentX}
-                    cy={getYPop(displayStateB.worldPopulation)}
+                    cy={getYPop(currentSimStateB.worldPopulation)}
                     r="3.5"
                     fill="#34d399"
                     stroke="#ffffff"
@@ -665,12 +694,12 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             {/* Légende détaillée sous le graphique */}
             <div className="flex flex-col gap-1 text-[10.5px] text-slate-300 pt-1 border-t border-slate-800/80">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>⚪ <strong>Ligne blanche :</strong> Population mondiale ({(displayState.worldPopulation / 1000).toFixed(2)} Mds)</span>
-                <span>🟣 <strong>Ligne violette :</strong> Tous décès confondus ({displayState.worldDeathsAnnual.total.toFixed(1)} M/an)</span>
-                <span>🟠 <strong>Ligne orange :</strong> Famines ({displayState.worldDeathsAnnual.famine.toFixed(1)} M/an)</span>
+                <span>⚪ <strong>Ligne blanche :</strong> Population mondiale ({(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds)</span>
+                <span>🟣 <strong>Ligne violette :</strong> Tous décès confondus ({d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an)</span>
+                <span>🟠 <strong>Ligne orange :</strong> Famines ({d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an)</span>
               </div>
               <div className="bg-rose-950/40 border border-rose-900/60 rounded p-1.5 text-rose-200 text-[10px]">
-                🔴 <strong>Ligne rouge (Canicules mortelles) :</strong> {thermalDeathsFormatted} à l'année {displayYear}. 
+                🔴 <strong>Ligne rouge (Canicules mortelles) :</strong> {d1.thermalDeathsFormatted} en {d1.displayYear}. 
                 Ces décès surviennent lorsque la chaleur humide (thermomètre mouillé Tw) franchit 31°C, empêchant le corps d'évacuer sa chaleur par la transpiration.
               </div>
             </div>
@@ -678,57 +707,63 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         )}
 
         {/* ========================================================================= */}
-        {/* GRAPHIQUE 2 : ÉNERGIE & PÉTROLE (Clarifié : multiplicateur x12 au lieu de 12:1) */}
+        {/* GRAPHIQUE 2 : ÉNERGIE & PÉTROLE */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === 'energy') && (
-          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2">
+          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2 shadow-lg">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-slate-200">
-                  2. Énergie &amp; Pétrole : Multiplicateur d'Énergie et Part Utile pour la Société
+                  2. Énergie &amp; Pétrole : Multiplicateur d'Énergie et Part Utile
                 </span>
-                <span className="text-[10.5px] font-mono text-slate-400 font-semibold">
-                  Année {displayYear}
+                <span className="text-[10.5px] font-mono text-slate-400 font-semibold flex items-center gap-1.5">
+                  {d2.isShowingHover ? (
+                    <span className="px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-800/80 text-[10px] font-bold">
+                      🔍 Survol : {d2.displayYear}
+                    </span>
+                  ) : (
+                    <span>Année {d2.displayYear}</span>
+                  )}
                 </span>
               </div>
 
-              {/* Indicateurs numériques sans jargon */}
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5">
-                <span className="text-amber-300 font-bold bg-amber-950/70 border border-amber-800/80 px-1.5 py-0.5 rounded flex items-center gap-1" title="Multiplicateur d'énergie EROI : Nombre de barils récoltés pour 1 baril dépensé à forer">
-                  Multiplicateur pétrole : x{displayState.currentEroi >= 20 ? Math.round(displayState.currentEroi) : displayState.currentEroi.toFixed(1)} ({displayState.currentEroi >= 20 ? Math.round(displayState.currentEroi) : displayState.currentEroi.toFixed(1)} barils pour 1 dépensé)
+              {/* Indicateurs numériques avec tabular-nums */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
+                <span className="text-amber-300 font-bold bg-amber-950/70 border border-amber-800/80 px-1.5 py-0.5 rounded flex items-center gap-1 min-w-[12rem]" title="Multiplicateur d'énergie EROI">
+                  Multiplicateur pétrole : x{d2.stateA.currentEroi >= 20 ? Math.round(d2.stateA.currentEroi) : d2.stateA.currentEroi.toFixed(1)} ({d2.stateA.currentEroi >= 20 ? Math.round(d2.stateA.currentEroi) : d2.stateA.currentEroi.toFixed(1)} barils pour 1 dépensé)
                   <TechTooltip term="eroi" showIconOnly />
                 </span>
-                <span className="text-emerald-400 font-semibold">
-                  Énergie utile société : {(displayState.netEnergyRatio * 100).toFixed(0)}%
+                <span className="text-emerald-400 font-semibold min-w-[8.5rem]">
+                  Énergie utile : {(d2.stateA.netEnergyRatio * 100).toFixed(0)}%
                 </span>
-                <span className="text-sky-300 flex items-center gap-1">
-                  Engrais de synthèse : {(displayState.haberBoschNitrogenFactor * 100).toFixed(0)}%
+                <span className="text-sky-300 flex items-center gap-1 min-w-[9.5rem]">
+                  Engrais synthèse : {(d2.stateA.haberBoschNitrogenFactor * 100).toFixed(0)}%
                   <TechTooltip term="haber-bosch" showIconOnly />
                 </span>
               </div>
 
               {/* Ligne comparative Trajectoire B si activée */}
-              {isCompareMode && displayStateB && (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300">
+              {isCompareMode && d2.stateB && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300 tabular-nums">
                   <span className="font-bold flex items-center gap-1 text-emerald-400">
                     <GitCompare className="w-3 h-3 text-emerald-400" />
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
-                    EROI : x{displayStateB.currentEroi >= 20 ? Math.round(displayStateB.currentEroi) : displayStateB.currentEroi.toFixed(1)}
+                    EROI : x{d2.stateB.currentEroi >= 20 ? Math.round(d2.stateB.currentEroi) : d2.stateB.currentEroi.toFixed(1)}
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
-                    Énergie utile : {(displayStateB.netEnergyRatio * 100).toFixed(0)}%
+                    Énergie utile : {(d2.stateB.netEnergyRatio * 100).toFixed(0)}%
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
-                    Engrais / Azote : {(displayStateB.haberBoschNitrogenFactor * 100).toFixed(0)}%
+                    Engrais : {(d2.stateB.haberBoschNitrogenFactor * 100).toFixed(0)}%
                   </span>
                 </div>
               )}
             </div>
 
             <p className="text-[10px] text-slate-400 leading-tight">
-              Pour 1 baril consommé à forer et raffiner, combien de barils d'énergie récolte-t-on ? (En 1900 : x100. En 2026 : x12. En dessous de x5, la société n'a plus assez d'énergie nette pour faire rouler ses camions).
+              Pour 1 baril consommé à forer et raffiner, combien de barils d'énergie récolte-t-on ? (En 1900 : x100. En 2026 : x12. En dessous de x5, la société n'a plus assez d'énergie nette).
             </p>
 
             {/* SVG Graphique 2 */}
@@ -737,10 +772,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
                 onClick={handleSvgClick}
-                onMouseMove={handleSvgHover}
-                onMouseLeave={() => setHoverYear(null)}
+                onMouseMove={(e) => handleSvgHover(e, 'energy')}
+                onMouseLeave={() => handleSvgLeave('energy')}
               >
-                {/* Axe vertical gauche : Multiplicateur EROI (exprimé en x100, x50, x20, x10, x1) */}
+                {/* Axe vertical gauche : Multiplicateur EROI */}
                 <text x={PAD.left - 6} y={PAD.top + 4} fill="#f59e0b" fontSize="8" textAnchor="end" fontFamily="monospace">x{eroiMax}</text>
                 <text x={PAD.left - 6} y={getYEroi(20) + 3} fill="#f59e0b" fontSize="8" textAnchor="end" fontFamily="monospace">x20</text>
                 <text x={PAD.left - 6} y={getYEroi(10) + 3} fill="#f59e0b" fontSize="8" textAnchor="end" fontFamily="monospace">x10</text>
@@ -751,7 +786,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <text x={W - PAD.right + 6} y={PAD.top + plotH / 2 + 3} fill="#10b981" fontSize="8" textAnchor="start" fontFamily="monospace">50%</text>
                 <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#10b981" fontSize="8" textAnchor="start" fontFamily="monospace">0%</text>
 
-                {/* Ligne de seuil d'alerte : Moins de 10 barils pour 1 dépensé (x10) */}
+                {/* Ligne de seuil d'alerte : x10 */}
                 <line
                   x1={PAD.left}
                   y1={getYEroi(10)}
@@ -775,7 +810,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 </text>
 
                 {/* Axe des abscisses */}
-                {renderAbscisseAxis()}
+                {renderAbscisseAxis('energy')}
 
                 {/* Courbe 1 : Multiplicateur EROI (Jaune) */}
                 <path d={pathEroi} fill="none" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round" />
@@ -783,15 +818,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* Courbe 2 : Énergie nette civile restante (Verte) */}
                 <path d={pathNetEnergy} fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" />
 
-                {/* Courbe 3 : Engrais de synthèse Haber-Bosch (Pointillé bleu) */}
+                {/* Courbe 3 : Engrais de synthèse Haber-Bosch */}
                 <path d={pathHaberBosch} fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeDasharray="4,3" strokeLinecap="round" />
 
                 {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
-                    {/* EROI B (Vert émeraude pointillé) */}
                     <path d={pathEroiB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    {/* Énergie nette B */}
                     <path d={pathNetEnergyB} fill="none" stroke="#6ee7b7" strokeWidth="1.8" strokeDasharray="3 3" strokeLinecap="round" />
                   </g>
                 )}
@@ -810,7 +843,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* Marqueur interactif sur le multiplicateur pétrolier */}
                 <circle
                   cx={currentX}
-                  cy={getYEroi(displayState.currentEroi)}
+                  cy={getYEroi(currentSimState.currentEroi)}
                   r="4"
                   fill="#f59e0b"
                   stroke="#ffffff"
@@ -818,10 +851,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 />
 
                 {/* Marqueur sur l'EROI B si comparaison */}
-                {isCompareMode && displayStateB && (
+                {isCompareMode && currentSimStateB && (
                   <circle
                     cx={currentX}
-                    cy={getYEroi(displayStateB.currentEroi)}
+                    cy={getYEroi(currentSimStateB.currentEroi)}
                     r="3.5"
                     fill="#34d399"
                     stroke="#ffffff"
@@ -830,7 +863,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 )}
                 <rect
                   x={Math.max(PAD.left, Math.min(W - PAD.right - 42, currentX - 21))}
-                  y={getYEroi(displayState.currentEroi) - 16}
+                  y={getYEroi(currentSimState.currentEroi) - 16}
                   width="42"
                   height="12"
                   rx="3"
@@ -838,85 +871,91 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 />
                 <text
                   x={Math.max(PAD.left + 21, Math.min(W - PAD.right - 21, currentX))}
-                  y={getYEroi(displayState.currentEroi) - 7.5}
+                  y={getYEroi(currentSimState.currentEroi) - 7.5}
                   textAnchor="middle"
                   fill="#fef3c7"
                   fontSize="7.5"
                   fontWeight="bold"
                   fontFamily="monospace"
                 >
-                  x{displayState.currentEroi >= 20 ? Math.round(displayState.currentEroi) : displayState.currentEroi.toFixed(1)}
+                  x{currentSimState.currentEroi >= 20 ? Math.round(currentSimState.currentEroi) : currentSimState.currentEroi.toFixed(1)}
                 </text>
               </svg>
             </div>
 
-            {/* Légende explicative limpide */}
+            {/* Légende explicative */}
             <div className="flex flex-col gap-1 text-[10.5px] text-slate-300 pt-1 border-t border-slate-800/80">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>🟡 <strong>Ligne jaune :</strong> Multiplicateur pétrole (x{displayState.currentEroi >= 20 ? Math.round(displayState.currentEroi) : displayState.currentEroi.toFixed(1)} barils extraits pour 1 baril consommé à forer)</span>
-                <span>🟢 <strong>Ligne verte :</strong> Énergie utile disponible pour la société ({(displayState.netEnergyRatio * 100).toFixed(0)}%)</span>
-                <span>🔵 <strong>Pointillé bleu :</strong> Engrais chimiques agricoles Haber-Bosch ({(displayState.haberBoschNitrogenFactor * 100).toFixed(0)}%)</span>
+                <span>🟡 <strong>Ligne jaune :</strong> Multiplicateur pétrole (x{d2.stateA.currentEroi >= 20 ? Math.round(d2.stateA.currentEroi) : d2.stateA.currentEroi.toFixed(1)} barils extraits pour 1 baril consommé)</span>
+                <span>🟢 <strong>Ligne verte :</strong> Énergie utile disponible pour la société ({(d2.stateA.netEnergyRatio * 100).toFixed(0)}%)</span>
+                <span>🔵 <strong>Pointillé bleu :</strong> Engrais chimiques Haber-Bosch ({(d2.stateA.haberBoschNitrogenFactor * 100).toFixed(0)}%)</span>
               </div>
               <p className="text-[10px] text-amber-200/90 bg-amber-950/30 p-1.5 rounded border border-amber-900/50">
-                💡 <strong>Pourquoi ce chiffre baisse-t-il ?</strong> Les premiers gisements (1900) étaient sous pression naturelle et peu profonds (rendement x100). Aujourd'hui, il faut forer à 3 000 mètres sous les océans ou fracturer la roche étanche, ce qui dévore d'immenses quantités d'énergie rien que pour forer.
+                💡 <strong>Pourquoi ce chiffre baisse-t-il ?</strong> Les premiers gisements (1900) étaient sous pression naturelle et peu profonds (rendement x100). Aujourd'hui, il faut forer à 3 000 mètres sous les océans ou fracturer la roche étanche, ce qui dévore d'immenses quantités d'énergie.
               </p>
             </div>
           </div>
         )}
 
         {/* ========================================================================= */}
-        {/* GRAPHIQUE 3 : CLIMAT & OCÉANS (Point 2 : Montée de la mer chiffrée avec échelle) */}
+        {/* GRAPHIQUE 3 : CLIMAT & OCÉANS (Montée de la mer chiffrée jusqu'en 2200) */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === 'climate') && (
-          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2">
+          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2 shadow-lg">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-slate-200">
                   3. Réchauffement Mondial, Gaz à Effet de Serre &amp; Montée des Océans
                 </span>
-                <span className="text-[10.5px] font-mono text-slate-400 font-semibold">
-                  Année {displayYear}
+                <span className="text-[10.5px] font-mono text-slate-400 font-semibold flex items-center gap-1.5">
+                  {d3.isShowingHover ? (
+                    <span className="px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-800/80 text-[10px] font-bold">
+                      🔍 Survol : {d3.displayYear}
+                    </span>
+                  ) : (
+                    <span>Année {d3.displayYear}</span>
+                  )}
                 </span>
               </div>
 
               {/* Chiffres précis dont la montée du niveau des mers */}
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5">
-                <span className="text-cyan-400 font-semibold">
-                  CO2 dans l'air : {Math.round(displayState.atmosphericCo2Ppm)} ppm
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
+                <span className="text-cyan-400 font-semibold min-w-[7.5rem]">
+                  CO2 : {Math.round(d3.stateA.atmosphericCo2Ppm)} ppm
                 </span>
-                <span className="text-rose-400 font-semibold flex items-center gap-1">
-                  Réchauffement : {displayState.surfaceTemperatureAnomaly >= 0 ? '+' : ''}{displayState.surfaceTemperatureAnomaly.toFixed(2)}°C
+                <span className="text-rose-400 font-semibold flex items-center gap-1 min-w-[8.5rem]">
+                  Réchauffement : {d3.stateA.surfaceTemperatureAnomaly >= 0 ? '+' : ''}{d3.stateA.surfaceTemperatureAnomaly.toFixed(2)}°C
                   <TechTooltip term="fair" showIconOnly />
                 </span>
-                {/* Montée des mers mise en avant de manière évidente */}
-                <span className="text-sky-300 font-bold bg-sky-950/80 border border-sky-800/80 px-2 py-0.5 rounded flex items-center gap-1">
-                  🌊 Montée des océans : {seaLevelCm >= 0 ? '+' : ''}{seaLevelCm} cm ({seaLevelVs2026 >= 0 ? `+${seaLevelVs2026} cm depuis 2026` : `${seaLevelVs2026} cm vs 2026`})
+                {/* Montée des mers */}
+                <span className="text-sky-300 font-bold bg-sky-950/80 border border-sky-800/80 px-2 py-0.5 rounded flex items-center gap-1 min-w-[11.5rem]">
+                  🌊 Montée des océans : {d3.seaLevelCm >= 0 ? '+' : ''}{d3.seaLevelCm} cm ({d3.seaLevelVs2026 >= 0 ? `+${d3.seaLevelVs2026} cm depuis 2026` : `${d3.seaLevelVs2026} cm vs 2026`})
                   <TechTooltip term="slr" showIconOnly />
                 </span>
               </div>
 
               {/* Ligne comparative Trajectoire B si activée */}
-              {isCompareMode && displayStateB && (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300">
+              {isCompareMode && d3.stateB && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300 tabular-nums">
                   <span className="font-bold flex items-center gap-1 text-emerald-400">
                     <GitCompare className="w-3 h-3 text-emerald-400" />
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-cyan-300">
-                    CO2 : {Math.round(displayStateB.atmosphericCo2Ppm)} ppm
+                    CO2 : {Math.round(d3.stateB.atmosphericCo2Ppm)} ppm
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-rose-300">
-                    Réchauffement : +{displayStateB.surfaceTemperatureAnomaly.toFixed(2)}°C
+                    Réchauffement : +{d3.stateB.surfaceTemperatureAnomaly.toFixed(2)}°C
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-sky-300">
-                    Océans : +{seaLevelCmB} cm ({seaLevelCmB - seaLevelCm >= 0 ? `+${seaLevelCmB - seaLevelCm}` : `${seaLevelCmB - seaLevelCm}`} cm)
+                    Océans : +{d3.seaLevelCmB} cm ({d3.seaLevelCmB - d3.seaLevelCm >= 0 ? `+${d3.seaLevelCmB - d3.seaLevelCm}` : `${d3.seaLevelCmB - d3.seaLevelCm}`} cm)
                   </span>
                 </div>
               )}
             </div>
 
             <p className="text-[10px] text-slate-400 leading-tight">
-              CO2 dans l'atmosphère (axe gauche), température mondiale depuis 1850 (axe droit) et élévation des océans (pointillé bleu chiffré en cm).
+              CO2 dans l'atmosphère (axe gauche), température mondiale depuis 1850 (axe droit) et élévation séculaire des océans (pointillé bleu chiffré en cm jusqu'en 2200).
             </p>
 
             {/* SVG Graphique 3 */}
@@ -925,8 +964,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
                 onClick={handleSvgClick}
-                onMouseMove={handleSvgHover}
-                onMouseLeave={() => setHoverYear(null)}
+                onMouseMove={(e) => handleSvgHover(e, 'climate')}
+                onMouseLeave={() => handleSvgLeave('climate')}
               >
                 {/* Axe vertical gauche : Concentration de CO2 (ppm) */}
                 <text x={PAD.left - 6} y={PAD.top + 4} fill="#22d3ee" fontSize="8" textAnchor="end" fontFamily="monospace">750 ppm</text>
@@ -938,19 +977,31 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <text x={W - PAD.right + 6} y={getYTemp(2.0) + 3} fill="#f43f5e" fontSize="8" textAnchor="start" fontFamily="monospace">+2.0°C</text>
                 <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#f43f5e" fontSize="8" textAnchor="start" fontFamily="monospace">{tempMin >= 0 ? `+${tempMin}` : tempMin}°C</text>
 
-                {/* Repères horizontaux pour la montée des océans (+75 cm, +50 cm, +25 cm, 0 cm) */}
-                <line x1={PAD.left} y1={getYSlr(0.75)} x2={W - PAD.right} y2={getYSlr(0.75)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.5" />
-                <text x={PAD.left + 4} y={getYSlr(0.75) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.8">Repère océan : +75 cm</text>
+                {/* Repères horizontaux pour la montée des océans */}
+                {endYear === 2200 ? (
+                  <>
+                    <line x1={PAD.left} y1={getYSlr(2.5)} x2={W - PAD.right} y2={getYSlr(2.5)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.6" />
+                    <text x={PAD.left + 4} y={getYSlr(2.5) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.85">Repère océan séculaire : +250 cm (+2,5 m en 2200)</text>
 
-                <line x1={PAD.left} y1={getYSlr(0.25)} x2={W - PAD.right} y2={getYSlr(0.25)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.5" />
-                <text x={PAD.left + 4} y={getYSlr(0.25) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.8">Repère océan : +25 cm</text>
+                    <line x1={PAD.left} y1={getYSlr(1.0)} x2={W - PAD.right} y2={getYSlr(1.0)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.5" />
+                    <text x={PAD.left + 4} y={getYSlr(1.0) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.75">Repère océan : +100 cm (+1 m)</text>
+                  </>
+                ) : (
+                  <>
+                    <line x1={PAD.left} y1={getYSlr(0.75)} x2={W - PAD.right} y2={getYSlr(0.75)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.5" />
+                    <text x={PAD.left + 4} y={getYSlr(0.75) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.8">Repère océan : +75 cm</text>
+
+                    <line x1={PAD.left} y1={getYSlr(0.25)} x2={W - PAD.right} y2={getYSlr(0.25)} stroke="#0284c7" strokeWidth="0.6" strokeDasharray="2,4" opacity="0.5" />
+                    <text x={PAD.left + 4} y={getYSlr(0.25) - 2} fill="#38bdf8" fontSize="6.5" opacity="0.8">Repère océan : +25 cm</text>
+                  </>
+                )}
 
                 {/* Ligne seuil Accord de Paris +1.5°C et +2.0°C */}
                 <line x1={PAD.left} y1={getYTemp(1.5)} x2={W - PAD.right} y2={getYTemp(1.5)} stroke="#f43f5e" strokeWidth="0.8" strokeDasharray="3,3" opacity="0.4" />
                 <line x1={PAD.left} y1={getYTemp(2.0)} x2={W - PAD.right} y2={getYTemp(2.0)} stroke="#f43f5e" strokeWidth="1" strokeDasharray="4,3" opacity="0.6" />
 
                 {/* Axe des abscisses */}
-                {renderAbscisseAxis()}
+                {renderAbscisseAxis('climate')}
 
                 {/* Courbe 1 : CO2 Atmosphérique (Cyan) */}
                 <path d={pathCo2} fill="none" stroke="#22d3ee" strokeWidth="2.2" strokeLinecap="round" />
@@ -958,15 +1009,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* Courbe 2 : Température Globale FaIR (Rouge/Rose) */}
                 <path d={pathTemp} fill="none" stroke="#f43f5e" strokeWidth="2.5" strokeLinecap="round" />
 
-                {/* Courbe 3 : Montée des Océans (Pointillé bleu épais et visible) */}
+                {/* Courbe 3 : Montée des Océans (Pointillé bleu épais) */}
                 <path d={pathSlr} fill="none" stroke="#38bdf8" strokeWidth="2.4" strokeDasharray="5,3" strokeLinecap="round" />
 
                 {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
-                    {/* Température B (Vert émeraude pointillé) */}
                     <path d={pathTempB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    {/* Montée de la mer B (Bleu ciel fin pointillé) */}
                     <path d={pathSlrB} fill="none" stroke="#38bdf8" strokeWidth="1.8" strokeDasharray="2 3" strokeLinecap="round" />
                   </g>
                 )}
@@ -982,46 +1031,34 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   </g>
                 )}
 
-                {/* Marqueur interactif sur la température B si comparaison */}
-                {isCompareMode && displayStateB && (
-                  <circle
-                    cx={currentX}
-                    cy={getYTemp(displayStateB.surfaceTemperatureAnomaly)}
-                    r="3.5"
-                    fill="#34d399"
-                    stroke="#ffffff"
-                    strokeWidth="1.2"
-                  />
-                )}
-
-                {/* Marqueur interactif sur la montée des océans avec badge en cm */}
+                {/* Marqueur interactif sur la montée des océans */}
                 <g>
                   <circle
                     cx={currentX}
-                    cy={getYSlr(displayState.seaLevelRiseMeters)}
+                    cy={getYSlr(currentSimState.seaLevelRiseMeters)}
                     r="4.5"
                     fill="#0284c7"
                     stroke="#ffffff"
                     strokeWidth="1.5"
                   />
                   <rect
-                    x={Math.max(PAD.left, Math.min(W - PAD.right - 54, currentX - 27))}
-                    y={Math.max(PAD.top, getYSlr(displayState.seaLevelRiseMeters) - 17)}
-                    width="54"
+                    x={Math.max(PAD.left, Math.min(W - PAD.right - 58, currentX - 29))}
+                    y={Math.max(PAD.top, getYSlr(currentSimState.seaLevelRiseMeters) - 17)}
+                    width="58"
                     height="13"
                     rx="3"
                     fill="#0369a1"
                   />
                   <text
-                    x={Math.max(PAD.left + 27, Math.min(W - PAD.right - 27, currentX))}
-                    y={Math.max(PAD.top + 9, getYSlr(displayState.seaLevelRiseMeters) - 7.5)}
+                    x={Math.max(PAD.left + 29, Math.min(W - PAD.right - 29, currentX))}
+                    y={Math.max(PAD.top + 9, getYSlr(currentSimState.seaLevelRiseMeters) - 7.5)}
                     textAnchor="middle"
                     fill="#ffffff"
                     fontSize="7.8"
                     fontWeight="bold"
                     fontFamily="monospace"
                   >
-                    🌊 {seaLevelCm >= 0 ? '+' : ''}{seaLevelCm} cm
+                    🌊 {d3.seaLevelCm >= 0 ? '+' : ''}{d3.seaLevelCm} cm
                   </text>
                 </g>
               </svg>
@@ -1030,13 +1067,13 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             {/* Légende avec explication claire de la montée */}
             <div className="flex flex-col gap-1 text-[10.5px] text-slate-300 pt-1 border-t border-slate-800/80">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>🔵 <strong>Ligne cyan :</strong> Concentration de CO2 ({Math.round(displayState.atmosphericCo2Ppm)} ppm)</span>
-                <span>🔴 <strong>Ligne rouge :</strong> Réchauffement (+{displayState.surfaceTemperatureAnomaly.toFixed(2)}°C depuis 1850)</span>
+                <span>🔵 <strong>Ligne cyan :</strong> Concentration de CO2 ({Math.round(d3.stateA.atmosphericCo2Ppm)} ppm)</span>
+                <span>🔴 <strong>Ligne rouge :</strong> Réchauffement (+{d3.stateA.surfaceTemperatureAnomaly.toFixed(2)}°C depuis 1850)</span>
               </div>
               <div className="bg-sky-950/40 border border-sky-900/60 rounded p-1.5 text-sky-200 text-[10px]">
-                🌊 <strong>Pointillé bleu (Montée des océans) :</strong> {seaLevelCm >= 0 ? '+' : ''}{seaLevelCm} cm mesurés à cette date (soit {seaLevelVs2026 >= 0 ? `+${seaLevelVs2026} cm de plus qu'aujourd'hui` : `${seaLevelVs2026} cm par rapport à aujourd'hui`}, projection jusqu'à +75 cm en 2100).
+                🌊 <strong>Pointillé bleu (Montée des océans) :</strong> {d3.seaLevelCm >= 0 ? '+' : ''}{d3.seaLevelCm} cm en {d3.displayYear} (soit {d3.seaLevelVs2026 >= 0 ? `+${d3.seaLevelVs2026} cm de plus qu'aujourd'hui` : `${d3.seaLevelVs2026} cm par rapport à aujourd'hui`}, projection jusqu'à +{endYear === 2200 ? '260 cm en 2200' : '75 cm en 2100'}).
                 <br />
-                Chaque tranche de 10 cm supplémentaire noie les deltas côtiers très fertiles (Mékong, Bangladesh, Nil) et salinise les réserves d'eau douce souterraines.
+                Chaque tranche de 10 cm supplémentaire submerge les deltas côtiers très fertiles (Mékong, Bangladesh, Nil) et salinise les réserves d'eau douce souterraines.
               </div>
             </div>
           </div>
@@ -1046,46 +1083,49 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
         {/* GRAPHIQUE 4 : AGRONOMIE & ALIMENTATION */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === 'agri') && (
-          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2">
+          <div className="bg-[#0e1422] border border-slate-800 rounded-xl p-3.5 flex flex-col gap-2 shadow-lg">
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-slate-200">
                   4. Disponibilité Alimentaire Mondiale &amp; Rendements des Terres
                 </span>
-                <span className="text-[10.5px] font-mono text-slate-400 font-semibold">
-                  Année {displayYear}
+                <span className="text-[10.5px] font-mono text-slate-400 font-semibold flex items-center gap-1.5">
+                  {d4.isShowingHover ? (
+                    <span className="px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-800/80 text-[10px] font-bold">
+                      🔍 Survol : {d4.displayYear}
+                    </span>
+                  ) : (
+                    <span>Année {d4.displayYear}</span>
+                  )}
                 </span>
               </div>
 
-              {/* Indicateurs numériques */}
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5">
-                <span className="text-emerald-400 font-semibold">
-                  Nourriture par jour : {Math.round(displayState.globalAverageCaloriesPerCapita)} kcal/hab
+              {/* Indicateurs numériques avec tabular-nums */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
+                <span className="text-emerald-400 font-semibold min-w-[8.5rem]">
+                  Nourriture : {Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/hab/j
                 </span>
-                <span className="text-amber-400 font-semibold flex items-center gap-1">
-                  Rendement moyen mondial : {(displayState.globalCropYieldComposite * 100).toFixed(0)}% du pic
+                <span className="text-amber-400 font-semibold flex items-center gap-1 min-w-[9.5rem]">
+                  Rendement moyen : {(d4.stateA.globalCropYieldComposite * 100).toFixed(0)}% du pic
                   <TechTooltip term="haber-bosch" showIconOnly />
                 </span>
-                <span className="text-rose-400 font-semibold">
+                <span className="text-rose-400 font-semibold min-w-[8.5rem]">
                   Seuil de famine ONU : 2 100 kcal
                 </span>
               </div>
 
               {/* Ligne comparative Trajectoire B si activée */}
-              {isCompareMode && displayStateB && (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300">
+              {isCompareMode && d4.stateB && (
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/80 text-[10px] font-mono text-emerald-300 tabular-nums">
                   <span className="font-bold flex items-center gap-1 text-emerald-400">
                     <GitCompare className="w-3 h-3 text-emerald-400" />
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-emerald-300">
-                    Calories : {Math.round(displayStateB.globalAverageCaloriesPerCapita)} kcal/hab
+                    Calories : {Math.round(d4.stateB.globalAverageCaloriesPerCapita)} kcal/hab
                   </span>
                   <span className="bg-emerald-950/70 border border-emerald-800/80 px-1.5 py-0.5 rounded font-semibold text-amber-300">
-                    Rendement : {(displayStateB.globalCropYieldComposite * 100).toFixed(0)}% du pic
-                  </span>
-                  <span className="text-slate-400 text-[9.5px]">
-                    (Écart : {Math.round(displayStateB.globalAverageCaloriesPerCapita - displayState.globalAverageCaloriesPerCapita) >= 0 ? '+' : ''}{Math.round(displayStateB.globalAverageCaloriesPerCapita - displayState.globalAverageCaloriesPerCapita)} kcal/j)
+                    Rendement : {(d4.stateB.globalCropYieldComposite * 100).toFixed(0)}%
                   </span>
                 </div>
               )}
@@ -1101,8 +1141,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 viewBox={`0 0 ${W} ${H}`}
                 className="w-full h-full"
                 onClick={handleSvgClick}
-                onMouseMove={handleSvgHover}
-                onMouseLeave={() => setHoverYear(null)}
+                onMouseMove={(e) => handleSvgHover(e, 'agri')}
+                onMouseLeave={() => handleSvgLeave('agri')}
               >
                 {/* Axe vertical gauche : Calories (kcal/jour) */}
                 <text x={PAD.left - 6} y={PAD.top + 4} fill="#10b981" fontSize="8" textAnchor="end" fontFamily="monospace">3500</text>
@@ -1137,7 +1177,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 </text>
 
                 {/* Axe des abscisses */}
-                {renderAbscisseAxis()}
+                {renderAbscisseAxis('agri')}
 
                 {/* Courbe 1 : Calories par habitant (Verte) */}
                 <path d={pathCal} fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" />
@@ -1148,9 +1188,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
-                    {/* Calories B (Vert émeraude vif pointillé) */}
                     <path d={pathCalB} fill="none" stroke="#34d399" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    {/* Rendements B (Ambre clair pointillé) */}
                     <path d={pathCropYieldB} fill="none" stroke="#fcd34d" strokeWidth="1.8" strokeDasharray="3 3" strokeLinecap="round" />
                   </g>
                 )}
@@ -1166,22 +1204,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   </g>
                 )}
 
-                {/* Marqueur interactif sur les calories B si comparaison */}
-                {isCompareMode && displayStateB && (
-                  <circle
-                    cx={currentX}
-                    cy={getYCal(displayStateB.globalAverageCaloriesPerCapita)}
-                    r="3.5"
-                    fill="#34d399"
-                    stroke="#ffffff"
-                    strokeWidth="1.2"
-                  />
-                )}
-
                 {/* Marqueur interactif sur les calories */}
                 <circle
                   cx={currentX}
-                  cy={getYCal(displayState.globalAverageCaloriesPerCapita)}
+                  cy={getYCal(currentSimState.globalAverageCaloriesPerCapita)}
                   r="4"
                   fill="#10b981"
                   stroke="#ffffff"
@@ -1189,7 +1215,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 />
                 <rect
                   x={Math.max(PAD.left, Math.min(W - PAD.right - 46, currentX - 23))}
-                  y={getYCal(displayState.globalAverageCaloriesPerCapita) - 16}
+                  y={getYCal(currentSimState.globalAverageCaloriesPerCapita) - 16}
                   width="46"
                   height="12"
                   rx="3"
@@ -1197,14 +1223,14 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 />
                 <text
                   x={Math.max(PAD.left + 23, Math.min(W - PAD.right - 23, currentX))}
-                  y={getYCal(displayState.globalAverageCaloriesPerCapita) - 7.5}
+                  y={getYCal(currentSimState.globalAverageCaloriesPerCapita) - 7.5}
                   textAnchor="middle"
                   fill="#a7f3d0"
                   fontSize="7.5"
                   fontWeight="bold"
                   fontFamily="monospace"
                 >
-                  {Math.round(displayState.globalAverageCaloriesPerCapita)} kcal
+                  {Math.round(currentSimState.globalAverageCaloriesPerCapita)} kcal
                 </text>
               </svg>
             </div>
@@ -1212,8 +1238,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             {/* Légende */}
             <div className="flex flex-col gap-1 text-[10.5px] text-slate-300 pt-1 border-t border-slate-800/80">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>🟢 <strong>Ligne verte :</strong> Ration alimentaire moyenne ({Math.round(displayState.globalAverageCaloriesPerCapita)} kcal/habitant/jour)</span>
-                <span>🟠 <strong>Pointillé ambre :</strong> Rendements mondiaux des récoltes ({(displayState.globalCropYieldComposite * 100).toFixed(0)}%)</span>
+                <span>🟢 <strong>Ligne verte :</strong> Ration alimentaire moyenne ({Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/habitant/jour)</span>
+                <span>🟠 <strong>Pointillé ambre :</strong> Rendements mondiaux des récoltes ({(d4.stateA.globalCropYieldComposite * 100).toFixed(0)}%)</span>
                 <span>🔴 <strong>Ligne rouge pointillée :</strong> Seuil vital de subsistance ONU (2 100 kcal)</span>
               </div>
               <p className="text-[10px] text-slate-400">
@@ -1223,6 +1249,317 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
           </div>
         )}
       </div>
-    </div>
+    );
+  };
+
+  return (
+    <>
+      {/* VUE STANDARD DES GRAPHIQUES */}
+      <div className="w-full rounded-xl bg-[#090d15] border border-slate-800 p-4 shadow-xl flex flex-col gap-3">
+        {/* En-tête des graphiques avec sélecteur d'échelle temporelle (jusqu'en 2200) */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-slate-800">
+          <div>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-sky-400" />
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-slate-200">
+                Trajectoires Biophysiques Couplées ({startYear} → {endYear})
+              </h3>
+            </div>
+            <p className="text-[11px] text-slate-400 mt-0.5">
+              Évolution continue du système Terre · Cliquez sur un graphique pour caler la simulation sur l'année voulue
+            </p>
+          </div>
+
+          {/* Commandes : Période temporelle, Isolation du survol, Plein écran & Onglets */}
+          <div className="flex flex-wrap items-center gap-2">
+            
+            {/* Sélecteur de période temporelle étendu jusqu'en 2200 */}
+            <div className="flex items-center bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
+              <span className="text-[10px] text-slate-400 px-1.5 font-medium">Période :</span>
+              <button
+                onClick={() => setTimeRange('1900-2200')}
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                  timeRange === '1900-2200'
+                    ? 'bg-blue-600 text-white font-semibold shadow'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                title="Grand Siècle & Prospective séculaire (1900–2200 - 300 ans)"
+              >
+                📜 1900–2200 (300 ans)
+              </button>
+              <button
+                onClick={() => setTimeRange('1900-2100')}
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                  timeRange === '1900-2100'
+                    ? 'bg-blue-700 text-white font-semibold shadow'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                title="Vue 1900-2100 (200 ans)"
+              >
+                1900–2100
+              </button>
+              <button
+                onClick={() => setTimeRange('2026-2200')}
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                  timeRange === '2026-2200'
+                    ? 'bg-cyan-600 text-white font-semibold shadow'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                title="Prospective longue portée (2026-2200)"
+              >
+                🔭 2026–2200
+              </button>
+              <button
+                onClick={() => setTimeRange('2026-2100')}
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                  timeRange === '2026-2100'
+                    ? 'bg-cyan-700 text-white font-semibold shadow'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                title="Zoom prospectif 21e siècle (2026-2100)"
+              >
+                2026–2100
+              </button>
+            </div>
+
+            {/* Bouton de bascule du survol (Indépendant vs Synchronisé) */}
+            <button
+              onClick={() => setIsSyncHover(!isSyncHover)}
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-colors ${
+                !isSyncHover
+                  ? 'bg-emerald-950/60 border-emerald-600/60 text-emerald-300'
+                  : 'bg-indigo-950/60 border-indigo-600/60 text-indigo-300'
+              }`}
+              title={
+                !isSyncHover
+                  ? 'Survol indépendant : passer la souris sur un graphique ne fait JAMAIS bouger les 3 autres.'
+                  : 'Survol synchronisé : le curseur temporel bouge sur les 4 graphiques en même temps.'
+              }
+            >
+              {!isSyncHover ? (
+                <>
+                  <Eye className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Survol : Indépendant</span>
+                </>
+              ) : (
+                <>
+                  <GitCompare className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Survol : Synchronisé</span>
+                </>
+              )}
+            </button>
+
+            {/* Onglets thématiques */}
+            <div className="flex items-center gap-1 bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
+              <button
+                onClick={() => setActiveTab('all')}
+                className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                  activeTab === 'all'
+                    ? 'bg-slate-700 text-white font-medium'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Tous (4)
+              </button>
+              <button
+                onClick={() => setActiveTab('demo')}
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                  activeTab === 'demo'
+                    ? 'bg-slate-700 text-white font-medium'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Démographie
+              </button>
+              <button
+                onClick={() => setActiveTab('energy')}
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                  activeTab === 'energy'
+                    ? 'bg-slate-700 text-white font-medium'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Énergie
+              </button>
+              <button
+                onClick={() => setActiveTab('climate')}
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                  activeTab === 'climate'
+                    ? 'bg-slate-700 text-white font-medium'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Climat
+              </button>
+              <button
+                onClick={() => setActiveTab('agri')}
+                className={`px-2 py-1 rounded transition-colors cursor-pointer ${
+                  activeTab === 'agri'
+                    ? 'bg-slate-700 text-white font-medium'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                Alimentation
+              </button>
+            </div>
+
+            {/* BOUTON PLEIN ÉCRAN */}
+            <button
+              onClick={() => setIsFullScreen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold cursor-pointer shadow-sm transition-colors"
+              title="Afficher tous les graphiques en mode plein écran immersif"
+            >
+              <Maximize2 className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Plein écran</span>
+            </button>
+
+            {/* Bouton direct d'exportation PDF des graphiques */}
+            {onOpenPdfExport && (
+              <button
+                onClick={onOpenPdfExport}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-cyan-950/70 hover:bg-cyan-900 text-cyan-300 hover:text-white border border-cyan-800/60 hover:border-cyan-600 transition-colors text-xs font-semibold cursor-pointer shadow-sm"
+                title="Exporter ces graphiques et le bilan de simulation sous forme de rapport PDF imprimable"
+              >
+                <FileDown className="w-3.5 h-3.5 text-cyan-400" />
+                <span>PDF</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Grille des graphiques interactifs */}
+        {renderChartsGrid(false)}
+      </div>
+
+      {/* MODAL / FENÊTRE EN PLEIN ÉCRAN IMMERSIF */}
+      {isFullScreen && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-[#070b13] text-slate-100 overflow-y-auto animate-in fade-in duration-200">
+          {/* Barre supérieure d'en-tête du Plein Écran */}
+          <div className="sticky top-0 z-30 flex flex-wrap items-center justify-between gap-3 px-6 py-3.5 bg-[#0b101c]/95 backdrop-blur-md border-b border-slate-800 shadow-xl">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-cyan-950/90 border border-cyan-500/50 text-cyan-400">
+                <Maximize2 className="w-5 h-5" />
+              </div>
+              <div>
+                <h2 className="text-base font-bold text-white flex items-center gap-2">
+                  Observatoire des Trajectoires Biophysiques en Plein Écran
+                  <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-cyan-900/60 text-cyan-300 border border-cyan-700/60">
+                    {startYear} → {endYear}
+                  </span>
+                </h2>
+                <p className="text-xs text-slate-400">
+                  Visualisation haute résolution multi-trajectoires · Année visualisée : <strong className="text-white font-mono">{currentSimYear}</strong>
+                </p>
+              </div>
+            </div>
+
+            {/* Outils & Commandes en Plein Écran */}
+            <div className="flex flex-wrap items-center gap-3">
+              
+              {/* Sélecteur de période */}
+              <div className="flex items-center bg-[#121824] p-1 rounded-lg border border-slate-800 text-xs">
+                <span className="text-[10px] text-slate-400 px-1.5 font-medium">Période :</span>
+                <button
+                  onClick={() => setTimeRange('1900-2200')}
+                  className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                    timeRange === '1900-2200' ? 'bg-blue-600 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  1900–2200
+                </button>
+                <button
+                  onClick={() => setTimeRange('1900-2100')}
+                  className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                    timeRange === '1900-2100' ? 'bg-blue-700 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  1900–2100
+                </button>
+                <button
+                  onClick={() => setTimeRange('2026-2200')}
+                  className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                    timeRange === '2026-2200' ? 'bg-cyan-600 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  2026–2200
+                </button>
+                <button
+                  onClick={() => setTimeRange('2026-2100')}
+                  className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                    timeRange === '2026-2100' ? 'bg-cyan-700 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  2026–2100
+                </button>
+              </div>
+
+              {/* Sélecteur de survol */}
+              <button
+                onClick={() => setIsSyncHover(!isSyncHover)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-colors ${
+                  !isSyncHover
+                    ? 'bg-emerald-950/70 border-emerald-600/70 text-emerald-300'
+                    : 'bg-indigo-950/70 border-indigo-600/70 text-indigo-300'
+                }`}
+                title="Activer ou désactiver la synchronisation du survol entre les graphiques"
+              >
+                {!isSyncHover ? (
+                  <>
+                    <Eye className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Survol : Indépendant</span>
+                  </>
+                ) : (
+                  <>
+                    <GitCompare className="w-3.5 h-3.5 text-indigo-400" />
+                    <span>Survol : Synchronisé</span>
+                  </>
+                )}
+              </button>
+
+              {/* BOUTON FERMER LE PLEIN ÉCRAN DEMANDÉ PAR L'UTILISATEUR */}
+              <button
+                onClick={() => setIsFullScreen(false)}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg transition-colors cursor-pointer"
+                title="Fermer le mode plein écran (Touche Échap)"
+              >
+                <X className="w-4 h-4" />
+                <span>Fermer le plein écran</span>
+                <span className="text-[10px] px-1 py-0.2 rounded bg-rose-800/80 font-mono">Échap</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Corps du Plein Écran */}
+          <div className="flex-1 p-6 space-y-6 max-w-[1750px] mx-auto w-full">
+            {/* Barre de navigation temporelle rapide en plein écran */}
+            <div className="p-3.5 rounded-xl bg-[#0c1220] border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-2 text-xs text-slate-300 font-mono">
+                <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping inline-block" />
+                <span>Curseur temporel actif : <strong className="text-white text-sm">{currentSimYear}</strong></span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <span className="text-slate-400">Aller directement à :</span>
+                {[1900, 1950, 2000, 2026, 2050, 2075, 2100, 2150, 2200].filter(y => y >= startYear && y <= endYear).map((yr) => (
+                  <button
+                    key={`jump-${yr}`}
+                    onClick={() => onSeekYear(yr)}
+                    className={`px-2.5 py-1 rounded font-mono font-bold cursor-pointer transition-colors ${
+                      currentSimYear === yr
+                        ? 'bg-cyan-500 text-slate-950 shadow-md'
+                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    }`}
+                  >
+                    {yr}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Rendu des graphiques dans la fenêtre plein écran */}
+            {renderChartsGrid(true)}
+          </div>
+        </div>
+      )}
+    </>
   );
 };

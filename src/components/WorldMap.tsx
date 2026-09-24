@@ -26,9 +26,11 @@ import {
   Minus,
   Plus,
   ShieldCheck,
+  TreePine,
   X
 } from 'lucide-react';
 import { TechTooltip } from './TechTooltip';
+import { GreenZonesScientificModal } from './GreenZonesScientificModal';
 
 interface WorldMapProps {
   simulationState: GlobalBiophysicalState;
@@ -50,6 +52,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   // Système d'alertes visuelles de stress thermique Stull Tw (Seuil critique configurable, ex: >32.0°C)
   const [heatAlertThreshold, setHeatAlertThreshold] = useState<number>(32.0);
   const [heatAlertsEnabled, setHeatAlertsEnabled] = useState<boolean>(true);
+  const [showGreenZonesModal, setShowGreenZonesModal] = useState<boolean>(false);
   const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Gestionnaire anti-tremblement : conservation fluide de l'entité lors des micro-mouvements de frontière
@@ -337,7 +340,38 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             <span>Exode</span>
           </button>
         </div>
+
+        {/* Bouton Explicatif Scientifique pour les Zones Vertes en 2100-2200 */}
+        <button
+          onClick={() => setShowGreenZonesModal(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-900 transition-colors shadow-sm cursor-pointer ml-auto"
+          title="Pourquoi certaines régions (Canada, Scandinavie, etc.) restent vertes en 2100 et 2200 ? Explication basée sur le GIEC AR6"
+        >
+          <TreePine className="w-3.5 h-3.5 text-emerald-400" />
+          <span className="hidden sm:inline">Pourquoi des zones restent vertes en 2100 & 2200 ?</span>
+          <span className="sm:hidden">Zones vertes ?</span>
+        </button>
       </div>
+
+      {/* Bannière d'alerte contextuelle si l'utilisateur explore au-delà de 2100 (2100–2200) */}
+      {simulationState.year > 2100 && (
+        <div className="p-3 rounded-xl bg-purple-950/40 border border-purple-800/60 flex flex-wrap items-center justify-between gap-2.5 text-xs text-purple-200 shadow-md">
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 rounded font-mono font-bold bg-purple-900 text-purple-300 border border-purple-700/60 text-[11px]">
+              Horizon Séculaire {simulationState.year}
+            </span>
+            <span>
+              <strong>Prospective 2100–2200 (IPCC AR6 / CMIP6) :</strong> Épuisement des hydrocarbures fossiles conventionnels, élévation marine engagée (<strong>+{(simulationState.seaLevelRiseMeters * 100).toFixed(0)} cm</strong>) et concentration des activités dans les zones refuges boréales.
+            </span>
+          </div>
+          <button
+            onClick={() => setShowGreenZonesModal(true)}
+            className="px-2.5 py-1 rounded-lg bg-purple-900/80 hover:bg-purple-800 text-purple-200 text-xs font-semibold border border-purple-700/60 transition-colors cursor-pointer"
+          >
+            Fiche scientifique 2100–2200
+          </button>
+        </div>
+      )}
 
       {/* 2. SYSTÈME D'ALERTES VISUELLES DE STRESS THERMIQUE 'STULL TW' */}
       <div className="bg-[#0b131f] border border-slate-800 rounded-xl p-3 shadow-lg flex flex-col gap-2.5">
@@ -1326,6 +1360,13 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           )}
         </div>
       </div>
+
+      {/* Modal Scientifique explicative des zones vertes */}
+      <GreenZonesScientificModal
+        isOpen={showGreenZonesModal}
+        onClose={() => setShowGreenZonesModal(false)}
+        currentYear={simulationState.year}
+      />
     </div>
   );
 };

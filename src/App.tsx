@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { TopBar } from './components/TopBar';
+import { TopBar, AppTabType } from './components/TopBar';
 import { WorldMap } from './components/WorldMap';
 import { TimelineController } from './components/TimelineController';
 import { KpiCharts } from './components/KpiCharts';
 import { ComparisonModePanel } from './components/ComparisonModePanel';
+import { ComparativeDashboardView } from './components/ComparativeDashboardView';
 import { YouthExplainerCard } from './components/YouthExplainerCard';
 import { FutureConclusionCard } from './components/FutureConclusionCard';
 import { InteractiveFaqSection } from './components/InteractiveFaqSection';
@@ -22,7 +23,7 @@ import {
 } from './utils/urlParams';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<'map' | 'tipping-points' | 'causal' | 'spec'>('map');
+  const [currentTab, setCurrentTab] = useState<AppTabType>('map');
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(null);
 
   // Initialisation à partir des URL Search Params si disponibles
@@ -115,9 +116,9 @@ export default function App() {
 
       setCurrentYear((prev) => {
         const next = prev + yearIncrement;
-        if (next >= 2100) {
+        if (next >= 2200) {
           setIsPlaying(false);
-          return 2100;
+          return 2200;
         }
         return next;
       });
@@ -150,11 +151,11 @@ export default function App() {
   };
 
   const handleStepForward = () => {
-    setCurrentYear((prev) => Math.min(2100, Math.floor(prev) + 1));
+    setCurrentYear((prev) => Math.min(2200, Math.floor(prev) + 1));
   };
 
   const handleSeekYear = (year: number) => {
-    setCurrentYear(Math.max(1900, Math.min(2100, year)));
+    setCurrentYear(Math.max(1900, Math.min(2200, year)));
   };
 
   return (
@@ -223,6 +224,10 @@ export default function App() {
               trajectoryB={trajectoryB}
               currentYear={currentYear}
               onOpenPdfExport={() => setIsPdfModalOpen(true)}
+              onNavigateToDashboard={() => {
+                setCurrentTab('comparative-dashboard');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
             />
 
             {/* 4. Graphiques KPI synchronisés sous la mapmonde avec superposition comparative */}
@@ -281,6 +286,19 @@ export default function App() {
             {/* 7. Pour aller plus loin : L'IA peut-elle nous sauver ? Ou va-t-elle accélérer le changement ? */}
             <AiFutureDebateCard />
           </div>
+        )}
+
+        {currentTab === 'comparative-dashboard' && (
+          <ComparativeDashboardView
+            scenarioA={scenarioA}
+            scenarioB={scenarioB}
+            trajectoryA={trajectoryA}
+            trajectoryB={trajectoryB}
+            currentYear={currentYear}
+            onSeekYear={handleSeekYear}
+            onOpenPdfExport={() => setIsPdfModalOpen(true)}
+            onSelectScenarioB={handleSelectScenarioB}
+          />
         )}
 
         {currentTab === 'tipping-points' && (

@@ -111,7 +111,7 @@ export const YouthExplainerCard: React.FC = () => {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-slate-300 mt-1">
-              Comment fonctionne cette machine à remonter le futur de 2026 à 2100 ? Les clés pour tout comprendre sans jargon.
+              Comment fonctionne cette machine à explorer le futur de 2026 à 2200 ? Les clés pour tout comprendre sans jargon.
             </p>
           </div>
         </div>
@@ -440,7 +440,7 @@ export const YouthExplainerCard: React.FC = () => {
                 <div>
                   <span className="font-bold text-white uppercase tracking-wider text-[11px]">Règle d'or : L'axe du bas (X), c'est la ligne du temps !</span>
                   <p className="mt-1 text-slate-300 leading-relaxed">
-                    Sur tous les graphiques, le bord tout à gauche commence en <strong>2026 (Aujourd'hui)</strong>, et le bord tout à droite arrive en <strong>2100 (dans 74 ans)</strong>. Le curseur bleu qui avance montre l'année active que tu es en train d'observer.
+                    Sur les graphiques, tu peux observer la ligne du temps prospective de <strong>2026 jusqu'à 2100 ou 2200</strong> (et même remonter dans l'histoire jusqu'en 1900 grâce au sélecteur d'époque). Le curseur qui avance montre l'année active que tu es en train d'explorer.
                   </p>
                 </div>
               </div>

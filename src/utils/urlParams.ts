@@ -123,7 +123,7 @@ export function decodeSimulationParamsFromUrl(): {
     hasCustomUrlParams: hasParams,
     scenarioB: resolvedScenarioB,
     customParams: safeParams,
-    year: parsedYear && !isNaN(parsedYear) && parsedYear >= 1900 && parsedYear <= 2100 ? parsedYear : undefined,
+    year: parsedYear && !isNaN(parsedYear) && parsedYear >= 1900 && parsedYear <= 2200 ? parsedYear : undefined,
   };
 }
 

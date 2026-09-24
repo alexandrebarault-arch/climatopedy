@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AlertTriangle,
   Thermometer,
@@ -252,6 +252,11 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
   const [customTempSlider, setCustomTempSlider] = useState<number>(currentSimulatedWarming);
   const [modalElement, setModalElement] = useState<TippingElement | null>(null);
   const [isAllPointsModalOpen, setIsAllPointsModalOpen] = useState<boolean>(false);
+
+  // Synchronise le curseur thermique avec la simulation en cours si elle change
+  useEffect(() => {
+    setCustomTempSlider(currentSimulatedWarming);
+  }, [currentSimulatedWarming]);
 
   const activeElement = TIPPING_ELEMENTS.find(e => e.id === activeElementId) || TIPPING_ELEMENTS[0];
 

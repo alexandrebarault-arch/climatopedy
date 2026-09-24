@@ -108,11 +108,11 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               </span>
               {dynState.wetBulbPeak >= 32.0 ? (
                 <span className="block text-[11px] text-rose-300 font-bold">
-                  • Canicule mortelle : Chaleur ressentie à {dynState.wetBulbPeak.toFixed(1)}°C. Le corps ne peut plus évacuer sa chaleur sans climatisation électrique continue.
+                  • Canicule mortelle : Température humide Tw à {dynState.wetBulbPeak.toFixed(1)}°C. Le corps ne peut plus évacuer sa chaleur sans climatisation électrique continue.
                 </span>
               ) : isLethalHeat ? (
                 <span className="block text-[11px] text-rose-300">
-                  • Canicule humide létale : Chaleur ressentie à {dynState.wetBulbPeak.toFixed(1)}°C. Risque mortel d'hyperthermie pour la population.
+                  • Canicule humide létale : Température humide Tw à {dynState.wetBulbPeak.toFixed(1)}°C. Risque mortel d'hyperthermie pour la population.
                 </span>
               ) : null}
               {isFamine && (
@@ -214,7 +214,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
               <div className="bg-[#0b101b] p-2 rounded border border-slate-800">
                 <span className="text-slate-400 block text-[10px] flex items-center justify-between">
-                  <span>Chaleur ressentie (Tw)</span>
+                  <span>Temp. Humide (Tw)</span>
                 </span>
                 <span
                   className={`text-sm font-bold font-mono tabular-nums ${
@@ -237,14 +237,14 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               <span className="font-medium text-slate-300 block mb-0.5">Seuil de danger pour le corps humain :</span>
               <span>
                 {dynState.wetBulbPeak >= 35.0
-                  ? '☠️ Chaleur ressentie ≥ 35°C : Effondrement vital certain. Même au repos et à l\'ombre, le corps ne peut pas évacuer sa sueur.'
+                  ? '☠️ Température humide Tw ≥ 35°C (Létalité absolue) : Effondrement vital certain. Même au repos et à l\'ombre, la transpiration ne peut plus évacuer la chaleur.'
                   : dynState.wetBulbPeak >= 32.0
-                  ? '🚨 Chaleur ressentie ≥ 32°C : Danger mortel. Décès par coup de chaleur en moins de 6h sans pièce climatisée.'
+                  ? '🚨 Température humide Tw ≥ 32°C (Danger mortel) : Décès par coup de chaleur en moins de 6h sans climatisation continue.'
                   : dynState.wetBulbPeak >= 31.0
-                  ? '⚠️ Chaleur ressentie ≥ 31°C : Seuil létal. La transpiration ne refroidit plus le corps.'
+                  ? '⚠️ Température humide Tw ≥ 31°C (Seuil létal) : La transpiration ne refroidit plus le corps (Raymond et al. 2020).'
                   : dynState.wetBulbPeak >= 28.0
-                  ? '⚡ Chaleur ressentie ≥ 28°C : Fatigue intense. Travailler dehors en journée devient très risqué.'
-                  : '✅ Climat supportable pour le corps humain.'}
+                  ? '⚡ Température humide Tw ≥ 28°C (Stress thermique sévère) : Fatigue intense. Tout travail physique extérieur devient dangereux.'
+                  : '✅ Climat thermiquement supportable pour l\'organisme humain.'}
               </span>
             </div>
           </div>

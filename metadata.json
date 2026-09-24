@@ -1,6 +1,6 @@
 {
   "name": "GAIA-Sim · Moteur Biophysique & Limites Planétaires",
-  "description": "Simulation mondiale couplée (FaIR, EROI Leontief, Stull Tw, Zhao et al., Vermeer-Rahmstorf) de la trajectoire biophysique et démographique 2026-2100 sous inertie sociétale.",
+  "description": "Simulation mondiale couplée (FaIR, EROI Leontief, Stull Tw, Zhao et al., Vermeer-Rahmstorf) de la trajectoire biophysique et démographique 2026-2200 sous inertie sociétale.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
