@@ -366,22 +366,48 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
         </div>
       </div>
 
-      {/* Alerte événementielle synchronisée si un jalon est actif */}
-      {currentMilestone && (
-        <div className="mt-1 p-2.5 rounded-lg bg-amber-50 border border-amber-200 flex items-start gap-2.5 text-xs text-amber-900 shadow-2xs">
-          <span className="font-mono font-bold text-amber-900 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded text-[11px] shrink-0">
-            {currentMilestone.year < 2026 ? 'Histoire' : 'Jalon'} {currentMilestone.year}
-          </span>
-          <div>
-            <span className="font-bold text-slate-900 mr-1.5">
-              {currentMilestone.title} :
+      {/* Alerte événementielle synchronisée avec hauteur réservée anti-saccade */}
+      <div
+        className={`mt-1 p-2.5 rounded-lg border flex items-start gap-2.5 text-xs transition-colors duration-150 min-h-[50px] ${
+          currentMilestone
+            ? 'bg-amber-50 border-amber-200 text-amber-900 shadow-2xs'
+            : 'bg-slate-50/80 border-slate-200/80 text-slate-500'
+        }`}
+      >
+        {currentMilestone ? (
+          <>
+            <span className="font-mono font-bold text-amber-900 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded text-[11px] shrink-0">
+              {currentMilestone.year < 2026 ? 'Histoire' : 'Jalon'} {currentMilestone.year}
             </span>
-            <span className="text-amber-800 text-[11px] leading-relaxed">
-              {currentMilestone.description}
+            <div className="leading-snug">
+              <span className="font-bold text-slate-900 mr-1.5">
+                {currentMilestone.title} :
+              </span>
+              <span className="text-amber-800 text-[11px] leading-relaxed">
+                {currentMilestone.description}
+              </span>
+            </div>
+          </>
+        ) : (
+          <>
+            <span className="font-mono font-semibold text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded text-[11px] shrink-0">
+              {currentYear < 2026 ? 'Histoire' : currentYear <= 2100 ? 'Modèle' : 'Horizon'} {Math.floor(currentYear)}
             </span>
-          </div>
-        </div>
-      )}
+            <div className="leading-snug text-[11px] text-slate-600 flex flex-wrap items-center gap-1.5">
+              <span className="font-semibold text-slate-800">
+                {currentYear < 2026
+                  ? "Données historiques réelles (1900–2026) :"
+                  : currentYear <= 2100
+                  ? "Simulation biophysique continue (2026–2100) :"
+                  : "Projection séculaire IPCC AR6 (2100–2200) :"}
+              </span>
+              <span className="text-slate-500">
+                Défilement continu. Cliquez ou survolez un jalon (points colorés ci-dessus) pour analyser un événement clé.
+              </span>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

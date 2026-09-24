@@ -242,6 +242,7 @@ export default function App() {
               simulationState={currentTrajectoryState}
               selectedCountryId={selectedCountryId}
               onSelectCountry={setSelectedCountryId}
+              currentYear={currentYear}
             />
 
             {/* 2. Contrôleur temporel (Timeline Scrubber & KPI Macro) */}

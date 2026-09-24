@@ -36,6 +36,7 @@ interface WorldMapProps {
   simulationState: GlobalBiophysicalState;
   selectedCountryId: string | null;
   onSelectCountry: (countryId: string | null) => void;
+  currentYear?: number;
 }
 
 type TwOverlayMode = 'uninhabitable' | 'critical' | 'all' | 'off';
@@ -43,8 +44,10 @@ type TwOverlayMode = 'uninhabitable' | 'critical' | 'all' | 'off';
 export const WorldMap: React.FC<WorldMapProps> = ({
   simulationState,
   selectedCountryId,
-  onSelectCountry
+  onSelectCountry,
+  currentYear
 }) => {
+  const displayYear = currentYear !== undefined ? Math.floor(currentYear) : Math.floor(simulationState.year);
   const [activeMetric, setActiveMetric] = useState<MetricLayer>('wet_bulb');
   const [twOverlayMode, setTwOverlayMode] = useState<TwOverlayMode>('uninhabitable');
   const [hoveredFeature, setHoveredFeature] = useState<ProcessedCountryFeature | null>(null);
@@ -907,6 +910,17 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               })()
             )}
           </svg>
+
+          {/* Badge Année en cours centré en bas sur la carte */}
+          <div className="absolute bottom-12 sm:bottom-13 left-1/2 -translate-x-1/2 z-20 pointer-events-none select-none">
+            <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-slate-300 shadow-md">
+              <span className="w-2 h-2 rounded-full bg-sky-600 animate-pulse shrink-0" />
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Année</span>
+              <span className="text-base sm:text-lg font-black font-mono text-slate-900 tabular-nums">
+                {displayYear}
+              </span>
+            </div>
+          </div>
 
           {/* Légende horizontale en bas du planisphère */}
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 px-2 pt-2 border-t border-slate-200 mt-1">

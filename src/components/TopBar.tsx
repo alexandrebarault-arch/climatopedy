@@ -152,12 +152,6 @@ export const TopBar: React.FC<TopBarProps> = ({
 
         {/* Zone 3: Actions + Menu Mobile toggle */}
         <div id="tour-topbar-actions" className="flex items-center gap-2 sm:gap-3 shrink-0 ml-auto">
-          {/* Badge année */}
-          <span className="text-xs font-mono text-sky-800 font-semibold tabular-nums px-2.5 py-1 rounded-md bg-sky-50 border border-sky-200 whitespace-nowrap shrink-0 shadow-2xs">
-            <span className="hidden sm:inline text-slate-500 font-normal">Année </span>
-            {Math.floor(currentYear)}
-          </span>
-
           {/* Tutoriel / Guide de navigation (Actif uniquement sur la page par défaut) */}
           {onOpenTutorial && (
             <button
