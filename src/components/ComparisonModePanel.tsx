@@ -14,7 +14,8 @@ import {
   ChevronUp,
   Share2,
   Copy,
-  ExternalLink
+  ExternalLink,
+  FileDown
 } from 'lucide-react';
 import { GlobalBiophysicalState, SimulationScenarioConfig } from '../types/simulation';
 import { SCENARIO_BAU, SCENARIO_SOBRIETY, SCENARIO_DELAYED } from '../engine/simulationRunner';
@@ -31,6 +32,7 @@ interface ComparisonModePanelProps {
   trajectoryA: GlobalBiophysicalState[];
   trajectoryB: GlobalBiophysicalState[];
   currentYear: number;
+  onOpenPdfExport?: () => void;
 }
 
 export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
@@ -43,7 +45,8 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
   onUpdateCustomParam,
   trajectoryA,
   trajectoryB,
-  currentYear
+  currentYear,
+  onOpenPdfExport
 }) => {
   const [showSliders, setShowSliders] = useState<boolean>(false);
   const [copiedUrl, setCopiedUrl] = useState<boolean>(false);
@@ -130,8 +133,20 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
           </div>
         </div>
 
-        {/* Boutons d'action : Partager l'URL persistante & Toggle On/Off */}
+        {/* Boutons d'action : Partager l'URL persistante, Exporter PDF & Toggle On/Off */}
         <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+          {/* Bouton Export PDF */}
+          {onOpenPdfExport && (
+            <button
+              onClick={onOpenPdfExport}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-950/80 hover:bg-cyan-900 text-cyan-200 hover:text-white border border-cyan-600/70 hover:border-cyan-400 transition-all cursor-pointer shadow-sm"
+              title="Exporter les résultats et graphiques des deux scénarios dans un rapport PDF imprimable"
+            >
+              <FileDown className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Exporter PDF</span>
+            </button>
+          )}
+
           {/* Bouton de Partage d'URL persistante */}
           <button
             onClick={handleCopyShareUrl}

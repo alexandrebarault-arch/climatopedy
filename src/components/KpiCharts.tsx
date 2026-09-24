@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Info, Clock, AlertTriangle, Layers, ChevronRight, Activity, GitCompare } from 'lucide-react';
+import { Calendar, Info, Clock, AlertTriangle, Layers, ChevronRight, Activity, GitCompare, FileDown } from 'lucide-react';
 import { GlobalBiophysicalState, SimulationScenarioConfig } from '../types/simulation';
 import { TechTooltip } from './TechTooltip';
 
@@ -11,6 +11,7 @@ interface KpiChartsProps {
   isCompareMode?: boolean;
   currentYear: number;
   onSeekYear: (year: number) => void;
+  onOpenPdfExport?: () => void;
 }
 
 export const KpiCharts: React.FC<KpiChartsProps> = ({
@@ -20,7 +21,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   scenarioB,
   isCompareMode = false,
   currentYear,
-  onSeekYear
+  onSeekYear,
+  onOpenPdfExport
 }) => {
   const [activeTab, setActiveTab] = useState<'all' | 'demo' | 'energy' | 'climate' | 'agri'>('all');
   const [hoverYear, setHoverYear] = useState<number | null>(null);
@@ -468,6 +470,18 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               4. Alimentation
             </button>
           </div>
+
+          {/* Bouton direct d'exportation PDF des graphiques */}
+          {onOpenPdfExport && (
+            <button
+              onClick={onOpenPdfExport}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-cyan-950/70 hover:bg-cyan-900 text-cyan-300 hover:text-white border border-cyan-800/60 hover:border-cyan-600 transition-colors text-xs font-semibold cursor-pointer shadow-sm"
+              title="Exporter ces graphiques et le bilan de simulation sous forme de rapport PDF imprimable"
+            >
+              <FileDown className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Exporter PDF</span>
+            </button>
+          )}
         </div>
       </div>
 

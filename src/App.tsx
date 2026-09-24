@@ -11,6 +11,8 @@ import { AiFutureDebateCard } from './components/AiFutureDebateCard';
 import { CountryInspector } from './components/CountryInspector';
 import { CausalChainExplorer } from './components/CausalChainExplorer';
 import { SpecModal } from './components/SpecModal';
+import { TippingPointsView } from './components/TippingPointsView';
+import { PdfExportModal } from './components/PdfExportModal';
 import { generateFullTrajectory, SCENARIO_BAU, SCENARIO_SOBRIETY } from './engine/simulationRunner';
 import { SimulationScenarioConfig } from './types/simulation';
 import { 
@@ -20,12 +22,15 @@ import {
 } from './utils/urlParams';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<'map' | 'causal' | 'spec'>('map');
+  const [currentTab, setCurrentTab] = useState<'map' | 'tipping-points' | 'causal' | 'spec'>('map');
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(null);
 
   // Initialisation à partir des URL Search Params si disponibles
   const initialUrlState = useMemo(() => decodeSimulationParamsFromUrl(), []);
   const [sharedConfigLoaded, setSharedConfigLoaded] = useState<boolean>(initialUrlState.hasCustomUrlParams);
+
+  // Modal d'export du rapport de simulation PDF
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState<boolean>(false);
 
   // Configuration des scénarios de simulation biophysique
   const [isCompareMode, setIsCompareMode] = useState<boolean>(true);
@@ -160,6 +165,7 @@ export default function App() {
         onSelectTab={setCurrentTab}
         onReset={handleReset}
         currentYear={currentYear}
+        onOpenPdfExport={() => setIsPdfModalOpen(true)}
       />
 
       {/* Contenu principal */}
@@ -216,6 +222,7 @@ export default function App() {
               trajectoryA={trajectoryA}
               trajectoryB={trajectoryB}
               currentYear={currentYear}
+              onOpenPdfExport={() => setIsPdfModalOpen(true)}
             />
 
             {/* 4. Graphiques KPI synchronisés sous la mapmonde avec superposition comparative */}
@@ -227,13 +234,46 @@ export default function App() {
               isCompareMode={isCompareMode}
               currentYear={currentYear}
               onSeekYear={handleSeekYear}
+              onOpenPdfExport={() => setIsPdfModalOpen(true)}
             />
 
             {/* 4. Fiche détaillée pédagogique : Comprendre comme à 12 ans */}
             <YouthExplainerCard />
 
+            {/* Bannière d'accès direct au Dossier Scientifique des Points de Bascule */}
+            <div className="bg-gradient-to-r from-rose-950/40 via-slate-900 to-indigo-950/40 border border-rose-800/40 hover:border-rose-600/70 transition-all rounded-2xl p-5 sm:p-6 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="space-y-1.5 max-w-2xl">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded text-[11px] font-semibold font-mono bg-rose-900/60 text-rose-300 border border-rose-700/60 uppercase">
+                    Dossier Scientifique Factuel
+                  </span>
+                  <span className="text-xs text-slate-400">Science 2022 / GIEC AR6</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  Quels sont les points de non-retour du climat terrestre ?
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Groenland, Antarctique, coraux tropicaux, forêt amazonienne, courant AMOC... 
+                  Découvrez l'état des lieux rigoureux appuyé sur les mesures réelles par satellites et les faits démontrés, expliqué sans jargon ni supposition.
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  setCurrentTab('tipping-points');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow-lg shadow-rose-950/50 cursor-pointer transition-all shrink-0 hover:scale-105"
+              >
+                <span>Explorer les 9 points de bascule</span>
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+
             {/* 5. Conclusion finale pour les habitants du futur (2050, 2080, 2100) + Déchiffrage FaIR/Stull Tw + Score de confiance */}
-            <FutureConclusionCard />
+            <FutureConclusionCard 
+              onOpenPdfExport={() => setIsPdfModalOpen(true)}
+            />
 
             {/* 6. Section FAQ Interactive & Lexique des termes techniques (EROI, Haber-Bosch, FaIR, Stull Tw) */}
             <InteractiveFaqSection />
@@ -241,6 +281,13 @@ export default function App() {
             {/* 7. Pour aller plus loin : L'IA peut-elle nous sauver ? Ou va-t-elle accélérer le changement ? */}
             <AiFutureDebateCard />
           </div>
+        )}
+
+        {currentTab === 'tipping-points' && (
+          <TippingPointsView
+            currentSimulatedYear={currentYear}
+            currentSimulatedWarming={currentTrajectoryState?.surfaceTemperatureAnomaly ?? 1.3}
+          />
         )}
 
         {currentTab === 'causal' && (
@@ -258,6 +305,18 @@ export default function App() {
         onClose={() => setSelectedCountryId(null)}
         simulationState={currentTrajectoryState}
         onSelectCountry={setSelectedCountryId}
+      />
+
+      {/* Modal d'export du rapport de simulation PDF */}
+      <PdfExportModal
+        isOpen={isPdfModalOpen}
+        onClose={() => setIsPdfModalOpen(false)}
+        scenarioA={scenarioA}
+        scenarioB={scenarioB}
+        isCompareMode={isCompareMode}
+        currentYear={currentYear}
+        trajectoryA={trajectoryA}
+        trajectoryB={trajectoryB}
       />
 
       {/* Footer sobre et scientifique */}

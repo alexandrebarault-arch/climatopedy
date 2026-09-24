@@ -1,18 +1,20 @@
 import React from 'react';
-import { RotateCcw, FileText, Network, Globe, HelpCircle, GitCompare } from 'lucide-react';
+import { RotateCcw, FileText, Network, Globe, HelpCircle, GitCompare, ShieldAlert, FileDown } from 'lucide-react';
 
 interface TopBarProps {
-  currentTab: 'map' | 'causal' | 'spec';
-  onSelectTab: (tab: 'map' | 'causal' | 'spec') => void;
+  currentTab: 'map' | 'tipping-points' | 'causal' | 'spec';
+  onSelectTab: (tab: 'map' | 'tipping-points' | 'causal' | 'spec') => void;
   onReset: () => void;
   currentYear: number;
+  onOpenPdfExport?: () => void;
 }
 
 export const TopBar: React.FC<TopBarProps> = ({
   currentTab,
   onSelectTab,
   onReset,
-  currentYear
+  currentYear,
+  onOpenPdfExport
 }) => {
   return (
     <header className="flex items-center justify-between px-6 py-3 border-b border-slate-800 bg-[#0e1422]/95 backdrop-blur z-30">
@@ -50,6 +52,19 @@ export const TopBar: React.FC<TopBarProps> = ({
         >
           <GitCompare className="w-3.5 h-3.5 text-emerald-400" />
           Mode Comparatif
+        </button>
+
+        <button
+          onClick={() => onSelectTab('tipping-points')}
+          className={`flex items-center gap-1.5 transition-colors pb-0.5 border-b-2 whitespace-nowrap cursor-pointer ${
+            currentTab === 'tipping-points'
+              ? 'text-rose-400 border-rose-400 font-semibold'
+              : 'border-transparent hover:text-rose-300'
+          }`}
+          title="Consulter l'état des lieux scientifique des points de bascule climatiques (Science 2022 / GIEC)"
+        >
+          <ShieldAlert className="w-3.5 h-3.5 text-rose-400" />
+          Points de Bascule
         </button>
 
         <button
@@ -96,6 +111,18 @@ export const TopBar: React.FC<TopBarProps> = ({
         <span className="text-xs font-mono text-cyan-300 tabular-nums px-2.5 py-1 rounded bg-cyan-950/60 border border-cyan-800/40">
           Année {Math.floor(currentYear)}
         </span>
+
+        {onOpenPdfExport && (
+          <button
+            onClick={onOpenPdfExport}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-cyan-200 bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-600/70 hover:border-cyan-400 rounded-lg transition-all cursor-pointer shadow-sm hover:shadow-cyan-950/50"
+            title="Exporter les graphiques et le résumé de la simulation sous forme de rapport PDF"
+          >
+            <FileDown className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="hidden sm:inline">Rapport PDF</span>
+          </button>
+        )}
+
         <button
           onClick={onReset}
           className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 bg-slate-800/80 hover:bg-slate-700 hover:text-cyan-300 rounded-lg transition-colors border border-slate-700/60"
