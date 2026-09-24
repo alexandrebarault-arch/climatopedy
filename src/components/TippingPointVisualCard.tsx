@@ -20,7 +20,7 @@ interface SatelliteData {
   photoCredit: string;
 }
 
-const VISUAL_METADATA: Record<string, SatelliteData> = {
+export const VISUAL_METADATA: Record<string, SatelliteData> = {
   greenland: {
     sensor: 'NASA Terra/Aqua & Sentinel-3 OLCI',
     coords: "72°15'N 40°20'W",
@@ -61,6 +61,26 @@ const VISUAL_METADATA: Record<string, SatelliteData> = {
     realPhotoUrl: '/images/visuals/permafrost_thaw.jpg',
     photoCredit: 'Cratère d\'effondrement de Batagaika (Sibérie) par dégel du pergélisol'
   },
+  barents_ice: {
+    sensor: 'AMSR2 & DMSP SSMIS & CryoSat-2',
+    coords: "74°30'N 37°00'E (Mer de Barents / Bassin Arctique)",
+    elevationOrDepth: 'Niveau 0 m (Océan Arctique)',
+    spectrum: 'Micro-ondes passives tout-temps & Température SST',
+    keyFeature: 'Banquise pérenne fragmentée & Atlantification',
+    stressMetric: '-12.6% de surface par décennie en septembre',
+    realPhotoUrl: '/images/visuals/sea_ice.jpg',
+    photoCredit: 'Observation satellite - Banquise polaire fracturée et chenaux d\'eau libre en été'
+  },
+  barents: {
+    sensor: 'CryoSat-2 & Sentinel-3 SLSTR',
+    coords: "74°30'N 37°00'E (Mer de Barents)",
+    elevationOrDepth: '-230 m (Plateau continental)',
+    spectrum: 'Température de surface SST & Flux thermique',
+    keyFeature: 'Atlantification & perte de stratification polaire',
+    stressMetric: 'Réchauffement régional x4 plus rapide que la moyenne mondiale',
+    realPhotoUrl: '/images/visuals/sea_ice.jpg',
+    photoCredit: 'Front de glace et banquise en Mer de Barents en recul accéléré'
+  },
   arctic_summer_ice: {
     sensor: 'AMSR2 & DMSP SSMIS Passive Microwave',
     coords: "84°30'N 15°00'E (Bassin Arctique)",
@@ -70,16 +90,6 @@ const VISUAL_METADATA: Record<string, SatelliteData> = {
     stressMetric: '-12.6% de surface par décennie en septembre',
     realPhotoUrl: '/images/visuals/sea_ice.jpg',
     photoCredit: 'Banquise polaire fracturée et chenaux d\'eau libre en été arctique'
-  },
-  amoc: {
-    sensor: 'Copernicus CMEMS & RAPID Array (26°N)',
-    coords: "55°00'N 35°00'W (Gyre Subpolaire)",
-    elevationOrDepth: '0 à -3 200 m (Convection thermohaline)',
-    spectrum: 'Courantométrie Doppler & Flotteurs Argo',
-    keyFeature: 'Mer du Labrador & anomalie froide de surface',
-    stressMetric: 'Ralentissement estimé ~15% depuis le milieu du XXe siècle',
-    realPhotoUrl: '/images/visuals/amoc_sea.jpg',
-    photoCredit: 'Océan Atlantique Nord subpolaire et zone de plongée d\'eau dense'
   },
   amazon: {
     sensor: 'Sentinel-1 SAR C-Band & MODIS NDVI',
@@ -91,6 +101,26 @@ const VISUAL_METADATA: Record<string, SatelliteData> = {
     realPhotoUrl: '/images/visuals/amazon_rainforest.jpg',
     photoCredit: 'Vue aérienne de la canopée tropicale et du réseau hydrographique amazonien'
   },
+  amoc: {
+    sensor: 'Copernicus CMEMS & RAPID Array (26°N)',
+    coords: "55°00'N 35°00'W (Gyre Subpolaire)",
+    elevationOrDepth: '0 à -3 200 m (Convection thermohaline)',
+    spectrum: 'Courantométrie Doppler & Flotteurs Argo',
+    keyFeature: 'Mer du Labrador & anomalie froide de surface',
+    stressMetric: 'Ralentissement estimé ~15% depuis le milieu du XXe siècle',
+    realPhotoUrl: '/images/visuals/amoc_sea.jpg',
+    photoCredit: 'Océan Atlantique Nord subpolaire et zone de plongée d\'eau dense'
+  },
+  boreal_forest: {
+    sensor: 'MODIS Thermal Active Fire & VIIRS & Sentinel-2',
+    coords: "61°15'N 115°45'W (Taïga canadienne et sibérienne)",
+    elevationOrDepth: '280 m alt.',
+    spectrum: 'Infrarouge thermique & Indice NBR',
+    keyFeature: 'Taïga boréale à mélèzes et épicéas',
+    stressMetric: '18 millions ha de forêt boréale brûlés en une saison record',
+    realPhotoUrl: '/images/visuals/boreal_taiga.jpg',
+    photoCredit: 'Écosystème de taïga boréale soumis aux sécheresses et méga-incendies'
+  },
   boreal: {
     sensor: 'MODIS Thermal Active Fire & VIIRS',
     coords: "61°15'N 115°45'W (Taïga)",
@@ -101,15 +131,15 @@ const VISUAL_METADATA: Record<string, SatelliteData> = {
     realPhotoUrl: '/images/visuals/boreal_taiga.jpg',
     photoCredit: 'Écosystème de taïga boréale soumis aux sécheresses et méga-incendies'
   },
-  barents: {
-    sensor: 'CryoSat-2 & Sentinel-3 SLSTR',
-    coords: "74°30'N 37°00'E (Mer de Barents)",
-    elevationOrDepth: '-230 m (Plateau continental)',
-    spectrum: 'Température de surface SST & Flux thermique',
-    keyFeature: 'Atlantification & perte de stratification polaire',
-    stressMetric: 'Réchauffement régional x4 plus rapide que la moyenne mondiale',
-    realPhotoUrl: '/images/visuals/sea_ice.jpg',
-    photoCredit: 'Front de glace et banquise en Mer de Barents en recul accéléré'
+  wilkes_basin: {
+    sensor: 'ICESat-2 Laser Altimetry & BedMachine Antarctica',
+    coords: "70°00'S 135°00'E (Bassin Sous-Glaciaire de Wilkes)",
+    elevationOrDepth: '-1 200 m socle rocheux sous le niveau marin',
+    spectrum: 'Gravimétrie GRACE-FO & Radar subglaciaire',
+    keyFeature: 'Verrou glaciaire marin & Glacier Totten',
+    stressMetric: 'Potentiel d\'élévation globale des océans : +3 à +4 mètres',
+    realPhotoUrl: '/images/visuals/wilkes_ice.jpg',
+    photoCredit: 'Falaise glaciaire géante et mission océanographique au Bassin de Wilkes (Antarctique Est)'
   }
 };
 
@@ -206,6 +236,107 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
             <circle cx="270" cy="160" r="5" fill="#ef4444" />
             <circle cx="340" cy="180" r="5" fill="#ef4444" />
             <text x="210" y="195" fill="#fef3c7" fontSize="11" fontWeight="bold">Front de Savanisation</text>
+          </svg>
+        );
+
+      case 'permafrost':
+        return (
+          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
+            <rect width="400" height="240" fill="#1c1917" />
+            {/* Végétation de surface */}
+            <rect x="0" y="30" width="400" height="15" fill="#44403c" />
+            <path d="M 0 30 Q 100 25 200 32 T 400 30 L 400 45 L 0 45 Z" fill="#65a30d" opacity="0.7" />
+            {/* Couche active qui dégèle l'été */}
+            <rect x="0" y="45" width="400" height="35" fill="#78350f" opacity="0.85" />
+            <text x="15" y="65" fill="#fef3c7" fontSize="10" fontFamily="sans-serif" fontWeight="bold">Couche active (dégel estival s'épaississant)</text>
+            {/* Pergélisol profond */}
+            <rect x="0" y="80" width="400" height="160" fill="#1e293b" />
+            {/* Coins de glace (Ice wedges) */}
+            <polygon points="60,80 80,80 70,180" fill="#38bdf8" opacity="0.8" />
+            <polygon points="170,80 200,80 185,200" fill="#38bdf8" opacity="0.8" />
+            <polygon points="300,80 325,80 312,170" fill="#38bdf8" opacity="0.8" />
+            {/* Bulles de méthane CH4 qui remontent */}
+            <circle cx="120" cy="110" r="6" fill="#f59e0b" opacity="0.8" />
+            <circle cx="130" cy="85" r="8" fill="#f59e0b" opacity="0.9" />
+            <circle cx="125" cy="55" r="10" fill="#ef4444" opacity="0.9" />
+            <text x="140" y="60" fill="#f87171" fontSize="10" fontFamily="monospace" fontWeight="bold">Émissions CH4 &amp; CO2</text>
+            <text x="210" y="140" fill="#93c5fd" fontSize="11" fontFamily="sans-serif">Pergélisol millénaire pléistocène</text>
+          </svg>
+        );
+
+      case 'barents_ice':
+      case 'barents':
+      case 'arctic_summer_ice':
+        return (
+          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
+            <rect width="400" height="240" fill="#0c4a6e" />
+            {/* Océan arctique sombre absorbant 90% */}
+            <rect x="200" y="40" width="200" height="200" fill="#082f49" />
+            <text x="220" y="80" fill="#38bdf8" fontSize="10" fontWeight="bold">Eau sombre libre</text>
+            <text x="220" y="98" fill="#f87171" fontSize="9">Absorbe 90% de la chaleur</text>
+            {/* Banquise blanche réfléchissant 85% */}
+            <rect x="0" y="40" width="200" height="30" fill="#f8fafc" stroke="#94a3b8" />
+            <text x="20" y="60" fill="#0f172a" fontSize="10" fontWeight="bold">Banquise blanche pérenne</text>
+            <text x="20" y="95" fill="#38bdf8" fontSize="9">Réfléchit 85% du soleil (Albédo)</text>
+            {/* Flèche d'atlantification chaude */}
+            <path d="M 280 230 C 270 170 310 140 330 110" fill="none" stroke="#f43f5e" strokeWidth="4" strokeDasharray="5 3" />
+            <text x="260" y="210" fill="#fb7185" fontSize="9" fontWeight="bold">Atlantification (eau tiède)</text>
+          </svg>
+        );
+
+      case 'amoc':
+        return (
+          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
+            <rect width="400" height="240" fill="#020617" />
+            <rect x="0" y="0" width="400" height="240" fill="#0369a1" opacity="0.3" />
+            {/* Flux de surface chaud vers le nord */}
+            <path d="M 30 160 C 120 120 220 70 320 50" fill="none" stroke="#ef4444" strokeWidth="6" strokeLinecap="round" />
+            <text x="50" y="110" fill="#fca5a5" fontSize="10" fontWeight="bold">Courant chaud de surface (Gulf Stream)</text>
+            {/* Plongée d'eau dense au Groenland */}
+            <path d="M 320 50 Q 360 80 340 150 T 280 200" fill="none" stroke="#38bdf8" strokeWidth="5" strokeDasharray="4 3" />
+            <text x="260" y="140" fill="#7dd3fc" fontSize="9" fontWeight="bold">Plongée eau dense salée</text>
+            {/* Retour froid profond vers le sud */}
+            <path d="M 280 200 C 200 215 100 210 20 205" fill="none" stroke="#1d4ed8" strokeWidth="6" strokeLinecap="round" />
+            <text x="80" y="225" fill="#93c5fd" fontSize="9" fontWeight="bold">Retour profond d'eau froide abyssale</text>
+          </svg>
+        );
+
+      case 'boreal_forest':
+      case 'boreal':
+        return (
+          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
+            <rect width="400" height="240" fill="#14532d" />
+            {/* Ciel enfumé */}
+            <rect x="0" y="0" width="400" height="90" fill="#78350f" opacity="0.6" />
+            {/* Arbres conifères */}
+            <polygon points="50,140 70,70 90,140" fill="#166534" />
+            <polygon points="100,150 120,60 140,150" fill="#166534" />
+            <polygon points="150,145 170,75 190,145" fill="#166534" />
+            {/* Front d'incendie et arbres brûlés */}
+            <polygon points="220,150 240,80 260,150" fill="#451a03" />
+            <polygon points="280,145 300,75 320,145" fill="#451a03" />
+            <circle cx="250" cy="110" r="14" fill="#ea580c" opacity="0.8" />
+            <circle cx="300" cy="100" r="18" fill="#ef4444" opacity="0.8" />
+            <text x="210" y="50" fill="#fed7aa" fontSize="11" fontWeight="bold">Méga-feux &amp; dépérissement</text>
+            <text x="30" y="190" fill="#86efac" fontSize="10">Taïga boréale saine</text>
+            <text x="230" y="190" fill="#fca5a5" fontSize="10">Perte de stockage carbone</text>
+          </svg>
+        );
+
+      case 'wilkes_basin':
+        return (
+          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
+            <rect width="400" height="240" fill="#082f49" />
+            {/* Socle rocheux en cuvette descendante (inlandsis marin) */}
+            <path d="M 0 240 L 0 160 Q 150 230 320 220 L 400 240 Z" fill="#1e293b" />
+            {/* Calotte glaciaire massive posée sur le socle */}
+            <path d="M 0 50 L 220 50 L 240 180 L 0 180 Z" fill="#f1f5f9" stroke="#cbd5e1" />
+            {/* Océan austral et intrusion d'eau tiède sous la calotte */}
+            <path d="M 400 195 C 330 200 260 190 230 185" fill="none" stroke="#f43f5e" strokeWidth="4" strokeDasharray="4 3" />
+            <circle cx="230" cy="185" r="5" fill="#f59e0b" />
+            <text x="180" y="170" fill="#fbbf24" fontSize="10" fontWeight="bold">Bouchon glaciaire côtier</text>
+            <text x="20" y="90" fill="#0284c7" fontSize="11" fontWeight="bold">Bassin de Wilkes (+3 à +4 m niveau marin)</text>
+            <text x="240" y="215" fill="#fda4af" fontSize="9">Intrusion eau circumpolaire tiède</text>
           </svg>
         );
 

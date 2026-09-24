@@ -662,6 +662,17 @@ export const IMAGE_SOURCES_LIST: ImageSourceCredit[] = [
     archiveLabel: 'Archives Wikimedia Commons : Catégorie Taiga',
     license: 'Licence Libre Creative Commons / Wikimedia',
     sensorOrLocation: '61°15\'N 115°45\'W (Territoires du Nord-Ouest)'
+  },
+  {
+    id: 'wilkes-ice-img',
+    title: 'Bassin Sous-Glaciaire de Wilkes & Falaise de Glace Totten',
+    section: 'Points de Bascule Climatiques',
+    localPath: '/images/visuals/wilkes_ice.jpg',
+    description: 'Falaise glaciaire géante et mission océanographique auscultant les eaux de fond du bassin marin sous-glaciaire d\'Antarctique oriental.',
+    archiveUrl: 'https://commons.wikimedia.org/wiki/Category:Wilkes_Land',
+    archiveLabel: 'Archives Wikimedia Commons : Catégorie Wilkes Land & East Antarctic Ice Sheet',
+    license: 'Licence Libre Creative Commons / US Antarctic Program',
+    sensorOrLocation: '70°00\'S 135°00\'E (Bassin Sous-Glaciaire de Wilkes / Terre de Wilkes)'
   }
 ];
 

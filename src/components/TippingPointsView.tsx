@@ -18,12 +18,13 @@ import {
   Layers,
   Sparkles,
   Flame,
-  Calendar
+  Calendar,
+  Camera
 } from 'lucide-react';
 import { TippingPointsChart } from './TippingPointsChart';
 import { AllTippingPointsConsequencesModal } from './AllTippingPointsConsequencesModal';
 import { TippingPointModal } from './TippingPointModal';
-import { TippingPointVisualCard } from './TippingPointVisualCard';
+import { TippingPointVisualCard, VISUAL_METADATA } from './TippingPointVisualCard';
 
 export interface TippingElement {
   id: string;
@@ -615,42 +616,65 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
             {filteredElements.map((elem) => {
               const status = getRiskStatusAtTemp(elem, customTempSlider);
               const isSelected = elem.id === activeElementId;
+              const visualMeta = VISUAL_METADATA[elem.id];
 
               return (
                 <button
                   key={elem.id}
                   onClick={() => setActiveElementId(elem.id)}
-                  className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer relative overflow-hidden ${
+                  className={`text-left p-3 rounded-xl border transition-all cursor-pointer relative overflow-hidden flex gap-3 items-center group ${
                     isSelected
                       ? 'bg-sky-50/80 border-sky-400 shadow-sm ring-2 ring-sky-300'
                       : 'bg-white hover:bg-slate-50 border-slate-200 shadow-2xs'
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-2 mb-1.5">
-                    <span className="text-xs font-bold text-slate-800 line-clamp-1">{elem.name}</span>
-                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap ${status.badgeClass}`}>
-                      {elem.thresholdEst.toFixed(1)}°C
-                    </span>
+                  {/* Miniature visuelle de l'élément de bascule */}
+                  <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 border border-slate-200 relative bg-slate-100 shadow-2xs">
+                    {visualMeta?.realPhotoUrl ? (
+                      <img
+                        src={visualMeta.realPhotoUrl}
+                        alt={elem.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400">
+                        <Camera className="w-5 h-5" />
+                      </div>
+                    )}
+                    {isSelected && (
+                      <div className="absolute inset-0 ring-2 ring-inset ring-sky-500 rounded-lg pointer-events-none" />
+                    )}
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] text-slate-600">
-                    <span className="flex items-center gap-1">
-                      {elem.category === 'cryosphere' && <Snowflake className="w-3 h-3 text-sky-600" />}
-                      {elem.category === 'biosphere' && <TreePine className="w-3 h-3 text-emerald-600" />}
-                      {elem.category === 'ocean_atmosphere' && <Waves className="w-3 h-3 text-indigo-600" />}
-                      {elem.categoryLabel}
-                    </span>
-                    <span className="font-mono text-[10px] text-slate-500">
-                      Fourchette : {elem.thresholdMin}°C – {elem.thresholdMax}°C
-                    </span>
-                  </div>
+                  {/* Détails textuels */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <span className="text-xs font-bold text-slate-800 line-clamp-1">{elem.name}</span>
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border whitespace-nowrap shrink-0 ${status.badgeClass}`}>
+                        {elem.thresholdEst.toFixed(1)}°C
+                      </span>
+                    </div>
 
-                  {/* Statut dynamique sous le thermomètre sélectionné */}
-                  <div className="mt-2 pt-2 border-t border-slate-100 flex items-center gap-1.5 text-[10px]">
-                    <span className={`w-2 h-2 rounded-full ${status.dotClass}`} />
-                    <span className={status.level === 'tipped' ? 'text-rose-700 font-semibold' : status.level === 'uncertain' ? 'text-amber-800' : 'text-emerald-700'}>
-                      À +{customTempSlider.toFixed(1)}°C : {status.label}
-                    </span>
+                    <div className="flex items-center justify-between text-[11px] text-slate-600 gap-1">
+                      <span className="flex items-center gap-1 truncate">
+                        {elem.category === 'cryosphere' && <Snowflake className="w-3 h-3 text-sky-600 shrink-0" />}
+                        {elem.category === 'biosphere' && <TreePine className="w-3 h-3 text-emerald-600 shrink-0" />}
+                        {elem.category === 'ocean_atmosphere' && <Waves className="w-3 h-3 text-indigo-600 shrink-0" />}
+                        <span className="truncate">{elem.categoryLabel}</span>
+                      </span>
+                      <span className="font-mono text-[10px] text-slate-500 shrink-0">
+                        {elem.thresholdMin}°C – {elem.thresholdMax}°C
+                      </span>
+                    </div>
+
+                    {/* Statut dynamique sous le thermomètre sélectionné */}
+                    <div className="mt-1.5 pt-1.5 border-t border-slate-100 flex items-center gap-1.5 text-[10px]">
+                      <span className={`w-2 h-2 rounded-full shrink-0 ${status.dotClass}`} />
+                      <span className={`truncate ${status.level === 'tipped' ? 'text-rose-700 font-semibold' : status.level === 'uncertain' ? 'text-amber-800' : 'text-emerald-700'}`}>
+                        À +{customTempSlider.toFixed(1)}°C : {status.label}
+                      </span>
+                    </div>
                   </div>
                 </button>
               );
