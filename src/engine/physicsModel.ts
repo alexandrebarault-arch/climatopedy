@@ -61,7 +61,7 @@ export function calculateEroiAndNetEnergy(cumulExtracted: number, qInf: number =
  */
 export function initializeSimulationState(scenarioConfig?: SimulationScenarioConfig): GlobalBiophysicalState {
   // Concentrations et réservoirs initiaux 2026
-  // CO2 atmosphérique mesuré en 2026 : ~424.0 ppm (NOAA Mauna Loa)
+  // Paramétrage initial du simulateur (~424 ppm); ce n'est pas une moyenne annuelle observée pour 2026.
   // Réservoirs FaIR étalonnés sur l'excédent historique (~146.0 ppm excédent * 2.123 GtC/ppm = 310 GtC)
   const initialPools: [number, number, number, number] = [135.0, 95.0, 62.0, 18.0];
   const initialCumulativeEmissions = 690.0; // GtC depuis 1750

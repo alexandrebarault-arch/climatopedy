@@ -107,7 +107,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
             </div>
           </div>
           <span className="text-[10px] text-slate-500 mt-1 pt-1 border-t border-slate-200">
-            {isHistorical ? 'Mesures carottes de glace / NOAA' : 'Concentration dans l\'atmosphère'}
+            {isHistorical ? 'NOAA / reconstructions paléoclimatiques' : 'Valeur mesurée ou simulée selon l\'année'}
           </span>
         </div>
 
@@ -121,9 +121,9 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
               </span>
               <span
                 className="text-[9px] font-mono text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 cursor-help"
-                title="Modèle FaIR officiel validé par le GIEC AR6"
+                title="FaIR a contribué à certaines analyses du GIEC AR6; cette valeur est une sortie du simulateur CLIMATOPEDY."
               >
-                GIEC FaIR
+                FaIR / CLIMATOPEDY
               </span>
             </div>
             <div className="flex items-baseline gap-1 mt-0.5">
@@ -294,7 +294,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
             <div className="flex items-center gap-2">
               {isHistorical ? (
                 <span className="text-[10px] font-sans font-semibold bg-blue-50 text-blue-800 border border-blue-200 px-2 py-0.5 rounded">
-                  Données réelles mesurées (1900–2026)
+                  Repères historiques et base modèle (1900–2026)
                 </span>
               ) : currentYear <= 2100 ? (
                 <span className="text-[10px] font-sans font-semibold bg-sky-50 text-sky-800 border border-sky-200 px-2 py-0.5 rounded">
@@ -302,7 +302,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
                 </span>
               ) : (
                 <span className="text-[10px] font-sans font-semibold bg-purple-50 text-purple-800 border border-purple-200 px-2 py-0.5 rounded">
-                  Projection longue portée (2100–2200 · IPCC AR6)
+                  Simulation CLIMATOPEDY (2100–2200)
                 </span>
               )}
               <span className="text-base font-bold text-slate-900 px-2.5 py-0.5 rounded bg-slate-100 border border-slate-300 font-mono tabular-nums shadow-2xs">
@@ -396,10 +396,10 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
             <div className="leading-snug text-[11px] text-slate-600 flex flex-wrap items-center gap-1.5">
               <span className="font-semibold text-slate-800">
                 {currentYear < 2026
-                  ? "Données historiques réelles (1900–2026) :"
+                  ? "Repères historiques et paramètres de base (1900–2026) :"
                   : currentYear <= 2100
                   ? "Simulation biophysique continue (2026–2100) :"
-                  : "Projection séculaire IPCC AR6 (2100–2200) :"}
+                  : "Simulation CLIMATOPEDY (2100–2200) :"}
               </span>
               <span className="text-slate-500">
                 Défilement continu. Cliquez ou survolez un jalon (points colorés ci-dessus) pour analyser un événement clé.

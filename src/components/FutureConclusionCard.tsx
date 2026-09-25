@@ -214,7 +214,7 @@ export const FutureConclusionCard: React.FC = () => {
                 <span className="font-mono font-bold text-emerald-700">94%</span>
               </div>
               <p className="text-[11px] text-slate-500 leading-snug">
-                Modèle CMIP6 validé, forçage CO2 direct et transfert de chaleur vers l'océan profond.
+                CLIMATOPEDY calcule ici une réponse climatique simplifiée. Le pourcentage affiché est un indicateur interne et ne mesure pas une validation CMIP6.
               </p>
             </div>
             <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">

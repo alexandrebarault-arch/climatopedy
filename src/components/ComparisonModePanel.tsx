@@ -421,7 +421,7 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-slate-800 flex items-center gap-1.5">
                       <Flame className="w-3.5 h-3.5 text-rose-600" />
-                      Sensibilité climatique ECS (GIEC)
+                      Sensibilité climatique à l'équilibre (ECS)
                     </span>
                     <span className="font-mono font-bold text-rose-800 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200 text-[11px]">
                       {customParams.climateSensitivityECS.toFixed(1)}°C
@@ -437,7 +437,7 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
                     className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rose-500"
                   />
                   <p className="text-[10.5px] text-slate-500">
-                    Réchauffement à l'équilibre par doublement du CO2. Valeur centrale GIEC : 3.0°C (plage 2.0 à 4.5°C).
+                    GIEC AR6 : ECS centrale 3°C, plage probable 2,5–4°C et très probable 2–5°C. Le curseur de simulation couvre 2–4,5°C.
                   </p>
                 </div>
               </div>

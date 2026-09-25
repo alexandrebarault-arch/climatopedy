@@ -107,7 +107,7 @@ export const InteractiveFaqSection: React.FC = () => {
       categoryLabel: 'Agriculture & Haber-Bosch',
       categoryIcon: <Wheat className="w-4 h-4 text-emerald-600" />,
       question: "Qu'est-ce que le procédé Haber-Bosch ?",
-      shortSummary: "La réaction chimique qui transforme le gaz naturel et l'azote de l'air en engrais pour nourrir 8 milliards d'humains.",
+      shortSummary: "La synthèse industrielle d'ammoniac à partir d'azote et d'hydrogène, dont une grande partie sert à produire des engrais azotés.",
       tags: ['Haber-Bosch', 'engrais', 'azote', 'gaz naturel', 'agriculture', 'famine', 'blé', 'riz'],
       scientificRef: 'Vaclav Smil (2001) · Enriching the Earth (MIT Press) · Erisman et al. (Nature Geoscience, 2008)',
       fullAnswer: (
@@ -123,9 +123,9 @@ export const InteractiveFaqSection: React.FC = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 my-2 text-xs">
             <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200">
-              <span className="font-bold text-emerald-950 block">Un atome d'azote sur deux dans votre corps :</span>
+              <span className="font-bold text-emerald-950 block">Estimations de la dépendance alimentaire :</span>
               <span className="text-slate-700">
-                Erisman et al. (2008) ont estimé qu'environ 48% de la population mondiale dépendait alors de l'azote réactif produit par le procédé Haber-Bosch pour sa production alimentaire. Il s'agit d'une estimation de dépendance alimentaire mondiale, pas d'une mesure directe des atomes d'azote dans chaque personne.
+                Smil estimait qu'environ 40% de la population mondiale, autour de l'an 2000, dépendait de l'azote de synthèse pour l'alimentation. Erisman et al. ont estimé qu'environ 48% de la population était nourrie par des cultures utilisant cet azote en 2008. Ces estimations portent sur la production alimentaire à l'échelle de la population; elles ne mesurent pas la fraction des atomes d'azote du corps d'un individu.
               </span>
             </div>
             <div className="p-2.5 rounded-lg bg-rose-50 border border-rose-200">

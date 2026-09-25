@@ -233,25 +233,25 @@ E_net(t) = E_gross(t) * (1 - 1 / EROI(t))`}
                   <tr>
                     <th className="p-2">Paramètre</th>
                     <th className="p-2">Symbole</th>
-                    <th className="p-2">Valeur 2026</th>
+                    <th className="p-2">Paramètre de référence</th>
                     <th className="p-2">Unité</th>
                     <th className="p-2">Source / Référence</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 text-[11px] font-mono text-slate-700">
                   <tr className="hover:bg-slate-50">
-                    <td className="p-2 font-sans font-medium text-slate-900">CO2 initial atmosphérique</td>
+                    <td className="p-2 font-sans font-medium text-slate-900">CO₂ atmosphérique initial du modèle</td>
                     <td className="p-2 text-sky-700 font-semibold">C_CO2(0)</td>
-                    <td className="p-2 font-bold text-slate-800">424.5</td>
+                    <td className="p-2 font-bold text-slate-800">424.0</td>
                     <td className="p-2">ppm</td>
-                    <td className="p-2 font-sans text-slate-500">Observatoire Mauna Loa</td>
+                    <td className="p-2 font-sans text-slate-500">Calculé à partir des réservoirs carbone initiaux du simulateur</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
-                    <td className="p-2 font-sans font-medium text-slate-900">Sensibilité climatique (ECS)</td>
+                    <td className="p-2 font-sans font-medium text-slate-900">Sensibilité climatique à l'équilibre (ECS)</td>
                     <td className="p-2 text-sky-700 font-semibold">ECS</td>
                     <td className="p-2 font-bold text-slate-800">3.0</td>
                     <td className="p-2">°C / 2xCO2</td>
-                    <td className="p-2 font-sans text-slate-500">GIEC AR6 (SSP5-8.5)</td>
+                    <td className="p-2 font-sans text-slate-500">GIEC AR6 : centrale 3°C; probable 2,5–4°C; très probable 2–5°C</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
                     <td className="p-2 font-sans font-medium text-slate-900">Réserves ultimes récupérables</td>

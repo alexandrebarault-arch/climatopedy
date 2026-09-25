@@ -96,8 +96,8 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrlLabel: 'Chapitre 7 : Sensibilité climatique ECS',
     doi: '10.1017/9781009157896',
     gaiaRole: 'L’AR6 évalue la sensibilité climatique à l’équilibre et analyse plusieurs scénarios d’émissions. SSP5-8.5 est un scénario conditionnel de très fortes émissions, pas une prévision certaine.',
-    keyDataOrQuote: 'Sensibilité climatique d\'équilibre (ECS) évaluée à 3.0°C avec une plage très probable de 2.5°C à 4.0°C.',
-    reproducibilityNotes: 'Paramètre ECS configurable par curseur (1.5°C à 5.5°C) dans l\'interface de simulation.'
+    keyDataOrQuote: 'GIEC AR6 : ECS avec estimation centrale de 3°C, plage probable de 2,5°C à 4°C et plage très probable de 2°C à 5°C.',
+    reproducibilityNotes: 'Le curseur comparatif CLIMATOPEDY est un contrôle du simulateur réglable de 2°C à 4,5°C; ces bornes ne sont pas les plages d\'évaluation du GIEC.'
   },
   {
     id: 'vermeer-rahmstorf-2009',
@@ -363,7 +363,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrlLabel: 'Publication scientifique (Nature)',
     doi: '10.1038/ngeo325',
     gaiaRole: 'Couplage direct entre approvisionnement en gaz fossile (méthane CH4) et calories agricoles disponibles par être humain.',
-    keyDataOrQuote: 'Sans le procédé Haber-Bosch de fixation industrielle de l\'azote, près de 48% de la population mondiale actuelle n\'aurait pas pu naître ou être nourrie.',
+    keyDataOrQuote: 'L\'analyse d\'Erisman et al. estime qu\'en 2008, environ 48% de la population mondiale était nourrie grâce à la production agricole utilisant de l\'azote réactif issu de la synthèse industrielle. C\'est une estimation agrégée de la contribution à l\'alimentation, pas un contrefactuel de naissance ni une mesure des atomes d\'azote individuels.',
     reproducibilityNotes: 'Modélise l\'impact d\'une rupture de la chaîne pétrochimique sur la production céréalière globale.'
   },
   {
@@ -454,10 +454,10 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     typeBadge: 'Série de données de référence mondiale',
     primaryUrl: 'https://gml.noaa.gov/ccgg/trends/',
     primaryUrlLabel: 'Données en direct NOAA GML (Trends in Atmospheric CO₂)',
-    secondaryUrl: 'https://keelingcurve.ucsd.edu/',
-    secondaryUrlLabel: 'Courbe de Keeling (Scripps UCSD)',
-    gaiaRole: 'Concentration atmosphérique initiale de CO2 fixée à 424.5 ppm en 2026 et validation de la trajectoire simulée de 1958 à 2026.',
-    keyDataOrQuote: 'La concentration moyenne de CO₂ est passée de 315 ppm en 1958 à plus de 424 ppm en 2024 (+50% par rapport à l\'ère préindustrielle à 278 ppm).',
+    secondaryUrl: 'https://prod-01-asg-www-climate.woc.noaa.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide',
+    secondaryUrlLabel: 'NOAA Climate.gov : moyennes mondiales et de Mauna Loa en 2024',
+    gaiaRole: 'La base de simulation utilise 424 ppm en 2026. C\'est un paramètre initial du modèle, pas une moyenne annuelle observée pour 2026.',
+    keyDataOrQuote: 'NOAA rapporte pour 2024 une moyenne mondiale annuelle de 422,8 ppm et une moyenne annuelle de 424,61 ppm à Mauna Loa. Ces séries ont des périmètres différents et ne doivent pas être confondues.',
     reproducibilityNotes: 'Données publiques actualisées chaque mois.'
   },
   {
@@ -795,9 +795,9 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-start gap-2.5">
               <Database className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-slate-800 block font-semibold">Données Observées Réelles</strong>
+                <strong className="text-slate-800 block font-semibold">Jeux de données de référence</strong>
                 <span className="text-slate-600 text-[11px] leading-snug block mt-0.5">
-                  Calibré sur Mauna Loa (CO₂), ERA5 Copernicus (températures), et les recensements ONU 2024.
+                  CLIMATOPEDY utilise des séries de Mauna Loa (CO₂), ERA5 Copernicus (températures) et des données démographiques de l'ONU comme références d'entrée; cela ne constitue pas une validation indépendante de toutes les sorties du modèle.
                 </span>
               </div>
             </div>

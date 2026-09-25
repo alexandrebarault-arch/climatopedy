@@ -30,14 +30,14 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
   {
     year: 2026,
     category: 'energy',
-    title: 'Le Présent : Épuisement du Pétrole Facile & Réchauffement',
+    title: 'Repère contemporain : paramètres énergétiques et climatiques',
     description: 'Valeurs affichées pour 2026 : les émissions, l\'EROI et l\'anomalie thermique proviennent des données initiales et des paramètres de CLIMATOPEDY; elles ne constituent pas toutes des observations annuelles mesurées.'
   },
   {
     year: 2030,
     category: 'energy',
     title: 'Déclin des Gisements Historiques Super-Géants',
-    description: 'Les gisements conventionnels à bas coût (Ghawar, Cantarell, Burgan) entrent en déplétion avancée. Le forage s\'oriente vers l\'offshore ultra-profond et le schiste étanche nécessitant 4x plus d\'acier et de forages horizontaux.'
+    description: 'Dans ce scénario, CLIMATOPEDY paramètre une baisse de la production de certains gisements et une évolution du recours à différentes ressources. Les taux de déclin et la disponibilité des réserves dépendent des gisements, des investissements, des technologies et des conditions économiques; ils ne déterminent pas à eux seuls l\'évolution de la température mondiale.'
   },
   {
     year: 2038,
@@ -78,14 +78,14 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
   {
     year: 2100,
     category: 'climate',
-    title: 'Clôture du XXIe Siècle & Bilan AR6 (Divergence 1,4°C vs 4,3°C)',
-    description: 'En trajectoire fossile, l\'épuisement des réserves de pétrole et de gaz scelle le réchauffement autour de +4.3°C. En sobriété, l\'anomalie est stabilisée à +1.4°C. Montée marine : 85 cm à 1 mètre.'
+    title: '2100 : résultats simulés par CLIMATOPEDY (+1,4°C vs +4,3°C)',
+    description: 'Les valeurs de température (+1,4°C et +4,3°C) et de niveau marin (85 cm à 1 m) sont des sorties conditionnelles des scénarios CLIMATOPEDY; l\'épuisement de ressources n\'est pas une cause qui fixe à lui seul le réchauffement. Séparément, le GIEC AR6 évalue pour SSP5-8.5 une hausse probable du niveau moyen mondial de 0,63 à 1,01 m d\'ici 2100, par rapport à 1995–2014 (confiance moyenne).'
   },
   {
     year: 2125,
     category: 'climate',
     title: 'Inertie Abyssale Océanique & Hausse Séculaire du Niveau Marin',
-    description: 'Même si les émissions nettes s\'épuisent, l\'océan profond continue d\'absorber la chaleur accumulée (Fox-Kemper et al. 2021). L\'élévation marine franchit +1.5 m en trajectoire fossile (+0.8 m en sobriété).'
+    description: 'La réponse de l\'océan et des calottes peut se poursuivre après une baisse des émissions. Les valeurs de niveau marin (+1,5 m et +0,8 m) sont des sorties conditionnelles des scénarios CLIMATOPEDY, et non des projections officielles du GIEC.'
   },
   {
     year: 2150,

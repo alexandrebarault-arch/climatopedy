@@ -36,7 +36,7 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
     definition:
       'Procédé chimique qui combine le gaz fossile (méthane) et l\'azote de l\'air pour fabriquer les engrais de synthèse mondiaux.',
     analogy:
-      'Erisman et al. (2008) ont estimé qu\'environ 48% de la population mondiale dépendait alors de l\'azote réactif produit par ce procédé pour sa production alimentaire.',
+      'Smil estimait qu\'environ 40% de la population mondiale dépendait de l\'azote de synthèse vers 2000; Erisman et al. (2008) estimaient qu\'environ 48% de la population était nourrie par des cultures utilisant cet azote en 2008. Ce sont des estimations de production alimentaire à l\'échelle de la population, pas une mesure des atomes d\'azote de chaque individu.',
     thresholdOrKeyFact:
       'Le gaz naturel est une matière première et une source d\'énergie importante pour la production conventionnelle d\'ammoniac. L\'ampleur d\'un effet sur les rendements dépend des solutions de remplacement et des conditions agricoles.',
     faqId: 'faq-haber-bosch'

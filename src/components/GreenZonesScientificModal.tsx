@@ -30,13 +30,13 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
             </div>
             <div>
               <h2 id="modal-green-zones-title" className="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-2">
-                Pourquoi certaines zones restent-elles vertes en 2100 et 2200 ?
+                Zones affichées en vert en 2100 et 2200 : repères et limites
                 <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-emerald-50 text-emerald-800 border border-emerald-200">
-                  Faits Scientifiques GIEC AR6
+                  Références scientifiques et résultats du modèle
                 </span>
               </h2>
               <p className="text-xs text-slate-500">
-                Diagnostic biophysique rigoureux basé sur les publications scientifiques de référence (GIEC, PNAS, Science Advances).
+                La fiche distingue des mécanismes étudiés dans la littérature des résultats régionaux calculés par CLIMATOPEDY.
               </p>
             </div>
           </div>
@@ -150,19 +150,19 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
             <h3 className="font-bold text-slate-800 text-sm flex items-center gap-2 mb-2">
               <Waves className="w-4 h-4 text-sky-600" />
-              Ce qui se passe scientifiquement entre 2100 et 2200 (Horizon Séculaire Long)
+              Éléments scientifiques et sorties simulées pour 2100–2200
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-600">
               <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-2xs">
-                <span className="font-bold text-sky-700 block mb-1">Montée Séculaire des Eaux (+2,6 m)</span>
+                <span className="font-bold text-sky-700 block mb-1">Hausse marine simulée (+2,6 m)</span>
                 Le niveau moyen de la mer continuera de s'élever pendant des siècles à des millénaires. Les valeurs pour 2200 affichées ici sont des sorties de simulation CLIMATOPEDY, pas une projection GIEC unique. L'AR6 fournit des plages dépendant du scénario et de l'horizon.
               </div>
               <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-2xs">
-                <span className="font-bold text-amber-700 block mb-1">Épuisement Géologique Fossile</span>
+                <span className="font-bold text-amber-700 block mb-1">Évolution des ressources (simulation)</span>
                 Les dates d'épuisement et la composition du système énergétique en 2200 sont des hypothèses et des résultats du modèle CLIMATOPEDY, et non des conclusions du GIEC.
               </div>
               <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-2xs">
-                <span className="font-bold text-emerald-700 block mb-1">Stabilisation Démographique</span>
+                <span className="font-bold text-emerald-700 block mb-1">Évolution démographique simulée</span>
                 Les valeurs démographiques de 2200 affichées par cette simulation dépendent des hypothèses de CLIMATOPEDY; elles ne sont pas des projections démographiques officielles.
               </div>
             </div>

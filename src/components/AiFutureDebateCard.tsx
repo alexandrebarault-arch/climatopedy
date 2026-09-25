@@ -100,7 +100,7 @@ export const AiFutureDebateCard: React.FC = () => {
               }`}
             >
               <Scale className={`w-4 h-4 ${activeTab === 'verdict' ? 'text-white' : 'text-purple-600'}`} />
-              <span>3. Le Verdict Biophysique Final</span>
+              <span>3. Effets et incertitudes</span>
             </button>
           </div>
 
@@ -112,7 +112,7 @@ export const AiFutureDebateCard: React.FC = () => {
               <div className="flex items-center gap-2.5 text-rose-800">
                 <Flame className="w-5 h-5 text-rose-600" />
                 <h3 className="text-base sm:text-lg font-bold text-slate-900">
-                  Pourquoi l'IA risque d'accélérer l'épuisement de la Terre
+                  Usages de l'IA, énergie et ressources
                 </h3>
               </div>
 
@@ -256,7 +256,7 @@ export const AiFutureDebateCard: React.FC = () => {
               <div className="flex items-center gap-2.5 text-purple-800">
                 <Compass className="w-5 h-5 text-purple-600" />
                 <h3 className="text-base sm:text-xl font-bold text-slate-900 tracking-tight">
-                  Le Verdict des Biophysiciens : « L'IA est un amplificateur de choix, pas un substitut à la biosphère »
+                  Effets environnementaux associés aux usages de l'IA
                 </h3>
               </div>
 
