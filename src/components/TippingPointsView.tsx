@@ -306,7 +306,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
               Consensus Scientifique (Science 2022 &amp; GIEC AR6)
             </span>
             <span className="px-2.5 py-1 rounded-full text-xs font-mono bg-slate-100 border border-slate-200 text-slate-700">
-              Réchauffement actuel mesuré : +1,3°C (OMM 2024)
+              Moyenne mondiale 2023–2025 : +1,48 ± 0,13°C (OMM; 3 ans)
             </span>
           </div>
 
@@ -408,9 +408,9 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
         </div>
       </div>
 
-      {/* SECTION SPÉCIALE : DATE ESTIMÉE DE FRANCHISSEMENT TOTAL & CONSÉQUENCES */}
-      <div className="bg-gradient-to-r from-rose-50 via-purple-50 to-slate-50 border border-rose-200 rounded-2xl p-5 sm:p-6 shadow-xs">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      {/* HORIZON DE RISQUE ET HYPOTHÈSES D'IMPACT */}
+      <section aria-labelledby="tipping-risk-horizon" className="bg-gradient-to-br from-rose-50 via-white to-amber-50 border border-rose-200 rounded-2xl p-5 sm:p-6 shadow-xs">
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
           <div className="flex items-start gap-3.5">
             <div className="p-3 rounded-xl bg-rose-100 border border-rose-300 text-rose-700 shrink-0 mt-0.5">
               <Calendar className="w-5 h-5 text-rose-600" />
@@ -418,37 +418,52 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
             <div>
               <div className="flex items-center gap-2 flex-wrap mb-1">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-rose-800 font-bold bg-rose-100 px-2.5 py-0.5 rounded border border-rose-300">
-                  Chronologie Critique &amp; Projection
+                  Horizon scientifique, pas compte à rebours
                 </span>
-                <span className="text-[11px] font-mono text-slate-500">
-                  Évaluation scientifique CLIMATOPEDY
+                <span className="text-[11px] font-mono text-slate-500">Sources publiées 2025–2026</span>
+              </div>
+              <h3 id="tipping-risk-horizon" className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                Quand le risque de bascule augmente-t-il fortement ?
+              </h3>
+              <div className="mt-3 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-rose-300 bg-white px-3 py-2">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-rose-700">D’ici à 2035</span>
+                <span className="max-w-md text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  L’ONU juge <strong>très probable</strong> que la moyenne mondiale sur plusieurs décennies dépasse +1,5°C dans la prochaine décennie (évaluation 2025).
                 </span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
-                Date envisagée pour le franchissement de l'ENSEMBLE des points de bascule
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-700 mt-1 max-w-2xl leading-relaxed">
-                • <strong>Scénario à fortes émissions :</strong> Les dates de franchissement affichées auparavant n'étaient pas des dates établies par les études. Le GIEC présente les risques avec des plages d'incertitude et des niveaux de confiance.
-                <br />
-                • <strong>Scénarios d'émissions :</strong> Une hausse de température plus faible réduit les risques, mais ne permet pas d'affirmer qu'aucun élément ne franchira son seuil.
+              <p className="text-xs sm:text-sm text-slate-700 mt-3 max-w-3xl leading-relaxed">
+                <strong>Ce n’est pas la date où tous les points basculent.</strong> Aucune étude ne date une rupture simultanée de tous les systèmes. Le rapport Global Tipping Points 2025 indique que le seuil thermique central des récifs d’eaux chaudes (environ +1,2°C; plage +1 à +1,5°C) est déjà dépassé, tandis que d’autres systèmes sont à risque à différents niveaux de réchauffement. Leurs changements peuvent ensuite se déployer sur des durées très différentes.
               </p>
+              <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                <a href="https://www.unep.org/news-and-stories/statements/emissions-gap-report-2025-executive-director-press-statement" target="_blank" rel="noreferrer" className="font-medium text-sky-700 underline underline-offset-2 hover:text-sky-900">ONU, Emissions Gap Report 2025</a>
+                <a href="https://global-tipping-points.org/earth-system-tipping-points/" target="_blank" rel="noreferrer" className="font-medium text-sky-700 underline underline-offset-2 hover:text-sky-900">Global Tipping Points Report 2025</a>
+                <a href="https://public.wmo.int/fr/news/media-centre/lomm-confirme-que-2025-ete-lune-des-annees-les-plus-chaudes-jamais-enregistrees" target="_blank" rel="noreferrer" className="font-medium text-sky-700 underline underline-offset-2 hover:text-sky-900">OMM, températures 2023–2025</a>
+              </div>
             </div>
           </div>
 
-          <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-2">
-            <button
-              onClick={() => setIsAllPointsModalOpen(true)}
-              className="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
-            >
-              <Flame className="w-4 h-4 text-amber-200 animate-pulse" />
-              <span>Voir les conséquences si TOUS les points sont franchis</span>
-            </button>
-            <div className="text-[10px] text-center text-rose-700 font-mono">
-              Interactions entre composantes du système climatique
-            </div>
+          <button
+            onClick={() => setIsAllPointsModalOpen(true)}
+            className="shrink-0 px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+          >
+            <Flame className="w-4 h-4 text-amber-200" />
+            <span>Voir les impacts possibles</span>
+          </button>
+        </div>
+
+        <div className="mt-4 border-t border-rose-200 pt-4">
+          <h4 className="text-sm font-bold text-slate-900">Hypothèses derrière les impacts présentés</h4>
+          <p className="mt-1 text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Il s’agit d’impacts <strong>conditionnels</strong>, si le réchauffement et les pressions humaines persistent : les politiques actuelles étaient associées par l’ONU à environ +2,8°C d’ici 2100 (rapport 2025); la déforestation peut accroître le risque en Amazonie; la pollution et la surpêche fragilisent les récifs. Les impacts ne sont ni forcément simultanés ni simplement additionnables. Les effets en cascade restent très incertains; aucune estimation globale de décès, de pertes alimentaires ou de déplacements n’est déduite ici.
+          </p>
+          <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 text-xs leading-relaxed">
+            <div className="rounded-lg border border-slate-200 bg-white p-3"><strong>Récifs :</strong> perte d’habitats et de services côtiers et alimentaires; déclin généralisé déjà observé.</div>
+            <div className="rounded-lg border border-slate-200 bg-white p-3"><strong>Calottes :</strong> perte de glace engageant une hausse du niveau marin sur des siècles à millénaires, sans date unique de fonte complète.</div>
+            <div className="rounded-lg border border-slate-200 bg-white p-3"><strong>Forêts et pergélisol :</strong> changements possibles du carbone, des écosystèmes et des pluies régionales; ampleur dépendant des pressions et du lieu.</div>
+            <div className="rounded-lg border border-slate-200 bg-white p-3"><strong>Courants océaniques :</strong> changements possibles des températures et précipitations régionales; probabilité et effets précis restent incertains.</div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* 3. Graphique synthétique de référence (Échelle Thermique / Burning Embers et Matrice de Vitesse) */}
       <TippingPointsChart
