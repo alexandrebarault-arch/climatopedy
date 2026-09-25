@@ -182,7 +182,7 @@ export const FutureConclusionCard: React.FC = () => {
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
-                Synthèse des preuves disponibles sur les données, les méthodes, la validation et les incertitudes
+                Plausibilité des grandes tendances biophysiques à l’échelle mondiale; les indicateurs locaux sont évalués séparément
               </p>
             </div>
           </div>
@@ -205,7 +205,7 @@ export const FutureConclusionCard: React.FC = () => {
           </div>
         </div>
 
-        {/* CRITÈRES D'AUDIT : NIVEAU SUR 4, POIDS ÉGAL */}
+        {/* CRITÈRES D'AUDIT : NIVEAU SUR 4, POIDS EXPLICITES */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
           {MODEL_AUDIT_CRITERIA.map((criterion) => (
             <div key={criterion.id} className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col justify-between gap-2">
@@ -214,6 +214,7 @@ export const FutureConclusionCard: React.FC = () => {
                   <span className="text-slate-800 font-semibold">{criterion.title}</span>
                   <span className="font-mono font-bold text-slate-700 shrink-0">{criterion.rating}/{MODEL_AUDIT_MAX_RATING}</span>
                 </div>
+                <p className="mb-1 text-[10px] font-mono text-slate-400">Poids : {criterion.weight} %</p>
                 <p className="text-[11px] text-slate-500 leading-snug">{criterion.rationale}</p>
               </div>
               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden" aria-hidden="true">
@@ -227,7 +228,7 @@ export const FutureConclusionCard: React.FC = () => {
         <div className="p-3 rounded-lg bg-amber-50/70 border border-amber-200 text-[11.5px] text-amber-950 flex items-start gap-2.5">
           <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
           <div>
-            <strong>À propos de cet indice :</strong> le score résume un audit documentaire du modèle actuel. Il ne signifie pas que les sorties ont « {MODEL_AUDIT_SCORE} % de chances d’être vraies » et ne remplace pas une validation indépendante.
+            <strong>Portée de l’indice :</strong> {MODEL_AUDIT_SCORE}/100 résume la plausibilité du socle biophysique mondial et de ses grands ordres de grandeur. Ce n’est ni « {MODEL_AUDIT_SCORE} % de chances d’être vrai », ni une validation indépendante. Les résultats par pays, la mortalité, les calories et les autres impacts sectoriels ne sont pas couverts par ce score; leur niveau de confiance reste indiqué dans « Sources &amp; Données ».
           </div>
         </div>
       </div>

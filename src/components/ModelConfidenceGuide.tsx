@@ -1,6 +1,6 @@
 import React from 'react';
 import { Activity, Database, Info, Sprout, Thermometer, Users, Waves, Zap } from 'lucide-react';
-import { MODEL_AUDIT_CRITERIA, MODEL_AUDIT_MAX_RATING, MODEL_AUDIT_SCORE } from '../data/modelAuditScore';
+import { MODEL_AUDIT_CRITERIA, MODEL_AUDIT_MAX_RATING, MODEL_AUDIT_SCORE, MODEL_AUDIT_WEIGHT_TOTAL } from '../data/modelAuditScore';
 
 type Confidence = 'Élevée' | 'Partielle' | 'Faible' | 'Très faible';
 type Traceability = 'Élevée' | 'Partielle';
@@ -233,16 +233,16 @@ export const ModelConfidenceGuide: React.FC = () => (
         <div>
           <h3 className="text-sm font-bold text-slate-900">Comment est calculé l’Indice de Confiance Scientifique &amp; Biophysique ?</h3>
           <p className="mt-1 text-sm leading-relaxed text-slate-700">
-            Cinq critères ont le même poids. Chacun reçoit une note d’audit de 0 à 4; chaque niveau vaut donc 5 points sur le total de 100.
+            Il évalue le socle climatique planétaire et les grands ordres de grandeur, pas la précision de chaque résultat par pays. Chaque critère reçoit une note d’audit de 0 à 4 et un poids explicite; les poids totalisent 100 %.
           </p>
         </div>
         <span className="rounded-lg border border-amber-300 bg-white px-3 py-1.5 font-mono text-sm font-bold text-amber-800">
-          ({MODEL_AUDIT_CRITERIA.map(({ rating }) => rating).join(' + ')}) ÷ {MODEL_AUDIT_CRITERIA.length * MODEL_AUDIT_MAX_RATING} × 100 = {MODEL_AUDIT_SCORE}/100
+          ({MODEL_AUDIT_CRITERIA.map(({ weight, rating }) => `${weight}×${rating}`).join(' + ')}) ÷ ({MODEL_AUDIT_WEIGHT_TOTAL}×{MODEL_AUDIT_MAX_RATING}) × 100 = {MODEL_AUDIT_SCORE}/100
         </span>
       </div>
 
       <p className="mt-2 text-xs leading-relaxed text-slate-700">
-        <strong>Échelle :</strong> 0 = preuve absente ou contredite; 1 = appui faible, surtout fondé sur des hypothèses; 2 = appui partiel avec des lacunes importantes; 3 = appui solide, mais avec des limites; 4 = méthode, données et validation indépendante documentées pour l’usage annoncé.
+        <strong>Calcul :</strong> somme de (poids en % × note sur 4), divisée par 4, puis arrondie à l’entier. <strong>Échelle :</strong> 0 = preuve absente ou contredite; 1 = appui faible; 2 = appui partiel avec lacunes importantes; 3 = appui solide avec limites; 4 = données et méthode validées pour l’usage annoncé. Les poids privilégient les observations mondiales, les fondements physiques et le contrôle des ordres de grandeur (25 % chacun); transparence des scénarios (15 %); incertitudes (10 %).
       </p>
 
       <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-5">
@@ -252,13 +252,17 @@ export const ModelConfidenceGuide: React.FC = () => (
               <strong className="text-xs text-slate-800">{criterion.title}</strong>
               <span className="shrink-0 font-mono text-xs font-bold text-amber-800">{criterion.rating}/{MODEL_AUDIT_MAX_RATING}</span>
             </div>
+            <p className="mt-1 text-[10px] font-mono text-slate-400">Poids : {criterion.weight} %</p>
             <p className="mt-1 text-[11px] leading-relaxed text-slate-600">{criterion.rationale}</p>
           </div>
         ))}
       </div>
 
       <p className="mt-3 text-xs leading-relaxed text-slate-700">
-        <strong>Portée :</strong> les notes sont des jugements d’audit explicites, attribués à partir du code, des données et des validations documentées. Leur somme est calculée automatiquement; ce score n’est ni une probabilité d’exactitude ni une évaluation du GIEC. Le niveau doit changer seulement si de nouvelles preuves, notamment des validations indépendantes, justifient une révision des notes.
+        <strong>Contrôle des ordres de grandeur :</strong> le scénario interne atteint environ +2,4 °C en 2100; le PNUE situe les trajectoires mondiales autour de +2,3 à +2,5 °C avec mise en œuvre complète des engagements et jusqu’à +2,8 °C avec les politiques actuelles. Ce rapprochement indique une échelle comparable, mais les scénarios et les méthodes ne sont pas identiques. La sortie de niveau marin proche de 0,8 m est également dans la plage AR6 de 0,63 à 1,01 m sous SSP5-8.5, mais l’AR6 utilise la référence 1995–2014 : ce recoupement n’est donc pas une validation du calcul du site. Voir le <a className="text-sky-700 underline" href="https://www.unep.org/news-and-stories/statements/emissions-gap-report-2025-executive-director-press-statement" target="_blank" rel="noreferrer">PNUE, Emissions Gap Report 2025</a> et le <a className="text-sky-700 underline" href="https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/" target="_blank" rel="noreferrer">GIEC AR6, résumé pour décideurs</a>.
+      </p>
+      <p className="mt-2 text-xs leading-relaxed text-slate-700">
+        <strong>Limite :</strong> les notes sont des jugements d’audit explicites fondés sur le code, les données et les comparaisons documentées. L’indice ne donne pas une probabilité d’exactitude et ne valide pas les sorties régionales, sanitaires, démographiques ou agricoles, qui restent évaluées séparément dans les fiches ci-dessous.
       </p>
     </div>
 

@@ -2,52 +2,65 @@ export interface ModelAuditCriterion {
   id: string;
   title: string;
   rating: number;
+  weight: number;
   rationale: string;
 }
 
 /**
- * Internal, evidence-based audit of the currently implemented model.
- * Each criterion is rated 0–4 and has equal weight (20 points).
- * Ratings are explicit audit judgments; the total is calculated, not a
- * probability that a model output is correct.
+ * Global-scale evidence audit of CLIMATOPEDY's climate-biophysical backbone.
+ * This is a weighted rubric, not a probability or a validation certificate.
+ * Regional, health, demographic and food-access indicators are assessed
+ * separately in ModelConfidenceGuide and are not averaged into this score.
  */
 export const MODEL_AUDIT_CRITERIA: ModelAuditCriterion[] = [
   {
-    id: 'data',
-    title: 'Données et traçabilité',
+    id: 'global-anchors',
+    title: 'Ancrage sur les observations mondiales',
+    rating: 4,
+    weight: 25,
+    rationale: 'Les repères mondiaux de CO₂ et de température utilisés au départ sont rattachés à des séries publiées, datées et définies. Cela valide l’ancrage, pas les calculs futurs.'
+  },
+  {
+    id: 'global-physics',
+    title: 'Fondements biophysiques globaux',
     rating: 2,
-    rationale: 'Plusieurs repères mondiaux sont sourcés, mais des entrées régionales et des séries historiques sont reconstruites ou simplifiées.'
+    weight: 25,
+    rationale: 'Le moteur représente des mécanismes planétaires pertinents (carbone, réponse thermique et niveau marin), mais plusieurs équations et paramètres sont propres au site et ne reproduisent pas un modèle évalué de bout en bout.'
   },
   {
-    id: 'foundations',
-    title: 'Fondements physiques et mathématiques',
+    id: 'global-benchmarks',
+    title: 'Ordres de grandeur mondiaux',
     rating: 2,
-    rationale: 'Le code reprend des méthodes publiées pour certains calculs, avec aussi des équations internes et des coefficients qui ne sont pas calibrés sur des observations.'
+    weight: 25,
+    rationale: 'Vers 2100, certaines sorties recoupent des plages publiées à l’échelle mondiale. Les scénarios, les périodes de référence et les méthodes ne sont toutefois pas identiques : ce recoupement est un contrôle de plausibilité, pas une validation.'
   },
   {
-    id: 'fit',
-    title: 'Adéquation des méthodes aux résultats affichés',
+    id: 'scenario-scope',
+    title: 'Scénarios et portée des résultats',
+    rating: 3,
+    weight: 15,
+    rationale: 'Les trajectoires sont maintenant décrites comme conditionnelles et internes à CLIMATOPEDY. Les résultats à long terme restent sensibles aux hypothèses d’émissions et de ressources choisies.'
+  },
+  {
+    id: 'global-uncertainty',
+    title: 'Incertitudes et sensibilité',
     rating: 1,
-    rationale: 'Des moyennes mondiales et paramètres simplifiés sont transposés à des résultats régionaux ou sanitaires que ces méthodes ne valident pas.'
-  },
-  {
-    id: 'validation',
-    title: 'Validation indépendante',
-    rating: 0,
-    rationale: 'Aucune validation systématique sur des observations laissées de côté pendant le réglage n’est documentée; interpoler des valeurs historiques saisies ne constitue pas un test du modèle.'
-  },
-  {
-    id: 'uncertainty',
-    title: 'Incertitude et sensibilité',
-    rating: 1,
-    rationale: 'Des scénarios et quelques paramètres variables sont proposés, mais les sorties ne sont pas accompagnées d’ensembles probabilistes ou d’une propagation complète des incertitudes.'
+    weight: 10,
+    rationale: 'Le site permet de comparer des scénarios, mais ne calcule pas encore un ensemble de simulations avec propagation complète des incertitudes et plages probabilistes.'
   }
 ];
 
 export const MODEL_AUDIT_MAX_RATING = 4;
+export const MODEL_AUDIT_WEIGHT_TOTAL = MODEL_AUDIT_CRITERIA.reduce(
+  (sum, criterion) => sum + criterion.weight,
+  0
+);
 
 export const MODEL_AUDIT_SCORE = Math.round(
-  (MODEL_AUDIT_CRITERIA.reduce((sum, criterion) => sum + criterion.rating, 0) /
-    (MODEL_AUDIT_CRITERIA.length * MODEL_AUDIT_MAX_RATING)) *
+  (MODEL_AUDIT_CRITERIA.reduce(
+    (sum, criterion) => sum + criterion.weight * criterion.rating,
+    0
+  ) /
+    (MODEL_AUDIT_WEIGHT_TOTAL * MODEL_AUDIT_MAX_RATING)) *
     100
 );
