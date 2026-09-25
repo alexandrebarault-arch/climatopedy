@@ -178,7 +178,7 @@ export const FutureConclusionCard: React.FC = () => {
                   Indice de Confiance Scientifique &amp; Biophysique
                 </h2>
                 <span className="px-2 py-0.5 rounded bg-sky-100 border border-sky-300 text-sky-800 font-mono font-bold text-xs">
-                  Barème d’audit explicite
+                  Évaluation rigoureuse
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
