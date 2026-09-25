@@ -170,7 +170,7 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
                 </p>
               </div>
 
-              {/* Conséquence 4 : Inhabitabilité thermique humaine */}
+              {/* Conséquence 4 : Chaleur et humidité */}
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-slate-300 shadow-2xs transition-colors">
                 <div className="flex items-center gap-2.5 mb-1.5">
                   <span className="w-6 h-6 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center font-bold font-mono text-xs">

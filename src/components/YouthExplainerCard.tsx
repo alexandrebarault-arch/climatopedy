@@ -245,7 +245,7 @@ export const YouthExplainerCard: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Étape 3 : Le seuil létal des 31°C Tw */}
+                {/* Étape 3 : Seuil d'alerte Tw du modèle */}
                 <div className="bg-white p-4 rounded-xl border border-rose-200 flex flex-col gap-2 shadow-2xs">
                   <div className="flex items-center gap-2 text-rose-700 font-semibold text-sm">
                     <Flame className="w-4 h-4 text-rose-600" />

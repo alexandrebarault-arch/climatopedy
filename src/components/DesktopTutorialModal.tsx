@@ -127,7 +127,7 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
       title: 'Scénario A vs B : Le Bénéfice de l\'Action',
       subtitle: 'Comparez le Fil de l\'eau (BAU) à une politique de Sobriété',
       description:
-        'CLIMATOPEDY permet de comparer simultanément deux avenirs : le Scénario A (rigidité fossile actuelle SSP5-8.5) face au Scénario B (planification écologique et sobriété). Le tableau calcule en temps réel les millions de vies épargnées et le réchauffement évité.',
+        'CLIMATOPEDY compare deux scénarios internes : le Scénario A à fortes émissions, inspiré de SSP5-8.5, et le Scénario B de sobriété. Les valeurs sont des sorties conditionnelles du simulateur; l’écart de décès n’est pas une estimation médicale de vies sauvées.',
       tips: [
         {
           icon: <Sliders className="w-4 h-4 text-emerald-600" />,

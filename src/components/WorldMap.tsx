@@ -39,7 +39,7 @@ interface WorldMapProps {
   currentYear?: number;
 }
 
-type TwOverlayMode = 'uninhabitable' | 'critical' | 'all' | 'off';
+type TwOverlayMode = 'aboveTwAlertThreshold' | 'critical' | 'all' | 'off';
 
 export const WorldMap: React.FC<WorldMapProps> = ({
   simulationState,
@@ -49,7 +49,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 }) => {
   const displayYear = currentYear !== undefined ? Math.floor(currentYear) : Math.floor(simulationState.year);
   const [activeMetric, setActiveMetric] = useState<MetricLayer>('wet_bulb');
-  const [twOverlayMode, setTwOverlayMode] = useState<TwOverlayMode>('uninhabitable');
+  const [twOverlayMode, setTwOverlayMode] = useState<TwOverlayMode>('aboveTwAlertThreshold');
   const [hoveredFeature, setHoveredFeature] = useState<ProcessedCountryFeature | null>(null);
 
   // Système d'alertes visuelles de stress thermique Stull Tw (Seuil critique configurable, ex: >32.0°C)
@@ -93,14 +93,14 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
   // Analyse thermique mondiale et détection des dépassements du seuil critique Stull Tw
   const thermalAnalysis = useMemo(() => {
-    let uninhabitableCount = 0;
-    let uninhabitablePop = 0;
+    let aboveTwAlertThresholdCount = 0;
+    let aboveTwAlertThresholdPop = 0;
     let criticalCount = 0;
     let alertCount = 0;
     let alertPop = 0;
     let extremeCount = 0; // Tw >= 35°C
 
-    const uninhabitableList: Array<{ id: string; name: string; tw: number; pop: number }> = [];
+    const aboveTwAlertThresholdList: Array<{ id: string; name: string; tw: number; pop: number }> = [];
     const alertList: Array<{
       id: string;
       name: string;
@@ -119,9 +119,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
       const tw = dyn.wetBulbPeak;
 
       if (tw >= 31.0) {
-        uninhabitableCount++;
-        uninhabitablePop += dyn.cohorts.total;
-        uninhabitableList.push({ id: c.id, name: c.frenchName, tw, pop: dyn.cohorts.total });
+        aboveTwAlertThresholdCount++;
+        aboveTwAlertThresholdPop += dyn.cohorts.total;
+        aboveTwAlertThresholdList.push({ id: c.id, name: c.frenchName, tw, pop: dyn.cohorts.total });
       } else if (tw >= 29.0) {
         criticalCount++;
       }
@@ -147,18 +147,18 @@ export const WorldMap: React.FC<WorldMapProps> = ({
       }
     });
 
-    uninhabitableList.sort((a, b) => b.tw - a.tw);
+    aboveTwAlertThresholdList.sort((a, b) => b.tw - a.tw);
     alertList.sort((a, b) => b.tw - a.tw);
 
     return {
-      uninhabitableCount,
-      uninhabitablePop,
+      aboveTwAlertThresholdCount,
+      aboveTwAlertThresholdPop,
       criticalCount,
       alertCount,
       alertPop,
       extremeCount,
       alertList,
-      uninhabitableList
+      aboveTwAlertThresholdList
     };
   }, [simulationState, heatAlertThreshold]);
 
@@ -364,7 +364,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               Horizon Séculaire {simulationState.year}
             </span>
             <span>
-              <strong>Résultat de la simulation CLIMATOPEDY pour {simulationState.year} :</strong> niveau marin simulé : <strong>+{(simulationState.seaLevelRiseMeters * 100).toFixed(0)} cm</strong>. Cette valeur dépend des paramètres du modèle et n'est pas une projection officielle du GIEC.
+              <strong>Résultat de la simulation CLIMATOPEDY pour {simulationState.year} :</strong> niveau marin simulé : <strong>+{(simulationState.seaLevelRiseMeters * 100).toFixed(0)} cm</strong>. Cette valeur dépend des paramètres du modèle; la précision affichée n’est pas une validation régionale et ce n’est pas une projection officielle du GIEC.
             </span>
           </div>
           <button
@@ -434,7 +434,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               {[
                 { val: 29.0, label: '≥29° (Repère)', tip: 'Repère de Tw utilisé par le modèle; cette valeur seule ne détermine pas les effets sur la santé.' },
                 { val: 31.0, label: '≥31° (Alerte modèle)', tip: 'Seuil d’alerte configuré dans CLIMATOPEDY; ce n’est pas un seuil universel de mortalité.' },
-                { val: 32.0, label: '≥32° (Alerte modèle)', tip: 'Alerte configurée dans le modèle; Tw seule ne permet pas de conclure à l’inhabitabilité ni à un besoin de climatisation.' },
+                { val: 32.0, label: '≥32° (Alerte modèle)', tip: 'Alerte configurée dans le modèle; Tw seule ne définit pas un seuil de survie ni un besoin de climatisation.' },
                 { val: 34.0, label: '≥34° (Alerte modèle)', tip: 'Valeur élevée de Tw; les effets physiologiques dépendent de l’exposition et des personnes.' },
                 { val: 35.0, label: '≥35° (Repère)', tip: 'Valeur étudiée dans la littérature pour une exposition prolongée; ce n’est pas un seuil universel de mortalité.' }
               ].map((preset) => (
@@ -493,9 +493,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                 <Eye className="w-2.5 h-2.5" /> Pins :
               </span>
               <button
-                onClick={() => setTwOverlayMode('uninhabitable')}
+                onClick={() => setTwOverlayMode('aboveTwAlertThreshold')}
                 className={`px-1.5 py-0.5 rounded cursor-pointer ${
-                  twOverlayMode === 'uninhabitable' ? 'bg-rose-600 text-white font-semibold' : 'text-slate-600 hover:text-slate-900'
+                  twOverlayMode === 'aboveTwAlertThreshold' ? 'bg-rose-600 text-white font-semibold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Alerte Tw du modèle (&ge;31°)
@@ -565,8 +565,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                 <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#c8e2ed" strokeWidth="0.6" />
               </pattern>
 
-              {/* Hachures d'inhabitabilité létale standard */}
-              <pattern id="uninhabitableStripe" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              {/* Hachures du seuil d'alerte Tw */}
+              <pattern id="aboveTwAlertThresholdStripe" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
                 <line x1="0" y1="0" x2="0" y2="10" stroke="#dc2626" strokeWidth="2.5" opacity="0.6" />
               </pattern>
 
@@ -633,7 +633,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               const dyn = simulationState.countries[feature.simCountryId];
               const tw = dyn ? dyn.wetBulbPeak : 0;
               const isInHeatAlert = heatAlertsEnabled && dyn && tw >= heatAlertThreshold;
-              const isUninhabitable = dyn ? tw >= 31.0 : false;
+              const isAboveTwAlertThreshold = dyn ? tw >= 31.0 : false;
               const fillColor = getCountryFillColor(feature.simCountryId);
 
               // Contour et style d'alerte
@@ -677,17 +677,17 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     }
                   />
 
-                  {/* Superposition de hachures d'alerte critique ou d'inhabitabilité */}
+                  {/* Superposition de hachures pour les seuils d'alerte Tw */}
                   {isInHeatAlert ? (
                     <path
                       d={feature.path}
                       fill="url(#heatAlertHazardStripe)"
                       className="pointer-events-none"
                     />
-                  ) : isUninhabitable ? (
+                  ) : isAboveTwAlertThreshold ? (
                     <path
                       d={feature.path}
-                      fill="url(#uninhabitableStripe)"
+                      fill="url(#aboveTwAlertThresholdStripe)"
                       className="pointer-events-none"
                     />
                   ) : null}
@@ -811,15 +811,15 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   // Si le pays a déjà une balise d'alerte active, on évite le doublon
                   if (heatAlertsEnabled && tw >= heatAlertThreshold) return null;
 
-                  const isUninhabitable = tw >= 31.0;
+                  const isAboveTwAlertThreshold = tw >= 31.0;
                   const isCritical = tw >= 29.0;
 
-                  if (twOverlayMode === 'uninhabitable' && !isUninhabitable) return null;
+                  if (twOverlayMode === 'aboveTwAlertThreshold' && !isAboveTwAlertThreshold) return null;
                   if (twOverlayMode === 'critical' && !isCritical) return null;
 
                   const [cx, cy] = SIM_CENTROIDS[staticC.id] || [500, 250];
 
-                  const badgeBg = isUninhabitable
+                  const badgeBg = isAboveTwAlertThreshold
                     ? '#7f1d1d'
                     : tw >= 29.0
                     ? '#9a3412'
@@ -827,7 +827,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     ? '#854d0e'
                     : '#064e3b';
 
-                  const badgeBorder = isUninhabitable
+                  const badgeBorder = isAboveTwAlertThreshold
                     ? '#f43f5e'
                     : tw >= 29.0
                     ? '#fb923c'
@@ -835,7 +835,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                   return (
                     <g key={`tw-pin-${staticC.id}`} transform={`translate(${cx}, ${cy})`}>
-                      {isUninhabitable && (
+                      {isAboveTwAlertThreshold && (
                         <circle cx="0" cy="0" r="16" fill="#ef4444" fillOpacity="0.4" className="animate-ping" />
                       )}
                       <rect
@@ -951,7 +951,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               if (!dyn) return null;
 
               const tw = dyn.wetBulbPeak;
-              const isUninhabitable = tw >= 31.0;
+              const isAboveTwAlertThreshold = tw >= 31.0;
               const isSevere = tw >= 29.0 && tw < 31.0;
               const isWarning = tw >= 26.0 && tw < 29.0;
               const popChangePct = ((dyn.cohorts.total - activeCountryData.basePop2026) / activeCountryData.basePop2026) * 100;
@@ -960,6 +960,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               return (
                 <div className="flex flex-col gap-3 h-full justify-between">
                   <div>
+                    <p className="mb-2 text-[9.5px] text-slate-500">
+                      Valeurs calculées par CLIMATOPEDY pour {displayYear}; elles dépendent des paramètres du modèle. Les décimales affichées ne sont pas une précision locale validée.
+                    </p>
                     {/* Statut du panneau (Survol vs Épinglé) avec bouton de fermeture */}
                     <div className="flex items-center justify-between pb-2 border-b border-slate-200">
                       <div className="flex items-center gap-1.5">
@@ -1025,7 +1028,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     {/* BLOC 1 : INDICE DE CHALEUR HUMIDE RESSENTIE */}
                     <div
                       className={`p-2.5 rounded-lg border mb-2.5 space-y-1.5 ${
-                        isUninhabitable
+                        isAboveTwAlertThreshold
                           ? 'bg-rose-50 border-rose-300 text-rose-950 shadow-2xs'
                           : isSevere
                           ? 'bg-amber-50 border-amber-300 text-amber-950'
@@ -1056,12 +1059,12 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         </div>
                       </div>
 
-                      {/* Jauge graphique de Tw par rapport au seuil létal de 31°C */}
+                      {/* Jauge graphique de Tw par rapport au seuil d'alerte du modèle */}
                       <div className="space-y-1">
                         <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden flex relative">
                           <div
                             className={`h-full transition-all duration-300 ${
-                              tw >= 35.0 ? 'bg-purple-600' : isUninhabitable ? 'bg-rose-600' : isSevere ? 'bg-amber-500' : 'bg-emerald-500'
+                              tw >= 35.0 ? 'bg-purple-600' : isAboveTwAlertThreshold ? 'bg-rose-600' : isSevere ? 'bg-amber-500' : 'bg-emerald-500'
                             }`}
                             style={{ width: `${Math.min(100, Math.max(5, ((tw - 10) / 25) * 100))}%` }}
                           />
@@ -1078,7 +1081,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Lecture du seuil de Tw dans le modèle */}
                       <div className="pt-0.5 text-[11px] font-semibold">
-                        {isUninhabitable ? (
+                        {isAboveTwAlertThreshold ? (
                           <p className="text-rose-800 leading-tight">
                             Tw simulée ≥ 31°C; seuil d’alerte utilisé dans CLIMATOPEDY.
                           </p>
@@ -1295,7 +1298,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   {/* Régions signalées au seuil Tw du modèle */}
                   <div
                     className={`p-2.5 rounded-lg border space-y-1 ${
-                      thermalAnalysis.uninhabitableCount > 0
+                      thermalAnalysis.aboveTwAlertThresholdCount > 0
                         ? 'bg-rose-50 border-rose-300'
                         : 'bg-slate-50 border-slate-200'
                     }`}
@@ -1307,15 +1310,15 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       </span>
                       <span
                         className={`font-mono font-bold text-sm ${
-                          thermalAnalysis.uninhabitableCount > 0 ? 'text-rose-800' : 'text-emerald-700'
+                          thermalAnalysis.aboveTwAlertThresholdCount > 0 ? 'text-rose-800' : 'text-emerald-700'
                         }`}
                       >
-                        {thermalAnalysis.uninhabitableCount} région(s)
+                        {thermalAnalysis.aboveTwAlertThresholdCount} région(s)
                       </span>
                     </div>
                     <p className="text-[10.5px] text-slate-600 leading-tight">
-                      {thermalAnalysis.uninhabitableCount > 0
-                        ? `${(thermalAnalysis.uninhabitablePop / 1000).toFixed(2)} Md de personnes résident dans les régions signalées; ce n’est pas une estimation de population exposée ou menacée.`
+                      {thermalAnalysis.aboveTwAlertThresholdCount > 0
+                        ? `${(thermalAnalysis.aboveTwAlertThresholdPop / 1000).toFixed(2)} Md de personnes résident dans les régions signalées; ce n’est pas une estimation de population exposée ou menacée.`
                         : 'Aucune région signalée au-dessus du seuil configuré dans le modèle.'}
                     </p>
                   </div>

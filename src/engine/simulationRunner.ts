@@ -110,7 +110,7 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
 export const SCENARIO_BAU: SimulationScenarioConfig = {
   id: 'bau',
   name: 'Scénario CLIMATOPEDY à très fortes émissions (inspiré de SSP5-8.5)',
-  shortName: 'Scénario Actuel',
+  shortName: 'Fortes émissions (modèle)',
   tagline: 'Rigidité sociétale, extraction fossile continue et absence de sobriété',
   description: 'Scénario interne au simulateur, conditionnel à ses paramètres de demande énergétique, de réserves et d\'usage des engrais. Il ne représente pas une prédiction certaine ni SSP5-8.5 dans son ensemble.',
   badgeColor: 'border-sky-500/40 bg-sky-950/40 text-sky-300',
