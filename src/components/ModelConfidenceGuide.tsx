@@ -12,7 +12,7 @@ const confidenceLevels: { label: Confidence; style: string; meaning: string }[] 
   {
     label: 'Partielle',
     style: 'bg-sky-100 text-sky-800 border-sky-200',
-    meaning: 'La méthode convient à ce calcul, a été comparée à des observations passées et son incertitude est montrée.'
+    meaning: 'La méthode convient au calcul, a réussi une vérification sur des observations passées indépendantes et une plage d’incertitude est montrée.'
   },
   {
     label: 'Faible',
@@ -51,10 +51,10 @@ const domains: {
     icon: Database,
     confidence: 'Faible',
     kind: 'Paramètre du simulateur',
-    text: 'Les 424 ppm sont une valeur réglée dans le moteur. Le code ne la charge pas comme une moyenne annuelle mesurée pour 2026.',
-    nextStep: 'La remplacer par la dernière moyenne annuelle achevée et documenter comment elle initialise le modèle.',
-    source: 'NOAA, mesures de CO₂',
-    href: 'https://gml.noaa.gov/ccgg/trends/'
+    text: 'Les 424 ppm sont une valeur réglée dans le moteur, pas une mesure de 2026. La moyenne mondiale annuelle publiée pour 2025 est de 425,6 ppm.',
+    nextStep: 'Recalibrer ensemble les réservoirs carbone sur la série observée, puis vérifier que le moteur retrouve cette valeur au départ. Changer seulement 424 ppm ne suffit pas.',
+    source: 'NOAA, Global Carbon Budget 2025',
+    href: 'https://repository.library.noaa.gov/view/noaa/74317'
   },
   {
     title: 'Température et CO₂ futurs',
