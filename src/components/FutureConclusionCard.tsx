@@ -76,16 +76,16 @@ export const FutureConclusionCard: React.FC = () => {
 
               <div className="space-y-2 text-slate-700 leading-relaxed">
                 <p>
-                  <strong>• Que veut dire « Tw » ?</strong> « Tw » signifie en anglais <em>Wet-Bulb Temperature</em>, c'est-à-dire <strong>la température du thermomètre mouillé</strong>. C'est la température exacte que ressent la peau humaine mouillée par la sueur au contact de l'air.
+                  <strong>• Que veut dire « Tw » ?</strong> « Tw » signifie en anglais <em>Wet-Bulb Temperature</em>, c'est-à-dire <strong>la température du thermomètre mouillé</strong>, une grandeur météorologique calculée ou mesurée à partir des conditions d'air humide. Elle n'est pas équivalente à une sensation cutanée.
                 </p>
                 <p>
-                  <strong>• Qui est Stull ?</strong> Le professeur <strong>Roland Stull</strong> est un chercheur renommé en sciences atmosphériques à l'Université de Colombie-Britannique. En 2011, il a publié la formule mathématique mondiale de référence permettant de calculer précisément ce thermomètre mouillé en combinant la température de l'air (en °C) et le taux d'humidité relative (en %).
+                  <strong>• Qui est Stull ?</strong> <strong>Roland Stull</strong> a publié en 2011 une approximation empirique de Tw à partir de la température de l'air et de l'humidité relative, dans le domaine de validité décrit par l'article.
                 </p>
                 <p>
                   <strong>• Pourquoi parle-t-on d'un « Seuil » ?</strong> Notre corps régule sa température à 37°C en transpirant : quand la sueur s'évapore, elle emporte de la chaleur. Mais si l'air est à la fois trop chaud et trop humide (saturation en vapeur d'eau), la sueur ne s'évapore plus du tout.
                 </p>
                 <div className="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-[11.5px] font-medium">
-                  🚨 <strong>Le seuil létal de 31,0°C Tw (Raymond et al., 2020) :</strong> Au-delà de cette valeur, un être humain au repos à l'ombre ne peut plus évacuer sa chaleur corporelle. Sans climatisation électrique continue, la température interne grimpe à 42°C en quelques heures (coup de chaleur mortel).
+                  <strong>Température humide :</strong> Sherwood et Huber (2010) discutent une limite théorique autour de 35°C Tw lors d'une exposition prolongée. Ce n'est pas un seuil universel de mortalité; la réponse varie selon les conditions d'exposition et la physiologie.
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ export const FutureConclusionCard: React.FC = () => {
             <div className="bg-white p-4 rounded-xl border border-sky-200 shadow-2xs flex flex-col gap-3">
               <div className="flex items-center gap-2 text-sky-800 font-bold text-sm">
                 <Globe2 className="w-4 h-4 text-sky-600" />
-                <span>2. « FaIR » = Le Modèle Climatique du GIEC</span>
+                <span>2. « FaIR » = Un modèle climatique réduit</span>
               </div>
 
               <div className="space-y-2 text-slate-700 leading-relaxed">
@@ -102,13 +102,13 @@ export const FutureConclusionCard: React.FC = () => {
                   <strong>• Que veut dire l'acronyme FaIR ?</strong> FaIR signifie en anglais <em>« Finite Amplitude Impulse Response »</em> (Modèle de réponse impulsionnelle à amplitude finie).
                 </p>
                 <p>
-                  <strong>• À quoi sert-il ?</strong> Les supercalculateurs climatiques de pointe mettent des semaines à simuler le climat mondial. En 2018, l'équipe du Dr Chris Smith (Oxford/Leeds) a conçu <strong>FaIR v1.1</strong> pour calculer avec exactitude l'effet de serre et la température de la Terre en quelques millisecondes.
+                  <strong>• À quoi sert-il ?</strong> FaIR est un modèle climatique réduit développé par Chris Smith et ses collègues. Il calcule rapidement la réponse climatique à des scénarios d'émissions; ses résultats dépendent des versions, paramètres et expériences utilisées.
                 </p>
                 <p>
-                  <strong>• Quel est son rôle officiel ?</strong> FaIR est le modèle simplifié officiel retenu par le <strong>GIEC</strong> dans son 6e rapport d'évaluation (AR6, Groupe de travail I).
+                  <strong>• Usage dans l'AR6 :</strong> FaIR a contribué à certaines analyses de l'AR6. Le GIEC évalue de nombreux modèles et sources de données; FaIR n'est pas son modèle officiel unique.
                 </p>
                 <div className="p-2.5 rounded-lg bg-sky-50 border border-sky-200 text-sky-900 text-[11.5px] font-medium">
-                  🌡️ <strong>L'« Anomalie Thermique » :</strong> C'est la hausse de température moyenne à la surface de la Terre comparée à l'ère préindustrielle (1850-1900). En 2026, nous sommes à <strong>+1,35°C</strong> d'anomalie mondiale.
+                  🌡️ <strong>Anomalie thermique simulée :</strong> Les valeurs affichées pour 2026 proviennent des données initiales du modèle CLIMATOPEDY; elles ne sont pas une observation annuelle complète de 2026.
                 </div>
               </div>
             </div>
@@ -128,10 +128,10 @@ export const FutureConclusionCard: React.FC = () => {
                   <strong>• Pourquoi n'utilise-t-on plus « 12.0 : 1 » ?</strong> Cette notation en ratio mathématique embrouille. On dit désormais <strong>« x12 »</strong> : 1 baril consommé permet d'en extraire 12.
                 </p>
                 <p>
-                  <strong>• L'histoire en 2 dates :</strong> En 1900, le pétrole de surface rapportait <strong>x100</strong> (1 baril pour 100). En 2026, avec les forages sous-marins profonds et les sables bitumineux, il ne rapporte plus que <strong>x12</strong>.
+                  <strong>• À propos des valeurs :</strong> Les ratios EROI dépendent du périmètre de calcul et de la ressource. Les valeurs affichées par le simulateur sont des paramètres ou des résultats du modèle, pas une série historique universelle.
                 </p>
                 <div className="p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-[11.5px] font-medium">
-                  ⚡ <strong>L'Énergie Nette pour la société :</strong> Si un puits rapporte x12, 1/12e sert au forage, et les <strong>92% restants</strong> alimentent les tracteurs, les camions, les trains et les hôpitaux. En dessous de x5, la société n'a plus assez d'énergie pour assurer ses services de base.
+                  ⚡ <strong>Énergie nette :</strong> Pour un EROI de 12:1, une unité investie sur douze correspond à l'énergie investie dans le périmètre retenu. Aucun seuil EROI unique ne détermine à lui seul le niveau de services d'une société.
                 </div>
               </div>
             </div>
@@ -148,13 +148,13 @@ export const FutureConclusionCard: React.FC = () => {
                   <strong>• Pourquoi les mers montent-elles ?</strong> Pour deux raisons physiques : 1) La <em>dilatation thermique</em> (l'eau chaude prend plus de place que l'eau froide) ; 2) La fonte des calottes glaciaires terrestres (Groenland, Antarctique et glaciers de montagne).
                 </p>
                 <p>
-                  <strong>• Combien augmente-t-elle en chiffres concrets ?</strong> En 1900, la mer était 22 cm plus basse qu'aujourd'hui. En 2026, elle a déjà monté de <strong>+12 cm</strong> (référence 2000). D'ici 2100, les projections prévoient <strong>+60 à +75 cm supplémentaires</strong>.
+                  <strong>• Projections :</strong> Le GIEC AR6 estime, par rapport à 1995–2014, une élévation probable de 0,28–0,55 m d'ici 2100 sous SSP1-1.9 et de 0,63–1,01 m sous SSP5-8.5. Ces plages sont conditionnelles aux scénarios, avec une confiance moyenne.
                 </p>
                 <p>
-                  <strong>• Quels impacts sur les populations ?</strong> Une montée de +50 cm suffit à saliniser les nappes phréatiques côtières (eau potable impropre) et à inonder chaque année les grands deltas rizicoles d'Asie (Mékong, Gange-Brahmapoutre) nourrissant des centaines de millions de personnes.
+                  <strong>• Impacts côtiers :</strong> L'élévation du niveau marin augmente les risques d'inondation et d'intrusion saline. Les effets varient selon les conditions locales, l'exposition et les mesures de protection.
                 </p>
                 <div className="p-2.5 rounded-lg bg-blue-50 border border-blue-200 text-blue-900 text-[11.5px] font-medium">
-                  🌊 <strong>Sur le simulateur :</strong> L'indicateur affiche la valeur globale en cm à l'instant T (+12 cm en 2026, jusqu'à +75 cm en 2100) ainsi que le delta exact par rapport à aujourd'hui.
+                  🌊 <strong>Sur le simulateur :</strong> L'indicateur affiche une sortie du modèle CLIMATOPEDY; sa valeur dépend des paramètres et de la référence utilisés.
                 </div>
               </div>
             </div>
@@ -190,7 +190,7 @@ export const FutureConclusionCard: React.FC = () => {
           <div className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-xl border border-emerald-300 shadow-2xs shrink-0 self-start sm:self-auto">
             <div className="text-right">
               <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-semibold">
-                Score Global
+                Indice interne non validé
               </span>
               <span className="text-2xl sm:text-3xl font-mono font-bold text-emerald-700 tabular-nums">
                 88%
@@ -198,8 +198,8 @@ export const FutureConclusionCard: React.FC = () => {
             </div>
             <div className="h-9 w-[1px] bg-slate-200" />
             <div className="text-xs">
-              <span className="text-emerald-800 font-semibold block">Confiance Élevée</span>
-              <span className="text-[10px] text-slate-500">Standard IPCC / GIEC</span>
+              <span className="text-emerald-800 font-semibold block">Échelle propre au site</span>
+              <span className="text-[10px] text-slate-500">Non évaluée par le GIEC</span>
             </div>
           </div>
         </div>
@@ -291,7 +291,7 @@ export const FutureConclusionCard: React.FC = () => {
         <div className="p-3 rounded-lg bg-emerald-50/60 border border-emerald-200 text-[11.5px] text-emerald-900 flex items-start gap-2.5">
           <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
           <div>
-            <strong className="text-emerald-950">Ce que garantit ce chiffre de 88% :</strong> La simulation repose sur des lois de conservation biophysiques strictes (conservation de la masse, premier et second principes de la thermodynamique, chimie de la photosynthèse, démographie en cohortes d'âge). Elle ne triche pas avec la physique. Ce qui reste par nature indéterminé à 12%, ce sont les décisions politiques, les élans de solidarité et le génie d'innovation des sociétés humaines.
+            <strong className="text-emerald-950">À propos de cet indice :</strong> Les pourcentages présentés sont des indicateurs internes à CLIMATOPEDY. Ils ne correspondent pas à une évaluation indépendante, à un niveau de confiance du GIEC ou à une mesure validée de la précision du simulateur.
           </div>
         </div>
       </div>
@@ -349,31 +349,31 @@ export const FutureConclusionCard: React.FC = () => {
             <div className="flex flex-col gap-4 animate-fadeIn">
               <div className="flex items-center gap-2 text-purple-800 text-xs font-mono uppercase tracking-wider font-semibold">
                 <Calendar className="w-4 h-4 text-purple-600" />
-                <span>Message transmis depuis l'an 2026 · À l'attention de nos enfants en 2050</span>
+                <span>Horizon 2050 · Valeurs conditionnelles du simulateur</span>
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-snug">
-                « À vous qui franchissez le sommet du pic énergétique et l'épreuve des premières grandes canicules humides. »
+                Résultats affichés pour l'horizon 2050
               </h3>
 
               <div className="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
                 <p>
-                  Si vous lisez ces lignes en 2050, vous avez l'âge que nous avions lorsque nous avons conçu ce simulateur en 2026. Vous vivez aujourd'hui dans ce qui n'était pour nous qu'une projection mathématique : un monde où le pétrole facile s'est raréfié, où l'indice Stull Tw dépasse régulièrement les 29°C dans les plaines d'Asie du Sud et du Moyen-Orient, et où chaque mégawatt d'énergie nette compte double.
+                  Les valeurs et descriptions affichées pour 2050 sont des résultats du modèle CLIMATOPEDY, calculés selon ses paramètres. Elles ne décrivent pas des observations de 2050 et ne sont pas des projections officielles du GIEC.
                 </p>
                 <p>
-                  <strong>Ce que nous voulons vous dire :</strong> Nous ne vous avons pas oubliés. Si nous avons calculé ces trajectoires avec une rigueur implacable, ce n'était pas par pessimisme morbide, mais par refus absolu du déni. Nous savions que pour vous donner une chance d'amortir le choc, il fallait d'abord regarder la falaise thermique et énergétique en face, sans fard et sans illusions technosolutionnistes magiques.
+                  Les résultats dépendent des hypothèses de demande énergétique, d'émissions, d'agriculture et de réponse climatique intégrées au simulateur.
                 </p>
                 <p>
-                  Nous espérons de tout cœur que vous avez su métamorphoser la contrainte en chef-d'œuvre de solidarité : réhabiliter la paysannerie et l'agroécologie locale, transformer les villes minérales en oasis ombragées de fraîcheur végétale, et comprendre qu'une civilisation se mesure à la protection des plus fragiles (les aînés et les nouveaux-nés) plutôt qu'au volume de ses flux superflus.
+                  Les valeurs de CO₂, de température et d'EROI affichées ci-dessous sont des indicateurs de cette trajectoire simulée; elles ne constituent pas des prévisions observées.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-purple-200 flex flex-wrap items-center justify-between gap-3 text-xs text-purple-800">
                 <span className="italic flex items-center gap-1.5">
-                  <Heart className="w-3.5 h-3.5 text-rose-500" /> Rédigé avec lucidité, respect et tendresse depuis 2026.
+                  <Heart className="w-3.5 h-3.5 text-rose-500" /> Valeurs simulées par CLIMATOPEDY
                 </span>
                 <span className="font-mono text-[11px] text-slate-500">
-                  Paramètres repères : CO2 ~490 ppm · T1 ~+1.85°C · EROI ~11:1
+                  Sortie du scénario CLIMATOPEDY : CO₂ ~490 ppm · T1 ~+1.85°C · EROI ~11:1
                 </span>
               </div>
             </div>
@@ -384,31 +384,31 @@ export const FutureConclusionCard: React.FC = () => {
             <div className="flex flex-col gap-4 animate-fadeIn">
               <div className="flex items-center gap-2 text-purple-800 text-xs font-mono uppercase tracking-wider font-semibold">
                 <Calendar className="w-4 h-4 text-purple-600" />
-                <span>Message transmis depuis l'an 2026 · À l'attention de nos petits-enfants en 2080</span>
+                <span>Horizon 2080 · Valeurs conditionnelles du simulateur</span>
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-snug">
-                « À vous qui traversez le goulot d'étranglement biophysique le plus exigeant de l'histoire humaine. »
+                Résultats affichés pour l'horizon 2080
               </h3>
 
               <div className="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
                 <p>
-                  En 2080, vous êtes au cœur de ce que les biophysiciens nomment le « goulot d'étranglement ». La mer est montée de près de 50 centimètres sur les deltas du Nil et du Gange, les vagues de chaleur humide ont redéfini la carte de l'inhabitabilité estivale, et le système industriel hérité du XXe siècle a dû achever sa mue radicale vers la sobriété intégrale.
+                  Les valeurs et descriptions affichées pour 2080 sont des résultats du modèle CLIMATOPEDY, calculés selon ses paramètres. Elles ne décrivent pas des observations de 2080 et ne sont pas des projections officielles du GIEC.
                 </p>
                 <p>
-                  <strong>Notre message pour vous :</strong> Si vous êtes là pour lire ces lignes, vous êtes la preuve vivante que la survie humaine ne dépend pas d'un EROI à 50:1, mais de la densité des liens humains, du soin apporté à la terre nourricière et de la conservation patiente des savoirs fondamentaux (la médecine, la culture, l'ingénierie douce, la démocratie de proximité).
+                  Les résultats dépendent des hypothèses du scénario et des paramètres démographiques, énergétiques et agricoles du simulateur.
                 </p>
                 <p>
-                  Ne nous maudissez pas trop pour notre lenteur au début du XXIe siècle. Sachez que des millions d'entre nous ont lutté, ont mesuré, ont partagé la vérité et ont semé des graines de résistance dont nous espérons que vous récoltez aujourd'hui les fruits. Vous êtes les pionniers de la décélération choisie.
+                  Les valeurs de CO₂, de température et d'EROI ci-dessous sont des sorties de simulation; elles ne sont pas des observations futures.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-purple-200 flex flex-wrap items-center justify-between gap-3 text-xs text-purple-800">
                 <span className="italic flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-sky-600" /> Le courage de durer est la plus haute forme d'intelligence.
+                  <Sparkles className="w-3.5 h-3.5 text-sky-600" /> Valeurs simulées par CLIMATOPEDY
                 </span>
                 <span className="font-mono text-[11px] text-slate-500">
-                  Paramètres repères : CO2 ~560 ppm · T1 ~+2.30°C · EROI ~6.5:1
+                  Sortie du scénario CLIMATOPEDY : CO₂ ~560 ppm · T1 ~+2.30°C · EROI ~6.5:1
                 </span>
               </div>
             </div>
@@ -419,31 +419,31 @@ export const FutureConclusionCard: React.FC = () => {
             <div className="flex flex-col gap-4 animate-fadeIn">
               <div className="flex items-center gap-2 text-purple-800 text-xs font-mono uppercase tracking-wider font-semibold">
                 <Calendar className="w-4 h-4 text-purple-600" />
-                <span>Message transmis depuis l'an 2026 · Aux gardiens et bâtisseurs du XXIIe siècle</span>
+                <span>Horizon 2100 · Valeurs conditionnelles du simulateur</span>
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-snug">
-                « Aux héritiers de la Terre apaisée : l'aube du grand rééquilibrage thermodynamique. »
+                Résultats affichés pour l'horizon 2100
               </h3>
 
               <div className="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
                 <p>
-                  L'an 2100. Pour nous, en 2026, cette année sonnait comme une frontière mythique, presque inimaginable, la borne ultime de nos tableaux de bord et de nos graphiques. Aujourd'hui, pour vous, c'est le présent. Le siècle fossile s'est définitivement éteint derrière vous.
+                  Les valeurs affichées pour 2100 sont des résultats du modèle CLIMATOPEDY, calculés selon ses paramètres. Elles ne décrivent pas des observations de 2100 et ne sont pas des projections officielles du GIEC.
                 </p>
                 <p>
-                  <strong>Notre conclusion finale :</strong> La Terre n'était pas un réservoir infini à piller, mais un organisme vivant doté de lois physiques inviolables. Vous êtes la première génération de l'histoire moderne qui vit en harmonie mesurée avec les cycles du carbone, de l'eau et de l'azote. Vos ancêtres ont payé le prix lourd de l'apprentissage des limites, mais vous êtes désormais les gardiens éclairés de cet équilibre.
+                  Le GIEC publie des projections conditionnelles à des scénarios d'émissions, avec des plages et niveaux de confiance précisés. Les valeurs produites par CLIMATOPEDY ne remplacent pas ces évaluations.
                 </p>
                 <p>
-                  Ce simulateur clôture le XXIe siècle à cette borne symbolique et ouvre la projection séculaire jusqu'à l'horizon 2200. Mais votre histoire humaine, elle, commence véritablement. Prenez soin de chaque hectare de forêt, de chaque rivière propre, de chaque brise d'été vivable. Nous vous transmettons notre admiration éternelle et notre bénédiction depuis les origines de cette prise de conscience.
+                  Les données de cette vue sont calculées par le simulateur; les fonctions utilisées et les hypothèses ne constituent pas des observations futures.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-purple-200 flex flex-wrap items-center justify-between gap-3 text-xs text-purple-800">
                 <span className="italic flex items-center gap-1.5">
-                  <Compass className="w-3.5 h-3.5 text-purple-600" /> Clôture du XXIe siècle · Début du temps long régénéré.
+                  <Compass className="w-3.5 h-3.5 text-purple-600" /> Sorties du scénario CLIMATOPEDY
                 </span>
                 <span className="font-mono text-[11px] text-slate-500">
-                  Paramètres repères : CO2 stabilisé · Régime post-fossile équilibré
+                  Valeurs à 2100 : calculées par CLIMATOPEDY selon le scénario sélectionné
                 </span>
               </div>
             </div>
@@ -454,28 +454,28 @@ export const FutureConclusionCard: React.FC = () => {
             <div className="flex flex-col gap-4 animate-fadeIn">
               <div className="flex items-center gap-2 text-purple-800 text-xs font-mono uppercase tracking-wider font-semibold">
                 <Calendar className="w-4 h-4 text-purple-600" />
-                <span>Message transmis depuis l'an 2026 · Aux bâtisseurs du XXIIIe siècle</span>
+                <span>Horizon 2200 · Valeurs conditionnelles du simulateur</span>
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-snug">
-                « À l'horizon 2200 : Le grand rééquilibrage séculaire post-anthropocène. »
+                Résultats affichés pour l'horizon 2200
               </h3>
 
               <div className="space-y-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
                 <p>
-                  L'an 2200. Près de deux siècles après la rédaction de ce modèle en 2026, vous vivez dans le temps long de la géophysique terrestre. Même après l'arrêt complet de l'extraction fossile, l'inertie thermique des abysses océaniques (Fox-Kemper et al. 2021) et la fonte lente des calottes de glace polaire ont continué leur travail séculaire.
+                  Le GIEC estime pour 2300 une élévation du niveau moyen de la mer de 0,3 à 3,1 m sous SSP1-2.6 et de 1,7 à 6,8 m sous SSP5-8.5 en l'absence de l'instabilité des falaises de glace marines (faible confiance). Ces plages ne définissent pas une valeur unique pour 2200.
                 </p>
                 <p>
-                  <strong>Les deux mondes possibles en 2200 :</strong> Si l'humanité a bifurqué vers la sobriété choisie, le réchauffement est stabilisé à <strong>+1,3°C</strong>, le niveau de la mer a contenu sa hausse séculaire sous <strong>+80 cm</strong>, et plus de 8 milliards d'êtres humains habitent des territoires apaisés grâce à l'agroécologie régénérative. Si au contraire l'inertie fossile a prévalu jusqu'à la dernière goutte, la biosphère à <strong>+4,5°C</strong> et <strong>+2,6 mètres de niveau marin</strong> a forcé la recomposition complète des deltas et des zones côtières mondiales.
+                  <strong>Sorties de simulation CLIMATOPEDY :</strong> les températures, niveaux marins et populations présentés pour 2200 sont calculés selon les paramètres propres à chaque scénario. Ils ne sont pas des projections officielles du GIEC ou de l'ONU.
                 </p>
                 <p>
-                  Quel que soit le chemin parcouru, vous êtes les témoins de la réconciliation finale entre la thermodynamique et la vie. Vous prouvez que la conscience humaine est capable de traverser le gouffre des siècles.
+                  Les processus et projections scientifiques de long terme comportent une incertitude importante; les résultats du simulateur ne permettent pas d'établir des états futurs certains.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-purple-200 flex flex-wrap items-center justify-between gap-3 text-xs text-purple-800">
                 <span className="italic flex items-center gap-1.5">
-                  <Compass className="w-3.5 h-3.5 text-purple-600" /> Horizon ultime simulé · Équilibre biophysique planétaire.
+                  <Compass className="w-3.5 h-3.5 text-purple-600" /> Sorties du scénario CLIMATOPEDY
                 </span>
                 <span className="font-mono text-[11px] text-slate-500">
                   Paramètres repères : T1 +1.3°C à +4.5°C · Hausse marine +0.8m à +2.6m

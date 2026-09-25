@@ -484,11 +484,11 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-center">
               {/* 1. Vies épargnées */}
               <div className="bg-white p-2.5 rounded-lg border border-emerald-200 shadow-2xs flex flex-col items-center justify-center">
-                <span className="text-[10px] text-slate-500 font-medium">Vies épargnées (cumul)</span>
+                <span className="text-[10px] text-slate-500 font-medium">Différence cumulée entre sorties simulées</span>
                 <span className="text-base sm:text-lg font-extrabold font-mono text-emerald-700 mt-0.5">
                   +{livesSavedMillions >= 1000 ? `${(livesSavedMillions / 1000).toFixed(1)} Md` : `${livesSavedMillions} M`}
                 </span>
-                <span className="text-[10px] text-emerald-800 font-mono">décès canicules/famines évités</span>
+                <span className="text-[10px] text-emerald-800 font-mono">écart simulé des décès chaleur/déficit calorique</span>
               </div>
 
               {/* 2. Réchauffement évité */}

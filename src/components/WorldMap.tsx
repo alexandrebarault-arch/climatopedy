@@ -180,8 +180,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         if (tw < 27.0) return '#eab308'; // Début d'inconfort thermique (Jaune ambre)
         if (tw < 29.0) return '#f97316'; // Stress thermique élevé (Orange vif)
         if (tw < 31.0) return '#ef4444'; // Danger thermique sévère (Rouge vif)
-        if (tw < 33.0) return '#b91c1c'; // SEUIL LÉTAL DÉPASSÉ (Rouge cramoisi)
-        return '#701a75'; // Effondrement métabolique immédiat (Pourpre létal)
+        if (tw < 33.0) return '#b91c1c'; // Niveau d'alerte du modèle
+        return '#701a75'; // Niveau supérieur d'alerte du modèle
       }
 
       case 'caloric_stress': {
@@ -364,7 +364,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               Horizon Séculaire {simulationState.year}
             </span>
             <span>
-              <strong>Prospective 2100–2200 (IPCC AR6 / CMIP6) :</strong> Épuisement des hydrocarbures fossiles conventionnels, élévation marine engagée (<strong>+{(simulationState.seaLevelRiseMeters * 100).toFixed(0)} cm</strong>) et concentration des activités dans les zones refuges boréales.
+              <strong>Résultat de la simulation CLIMATOPEDY pour {simulationState.year} :</strong> niveau marin simulé : <strong>+{(simulationState.seaLevelRiseMeters * 100).toFixed(0)} cm</strong>. Cette valeur dépend des paramètres du modèle et n'est pas une projection officielle du GIEC.
             </span>
           </div>
           <button
@@ -411,7 +411,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               </span>
               <span
                 className="text-[10px] text-sky-800 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 cursor-help"
-                title="Tw = 'Wet-Bulb Temperature' (Thermomètre Mouillé). Formule de Roland Stull (2011) combinant température et humidité. À 31°C Tw, la sueur ne peut plus s'évaporer : c'est le seuil mortel d'hyperthermie."
+                title="Tw (température au thermomètre mouillé) combine la température de l'air et l'humidité. Formule approximative de Stull (2011). Tw ne constitue pas à elle seule un seuil universel de mortalité."
               >
                 Stull Tw ?
               </span>
@@ -433,9 +433,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             <div className="flex items-center gap-1">
               {[
                 { val: 29.0, label: '≥29° (Vuln.)', tip: 'Inconfort sévère, danger pour personnes âgées et enfants' },
-                { val: 31.0, label: '≥31° (Létal)', tip: 'Seuil de rupture métabolique humaine (Sherwood & Huber / Raymond 2020)' },
+                { val: 31.0, label: '≥31° (Alerte modèle)', tip: 'Seuil d’alerte configuré dans CLIMATOPEDY; ce n’est pas un seuil universel de mortalité.' },
                 { val: 32.0, label: '≥32° (Critique)', tip: 'Inhabitabilité critique sans climatisation artificielle continue' },
-                { val: 34.0, label: '≥34° (Extrême)', tip: 'Hyperthermie mortelle fulgurante en moins de 4 heures' },
+                { val: 34.0, label: '≥34° (Alerte modèle)', tip: 'Valeur élevée de Tw; les effets physiologiques dépendent de l’exposition et des personnes.' },
                 { val: 35.0, label: '≥35° (Max)', tip: 'Limite thermodynamique théorique absolue du corps humain' }
               ].map((preset) => (
                 <button
@@ -498,7 +498,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   twOverlayMode === 'uninhabitable' ? 'bg-rose-600 text-white font-semibold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                Létal (&ge;31°)
+                Alerte du modèle (&ge;31°)
               </button>
               <button
                 onClick={() => setTwOverlayMode('off')}
@@ -930,7 +930,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                 <span className="text-[10px] text-sky-700 font-mono">&lt;14°C Boréal</span>
                 <span className="text-[10px] text-emerald-700 font-mono">22°C Vivable</span>
                 <div className="h-2 w-20 rounded bg-gradient-to-r from-sky-600 via-emerald-500 to-rose-600" />
-                <span className="text-[10px] text-rose-700 font-bold font-mono">&ge;31.0°C Seuil létal</span>
+                <span className="text-[10px] text-rose-700 font-bold font-mono">&ge;31.0°C Seuil d’alerte du modèle</span>
               </div>
             </div>
 
@@ -1008,12 +1008,11 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <div className="flex items-center gap-1.5">
                           <AlertOctagon className="w-4 h-4 text-rose-600 shrink-0" />
                           <span className="font-bold text-rose-900 text-[11px] uppercase tracking-wide">
-                            🚨 Canicule Mortelle Dépassée (Tw &ge; {heatAlertThreshold.toFixed(1)}°C)
+                            🚨 Seuil d’alerte Tw dépassé ({heatAlertThreshold.toFixed(1)}°C)
                           </span>
                         </div>
                         <p className="text-[10.5px] text-rose-800 leading-snug">
-                          <strong>Danger vital :</strong> Lors du pic estival ({dyn.summerMaxTemp.toFixed(1)}°C / {dyn.summerHumidity}% humidité), la chaleur ressentie atteint <strong>{tw.toFixed(1)}°C</strong>.
-                          L'air saturé empêche la sueur de s'évaporer, provoquant une surchauffe mortelle du corps humain en &lt;6h sans pièce climatisée.
+                          Au pic estival simulé ({dyn.summerMaxTemp.toFixed(1)}°C / {dyn.summerHumidity}% humidité), Tw calculée atteint <strong>{tw.toFixed(1)}°C</strong>. Cette sortie du modèle n'est pas une estimation médicale de mortalité.
                         </p>
                         <div className="flex items-center justify-between text-[10px] text-rose-900 pt-1 border-t border-rose-200 font-mono">
                           <span>Habitants menacés : <strong>{dyn.cohorts.total.toFixed(0)} M</strong></span>
@@ -1068,7 +1067,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         </div>
                         <div className="flex justify-between text-[9px] font-mono text-slate-500">
                           <span>10°C</span>
-                          <span className="text-rose-700 font-semibold">Seuil Mortel 31°C</span>
+                          <span className="text-rose-700 font-semibold">Seuil du modèle 31°C</span>
                           <span className={heatAlertThreshold === 32.0 ? 'text-amber-800 font-bold' : ''}>
                             {heatAlertThreshold.toFixed(1)}°C (Seuil)
                           </span>
@@ -1080,11 +1079,11 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="pt-0.5 text-[11px] font-semibold">
                         {isUninhabitable ? (
                           <p className="text-rose-800 leading-tight">
-                            ☠️ INHABITABLE : Décès par surchauffe corporelle en &lt;6h sans climatisation.
+                            Niveau d'alerte élevé selon le seuil configuré dans le modèle.
                           </p>
                         ) : isSevere ? (
                           <p className="text-amber-800 leading-tight">
-                            ⚠️ DANGER SÉVÈRE : Travailler dehors devient mortel pour le corps.
+                            Seuil de stress thermique élevé dépassé dans la simulation.
                           </p>
                         ) : isWarning ? (
                           <p className="text-yellow-800 leading-tight">
@@ -1164,7 +1163,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                             isFamine ? 'text-rose-700 font-bold' : 'text-emerald-700'
                           }`}
                         >
-                          {Math.round(dyn.calPerCapita)} kcal/j {isFamine && '(Famine)'}
+                          {Math.round(dyn.calPerCapita)} kcal/j {isFamine && '(sous le seuil du modèle)'}
                         </span>
                       </div>
 
@@ -1303,7 +1302,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-slate-800 flex items-center gap-1.5">
                         <Flame className="w-3.5 h-3.5 text-rose-600" />
-                        Dômes Létaux (Tw &ge; 31°C)
+                        Régions au-dessus du seuil Tw du modèle ({heatAlertThreshold.toFixed(1)}°C)
                       </span>
                       <span
                         className={`font-mono font-bold text-sm ${
@@ -1315,8 +1314,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     </div>
                     <p className="text-[10.5px] text-slate-600 leading-tight">
                       {thermalAnalysis.uninhabitableCount > 0
-                        ? `${(thermalAnalysis.uninhabitablePop / 1000).toFixed(2)} Md d'humains exposés à l'hyperthermie mortelle.`
-                        : 'Aucune zone létale saisonnière permanente.'}
+                        ? `${(thermalAnalysis.uninhabitablePop / 1000).toFixed(2)} Md de personnes dans les régions signalées par le modèle.`
+                        : 'Aucune région signalée au-dessus du seuil du modèle.'}
                     </p>
                   </div>
 

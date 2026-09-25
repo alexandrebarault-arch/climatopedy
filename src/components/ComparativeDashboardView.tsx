@@ -145,17 +145,17 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
     {
       id: 'habitable_population',
       category: 'demography',
-      title: 'Population Vivable & Préservée',
-      subtitle: 'Humains vivant dans des zones biophysiquement viables (Tw < 31°C)',
+      title: 'Population sous le seuil Tw du modèle',
+      subtitle: 'Population des régions où Tw simulée est sous 31°C',
       icon: <Users className="w-5 h-5 text-emerald-600" />,
       badge: 'Démographie & Survie',
       badgeColor: 'border-emerald-300 bg-emerald-50 text-emerald-800',
       valA: `${habitablePopA_Mds} Mds (${(habitableFractionA * 100).toFixed(0)}% de la pop.)`,
       valB: `${habitablePopB_Mds} Mds (${(habitableFractionB * 100).toFixed(0)}% de la pop.)`,
-      deltaText: `+${gainHabitablePopMds} Mds d'humains viables`,
+      deltaText: `+${gainHabitablePopMds} Mds sous le seuil du modèle`,
       deltaPositiveIsGood: true,
-      benefitHeadline: `${cumulativeStats.livesSavedMillions.toFixed(0)} millions de vies préservées d'ici ${horizonYear}`,
-      mechanism: `Le maintien du thermomètre mouillé sous le seuil létal de Stull (Tw < 31°C) empêche l'effondrement hyperthermique de milliards d'habitants dans le sous-continent indien, le Golfe persique et le Sahel.`,
+      benefitHeadline: `Écart simulé de mortalité : ${cumulativeStats.livesSavedMillions.toFixed(0)} millions d'ici ${horizonYear}`,
+      mechanism: `Le modèle compare les populations vivant dans des régions où la température au thermomètre mouillé simulée est inférieure au seuil Tw de 31°C configuré dans CLIMATOPEDY. Ce seuil n'est pas un diagnostic de mortalité ou d'habitabilité.`,
       scientificRef: 'Sherwood & Huber (PNAS 2010) / Raymond et al. (2020)',
       tooltipTerm: 'stull'
     },
@@ -187,8 +187,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       valB: `${Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/j (${(stateB.globalCropYieldComposite * 100).toFixed(0)}%)`,
       deltaText: `${deltaCalories >= 0 ? '+' : ''}${deltaCalories} kcal/j (${deltaYieldPct >= 0 ? '+' : ''}${deltaYieldPct} pts rendement)`,
       deltaPositiveIsGood: deltaCalories > 0,
-      benefitHeadline: `Régime alimentaire supérieur au seuil vital (2 100 kcal)`,
-      mechanism: `La transition agroécologique (fixation biologique de l'azote par légumineuses) compense l'épuisement inévitable du gaz pour le procédé Haber-Bosch et protège les sols de l'érosion.`,
+      benefitHeadline: `Apport calorique simulé : ${Math.round(stateA.globalAverageCaloriesPerCapita)} vs ${Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/habitant/jour`,
+      mechanism: `Les apports et rendements affichés sont calculés à partir des paramètres agricoles et énergétiques de CLIMATOPEDY; ils ne constituent pas une prévision validée de sécurité alimentaire.`,
       scientificRef: 'Zhao et al. (PNAS 2017) / Erisman et al. (Nature Geo 2008)',
       tooltipTerm: 'haber-bosch'
     },
@@ -204,8 +204,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       valB: `+${Math.round(stateB.seaLevelRiseMeters * 100)} cm`,
       deltaText: `${deltaSlrCm >= 0 ? '+' : ''}${deltaSlrCm} cm (${Math.abs(deltaSlrCm)} cm épargnés)`,
       deltaPositiveIsGood: deltaSlrCm < 0,
-      benefitHeadline: `${Math.abs(deltaSlrCm)} cm d'inondation côtière évitée en ${horizonYear}`,
-      mechanism: `Moins de réchauffement atmosphérique réduit la dilatation thermique de l'océan profond et ralentit l'amincissement des calottes glaciaires du Groenland et de l'Antarctique de l'Ouest.`,
+      benefitHeadline: `Écart simulé du niveau marin : ${Math.abs(deltaSlrCm)} cm en ${horizonYear}`,
+      mechanism: `Cette valeur est une sortie du modèle CLIMATOPEDY. Le GIEC publie des plages de projection dépendant des émissions, de l'horizon et de la période de référence.`,
       scientificRef: 'Vermeer & Rahmstorf (2009) / GIEC AR6 Ch. 9',
       tooltipTerm: 'slr'
     },
@@ -221,8 +221,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       valB: `x${stateB.currentEroi >= 20 ? Math.round(stateB.currentEroi) : stateB.currentEroi.toFixed(1)} (${(stateB.netEnergyRatio * 100).toFixed(0)}% utile)`,
       deltaText: `${deltaEroi >= 0 ? '+' : ''}${deltaEroi.toFixed(1)} pts de rendement (${deltaNetEnergyPct >= 0 ? '+' : ''}${deltaNetEnergyPct} pts utile)`,
       deltaPositiveIsGood: deltaEroi > 0,
-      benefitHeadline: `Préservation de l'énergie pour les besoins vitaux`,
-      mechanism: `La baisse délibérée de la demande évite de gaspiller les derniers gisements et préserve un rendement suffisant pour isoler les logements et électrifier.`,
+      benefitHeadline: `Écart d'EROI simulé : ${stateA.currentEroi.toFixed(1)} contre ${stateB.currentEroi.toFixed(1)}`,
+      mechanism: `Les valeurs d'EROI sont produites par le modèle CLIMATOPEDY selon son paramétrage; leur interprétation dépend du périmètre de calcul.`,
       scientificRef: 'Hall, Lambert & Balogh (Ecol. Econ. 2014)',
       tooltipTerm: 'eroi'
     },
@@ -230,7 +230,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       id: 'climate_refugees',
       category: 'demography',
       title: 'Réfugiés Climatiques & Migrations',
-      subtitle: 'Personnes déplacées sous pression thermique et alimentaire',
+      subtitle: 'Personnes comptabilisées par le modèle CLIMATOPEDY',
       icon: <AlertTriangle className="w-5 h-5 text-purple-600" />,
       badge: 'Stabilité Géopolitique',
       badgeColor: 'border-purple-300 bg-purple-50 text-purple-800',
@@ -238,15 +238,15 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       valB: `${stateB.activeClimateRefugees.toFixed(1)} M`,
       deltaText: `${deltaRefugeesM >= 0 ? '-' : '+'}${Math.abs(deltaRefugeesM).toFixed(1)} M d'exilés`,
       deltaPositiveIsGood: deltaRefugeesM > 0,
-      benefitHeadline: `${Math.abs(deltaRefugeesM).toFixed(1)} millions d'exils forcés évités`,
-      mechanism: `En maintenant l'habitabilité locale des régions tropicales et méditerranéennes, la pression d'exode massif vers les pays boréaux est considérablement désamorcée.`,
+      benefitHeadline: `Écart simulé de population déplacée : ${Math.abs(deltaRefugeesM).toFixed(1)} millions`,
+      mechanism: `Cette valeur est produite par le modèle CLIMATOPEDY; elle n'est pas une estimation validée des migrations liées au climat.`,
       scientificRef: 'IDMC (Internal Displacement Monitoring Centre) & GIEC AR6 WG2'
     },
     {
       id: 'annual_deaths',
       category: 'demography',
-      title: 'Mortalité Annuelle Critique',
-      subtitle: 'Décès annuels causés par les canicules létales et les famines',
+      title: 'Décès annuels simulés',
+      subtitle: 'Décès calculés par le modèle selon ses paramètres',
       icon: <HeartPulse className="w-5 h-5 text-rose-600" />,
       badge: 'Santé Publique Mondiale',
       badgeColor: 'border-rose-300 bg-rose-50 text-rose-800',
@@ -254,8 +254,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       valB: `${stateB.worldDeathsAnnual.total.toFixed(1)} M/an`,
       deltaText: `-${deltaAnnualDeathsM.toFixed(1)} M décès/an en ${horizonYear}`,
       deltaPositiveIsGood: deltaAnnualDeathsM > 0,
-      benefitHeadline: `Mortalité annuelle réduite de ${deltaAnnualDeathsM.toFixed(1)} millions/an`,
-      mechanism: `Moins de dômes de chaleur humide et une production agroécologique résiliente limitent radicalement les hécatombes climatiques récurrentes.`,
+      benefitHeadline: `Écart simulé de décès : ${deltaAnnualDeathsM.toFixed(1)} millions/an`,
+      mechanism: `Cette comparaison de mortalité est une sortie de CLIMATOPEDY; le modèle n'est pas validé comme estimateur de décès attribuables au climat ou à l'alimentation.`,
       scientificRef: 'The Lancet Countdown on Health and Climate Change'
     }
   ];
@@ -286,10 +286,10 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               </span>
             </div>
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Dashboard Comparatif Global &amp; Bénéfices de l'Action
+              Comparaison des scénarios CLIMATOPEDY
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Visualisez instantanément la divergence biophysique majeure entre la poursuite aveugle du modèle actuel (<strong className="text-rose-700">Scénario A - Fil de l'eau</strong>) et une politique délibérée de redirection écologique (<strong className="text-emerald-700">Scénario B - Sobriété &amp; Agroécologie</strong>).
+              Comparez les sorties de deux scénarios internes à CLIMATOPEDY (<strong className="text-rose-700">Scénario A - Fil de l'eau</strong> et <strong className="text-emerald-700">Scénario B - Sobriété &amp; Agroécologie</strong>). Les résultats dépendent des paramètres du modèle et ne sont pas des projections officielles du GIEC ni des estimations validées de mortalité, migration ou sécurité alimentaire.
             </p>
           </div>
 
@@ -336,12 +336,12 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
           </div>
 
           <div className="bg-slate-50 border border-emerald-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
-            <span className="text-[11px] text-slate-500 font-medium">🛡️ Vies humaines épargnées (2026-{horizonYear})</span>
+              <span className="text-[11px] text-slate-500 font-medium">Écart de décès simulés (2026-{horizonYear})</span>
             <span className="text-xl font-bold font-mono text-emerald-700">
               +{cumulativeStats.livesSavedMillions.toFixed(0)} Millions
             </span>
             <span className="text-[10px] text-slate-500">
-              Mortalités thermique &amp; famine évitées
+              Valeurs calculées par CLIMATOPEDY
             </span>
           </div>
 
@@ -361,7 +361,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               +{deltaCalories} kcal/hab/jour
             </span>
             <span className="text-[10px] text-slate-500">
-              Stabilisation via l'agroécologie autonome
+              Sortie conditionnelle du modèle CLIMATOPEDY
             </span>
           </div>
         </div>
@@ -507,11 +507,11 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               Matrice Comparée des Scénarios à l'Horizon {horizonYear}
             </h3>
             <p className="text-xs text-slate-500">
-              Synthèse intégrée pour les décideurs publics, chercheurs et citoyens éclairés.
+              Comparaison des résultats simulés par CLIMATOPEDY à l'horizon sélectionné.
             </p>
           </div>
           <span className="text-xs font-mono text-sky-800 bg-sky-50 border border-sky-300 px-2.5 py-1 rounded-lg self-start sm:self-auto font-semibold">
-            Base CMIP6 / FaIR v1.1
+            Modèle CLIMATOPEDY; voir les sources et hypothèses
           </span>
         </div>
 
@@ -522,8 +522,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                 <th className="py-2.5 px-3">Indicateur Biophysique</th>
                 <th className="py-2.5 px-3 text-rose-800 bg-rose-50/60">Scénario A (Fil de l'eau)</th>
                 <th className="py-2.5 px-3 text-emerald-800 bg-emerald-50/60">Scénario B (Sobriété)</th>
-                <th className="py-2.5 px-3 text-sky-800 bg-sky-50/60">Bénéfice Net de l'Action</th>
-                <th className="py-2.5 px-3">Implication Concrète</th>
+                <th className="py-2.5 px-3 text-sky-800 bg-sky-50/60">Écart entre scénarios</th>
+                <th className="py-2.5 px-3">Description de la sortie</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 text-slate-700 tabular-nums">
@@ -532,7 +532,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                 <td className="py-2.5 px-3 font-mono text-rose-800">+{stateA.surfaceTemperatureAnomaly.toFixed(2)} °C</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">+{stateB.surfaceTemperatureAnomaly.toFixed(2)} °C</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">-{Math.abs(deltaTemp).toFixed(2)} °C</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Évite l'emballement des feux boréaux et du dégel du pergélisol.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Valeur calculée par le scénario CLIMATOPEDY.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">
@@ -542,12 +542,12 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                 <td className="py-2.5 px-3 font-mono text-rose-800">{popA_Mds} Mds</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">{popB_Mds} Mds</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{deltaPopMds} Mds</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Évite les surmortalités massives par famines chroniques et stress thermique.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Population et mortalité sont calculées selon les paramètres du modèle.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">
-                  <div>Habitabilité Thermique (Zone Viable)</div>
-                  <div className="text-[10px] text-slate-500 font-normal">Zone où Tw &lt; 31°C (seuil de tolérance humaine Stull)</div>
+                  <div>Population sous le seuil Tw du modèle</div>
+                  <div className="text-[10px] text-slate-500 font-normal">Population des régions où Tw simulée &lt; 31°C (seuil du modèle)</div>
                 </td>
                 <td className="py-2.5 px-3 font-mono text-rose-800">
                   <span className="font-bold">{habitablePopA_Mds} Mds</span>
@@ -558,7 +558,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                   <span className="text-[11px] text-emerald-700 ml-1.5 font-normal">({(habitableFractionB * 100).toFixed(0)}% du total)</span>
                 </td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{gainHabitablePopMds} Mds</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Préserve l'habitabilité du sud asiatique et de l'Afrique sahélienne.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Répartition calculée par le modèle; ce n'est pas une évaluation de l'habitabilité.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">
@@ -574,28 +574,28 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                   <span className="text-[11px] text-emerald-700 ml-1.5 font-normal">({waterStressPctB}% du total)</span>
                 </td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{waterStressDeltaPct} points</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Maintien des débits estivaux des grands fleuves d'origine glaciaire.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Indice de stress hydrique calculé par le modèle.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">Apport Alimentaire Moyen</td>
                 <td className="py-2.5 px-3 font-mono text-rose-800">{Math.round(stateA.globalAverageCaloriesPerCapita)} kcal/j</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">{Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/j</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{deltaCalories} kcal/j</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Sécurité alimentaire garantie au-dessus du plancher métabolique de 2100 kcal.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Apport calorique moyen calculé par le modèle; ne garantit pas la sécurité alimentaire.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">Élévation Séculaire des Mers</td>
                 <td className="py-2.5 px-3 font-mono text-rose-800">+{Math.round(stateA.seaLevelRiseMeters * 100)} cm</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">+{Math.round(stateB.seaLevelRiseMeters * 100)} cm</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{deltaSlrCm} cm</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Protection des deltas fertiles (Gange, Mékong, Nil, Pô) et mégapoles côtières.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Valeur de niveau marin calculée par le modèle; ce n'est pas une projection régionale d'inondation.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">Rendement de l'Énergie (Énergie Utile)</td>
                 <td className="py-2.5 px-3 font-mono text-rose-800">x{stateA.currentEroi >= 20 ? Math.round(stateA.currentEroi) : stateA.currentEroi.toFixed(1)}</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">x{stateB.currentEroi >= 20 ? Math.round(stateB.currentEroi) : stateB.currentEroi.toFixed(1)}</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{deltaEroi.toFixed(1)} pts</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Conserve un surplus d'énergie suffisant pour maintenir la médecine et l'éducation.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">EROI calculé par le modèle selon son périmètre et ses paramètres.</td>
               </tr>
             </tbody>
           </table>
@@ -613,7 +613,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               <strong className="text-rose-700 font-semibold">Stress Hydrique Sévère ({waterStressedPopA_B} Mds, soit {waterStressPctA}%)</strong> ne sont pas deux tranches d'un même camembert, mais <strong>deux dimensions biophysiques indépendantes</strong> rapportées chacune à 100% de la population mondiale du scénario ({popA_Mds} Mds).
             </p>
             <p className="text-slate-500 text-[10px]">
-              • <strong>Habitabilité ({(habitableFractionA * 100).toFixed(0)}%)</strong> : {((1 - habitableFractionA) * 100).toFixed(0)}% de la population vit dans une zone rendue inhabitable par le stress thermique létal (Tw &gt; 31°C).<br />
+              • <strong>Indicateur Tw ({(habitableFractionA * 100).toFixed(0)}%)</strong> : {((1 - habitableFractionA) * 100).toFixed(0)}% de la population du scénario vit dans des régions où Tw calculée dépasse le seuil de 31°C choisi par le modèle; cela ne signifie pas que ces régions sont inhabitables.<br />
               • <strong>Stress hydrique ({waterStressPctA}%)</strong> : {100 - waterStressPctA}% de la population conserve un approvisionnement en eau suffisant.<br />
               Une personne peut tout à fait habiter une zone thermiquement supportable tout en subissant une pénurie d'eau douce (les deux phénomènes se superposent géographiquement).
             </p>

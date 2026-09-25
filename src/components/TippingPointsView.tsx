@@ -55,20 +55,20 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     category: 'cryosphere',
     categoryLabel: 'Glaces & Pôles',
     location: 'Arctique Nord',
-    summarySimple: 'Un dôme de glace géant de 3 km d\'épaisseur. S\'il fond, la surface de la glace descend vers des altitudes plus basses où l\'air est plus chaud, ce qui accélère la fonte tout seul, même si on ne réchauffe plus l\'atmosphère.',
+    summarySimple: 'La calotte du Groenland est une vaste masse de glace continentale. Sa masse et son altitude évoluent avec les échanges de neige et de glace avec l\'océan et l\'atmosphère.',
     thresholdEst: 1.5,
     thresholdMin: 0.8,
     thresholdMax: 3.0,
     timescaleYears: '1 000 à 10 000 ans',
-    observedFactToday: 'Mesures satellites NASA (GRACE) : le Groenland perd actuellement ~270 milliards de tonnes de glace par an. Il a déjà perdu plus de 5 000 milliards de tonnes depuis 1992.',
-    consequencePlain: 'Si toute la calotte fondait : +7,2 mètres de montée mondiale des océans. À notre échelle humaine, chaque siècle de fonte ajoute des dizaines de centimètres, inondant les ports et les côtes.',
-    irreversibilityNotes: 'Une fois que la calotte a perdu de l\'altitude, il faudrait faire redescendre la température mondiale bien en-dessous du climat d\'aujourd\'hui pour qu\'elle se reconstitue.',
+    observedFactToday: 'Les observations satellitaires montrent une perte nette de masse de la calotte groenlandaise depuis le début des mesures gravimétriques GRACE; le taux moyen varie selon la période retenue.',
+    consequencePlain: 'La fonte complète de la calotte groenlandaise correspond à environ 7 m d\'élévation moyenne du niveau marin à long terme. Ce n\'est pas une projection pour le XXIe siècle.',
+    irreversibilityNotes: 'La réponse de la calotte dépend du réchauffement, de sa durée et des processus de surface et de dynamique glaciaire; les seuils et délais sont estimés avec incertitude.',
     scientificSource: 'Armstrong McKay et al., Science 2022 ; GIEC AR6 WG1 Chapitre 9 ; NASA GRACE.',
     statusToday: 'at_risk',
-    estimatedYearTendency: '2030 – 2038 (Seuil bas déjà pénétré dès +1,3°C)',
-    whatIsItSimple: 'Un immense bouclier de glace de 3 km d\'épaisseur posé sur une île. S\'il s\'affaisse, son sommet descend dans de l\'air plus chaud, ce qui accélère la fonte automatiquement sans qu\'on puisse l\'arrêter.',
-    whyPointOfNoReturn: 'Une fois que la calotte perd de la hauteur, elle baigne en permanence dans de l\'air plus tiède et la glace sombre absorbe plus de rayons solaires. Même si les humains arrêtaient toutes leurs émissions, la fonte continuerait d\'elle-même.',
-    concreteImpactEveryday: 'Submersion progressive des digues et des quais de commerce maritime. Érosion violente des plages et inondations à répétition dans les villes côtières lors des grandes marées d\'hiver.'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'La calotte du Groenland est une vaste masse de glace reposant sur un socle rocheux. Elle contribue au niveau marin lorsqu\'elle perd de la masse vers l\'océan.',
+    whyPointOfNoReturn: 'Des rétroactions liées à l\'altitude de la surface et au bilan de masse sont étudiées dans la littérature; leur importance dépend du scénario de réchauffement.',
+    concreteImpactEveryday: 'La contribution de la calotte au niveau marin est évaluée sur des échelles de temps longues. Les conséquences locales dépendent aussi de la subsidence, des marées et de l\'exposition côtière.'
   },
   {
     id: 'wais',
@@ -76,20 +76,20 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     category: 'cryosphere',
     categoryLabel: 'Glaces & Pôles',
     location: 'Pôle Sud (Glaciers Thwaites et Pine Island)',
-    summarySimple: 'Cette glace ne repose pas sur de la terre ferme mais dans une cuvette sous le niveau de la mer. L\'eau tiède de l\'océan ronge la base du glacier par en-dessous, le faisant glisser vers la mer comme un bouchon qui saute.',
+    summarySimple: 'La calotte antarctique occidentale comprend des secteurs dont le socle rocheux est situé sous le niveau de la mer. L\'océan peut contribuer à la fonte basale de glaciers côtiers.',
     thresholdEst: 1.5,
     thresholdMin: 1.0,
     thresholdMax: 3.0,
     timescaleYears: '500 à 2 000 ans',
-    observedFactToday: 'La ligne de contact sous-marine du glacier Thwaites (le "glacier de l\'apocalypse") recule de près d\'1 km par an. La région perd ~150 milliards de tonnes de glace par an.',
-    consequencePlain: '+3,3 mètres de hausse mondiale des mers si elle s\'effondre totalement. Cela submergerait des quartiers entiers à New York, Tokyo, Calcutta, Alexandrie et Bordeaux.',
-    irreversibilityNotes: 'La pente du socle rocheux descend vers l\'intérieur : plus la glace recule, plus la paroi exposée à l\'océan devient haute et instable (instabilité marine des calottes glaciaires).',
+    observedFactToday: 'Les observations satellitaires et de terrain montrent un amincissement et un recul de plusieurs glaciers de l\'Antarctique occidental, dont Thwaites; les taux varient dans le temps et selon les secteurs.',
+    consequencePlain: 'La perte complète de la calotte antarctique occidentale correspondrait à plusieurs mètres d\'élévation moyenne du niveau marin à long terme. Ce chiffre n\'est pas une projection pour le XXIe siècle.',
+    irreversibilityNotes: 'Certains secteurs reposent sur un socle situé sous le niveau marin. La dynamique de retrait et la stabilité de ces secteurs font l\'objet d\'études et d\'incertitudes.',
     scientificSource: 'Joughin et al., Science 2014 ; Rignot et al., GRL 2014 ; GIEC SROCC.',
     statusToday: 'at_risk',
-    estimatedYearTendency: '2030 – 2040',
-    whatIsItSimple: 'Une gigantesque masse de glace qui repose dans une cuvette sous le niveau de l\'océan. Des courants marins tièdes s\'infiltrent par en-dessous et rongent la base des glaciers géants (comme Thwaites).',
-    whyPointOfNoReturn: 'Le socle rocheux descend en pente vers l\'intérieur : plus la glace recule, plus le front de glace exposé à l\'eau tiède est épais et fragile. C\'est un effet domino mécanique inexorable.',
-    concreteImpactEveryday: '+3,3 mètres d\'eau en plus sur les côtes du monde entier. Des centaines de millions d\'habitants côtiers forcés de fuir et perte irréversible de millions d\'hectares de terres agricoles littorales.'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'La calotte antarctique occidentale comprend des glaciers reposant en partie sur un socle situé sous le niveau marin; l\'eau océanique peut contribuer à leur fonte basale.',
+    whyPointOfNoReturn: 'L\'instabilité des secteurs marins est un mécanisme étudié; son évolution dépend de la géométrie du socle, de l\'océan et du climat.',
+    concreteImpactEveryday: 'Une élévation du niveau marin augmente l\'exposition des zones côtières. Les impacts locaux dépendent des trajectoires d\'élévation, de l\'altitude et des protections en place.'
   },
   {
     id: 'corals',
@@ -102,15 +102,15 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     thresholdMin: 1.0,
     thresholdMax: 2.0,
     timescaleYears: '1 à 10 ans (quasi-immédiat)',
-    observedFactToday: 'En avril 2024, la NOAA a confirmé le 4e épisode mondial de blanchissement de masse de l\'histoire. Plus de 54% des zones de récifs de 53 pays ont subi un stress thermique létal en 2023-2024.',
-    consequencePlain: 'Les récifs abritent 25% de la vie marine mondiale et nourrissent 500 millions d\'humains (pêche côtière et protection contre les vagues de tempête). À +1,5°C, 70 à 90% des récifs disparaissent ; à +2,0°C, plus de 99%.',
+    observedFactToday: 'En avril 2024, la NOAA a annoncé le quatrième épisode mondial de blanchissement des coraux. L\'agence a rapporté un stress thermique de niveau blanchissement sur une part importante des récifs suivis; ce stress ne signifie pas que tous les coraux sont morts.',
+    consequencePlain: 'Les récifs coralliens fournissent des habitats et contribuent à la protection de certains littoraux. Le GIEC évalue une forte diminution de leur aire à mesure que le réchauffement augmente; ces estimations dépendent du niveau de réchauffement.',
     irreversibilityNotes: 'Un récif met 10 à 15 ans à se régénérer après un blanchissement. Si les vagues de chaleur marine reviennent chaque été, ils n\'ont plus le temps physique de survivre.',
     scientificSource: 'IPCC Spécial 1.5°C (2018) ; NOAA Coral Reef Watch (2024) ; Hughes et al., Nature 2017.',
     statusToday: 'tipping',
-    estimatedYearTendency: '2026 – 2032 (En cours de franchissement !)',
-    whatIsItSimple: 'Des animaux marins minuscules bâtisseurs de récifs qui vivent grâce à une algue microscopique colorée. Dès que la mer chauffe de +1°C en été, le corail panique, rejette l\'algue, devient blanc comme de la craie et meurt de faim.',
-    whyPointOfNoReturn: 'Il faut au minimum 10 ans à un récif pour repousser. Si la canicule sous-marine revient chaque année, les jeunes coraux meurent avant de grandir : c\'est l\'extinction définitive du milieu.',
-    concreteImpactEveryday: 'Dans votre assiette : effondrement de la pêche et raréfaction du poisson pour 500 millions d\'habitants. Sur les plages : disparition du brise-lames naturel qui absorbe l\'énergie des tempêtes tropicales.'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'Les coraux bâtisseurs de récifs vivent en association avec des algues. Un stress thermique peut provoquer le blanchissement; la mortalité dépend de l\'intensité et de la durée du stress et d\'autres facteurs.',
+    whyPointOfNoReturn: 'La fréquence des épisodes de stress thermique peut affecter la récupération des récifs. Le rythme de récupération varie selon les espèces et les conditions locales.',
+    concreteImpactEveryday: 'Les récifs fournissent des habitats et contribuent à la protection de certains littoraux; les effets d\'un épisode de blanchissement varient selon l\'écosystème et sa durée.'
   },
   {
     id: 'permafrost',
@@ -118,20 +118,20 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     category: 'cryosphere',
     categoryLabel: 'Glaces & Pôles',
     location: 'Sibérie, Alaska, Nord du Canada',
-    summarySimple: 'Des sols gelés depuis des dizaines de milliers d\'années qui retiennent d\'immenses quantités de restes de plantes et d\'animaux préhistoriques. En dégelant, ces matières pourrissent et libèrent du CO2 et du méthane (un gaz à effet de serre très puissant).',
+    summarySimple: 'Le pergélisol est un sol qui reste à une température égale ou inférieure à 0°C pendant au moins deux années consécutives. Le dégel peut entraîner la décomposition de matière organique et des émissions de gaz à effet de serre.',
     thresholdEst: 1.5,
     thresholdMin: 1.0,
     thresholdMax: 2.3,
     timescaleYears: '100 à 300 ans',
     observedFactToday: 'Réseau GTN-P : la température des sols arctiques à 10-20 m de profondeur s\'est réchauffée de +0,3°C à +0,6°C par décennie. Des cratères d\'effondrement (thermokarst) et des fuites de méthane sont observés en Sibérie.',
-    consequencePlain: 'Le pergélisol contient environ 1 500 milliards de tonnes de carbone (deux fois plus que toute l\'atmosphère). Son dégel agit comme un pays pollueur invisible supplémentaire qui annule nos efforts de réduction d\'émissions.',
-    irreversibilityNotes: 'Une fois dégelée, la matière organique ne peut pas "se recongeler" magiquement : la décomposition bactérienne s\'auto-alimente en produisant de la chaleur.',
+    consequencePlain: 'Le pergélisol contient une grande quantité de carbone organique. Le dégel peut favoriser des émissions de CO₂ et de méthane; l\'ampleur dépend de la zone, du rythme du dégel et des processus microbiens.',
+    irreversibilityNotes: 'Le dégel peut rendre disponible de la matière organique à la décomposition microbienne. Les émissions associées dépendent des conditions locales et des processus biogéochimiques.',
     scientificSource: 'Turetsky et al., Nature Geoscience 2020 ; Schuur et al., Nature 2015 ; GIEC AR6 Chapitre 5.',
     statusToday: 'at_risk',
-    estimatedYearTendency: '2030 – 2040',
-    whatIsItSimple: 'Un congélateur géant sous terre en Sibérie et au Canada qui conserve depuis l\'âge de glace des débris de mammouths et de végétaux. En dégelant, tout se met à pourrir et relâche d\'immenses quantités de méthane et CO2.',
-    whyPointOfNoReturn: 'La décomposition produit sa propre chaleur sous la terre (comme un tas de compost). Même avec des hivers glaciaires en surface, la chaleur souterraine continue de faire fondre le reste.',
-    concreteImpactEveryday: 'Le dégel agit comme une usine géante à effet de serre incontrôlable qui annule tous nos efforts humains de sobriété, accélérant la fréquence des canicules et des sécheresses sur nos cultures.'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'Le pergélisol désigne un sol gelé en permanence pendant au moins deux années consécutives. Il peut contenir de la matière organique accumulée au cours du temps.',
+    whyPointOfNoReturn: 'Le réchauffement du sol favorise le dégel; la vitesse et la profondeur du dégel varient selon le climat, les sols et la couverture végétale.',
+    concreteImpactEveryday: 'Les émissions liées au dégel du pergélisol constituent une rétroaction climatique étudiée et sont incluses dans certaines évaluations des émissions futures.'
   },
   {
     id: 'barents_ice',
@@ -139,20 +139,20 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     category: 'cryosphere',
     categoryLabel: 'Glaces & Pôles',
     location: 'Arctique boréal (au nord de la Norvège et Russie)',
-    summarySimple: 'La glace blanche reflète 80% des rayons du soleil vers l\'espace (effet miroir). Quand elle fond, l\'océan sombre absorbe 90% de la chaleur du soleil, réchauffant l\'eau et empêchant la glace de se reformer l\'hiver suivant.',
+    summarySimple: 'La glace de mer a un albédo plus élevé que l\'océan libre. La diminution de la couverture de glace modifie l\'énergie solaire absorbée par la surface, selon la saison et les conditions locales.',
     thresholdEst: 1.6,
     thresholdMin: 1.5,
     thresholdMax: 1.7,
     timescaleYears: '20 à 30 ans',
-    observedFactToday: 'L\'Arctique se réchauffe près de 4 fois plus vite que le reste de la planète (amplification arctique mesurée par le FMI et la NASA). La banquise d\'été a perdu 50% de sa surface et 75% de son volume depuis 1979.',
-    consequencePlain: 'Déstabilisation du courant-jet (Jet Stream) atmosphérique, provoquant des "dômes de chaleur" bloqués pendant des semaines en Europe ou des vagues de froid polaire descendant anormalement au sud.',
-    irreversibilityNotes: 'L\'effet albédo fonctionne dans les deux sens : une fois l\'eau devenue sombre et tiède, il faut un froid extrême pour réamorcer la banquise.',
+    observedFactToday: 'Les observations montrent une diminution de l\'étendue de la glace de mer arctique en septembre depuis le début des mesures satellitaires en 1979. Le taux dépend de la période calculée.',
+    consequencePlain: 'Les liens entre la diminution de la glace de mer arctique et les régimes météorologiques des latitudes moyennes font l\'objet de recherches; leur ampleur et leur robustesse sont discutées.',
+    irreversibilityNotes: 'La diminution de la glace de mer réduit l\'albédo de surface et modifie l\'absorption du rayonnement solaire; l\'effet varie selon la saison et la couverture nuageuse.',
     scientificSource: 'Rantanen et al., Communications Earth & Environment 2022 ; Screen & Simmonds 2010.',
     statusToday: 'at_risk',
-    estimatedYearTendency: '2032 – 2042',
-    whatIsItSimple: 'La glace blanche au pôle Nord agit comme un miroir pare-soleil. Dès qu\'elle disparaît en été, l\'océan bleu foncé absorbe 90% des rayons solaires, stockant la chaleur comme un radiateur géant.',
-    whyPointOfNoReturn: 'L\'océan sombre emmagasine tellement de chaleur estivale qu\'il reste tiède jusqu\'en hiver, empêchant la banquise de se reformer. Le miroir protecteur de la planète est cassé.',
-    concreteImpactEveryday: 'Blocage météo persistant : des dômes de canicule restent coincés pendant 4 semaines au-dessus de la France ou de l\'Espagne, grillant les récoltes, ou des pluies diluviennes inondent sans discontinuer.'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'La glace de mer arctique présente un albédo supérieur à celui de l\'océan libre. Son étendue varie au cours de l\'année et diminue à long terme.',
+    whyPointOfNoReturn: 'La relation entre la couverture de glace, l\'albédo et la température de surface est décrite dans les évaluations du climat; elle ne permet pas, à elle seule, de déduire une date de disparition.',
+    concreteImpactEveryday: 'Les effets de la diminution de la glace de mer sur les conditions météorologiques locales et lointaines sont étudiés; ils ne sont pas déterminés par cette simulation.'
   },
   {
     id: 'amazon',
@@ -160,20 +160,20 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     category: 'biosphere',
     categoryLabel: 'Écosystèmes vivants',
     location: 'Bassin d\'Amérique du Sud (Brésil, Pérou, Colombie...)',
-    summarySimple: 'La forêt amazonienne fabrique sa propre pluie : chaque arbre pompe de l\'eau dans le sol et la transpire dans l\'air, créant des nuages qui arrosent les arbres plus à l\'ouest ("fleuves volants"). Si la forêt rétrécit trop, la pluie s\'arrête et la forêt sèche se transforme en savane.',
+    summarySimple: 'L\'évapotranspiration de la forêt amazonienne contribue au recyclage de l\'humidité et aux précipitations régionales. La déforestation et le réchauffement peuvent modifier ces processus.',
     thresholdEst: 3.5,
     thresholdMin: 2.0,
     thresholdMax: 6.0,
     timescaleYears: '50 à 100 ans',
-    observedFactToday: '17% de l\'Amazonie a été déboisée par l\'Homme. Étude majeure Nature (Gatti et al. 2021) : la partie sud-est de l\'Amazonie est déjà devenue émettrice nette de CO2 (elle recrache plus de carbone qu\'elle n\'en absorbe lors des sécheresses).',
-    consequencePlain: 'Relâchement d\'environ 150 à 200 milliards de tonnes de CO2 dans l\'air, chute dramatique des pluies nécessaires à l\'agriculture en Amérique du Sud et effondrement de la plus grande réserve de biodiversité terrestre.',
-    irreversibilityNotes: 'Le seuil combiné dépend de deux facteurs : le réchauffement climatique ET le déboisement direct. Selon Carlos Nobre et Thomas Lovejoy, un déboisement de 20-25% suffirait à amorcer la savanisation.',
+    observedFactToday: 'Les mesures de flux de carbone rapportées par Gatti et al. (2021) indiquent des émissions nettes dans l\'est et le sud-est de l\'Amazonie étudiés, en lien notamment avec la déforestation et les sécheresses pendant la période d\'observation.',
+    consequencePlain: 'La dégradation de l\'Amazonie pourrait modifier les stocks de carbone, les précipitations régionales et les écosystèmes. L\'ampleur et la distribution de ces changements restent incertaines.',
+    irreversibilityNotes: 'Les seuils de risque proposés pour l\'Amazonie dépendent du réchauffement et du déboisement; leurs estimations varient selon les méthodes et les hypothèses des études.',
     scientificSource: 'Nobre et al., Science Advances 2016 ; Gatti et al., Nature 2021 ; Lovejoy & Nobre 2018.',
     statusToday: 'at_risk',
-    estimatedYearTendency: '2060 – 2075',
-    whatIsItSimple: 'La forêt amazonienne est une pompe à pluie : les arbres boivent l\'eau du sol et la transpirent pour créer des nuages qui arrosent les arbres voisins. Si on coupe trop d\'arbres, la pompe cale et la forêt sèche se transforme en savane herbeuse.',
-    whyPointOfNoReturn: 'Moins d\'arbres = moins de nuages = sécheresse accrue = méga-feux spontanés. La forêt ne peut plus jamais repousser dans un climat devenu trop aride.',
-    concreteImpactEveryday: 'Flambée des cours du café, du chocolat et du soja. Relâchement de 200 milliards de tonnes de CO2 dans l\'air (5 années entières de toute la pollution humaine), provoquant un bond thermique brutal.'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'L\'évapotranspiration de la végétation transfère de l\'eau vers l\'atmosphère et contribue aux précipitations régionales.',
+    whyPointOfNoReturn: 'Le déboisement et le réchauffement peuvent modifier le cycle régional de l\'eau et accroître le risque de dégradation forestière; les seuils proposés sont incertains et dépendent de plusieurs facteurs.',
+    concreteImpactEveryday: 'Les changements de précipitations et d\'écosystèmes peuvent affecter les activités agricoles et les populations de la région; les effets précis dépendent de l\'ampleur et de la localisation des changements.'
   },
   {
     id: 'amoc',
@@ -181,20 +181,20 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     category: 'ocean_atmosphere',
     categoryLabel: 'Courants & Climat',
     location: 'Océan Atlantique Nord',
-    summarySimple: 'Un immense tapis roulant océanique : l\'eau chaude des tropiques remonte vers l\'Europe en surface, se refroidit près du Groenland, devient très salée et lourde, puis plonge au fond de l\'océan pour repartir vers le sud. Si trop d\'eau douce de fonte glaciaire s\'y déverse, l\'eau devient trop légère et ne plonge plus : le tapis roulant cale.',
+    summarySimple: 'L\'AMOC est un système de courants de l\'Atlantique qui transporte chaleur et eau entre les régions tropicales et nordiques. Elle comprend des courants de surface et des circulations profondes.',
     thresholdEst: 4.0,
     thresholdMin: 1.4,
     thresholdMax: 8.0,
     timescaleYears: '50 à 200 ans',
-    observedFactToday: 'Réseau de capteurs océanographiques RAPID : l\'AMOC a ralenti d\'environ 15% depuis les années 1950. C\'est son niveau le plus faible depuis au moins 1 000 ans.',
-    consequencePlain: 'Un arrêt complet de l\'AMOC refroidirait brutalement le nord-ouest de l\'Europe de 3 à 8°C (hivers très rigoureux, tempêtes violentes), tout en surchauffant les tropiques et en déplaçant les moussons d\'Afrique et d\'Inde (menaçant les récoltes de milliards de personnes).',
-    irreversibilityNotes: 'La plongée de l\'eau salée est un phénomène à seuil : une fois interrompu, il faut des décennies d\'eau très salée et froide pour relancer le moteur.',
+    observedFactToday: 'Les estimations des changements récents de l\'AMOC dépendent de la série d\'observations et de la méthode. La période instrumentale directe est trop courte pour établir un classement robuste sur un millénaire.',
+    consequencePlain: 'Les modèles montrent qu\'un fort affaiblissement ou un effondrement de l\'AMOC modifierait les températures et les précipitations régionales. L\'ampleur et la répartition de ces changements dépendent du scénario et du modèle.',
+    irreversibilityNotes: 'Des états alternatifs de la circulation sont étudiés dans les modèles; les mécanismes et la possibilité d\'un basculement sous le climat futur restent associés à des incertitudes.',
     scientificSource: 'Caesar et al., Nature 2018 ; Ditlevsen & Ditlevsen, Nature Comm. 2023 ; GIEC AR6 WG1.',
     statusToday: 'at_risk',
-    estimatedYearTendency: '2080 – 2100 (ou avant selon signaux précurseurs)',
-    whatIsItSimple: 'Un gigantesque tapis roulant sous-marin : l\'eau tiède des Antilles monte vers l\'Europe, se refroidit près du Groenland, devient dense et salée, puis plonge au fond des abysses. Si trop d\'eau douce de fonte glaciaire s\'y déverse, l\'eau trop légère flotte et le tapis roulant cale net.',
-    whyPointOfNoReturn: 'Pour relancer ce courant océanique planétaire, il faudrait pomper des milliards de tonnes d\'eau douce hors de l\'Atlantique Nord et refroidir tout le pôle : impossible pour l\'Humanité.',
-    concreteImpactEveryday: 'Refroidissement paradoxal et violent en Europe (-5°C en hiver avec tempêtes destructrices), tandis que le sud suffoque. Effondrement de la mousson indienne et sahélienne : famines pour 2 milliards de paysans.'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'L\'AMOC est un système de courants de l\'Atlantique qui transporte chaleur, sel et eau entre les régions tropicales et nordiques. Elle comprend des courants de surface et des circulations profondes.',
+    whyPointOfNoReturn: 'Le GIEC évalue un affaiblissement de l\'AMOC au XXIe siècle comme très probable, mais indique qu\'un effondrement abrupt avant 2100 n\'est pas attendu avec une confiance moyenne (AR6, WG I).',
+    concreteImpactEveryday: 'Un fort affaiblissement modifierait les températures et les précipitations régionales. Les effets quantitatifs dépendent du scénario, du modèle et de la région.'
   },
   {
     id: 'boreal_forest',
@@ -202,20 +202,20 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     category: 'biosphere',
     categoryLabel: 'Écosystèmes vivants',
     location: 'Canada, Scandinavie, Russie',
-    summarySimple: 'L\'immense ceinture de conifères du nord souffre de la chaleur estivale, des attaques d\'insectes ravageurs qui ne meurent plus l\'hiver et de méga-feux de forêts gigantesques.',
+    summarySimple: 'Les forêts boréales sont exposées aux variations de température, aux insectes, aux sécheresses et aux incendies. Les réponses des écosystèmes varient selon la région et les espèces.',
     thresholdEst: 4.0,
     thresholdMin: 1.5,
     thresholdMax: 5.0,
     timescaleYears: '50 à 100 ans',
-    observedFactToday: 'Au Canada, la saison des feux 2023 a brûlé plus de 18 millions d\'hectares (un record absolu, plus de 6 fois la moyenne historique), émettant plus de 2 milliards de tonnes de CO2.',
-    consequencePlain: 'Transformation d\'un des plus grands puits de carbone de la planète en source d\'émissions incontrôlable. La fumée dégrade la qualité de l\'air à des milliers de kilomètres.',
-    irreversibilityNotes: 'La disparition des conifères au profit de prairies ou d\'arbustes modifie durablement le sol et le cycle de l\'eau boréal.',
+    observedFactToday: 'La saison des feux de forêt au Canada en 2023 a été la plus étendue enregistrée dans le jeu de données national; les estimations d\'aire brûlée et d\'émissions dépendent des méthodes et sources utilisées.',
+    consequencePlain: 'Les incendies émettent des gaz et des particules et peuvent modifier temporairement les flux de carbone des écosystèmes touchés.',
+    irreversibilityNotes: 'Après un incendie, la composition et la structure de la végétation peuvent changer; la trajectoire de récupération dépend des conditions locales et de la fréquence des perturbations.',
     scientificSource: 'Walker et al., Nature Communications 2019 ; Zheng et al., Science 2023.',
     statusToday: 'safe',
-    estimatedYearTendency: '2085 – 2100',
-    whatIsItSimple: 'L\'immense mer d\'arbres résineux qui encercle le Canada, la Suède et la Russie. Elle est décimée par des coléoptères qui ne meurent plus pendant les hivers trop doux et par des incendies géants inextinguibles.',
-    whyPointOfNoReturn: 'Les graines de conifères ont besoin d\'hivers très froids et de sols humides. Une fois le sol calciné et séché, seuls des buissons et herbes sèches repoussent.',
-    concreteImpactEveryday: 'Pénurie mondiale de bois et de pâte à papier. Fumées toxiques récurrentes envahissant les capitales sur des milliers de kilomètres, obligeant des millions de personnes à se calfeutrer.'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'Les forêts boréales forment une vaste zone forestière des hautes latitudes de l\'hémisphère Nord.',
+    whyPointOfNoReturn: 'Le rétablissement après incendie dépend de l\'intensité du feu, des conditions du sol, des espèces présentes et des perturbations ultérieures.',
+    concreteImpactEveryday: 'La fumée des incendies peut dégrader la qualité de l\'air et se transporter au-delà des zones brûlées; l\'exposition varie selon les conditions météorologiques.'
   },
   {
     id: 'wilkes_basin',
@@ -223,20 +223,20 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     category: 'cryosphere',
     categoryLabel: 'Glaces & Pôles',
     location: 'Antarctique Oriental',
-    summarySimple: 'Longtemps jugée inébranlable, cette portion de l\'Antarctique oriental repose elle aussi sur un socle rocheux situé sous le niveau de la mer, retenue par un "verrou" de glace côtier.',
+    summarySimple: 'Le bassin de Wilkes est une région de l\'Antarctique oriental dont certaines parties du socle sont situées sous le niveau marin.',
     thresholdEst: 3.0,
     thresholdMin: 2.0,
     thresholdMax: 6.0,
     timescaleYears: '2 000 à 10 000 ans',
     observedFactToday: 'Certains secteurs côtiers (glacier Totten) montrent des signes d\'accélération de l\'amincissement sous l\'effet d\'eaux profondes tièdes.',
-    consequencePlain: 'Contient l\'équivalent de +3 à +4 mètres de montée mondiale des océans. Une fois le verrou côtier brisé, la vidange du bassin devient inexorable.',
-    irreversibilityNotes: 'La topographie sous-marine en cuvette empêche la glace de s\'arrêter de glisser une fois le mouvement enclenché.',
+    consequencePlain: 'La perte de glace associée au bassin de Wilkes pourrait contribuer à l\'élévation du niveau marin sur de longues périodes; l\'ampleur et les délais dépendent de la dynamique de la calotte.',
+    irreversibilityNotes: 'La géométrie du socle et les processus de rétroaction influencent la stabilité de la glace; leur évolution fait l\'objet d\'études et comporte des incertitudes.',
     scientificSource: 'Mengel & Levermann, Nature Climate Change 2014 ; Rignot et al., PNAS 2019.',
     statusToday: 'safe',
-    estimatedYearTendency: '2055 – 2070',
-    whatIsItSimple: 'Une colossale calotte de glace posée au fond d\'une cuvette sous-marine en Antarctique oriental, retenue par un petit verrou de glace côtier (comme un barrage naturel).',
-    whyPointOfNoReturn: 'Dès que le bouchon côtier de glace fond au contact d\'eaux profondes tièdes, la cuvette se vide mécaniquement dans l\'océan sans obstacle pour l\'enrayer.',
-    concreteImpactEveryday: '+3 à +4 mètres supplémentaires d\'élévation du niveau moyen de la mer. Submersion permanente des deltas nourriciers mondiaux (Nil, Mékong, Pô, Mississippi).'
+    estimatedYearTendency: 'Aucune date précise établie par les sources citées',
+    whatIsItSimple: 'Le bassin de Wilkes est une région de l\'Antarctique oriental présentant une topographie sous-glaciaire en partie située sous le niveau marin.',
+    whyPointOfNoReturn: 'La stabilité de la glace dépend notamment de la topographie sous-glaciaire et des interactions avec l\'océan; les projections comportent des incertitudes.',
+    concreteImpactEveryday: 'Une contribution au niveau marin à long terme dépendrait de l\'évolution de la glace. Les impacts côtiers seraient différents selon l\'élévation locale, la subsidence et les protections.'
   }
 ];
 
@@ -328,7 +328,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                 L'analogie de la chaise
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                Vous vous balancez sur deux pieds : tant que l'angle reste raisonnable, vous revenez en avant. Mais passé un angle critique, la chute devient inévitable sans qu'on ait besoin de vous pousser.
+                Cette analogie illustre un changement d'état après un seuil. Les seuils et mécanismes réels varient selon les composantes du système climatique et comportent des incertitudes.
               </p>
             </div>
 
@@ -338,7 +338,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                 L'analogie du gros glaçon
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                Sortir un bloc de glace de 100 kg d'un congélateur à -15°C et le poser dans une pièce à +20°C enclenche sa fonte certaine. Pourtant, il mettra des heures à fondre. Pour les calottes, cela prendra des siècles.
+                Un grand volume de glace peut répondre lentement à un changement de température. Les délais de réponse des calottes sont estimés à partir de processus et de modèles; ils ne se déduisent pas directement de cette analogie.
               </p>
             </div>
 
@@ -348,7 +348,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                 L'effet domino (cascade)
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                La fonte de la glace arctique déverse de l'eau douce qui ralentit le courant atlantique (AMOC), qui à son tour déplace les moussons tropicales et assèche la forêt amazonienne.
+                Les interactions entre calottes, circulation océanique, moussons et forêt amazonienne sont étudiées; cette chaîne ne constitue pas une conséquence déterministe établie.
               </p>
             </div>
           </div>
@@ -365,19 +365,19 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
           <ul className="space-y-2 text-xs text-slate-700 leading-relaxed">
             <li className="flex items-start gap-2">
               <span className="text-emerald-600 font-bold">•</span>
-              <span><strong>+1,3°C déjà atteint :</strong> La température moyenne mondiale observée a dépassé +1,28°C au-dessus de l'ère préindustrielle (Copernicus / OMM).</span>
+              <span><strong>Réchauffement observé :</strong> Les estimations varient selon la période de référence et la période étudiée; une année isolée ne représente pas le niveau de réchauffement à long terme défini par le GIEC.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-emerald-600 font-bold">•</span>
-              <span><strong>5 points de bascule sont déjà dans la zone de danger</strong> dès +1,5°C : Groenland, Antarctique Ouest, coraux tropicaux, pergélisol, mer de Barents.</span>
+              <span><strong>Risques de points de bascule :</strong> La littérature évalue des plages de seuils et des probabilités pour plusieurs composantes; ces estimations ne signifient pas que cinq basculements sont déjà engagés à un seuil unique.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-emerald-600 font-bold">•</span>
-              <span><strong>Perte nette continue de glace :</strong> Le Groenland perd 270 Gt/an et l'Antarctique 150 Gt/an mesurés au millimètre près par gravimétrie satellite.</span>
+              <span><strong>Pertes de masse des calottes :</strong> Les estimations satellitaires montrent des pertes nettes au Groenland et en Antarctique; les taux dépendent de la période et de la méthode d'estimation.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-emerald-600 font-bold">•</span>
-              <span><strong>Chaque dixième compte :</strong> Il n'y a pas de "falaise magique" où tout bascule d'un coup. Chaque fraction de degré évitée réduit les risques d'activation en chaîne.</span>
+              <span><strong>Risque et réchauffement :</strong> Les évaluations scientifiques décrivent des probabilités et des plages d'incertitude; elles ne fixent pas une date unique de basculement.</span>
             </li>
           </ul>
         </div>
@@ -394,7 +394,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
             </li>
             <li className="flex items-start gap-2">
               <span className="text-rose-600 font-bold">•</span>
-              <span><strong>PAS de fatalisme « tout est déjà foutu » :</strong> Dépasser temporairement +1,5°C pendant quelques années ne détruit pas instantanément le Groenland si la température redescend rapidement.</span>
+              <span><strong>Évolution des risques :</strong> Le franchissement temporaire d'un niveau de réchauffement ne permet pas, à lui seul, de conclure à l'effondrement immédiat d'une calotte; la réponse dépend de l'ampleur et de la durée du réchauffement.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-rose-600 font-bold">•</span>
@@ -402,7 +402,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
             </li>
             <li className="flex items-start gap-2">
               <span className="text-rose-600 font-bold">•</span>
-              <span><strong>Incertitudes documentées :</strong> La science donne des fourchettes (ex : AMOC entre +1,4°C et +8°C). Les chercheurs ne prétendent pas connaître le jour exact du basculement.</span>
+              <span><strong>Incertitudes documentées :</strong> Les seuils estimés de l'AMOC dépendent des études, des méthodes et de la période de référence; aucune date précise de basculement n'est établie par consensus.</span>
             </li>
           </ul>
         </div>
@@ -428,9 +428,9 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                 Date envisagée pour le franchissement de l'ENSEMBLE des points de bascule
               </h3>
               <p className="text-xs sm:text-sm text-slate-700 mt-1 max-w-2xl leading-relaxed">
-                • <strong>Scénario Fossile sans rupture :</strong> Les 5 premiers points cèdent dès <span className="text-amber-800 font-bold">2030 – 2038 (+1,5°C)</span>, et l'ensemble des 9 points (AMOC et forêts boréales) est franchi vers <span className="text-rose-700 font-bold">2085 – 2100 (+4,0°C)</span>.
+                • <strong>Scénario à fortes émissions :</strong> Les dates de franchissement affichées auparavant n'étaient pas des dates établies par les études. Le GIEC présente les risques avec des plages d'incertitude et des niveaux de confiance.
                 <br />
-                • <strong>Scénario Sobriété (Accord de Paris) :</strong> Stabilisation sous +1,8°C = l'ensemble des points n'est <span className="text-emerald-700 font-bold">JAMAIS franchi</span>.
+                • <strong>Scénarios d'émissions :</strong> Une hausse de température plus faible réduit les risques, mais ne permet pas d'affirmer qu'aucun élément ne franchira son seuil.
               </p>
             </div>
           </div>
@@ -444,7 +444,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
               <span>Voir les conséquences si TOUS les points sont franchis</span>
             </button>
             <div className="text-[10px] text-center text-rose-700 font-mono">
-              Effondrement en chaîne (Hothouse Earth)
+              Interactions entre composantes du système climatique
             </div>
           </div>
         </div>
@@ -735,7 +735,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                 <div>
                   <div className="flex items-center gap-1.5 text-sky-800 font-semibold text-xs">
                     <Calendar className="w-3.5 h-3.5 text-sky-600" />
-                    <span>Date estimée de franchissement (trajectoire actuelle) :</span>
+                    <span>Date indicative calculée dans le scénario CLIMATOPEDY :</span>
                   </div>
                   <div className="font-mono text-xs text-slate-800 font-bold mt-0.5">
                     {activeElement.estimatedYearTendency}
@@ -845,7 +845,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                 <th className="py-3.5 px-3 whitespace-nowrap">Catégorie</th>
                 <th className="py-3.5 px-3 whitespace-nowrap">Seuil estimé</th>
                 <th className="py-3.5 px-3 whitespace-nowrap">Fourchette</th>
-                <th className="py-3.5 px-3 whitespace-nowrap">Date prévisionnelle</th>
+                <th className="py-3.5 px-3 whitespace-nowrap">Date établie par les sources</th>
                 <th className="py-3.5 px-3 whitespace-nowrap">Temps de bascule</th>
                 <th className="py-3.5 px-4 min-w-[360px]">Impact majeur mesurable</th>
                 <th className="py-3.5 px-3 text-center whitespace-nowrap">Fiche pour débutant</th>
@@ -910,8 +910,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
           La conclusion des climatologues : Pas de fatalisme, mais une urgence physique
         </div>
         <p className="mb-2">
-          Les points de bascule ne doivent pas être vus comme un interrupteur binaire « tout va bien / tout est perdu ».
-          Chaque dixième de degré évité (+1,4°C plutôt que +1,5°C ; +1,7°C plutôt que +1,8°C) diminue la probabilité statistique de franchir le seuil d'un élément supplémentaire et ralentit la vitesse d'effondrement des calottes.
+          Les seuils sont des estimations incertaines issues de la littérature citée. Les dates affichées dans cette interface sont propres au scénario CLIMATOPEDY; elles ne sont pas des dates de franchissement établies par le GIEC ou par ces études.
         </p>
         <p className="text-slate-500">
           Sources de référence : <em>Global Tipping Points Report 2023 (Université d'Exeter, COP28)</em> ; <em>Armstrong McKay et al., Science (2022)</em> ; <em>IPCC 6e Rapport d'Évaluation (Groupes I et II, 2021-2023)</em>.

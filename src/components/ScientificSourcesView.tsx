@@ -76,7 +76,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrlLabel: 'Code source ouvert (GitHub)',
     doi: '10.5194/gmd-11-2273-2018',
     gaiaRole: 'Cœur du moteur climatique dans physicsModel.ts : calcul des 4 réservoirs de carbone atmosphérique (R1 à R4), de la constante de saturation alpha(t) et du forçage radiatif du CO2 (5.35 * ln(C/C0)).',
-    keyDataOrQuote: 'Reproduit les modèles complexes du GIEC (Earth System Models) avec une fidélité > 99% sur les températures historiques et les trajectoires SSP.',
+    keyDataOrQuote: 'FaIR est un modèle climatique réduit. L’article présente son architecture et évalue ses performances sur des scénarios d’émissions ; il ne conclut pas à une fidélité universelle supérieure à 99%.',
     reproducibilityNotes: 'Réservoirs tau = [1000000, 394.4, 36.54, 4.304] ans ; coefficients a = [0.2173, 0.2240, 0.2824, 0.2763].'
   },
   {
@@ -95,7 +95,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrl: 'https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-7/',
     secondaryUrlLabel: 'Chapitre 7 : Sensibilité climatique ECS',
     doi: '10.1017/9781009157896',
-    gaiaRole: 'Calibrage de la sensibilité climatique d\'équilibre (ECS = 3.0°C / doublement CO2) et des trajectoires d\'émissions de référence SSP5-8.5 (BAU) et SSP1-1.9 (Sobriété).',
+    gaiaRole: 'L’AR6 évalue la sensibilité climatique à l’équilibre et analyse plusieurs scénarios d’émissions. SSP5-8.5 est un scénario conditionnel de très fortes émissions, pas une prévision certaine.',
     keyDataOrQuote: 'Sensibilité climatique d\'équilibre (ECS) évaluée à 3.0°C avec une plage très probable de 2.5°C à 4.0°C.',
     reproducibilityNotes: 'Paramètre ECS configurable par curseur (1.5°C à 5.5°C) dans l\'interface de simulation.'
   },
@@ -113,7 +113,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2799834/',
     primaryUrlLabel: 'Texte intégral en accès libre (PubMed Central)',
     doi: '10.1073/pnas.0907765106',
-    gaiaRole: 'Équation semi-empirique calculant la vitesse de submersion marine dans simulationRunner.ts et les impacts d\'inondation sur les mégapoles côtières.',
+    gaiaRole: 'L’étude propose une relation semi-empirique entre température mondiale et niveau moyen de la mer. Cette publication ne constitue pas à elle seule une projection régionale d’inondation.',
     keyDataOrQuote: 'Formule différentielle : dH/dt = a * (T - T0) + b * dT/dt avec a = 3.4 mm/an/°C, b = 18 mm/°C et T0 = -0.5°C.',
     reproducibilityNotes: 'Intégration pas à pas de la dilatation thermique et de la fonte des glaces continentales.'
   },
@@ -123,7 +123,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     id: 'stull-2011',
     category: 'wetbulb',
     categoryLabel: 'Thermodynamique & Physiologie Humaine',
-    title: 'Formulation Analytique Exacte de la Température au Thermomètre Mouillé (Tw)',
+    title: 'Approximation de la Température au Thermomètre Mouillé (Tw)',
     englishTitle: 'Wet-Bulb Temperature from Relative Humidity and Air Temperature',
     authors: 'Roland Stull',
     year: 2011,
@@ -135,9 +135,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrl: 'https://doi.org/10.1175/JAMC-D-11-0143.1',
     secondaryUrlLabel: 'DOI Officiel (American Meteorological Society)',
     doi: '10.1175/JAMC-D-11-0143.1',
-    gaiaRole: 'Formule thermodynamique polynomiale exacte calculant le Tw dans physicsModel.ts pour chaque pays et chaque année à partir de la température et de l\'humidité relative.',
+    gaiaRole: 'La formule de Stull fournit une approximation de la température au thermomètre mouillé à partir de la température de l’air et de l’humidité relative.',
     keyDataOrQuote: 'Tw = Ta * atan(0.151977 * sqrt(RH + 8.313659)) + atan(Ta + RH) - atan(RH - 1.676331) + 0.00391838 * (RH^1.5) * atan(0.023101 * RH) - 4.686035.',
-    reproducibilityNotes: 'Validée de -20°C à +50°C et de 5% à 99% d\'humidité relative, avec une précision de ±0.3°C.'
+    reproducibilityNotes: 'L’article décrit le domaine d’application et les erreurs de l’approximation. Cette formule météorologique ne définit pas un seuil physiologique.'
   },
   {
     id: 'sherwood-huber-2010',
@@ -153,9 +153,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2906879/',
     primaryUrlLabel: 'Texte intégral en accès libre (PubMed Central)',
     doi: '10.1073/pnas.0913352107',
-    gaiaRole: 'Définition des seuils physiologiques létaux d\'inhabitabilité humaine dans le calcul des zones habitables et des réfugiés climatiques.',
-    keyDataOrQuote: 'Au-delà de Tw = 35°C (et dès 31°C pour une activité physique courante), le corps humain ne peut plus évacuer sa chaleur métabolique par transpiration, entraînant l\'hyperthermie mortelle en moins de 6 heures.',
-    reproducibilityNotes: 'Calibre le seuil d\'inhabitabilité thermique régionale affiché en rouge sur le planisphère.'
+    gaiaRole: 'Sherwood et Huber discutent une limite théorique de contrainte thermique dans des conditions environnementales spécifiques. L’article ne fournit pas un seuil universel de mortalité applicable à chaque individu.',
+    keyDataOrQuote: 'L’article étudie une limite théorique autour de 35°C de température au thermomètre mouillé pour une exposition prolongée. L’interprétation physiologique dépend notamment de l’activité, de l’acclimatation et des conditions d’exposition.',
+    reproducibilityNotes: 'Cette étude ne valide pas à elle seule des estimations régionales d’inhabitabilité, de mortalité ou de déplacements de population.'
   },
   {
     id: 'raymond-et-al-2020',
@@ -167,12 +167,12 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     year: 2020,
     publisher: 'Science Advances (American Association for the Advancement of Science)',
     peerReviewed: true,
-    typeBadge: 'Mesures réelles de stations météo',
+    typeBadge: 'Analyse d’observations météorologiques',
     primaryUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9578703/',
     primaryUrlLabel: 'Texte intégral en accès libre (PubMed Central)',
     doi: '10.1126/sciadv.aaw1838',
     gaiaRole: 'Validation observationnelle des points chauds mondiaux de Tw critique (Golfe Persique, Vallée de l\'Indus, Plaine du Nord de la Chine).',
-    keyDataOrQuote: 'Des épisodes de Tw > 31°C ont déjà été mesurés par stations météo des décennies plus tôt que prévu par les modèles climatiques généraux.',
+    keyDataOrQuote: 'L’étude analyse des épisodes extrêmes de chaleur et d’humidité observés. Elle ne démontre pas que des seuils précis ont été atteints des décennies avant les projections des modèles.',
     reproducibilityNotes: 'Permet d\'étalonner l\'indice de vulnérabilité thermique humaine par zone géographique.'
   },
 
@@ -193,8 +193,8 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrl: 'https://doi.org/10.1126/science.abn7950',
     secondaryUrlLabel: 'DOI Officiel (Science Magazine)',
     doi: '10.1126/science.abn7950',
-    gaiaRole: 'Matrice exacte des 9 éléments de bascule dans TippingPointsView.tsx : seuils de température minimum, central et maximum (Groenland 1.5°C, Ouest-Antarctique 1.5°C, Coraux 1.5°C, Pergélisol 1.5°C, etc.).',
-    keyDataOrQuote: '5 points de bascule majeurs deviennent possibles dès 1.5°C et probables au-delà de 2°C, avec des temps de réaction de plusieurs siècles à millénaires.',
+    gaiaRole: 'L’étude synthétise des estimations de seuils pour plusieurs éléments de bascule. Les valeurs affichées par Climatopedy ne sont pas la matrice exacte de l’article.',
+    keyDataOrQuote: 'Les auteurs estiment que plusieurs éléments pourraient être déclenchés dans la plage de réchauffement de 1,5 à moins de 2°C; leurs seuils sont incertains et varient selon l’élément.',
     reproducibilityNotes: 'Données intégrées dans les jauges de risque en temps réel selon le réchauffement simulé.'
   },
   {
@@ -212,7 +212,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrlLabel: 'Publication officielle (Nature)',
     doi: '10.1038/d41586-019-03595-0',
     gaiaRole: 'Modélisation des cascades de rétroactions positives (ex: la fonte de l\'Arctique injecte de l\'eau douce qui freine l\'AMOC, modifiant la mousson amazonienne).',
-    keyDataOrQuote: 'Plus de la moitié des points de bascule identifiés il y a une décennie sont désormais actifs ou proches de leur seuil critique.',
+    keyDataOrQuote: 'Cette synthèse décrit les risques liés aux points de bascule climatiques; elle ne quantifie pas ici la part des éléments déjà actifs ou proches d’un seuil.',
     reproducibilityNotes: 'Fondement de l\'analyse des rétroactions biophysiques non linéaires.'
   },
   {
@@ -230,7 +230,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrlLabel: 'Article scientifique (Nature)',
     doi: '10.1038/s41586-018-0006-5',
     gaiaRole: 'Calibrage de l\'élément de bascule AMOC et de la "bulle froide" en mer du Labrador dans la modélisation océanique.',
-    keyDataOrQuote: 'Ralentissement d\'environ 15% de l\'AMOC depuis le milieu du XXe siècle, un état sans précédent depuis plus d\'un millénaire.',
+    keyDataOrQuote: 'Caesar et al. (2018) infèrent un affaiblissement de l’AMOC à partir d’une empreinte de température de surface reconstruite. Ce résultat n’est pas une mesure instrumentale directe et continue du transport.',
     reproducibilityNotes: 'Données corrélées aux observations des bouées sub-surfaciques RAPID Array (26°N).'
   },
   {
@@ -247,8 +247,8 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5821491/',
     primaryUrlLabel: 'Texte intégral en accès libre (PubMed Central)',
     doi: '10.1126/sciadv.aat2340',
-    gaiaRole: 'Seuil critique de déboisement et réchauffement entraînant le dépérissement spontané de la forêt amazonienne en savane dégradée.',
-    keyDataOrQuote: 'Le franchissement de 20% à 25% de déforestation globale déclenche la rupture du cycle des fleuves volants et l\'assèchement irréversible du bassin.',
+    gaiaRole: 'L’article examine les risques de dépérissement de l’Amazonie liés conjointement au réchauffement, à la déforestation, aux sécheresses et aux incendies.',
+    keyDataOrQuote: 'La publication discute une estimation de 20 à 25% de déforestation comme niveau de risque; elle ne décrit pas un seuil global déterministe déclenchant à lui seul un assèchement irréversible.',
     reproducibilityNotes: 'Utilisé pour modéliser le basculement de l\'Amazonie de puits de carbone en émetteur net de CO2.'
   },
   {
@@ -266,7 +266,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrlLabel: 'Publication scientifique (Nature)',
     doi: '10.1038/s41586-019-1855-2',
     gaiaRole: 'Mesure de la perte de masse de glace de -270 Gt/an et calibrage de la rétroaction albédo-altitude de la calotte.',
-    keyDataOrQuote: 'Le Groenland a perdu 3 800 milliards de tonnes de glace entre 1992 et 2018, en parfaite adéquation avec le scénario d\'émissions élevées du GIEC.',
+    keyDataOrQuote: 'L’étude estime la perte de masse de la calotte groenlandaise sur la période 1992–2018 à partir de plusieurs observations satellitaires. Cette mesure passée n’est pas une validation d’un scénario futur particulier.',
     reproducibilityNotes: 'Combine les données des satellites GRACE, CryoSat-2 et ICESat.'
   },
 
@@ -288,7 +288,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrlLabel: 'Données mondiales comparatives (Our World in Data)',
     doi: '10.1016/j.enpol.2013.05.049',
     gaiaRole: 'Formule non-linéaire de la falaise de l\'EROI dans physicsModel.ts : E_net = E_gross * (1 - 1/EROI). Sous un EROI de 5:1, l\'industrie doit consacrer l\'essentiel de sa puissance à s\'auto-extraire.',
-    keyDataOrQuote: 'Une civilisation moderne complexe requiert un EROI sociétal minimum d\'environ 10:1 à 12:1 pour financer ses systèmes de santé, d\'éducation, de recherche et d\'infrastructures lourdes.',
+    keyDataOrQuote: 'Les estimations d’EROI dépendent du périmètre et de la méthode de calcul. Cette publication ne justifie pas un seuil universel nécessaire au fonctionnement d’une société.',
     reproducibilityNotes: 'Calibre le cannibalisme énergétique des hydrocarbures non conventionnels (sables bitumineux, pétrole de schiste).'
   },
   {
@@ -306,7 +306,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrlLabel: 'Article scientifique (Nature Energy)',
     doi: '10.1038/s41560-019-0425-z',
     gaiaRole: 'Mesure de la dégradation continue du rendement énergétique réel lorsque les coûts de raffinage et de transport sont intégrés.',
-    keyDataOrQuote: 'L\'EROI au stade final de consommation des carburants fossiles a déjà chuté de 30:1 au début du XXe siècle à moins de 6:1 aujourd\'hui.',
+    keyDataOrQuote: 'Pour les données mondiales de 1995 à 2011, l’étude estime un EROI des combustibles fossiles d’environ 6:1 au stade final, en baisse. Au stade primaire, ses estimations sont proches de 30:1.',
     reproducibilityNotes: 'Justifie la contrainte biophysique d\'inertie industrielle et de contraction matérielle.'
   },
   {
@@ -324,8 +324,8 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrlLabel: 'Référence bibliographique (Open Library)',
     secondaryUrl: 'https://en.wikipedia.org/wiki/Energy_and_Civilization:_A_History',
     secondaryUrlLabel: 'Fiche descriptive encyclopédique',
-    gaiaRole: 'Fournit la base empirique de la rigidité de la mégamachine industrielle : impossibilité de décarboner en quelques années l\'acier, le ciment, les plastiques et l\'ammoniac.',
-    keyDataOrQuote: 'Les 4 piliers matériels de la civilisation moderne (acier, ciment, plastique, ammoniac) dépendent à 100% de la combustion continue de carbone fossile à haute densité énergétique.',
+    gaiaRole: 'Cet ouvrage traite de l’histoire des systèmes énergétiques et de leurs liens avec les sociétés et les technologies.',
+    keyDataOrQuote: 'La production d’acier, de ciment, de plastiques et d’ammoniac utilise différentes sources d’énergie et matières premières; l’ouvrage ne permet pas d’affirmer que ces secteurs dépendent à 100% de la combustion fossile.',
     reproducibilityNotes: 'Intégré dans le modèle de transition sous contrainte de temps physique (18 à 25 ans de cycle d\'investissement).'
   },
 
@@ -344,8 +344,8 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5584412/',
     primaryUrlLabel: 'Texte intégral en accès libre (PubMed Central)',
     doi: '10.1073/pnas.1701762114',
-    gaiaRole: 'Coefficients exacts de perte de rendement par degré de réchauffement dans physicsModel.ts : Maïs (-7.4%/°C), Blé (-6.0%/°C), Riz (-3.2%/°C), Soja (-3.1%/°C).',
-    keyDataOrQuote: 'Chaque degré Celsius de réchauffement climatique mondial réduit le rendement mondial moyen du maïs de 7.4% et du blé de 6.0%.',
+    gaiaRole: 'Zhao et al. synthétisent des estimations moyennes mondiales de sensibilité des rendements; ces valeurs ne constituent pas des coefficients universels pour chaque pays ou année.',
+    keyDataOrQuote: 'Sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, l’étude estime qu’un degré supplémentaire de température moyenne mondiale réduirait en moyenne les rendements mondiaux du maïs de 7,4%, du blé de 6,0%, du riz de 3,2% et du soja de 3,1%. Les effets varient selon les régions.',
     reproducibilityNotes: 'Formule composite appliquée pays par pays selon leur panier agricole réel.'
   },
   {
@@ -1133,7 +1133,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             </span>
             <strong className="text-slate-800 block font-semibold">Vérifier l'Historique 1900–2026</strong>
             <p className="text-slate-600 leading-snug">
-              Comparez les sorties du simulateur entre 1958 et 2026 avec les mesures directes de Mauna Loa (CO₂ : 424 ppm) et de la NASA GISTEMP (+1.35°C). Elles concordent au dixième près.
+              Comparez les sorties du simulateur avec les observations historiques. Les mesures de Mauna Loa et les estimations de température mondiale sont des séries distinctes; leur présence ne constitue pas une validation indépendante des autres sorties du modèle.
             </p>
           </div>
 

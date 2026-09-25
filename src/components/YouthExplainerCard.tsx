@@ -208,7 +208,7 @@ export const YouthExplainerCard: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-slate-900">
-                    Pourquoi 35°C dans le désert c'est gérable, mais 32°C dans un hammam c'est mortel ?
+                    Comment température et humidité modifient-elles le stress thermique ?
                   </h3>
                   <p className="text-xs text-slate-500">
                     Le grand secret de la transpiration et de l'indice Roland Stull (Tw)
@@ -249,13 +249,13 @@ export const YouthExplainerCard: React.FC = () => {
                 <div className="bg-white p-4 rounded-xl border border-rose-200 flex flex-col gap-2 shadow-2xs">
                   <div className="flex items-center gap-2 text-rose-700 font-semibold text-sm">
                     <Flame className="w-4 h-4 text-rose-600" />
-                    <span>3. Le seuil des 31°C Tw</span>
+                    <span>3. Une limite théorique de température humide</span>
                   </div>
                   <p className="text-slate-700 leading-relaxed">
-                    Si le thermomètre mouillé dépasse <strong>31°C</strong>, le corps humain ne peut plus du tout se refroidir, même à l'ombre avec un ventilateur.
+                    Sherwood et Huber (2010) discutent une limite théorique autour de <strong>35°C Tw</strong> lors d'une exposition prolongée. La tolérance varie selon l'activité, l'acclimatation et les conditions d'exposition.
                   </p>
                   <p className="text-rose-700 font-medium">
-                    Sans climatisation branchée sur une prise électrique, la température interne grimpe en flèche. C'est l'inhabitabilité physiologique.
+                    Tw décrit une condition météorologique; cette valeur seule ne prédit ni une température corporelle ni une durée de survie.
                   </p>
                 </div>
               </div>
@@ -265,7 +265,7 @@ export const YouthExplainerCard: React.FC = () => {
                 <span className="text-lg">💡</span>
                 <div>
                   <span className="font-semibold text-sky-950">Ce qu'il faut retenir sur la carte :</span>{' '}
-                  Quand tu vois un pays coloré en rouge ou violet avec un signal d'alarme (comme le Pakistan, l'Inde ou le Golfe Persique en été), cela ne veut pas seulement dire « il fait chaud », cela veut dire que l'air y est trop humide pour la survie humaine sans protection artificielle.
+                  Les couleurs signalent les valeurs de Tw calculées et comparées aux seuils configurés dans CLIMATOPEDY. Elles ne déterminent pas à elles seules l'habitabilité ni la mortalité.
                 </div>
               </div>
             </div>
@@ -371,7 +371,7 @@ export const YouthExplainerCard: React.FC = () => {
                     Les 4 plantes magiques qui nourrissent le monde sont le <strong>blé, le riz, le maïs et le soja</strong>.
                   </p>
                   <p className="text-slate-500">
-                    Les scientifiques ont calculé que pour chaque degré de réchauffement en plus, le maïs perd environ 7,4% de son rendement et le blé 6%. Au-delà de 35°C au moment de la floraison, les épis n'arrivent plus à fabriquer de grains.
+                    Zhao et al. (2017) estiment, sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, des baisses moyennes mondiales par degré de réchauffement de 7,4% pour le maïs et 6,0% pour le blé. Les effets varient selon la région et la culture.
                   </p>
                 </div>
 
@@ -409,8 +409,8 @@ export const YouthExplainerCard: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <span className="text-xl">🥗</span>
                   <div className="text-slate-700">
-                    <span className="font-semibold text-emerald-800">Le seuil vital de 2 100 kcal/jour :</span>{' '}
-                    C'est la quantité minimale d'énergie qu'une personne doit manger chaque jour. Si la courbe verte passe sous cette ligne dans la simulation, c'est que la région entre en situation de malnutrition ou de famine.
+                    <span className="font-semibold text-emerald-800">Repère de 2 100 kcal/jour :</span>{' '}
+                    C'est un seuil de référence utilisé dans certaines évaluations de l'insuffisance alimentaire; les besoins énergétiques varient selon les individus. Le seuil appliqué ici est un paramètre du simulateur et ne diagnostique pas à lui seul une famine.
                   </div>
                 </div>
               </div>
@@ -452,10 +452,10 @@ export const YouthExplainerCard: React.FC = () => {
                     <span>👥</span> 1. Démographie mondiale
                   </span>
                   <p className="text-slate-700">
-                    <strong>Ligne noire/bleue :</strong> Combien d'humains vivent sur la Terre. En 2026, nous sommes 8,15 milliards.
+                    <strong>Ligne noire/bleue :</strong> Population mondiale dans le modèle. La valeur 2026 est une donnée initiale de la simulation.
                   </p>
                   <p className="text-slate-500">
-                    <strong>Lignes rouge et ambre :</strong> Le nombre de décès dus aux canicules humides létales et au manque de nourriture.
+                    <strong>Lignes rouge et ambre :</strong> Décès calculés par le modèle selon ses paramètres; ces valeurs ne sont pas des estimations validées de mortalité attribuable.
                   </p>
                 </div>
 
@@ -478,7 +478,7 @@ export const YouthExplainerCard: React.FC = () => {
                     <span>🌡️</span> 3. Climat et Océans
                   </span>
                   <p className="text-slate-700">
-                    <strong>Ligne rose :</strong> La température moyenne de surface de la Terre (+1,35°C aujourd'hui).
+                    <strong>Ligne rose :</strong> Anomalie thermique simulée par rapport à la référence indiquée dans le modèle.
                   </p>
                   <p className="text-slate-500">
                     <strong>Ligne bleue pointillée :</strong> La montée du niveau de la mer (en centimètres).
@@ -509,11 +509,11 @@ export const YouthExplainerCard: React.FC = () => {
                   <Lightbulb className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-slate-900">
-                    Pourquoi cette simulation n'est PAS une fatalité ?
-                  </h3>
+                    <h3 className="text-base font-bold text-slate-900">
+                     Comment interpréter les résultats de cette simulation ?
+                   </h3>
                   <p className="text-xs text-slate-500">
-                    C'est un simulateur de vol pour apprendre à éviter les obstacles, pas une prédiction gravée dans la pierre !
+                    Les résultats dépendent des paramètres du modèle et ne sont pas des prévisions officielles.
                   </p>
                 </div>
               </div>
@@ -526,7 +526,7 @@ export const YouthExplainerCard: React.FC = () => {
                     <span>1. Végétaliser et ombrager</span>
                   </div>
                   <p className="text-slate-700 leading-relaxed">
-                    Planter des arbres dans les villes et végétaliser les toits permet de faire baisser la température ressentie de <strong>3 à 6°C</strong> grâce à l'ombre et à l'évaporation naturelle des feuilles !
+                    La végétation urbaine peut modifier l'ombre, l'évapotranspiration et les températures locales. L'effet dépend de l'espèce, de l'eau disponible, du bâti et de la méthode de mesure.
                   </p>
                 </div>
 
@@ -537,7 +537,7 @@ export const YouthExplainerCard: React.FC = () => {
                     <span>2. Isoler les bâtiments</span>
                   </div>
                   <p className="text-slate-700 leading-relaxed">
-                    Une maison bien isolée avec des volets et des murs épais reste fraîche sans avoir besoin de climatiseurs électriques géants qui consomment beaucoup d'énergie.
+                    L'isolation et l'ombrage modifient les échanges de chaleur du bâtiment. Leur effet sur la température intérieure dépend du climat, de la ventilation et de la conception.
                   </p>
                 </div>
 
@@ -548,13 +548,13 @@ export const YouthExplainerCard: React.FC = () => {
                     <span>3. Une agriculture résiliente</span>
                   </div>
                   <p className="text-slate-700 leading-relaxed">
-                    En diversifiant les plantes (sorgho, millet, légumineuses qui fabriquent leur propre engrais sans pétrole), on protège nos assiettes même quand le climat change.
+                    La diversification des cultures et les légumineuses sont étudiées comme pratiques agricoles; leurs effets sur les rendements et la résilience dépendent des conditions locales et de la gestion agronomique.
                   </p>
                 </div>
               </div>
 
               <div className="p-3 rounded-lg bg-purple-50 border border-purple-200 text-xs text-purple-900">
-                <strong>Le message de la science :</strong> Cette simulation calcule ce qui se passe si l'humanité continue exactement sur sa trajectoire actuelle sans s'adapter. Mais dès qu'on comprend les règles physiques, on a le pouvoir d'agir !
+                <strong>À propos du modèle :</strong> Cette simulation explore des trajectoires définies par les paramètres de CLIMATOPEDY; elle ne représente pas exactement la trajectoire actuelle de l'humanité.
               </div>
             </div>
           )}

@@ -8,7 +8,7 @@ export const SpecModal: React.FC = () => {
   const copyFullSpecToClipboard = () => {
     const specText = `# SPÉCIFICATION TECHNIQUE DU MODÈLE SCIENTIFIQUE (CLIMATOPEDY)
 
-## 1. Modèle Climatique Réduit FaIR v1.1
+## 1. Modèle climatique réduit CLIMATOPEDY (inspiré de FaIR)
 - Équation différentielle des 4 réservoirs : dR_i/dt = a_i * E_CO2(t) - R_i / (alpha(t) * tau_i)
 - Saturation non-linéaire : alpha(t) = exp((0.00032 * C_acc + 0.019 * T1) / 0.20)
 - CO2 atmosphérique : C_CO2(t) = 278 + sum(R_i) / 2.123
@@ -21,14 +21,14 @@ export const SpecModal: React.FC = () => {
 - dH_sl/dt = a * (T1 - T0_sl) + b * dT1/dt
 - a = 3.4 mm/an/°C, b = 18.0 mm/°C, T0_sl = -0.5°C
 
-## 3. Thermomètre Mouillé de Roland Stull (2011)
+## 3. Approximation du thermomètre mouillé de Stull (2011)
 - Tw = Ta * atan(0.151977 * sqrt(RH + 8.313659)) + atan(Ta + RH) - atan(RH - 1.676331) + 0.00391838 * (RH^1.5) * atan(0.023101 * RH) - 4.686035
-- Seuil physiologique létal : Tw > 31.0°C en 6h
+- Seuil d'alerte utilisé dans la simulation : Tw > 31.0°C. Ce paramètre ne constitue pas un seuil universel de mortalité.
 
 ## 4. Métabolisme Industriel & Falaise de l'EROI
 - EROI(t) = EROI_0 * (1 - Q(t) / Q_inf)^1.35
 - E_net(t) = E_gross(t) * (1 - 1 / EROI(t))
-- Cannibalisme énergétique sous EROI < 10:1
+- Seuils de rendement énergétique : paramètres internes du modèle, sans valeur universelle établie par cette formule.
 
 ## 5. Rendements Céréaliers (Zhao et al. 2017)
 - Dégradation thermique composite : Maïs (-7.4%/°C), Blé (-6.0%/°C), Riz (-3.2%/°C), Soja (-3.1%/°C)
@@ -50,7 +50,7 @@ export const SpecModal: React.FC = () => {
             </span>
             <span className="text-xs text-slate-400">·</span>
             <span className="text-xs text-slate-500">
-              Formulations analytiques exactes pour intégration numérique
+              Équations et paramètres implémentés dans le simulateur
             </span>
           </div>
           <h2 className="text-lg font-bold text-slate-800 tracking-tight">
@@ -145,7 +145,7 @@ a = 0.0034 m/an/°C,  b = 0.0180 m/°C,  T_0,sl = -0.5°C`}
 
             <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-2xs">
               <span className="text-rose-700 font-bold block mb-2 font-sans">
-                3. Thermomètre Mouillé de Roland Stull (2011) &amp; Survie Humaine :
+                3. Approximation de Stull (2011) &amp; paramétrage du modèle thermique :
               </span>
               <pre className="text-slate-800 leading-relaxed overflow-x-auto">
 {`Tw = Ta * atan(0.151977 * sqrt(RH + 8.313659))
@@ -155,8 +155,8 @@ a = 0.0034 m/an/°C,  b = 0.0180 m/°C,  T_0,sl = -0.5°C`}
    - 4.686035
 
 * Note : Tous les arguments trigonométriques atan sont strictement évalués en radians.
-* Seuil critique d'hyperthermie létale : Tw > 31.0°C
-Surmortalité thermique : mu_thermal = 0.40 / (1 + exp(-1.8 * (Tw_peak - 31.0)))`}
+* Seuil d'alerte utilisé par le simulateur : Tw > 31.0°C (non validé comme seuil universel de mortalité)
+Paramétrisation de mortalité propre au modèle : mu_thermal = 0.40 / (1 + exp(-1.8 * (Tw_peak - 31.0)))`}
               </pre>
             </div>
 

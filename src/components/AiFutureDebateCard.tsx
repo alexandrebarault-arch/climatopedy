@@ -138,10 +138,10 @@ export const AiFutureDebateCard: React.FC = () => {
                     <span>Le paradoxe de Jevons : l'effet rebond</span>
                   </div>
                   <p className="text-slate-700 leading-relaxed">
-                    Depuis deux siècles, chaque fois qu'une technologie rend l'extraction ou l'usage d'une ressource plus efficace, la consommation totale n'a jamais baissé : elle a bondi.
+                    L'effet rebond désigne une hausse de l'usage d'une ressource après un gain d'efficacité. Son ampleur varie selon le service, les prix, les politiques et la période; il ne conduit pas systématiquement à une hausse de la consommation totale.
                   </p>
                   <p className="text-slate-500 italic">
-                    Si une IA permet aux compagnies pétrolières de détecter les gisements sous-marins avec 30% d'efficacité en plus, elle servira d'abord à brûler plus vite le carbone résiduel, pas à le laisser sous terre.
+                    L'effet net de l'usage de l'IA dans l'exploration énergétique dépend de ses applications et des décisions de production; cette carte ne quantifie pas cet effet.
                   </p>
                 </div>
 
@@ -152,7 +152,7 @@ export const AiFutureDebateCard: React.FC = () => {
                     <span>L'accélération des flux commerciaux superflus</span>
                   </div>
                   <p className="text-slate-700 leading-relaxed">
-                    L'essentiel de la puissance de calcul actuelle n'est pas utilisé pour la transition écologique, mais pour optimiser le ciblage publicitaire comportemental, accélérer la logistique de la fast-fashion et susciter des besoins d'achat futiles.
+                    Les usages de l'IA comprennent notamment la publicité et la logistique. Cette page ne dispose pas de données permettant de quantifier leur part dans la puissance de calcul mondiale ni leur effet net sur la consommation.
                   </p>
                   <p className="text-slate-500 italic">
                     Dans une économie linéaire, une IA hyper-performante est un amplificateur de gaspillage de matières premières.
@@ -238,7 +238,7 @@ export const AiFutureDebateCard: React.FC = () => {
                     <span>Protection civile &amp; sauvetage de vies</span>
                   </div>
                   <p className="text-slate-700 leading-relaxed">
-                    La météo par IA (GraphCast, Nowcasting) prédit les dômes de chaleur humide létaux (Tw &ge; 31°C) avec 48 heures d'avance à l'échelle d'un quartier, permettant aux municipalités d'ouvrir des refuges climatisés et de sauver des milliers de personnes vulnérables.
+                    Des systèmes d'apprentissage automatique produisent des prévisions météorologiques. Cette page n'établit pas qu'ils prédisent des seuils de Tw à l'échelle d'un quartier, ni ne quantifie des vies sauvées. Le seuil de 31°C affiché ailleurs est un paramètre du modèle CLIMATOPEDY.
                   </p>
                   <p className="text-slate-500 italic">
                     Une aide vitale pour la logistique de survie lors des étés critiques.
@@ -276,7 +276,7 @@ export const AiFutureDebateCard: React.FC = () => {
                     Si le cap reste l'hypercroissance :
                   </span>
                   <p className="text-slate-700 leading-snug">
-                    L'IA agira comme un <strong>accélérateur d'effondrement</strong> : elle épuisera le pétrole résiduel plus vite, consommera d'immenses surplus d'énergie et entretiendra l'illusion que la technologie peut abolir les limites du vivant.
+                    Les effets futurs de l'IA sur les émissions et l'usage des ressources dépendent de la consommation énergétique, des applications et des politiques; leur ampleur est incertaine.
                   </p>
                 </div>
 
@@ -285,7 +285,7 @@ export const AiFutureDebateCard: React.FC = () => {
                     Si le cap devient la résilience :
                   </span>
                   <p className="text-slate-700 leading-snug">
-                    L'IA sera le <strong>compas le plus précieux de l'humanité</strong> : elle nous aidera à planifier une descente énergétique maîtrisée, à réparer les écosystèmes et à protéger équitablement les populations face aux chocs climatiques.
+                    Des outils d'IA peuvent être appliqués à la prévision, à la gestion énergétique et au suivi environnemental. Leurs résultats dépendent des données, des méthodes et de leur mise en œuvre; ils ne garantissent pas ces effets.
                   </p>
                 </div>
 

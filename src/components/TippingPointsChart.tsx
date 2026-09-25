@@ -143,7 +143,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
         </div>
       </div>
 
-      {/* Bandeau Date prévisionnelle de franchissement de l'ensemble des points */}
+      {/* Bandeau sur l'incertitude des dates de franchissement */}
       <div className="bg-gradient-to-r from-rose-50 via-slate-50 to-rose-50/40 border border-rose-200 rounded-xl p-3 sm:p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-xs">
         <div className="flex items-start sm:items-center gap-2.5">
           <div className="p-1.5 rounded-lg bg-rose-100 text-rose-600 border border-rose-200 shrink-0 mt-0.5 sm:mt-0">
@@ -151,13 +151,13 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="font-bold text-rose-900">Date envisagée pour l'ENSEMBLE des points de bascule :</span>
+              <span className="font-bold text-rose-900">Date de franchissement de l'ensemble des points :</span>
               <span className="text-rose-800 font-mono font-bold bg-white px-2 py-0.5 rounded border border-rose-300 shadow-2xs">
-                ~2085 – 2100 (+4,0°C)
+                Aucune date établie
               </span>
             </div>
             <p className="text-[11px] text-slate-600 mt-0.5">
-              En trajectoire fossile, le dernier verrou (forêts boréales et AMOC) cède vers la fin du siècle. En sobriété, l'ensemble n'est <strong className="text-emerald-700">JAMAIS franchi</strong>.
+              Les études citées n'établissent pas une date unique à laquelle l'ensemble des éléments franchirait un seuil. Les seuils et probabilités varient selon l'élément et le scénario.
             </p>
           </div>
         </div>
@@ -280,39 +280,39 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                       +{t.toFixed(1)}°C
                     </text>
 
-                    {/* Dates estimées de franchissement sous les seuils clés */}
+                    {/* Les études citées ne permettent pas d'assigner une date précise à ces seuils */}
                     {t === 1.0 && (
                       <text x={x} y={PAD.top + chartH + 28} fill="#64748b" fontSize="8" fontFamily="monospace" textAnchor="middle">
-                        (2015)
+                        n.d.
                       </text>
                     )}
                     {t === 1.5 && (
                       <text x={x} y={PAD.top + chartH + 28} fill="#d97706" fontSize="8" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
-                        ~2030-38
+                        n.d.
                       </text>
                     )}
                     {t === 2.0 && (
                       <text x={x} y={PAD.top + chartH + 28} fill="#ea580c" fontSize="8" fontFamily="monospace" textAnchor="middle">
-                        ~2050
+                        n.d.
                       </text>
                     )}
                     {t === 2.5 && (
                       <text x={x} y={PAD.top + chartH + 28} fill="#e11d48" fontSize="8" fontFamily="monospace" textAnchor="middle">
-                        ~2060
+                        n.d.
                       </text>
                     )}
                     {t === 3.0 && (
                       <text x={x} y={PAD.top + chartH + 28} fill="#e11d48" fontSize="8" fontFamily="monospace" textAnchor="middle">
-                        ~2070
+                        n.d.
                       </text>
                     )}
                     {t === 4.0 && (
                       <g>
                         <text x={x} y={PAD.top + chartH + 28} fill="#be123c" fontSize="8.5" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
-                          ~2085-2100
+                          n.d.
                         </text>
                         <text x={x} y={PAD.top + chartH + 39} fill="#e11d48" fontSize="7.5" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">
-                          (TOUS franchis)
+                          (date non établie)
                         </text>
                       </g>
                     )}
@@ -354,7 +354,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                   fontWeight="bold"
                   textAnchor="middle"
                 >
-                  ⚠️ ~2085–2100 : ENSEMBLE FRANCHI
+                  Date de franchissement non établie
                 </text>
               </g>
 
@@ -793,7 +793,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                 </span>
               </div>
               <p className="text-[11px] text-slate-600 leading-snug">
-                Seuil de fonte irréversible franchi aujourd'hui, mais la montée de 10 mètres s'étire sur des millénaires.
+                Les estimations de contribution au niveau marin et leurs échelles de temps dépendent de l'évolution des calottes et comportent des incertitudes.
               </p>
               <div className="flex flex-col gap-2 mt-1">
                 {elements.filter(e => e.id === 'greenland' || e.id === 'wais' || e.id === 'wilkes_basin').map(elem => (

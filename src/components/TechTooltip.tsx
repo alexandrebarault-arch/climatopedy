@@ -23,9 +23,9 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
     definition:
       'Indique combien de barils d\'énergie brute on extrait pour 1 baril consommé à forer, pomper et raffiner (terme scientifique : EROI).',
     analogy:
-      'En 1900, 1 baril dépensé en rapportait 100 (x100). En 2026, il n\'en rapporte plus que 12 (x12). Les 92% d\'énergie restante font rouler camions, tracteurs et hôpitaux.',
+      'Un EROI de 12:1 signifie 12 unités d\'énergie obtenues pour une unité investie, dans le périmètre défini par l\'étude. Les valeurs varient selon la ressource et la méthode.',
     thresholdOrKeyFact:
-      'Seuil critique : en dessous de x5, la société dépense tellement d\'énergie à forer qu\'elle n\'a plus assez d\'énergie utile pour faire tourner les hôpitaux ou les écoles.',
+      'Il n\'existe pas de seuil EROI universel qui détermine à lui seul la capacité d\'une société à fournir des services.',
     faqId: 'faq-eroi'
   },
   'haber-bosch': {
@@ -36,22 +36,22 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
     definition:
       'Procédé chimique qui combine le gaz fossile (méthane) et l\'azote de l\'air pour fabriquer les engrais de synthèse mondiaux.',
     analogy:
-      'Près de 50% de l\'azote contenu dans les protéines de nos corps provient directement de cette réaction inventée en 1909.',
+      'Erisman et al. (2008) ont estimé qu\'environ 48% de la population mondiale dépendait alors de l\'azote réactif produit par ce procédé pour sa production alimentaire.',
     thresholdOrKeyFact:
-      'Sans gaz naturel pour alimenter Haber-Bosch, les récoltes de blé et de riz s\'effondrent de 40% à 50% en moins de 3 saisons.',
+      'Le gaz naturel est une matière première et une source d\'énergie importante pour la production conventionnelle d\'ammoniac. L\'ampleur d\'un effet sur les rendements dépend des solutions de remplacement et des conditions agricoles.',
     faqId: 'faq-haber-bosch'
   },
   fair: {
-    title: 'Modèle FaIR v1.1 (GIEC AR6)',
+    title: 'Modèle FaIR (utilisé dans des analyses du GIEC)',
     subtitle: 'Finite Amplitude Impulse Response · Climatologie',
     icon: <Wind className="w-3.5 h-3.5 text-sky-600" />,
     badgeColor: 'border-sky-200 text-sky-800 bg-sky-50',
     definition:
-      'Modèle climatique simplifié officiel retenu par le GIEC dans son 6e rapport (AR6) pour calculer l\'élévation de température selon les émissions de gaz à effet de serre.',
+      'Modèle climatique réduit qui calcule la réponse climatique à des émissions de gaz à effet de serre. FaIR a contribué à certaines analyses du GIEC; ce n\'est pas son modèle officiel unique.',
     analogy:
-      'Il effectue en quelques millisecondes les mêmes calculs physiques que les supercalculateurs géants de Météo-France, en intégrant le cycle du carbone et l\'inertie des océans.',
+      'Il calcule rapidement des réponses climatiques à des scénarios. Sa structure réduite ne réalise pas les mêmes calculs qu\'un modèle climatique tridimensionnel de circulation générale.',
     thresholdOrKeyFact:
-      'Calcule l\'anomalie de température mondiale par rapport à 1850-1900 (+1,35°C en 2026, vers +3,5°C à +4,0°C en 2100 sous SSP5-8.5).',
+      'Les valeurs affichées par CLIMATOPEDY sont des sorties de simulation, conditionnelles à ses paramètres; elles ne sont pas des projections officielles du GIEC.',
     faqId: 'faq-fair'
   },
   stull: {
@@ -60,11 +60,11 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
     icon: <Thermometer className="w-3.5 h-3.5 text-rose-600" />,
     badgeColor: 'border-rose-200 text-rose-800 bg-rose-50',
     definition:
-      'Température ressentie par la peau humaine humidifiée par la sueur au contact de l\'air, calculée en combinant chaleur (°C) et humidité relative (%).',
+      'Température au thermomètre mouillé, calculée à partir des conditions atmosphériques. Ce n\'est pas la température ressentie par la peau.',
     analogy:
-      'Quand l\'air est saturé d\'humidité (100%), la sueur ne peut plus s\'évaporer : le corps ne peut plus du tout se refroidir.',
+      'L\'humidité élevée peut limiter l\'évaporation de la sueur. La capacité du corps à perdre de la chaleur dépend aussi de la température, de l\'activité, de l\'acclimatation et de l\'environnement.',
     thresholdOrKeyFact:
-      'Seuil mortel absolu à 31,0°C Tw (Raymond et al., 2020) : même au repos à l\'ombre avec de l\'eau, le corps monte à 42°C en 4 à 6 heures sans climatisation électrique continue.',
+      'Sherwood et Huber (2010) discutent une limite théorique autour de 35°C Tw pour une exposition prolongée. Ce n\'est pas un seuil universel de mortalité; Raymond et al. (2020) étudient des épisodes météorologiques extrêmes observés.',
     faqId: 'faq-stull'
   },
   slr: {
@@ -75,22 +75,22 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
     definition:
       'Élévation moyenne du niveau marin mondial sous l\'effet combiné de l\'expansion de l\'eau chauffée et de la fonte des glaces terrestres.',
     analogy:
-      'Mesurée à +12 cm en 2026, elle atteint +60 à +75 cm en 2100. Chaque tranche de 10 cm salinise les nappes d\'eau douce côtières et submerge les grands deltas rizicoles.',
+      'L\'AR6 estime, par rapport à 1995–2014, 0,28–0,55 m d\'élévation probable d\'ici 2100 sous SSP1-1.9 et 0,63–1,01 m sous SSP5-8.5 (confiance moyenne). Les impacts côtiers dépendent des conditions locales.',
     thresholdOrKeyFact:
       'À +50 cm, des dizaines de millions d\'habitants des deltas d\'Asie (Mékong, Bangladesh, Nil) perdent leurs terres cultivables.',
     faqId: 'faq-slr'
   },
   ssp585: {
-    title: 'Scénario SSP5-8.5 (Rigidité)',
+    title: 'Scénario SSP5-8.5 (très fortes émissions)',
     subtitle: 'Shared Socioeconomic Pathway 5 · GIEC',
     icon: <AlertCircle className="w-3.5 h-3.5 text-amber-600" />,
     badgeColor: 'border-amber-200 text-amber-800 bg-amber-50',
     definition:
-      'Trajectoire socio-économique de référence où la croissance thermo-industrielle intensive se poursuit sans rupture politique majeure jusqu\'à heurter les limites géologiques.',
+      'Scénario conditionnel de très fortes émissions associé à la trajectoire socio-économique SSP5. Ce n\'est ni une prévision certaine ni nécessairement le scénario le plus probable.',
     analogy:
-      'Sert de modèle de rigidité comportementale pour mesurer le choc réel quand la dépendance fossile percute les contraintes de la physique.',
+      'Dans CLIMATOPEDY, les résultats associés à ce scénario sont calculés par le modèle du site et dépendent de ses propres paramètres.',
     thresholdOrKeyFact:
-      'Émissions de CO₂ continuant à croître jusqu\'en 2080 avant de s\'effondrer par épuisement des ressources accessibles.',
+      'Le scénario climatique GIEC est défini par des trajectoires d\'émissions prescrites; l\'épuisement de ressources n\'est pas une caractéristique définissant SSP5-8.5.',
     faqId: 'faq-ssp585'
   }
 };

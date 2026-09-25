@@ -587,12 +587,12 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 </span>
                 <span className="text-amber-800 font-semibold flex items-center gap-1 min-w-[7.5rem]">
                   <span className="w-2 h-2 rounded-full bg-amber-600 inline-block shrink-0" />
-                  Famines : {d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an
+                  Déficit calorique — décès simulés : {d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an
                 </span>
                 {/* Décès Canicule */}
                 <span className="text-rose-800 font-bold bg-rose-100/80 border border-rose-300 px-1.5 py-0.5 rounded flex items-center gap-1 min-w-[9.5rem]">
                   <span className="w-2 h-2 rounded-full bg-rose-600 inline-block animate-pulse shrink-0" />
-                  Canicules mortelles : {d1.thermalDeathsFormatted}
+                  Décès chaleur simulés : {d1.thermalDeathsFormatted}
                   <TechTooltip term="stull" showIconOnly />
                 </span>
               </div>
@@ -611,7 +611,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                     Canicules : {d1.thermalDeathsFormattedB}
                   </span>
                   <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
-                    Famines : {d1.stateB.worldDeathsAnnual.famine.toFixed(1)} M/an
+                    Déficit calorique — décès simulés : {d1.stateB.worldDeathsAnnual.famine.toFixed(1)} M/an
                   </span>
                 </div>
               )}
@@ -737,11 +737,11 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <span>⚫ <strong>Ligne noire :</strong> Population mondiale ({(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds)</span>
                 <span>🟣 <strong>Ligne violette :</strong> Tous décès confondus ({d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an)</span>
-                <span>🟠 <strong>Ligne orange :</strong> Famines ({d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an)</span>
+                <span>🟠 <strong>Ligne orange :</strong> Décès simulés associés au déficit calorique ({d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an)</span>
               </div>
               <div className="bg-rose-50 border border-rose-200 rounded p-1.5 text-rose-900 text-[10px]">
                 🔴 <strong>Ligne rouge (Canicules mortelles) :</strong> {d1.thermalDeathsFormatted} en {d1.displayYear}. 
-                Ces décès surviennent lorsque la chaleur humide (thermomètre mouillé Tw) franchit 31°C, empêchant le corps d'évacuer sa chaleur par la transpiration.
+                Valeur calculée par le simulateur CLIMATOPEDY à partir de ses paramètres; elle ne constitue pas une estimation validée des décès attribuables à la chaleur.
               </div>
             </div>
           </div>
@@ -962,7 +962,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <span>🔵 <strong>Pointillé bleu :</strong> Engrais chimiques Haber-Bosch ({(d2.stateA.haberBoschNitrogenFactor * 100).toFixed(0)}%)</span>
               </div>
               <p className="text-[10px] text-amber-950 bg-amber-50 p-1.5 rounded border border-amber-200">
-                💡 <strong>Pourquoi ce chiffre baisse-t-il ?</strong> Les premiers gisements (1900) étaient sous pression naturelle et peu profonds (rendement x100). Aujourd'hui, il faut forer à 3 000 mètres sous les océans ou fracturer la roche étanche, ce qui dévore d'immenses quantités d'énergie.
+                💡 <strong>À propos de l’indicateur :</strong> L’EROI varie selon la ressource, la période et le périmètre de calcul. Les valeurs tracées ici sont calculées par le modèle CLIMATOPEDY et ne sont pas une série historique d’observations.
               </p>
             </div>
           </div>
@@ -1241,7 +1241,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   <TechTooltip term="haber-bosch" showIconOnly />
                 </span>
                 <span className="text-rose-700 font-semibold min-w-[8.5rem]">
-                  Seuil de famine ONU : 2 100 kcal
+                  Paramètre calorique du modèle : 2 100 kcal/jour
                 </span>
               </div>
 
@@ -1285,7 +1285,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <text x={W - PAD.right + 6} y={getYYield(1.0) + 3} fill="#d97706" fontSize="8" textAnchor="start" fontFamily="monospace">100%</text>
                 <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#d97706" fontSize="8" textAnchor="start" fontFamily="monospace">10%</text>
 
-                {/* Ligne rouge ONU du seuil de malnutrition aiguë (2100 kcal) */}
+                {/* Ligne de référence utilisée par le modèle (2100 kcal/jour) */}
                 <line
                   x1={PAD.left}
                   y1={yCalorie2100}
@@ -1304,7 +1304,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   fontFamily="sans-serif"
                   fontWeight="bold"
                 >
-                  Seuil de malnutrition aiguë sévère ONU (2100 kcal / jour)
+                  Référence calorique du modèle (2100 kcal / jour)
                 </text>
 
                 {/* Axe des abscisses */}
@@ -1371,10 +1371,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <span>🟢 <strong>Ligne verte :</strong> Ration alimentaire moyenne ({Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/habitant/jour)</span>
                 <span>🟠 <strong>Pointillé ambre :</strong> Rendements mondiaux des récoltes ({(d4.stateA.globalCropYieldComposite * 100).toFixed(0)}%)</span>
-                <span>🔴 <strong>Ligne rouge pointillée :</strong> Seuil vital de subsistance ONU (2 100 kcal)</span>
+                <span>🔴 <strong>Ligne rouge pointillée :</strong> Référence calorique utilisée par le modèle (2 100 kcal/jour)</span>
               </div>
               <p className="text-[10px] text-slate-500">
-                La chute calorique résulte de l'effet ciseau : baisse des engrais chimiques azotés (crise du gaz) combinée aux sécheresses et canicules sur les grands bassins céréaliers.
+                La trajectoire calorique affichée est calculée par CLIMATOPEDY à partir de ses paramètres agricoles et climatiques; elle n'est pas une prévision de disponibilité alimentaire.
               </p>
             </div>
           </div>

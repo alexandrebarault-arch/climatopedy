@@ -228,45 +228,45 @@ export const CausalChainExplorer: React.FC = () => {
                 <table className="w-full text-[11px] text-left">
                   <thead className="bg-slate-50 text-slate-600 font-mono border-b border-slate-200">
                     <tr>
-                      <th className="p-2">Époque / Ressource</th>
-                      <th className="p-2">EROI moyen</th>
+                      <th className="p-2">Exemple de ratio (illustratif)</th>
+                      <th className="p-2">EROI</th>
                       <th className="p-2">% Autoconsommé</th>
                       <th className="p-2 text-right">% Net pour la Société</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 font-mono text-slate-700">
                     <tr>
-                      <td className="p-2 font-sans font-medium text-slate-800">Texas 1930 (Spindletop)</td>
+                      <td className="p-2 font-sans font-medium text-slate-800">Exemple de calcul</td>
                       <td className="p-2 text-emerald-700 font-bold">100 : 1</td>
                       <td className="p-2 text-slate-500">1.0%</td>
                       <td className="p-2 text-emerald-700 font-bold text-right">99.0%</td>
                     </tr>
                     <tr>
-                      <td className="p-2 font-sans font-medium text-slate-800">Arabie 1970 (Ghawar)</td>
+                      <td className="p-2 font-sans font-medium text-slate-800">Exemple de calcul</td>
                       <td className="p-2 text-emerald-700 font-bold">35 : 1</td>
                       <td className="p-2 text-slate-500">2.8%</td>
                       <td className="p-2 text-emerald-700 font-bold text-right">97.2%</td>
                     </tr>
                     <tr>
-                      <td className="p-2 font-sans font-medium text-slate-800">Moyenne Mondiale 2026</td>
+                      <td className="p-2 font-sans font-medium text-slate-800">Exemple de calcul</td>
                       <td className="p-2 text-amber-800 font-bold">16 : 1</td>
                       <td className="p-2 text-slate-500">6.2%</td>
                       <td className="p-2 text-amber-800 font-bold text-right">93.8%</td>
                     </tr>
                     <tr className="bg-rose-50/40">
-                      <td className="p-2 font-sans font-medium text-rose-800">Offshore Profond 2045</td>
+                      <td className="p-2 font-sans font-medium text-rose-800">Exemple de calcul</td>
                       <td className="p-2 text-rose-700 font-bold">8 : 1</td>
                       <td className="p-2 text-rose-700">12.5%</td>
                       <td className="p-2 text-rose-700 font-bold text-right">87.5%</td>
                     </tr>
                     <tr className="bg-rose-50/70">
-                      <td className="p-2 font-sans font-medium text-rose-800">Sables Bitumineux / Schiste 2060</td>
+                      <td className="p-2 font-sans font-medium text-rose-800">Exemple de calcul</td>
                       <td className="p-2 text-rose-700 font-bold">4 : 1</td>
                       <td className="p-2 text-rose-700">25.0%</td>
                       <td className="p-2 text-rose-700 font-bold text-right">75.0%</td>
                     </tr>
                     <tr className="bg-rose-100/70 font-bold">
-                      <td className="p-2 font-sans text-rose-900">Seuil de Cannibalisme 2075</td>
+                      <td className="p-2 font-sans text-rose-900">Exemple de calcul</td>
                       <td className="p-2 text-rose-800">2 : 1</td>
                       <td className="p-2 text-rose-800">50.0%</td>
                       <td className="p-2 text-rose-800 text-right">50.0%</td>
@@ -280,10 +280,7 @@ export const CausalChainExplorer: React.FC = () => {
               <span className="font-semibold text-slate-800 block mb-1">
                 L'Effet de la Falaise (The Net Energy Cliff) :
               </span>
-              Tant que l'EROI reste supérieur à 20:1, l'impact de son érosion est presque imperceptible pour l'économie.
-              Mais dès que le ratio s'enfonce sous 10:1 puis 5:1, l'énergie nette disponible pour les hôpitaux, les écoles, 
-              les usines civiles et l'assainissement s'effondre de façon vertigineuse. Le secteur énergétique est contraint 
-              d'absorber une part écrasante du PIB pour simplement maintenir le flux de barils en surface.
+              La fraction d'énergie nette dépend mathématiquement de l'EROI et du périmètre retenu. Ces ratios illustratifs ne définissent pas de seuil universel pour l'économie ou les services publics.
             </div>
           </div>
         )}
@@ -301,7 +298,7 @@ export const CausalChainExplorer: React.FC = () => {
                     Du Gaz Fossile aux Champs : Le Procédé Haber-Bosch
                   </h3>
                   <span className="text-slate-500 text-xs">
-                    50% de l'azote de nos corps provient directement de la catalyse du gaz naturel
+                    Estimation publiée : part de la population dépendant des engrais azotés synthétiques
                   </span>
                 </div>
               </div>
@@ -333,11 +330,10 @@ export const CausalChainExplorer: React.FC = () => {
               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
                 <span className="text-emerald-800 font-semibold block">3. Engrais &amp; Rendements x3</span>
                 <p className="text-slate-600 text-[11px]">
-                  L'ammoniac est transformé en nitrate d'ammonium et urée. Sans ces engrais, les rendements mondiaux 
-                  du blé et du maïs chutent immédiatement de 60 à 70%.
+                  L'ammoniac sert à produire des engrais azotés, dont les effets sur les rendements dépendent des cultures, des sols et des pratiques agricoles. Les références citées ici n'établissent pas une baisse mondiale uniforme de 60 à 70% en cas d'absence d'engrais.
                 </p>
                 <span className="font-mono text-[10px] text-slate-800 block bg-white p-2 rounded border border-slate-200 shadow-2xs font-semibold">
-                  Socle agraire naturel : ~1.2 t/ha vs ~7.5 t/ha avec engrais
+                  Rendements agricoles : variables selon culture, lieu et pratiques
                 </span>
               </div>
             </div>
@@ -389,7 +385,7 @@ export const CausalChainExplorer: React.FC = () => {
                 <span className="text-purple-800 font-semibold block">1. L'Inertie du Capital Physique</span>
                 <p className="text-slate-600 text-[11px]">
                   Les centrales électriques, les raffineries, les navires vraquiers et les réseaux routiers sont 
-                  conçus pour être amortis sur 30 à 50 ans. Déclasser ce capital avant terme déclenche une faillite bancaire immédiate.
+                  dont la durée d'utilisation et les coûts de remplacement varient selon la technologie et le contexte. Cette observation ne permet pas de déduire une faillite bancaire automatique.
                 </p>
               </div>
 
@@ -415,9 +411,7 @@ export const CausalChainExplorer: React.FC = () => {
                 La conclusion biophysique :
               </span>
               Conformément à l'hypothèse du brief, l'humanité n'est pas dotée d'un pilote central capable de prescrire 
-              la sobriété globale. Elle se comporte comme un super-organisme thermodynamique dissipatif gouverné 
-              par le principe de puissance maximale de Lotka-Odum : tant qu'une ressource concentrée existe, le système la dissipera 
-              jusqu'à rencontrer les limites physiques de la planète (chaleur létale, falaise d'EROI et famines).
+              la sobriété globale. Les trajectoires présentées dans CLIMATOPEDY sont des résultats conditionnels de son modèle et ne constituent pas des prévisions validées de mortalité, de famine ou de seuil énergétique.
             </div>
           </div>
         )}

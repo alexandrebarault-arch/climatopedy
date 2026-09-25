@@ -142,7 +142,7 @@ export const DesktopInteractiveTour: React.FC<DesktopInteractiveTourProps> = ({
             </div>
           </div>
           <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-center text-xs sm:text-sm font-black">
-            ✨ Résultat : +2,8 Milliards de vies humaines préservées
+            Résultat simulé par CLIMATOPEDY : différence entre les sorties des scénarios A et B
           </div>
         </div>
       )
@@ -153,7 +153,7 @@ export const DesktopInteractiveTour: React.FC<DesktopInteractiveTourProps> = ({
       badgeColor: 'border-rose-300 bg-rose-50 text-rose-800',
       title: 'Surveillez les 9 Points de Bascule de la Terre',
       simpleExplanation:
-        'La banquise, la forêt amazonienne, le dégel du pergélisol ou les récifs coralliens ont des limites physiques. L\'onglet « Points de Bascule » vous montre des photographies réelles et vous alerte quand ces zones risquent de s\'effondrer irréversiblement.',
+        'L\'onglet « Points de Bascule » présente des éléments du système climatique étudiés dans la littérature et des indicateurs issus du modèle CLIMATOPEDY. Les dates et seuils affichés ne sont pas des prévisions certaines.',
       targetElementId: 'tour-topbar-header',
       tab: 'tipping-points',
       boxPlacement: 'right',

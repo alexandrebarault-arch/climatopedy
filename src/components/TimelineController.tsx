@@ -176,7 +176,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
           <div>
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-slate-600 font-medium flex items-center gap-1">
-                Décès crises
+                Décès de crise simulés
                 <TechTooltip term="stull" showIconOnly />
               </span>
             </div>
@@ -191,7 +191,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
             </div>
           </div>
           <span className="text-[10px] text-slate-500 mt-1 pt-1 border-t border-slate-200 leading-tight">
-            Famines: {simulationState.worldDeathsAnnual.famine.toFixed(1)}M · Canicule: {thermalDeathsText}
+            Sorties du modèle — déficit calorique: {simulationState.worldDeathsAnnual.famine.toFixed(1)}M · chaleur: {thermalDeathsText}
           </span>
         </div>
       </div>

@@ -7,7 +7,7 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
     year: 1901,
     category: 'energy',
     title: 'Jaillissement de Spindletop & Début de l\'Ère Pétrolière',
-    description: 'Le gisement géant texan crache 100 000 barils/jour sous sa propre pression. L\'EROI initial dépasse 100:1 : 1 baril d\'énergie dépensé permet d\'en extraire 100.'
+    description: 'Repère historique lié à l\'essor de la production pétrolière au Texas. La valeur d\'EROI de 100:1 est un paramètre illustratif du modèle, pas une mesure représentative de tous les gisements.'
   },
   {
     year: 1913,
@@ -19,7 +19,7 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
     year: 1950,
     category: 'human',
     title: 'Début de la Révolution Verte & Explosion Démographique',
-    description: 'Variétés céréalières à haut rendement (Borlaug), tracteurs au fioul et engrais azotés : la population passe de 2,5 à 8 milliards en quelques décennies.'
+    description: 'Variétés céréalières à haut rendement, mécanisation agricole et engrais azotés ont accompagné la hausse de la production alimentaire et de la population mondiale au cours du XXe siècle. Cette formulation ne quantifie pas la contribution propre de chaque facteur.'
   },
   {
     year: 1973,
@@ -31,7 +31,7 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
     year: 2026,
     category: 'energy',
     title: 'Le Présent : Épuisement du Pétrole Facile & Réchauffement',
-    description: 'Consommation mondiale record de 100 millions de barils/jour. L\'EROI moyen est tombé à 12:1. Le CO2 dépasse 424 ppm et le réchauffement atteint +1.35°C.'
+    description: 'Valeurs affichées pour 2026 : les émissions, l\'EROI et l\'anomalie thermique proviennent des données initiales et des paramètres de CLIMATOPEDY; elles ne constituent pas toutes des observations annuelles mesurées.'
   },
   {
     year: 2030,
@@ -61,19 +61,19 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
     year: 2062,
     category: 'human',
     title: 'Inflexion Démographique & Pic de Population Mondiale',
-    description: 'L\'effet ciseau (stress thermique létal + déficit calorique sous 2100 kcal + effondrement de la fertilité biologique) fait basculer la balance mondiale : les décès annuels dépassent les naissances.'
+    description: 'Sortie conditionnelle du scénario CLIMATOPEDY : les variables de stress thermique, de disponibilité calorique et de démographie sont calculées par le modèle et ne constituent pas des projections démographiques ou sanitaires validées.'
   },
   {
     year: 2075,
     category: 'energy',
     title: 'La Falaise de l\'EROI sous 6:1',
-    description: 'Pour chaque 6 barils extraits, 1 baril équivalent est immédiatement consumé pour le forage, les presses à diamant PDC et la sidérurgie de cuvelage API. L\'énergie nette résiduelle allouée au secteur civil s\'effondre.'
+    description: 'Sortie conditionnelle du modèle CLIMATOPEDY. La relation entre extraction et EROI dépend des paramètres du simulateur; elle ne constitue pas une prévision du rendement futur des hydrocarbures.'
   },
   {
     year: 2090,
     category: 'human',
     title: 'Régression Démographique & Recomposition Spatiale',
-    description: 'Après plusieurs décennies de famines récurrentes et de dômes thermiques insoutenables, la population mondiale se stabilise vers un socle biophysique résilient compatible avec l\'agriculture post-chimique.'
+    description: 'Sortie de la simulation CLIMATOPEDY pour le scénario et les paramètres sélectionnés. Les valeurs démographiques et alimentaires ne sont pas des projections validées par le GIEC.'
   },
   {
     year: 2100,
@@ -91,7 +91,7 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
     year: 2150,
     category: 'climate',
     title: 'Fonte Engagée des Calottes Polaires (Groenland & WAIS)',
-    description: 'En scénario chaud, les seuils d\'instabilité marine des calottes du Groenland et de l\'Antarctique Ouest sont irréversiblement dépassés, engageant plusieurs mètres de hausse marine (Pattyn et al. 2018 Nature Climate Change).'
+    description: 'Les valeurs affichées sont des résultats du scénario CLIMATOPEDY. Le GIEC évalue une élévation du niveau marin dépendante des émissions et de l\'horizon; cette sortie ne représente pas une projection officielle de fonte des calottes.'
   },
   {
     year: 2175,
@@ -103,16 +103,16 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
     year: 2200,
     category: 'human',
     title: 'Horizon 2200 : Nouvel Équilibre Biophysique Post-Anthropocène',
-    description: 'Stabilisation séculaire de la biosphère. En trajectoire de sobriété, 8 milliards d\'êtres humains vivent en symbiose régénératrice (+1.3°C). En scénario fossile, la population stabilisée à 2.8 milliards s\'adapte à un monde à +4.5°C et +2.6 m de niveau marin.'
+    description: 'Résultats de simulation CLIMATOPEDY pour l\'horizon 2200. Température, niveau marin et population sont conditionnels aux paramètres du modèle et ne sont pas des projections officielles du GIEC ou de l\'ONU.'
   }
 ];
 
 export const SCENARIO_BAU: SimulationScenarioConfig = {
   id: 'bau',
-  name: 'Scénario Actuel (SSP5-8.5 · Inertie Brute)',
+  name: 'Scénario CLIMATOPEDY à très fortes émissions (inspiré de SSP5-8.5)',
   shortName: 'Scénario Actuel',
   tagline: 'Rigidité sociétale, extraction fossile continue et absence de sobriété',
-  description: 'Poursuite de la trajectoire actuelle : rigidité comportementale totale, consommation de pétrole poussée jusqu\'à la déplétion géologique, dépendance absolue aux engrais chimiques Haber-Bosch.',
+  description: 'Scénario interne au simulateur, conditionnel à ses paramètres de demande énergétique, de réserves et d\'usage des engrais. Il ne représente pas une prédiction certaine ni SSP5-8.5 dans son ensemble.',
   badgeColor: 'border-sky-500/40 bg-sky-950/40 text-sky-300',
   lineColor: '#38bdf8',
   dashArray: 'none',
@@ -128,7 +128,7 @@ export const SCENARIO_SOBRIETY: SimulationScenarioConfig = {
   name: 'Scénario de Sobriété & Redirection Écologique',
   shortName: 'Sobriété & Agroécologie',
   tagline: 'Descente énergétique choisie (-4%/an), autonomie azotée et résilience collective',
-  description: 'Bifurcation résiliente : baisse planifiée de 4%/an de la soif de pétrole (préservant l\'EROI au-dessus de 8:1), reconversion massive vers l\'agroécologie (biofixation de l\'azote par légumineuses) et climatisation passive collective.',
+  description: 'Scénario interne au simulateur avec une baisse paramétrée de l\'extraction et des changements d\'intrants agricoles. Les résultats sont conditionnels à ces paramètres et ne constituent pas une projection validée.',
   badgeColor: 'border-emerald-500/50 bg-emerald-950/40 text-emerald-300',
   lineColor: '#10b981',
   dashArray: '5 3',
@@ -141,7 +141,7 @@ export const SCENARIO_SOBRIETY: SimulationScenarioConfig = {
 
 export const SCENARIO_DELAYED: SimulationScenarioConfig = {
   id: 'delayed',
-  name: 'Scénario de Transition Tardive & Modérée (SSP2-4.5)',
+  name: 'Scénario CLIMATOPEDY intermédiaire (comparaison avec SSP2-4.5)',
   shortName: 'Transition Modérée',
   tagline: 'Réduction partielle de la demande (-1.8%/an) et adaptation intermédiaire',
   description: 'Politique de compromis : amorce de sobriété plus tardive et limitée (-1.8%/an), recours partiel à l\'agroécologie (30%), investissements modestes dans la résilience urbaine.',

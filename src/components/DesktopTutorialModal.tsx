@@ -54,7 +54,7 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
       title: 'Bienvenue dans CLIMATOPEDY',
       subtitle: 'L\'encyclopédie interactive du climat et de l\'énergie (2026–2200)',
       description:
-        'CLIMATOPEDY modélise et explique simplement les liens physiques entre l\'énergie fossile, le climat, l\'agriculture mondiale et la survie humaine. Ici, chaque donnée est rigoureusement documentée et traduite en visualisations claires pour tous.',
+        'CLIMATOPEDY présente des données, des références et des sorties de son propre modèle sur l\'énergie et le climat. Les résultats du simulateur sont conditionnels à ses paramètres et ne sont pas tous validés par des évaluations scientifiques indépendantes.',
       tips: [
         {
           icon: <Globe2 className="w-4 h-4 text-sky-600" />,
@@ -66,7 +66,7 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
         },
         {
           icon: <ShieldAlert className="w-4 h-4 text-rose-600" />,
-          text: 'Surveillez l\'approche des 9 points de bascule climatiques irréversibles.'
+          text: 'Consultez les seuils estimés et les incertitudes associés aux composantes climatiques étudiées.'
         }
       ],
       actionLabel: 'Continuer le guide',
@@ -82,7 +82,7 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
       tips: [
         {
           icon: <Clock className="w-4 h-4 text-amber-600" />,
-          text: 'Touches rapides : 2030 (choc initial), 2050 (pic d\'émission/famine), 2080, et 2100.'
+          text: 'Accédez directement aux années repères du simulateur : 2030, 2050, 2080 et 2100.'
         },
         {
           icon: <Sliders className="w-4 h-4 text-sky-600" />,
@@ -106,7 +106,7 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
       tips: [
         {
           icon: <Thermometer className="w-4 h-4 text-rose-600" />,
-          text: 'Calque Tw (Stull 2011) : met en lumière les zones mortelles où le corps ne peut plus transpirer (Tw > 31°C).'
+          text: 'Calque Tw : affiche la température humide estimée par le modèle. Le niveau de 31°C est un seuil d\'alerte du simulateur, pas un seuil universel de mortalité.'
         },
         {
           icon: <Eye className="w-4 h-4 text-sky-600" />,
@@ -114,7 +114,7 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
         },
         {
           icon: <Users className="w-4 h-4 text-emerald-600" />,
-          text: 'Le tiroir affiche la pyramide des âges, les calories par habitant et les réfugiés climatiques.'
+          text: 'Le tiroir affiche la pyramide des âges, la disponibilité calorique et les sorties migratoires du modèle.'
         }
       ],
       actionLabel: 'Tester sur le Planisphère',

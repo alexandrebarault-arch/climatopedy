@@ -107,7 +107,7 @@ export const TippingPointModal: React.FC<TippingPointModalProps> = ({
             <div className="flex items-center gap-2.5">
               <Thermometer className="w-4 h-4 text-rose-600 shrink-0" />
               <div>
-                <span className="text-[11px] text-slate-500 block">Seuil de basculement scientifique</span>
+                <span className="text-[11px] text-slate-500 block">Seuil estimé (plage d'incertitude indiquée)</span>
                 <span className="font-mono font-bold text-slate-800 text-xs sm:text-sm">
                   +{element.thresholdEst.toFixed(1)}°C <span className="text-slate-500 font-normal text-xs">(fourchette : {element.thresholdMin}°C à {element.thresholdMax}°C)</span>
                 </span>
@@ -117,7 +117,7 @@ export const TippingPointModal: React.FC<TippingPointModalProps> = ({
             <div className="flex items-center gap-2.5">
               <Calendar className="w-4 h-4 text-amber-600 shrink-0" />
               <div>
-                <span className="text-[11px] text-slate-500 block">Date estimée de franchissement (trajectoire actuelle)</span>
+                <span className="text-[11px] text-slate-500 block">Date indicative du scénario CLIMATOPEDY</span>
                 <span className="font-mono font-bold text-amber-800 text-xs sm:text-sm">
                   {element.estimatedYearTendency || '2030 – 2045 selon scénario'}
                 </span>

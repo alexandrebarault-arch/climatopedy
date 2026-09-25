@@ -78,7 +78,7 @@ export const ClimatopedyHeader: React.FC<ClimatopedyHeaderProps> = ({ onOpenTuto
                   <span>Quel est son objectif pour vous ?</span>
                 </div>
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  Permettre à chaque citoyen, famille ou curieux de <strong>comprendre en 3 minutes où nous allons</strong> et de comparer deux trajectoires : continuer au fil de l'eau comme aujourd'hui (<span className="text-rose-700 font-bold">Scénario A</span>) ou choisir la transition et la sobriété écologique (<span className="text-emerald-700 font-bold">Scénario B</span>). Vous voyez concrètement comment chaque décision protège nos enfants et préserve des millions de vies.
+                  CLIMATOPEDY présente des données climatiques, énergétiques et agricoles ainsi que des résultats de simulation. Les scénarios A et B sont des trajectoires définies par les paramètres du simulateur; leurs résultats ne sont pas des prévisions officielles.
                 </p>
               </div>
             </div>
@@ -101,7 +101,7 @@ export const ClimatopedyHeader: React.FC<ClimatopedyHeaderProps> = ({ onOpenTuto
                 </div>
                 <div className="flex items-start gap-2 bg-white p-2.5 rounded-lg border border-slate-200/80 shadow-2xs">
                   <span className="font-bold text-amber-700">3.</span>
-                  <span><strong>Testez les solutions :</strong> Bougez les manettes écologiques pour sauver des vies.</span>
+                  <span><strong>Comparez les paramètres :</strong> Modifiez les réglages du scénario et observez les résultats calculés par le simulateur.</span>
                 </div>
               </div>
 
@@ -121,7 +121,7 @@ export const ClimatopedyHeader: React.FC<ClimatopedyHeaderProps> = ({ onOpenTuto
           /* Résumé compact quand replié */
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1 text-xs text-slate-600">
             <p>
-              💡 <strong>En résumé :</strong> Une encyclopédie 100% accessible reliant climat, énergie et vie quotidienne pour comparer nos futurs possibles (2026–2100) sans aucun jargon technique.
+              💡 <strong>En résumé :</strong> Un outil interactif présentant des données historiques et des simulations conditionnelles de 1900 à 2200.
             </p>
             {onOpenTutorial && (
               <button

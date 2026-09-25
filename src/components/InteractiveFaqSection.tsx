@@ -72,7 +72,7 @@ export const InteractiveFaqSection: React.FC = () => {
       category: 'energy',
       categoryLabel: 'Énergie & EROI',
       categoryIcon: <Zap className="w-4 h-4 text-amber-500" />,
-      question: "Qu'est-ce que l'EROI et pourquoi est-ce le moteur caché de notre société ?",
+      question: "Qu'est-ce que l'EROI ?",
       shortSummary: "Combien de barils d'énergie récolte-t-on pour 1 baril consommé à forer et raffiner.",
       tags: ['EROI', 'pétrole', 'énergie nette', 'multiplicateur', 'falaise énergétique'],
       scientificRef: 'Hall, Lambert & Balogh (2014) · Murphy & Hall (Ann. N.Y. Acad. Sci., 2010)',
@@ -89,13 +89,13 @@ export const InteractiveFaqSection: React.FC = () => {
           </p>
           <ul className="space-y-2 list-disc pl-5 text-slate-700">
             <li>
-              <strong>En 1900 (Multiplicateur x100) :</strong> Les premiers gisements au Texas et en Azerbaïdjan jaillissaient à quelques mètres du sol sous forte pression. Dépenser l'équivalent énergétique d'un baril permettait d'en extraire 100 ! Les <strong>99% restants</strong> (« énergie nette ») ont permis de construire les réseaux ferrés, les hôpitaux, les universités et l'aviation.
+              <strong>Exemple de calcul (EROI 100:1) :</strong> Selon le périmètre retenu, un EROI de 100:1 signifie 100 unités d'énergie obtenues pour une unité investie; la fraction nette correspondante est de 99 unités. Ce nombre est un exemple de ratio, pas une estimation historique générale.
             </li>
             <li>
-              <strong>En 2026 (Multiplicateur x12) :</strong> Les gisements faciles sont épuisés. Pour trouver du pétrole, il faut désormais forer sous 3 000 mètres d'océan, fracturer la roche étanche (schiste américain) ou distiller du bitume canadien. Un baril n'en rapporte plus que 12 : les <strong>92% d'énergie utile</strong> font encore tourner la société, mais la marge se réduit.
+              <strong>Exemple de calcul (EROI 12:1) :</strong> Dans ce ratio, la part investie représente 1/12 de l'énergie brute obtenue. Les valeurs réelles varient selon la ressource, la période et le périmètre de calcul.
             </li>
             <li>
-              <strong>La Falaise Énergétique (Sous x5) :</strong> Si l'EROI tombe à x3, il faut brûler 1 baril rien que pour en récupérer 3. La société doit alors mobiliser un tiers de son économie rien que pour alimenter le secteur énergétique, entraînant une désindustrialisation mécanique et une baisse brutale des services publics.
+              <strong>Exemple de calcul (EROI 3:1) :</strong> Dans ce ratio, une unité d'énergie investie correspond à un tiers de l'énergie brute obtenue. Il n'existe pas de seuil EROI universel qui détermine à lui seul le fonctionnement d'une société.
             </li>
           </ul>
         </div>
@@ -106,7 +106,7 @@ export const InteractiveFaqSection: React.FC = () => {
       category: 'agri',
       categoryLabel: 'Agriculture & Haber-Bosch',
       categoryIcon: <Wheat className="w-4 h-4 text-emerald-600" />,
-      question: "Le procédé Haber-Bosch : pourquoi la moitié de l'humanité mange-t-elle grâce au gaz fossile ?",
+      question: "Qu'est-ce que le procédé Haber-Bosch ?",
       shortSummary: "La réaction chimique qui transforme le gaz naturel et l'azote de l'air en engrais pour nourrir 8 milliards d'humains.",
       tags: ['Haber-Bosch', 'engrais', 'azote', 'gaz naturel', 'agriculture', 'famine', 'blé', 'riz'],
       scientificRef: 'Vaclav Smil (2001) · Enriching the Earth (MIT Press) · Erisman et al. (Nature Geoscience, 2008)',
@@ -125,13 +125,13 @@ export const InteractiveFaqSection: React.FC = () => {
             <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200">
               <span className="font-bold text-emerald-950 block">Un atome d'azote sur deux dans votre corps :</span>
               <span className="text-slate-700">
-                Comme l'a démontré le chercheur Vaclav Smil, 48% à 50% des atomes d'azote constitutifs des protéines musculaires et de l'ADN des 8 milliards d'humains vivants proviennent de cette usine chimique.
+                Erisman et al. (2008) ont estimé qu'environ 48% de la population mondiale dépendait alors de l'azote réactif produit par le procédé Haber-Bosch pour sa production alimentaire. Il s'agit d'une estimation de dépendance alimentaire mondiale, pas d'une mesure directe des atomes d'azote dans chaque personne.
               </span>
             </div>
             <div className="p-2.5 rounded-lg bg-rose-50 border border-rose-200">
               <span className="font-bold text-rose-900 block">L'effet ciseau de la déplétion fossile :</span>
               <span className="text-slate-700">
-                Quand le gaz naturel devient rare ou trop cher, les usines d'engrais ferment (comme en Europe en 2022). Les rendements de blé chutent de 40% à 50% en deux saisons, provoquant des famines mondiales immédiates.
+                Le gaz naturel est une matière première et une source d'énergie importante pour la production conventionnelle d'ammoniac. L'étude citée ne permet pas de déduire une baisse mondiale uniforme des rendements ni une famine à partir d'une réduction de l'approvisionnement en gaz.
               </span>
             </div>
           </div>
@@ -144,7 +144,7 @@ export const InteractiveFaqSection: React.FC = () => {
       categoryLabel: 'Climat & Modèle FaIR',
       categoryIcon: <Wind className="w-4 h-4 text-sky-600" />,
       question: "Le modèle FaIR : comment calcule-t-il le climat mondial sans supercalculateur géant ?",
-      shortSummary: "Le modèle d'émissions et de température validé par le GIEC AR6 pour simuler instantanément la Terre.",
+      shortSummary: "Un modèle climatique réduit qui relie émissions, concentrations et température.",
       tags: ['FaIR', 'GIEC', 'AR6', 'CO2', 'température', 'effet de serre', 'Smith'],
       scientificRef: 'Smith et al. (Geosci. Model Dev., 2018) · GIEC AR6 WG1 Chapitre 7',
       fullAnswer: (
@@ -157,7 +157,7 @@ export const InteractiveFaqSection: React.FC = () => {
           </p>
           <ul className="space-y-1.5 list-disc pl-5 text-slate-700">
             <li>
-              <strong>Résolution milliseconde :</strong> FaIR reproduit avec une fidélité supérieure à 98% les trajectoires thermiques des grands modèles complexes CMIP6.
+              <strong>Modèle réduit :</strong> FaIR calcule rapidement des réponses climatiques à des scénarios d'émissions. Les performances dépendent des variables, des expériences et des critères de comparaison.
             </li>
             <li>
               <strong>Cycle du carbone dynamique :</strong> Il intègre la saturation progressive des puits de carbone naturels (les océans et les forêts absorbent moins de CO₂ à mesure qu'ils se réchauffent).
@@ -177,8 +177,8 @@ export const InteractiveFaqSection: React.FC = () => {
       category: 'survival',
       categoryLabel: 'Survie Humaine & Stull Tw',
       categoryIcon: <Thermometer className="w-4 h-4 text-rose-600" />,
-      question: "La température humide Stull Tw : pourquoi le corps humain ne peut-il pas survivre au-dessus de 31°C Tw ?",
-      shortSummary: "La thermodynamique de la transpiration et le seuil mortel où le corps cuit de l'intérieur.",
+      question: "Qu'est-ce que la température au thermomètre mouillé (Tw) ?",
+      shortSummary: "Une mesure météorologique qui combine température de l'air et humidité.",
       tags: ['Stull Tw', 'thermomètre mouillé', 'chaleur humide', 'canicule', 'hyperthermie', 'seuil létal', 'Raymond'],
       scientificRef: 'Roland Stull (J. Appl. Meteor. Climatol., 2011) · Raymond et al. (Science Advances, 2020) · Sherwood & Huber (PNAS, 2010)',
       fullAnswer: (
@@ -190,9 +190,9 @@ export const InteractiveFaqSection: React.FC = () => {
             Or, la thermodynamique dicte qu'un liquide ne peut s'évaporer que si l'air environnant n'est pas déjà saturé de vapeur d'eau. C'est ce que mesure le <strong>thermomètre mouillé (Wet-Bulb Temperature, noté Tw)</strong> :
           </p>
           <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg text-rose-900 space-y-2">
-            <span className="font-bold text-rose-950 block">🚨 Le seuil létal absolu de 31,0°C Tw (Raymond et al., 2020) :</span>
+            <span className="font-bold text-rose-950 block">Limite théorique discutée par Sherwood et Huber (2010) :</span>
             <p className="text-xs">
-              À partir de 31,0°C Tw, l'air est à la fois trop chaud et trop gorgé d'eau pour absorber la sueur. Même nu, immobile à l'ombre d'un arbre et avec de l'eau à volonté, le corps ne peut plus se refroidir. La température interne grimpe inévitablement jusqu'à 42°C en 4 à 6 heures, entraînant défaillance multi-viscérale et arrêt cardiaque.
+              Les auteurs discutent une limite théorique autour de 35°C Tw pour une exposition prolongée. Ce n'est pas un seuil universel de mortalité : la réponse dépend notamment de l'activité, de l'acclimatation, de l'âge et des conditions d'exposition. Raymond et al. étudient des épisodes météorologiques extrêmes observés; ils ne valident pas un seuil mortel à 31°C.
             </p>
           </div>
           <p>
@@ -202,7 +202,7 @@ export const InteractiveFaqSection: React.FC = () => {
             Tw = T · atan(0.151977·√(RH + 8.313659)) + atan(T + RH) - atan(RH - 1.676331) + 0.00391838·RH^(3/2)·atan(0.023101·RH) - 4.686035
           </div>
           <p>
-            Cette formule est utilisée dans CLIMATOPEDY pour chaque pays afin de déterminer avec rigueur les jours annuels de mortalité par hyperthermie.
+            CLIMATOPEDY utilise cette formule pour calculer Tw dans sa simulation. Ce calcul météorologique ne permet pas, à lui seul, d'estimer des décès réels ou validés.
           </p>
         </div>
       )
@@ -212,27 +212,27 @@ export const InteractiveFaqSection: React.FC = () => {
       category: 'climate',
       categoryLabel: 'Océans & Climat',
       categoryIcon: <Waves className="w-4 h-4 text-sky-600" />,
-      question: "La montée des océans : comment passe-t-on de +12 cm aujourd'hui à +75 cm en 2100 ?",
+      question: "Quelles sont les causes de l'élévation du niveau moyen de la mer ?",
       shortSummary: "Les deux causes physiques de l'élévation marine et pourquoi les greniers côtiers s'effondrent avant d'être noyés.",
       tags: ['montée des océans', 'niveau marin', 'submersion', 'deltas', 'salinisation', 'Vermeer & Rahmstorf'],
       scientificRef: 'Vermeer & Rahmstorf (PNAS, 2009) · GIEC SROCC (2019)',
       fullAnswer: (
         <div className="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
           <p>
-            L'élévation moyenne du niveau de la mer n'est pas une simple vague : c'est un processus physique inarrêtable à court terme gouverné par deux moteurs :
+            Le niveau moyen de la mer s'élève sous l'effet de plusieurs processus, notamment le réchauffement et l'expansion de l'eau de mer ainsi que la perte de glace continentale :
           </p>
           <ol className="space-y-2 list-decimal pl-5 text-slate-700">
             <li>
-              <strong>La dilatation thermique (environ 40%) :</strong> L'eau chauffée gagne en volume. Comme les océans ont absorbé plus de 90% de l'excès de chaleur accumulé par l'effet de serre, la colonne d'eau se dilate sur des milliers de mètres de profondeur.
+              <strong>L'expansion thermique :</strong> L'eau de mer se dilate lorsqu'elle se réchauffe. Sa contribution varie dans le temps et selon la profondeur considérée.
             </li>
             <li>
-              <strong>La fonte des glaces continentales (environ 60%) :</strong> Les glaciers de montagne (Alpes, Andes, Himalaya) ainsi que les calottes polaires posées sur la terre ferme (Groenland et Antarctique occidental) déversent des milliards de tonnes d'eau douce dans les océans. (Note : la fonte de la banquise flottante ne fait pas monter l'eau, comme un glaçon dans un verre).
+              <strong>La perte de glace continentale :</strong> La fonte des glaciers et des calottes glaciaires ajoute de l'eau à l'océan. La fonte de glace de mer flottante a un effet direct beaucoup plus faible sur le niveau marin.
             </li>
           </ol>
           <div className="p-3 bg-sky-50 border border-sky-200 rounded-lg text-sky-900">
             <span className="font-bold text-sky-950 block mb-1">Le piège de la salinisation des nappes côtières :</span>
             <p className="text-xs">
-              Les deltas rizicoles (Mékong au Vietnam, delta du Gange au Bangladesh, delta du Nil en Égypte) nourrissent des centaines de millions d'individus. Bien avant que l'eau ne submerge les maisons, une hausse de +30 à +50 cm infiltre l'eau salée de mer dans les nappes phréatiques douces. La terre devient stérile et l'eau potable devient impropre à la consommation.
+              L'élévation du niveau marin peut accroître les risques d'inondation et d'intrusion saline dans les aquifères côtiers. Les effets dépendent de la topographie, des marées, des prélèvements d'eau, des protections côtières et des conditions locales; aucun seuil mondial uniforme de 30 à 50 cm ne s'applique à tous les deltas.
             </p>
           </div>
         </div>
@@ -250,7 +250,7 @@ export const InteractiveFaqSection: React.FC = () => {
       fullAnswer: (
         <div className="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
           <p>
-            Le thermomètre classique de votre application météo mesure la <strong>température de l'air sec (Dry-Bulb)</strong>. Il ignore totalement l'humidité, alors que c'est elle qui décide si vous survivez ou mourez :
+            Le thermomètre classique mesure la <strong>température de l'air (thermomètre sec)</strong>. L'humidité influence les échanges de chaleur et l'évaporation de la sueur; aucun couple température-humidité ne détermine à lui seul la survie d'une personne.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs my-2">
             <div className="p-3 rounded-lg bg-amber-50/60 border border-amber-200">
@@ -261,7 +261,7 @@ export const InteractiveFaqSection: React.FC = () => {
                 • Température humide Tw : <strong>22,5°C</strong>
               </p>
               <span className="text-emerald-700 font-semibold block">
-                ✅ Survie possible : L'air est si sec que la sueur s'évapore instantanément. En restant à l'ombre et en buvant 8 litres d'eau par jour, le corps régule ses 37°C.
+                Exemple météorologique : la valeur Tw dépend de la température et de l'humidité indiquées. La tolérance à la chaleur dépend aussi de l'exposition, de l'activité, de l'accès à l'eau et de l'état de santé.
               </span>
             </div>
 
@@ -273,7 +273,7 @@ export const InteractiveFaqSection: React.FC = () => {
                 • Température humide Tw : <strong>32,2°C</strong>
               </p>
               <span className="text-rose-700 font-bold block">
-                ☠️ Mortel en 4 heures : Bien que l'air soit à 35°C (10°C de moins que dans le désert), la saturation en vapeur empêche l'évaporation. Sans climatisation électrique, coup de chaleur fatal garanti.
+                Exemple météorologique : une température et une humidité élevées limitent l'évaporation de la sueur et peuvent créer un stress thermique important. Ces deux valeurs seules ne déterminent ni une durée de survie ni une issue certaine.
               </span>
             </div>
           </div>
@@ -292,17 +292,17 @@ export const InteractiveFaqSection: React.FC = () => {
       fullAnswer: (
         <div className="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
           <p>
-            Dans les rapports du GIEC, le scénario <strong>SSP5-8.5</strong> représente un monde axé sur la croissance économique par l'intensification des ressources conventionnelles, sans politique climatique globale contraignante.
+            Dans l'AR6, <strong>SSP5-8.5</strong> est un scénario conditionnel de très fortes émissions de gaz à effet de serre associé à une trajectoire socio-économique SSP5. Ce n'est pas une prévision certaine ni nécessairement le scénario le plus probable.
           </p>
           <p>
-            Dans CLIMATOPEDY, nous l'adoptons non pas comme une prophétie inéluctable, mais comme une <strong>sonde de contrainte biophysique</strong> :
+            Les résultats affichés par CLIMATOPEDY dépendent des paramètres propres au simulateur. Ils ne sont pas des projections officielles du GIEC.
           </p>
           <ul className="space-y-1.5 list-disc pl-5 text-slate-700">
             <li>
-              Il permet de quantifier exactement ce qui se produit lorsque les infrastructures existantes (centrales, autoroutes, parcs de camions, usines d'engrais) continuent sur leur lancée et percutent de plein fouet les limites géologiques (déclin de l'EROI) et thermodynamiques (chaleur létale Tw).
+              Les trajectoires présentées sont des sorties du modèle CLIMATOPEDY, conditionnelles à ses paramètres et hypothèses; elles ne quantifient pas exactement un futur observé.
             </li>
             <li>
-              C'est la référence indispensable pour mesurer l'urgence et l'ampleur des politiques d'adaptation, de sobriété et de relocalisation résiliente.
+              Le GIEC compare plusieurs scénarios afin d'évaluer les conséquences climatiques possibles de différents niveaux d'émissions.
             </li>
           </ul>
         </div>

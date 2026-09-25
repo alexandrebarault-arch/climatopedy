@@ -57,10 +57,10 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
             <ShieldCheck className="w-6 h-6 text-emerald-700 shrink-0 mt-0.5" />
             <div>
               <h3 className="font-bold text-emerald-800 text-sm">
-                Oui, c'est parfaitement conforme aux lois de la physique atmosphérique et au GIEC :
+                La carte affiche des sorties du simulateur CLIMATOPEDY; le GIEC ne valide pas ces résultats régionaux du modèle.
               </h3>
               <p className="text-xs text-slate-700 mt-1">
-                En 2100 comme en 2200, les régions boréales et tempérées océaniques (Canada, Scandinavie, Russie boréale, Nouvelle-Zélande, sud du Chili) ne franchissent <strong>jamais le seuil létal de thermomètre mouillé (Tw &gt; 31°C à 35°C)</strong>. Elles conservent un climat où l'organisme humain peut transpirer et évacuer sa chaleur métabolique, ce qui en fait les ultimes refuges biophysiques de la planète.
+                Les valeurs régionales pour 2100 et 2200 sont des résultats de simulation CLIMATOPEDY, conditionnels à ses paramètres. Elles ne constituent pas des projections officielles du GIEC ni une garantie d'absence de stress thermique.
               </p>
             </div>
           </div>
@@ -79,10 +79,10 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
               </p>
               <ul className="text-xs text-slate-600 list-disc list-inside space-y-1 pl-1">
                 <li>
-                  <strong className="text-slate-800">Dans les tropiques et golfes humides :</strong> La relation de Clausius-Clapeyron (+7% d'eau par °C) fait exploser l'humidité, rendant la transpiration humaine inopérante (Tw &gt; 31°C).
+                  <strong className="text-slate-800">Dans les tropiques et golfes humides :</strong> Une atmosphère plus chaude peut contenir davantage de vapeur d'eau à saturation; l'évolution locale de l'humidité dépend aussi des conditions atmosphériques.
                 </li>
                 <li>
-                  <strong className="text-slate-800">Dans les hautes latitudes (Canada, Scandinavie) :</strong> Même lors d'étés à 30-34°C, l'air continental ou maritime boréal reste modérément humide. Le Tw estival reste compris entre <strong>18°C et 24°C</strong> (vert/turquoise sur la carte).
+                  <strong className="text-slate-800">Dans les hautes latitudes :</strong> Les valeurs de Tw représentées sur la carte proviennent de la simulation CLIMATOPEDY et dépendent de ses données et paramètres régionaux.
                 </li>
               </ul>
             </div>
@@ -117,10 +117,10 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
               </p>
               <ul className="text-xs text-slate-600 list-disc list-inside space-y-1 pl-1">
                 <li>
-                  Les zones de culture des céréales à paille (blé, orge, avoine) migrent vers les hautes latitudes (<a href="https://www.pnas.org/doi/10.1073/pnas.1701762114" target="_blank" rel="noreferrer" className="text-amber-700 font-semibold underline">Zhao et al. 2017 PNAS</a>).
+                  Zhao et al. (2017) estiment des effets moyens du réchauffement sur les rendements de plusieurs grandes cultures; cette étude ne démontre pas à elle seule une migration générale des cultures vers le nord.
                 </li>
                 <li>
-                  Leur faible densité démographique initiale leur assure un ratio terres arables / habitant supérieur, même face à l'effondrement des intrants chimiques fossiles.
+                  Les niveaux de calories et de population de cette carte sont des sorties de simulation; la publication citée n'établit pas un avantage alimentaire régional en cas de baisse des intrants.
                 </li>
               </ul>
             </div>
@@ -136,10 +136,10 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
               </p>
               <ul className="text-xs text-slate-600 list-disc list-inside space-y-1 pl-1">
                 <li>
-                  Des millions de réfugiés climatiques fuient les zones tropicales devenues inhabitables (Inde, Sahel, Golfe persique) pour rejoindre les régions viables.
+                Les nombres et déplacements affichés sont des sorties du modèle CLIMATOPEDY; ils ne sont pas des estimations validées de migrations climatiques.
                 </li>
                 <li>
-                  Ce solde migratoire positif entraîne une forte pression sur les infrastructures de ces pays refuges, qui militarisent souvent leurs frontières.
+                  Les effets sur les infrastructures et les politiques migratoires ne sont pas établis par cette simulation; ils ne sont pas déduits ici comme des faits.
                 </li>
               </ul>
             </div>
@@ -155,15 +155,15 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-600">
               <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-2xs">
                 <span className="font-bold text-sky-700 block mb-1">Montée Séculaire des Eaux (+2,6 m)</span>
-                Même si les émissions s'arrêtent, l'inertie thermique des abysses océaniques et la fonte engagée du Groenland et de l'Antarctique Ouest portent l'élévation marine à plus de <strong>2,5 mètres en 2200</strong> (Fox-Kemper et al. 2021 GIEC AR6 Chapitre 9).
+                Le niveau moyen de la mer continuera de s'élever pendant des siècles à des millénaires. Les valeurs pour 2200 affichées ici sont des sorties de simulation CLIMATOPEDY, pas une projection GIEC unique. L'AR6 fournit des plages dépendant du scénario et de l'horizon.
               </div>
               <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-2xs">
                 <span className="font-bold text-amber-700 block mb-1">Épuisement Géologique Fossile</span>
-                Dès 2090-2110, les réserves ultimes de pétrole conventionnel (Qinf ≈ 2800 milliards de barils) sont pratiquement épuisées. L'humanité de 2200 vit dans un système énergétique 100% post-fossile (solaire, nucléaire, éolien, biomasse).
+                Les dates d'épuisement et la composition du système énergétique en 2200 sont des hypothèses et des résultats du modèle CLIMATOPEDY, et non des conclusions du GIEC.
               </div>
               <div className="p-3 rounded-lg bg-white border border-slate-200 shadow-2xs">
                 <span className="font-bold text-emerald-700 block mb-1">Stabilisation Démographique</span>
-                Après les crises de mortalité du XXIe siècle, la population mondiale se stabilise vers <strong>2,8 milliards d'habitants en 2200</strong> sous trajectoire fossile, concentrée dans les zones refuges boréales, ou <strong>8 milliards</strong> sous scénario de sobriété agroécologique.
+                Les valeurs démographiques de 2200 affichées par cette simulation dépendent des hypothèses de CLIMATOPEDY; elles ne sont pas des projections démographiques officielles.
               </div>
             </div>
           </div>

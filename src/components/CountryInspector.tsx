@@ -108,16 +108,16 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               </span>
               {dynState.wetBulbPeak >= 32.0 ? (
                 <span className="block text-[11px] text-rose-800 font-bold">
-                  • Canicule mortelle : Température humide Tw à {dynState.wetBulbPeak.toFixed(1)}°C. Le corps ne peut plus évacuer sa chaleur sans climatisation électrique continue.
+                  • Seuil d'alerte du modèle dépassé : Tw simulée à {dynState.wetBulbPeak.toFixed(1)}°C. Cette valeur n'est pas une estimation médicale de mortalité.
                 </span>
               ) : isLethalHeat ? (
                 <span className="block text-[11px] text-rose-800">
-                  • Canicule humide létale : Température humide Tw à {dynState.wetBulbPeak.toFixed(1)}°C. Risque mortel d'hyperthermie pour la population.
+                  • Seuil d'alerte du modèle dépassé : Tw simulée à {dynState.wetBulbPeak.toFixed(1)}°C.
                 </span>
               ) : null}
               {isFamine && (
                 <span className="block text-[11px] text-amber-900 font-medium">
-                  • Famine grave : Ration alimentaire tombée à {Math.round(dynState.calPerCapita)} kcal/jour (en dessous du minimum vital de 2 100 kcal).
+                  • Disponibilité calorique simulée : {Math.round(dynState.calPerCapita)} kcal/habitant/jour. La valeur ne constitue pas à elle seule une mesure de famine.
                 </span>
               )}
             </div>
@@ -236,15 +236,11 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             <div className="text-[11px] text-slate-700 bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
               <span className="font-semibold text-slate-900 block mb-0.5">Seuil de danger pour le corps humain :</span>
               <span>
-                {dynState.wetBulbPeak >= 35.0
-                  ? '☠️ Température humide Tw ≥ 35°C (Létalité absolue) : Effondrement vital certain. Même au repos et à l\'ombre, la transpiration ne peut plus évacuer la chaleur.'
-                  : dynState.wetBulbPeak >= 32.0
-                  ? '🚨 Température humide Tw ≥ 32°C (Danger mortel) : Décès par coup de chaleur en moins de 6h sans climatisation continue.'
-                  : dynState.wetBulbPeak >= 31.0
-                  ? '⚠️ Température humide Tw ≥ 31°C (Seuil létal) : La transpiration ne refroidit plus le corps (Raymond et al. 2020).'
+                {dynState.wetBulbPeak >= 31.0
+                  ? `Tw simulée ≥ 31°C, au-dessus du seuil d'alerte configuré dans le modèle. Ce seuil n'est pas une limite universelle de mortalité.`
                   : dynState.wetBulbPeak >= 28.0
-                  ? '⚡ Température humide Tw ≥ 28°C (Stress thermique sévère) : Fatigue intense. Tout travail physique extérieur devient dangereux.'
-                  : '✅ Climat thermiquement supportable pour l\'organisme humain.'}
+                  ? 'Tw simulée ≥ 28°C, plage signalée par le modèle. Le niveau de risque individuel dépend des conditions d’exposition et de la physiologie.'
+                  : 'Tw simulée sous les seuils d’alerte configurés dans le modèle.'}
               </span>
             </div>
           </div>
@@ -307,14 +303,14 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
             <div className="space-y-1.5 text-[11px]">
               <div className="flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-rose-700 font-medium">Canicules mortelles (chaleur humide) :</span>
+                <span className="text-rose-700 font-medium">Décès simulés associés à la chaleur humide :</span>
                 <span className="font-mono font-bold text-slate-900 tabular-nums">
                   {(dynState.annualDeaths.thermal).toFixed(2)} M/an
                 </span>
               </div>
 
               <div className="flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-amber-800 font-medium">Famines et manque de nourriture :</span>
+                <span className="text-amber-800 font-medium">Décès simulés associés au déficit calorique :</span>
                 <span className="font-mono font-bold text-slate-900 tabular-nums">
                   {(dynState.annualDeaths.famine).toFixed(2)} M/an
                 </span>

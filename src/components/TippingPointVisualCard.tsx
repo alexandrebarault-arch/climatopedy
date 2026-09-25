@@ -47,7 +47,7 @@ export const VISUAL_METADATA: Record<string, SatelliteData> = {
     elevationOrDepth: '-12 m profondeur lagon',
     spectrum: 'Infrarouge thermique SST & Réflectance',
     keyFeature: 'Récif corallien tropical Indo-Pacifique',
-    stressMetric: '54% des récifs mondiaux soumis au stress thermique mortel',
+    stressMetric: 'Stress thermique corallien observé; le blanchissement n\'implique pas une mortalité systématique',
     realPhotoUrl: '/images/visuals/coral_reef.jpg',
     photoCredit: 'Photographie sous-marine - Écosystème corallien menacé par la canicule marine'
   },
@@ -223,7 +223,7 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
             <path d="M 260 205 C 270 155 305 140 325 165 C 335 145 360 150 365 205 Z" fill="#f8fafc" stroke="#e2e8f0" />
             <line x1="170" y1="30" x2="170" y2="210" stroke="#f43f5e" strokeWidth="1.5" strokeDasharray="3 3" />
             <text x="30" y="45" fill="#34d399" fontSize="11" fontWeight="bold">Sain (&lt; 28.5°C)</text>
-            <text x="185" y="45" fill="#fda4af" fontSize="11" fontWeight="bold">Blanchissement mortel (&gt; 30°C)</text>
+            <text x="185" y="45" fill="#fda4af" fontSize="11" fontWeight="bold">Stress thermique corallien</text>
           </svg>
         );
 

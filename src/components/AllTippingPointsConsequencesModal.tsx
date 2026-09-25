@@ -46,17 +46,17 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
             <div>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-rose-800 font-bold bg-rose-100 px-2 py-0.5 rounded border border-rose-200">
-                  Choc Systémique Planétaire
+                  Synthèse des risques climatiques
                 </span>
                 <span className="text-[11px] font-mono text-slate-600">
-                  Modèle Hothouse Earth (Steffen et al. PNAS 2018)
+                  Steffen et al. (2018) · Armstrong McKay et al. (2022)
                 </span>
               </div>
               <h2 id="all-tipping-title" className="text-lg sm:text-xl font-black text-slate-800 tracking-tight mt-1">
-                Que se passe-t-il si l'ENSEMBLE des 9 points de bascule est franchi ?
+                Quels risques sont étudiés pour les éléments de bascule climatique ?
               </h2>
               <p className="text-xs text-rose-900 mt-1">
-                La bascule vers l'état irréversible de « Terre Étuvante » et la perte de contrôle thermodynamique de la biosphère.
+                Les seuils et conséquences diffèrent selon les éléments et comportent des incertitudes.
               </p>
             </div>
           </div>
@@ -72,28 +72,28 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
 
         {/* Contenu déroulant */}
         <div className="p-5 sm:p-6 overflow-y-auto space-y-5 text-xs sm:text-sm">
-          {/* BANDEAU 1 : DATE PRÉVISIONNELLE DU FRANCHISSEMENT TOTAL */}
+          {/* BANDEAU 1 : RÉSULTATS INDICATIFS DES SCÉNARIOS DU SITE */}
           <div className="bg-gradient-to-r from-rose-50/60 via-slate-50 to-amber-50/40 border border-rose-200 rounded-xl p-4 sm:p-5">
             <div className="flex items-center gap-2 text-rose-800 font-bold text-xs uppercase tracking-wider mb-2">
               <Clock className="w-4 h-4 text-rose-600" />
-              1. Quand ce seuil de basculement total risque-t-il d'arriver ?
+              1. Que représentent les dates affichées ?
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
               <div className="bg-rose-50/80 border border-rose-200 rounded-xl p-3.5 flex flex-col justify-between shadow-2xs">
                 <div>
                   <span className="text-[11px] font-semibold text-rose-900 block">
-                    Trajectoire Fossile Tendancielle (Sans rupture / Échec climatique)
+                    Scénario CLIMATOPEDY à émissions élevées
                   </span>
                   <div className="text-xl sm:text-2xl font-black font-mono text-rose-700 mt-1">
-                    Entre 2085 et 2100
+                    Sortie du modèle
                   </div>
                   <p className="text-xs text-slate-700 mt-1.5 leading-relaxed">
-                    Si les émissions mondiales restent à des plateaux élevés (+3,5°C à +4,0°C d'ici 2100), le dernier verrou (forêts boréales et AMOC à +4,0°C) cède à la fin du siècle.
+                    Les dates et seuils calculés ici sont des sorties du scénario CLIMATOPEDY; ils ne constituent pas des dates de franchissement établies par les études citées ou par le GIEC.
                   </p>
                 </div>
                 <div className="mt-3 text-[10px] font-mono text-rose-800 bg-white px-2 py-1 rounded border border-rose-300">
-                  Risque maximal de cascade irréversible
+                  Scénario conditionnel du modèle
                 </div>
               </div>
 
@@ -103,14 +103,14 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
                     Trajectoire de Sobriété & Agroécologie (Scénario B CLIMATOPEDY)
                   </span>
                   <div className="text-xl sm:text-2xl font-black font-mono text-emerald-700 mt-1">
-                    JAMAIS FRANCHI
+                    Sortie du modèle
                   </div>
                   <p className="text-xs text-slate-700 mt-1.5 leading-relaxed">
-                    En diminuant rapidement la combustion fossile (-4%/an) et en sanctuarisant les sols, le climat se stabilise sous +1,8°C. Les grands verrous (Amazonie, calottes géantes, AMOC) sont sauvés.
+                    Cette trajectoire est un scénario interne à CLIMATOPEDY. Les résultats calculés ne démontrent pas que des éléments de bascule sont nécessairement évités dans le monde réel.
                   </p>
                 </div>
                 <div className="mt-3 text-[10px] font-mono text-emerald-800 bg-white px-2 py-1 rounded border border-emerald-300">
-                  Climat stabilisé dans une zone habitable
+                  Scénario conditionnel du modèle
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
           <div>
             <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-600" />
-              2. Les 5 conséquences physiques majeures dès que tous les points ont basculé
+              2. Résultats scientifiques portant sur ces systèmes
             </h3>
 
             <div className="space-y-3">
@@ -131,11 +131,11 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
                     1
                   </span>
                   <h4 className="font-bold text-slate-800 text-xs sm:text-sm">
-                    Perte définitive de contrôle humain (La Terre s'auto-réchauffe)
+                     Rétroactions du cycle du carbone
                   </h4>
                 </div>
                 <p className="text-slate-700 text-xs sm:text-sm leading-relaxed pl-8">
-                  Le dégel du pergélisol, la savanisation de l'Amazonie et les méga-feux de la taïga boréale relarguent ensemble plus de <strong>350 à 500 milliards de tonnes de CO2 et de méthane</strong>. La Terre devient elle-même le premier pollueur de la planète. Même si les humains arrêtaient instantanément 100% de leurs usines et véhicules, le climat continuerait de surchauffer tout seul.
+                  Le dégel du pergélisol et les changements des écosystèmes peuvent modifier les échanges de carbone entre les terres et l'atmosphère. L'ampleur et le calendrier de ces rétroactions restent incertains; elles ne justifient pas l'affirmation d'un réchauffement autonome et illimité.
                 </p>
               </div>
 
@@ -146,12 +146,12 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
                     2
                   </span>
                   <h4 className="font-bold text-slate-800 text-xs sm:text-sm flex items-center gap-2">
-                    <span>Montée cumulée des océans : +10 à +12 mètres</span>
+                     <span>Élévation potentielle à long terme du niveau marin</span>
                     <span className="text-[10px] text-sky-800 font-mono font-medium bg-sky-100 px-1.5 py-0.5 rounded border border-sky-200">Irréversible</span>
                   </h4>
                 </div>
                 <p className="text-slate-700 text-xs sm:text-sm leading-relaxed pl-8">
-                  La fonte conjointe du Groenland (+7,2 m), de l'Antarctique de l'Ouest (+3,3 m) et du Bassin de Wilkes (+3 m) noie sous l'eau toutes les villes côtières du monde (Tokyo, New York, Shanghaï, Londres, Alexandrie, Bordeaux). Plus de <strong>1,2 milliard de réfugiés climatiques côtiers</strong> doivent fuir vers l'intérieur des terres et tous les grands ports maritimes de commerce sont détruits.
+                  La perte complète des grandes calottes glaciaires contribuerait à une élévation de plusieurs mètres du niveau marin sur de longues échelles de temps. Les projections pour les siècles à venir dépendent du scénario d'émissions et comportent une incertitude importante; elles ne déterminent pas un nombre de personnes déplacées.
                 </p>
               </div>
 
@@ -162,11 +162,11 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
                     3
                   </span>
                   <h4 className="font-bold text-slate-800 text-xs sm:text-sm">
-                    Arrêt du Gulf Stream (AMOC) & Déplacement brutal des Moussons
+                    Affaiblissement de l'AMOC et effets régionaux
                   </h4>
                 </div>
                 <p className="text-slate-700 text-xs sm:text-sm leading-relaxed pl-8">
-                  L'arrêt du tapis roulant marin plonge le nord de l'Europe dans des hivers glaciaires avec des tempêtes record, tandis que la chaleur s'accumule dans l'Atlantique Sud. Les moussons vitales en Inde et au Sahel s'effondrent ou se décalent, privant d'eau les récoltes vivrières dont dépendent <strong>2 milliards d'habitants</strong>.
+                  Le GIEC juge très probable un affaiblissement de l'AMOC au XXIe siècle et indique qu'un effondrement abrupt avant 2100 n'est pas attendu (confiance moyenne). Un effondrement, s'il survenait, modifierait les régimes régionaux de température et de précipitations.
                 </p>
               </div>
 
@@ -177,26 +177,26 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
                     4
                   </span>
                   <h4 className="font-bold text-slate-800 text-xs sm:text-sm">
-                    Inhabitabilité thermique : La frontière mortelle de Stull (Tw &gt; 31°C)
+                    Chaleur et humidité : exposition au stress thermique
                   </h4>
                 </div>
                 <p className="text-slate-700 text-xs sm:text-sm leading-relaxed pl-8">
-                  La combinaison d'une chaleur extrême et d'une humidité suffocante dépasse le seuil physiologique de refroidissement du corps humain. Dans le golfe Persique, en Asie du Sud, au Sahel et en Amazonie, tout travail extérieur devient mortel en moins de 6 heures pendant 60 à 120 jours par an.
+                  Le risque de stress thermique dépend de la température, de l'humidité, de l'activité, de l'exposition et de la physiologie. Une valeur de température au thermomètre mouillé ne détermine pas à elle seule une durée de survie universelle.
                 </p>
               </div>
 
-              {/* Conséquence 5 : Chute de 40% à 60% de la nourriture mondiale */}
+              {/* Résultats sur l'agriculture */}
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-slate-300 shadow-2xs transition-colors">
                 <div className="flex items-center gap-2.5 mb-1.5">
                   <span className="w-6 h-6 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold font-mono text-xs">
                     5
                   </span>
                   <h4 className="font-bold text-slate-800 text-xs sm:text-sm">
-                    Effondrement de la production alimentaire mondiale (-40% à -60%)
+                    Sensibilité des rendements agricoles à la température
                   </h4>
                 </div>
                 <p className="text-slate-700 text-xs sm:text-sm leading-relaxed pl-8">
-                  La perte de la biodiversité marine (disparition de 99% des coraux), les méga-sécheresses et la stérilisation du pollen des céréales par les canicules frappent simultanément les 4 grands greniers à blé mondiaux (USA, Europe, Ukraine, Chine). Les famines deviennent chroniques et structurelles.
+                  Sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, Zhao et al. (2017) estiment en moyenne une baisse des rendements mondiaux par degré de réchauffement : maïs 7,4%, blé 6,0%, riz 3,2% et soja 3,1%. Les effets varient selon les régions et les cultures.
                 </p>
               </div>
             </div>
@@ -206,7 +206,7 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
           <div className="bg-sky-50 border border-sky-200 rounded-xl p-4 flex items-start gap-3 shadow-2xs">
             <Info className="w-5 h-5 text-sky-600 shrink-0 mt-0.5" />
             <div className="text-xs text-slate-700 leading-relaxed">
-              <strong className="text-slate-900 font-bold">Ce qu'il faut retenir :</strong> Le franchissement simultané de l'ensemble de ces points n'est pas une sentence inévitable. Chaque dixième de degré évité (+1,5°C plutôt que +1,8°C ; +2,0°C plutôt que +2,5°C) empêche un point de bascule supplémentaire de tomber et bloque l'effet domino. C'est tout le sens de l'encyclopédie CLIMATOPEDY.
+              <strong className="text-slate-900 font-bold">À retenir :</strong> Les estimations de seuils et leurs conséquences comportent des plages d'incertitude. Les résultats des scénarios CLIMATOPEDY sont des simulations conditionnelles, et non des prévisions du GIEC.
             </div>
           </div>
         </div>
