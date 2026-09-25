@@ -45,13 +45,18 @@ export const ClimatopedyHeader: React.FC<ClimatopedyHeaderProps> = ({ onOpenTuto
         </div>
 
         {/* Titre principal clair et compréhensible */}
-        <div>
-          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 tracking-tight leading-snug">
-            CLIMATOPEDY : Comprendre le Climat &amp; l'Énergie sans jargon
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
-            À quoi sert cet outil et comment vous donne-t-il les clés de notre avenir commun ?
-          </p>
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
+          <div className="min-w-0">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 tracking-tight leading-snug">
+              CLIMATOPEDY : Comprendre le Climat &amp; l'Énergie sans jargon
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
+              À quoi sert cet outil et comment vous donne-t-il les clés de notre avenir commun ?
+            </p>
+          </div>
+          <span className="text-[11px] sm:text-xs text-slate-500 whitespace-nowrap sm:pt-1">
+            Dernière mise à jour : 25 septembre 2026
+          </span>
         </div>
 
         {/* Corps de l'en-tête si déplié */}
