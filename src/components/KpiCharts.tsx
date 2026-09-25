@@ -509,7 +509,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   const getChartTitle = (id: ChartId) => {
     switch (id) {
       case 'demo':
-        return '1. Population Mondiale & Nombre de Décès par An';
+        return '1. Population mondiale & décès annuels simulés';
       case 'energy':
         return "2. Énergie & Pétrole : Multiplicateur d'Énergie et Part Utile";
       case 'climate':
@@ -533,7 +533,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className={`${isExpanded ? 'text-sm sm:text-base' : 'text-xs'} font-bold text-slate-900`}>
-                    1. Population Mondiale &amp; Nombre de Décès par An
+                    1. Population mondiale &amp; décès annuels simulés
                   </span>
                   {isExpanded && (
                     <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-sky-100 text-sky-800 border border-sky-200 font-semibold">
@@ -583,7 +583,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 </span>
                 <span className="text-purple-800 font-semibold flex items-center gap-1 min-w-[8.5rem]">
                   <span className="w-2 h-2 rounded-full bg-purple-600 inline-block shrink-0" />
-                  Total Décès : {d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an
+                  Décès totaux simulés : {d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an
                 </span>
                 <span className="text-amber-800 font-semibold flex items-center gap-1 min-w-[7.5rem]">
                   <span className="w-2 h-2 rounded-full bg-amber-600 inline-block shrink-0" />
@@ -618,7 +618,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </div>
 
             <p className="text-[10px] text-slate-600 leading-tight">
-              Nombre d'êtres humains sur Terre (axe gauche en Mds) comparé au rythme des décès annuels (axe droit en Millions/an).
+              Population mondiale simulée (axe gauche, milliards) et sorties de décès annuels calculés par le modèle (axe droit, millions/an). Les décès ne sont pas des estimations sanitaires validées.
             </p>
 
             {/* SVG Graphique 1 */}
@@ -736,12 +736,12 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             <div className="flex flex-col gap-1 text-[10.5px] text-slate-700 pt-1 border-t border-slate-200">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <span>⚫ <strong>Ligne noire :</strong> Population mondiale ({(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds)</span>
-                <span>🟣 <strong>Ligne violette :</strong> Tous décès confondus ({d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an)</span>
+                <span>🟣 <strong>Ligne violette :</strong> Décès totaux simulés ({d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an)</span>
                 <span>🟠 <strong>Ligne orange :</strong> Décès simulés associés au déficit calorique ({d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an)</span>
               </div>
               <div className="bg-rose-50 border border-rose-200 rounded p-1.5 text-rose-900 text-[10px]">
-                🔴 <strong>Ligne rouge (Canicules mortelles) :</strong> {d1.thermalDeathsFormatted} en {d1.displayYear}. 
-                Valeur calculée par le simulateur CLIMATOPEDY à partir de ses paramètres; elle ne constitue pas une estimation validée des décès attribuables à la chaleur.
+                🔴 <strong>Ligne rouge (décès chaleur simulés) :</strong> {d1.thermalDeathsFormatted} en {d1.displayYear}.
+                Sortie exploratoire calculée par CLIMATOPEDY; elle ne constitue pas une estimation validée des décès attribuables à la chaleur.
               </div>
             </div>
           </div>

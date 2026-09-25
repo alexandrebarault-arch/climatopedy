@@ -304,7 +304,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             }`}
           >
             <Skull className="w-3.5 h-3.5" />
-            <span>Surmortalité</span>
+            <span>Surmortalité simulée</span>
           </button>
 
           <button
@@ -432,11 +432,11 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             {/* Presets rapides de seuils */}
             <div className="flex items-center gap-1">
               {[
-                { val: 29.0, label: '≥29° (Vuln.)', tip: 'Inconfort sévère, danger pour personnes âgées et enfants' },
+                { val: 29.0, label: '≥29° (Repère)', tip: 'Repère de Tw utilisé par le modèle; cette valeur seule ne détermine pas les effets sur la santé.' },
                 { val: 31.0, label: '≥31° (Alerte modèle)', tip: 'Seuil d’alerte configuré dans CLIMATOPEDY; ce n’est pas un seuil universel de mortalité.' },
-                { val: 32.0, label: '≥32° (Critique)', tip: 'Inhabitabilité critique sans climatisation artificielle continue' },
+                { val: 32.0, label: '≥32° (Alerte modèle)', tip: 'Alerte configurée dans le modèle; Tw seule ne permet pas de conclure à l’inhabitabilité ni à un besoin de climatisation.' },
                 { val: 34.0, label: '≥34° (Alerte modèle)', tip: 'Valeur élevée de Tw; les effets physiologiques dépendent de l’exposition et des personnes.' },
-                { val: 35.0, label: '≥35° (Max)', tip: 'Limite thermodynamique théorique absolue du corps humain' }
+                { val: 35.0, label: '≥35° (Repère)', tip: 'Valeur étudiée dans la littérature pour une exposition prolongée; ce n’est pas un seuil universel de mortalité.' }
               ].map((preset) => (
                 <button
                   key={preset.val}
@@ -498,7 +498,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   twOverlayMode === 'uninhabitable' ? 'bg-rose-600 text-white font-semibold' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                Alerte du modèle (&ge;31°)
+                Alerte Tw du modèle (&ge;31°)
               </button>
               <button
                 onClick={() => setTwOverlayMode('off')}
@@ -518,7 +518,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             <div className="flex items-center gap-2">
               <span className="text-[11px] font-semibold text-rose-800 flex items-center gap-1">
                 <AlertOctagon className="w-3.5 h-3.5 text-rose-600" />
-                Zones à risque d'inhabitabilité (Stull Tw &ge; {heatAlertThreshold.toFixed(1)}°C) :
+                Régions où la Tw simulée dépasse le seuil configuré ({heatAlertThreshold.toFixed(1)}°C) :
               </span>
             </div>
 
@@ -858,7 +858,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         fontWeight="700"
                         fontFamily="monospace"
                       >
-                        {isUninhabitable ? `☠️ ${tw.toFixed(1)}°` : `${tw.toFixed(1)}°C`}
+                        {tw.toFixed(1)}°C
                       </text>
                     </g>
                   );
@@ -1015,9 +1015,10 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                           Au pic estival simulé ({dyn.summerMaxTemp.toFixed(1)}°C / {dyn.summerHumidity}% humidité), Tw calculée atteint <strong>{tw.toFixed(1)}°C</strong>. Cette sortie du modèle n'est pas une estimation médicale de mortalité.
                         </p>
                         <div className="flex items-center justify-between text-[10px] text-rose-900 pt-1 border-t border-rose-200 font-mono">
-                          <span>Habitants menacés : <strong>{dyn.cohorts.total.toFixed(0)} M</strong></span>
-                          <span>Enfants &amp; Aînés : <strong>{(dyn.cohorts.p0 + dyn.cohorts.p2).toFixed(0)} M</strong></span>
+                          <span>Population de la région sélectionnée : <strong>{dyn.cohorts.total.toFixed(0)} M</strong></span>
+                          <span>Enfants et aînés dans cette région : <strong>{(dyn.cohorts.p0 + dyn.cohorts.p2).toFixed(0)} M</strong></span>
                         </div>
+                        <p className="text-[9.5px] text-rose-800">Ces effectifs correspondent à la population simulée de cette région; ce n’est pas un décompte de personnes exposées ni une estimation sanitaire.</p>
                       </div>
                     )}
 
@@ -1075,23 +1076,23 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         </div>
                       </div>
 
-                      {/* Diagnostic physiologique */}
+                      {/* Lecture du seuil de Tw dans le modèle */}
                       <div className="pt-0.5 text-[11px] font-semibold">
                         {isUninhabitable ? (
                           <p className="text-rose-800 leading-tight">
-                            Niveau d'alerte élevé selon le seuil configuré dans le modèle.
+                            Tw simulée ≥ 31°C; seuil d’alerte utilisé dans CLIMATOPEDY.
                           </p>
                         ) : isSevere ? (
                           <p className="text-amber-800 leading-tight">
-                            Seuil de stress thermique élevé dépassé dans la simulation.
+                            Tw simulée comprise entre 29°C et 31°C; plage de seuils du modèle.
                           </p>
                         ) : isWarning ? (
                           <p className="text-yellow-800 leading-tight">
-                            ⚡ STRESS ÉLEVÉ : Inconfort thermique sévère et risques sanitaires.
+                            Tw simulée comprise entre 26°C et 29°C; plage de valeurs affichée par le modèle.
                           </p>
                         ) : (
                           <p className="text-emerald-800 leading-tight">
-                            ✅ VIVABLE : Le corps régule sa chaleur par la transpiration.
+                            Tw simulée inférieure à 26°C; valeur calculée par le modèle.
                           </p>
                         )}
                       </div>
@@ -1169,7 +1170,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Surmortalité annuelle */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
-                        <span className="text-slate-600">Décès annuels causés par les crises</span>
+                        <span className="text-slate-600">Décès annuels calculés par le modèle (sortie exploratoire)</span>
                         <span className="font-mono text-purple-800 font-medium tabular-nums">
                           {dyn.annualDeaths.total.toFixed(2)} M/an{' '}
                           <span className="text-slate-500 text-[10.5px]">
@@ -1291,7 +1292,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     </div>
                   </div>
 
-                  {/* Zones inhabitables Stull */}
+                  {/* Régions signalées au seuil Tw du modèle */}
                   <div
                     className={`p-2.5 rounded-lg border space-y-1 ${
                       thermalAnalysis.uninhabitableCount > 0
@@ -1314,8 +1315,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     </div>
                     <p className="text-[10.5px] text-slate-600 leading-tight">
                       {thermalAnalysis.uninhabitableCount > 0
-                        ? `${(thermalAnalysis.uninhabitablePop / 1000).toFixed(2)} Md de personnes dans les régions signalées par le modèle.`
-                        : 'Aucune région signalée au-dessus du seuil du modèle.'}
+                        ? `${(thermalAnalysis.uninhabitablePop / 1000).toFixed(2)} Md de personnes résident dans les régions signalées; ce n’est pas une estimation de population exposée ou menacée.`
+                        : 'Aucune région signalée au-dessus du seuil configuré dans le modèle.'}
                     </p>
                   </div>
 

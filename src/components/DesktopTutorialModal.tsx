@@ -139,7 +139,7 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
         },
         {
           icon: <Layers className="w-4 h-4 text-amber-600" />,
-          text: 'L\'indicateur de vies préservées cumule les surmortalités évitées par rapport au scénario passif.'
+          text: 'L’indicateur compare les décès calculés dans les deux scénarios. C’est une sortie exploratoire, pas une estimation médicale de vies sauvées.'
         }
       ],
       actionLabel: 'Ouvrir le Dashboard Comparatif',

@@ -145,17 +145,17 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
     {
       id: 'habitable_population',
       category: 'demography',
-      title: 'Population sous le seuil Tw du modèle',
-      subtitle: 'Population des régions où Tw simulée est sous 31°C',
+      title: 'Indicateur démographique thermique interne',
+      subtitle: 'Indice simplifié dérivé de la température globale; il ne calcule pas l’exposition régionale à Tw.',
       icon: <Users className="w-5 h-5 text-emerald-600" />,
-      badge: 'Démographie & Survie',
+      badge: 'Indicateur exploratoire',
       badgeColor: 'border-emerald-300 bg-emerald-50 text-emerald-800',
-      valA: `${habitablePopA_Mds} Mds (${(habitableFractionA * 100).toFixed(0)}% de la pop.)`,
-      valB: `${habitablePopB_Mds} Mds (${(habitableFractionB * 100).toFixed(0)}% de la pop.)`,
-      deltaText: `+${gainHabitablePopMds} Mds sous le seuil du modèle`,
+      valA: `${habitablePopA_Mds} Mds équivalent-population (indice interne : ${(habitableFractionA * 100).toFixed(0)}%)`,
+      valB: `${habitablePopB_Mds} Mds équivalent-population (indice interne : ${(habitableFractionB * 100).toFixed(0)}%)`,
+      deltaText: `Variation indicative : +${gainHabitablePopMds} Mds équivalent-population`,
       deltaPositiveIsGood: true,
-      benefitHeadline: `Écart simulé de mortalité : ${cumulativeStats.livesSavedMillions.toFixed(0)} millions d'ici ${horizonYear}`,
-      mechanism: `Le modèle compare les populations vivant dans des régions où la température au thermomètre mouillé simulée est inférieure au seuil Tw de 31°C configuré dans CLIMATOPEDY. Ce seuil n'est pas un diagnostic de mortalité ou d'habitabilité.`,
+      benefitHeadline: `Écart exploratoire de décès simulés : ${cumulativeStats.livesSavedMillions.toFixed(0)} millions d'ici ${horizonYear}`,
+      mechanism: `Cet indicateur interne simplifié est dérivé de la température globale simulée; il ne calcule pas l’exposition régionale à Tw et n’évalue pas l’habitabilité. Les décès simulés sont des sorties exploratoires, non validées comme estimations sanitaires.`,
       scientificRef: 'Sherwood & Huber (PNAS 2010) / Raymond et al. (2020)',
       tooltipTerm: 'stull'
     },
@@ -546,19 +546,19 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">
-                  <div>Population sous le seuil Tw du modèle</div>
-                  <div className="text-[10px] text-slate-500 font-normal">Population des régions où Tw simulée &lt; 31°C (seuil du modèle)</div>
+                  <div>Indicateur démographique thermique interne</div>
+                  <div className="text-[10px] text-slate-500 font-normal">Indice simplifié dérivé de la température globale; ne calcule pas l’exposition régionale à Tw.</div>
                 </td>
                 <td className="py-2.5 px-3 font-mono text-rose-800">
                   <span className="font-bold">{habitablePopA_Mds} Mds</span>
-                  <span className="text-[11px] text-rose-700 ml-1.5 font-normal">({(habitableFractionA * 100).toFixed(0)}% du total)</span>
+                  <span className="text-[11px] text-rose-700 ml-1.5 font-normal">(équivalent-population; indice {(habitableFractionA * 100).toFixed(0)}%)</span>
                 </td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">
                   <span className="font-bold">{habitablePopB_Mds} Mds</span>
-                  <span className="text-[11px] text-emerald-700 ml-1.5 font-normal">({(habitableFractionB * 100).toFixed(0)}% du total)</span>
+                  <span className="text-[11px] text-emerald-700 ml-1.5 font-normal">(équivalent-population; indice {(habitableFractionB * 100).toFixed(0)}%)</span>
                 </td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{gainHabitablePopMds} Mds</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Répartition calculée par le modèle; ce n'est pas une évaluation de l'habitabilité.</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{gainHabitablePopMds} Mds équivalent-population</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Indicateur exploratoire dérivé d’une heuristique interne; ne mesure ni l’exposition régionale ni l’habitabilité.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">
@@ -606,16 +606,15 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
           <Info className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
           <div className="space-y-1">
             <span className="font-semibold text-slate-900 block">
-              💡 Clarification Méthodologique : Pourquoi 79% et 45% ne font pas 100% ?
+              💡 Clarification des indicateurs : pourquoi ces pourcentages ne font-ils pas 100 % ?
             </span>
             <p className="text-slate-700">
-              L'<strong className="text-emerald-700 font-semibold">Habitabilité Thermique ({habitablePopA_Mds} Mds, soit {(habitableFractionA * 100).toFixed(0)}%)</strong> et le{' '}
-              <strong className="text-rose-700 font-semibold">Stress Hydrique Sévère ({waterStressedPopA_B} Mds, soit {waterStressPctA}%)</strong> ne sont pas deux tranches d'un même camembert, mais <strong>deux dimensions biophysiques indépendantes</strong> rapportées chacune à 100% de la population mondiale du scénario ({popA_Mds} Mds).
+              L'<strong className="text-emerald-700 font-semibold">indice thermique interne ({(habitableFractionA * 100).toFixed(0)}%)</strong> et l'<strong className="text-rose-700 font-semibold">indicateur hydrique simulé ({waterStressPctA}%)</strong> sont deux sorties distinctes du modèle, chacune rapportée à la population totale de la simulation ({popA_Mds} Mds). Elles ne décrivent pas des catégories observées de personnes.
             </p>
             <p className="text-slate-500 text-[10px]">
-              • <strong>Indicateur Tw ({(habitableFractionA * 100).toFixed(0)}%)</strong> : {((1 - habitableFractionA) * 100).toFixed(0)}% de la population du scénario vit dans des régions où Tw calculée dépasse le seuil de 31°C choisi par le modèle; cela ne signifie pas que ces régions sont inhabitables.<br />
-              • <strong>Stress hydrique ({waterStressPctA}%)</strong> : {100 - waterStressPctA}% de la population conserve un approvisionnement en eau suffisant.<br />
-              Une personne peut tout à fait habiter une zone thermiquement supportable tout en subissant une pénurie d'eau douce (les deux phénomènes se superposent géographiquement).
+              • <strong>Indice thermique ({(habitableFractionA * 100).toFixed(0)}%)</strong> : heuristique interne dérivée de la température globale simulée; elle ne calcule ni Tw régionale, ni exposition, ni habitabilité.<br />
+              • <strong>Indicateur hydrique ({waterStressPctA}%)</strong> : sortie de la simulation, non présentée comme un décompte observé ou une mesure validée des personnes exposées.<br />
+              Les deux indicateurs ont des méthodes de calcul distinctes et ne constituent pas une répartition exhaustive de la population.
             </p>
           </div>
         </div>

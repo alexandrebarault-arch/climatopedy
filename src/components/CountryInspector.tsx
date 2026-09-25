@@ -104,7 +104,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
             <div className="space-y-0.5">
               <span className="font-bold text-rose-950 block">
-                Alerte Urgence Vitale Active ({Math.floor(simulationState.year)})
+                Alerte thermique du modèle ({Math.floor(simulationState.year)})
               </span>
               {dynState.wetBulbPeak >= 32.0 ? (
                 <span className="block text-[11px] text-rose-800 font-bold">
@@ -294,12 +294,14 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             <div className="flex items-center justify-between">
               <span className="font-semibold text-slate-900 flex items-center gap-1.5">
                 <Skull className="w-3.5 h-3.5 text-purple-600" />
-                Nombre de Décès par An et Origines
+                Décès annuels calculés par le modèle
               </span>
               <span className="font-mono text-purple-800 font-bold tabular-nums">
-                {(dynState.annualDeaths.total).toFixed(2)} M décès/an
+                {(dynState.annualDeaths.total).toFixed(2)} M/an
               </span>
             </div>
+
+            <p className="text-[10px] text-slate-500">Toutes les valeurs ci-dessous sont des sorties exploratoires de CLIMATOPEDY, non validées comme estimations épidémiologiques.</p>
 
             <div className="space-y-1.5 text-[11px]">
               <div className="flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 shadow-2xs">
@@ -324,7 +326,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               </div>
 
               <div className="flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-600">Décès normaux (vieillesse et maladies courantes) :</span>
+                <span className="text-slate-600">Décès de base calculés par le modèle (autres causes) :</span>
                 <span className="font-mono text-slate-700 tabular-nums">
                   {(dynState.annualDeaths.base).toFixed(2)} M/an
                 </span>

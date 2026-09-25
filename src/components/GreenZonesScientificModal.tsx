@@ -75,7 +75,7 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
                 <span>1. Thermodynamique du thermomètre mouillé (Tw)</span>
               </div>
               <p className="text-xs text-slate-600">
-                L'inhabitabilité thermique ne dépend pas seulement de la température brute (thermomètre sec), mais de sa combinaison avec l'humidité absolue de l'air (<a href="https://www.pnas.org/doi/10.1073/pnas.0913352107" target="_blank" rel="noreferrer" className="text-sky-600 font-semibold underline">Sherwood &amp; Huber 2010 PNAS</a>, <a href="https://www.science.org/doi/10.1126/sciadv.aaw1838" target="_blank" rel="noreferrer" className="text-sky-600 font-semibold underline">Raymond et al. 2020 Science Advances</a>).
+                La température au thermomètre mouillé (Tw) combine température et humidité. Les études citées examinent des contraintes thermiques et des épisodes extrêmes dans des conditions données; elles ne définissent pas un seuil unique d'inhabitabilité valable pour toutes les personnes et toutes les expositions (<a href="https://www.pnas.org/doi/10.1073/pnas.0913352107" target="_blank" rel="noreferrer" className="text-sky-600 font-semibold underline">Sherwood &amp; Huber 2010 PNAS</a>, <a href="https://www.science.org/doi/10.1126/sciadv.aaw1838" target="_blank" rel="noreferrer" className="text-sky-600 font-semibold underline">Raymond et al. 2020 Science Advances</a>).
               </p>
               <ul className="text-xs text-slate-600 list-disc list-inside space-y-1 pl-1">
                 <li>
