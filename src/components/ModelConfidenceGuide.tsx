@@ -14,7 +14,7 @@ const confidenceLevels: { label: Confidence; style: string; meaning: string }[] 
   {
     label: 'Partielle',
     style: 'bg-sky-100 text-sky-800 border-sky-200',
-    meaning: 'Le calcul du site a été comparé à des observations indépendantes et son écart est affiché.'
+    meaning: 'Pour une sortie mondiale, son ordre de grandeur ou sa tendance recoupe des références scientifiques indépendantes. Ce rapprochement ne valide pas toutes les équations ni les résultats locaux.'
   },
   {
     label: 'Faible',
@@ -85,18 +85,32 @@ const domains: {
     referenceHref: 'https://www.ncei.noaa.gov/news/global-climate-202513'
   },
   {
-    title: 'Température et CO₂ futurs',
+    title: 'Température mondiale future',
     icon: Activity,
-    confidence: 'Faible',
-    kind: 'Projection conditionnelle',
-    text: 'Le scénario « Fortes émissions » du moteur ne reproduit pas SSP5-8.5 : avec les réglages actuels, il atteint environ +2,4 °C et 475 ppm en 2100. Le GIEC évalue +4,4 °C [3,3–5,7] pour SSP5-8.5. Les courbes CLIMATOPEDY restent des expériences internes et ne doivent pas être lues comme une prévision.',
-    actionDone: 'La courbe interne est comparée au repère AR6 : environ +2,4 °C et 475 ppm en 2100 dans CLIMATOPEDY, contre +4,4 °C [3,3–5,7] sous SSP5-8.5 dans l’AR6. Cet écart est rendu visible; la sortie interne reste faible.',
-    source: 'NASA, projections climatiques CMIP6',
-    href: 'https://www.nccs.nasa.gov/data-collections/nex-gddp-cmip6/',
-    reference: 'GIEC, moyenne 2081–2100 par rapport à 1850–1900 : SSP1-2.6 +1,8 °C [1,3–2,4]; SSP2-4.5 +2,7 °C [2,1–3,5]; SSP5-8.5 +4,4 °C [3,3–5,7]. La courbe interne « Fortes émissions » est actuellement très en dessous de ce dernier repère.',
+    confidence: 'Partielle',
+    kind: 'Sortie mondiale conditionnelle, comparée aux trajectoires mondiales publiées',
+    text: 'Dans le scénario interne « Fortes émissions (modèle) », le réchauffement moyen mondial atteint environ +2,4 °C en 2100 par rapport à l’ère préindustrielle. Cette valeur décrit le système climatique mondial du simulateur, pas une prévision par pays ni SSP5-8.5.',
+    actionDone: 'L’ordre de grandeur mondial est comparé aux évaluations du PNUE : +2,3 à +2,5 °C si les engagements nationaux annoncés sont pleinement appliqués, et 2,8 °C sous les politiques actuelles. Ce recoupement soutient une confiance partielle dans l’ordre de grandeur thermique global, sans valider le code ni identifier le scénario interne à l’un de ces parcours.',
+    source: 'PNUE, Emissions Gap Report 2025',
+    href: 'https://www.unep.org/fr/resources/rapport-2025-sur-lecart-entre-les-besoins-et-les-perspectives-en-matiere-de-reduction-des',
+    reference: 'Le PNUE estime le réchauffement mondial au cours de ce siècle à 2,3–2,5 °C sous mise en œuvre intégrale des CDN et à 2,8 °C sous politiques actuelles. Ce sont des résultats d’ensembles d’études et d’hypothèses de politiques; ils ne sont pas des prévisions certaines et ne reproduisent pas le scénario CLIMATOPEDY.',
     referenceTraceability: 'Élevée',
-    referenceSource: 'GIEC AR6, chapitre 4',
-    referenceHref: 'https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-4/'
+    referenceSource: 'PNUE, rapport 2025',
+    referenceHref: 'https://www.unep.org/fr/resources/rapport-2025-sur-lecart-entre-les-besoins-et-les-perspectives-en-matiere-de-reduction-des'
+  },
+  {
+    title: 'Concentration mondiale de CO₂ future',
+    icon: Database,
+    confidence: 'Partielle',
+    kind: 'Trajectoire globale calculée par le modèle',
+    text: 'La simulation atteint environ 475 ppm de CO₂ atmosphérique en 2100. À l’échelle mondiale, cette valeur se situe dans l’enveloppe des concentrations de fin de siècle publiées pour plusieurs scénarios; elle est toutefois proche de la partie basse de cette enveloppe et ne correspond donc pas, à elle seule, à un scénario de fortes émissions reconnu.',
+    actionDone: 'La concentration de départ est ancrée sur la moyenne mondiale NOAA 2025. Les scénarios SSP publiés couvrent environ 393 à 1 135 ppm en 2100; la valeur CLIMATOPEDY de 475 ppm est plausible dans cette enveloppe large, mais le moteur n’a pas démontré qu’elle suit un scénario d’émissions particulier. La confiance partielle porte sur l’ordre de grandeur planétaire, pas sur le libellé « fortes émissions » ni sur la trajectoire exacte.',
+    source: 'Meinshausen et al. (2020), concentrations mondiales SSP',
+    href: 'https://doi.org/10.5194/gmd-13-3571-2020',
+    reference: 'La publication fournit les concentrations mondiales de CO₂ pour les scénarios SSP utilisés dans les travaux CMIP6; en 2100, les scénarios considérés couvrent environ 393 à 1 135 ppm. Cette grande amplitude traduit des hypothèses d’émissions différentes : l’appartenance à l’intervalle n’identifie pas le scénario le plus plausible et ne valide pas le modèle CLIMATOPEDY.',
+    referenceTraceability: 'Élevée',
+    referenceSource: 'Meinshausen et al. (2020), Geoscientific Model Development',
+    referenceHref: 'https://gmd.copernicus.org/articles/13/3571/2020/'
   },
   {
     title: 'Chaleur et température humide par région',
@@ -113,17 +127,31 @@ const domains: {
     referenceHref: 'https://pubmed.ncbi.nlm.nih.gov/34913738/'
   },
   {
-    title: 'Niveau marin et terres côtières',
+    title: 'Élévation moyenne mondiale du niveau marin',
     icon: Waves,
-    confidence: 'Faible',
-    kind: 'Projection globale et indicateur régional simplifié',
-    text: 'La relation semi-empirique du moteur produit une courbe globale, sans vérifier sa performance sur les observations récentes. L’indice côtier interne ne représente ni l’altitude, ni les défenses, ni l’affaissement local; il ne permet pas d’estimer des hectares perdus par pays.',
-    actionDone: 'Les plages AR6 avec la période 1995–2014 sont données à côté de la courbe; l’indice local n’est plus converti en hectares ou en terres perdues.',
-    source: 'NASA, projections du GIEC AR6 par région',
-    href: 'https://sealevel.nasa.gov/data_tools/17',
+    confidence: 'Partielle',
+    kind: 'Sortie mondiale conditionnelle',
+    text: 'La relation semi-empirique du moteur calcule une élévation moyenne globale; la sortie proche de 0,8 m en 2100 est une valeur de scénario. Elle ne représente pas une hausse uniforme sur chaque côte.',
+    actionDone: 'L’ordre de grandeur est comparé aux plages du GIEC AR6. Le modèle du site prend l’année 2000 comme référence; l’AR6 rapporte les changements par rapport à 1995–2014. La comparaison est donc indicative, et le calcul interne n’a pas fait l’objet d’un test rétrospectif indépendant : confiance partielle pour l’ordre de grandeur mondial uniquement.',
+    source: 'GIEC AR6, niveau moyen mondial de la mer',
+    href: 'https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/',
     reference: 'Hausse moyenne mondiale probable d’ici 2100, par rapport à 1995–2014 : 0,32–0,62 m sous SSP1-2.6; 0,44–0,76 m sous SSP2-4.5; 0,63–1,01 m sous SSP5-8.5. Ce ne sont pas des pertes de terres par pays.',
     referenceTraceability: 'Élevée',
-    referenceSource: 'NASA, outil des projections GIEC AR6',
+    referenceSource: 'GIEC AR6, résumé pour décideurs',
+    referenceHref: 'https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/'
+  },
+  {
+    title: 'Exposition côtière par territoire',
+    icon: Waves,
+    confidence: 'Faible',
+    kind: 'Indicateur régional simplifié',
+    text: 'L’indicateur côtier interne ne représente ni l’altitude précise, ni les défenses, ni l’affaissement du sol, ni les marées et tempêtes locales. Il ne permet donc pas d’estimer des hectares perdus ou une population déplacée par pays.',
+    actionDone: 'Les plages mondiales du GIEC restent affichées comme contexte; aucune valeur globale du niveau marin n’est convertie en pertes de terres locales.',
+    source: 'NASA, outil des projections du niveau marin du GIEC AR6',
+    href: 'https://sealevel.nasa.gov/data_tools/17',
+    reference: 'Les plages du GIEC sont des hausses moyennes mondiales par scénario et période de référence; elles ne décrivent pas directement le niveau relatif de la mer sur chaque côte.',
+    referenceTraceability: 'Élevée',
+    referenceSource: 'NASA, projections régionales du niveau marin AR6',
     referenceHref: 'https://sealevel.nasa.gov/data_tools/17'
   },
   {
@@ -173,11 +201,11 @@ const domains: {
     icon: Users,
     confidence: 'Faible',
     kind: 'Projection démographique interne',
-    text: 'Le moteur agrège 34 zones couvrant environ 93 % du repère mondial 2025. Il utilise trois groupes d’âge et des taux internes; les règles de mortalité, fécondité et migration influencent encore la population simulée, sans constituer des projections nationales ou mondiales complètes.',
-    actionDone: 'La couverture des 34 zones est comparée au total ONU 2025 et l’écart est affiché; les cohortes internes ne sont pas présentées comme une projection mondiale complète.',
+    text: 'C’est une sortie démographique à l’échelle mondiale, agrégée à partir de 34 zones. Les zones totalisent environ 93 % de la population mondiale de départ en 2025, mais leurs trajectoires internes de fécondité, mortalité et migration ne reproduisent pas le scénario central des Nations Unies.',
+    actionDone: 'À l’horizon 2100, le scénario « Fortes émissions » du site agrège environ 4,8 milliards de personnes dans les 34 zones, contre 10,2 milliards dans le scénario central ONU WPP 2024 pour le monde entier. Cette différence est visible à l’échelle mondiale; la trajectoire démographique du simulateur reste donc faible en confiance, indépendamment de la résolution par pays.',
     source: 'ONU, World Population Prospects 2024',
     href: 'https://population.un.org/wpp/',
-    reference: 'ONU WPP 2024 estime la population mondiale à 8,16 milliards en 2025; son scénario central atteint 10,2 milliards en 2100 (plage probabiliste à 95 % : 9,0–11,4 milliards). Au départ, les 34 zones du moteur totalisent 7,597 milliards : environ 93 % du repère mondial 2025, soit près de 565 millions de personnes non représentées dans cette agrégation. Les trajectoires du moteur ne sont donc pas des totaux mondiaux complets.',
+    reference: 'ONU WPP 2024 estime la population mondiale à 8,16 milliards en 2025; son scénario central atteint 10,2 milliards en 2100 (plage probabiliste à 95 % : 9,0–11,4 milliards). Au départ, les 34 zones du moteur totalisent 7,597 milliards, environ 93 % du repère 2025. En 2100, leur total simulé d’environ 4,8 milliards est très inférieur au scénario central mondial de l’ONU; il ne doit pas être interprété comme la trajectoire la plus plausible de la population mondiale.',
     referenceTraceability: 'Élevée',
     referenceSource: 'ONU, WPP 2024',
     referenceHref: 'https://population.un.org/wpp/assets/Files/WPP2024_Summary-of-Results.pdf'
@@ -223,7 +251,7 @@ export const ModelConfidenceGuide: React.FC = () => (
       <div>
         <h2 id="confidence-guide-title" className="text-lg sm:text-xl font-bold text-slate-900">Que valent les chiffres affichés ?</h2>
         <p className="mt-1 max-w-4xl text-sm leading-relaxed text-slate-600">
-          Chaque fiche distingue <strong>la sortie calculée par CLIMATOPEDY</strong> du <strong>repère scientifique publié</strong>. « Traçabilité élevée » signifie que le chiffre cité correspond à la source, à sa période et à son périmètre; cela ne signifie pas que la projection de la source est certaine ni que CLIMATOPEDY l’a reproduite. La confiance de la sortie du site est évaluée séparément.
+          Chaque fiche distingue <strong>la sortie calculée par CLIMATOPEDY</strong> du <strong>repère scientifique publié</strong>. Les résultats planétaires sont évalués par comparaison avec des données et des plages mondiales; les résultats régionaux ou sectoriels sont jugés selon les méthodes nécessaires à cette échelle. « Traçabilité élevée » signifie que le chiffre cité correspond à la source, à sa période et à son périmètre; cela ne valide pas une projection du site.
         </p>
       </div>
     </div>
@@ -259,7 +287,7 @@ export const ModelConfidenceGuide: React.FC = () => (
       </div>
 
       <p className="mt-3 text-xs leading-relaxed text-slate-700">
-        <strong>Contrôle des ordres de grandeur :</strong> le scénario interne atteint environ +2,4 °C en 2100; le PNUE situe les trajectoires mondiales autour de +2,3 à +2,5 °C avec mise en œuvre complète des engagements et jusqu’à +2,8 °C avec les politiques actuelles. Ce rapprochement indique une échelle comparable, mais les scénarios et les méthodes ne sont pas identiques. La sortie de niveau marin proche de 0,8 m est également dans la plage AR6 de 0,63 à 1,01 m sous SSP5-8.5, mais l’AR6 utilise la référence 1995–2014 : ce recoupement n’est donc pas une validation du calcul du site. Voir le <a className="text-sky-700 underline" href="https://www.unep.org/news-and-stories/statements/emissions-gap-report-2025-executive-director-press-statement" target="_blank" rel="noreferrer">PNUE, Emissions Gap Report 2025</a> et le <a className="text-sky-700 underline" href="https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/" target="_blank" rel="noreferrer">GIEC AR6, résumé pour décideurs</a>.
+        <strong>Contrôle des ordres de grandeur :</strong> le scénario interne atteint environ +2,4 °C en 2100; le PNUE situe les trajectoires mondiales autour de +2,3 à +2,5 °C avec mise en œuvre complète des engagements et à 2,8 °C avec les politiques actuelles. Le CO₂ de 475 ppm se trouve dans l’enveloppe publiée de 393 à 1 135 ppm pour les scénarios SSP en 2100, mais près de sa partie basse; cette enveloppe large n’établit pas que le scénario interne correspond à de fortes émissions. La sortie de niveau marin proche de 0,8 m recoupe la plage AR6 de 0,63 à 1,01 m sous SSP5-8.5, mais CLIMATOPEDY prend 2000 comme référence et l’AR6 1995–2014. Ces comparaisons éclairent l’échelle planétaire, sans valider les calculs du site. Voir le <a className="text-sky-700 underline" href="https://www.unep.org/fr/resources/rapport-2025-sur-lecart-entre-les-besoins-et-les-perspectives-en-matiere-de-reduction-des" target="_blank" rel="noreferrer">PNUE, Emissions Gap Report 2025</a>, le <a className="text-sky-700 underline" href="https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/" target="_blank" rel="noreferrer">GIEC AR6</a> et <a className="text-sky-700 underline" href="https://doi.org/10.5194/gmd-13-3571-2020" target="_blank" rel="noreferrer">Meinshausen et al. (2020)</a>.
       </p>
       <p className="mt-2 text-xs leading-relaxed text-slate-700">
         <strong>Limite :</strong> les notes sont des jugements d’audit explicites fondés sur le code, les données et les comparaisons documentées. L’indice ne donne pas une probabilité d’exactitude et ne valide pas les sorties régionales, sanitaires, démographiques ou agricoles, qui restent évaluées séparément dans les fiches ci-dessous.
@@ -269,10 +297,10 @@ export const ModelConfidenceGuide: React.FC = () => (
     <div className="mt-4 rounded-xl border border-sky-200 bg-sky-50 p-4">
       <h3 className="text-sm font-bold text-slate-900">Quand une sortie de CLIMATOPEDY peut-elle être jugée fiable ?</h3>
       <p className="mt-1 text-sm leading-relaxed text-slate-700">
-        Il faut connaître les données et les hypothèses, utiliser une méthode adaptée au chiffre calculé, vérifier la méthode sur des observations qu’elle n’a pas servi à régler, et montrer l’incertitude avec plusieurs scénarios ou une plage. C’est pourquoi les chiffres observés CO₂ et température au départ sont élevés, tandis que plusieurs trajectoires internes restent faibles. Une source bien citée ne relève pas à elle seule la confiance dans un calcul.
+        Pour un résultat planétaire, on compare le bilan global et sa tendance aux observations mondiales et aux plages de plusieurs études; on ne demande pas à un résultat mondial de prédire chaque territoire. Pour un chiffre local, il faut en plus des données et des méthodes adaptées à cette échelle. Dans les deux cas, la comparaison ne remplace pas un test indépendant du code.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-slate-700">
-        Les projections publiées peuvent être très informatives sans être certaines : leurs plages et scénarios restent affichés. Les nombres que les formules du site ne permettent pas d’estimer honnêtement ont été retirés plutôt que présentés avec une note artificiellement élevée.
+        Une sortie globale peut donc avoir une confiance partielle quand son ordre de grandeur recoupe plusieurs références mondiales, même si les résultats locaux restent moins assurés. Les nombres que les formules du site ne permettent pas d’estimer honnêtement ne sont pas assimilés à des projections validées.
       </p>
     </div>
 
@@ -283,6 +311,10 @@ export const ModelConfidenceGuide: React.FC = () => (
           <p className="mt-2 text-xs leading-relaxed text-slate-600">{level.meaning}</p>
         </div>
       ))}
+    </div>
+
+    <div className="mt-4 rounded-xl border border-sky-200 bg-sky-50 p-4 text-sm leading-relaxed text-slate-700">
+      <strong className="text-slate-900">Lecture du système Terre :</strong> les sorties mondiales de température, de CO₂ atmosphérique et de niveau moyen marin ont chacune une confiance <strong>partielle</strong>, fondée sur leur comparaison avec des travaux et trajectoires mondiaux. Cette appréciation n’est pas abaissée parce que ces sorties ne donnent pas une prévision par territoire. À l’inverse, la concordance d’un bilan planétaire ne suffit pas à valider les indicateurs locaux, démographiques, agricoles ou sanitaires, évalués séparément ci-dessous.
     </div>
 
     <div className="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-2">

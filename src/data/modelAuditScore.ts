@@ -32,7 +32,7 @@ export const MODEL_AUDIT_CRITERIA: ModelAuditCriterion[] = [
     title: 'Ordres de grandeur mondiaux',
     rating: 2,
     weight: 25,
-    rationale: 'Vers 2100, certaines sorties recoupent des plages publiées à l’échelle mondiale. Les scénarios, les périodes de référence et les méthodes ne sont toutefois pas identiques : ce recoupement est un contrôle de plausibilité, pas une validation.'
+    rationale: 'La température, le CO₂ et le niveau marin mondiaux recoupent des enveloppes ou ordres de grandeur publiés. Mais les scénarios ne sont pas équivalents, certaines enveloppes sont très larges et les références temporelles diffèrent : contrôle de plausibilité, pas validation.'
   },
   {
     id: 'scenario-scope',
