@@ -126,6 +126,10 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
         {/* Contenu déroulant avec vocabulaire accessible à tous */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs bg-white">
+          <p className="text-[10px] text-slate-600 bg-sky-50 border border-sky-100 rounded-lg p-2.5">
+            Les valeurs projetées par pays sont des sorties de CLIMATOPEDY conditionnelles à ses paramètres. Les décimales affichées ne signifient pas que ces résultats sont validés à l’échelle nationale, notamment pour la démographie et la mortalité.
+          </p>
+
           {/* SECTION 1 : POPULATION & ÂGES */}
           <div className="bg-slate-50/80 rounded-xl p-3.5 border border-slate-200 space-y-2.5 shadow-2xs">
             <div className="flex items-center justify-between">
@@ -234,7 +238,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             </div>
 
             <div className="text-[11px] text-slate-700 bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-              <span className="font-semibold text-slate-900 block mb-0.5">Seuil de danger pour le corps humain :</span>
+              <span className="font-semibold text-slate-900 block mb-0.5">Seuil d’alerte thermique du modèle :</span>
               <span>
                 {dynState.wetBulbPeak >= 31.0
                   ? `Tw simulée ≥ 31°C, au-dessus du seuil d'alerte configuré dans le modèle. Ce seuil n'est pas une limite universelle de mortalité.`

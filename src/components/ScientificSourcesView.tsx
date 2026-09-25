@@ -346,7 +346,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     doi: '10.1073/pnas.1701762114',
     gaiaRole: 'Zhao et al. synthétisent des estimations moyennes mondiales de sensibilité des rendements; ces valeurs ne constituent pas des coefficients universels pour chaque pays ou année.',
     keyDataOrQuote: 'Sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, l’étude estime qu’un degré supplémentaire de température moyenne mondiale réduirait en moyenne les rendements mondiaux du maïs de 7,4%, du blé de 6,0%, du riz de 3,2% et du soja de 3,1%. Les effets varient selon les régions.',
-    reproducibilityNotes: 'Formule composite appliquée pays par pays selon leur panier agricole réel.'
+    reproducibilityNotes: 'CLIMATOPEDY applique ces moyennes mondiales comme paramètres avec un panier de cultures attribué à chaque pays. Cette extrapolation interne ne constitue pas une estimation locale validée; l’étude rapporte une forte hétérogénéité entre régions et cultures.'
   },
   {
     id: 'erisman-haber-bosch-2008',

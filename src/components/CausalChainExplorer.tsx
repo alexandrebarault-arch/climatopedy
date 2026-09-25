@@ -340,21 +340,19 @@ export const CausalChainExplorer: React.FC = () => {
 
             <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
               <span className="font-semibold text-slate-800 text-xs block">
-                L'Effet Ciseau Alimentaire Modélisé (Zhao et al. 2017 + Énergie Nette) :
+                Paramètres du modèle sur les rendements et les intrants (Zhao et al. 2017) :
               </span>
               <p className="text-slate-700 text-xs">
-                Dans notre moteur biophysique, la production agricole mondiale subit simultanément deux chocs destructeurs non linéaires :
+                CLIMATOPEDY utilise les paramètres ci-dessous dans ses scénarios. Ce sont des hypothèses de simulation, pas des prévisions de rendements validées :
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px] pt-1">
                 <div className="bg-rose-50 p-2.5 rounded border border-rose-200 text-rose-900">
-                  <span className="font-bold text-rose-800 block mb-0.5">Le Choc Thermique (Zhao et al. 2017) :</span>
-                  Pour chaque degré de réchauffement local supplémentaire, les rendements s'érodent mécaniquement : 
-                  Maïs (-7.4%/°C), Blé (-6.0%/°C), Riz (-3.2%/°C), Soja (-3.1%/°C) par échaudage thermique et avortement floral.
+                  <span className="font-bold text-rose-800 block mb-0.5">Coefficients moyens mondiaux (Zhao et al. 2017) :</span>
+                  Sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, l’étude estime une baisse moyenne mondiale par degré de réchauffement de 7,4% pour le maïs, 6,0% pour le blé, 3,2% pour le riz et 3,1% pour le soja. CLIMATOPEDY applique ces moyennes comme paramètres aux pays; ce ne sont pas des coefficients mesurés propres à chaque pays.
                 </div>
                 <div className="bg-amber-50 p-2.5 rounded border border-amber-200 text-amber-900">
-                  <span className="font-bold text-amber-800 block mb-0.5">Le Choc d'Intrants Industriels :</span>
-                  Lorsque l'EROI chute et que le gaz se raréfie, l'approvisionnement en engrais azotés synthétiques 
-                  et en carburant pour les tracteurs s'amenuise, forçant les rendements vers le seuil agraire préindustriel.
+                  <span className="font-bold text-amber-800 block mb-0.5">Paramétrisation des intrants :</span>
+                  Le scénario fait varier l’énergie nette et les intrants azotés pour calculer un facteur de rendement. Cette relation est une hypothèse interne du modèle et ne constitue pas une prévision agricole observée.
                 </div>
               </div>
             </div>
