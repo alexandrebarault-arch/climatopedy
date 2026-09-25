@@ -30,11 +30,6 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
   const currentMilestone = SIMULATION_MILESTONES.find(m => Math.abs(m.year - Math.floor(currentYear)) <= 2);
   const isHistorical = currentYear < 2026;
 
-  // Calcul du format lisible pour les décès par canicule (en milliers ou en millions)
-  const thermalDeathsText = simulationState.worldDeathsAnnual.thermal >= 1
-    ? `${simulationState.worldDeathsAnnual.thermal.toFixed(1)} M/an`
-    : `${Math.round(simulationState.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`;
-
   return (
     <div id="tour-timeline" className="w-full rounded-xl bg-white border border-slate-200/90 p-4 shadow-xs flex flex-col gap-3">
       {/* Ligne 1 : Résumé des 6 macro-indicateurs biophysiques en temps réel */}
@@ -51,7 +46,7 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
             </div>
           </div>
           <span className="text-[10px] text-slate-500 mt-1 pt-1 border-t border-slate-200">
-            Naissances : {(simulationState.worldBirthsAnnual).toFixed(1)} M/an
+            Naissances calculées dans le scénario : {(simulationState.worldBirthsAnnual).toFixed(1)} M/an
           </span>
         </div>
 
@@ -171,27 +166,21 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
           </span>
         </div>
 
-        {/* Décès dus aux crises (Famines & Canicules explicites) */}
+        {/* Les données disponibles ne permettent pas d'estimer les décès attribuables */}
         <div className="bg-slate-50 border border-slate-200/80 rounded-lg p-2.5 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-slate-600 font-medium flex items-center gap-1">
-                Décès de crise simulés
+                Décès attribuables
                 <TechTooltip term="stull" showIconOnly />
               </span>
             </div>
             <div className="flex items-baseline gap-1 mt-0.5">
-              <span className="text-lg font-bold font-mono text-purple-800 tabular-nums">
-                {(
-                  simulationState.worldDeathsAnnual.thermal +
-                  simulationState.worldDeathsAnnual.famine
-                ).toFixed(1)}
-              </span>
-              <span className="text-[11px] text-slate-500">M / an</span>
+              <span className="text-sm font-bold text-rose-800">Non estimés</span>
             </div>
           </div>
           <span className="text-[10px] text-slate-500 mt-1 pt-1 border-t border-slate-200 leading-tight">
-            Sorties du modèle — déficit calorique: {simulationState.worldDeathsAnnual.famine.toFixed(1)}M · chaleur: {thermalDeathsText}
+            Les formules actuelles ne sont pas validées par des données sanitaires.
           </span>
         </div>
       </div>

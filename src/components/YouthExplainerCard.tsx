@@ -66,17 +66,17 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
     ]
   },
   {
-    question: "Combien de calories par jour un être humain a-t-il besoin au minimum pour être en bonne santé ?",
+    question: "Que signifie le repère alimentaire de 2 100 kcal par jour utilisé ici ?",
     options: [
       {
         text: "Environ 500 calories",
         correct: false,
-        explanation: "C'est beaucoup trop peu, c'est une famine sévère qui met la vie en danger."
+        explanation: "C'est beaucoup trop peu pour la plupart des adultes sur la durée, mais le besoin dépend de chaque personne; un chiffre seul ne permet pas de poser un diagnostic médical."
       },
       {
-        text: "Environ 2 100 calories (seuil FAO / OMS)",
+        text: "Un repère statistique, pas un besoin universel",
         correct: true,
-        explanation: "C'est la bonne réponse ! 2 100 calories par jour, c'est le carburant essentiel dont notre corps et notre cerveau ont besoin pour bouger, penser et grandir."
+        explanation: "C'est la bonne réponse ! 2 100 kcal/j est un repère utilisé dans certaines statistiques de disponibilité alimentaire. Les besoins réels varient selon les personnes et les circonstances; ce nombre ne permet pas à lui seul de diagnostiquer la faim."
       },
       {
         text: "Environ 15 000 calories",
@@ -455,7 +455,7 @@ export const YouthExplainerCard: React.FC = () => {
                     <strong>Ligne noire/bleue :</strong> Population agrégée des 34 zones du modèle, et non population mondiale complète. La valeur de départ est un paramètre démographique de la simulation.
                   </p>
                   <p className="text-slate-500">
-                    <strong>Lignes rouge et ambre :</strong> Décès calculés par le modèle selon ses paramètres; ces valeurs ne sont pas des estimations validées de mortalité attribuable.
+                    <strong>Décès liés à la chaleur ou au manque de nourriture :</strong> non estimés dans CLIMATOPEDY; le modèle ne dispose pas des données sanitaires nécessaires.
                   </p>
                 </div>
 
@@ -494,7 +494,7 @@ export const YouthExplainerCard: React.FC = () => {
                     <strong>Ligne verte :</strong> Le nombre de calories moyennes par habitant et par jour.
                   </p>
                   <p className="text-slate-500">
-                    <strong>Ligne rouge pointillée :</strong> La limite d'urgence de 2 100 kcal. En dessous, c'est la faim.
+                    <strong>Ligne rouge pointillée :</strong> Repère interne de 2 100 kcal/j utilisé par le simulateur. En dessous, le modèle signale une disponibilité calculée plus faible; cela ne mesure pas la faim réelle.
                   </p>
                 </div>
               </div>

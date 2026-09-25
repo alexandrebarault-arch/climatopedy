@@ -94,19 +94,6 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
   const deltaEroi2100 = (state2100B.currentEroi - state2100A.currentEroi);
   const deltaCal2100 = Math.round(state2100B.globalAverageCaloriesPerCapita - state2100A.globalAverageCaloriesPerCapita);
 
-  // Cumul des décès évités sur la période 2026-2100
-  let cumDeathsA = 0;
-  let cumDeathsB = 0;
-  for (let y = 2026; y <= 2100; y++) {
-    const sA = trajectoryA.find((t) => t.year === y);
-    const sB = trajectoryB.find((t) => t.year === y);
-    if (sA && sB) {
-      cumDeathsA += (sA.worldDeathsAnnual.thermal + sA.worldDeathsAnnual.famine);
-      cumDeathsB += (sB.worldDeathsAnnual.thermal + sB.worldDeathsAnnual.famine);
-    }
-  }
-  const livesSavedMillions = Math.max(0, Math.round(cumDeathsA - cumDeathsB));
-
   return (
     <section 
       id="comparison-section"
@@ -482,18 +469,16 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-center">
-              {/* 1. Vies épargnées */}
+              {/* 1. Mortalité non estimée */}
               <div className="bg-white p-2.5 rounded-lg border border-emerald-200 shadow-2xs flex flex-col items-center justify-center">
-                <span className="text-[10px] text-slate-500 font-medium">Différence cumulée entre sorties simulées</span>
-                <span className="text-base sm:text-lg font-extrabold font-mono text-emerald-700 mt-0.5">
-                  +{livesSavedMillions >= 1000 ? `${(livesSavedMillions / 1000).toFixed(1)} Md` : `${livesSavedMillions} M`}
-                </span>
-                <span className="text-[10px] text-emerald-800 font-mono">écart exploratoire de décès simulés; estimation sanitaire non validée</span>
+                <span className="text-[10px] text-slate-500 font-medium">Décès attribuables au climat</span>
+                <span className="text-base sm:text-lg font-extrabold font-mono text-rose-700 mt-0.5">Non estimés</span>
+                <span className="text-[10px] text-slate-600">Données sanitaires adaptées nécessaires</span>
               </div>
 
-              {/* 2. Réchauffement évité */}
+              {/* 2. Écart climatique entre scénarios */}
               <div className="bg-white p-2.5 rounded-lg border border-sky-200 shadow-2xs flex flex-col items-center justify-center">
-                <span className="text-[10px] text-slate-500 font-medium">Réchauffement évité</span>
+                <span className="text-[10px] text-slate-500 font-medium">Écart simulé de réchauffement</span>
                 <span className="text-base sm:text-lg font-extrabold font-mono text-sky-700 mt-0.5">
                   {deltaTemp2100.toFixed(2)}°C
                 </span>
@@ -502,9 +487,9 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
                 </span>
               </div>
 
-              {/* 3. Submersion côtière évitée */}
+              {/* 3. Écart simulé du niveau marin */}
               <div className="bg-white p-2.5 rounded-lg border border-sky-200 shadow-2xs flex flex-col items-center justify-center">
-                <span className="text-[10px] text-slate-500 font-medium">Montée mer épargnée</span>
+                <span className="text-[10px] text-slate-500 font-medium">Écart simulé du niveau marin</span>
                 <span className="text-base sm:text-lg font-extrabold font-mono text-sky-700 mt-0.5">
                   {deltaSlr2100Cm > 0 ? `+${deltaSlr2100Cm}` : `${deltaSlr2100Cm}`} cm
                 </span>
@@ -513,7 +498,7 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
                 </span>
               </div>
 
-              {/* 4. Rendement de l'énergie sauvé */}
+              {/* 4. EROI selon les paramètres du scénario */}
               <div className="bg-white p-2.5 rounded-lg border border-amber-200 shadow-2xs flex flex-col items-center justify-center">
                 <span className="text-[10px] text-slate-500 font-medium text-center">Rendement Énergie 2100</span>
                 <span className="text-base sm:text-lg font-extrabold font-mono text-amber-700 mt-0.5">
@@ -527,9 +512,9 @@ export const ComparisonModePanel: React.FC<ComparisonModePanelProps> = ({
                 </span>
               </div>
 
-              {/* 5. Sécurité alimentaire */}
+              {/* 5. Disponibilité alimentaire simulée */}
               <div className="col-span-2 sm:col-span-1 bg-white p-2.5 rounded-lg border border-emerald-200 shadow-2xs flex flex-col items-center justify-center">
-                <span className="text-[10px] text-slate-500 font-medium">Nourriture 2100</span>
+                <span className="text-[10px] text-slate-500 font-medium">Disponibilité simulée en 2100</span>
                 <span className="text-base sm:text-lg font-extrabold font-mono text-emerald-700 mt-0.5">
                   {Math.round(state2100B.globalAverageCaloriesPerCapita)} kcal
                 </span>

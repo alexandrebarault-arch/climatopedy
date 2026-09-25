@@ -55,42 +55,6 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
   const state2100A = useMemo(() => trajectoryA.find((t) => t.year === 2100) || trajectoryA[trajectoryA.length - 1], [trajectoryA]);
   const state2100B = useMemo(() => trajectoryB.find((t) => t.year === 2100) || trajectoryB[trajectoryB.length - 1], [trajectoryB]);
 
-  // Calculs cumulatifs sur 2026 -> horizonYear
-  const cumulativeStats = useMemo(() => {
-    let cumDeathsA = 0;
-    let cumDeathsB = 0;
-    let cumThermalA = 0;
-    let cumThermalB = 0;
-    let cumFamineA = 0;
-    let cumFamineB = 0;
-
-    const maxYear = Math.min(horizonYear, 2200);
-    for (let y = 2026; y <= maxYear; y++) {
-      const sA = trajectoryA.find((t) => t.year === y);
-      const sB = trajectoryB.find((t) => t.year === y);
-      if (sA && sB) {
-        cumThermalA += sA.worldDeathsAnnual.thermal;
-        cumThermalB += sB.worldDeathsAnnual.thermal;
-        cumFamineA += sA.worldDeathsAnnual.famine;
-        cumFamineB += sB.worldDeathsAnnual.famine;
-        cumDeathsA += (sA.worldDeathsAnnual.thermal + sA.worldDeathsAnnual.famine);
-        cumDeathsB += (sB.worldDeathsAnnual.thermal + sB.worldDeathsAnnual.famine);
-      }
-    }
-
-    const livesSavedMillions = Math.max(0, cumDeathsA - cumDeathsB);
-    const thermalLivesSaved = Math.max(0, cumThermalA - cumThermalB);
-    const famineLivesSaved = Math.max(0, cumFamineA - cumFamineB);
-
-    return {
-      cumDeathsA,
-      cumDeathsB,
-      livesSavedMillions,
-      thermalLivesSaved,
-      famineLivesSaved
-    };
-  }, [trajectoryA, trajectoryB, horizonYear]);
-
   // Calculs des différentiels détaillés
   const deltaTemp = stateB.surfaceTemperatureAnomaly - stateA.surfaceTemperatureAnomaly;
   const deltaSlrCm = Math.round((stateB.seaLevelRiseMeters - stateA.seaLevelRiseMeters) * 100);
@@ -103,24 +67,6 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
   const popA_Mds = (stateA.worldPopulation / 1000).toFixed(2);
   const popB_Mds = (stateB.worldPopulation / 1000).toFixed(2);
   const deltaPopMds = deltaPopB >= 0 ? `+${deltaPopB.toFixed(2)}` : deltaPopB.toFixed(2);
-  const deltaAnnualDeathsM = (stateA.worldDeathsAnnual.total - stateB.worldDeathsAnnual.total);
-  const deltaRefugeesM = (stateA.activeClimateRefugees - stateB.activeClimateRefugees);
-
-  // Estimation du stress hydrique et populations exposées au stress hydrique sévère
-  // En physique climatique (IPCC WG2 Ch. 4), la fraction de population mondiale en stress hydrique sévère
-  // passe de ~25% à 1.5°C à ~40% à 2.5°C et ~58% à 4°C.
-  const waterStressPctA = Math.min(85, Math.round(20 + stateA.surfaceTemperatureAnomaly * 10.5));
-  const waterStressPctB = Math.min(85, Math.round(20 + stateB.surfaceTemperatureAnomaly * 10.5));
-  const waterStressDeltaPct = waterStressPctB - waterStressPctA;
-  const waterStressedPopA_B = ((stateA.worldPopulation * waterStressPctA) / 100 / 1000).toFixed(1);
-  const waterStressedPopB_B = ((stateB.worldPopulation * waterStressPctB) / 100 / 1000).toFixed(1);
-
-  // Indice thermique interne dérivé de la température globale; il ne calcule pas l'exposition régionale à Tw.
-  const thermalIndexFractionA = Math.max(0.35, Math.min(0.95, 0.98 - (stateA.surfaceTemperatureAnomaly - 1.2) * 0.16));
-  const thermalIndexFractionB = Math.max(0.35, Math.min(0.95, 0.98 - (stateB.surfaceTemperatureAnomaly - 1.2) * 0.16));
-  const thermalEquivalentPopA_Mds = ((stateA.worldPopulation * thermalIndexFractionA) / 1000).toFixed(2);
-  const thermalEquivalentPopB_Mds = ((stateB.worldPopulation * thermalIndexFractionB) / 1000).toFixed(2);
-  const gainThermalEquivalentPopMds = (((stateB.worldPopulation * thermalIndexFractionB) - (stateA.worldPopulation * thermalIndexFractionA)) / 1000).toFixed(2);
 
   // Définition structurée des Cartes d'Impact
   const impactCards = [
@@ -144,41 +90,41 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
     {
       id: 'thermal_population_index',
       category: 'demography',
-      title: 'Indicateur démographique thermique interne',
-      subtitle: 'Indice simplifié dérivé de la température globale; il ne calcule pas l’exposition régionale à Tw.',
+      title: 'Indicateur de chaleur par zone',
+      subtitle: 'Alerte thermique interne; aucun nombre de décès ni conclusion sur l’habitabilité',
       icon: <Users className="w-5 h-5 text-emerald-600" />,
       badge: 'Indicateur exploratoire',
       badgeColor: 'border-emerald-300 bg-emerald-50 text-emerald-800',
-      valA: `${thermalEquivalentPopA_Mds} Mds équivalent-population (indice interne : ${(thermalIndexFractionA * 100).toFixed(0)}%)`,
-      valB: `${thermalEquivalentPopB_Mds} Mds équivalent-population (indice interne : ${(thermalIndexFractionB * 100).toFixed(0)}%)`,
-      deltaText: `Variation indicative : +${gainThermalEquivalentPopMds} Mds équivalent-population`,
+      valA: `Réchauffement moyen simulé : +${stateA.surfaceTemperatureAnomaly.toFixed(1)} °C`,
+      valB: `Réchauffement moyen simulé : +${stateB.surfaceTemperatureAnomaly.toFixed(1)} °C`,
+      deltaText: `Écart de température mondiale : ${deltaTemp >= 0 ? '+' : ''}${deltaTemp.toFixed(2)} °C`,
       deltaPositiveIsGood: true,
-      benefitHeadline: `Écart exploratoire de décès simulés : ${cumulativeStats.livesSavedMillions.toFixed(0)} millions d'ici ${horizonYear}`,
-      mechanism: `Cet indicateur interne simplifié est dérivé de la température globale simulée; il ne calcule pas l’exposition régionale à Tw et n’évalue pas l’habitabilité. Les décès simulés sont des sorties exploratoires, non validées comme estimations sanitaires.`,
+      benefitHeadline: 'Aucune estimation médicale de décès ou d’habitabilité',
+      mechanism: `L’indice interne ne calcule pas l’exposition régionale à Tw et n’évalue pas l’habitabilité. Les sorties de mortalité ayant été retirées, cet indicateur ne doit pas être interprété comme un nombre de personnes protégées.`,
       scientificRef: 'Sherwood & Huber (PNAS 2010) / Raymond et al. (2020)',
       tooltipTerm: 'stull'
     },
     {
       id: 'water_stress',
       category: 'food_water',
-      title: 'Stress Hydrique Sévère',
-      subtitle: 'Part et nombre de personnes subissant un déficit hydrique critique',
+      title: 'Indice de pression hydrique interne',
+      subtitle: 'Règle simplifiée calculée à partir du réchauffement simulé; pas une mesure des personnes en pénurie',
       icon: <Droplets className="w-5 h-5 text-sky-600" />,
       badge: 'Eau & Ressources',
       badgeColor: 'border-sky-300 bg-sky-50 text-sky-800',
-      valA: `${waterStressedPopA_B} Mds (${waterStressPctA}% de la pop.)`,
-      valB: `${waterStressedPopB_B} Mds (${waterStressPctB}% de la pop.)`,
-      deltaText: `${waterStressDeltaPct > 0 ? '+' : ''}${waterStressDeltaPct} points (${Math.abs(Number(waterStressedPopA_B) - Number(waterStressedPopB_B)).toFixed(1)} Mds épargnés)`,
-      deltaPositiveIsGood: waterStressDeltaPct < 0,
-      benefitHeadline: `Pression hydrique allégée de ${Math.abs(waterStressDeltaPct)} points`,
-      mechanism: `La baisse des anomalies thermiques freine l'évapotranspiration des sols, stabilise les cycles de mousson et protège les châteaux d'eau glaciaires (Himalaya, Andes, Alpes).`,
+      valA: 'Population touchée : non estimée',
+      valB: 'Population touchée : non estimée',
+      deltaText: 'Aucune estimation de personnes en pénurie',
+      deltaPositiveIsGood: false,
+      benefitHeadline: 'Les effets sur l’eau ne sont pas quantifiés par pays',
+      mechanism: `Les pourcentages précédemment calculés par le modèle reposaient sur une règle linéaire de température, sans données hydrologiques ou d’accès à l’eau. L’interface n’en déduit donc aucun nombre de personnes en pénurie.`,
       scientificRef: 'GIEC AR6 WG2 Chapitre 4 (Water Security)'
     },
     {
       id: 'caloric_security',
       category: 'food_water',
-      title: 'Sécurité Alimentaire & Calories',
-      subtitle: 'Apport calorique moyen par habitant et rendements céréaliers',
+      title: 'Rendement agricole et disponibilité alimentaire simulés',
+      subtitle: 'Indices de scénario; les kcal ne sont pas des observations de consommation',
       icon: <Wheat className="w-5 h-5 text-amber-600" />,
       badge: 'Alimentation & Agriculture',
       badgeColor: 'border-amber-300 bg-amber-50 text-amber-900',
@@ -186,8 +132,8 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       valB: `${Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/j (${(stateB.globalCropYieldComposite * 100).toFixed(0)}%)`,
       deltaText: `${deltaCalories >= 0 ? '+' : ''}${deltaCalories} kcal/j (${deltaYieldPct >= 0 ? '+' : ''}${deltaYieldPct} pts rendement)`,
       deltaPositiveIsGood: deltaCalories > 0,
-      benefitHeadline: `Apport calorique simulé : ${Math.round(stateA.globalAverageCaloriesPerCapita)} vs ${Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/habitant/jour`,
-      mechanism: `Les apports et rendements affichés sont calculés à partir des paramètres agricoles et énergétiques de CLIMATOPEDY; ils ne constituent pas une prévision validée de sécurité alimentaire.`,
+      benefitHeadline: `Écart de disponibilité alimentaire simulée : ${deltaCalories >= 0 ? '+' : ''}${deltaCalories} kcal/habitant/jour`,
+      mechanism: `Les valeurs sont des sorties du modèle, obtenues en appliquant un facteur de rendement simplifié à des disponibilités de départ saisies manuellement. Elles ne tiennent pas compte des échanges, des stocks, des pertes, de l’accès économique ou de la composition réelle de l’alimentation.`,
       scientificRef: 'Zhao et al. (PNAS 2017) / Erisman et al. (Nature Geo 2008)',
       tooltipTerm: 'haber-bosch'
     },
@@ -201,10 +147,10 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       badgeColor: 'border-blue-300 bg-blue-50 text-blue-800',
       valA: `+${Math.round(stateA.seaLevelRiseMeters * 100)} cm`,
       valB: `+${Math.round(stateB.seaLevelRiseMeters * 100)} cm`,
-      deltaText: `${deltaSlrCm >= 0 ? '+' : ''}${deltaSlrCm} cm (${Math.abs(deltaSlrCm)} cm épargnés)`,
+      deltaText: `${deltaSlrCm >= 0 ? '+' : ''}${deltaSlrCm} cm entre les deux scénarios internes`,
       deltaPositiveIsGood: deltaSlrCm < 0,
-      benefitHeadline: `Écart simulé du niveau marin : ${Math.abs(deltaSlrCm)} cm en ${horizonYear}`,
-      mechanism: `Cette valeur est une sortie du modèle CLIMATOPEDY. Le GIEC publie des plages de projection dépendant des émissions, de l'horizon et de la période de référence.`,
+      benefitHeadline: `Écart de deux courbes internes : ${Math.abs(deltaSlrCm)} cm en ${horizonYear}`,
+      mechanism: `La valeur absolue du modèle dépend de son ancrage et de sa relation semi-empirique. L’écart entre scénarios n’est pas une mesure de centimètres évités. Pour l’interpréter, comparer à la plage GIEC AR6 qui utilise une période de référence définie.`,
       scientificRef: 'Vermeer & Rahmstorf (2009) / GIEC AR6 Ch. 9',
       tooltipTerm: 'slr'
     },
@@ -228,33 +174,33 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
     {
       id: 'climate_refugees',
       category: 'demography',
-      title: 'Réfugiés Climatiques & Migrations',
-      subtitle: 'Personnes comptabilisées par le modèle CLIMATOPEDY',
+      title: 'Pression de déplacement (indice interne)',
+      subtitle: 'Ce score n’est ni un nombre de personnes ni une projection migratoire',
       icon: <AlertTriangle className="w-5 h-5 text-purple-600" />,
       badge: 'Stabilité Géopolitique',
       badgeColor: 'border-purple-300 bg-purple-50 text-purple-800',
-      valA: `${stateA.activeClimateRefugees.toFixed(1)} M`,
-      valB: `${stateB.activeClimateRefugees.toFixed(1)} M`,
-      deltaText: `${deltaRefugeesM >= 0 ? '-' : '+'}${Math.abs(deltaRefugeesM).toFixed(1)} M d'exilés`,
-      deltaPositiveIsGood: deltaRefugeesM > 0,
-      benefitHeadline: `Écart simulé de population déplacée : ${Math.abs(deltaRefugeesM).toFixed(1)} millions`,
-      mechanism: `Cette valeur est produite par le modèle CLIMATOPEDY; elle n'est pas une estimation validée des migrations liées au climat.`,
+      valA: 'Indice non calibré',
+      valB: 'Indice non calibré',
+      deltaText: 'Aucun nombre de personnes estimé',
+      deltaPositiveIsGood: false,
+      benefitHeadline: 'Les déplacements ne sont pas quantifiés',
+      mechanism: `Le moteur applique un score interne et ne conserve pas correctement un bilan de départs et d’arrivées. CLIMATOPEDY n’affiche donc pas de total de personnes déplacées. Le repère de la Banque mondiale porte sur des migrations internes dans six régions et dépend de scénarios précis.`,
       scientificRef: 'IDMC (Internal Displacement Monitoring Centre) & GIEC AR6 WG2'
     },
     {
       id: 'annual_deaths',
       category: 'demography',
-      title: 'Décès annuels simulés',
-      subtitle: 'Décès calculés par le modèle selon ses paramètres',
+      title: 'Indicateurs de santé : données insuffisantes',
+      subtitle: 'Les décès ne sont pas calculables de façon fiable avec les données du simulateur',
       icon: <HeartPulse className="w-5 h-5 text-rose-600" />,
       badge: 'Santé Publique Mondiale',
       badgeColor: 'border-rose-300 bg-rose-50 text-rose-800',
-      valA: `${stateA.worldDeathsAnnual.total.toFixed(1)} M/an`,
-      valB: `${stateB.worldDeathsAnnual.total.toFixed(1)} M/an`,
-      deltaText: `-${deltaAnnualDeathsM.toFixed(1)} M décès/an en ${horizonYear}`,
-      deltaPositiveIsGood: deltaAnnualDeathsM > 0,
-      benefitHeadline: `Écart simulé de décès : ${deltaAnnualDeathsM.toFixed(1)} millions/an`,
-      mechanism: `Cette comparaison de mortalité est une sortie de CLIMATOPEDY; le modèle n'est pas validé comme estimateur de décès attribuables au climat ou à l'alimentation.`,
+      valA: 'Non estimé',
+      valB: 'Non estimé',
+      deltaText: 'Aucun total de décès validé',
+      deltaPositiveIsGood: false,
+      benefitHeadline: 'Le modèle ne permet pas de calculer un nombre de décès fiable',
+      mechanism: `Les formules actuelles transforment directement les seuils thermiques et les déficits alimentaires en décès, sans données sanitaires par âge et par région ni relation dose-réponse validée. Ces chiffres ont été retirés de la comparaison; consulter les repères publiés sur la page Sources & Données.`,
       scientificRef: 'The Lancet Countdown on Health and Climate Change'
     }
   ];
@@ -325,9 +271,9 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
         {/* 2. Bandeau synthèse macroscopique des gains majeurs */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6 pt-5 border-t border-slate-200">
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
-            <span className="text-[11px] text-slate-500 font-medium">🌡️ Réchauffement évité à {horizonYear}</span>
+            <span className="text-[11px] text-slate-500 font-medium">🌡️ Écart simulé de réchauffement à {horizonYear}</span>
             <span className="text-xl font-bold font-mono text-emerald-700">
-              {Math.abs(deltaTemp).toFixed(2)} °C de moins
+              {Math.abs(deltaTemp).toFixed(2)} °C entre scénarios
             </span>
             <span className="text-[10px] text-slate-500">
               (A: +{stateA.surfaceTemperatureAnomaly.toFixed(2)}°C vs B: +{stateB.surfaceTemperatureAnomaly.toFixed(2)}°C)
@@ -335,29 +281,29 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
           </div>
 
           <div className="bg-slate-50 border border-emerald-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
-              <span className="text-[11px] text-slate-500 font-medium">Écart de décès simulés (2026-{horizonYear})</span>
-            <span className="text-xl font-bold font-mono text-emerald-700">
-              +{cumulativeStats.livesSavedMillions.toFixed(0)} Millions
+            <span className="text-[11px] text-slate-500 font-medium">Décès attribuables au climat</span>
+            <span className="text-xl font-bold font-mono text-rose-700">
+              Non estimés
             </span>
             <span className="text-[10px] text-slate-500">
-              Valeurs calculées par CLIMATOPEDY
+              Données de santé et méthode adaptées nécessaires
             </span>
           </div>
 
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
-            <span className="text-[11px] text-slate-500 font-medium">💧 Pression sur l'eau douce</span>
+            <span className="text-[11px] text-slate-500 font-medium">💧 Population exposée au stress hydrique</span>
             <span className="text-xl font-bold font-mono text-sky-700">
-              {Math.abs(waterStressDeltaPct)} points en moins
+              Non estimé
             </span>
             <span className="text-[10px] text-slate-500">
-              Moins de populations sous pénurie sévère
+              Données hydrologiques régionales nécessaires
             </span>
           </div>
 
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col gap-1 shadow-2xs">
-            <span className="text-[11px] text-slate-500 font-medium">🌾 Sécurité calorique globale</span>
+            <span className="text-[11px] text-slate-500 font-medium">🌾 Écart de disponibilité simulée</span>
             <span className="text-xl font-bold font-mono text-amber-800">
-              +{deltaCalories} kcal/hab/jour
+              {deltaCalories >= 0 ? '+' : ''}{deltaCalories} kcal/hab/jour
             </span>
             <span className="text-[10px] text-slate-500">
               Sortie conditionnelle du modèle CLIMATOPEDY
@@ -530,7 +476,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                 <td className="py-2.5 px-3 font-semibold text-slate-900">Anomalie Température Moyenne</td>
                 <td className="py-2.5 px-3 font-mono text-rose-800">+{stateA.surfaceTemperatureAnomaly.toFixed(2)} °C</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">+{stateB.surfaceTemperatureAnomaly.toFixed(2)} °C</td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">-{Math.abs(deltaTemp).toFixed(2)} °C</td>
+                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{deltaTemp >= 0 ? '+' : ''}{deltaTemp.toFixed(2)} °C</td>
                 <td className="py-2.5 px-3 text-slate-600 text-[11px]">Valeur calculée par le scénario CLIMATOPEDY.</td>
               </tr>
               <tr>
@@ -541,46 +487,21 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
                 <td className="py-2.5 px-3 font-mono text-rose-800">{popA_Mds} Mds</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">{popB_Mds} Mds</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{deltaPopMds} Mds</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Population des 34 zones représentées; mortalité exploratoire calculée selon les paramètres du modèle.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Projection démographique interne non alignée sur les tables de l’ONU; les décès ne sont pas estimés.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">
-                  <div>Indicateur démographique thermique interne</div>
-                  <div className="text-[10px] text-slate-500 font-normal">Indice simplifié dérivé de la température globale; ne calcule pas l’exposition régionale à Tw.</div>
+                  <div>Stress hydrique de la population</div>
+                  <div className="text-[10px] text-slate-500 font-normal">Non calculé : aucune donnée hydrologique régionale intégrée</div>
                 </td>
-                <td className="py-2.5 px-3 font-mono text-rose-800">
-                  <span className="font-bold">{thermalEquivalentPopA_Mds} Mds</span>
-                  <span className="text-[11px] text-rose-700 ml-1.5 font-normal">(équivalent-population; indice {(thermalIndexFractionA * 100).toFixed(0)}%)</span>
-                </td>
-                <td className="py-2.5 px-3 font-mono text-emerald-800">
-                  <span className="font-bold">{thermalEquivalentPopB_Mds} Mds</span>
-                  <span className="text-[11px] text-emerald-700 ml-1.5 font-normal">(équivalent-population; indice {(thermalIndexFractionB * 100).toFixed(0)}%)</span>
-                </td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{gainThermalEquivalentPopMds} Mds équivalent-population</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Indicateur exploratoire dérivé d’une heuristique interne; ne mesure ni l’exposition régionale ni l’habitabilité.</td>
+                <td className="py-2.5 px-3 text-slate-500" colSpan={4}>Non estimé par zone ou scénario.</td>
               </tr>
               <tr>
-                <td className="py-2.5 px-3 font-semibold text-slate-900">
-                  <div>Vulnérabilité Eau (Stress Hydrique Sévère)</div>
-                  <div className="text-[10px] text-slate-500 font-normal">Déficit critique en eau douce &lt; 1 000 m³/an/habitant</div>
-                </td>
-                <td className="py-2.5 px-3 font-mono text-rose-800">
-                  <span className="font-bold">{waterStressedPopA_B} Mds</span>
-                  <span className="text-[11px] text-rose-700 ml-1.5 font-normal">({waterStressPctA}% du total)</span>
-                </td>
-                <td className="py-2.5 px-3 font-mono text-emerald-800">
-                  <span className="font-bold">{waterStressedPopB_B} Mds</span>
-                  <span className="text-[11px] text-emerald-700 ml-1.5 font-normal">({waterStressPctB}% du total)</span>
-                </td>
-                <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{waterStressDeltaPct} points</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Indice de stress hydrique calculé par le modèle.</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 px-3 font-semibold text-slate-900">Apport Alimentaire Moyen</td>
+                <td className="py-2.5 px-3 font-semibold text-slate-900">Disponibilité alimentaire simulée</td>
                 <td className="py-2.5 px-3 font-mono text-rose-800">{Math.round(stateA.globalAverageCaloriesPerCapita)} kcal/j</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">{Math.round(stateB.globalAverageCaloriesPerCapita)} kcal/j</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">+{deltaCalories} kcal/j</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Apport calorique moyen calculé par le modèle; ne garantit pas la sécurité alimentaire.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Scénario simplifié issu de paramètres internes; ne mesure pas la disponibilité FAO, la consommation ou la faim.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">Élévation Séculaire des Mers</td>
@@ -600,20 +521,18 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
           </table>
         </div>
 
-        {/* Note pédagogique sur l'indépendance des indicateurs biophysiques */}
+        {/* Note sur les indicateurs non estimés */}
         <div className="mt-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-700 flex items-start gap-2.5 leading-relaxed">
           <Info className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
           <div className="space-y-1">
             <span className="font-semibold text-slate-900 block">
-              💡 Clarification des indicateurs : pourquoi ces pourcentages ne font-ils pas 100 % ?
+              💡 Limites des indicateurs humains
             </span>
             <p className="text-slate-700">
-              L'<strong className="text-emerald-700 font-semibold">indice thermique interne ({(thermalIndexFractionA * 100).toFixed(0)}%)</strong> et l'<strong className="text-rose-700 font-semibold">indicateur hydrique simulé ({waterStressPctA}%)</strong> sont deux sorties distinctes du modèle, chacune rapportée à la population totale de la simulation ({popA_Mds} Mds). Elles ne décrivent pas des catégories observées de personnes.
+              Les données actuellement intégrées ne permettent pas d’estimer de manière fiable combien de personnes sont exposées à un stress thermique ou hydrique dans chaque scénario. Les nombres de décès ou de personnes en pénurie ne sont donc pas affichés.
             </p>
             <p className="text-slate-500 text-[10px]">
-              • <strong>Indice thermique ({(thermalIndexFractionA * 100).toFixed(0)}%)</strong> : heuristique interne dérivée de la température globale simulée; elle ne calcule ni Tw régionale, ni exposition, ni habitabilité.<br />
-              • <strong>Indicateur hydrique ({waterStressPctA}%)</strong> : sortie de la simulation, non présentée comme un décompte observé ou une mesure validée des personnes exposées.<br />
-              Les deux indicateurs ont des méthodes de calcul distinctes et ne constituent pas une répartition exhaustive de la population.
+              Pour afficher ces résultats, il faudrait des données météorologiques quotidiennes, des cartes hydrologiques et des données démographiques géolocalisées, puis vérifier les méthodes sur des observations indépendantes.
             </p>
           </div>
         </div>

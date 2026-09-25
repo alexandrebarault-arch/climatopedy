@@ -122,7 +122,7 @@ export const DesktopInteractiveTour: React.FC<DesktopInteractiveTourProps> = ({
       badgeColor: 'border-amber-300 bg-amber-50 text-amber-800',
       title: 'Testez vos propres choix écologiques',
       simpleExplanation:
-        'Et si l\'humanité réduisait sa consommation de pétrole et basculait vers l\'agroécologie ? Juste sous la carte, comparez le scénario passif (rouge) avec une politique écologique (vert). Vous pouvez bouger les manettes à droite pour observer en direct les millions de vies épargnées.',
+        'Et si l\'humanité réduisait sa consommation de pétrole et basculait vers l\'agroécologie ? Juste sous la carte, comparez deux scénarios internes. Les écarts affichés décrivent les résultats du simulateur; ils ne quantifient pas des vies sauvées.',
       targetElementId: 'comparison-section',
       tab: 'map',
       // PLACÉ SUR LA GAUCHE selon la demande explicite de l'utilisateur

@@ -290,7 +290,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     doi: '10.1016/j.enpol.2013.05.049',
     gaiaRole: 'Formule non-linéaire de la falaise de l\'EROI dans physicsModel.ts : E_net = E_gross * (1 - 1/EROI). Sous un EROI de 5:1, l\'industrie doit consacrer l\'essentiel de sa puissance à s\'auto-extraire.',
     keyDataOrQuote: 'Les estimations d’EROI dépendent du périmètre et de la méthode de calcul. Cette publication ne justifie pas un seuil universel nécessaire au fonctionnement d’une société.',
-    reproducibilityNotes: 'Calibre le cannibalisme énergétique des hydrocarbures non conventionnels (sables bitumineux, pétrole de schiste).'
+    reproducibilityNotes: 'La formule E_net = E_brut × (1 − 1/EROI) est une identité de définition une fois le périmètre fixé. Les valeurs d’EROI de cette synthèse ne calibrent pas la courbe future interne du simulateur.'
   },
   {
     id: 'brockway-nature-energy-2019',
@@ -309,6 +309,24 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     gaiaRole: 'Mesure de la dégradation continue du rendement énergétique réel lorsque les coûts de raffinage et de transport sont intégrés.',
     keyDataOrQuote: 'Pour les données mondiales de 1995 à 2011, l’étude estime un EROI des combustibles fossiles d’environ 6:1 au stade final, en baisse. Au stade primaire, ses estimations sont proches de 30:1.',
     reproducibilityNotes: 'Justifie la contrainte biophysique d\'inertie industrielle et de contraction matérielle.'
+  },
+  {
+    id: 'tripathi-brandt-petroleum-eroi-2017',
+    category: 'energy',
+    categoryLabel: 'Énergie, EROI & Métabolisme Industriel',
+    title: 'Évolution du rendement énergétique de cinq champs pétroliers',
+    englishTitle: 'Estimating decades-long trends in petroleum field energy return on investment (EROI) with an engineering-based model',
+    authors: 'Vishal S. Tripathi & Adam R. Brandt',
+    year: 2017,
+    publisher: 'PLOS ONE',
+    peerReviewed: true,
+    typeBadge: 'Étude de cinq champs pétroliers',
+    primaryUrl: 'https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0171083',
+    primaryUrlLabel: 'Article scientifique intégral (PLOS ONE)',
+    doi: '10.1371/journal.pone.0171083',
+    gaiaRole: 'Étude de cas fondée sur un modèle d’ingénierie de la production pétrolière; elle ne fournit pas une moyenne mondiale ni une prévision globale.',
+    keyDataOrQuote: 'Dans les cinq champs analysés, le ratio d’énergie nette estimé a diminué de 46 % à 88 % au cours des périodes de modélisation, selon le champ et la définition du ratio. Il s’agit de baisses relatives propres à ces cas, pas d’un rendement mondial passé de 88 % à 46 %.',
+    reproducibilityNotes: 'La méthode estime quatre ratios énergétiques pour chacun des cinq champs. Ne pas extrapoler directement ces pourcentages à l’ensemble du pétrole mondial.'
   },
   {
     id: 'smil-energy-civilization',
@@ -363,26 +381,28 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrl: 'https://www.nature.com/articles/ngeo325',
     primaryUrlLabel: 'Publication scientifique (Nature)',
     doi: '10.1038/ngeo325',
-    gaiaRole: 'Couplage direct entre approvisionnement en gaz fossile (méthane CH4) et calories agricoles disponibles par être humain.',
+    gaiaRole: 'Référence de contexte sur le rôle de l’azote réactif dans la production alimentaire. Cette estimation ne calibre pas une relation directe entre gaz fossile et calories dans le moteur.',
     keyDataOrQuote: 'L\'analyse d\'Erisman et al. estime qu\'en 2008, environ 48% de la population mondiale était nourrie grâce à la production agricole utilisant de l\'azote réactif issu de la synthèse industrielle. C\'est une estimation agrégée de la contribution à l\'alimentation, pas un contrefactuel de naissance ni une mesure des atomes d\'azote individuels.',
-    reproducibilityNotes: 'Modélise l\'impact d\'une rupture de la chaîne pétrochimique sur la production céréalière globale.'
+    reproducibilityNotes: 'L’étude estime la part de la population nourrie grâce à l’azote synthétique; elle ne mesure pas l’effet d’une rupture immédiate ni ne fournit une fonction de mortalité alimentaire.'
   },
   {
-    id: 'fao-sofi-report',
+    id: 'fao-food-balances-2023',
     category: 'agriculture',
     categoryLabel: 'Agriculture & Sécurité Alimentaire',
-    title: 'L\'État de la Sécurité Alimentaire et de la Nutrition dans le Monde (SOFI)',
-    englishTitle: 'The State of Food Security and Nutrition in the World',
-    authors: 'FAO, FIDA, OMS, PAM, UNICEF (Nations Unies)',
-    year: 2023,
+    title: 'Bilans alimentaires FAO par pays, 2010–2023',
+    englishTitle: 'FAOSTAT Food Balances (2010–2023)',
+    authors: 'Organisation des Nations Unies pour l’alimentation et l’agriculture (FAO)',
+    year: 2025,
     publisher: 'Organisation des Nations Unies pour l\'Alimentation et l\'Agriculture (FAO)',
     peerReviewed: true,
-    typeBadge: 'Rapport annuel inter-agences ONU',
-    primaryUrl: 'https://www.fao.org/publications/home/fao-flagship-publications/the-state-of-food-security-and-nutrition-in-the-world/en',
-    primaryUrlLabel: 'Portail des rapports phares de la FAO',
-    gaiaRole: 'La page cite ce rapport pour donner un contexte à la sécurité alimentaire. Dans le moteur, 2 100 kcal/jour est un seuil de calcul choisi par CLIMATOPEDY; le dépôt ne montre pas un chargement des données de ce rapport.',
-    keyDataOrQuote: 'Le rapport présente des indicateurs mondiaux de sécurité alimentaire et de nutrition. Il ne valide pas à lui seul la fonction de mortalité alimentaire du simulateur.',
-    reproducibilityNotes: 'Les calories régionales et la surmortalité sont calculées par des formules internes simplifiées, sans validation épidémiologique documentée.'
+    typeBadge: 'Données officielles de disponibilité alimentaire',
+    primaryUrl: 'https://www.fao.org/faostat/en/#data/FBS',
+    primaryUrlLabel: 'Jeu de données FAOSTAT Food Balances',
+    secondaryUrl: 'https://www.fao.org/statistics/highlights-archive/highlights-detail/food-balance-sheets-2010-2023/',
+    secondaryUrlLabel: 'Présentation FAO des bilans 2010–2023',
+    gaiaRole: 'Source à intégrer pour ancrer les disponibilités alimentaires par pays et groupe d’aliments. Les valeurs inscrites aujourd’hui dans countriesData.ts ne sont pas chargées depuis FAOSTAT.',
+    keyDataOrQuote: 'La FAO publie les disponibilités alimentaires apparentes en kcal par personne et par jour. Il s’agit d’une moyenne issue des bilans nationaux, pas de l’alimentation consommée par chaque personne.',
+    reproducibilityNotes: 'Pour produire une projection alimentaire, apparier le bilan par groupe d’aliments avec des projections de rendement, pertes, stocks et commerce; ne pas appliquer directement la variation du rendement d’une culture à l’ensemble des calories.'
   },
 
   // 6. DÉMOGRAPHIE & LIMITES PLANÉTAIRES
@@ -485,15 +505,49 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     title: 'Analyse des Températures de Surface Globales GISTEMP v4',
     englishTitle: 'GISS Surface Temperature Analysis (GISTEMP v4)',
     authors: 'NASA Goddard Institute for Space Studies (GISS)',
-    year: 2024,
+    year: 2026,
     publisher: 'National Aeronautics and Space Administration (NASA)',
     peerReviewed: true,
     typeBadge: 'Série temporelle instrumentale historique',
     primaryUrl: 'https://data.giss.nasa.gov/gistemp/',
     primaryUrlLabel: 'Jeu de données NASA GISTEMP v4',
-    gaiaRole: 'Étalonnage de la courbe historique des températures moyennes mondiales de 1880 à 2026 dans la chronologie de simulation.',
+    gaiaRole: 'Série indépendante pouvant servir à comparer la courbe historique du simulateur; elle n’est pas l’entrée annuelle utilisée pour initialiser son état.',
     keyDataOrQuote: 'Reconstitution instrumentale planétaire combinant les stations terrestres GHCN v4 et les mesures océaniques ERSST v5.',
-    reproducibilityNotes: 'Permet de vérifier que le modèle reproduit fidèlement le réchauffement observé au XXe siècle.'
+    reproducibilityNotes: 'Une comparaison avec cette série n’est pas calculée automatiquement par le moteur; sa présence dans la bibliographie ne prouve pas un backtest.'
+  },
+  {
+    id: 'noaa-global-temperature-2025',
+    category: 'observatories',
+    categoryLabel: 'Observatoires & Données Satellites en Direct',
+    title: 'Bilan de température mondiale pour 2025',
+    englishTitle: 'Assessing the Global Temperature and Precipitation Analysis in 2025',
+    authors: 'NOAA National Centers for Environmental Information (NCEI)',
+    year: 2026,
+    publisher: 'National Oceanic and Atmospheric Administration (NOAA)',
+    peerReviewed: false,
+    typeBadge: 'Bilan annuel fondé sur les observations',
+    primaryUrl: 'https://www.ncei.noaa.gov/news/global-climate-202513',
+    primaryUrlLabel: 'Bilan officiel NOAA NCEI pour 2025',
+    gaiaRole: 'Repère annuel observé utilisé pour initialiser la température mondiale de CLIMATOPEDY au départ 2026.',
+    keyDataOrQuote: 'NOAA estime que la température moyenne mondiale de surface en 2025 était de +1,34 °C par rapport à la moyenne préindustrielle 1850–1900.',
+    reproducibilityNotes: 'La valeur est celle du jeu NOAA; d’autres jeux d’observations peuvent différer légèrement selon leur couverture et leur méthode.'
+  },
+  {
+    id: 'wmo-global-temperature-2025',
+    category: 'observatories',
+    categoryLabel: 'Observatoires & Données Satellites en Direct',
+    title: 'État du climat mondial en 2025 : analyse combinée de huit jeux de données',
+    englishTitle: 'WMO confirms 2025 was one of warmest years on record',
+    authors: 'Organisation météorologique mondiale (OMM / WMO)',
+    year: 2026,
+    publisher: 'Organisation météorologique mondiale',
+    peerReviewed: false,
+    typeBadge: 'Synthèse de plusieurs séries d’observation',
+    primaryUrl: 'https://wmo.int/news/media-centre/wmo-confirms-2025-was-one-warmest-years-record',
+    primaryUrlLabel: 'Bilan climatique 2025 de l’OMM',
+    gaiaRole: 'Repère indépendant pour comparer la valeur NOAA utilisée par le moteur. L’écart entre les estimations résulte des jeux de données et des méthodes employés.',
+    keyDataOrQuote: 'L’OMM estime le réchauffement moyen mondial de 2025 à +1,44 ± 0,13 °C par rapport à 1850–1900, en combinant huit jeux de données.',
+    reproducibilityNotes: 'Ne pas moyenner directement cette estimation et la série NOAA utilisée dans l’état initial; conserver la provenance et la méthode de chaque valeur.'
   },
   {
     id: 'global-carbon-budget',

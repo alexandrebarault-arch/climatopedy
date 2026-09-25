@@ -69,16 +69,30 @@ const domains: {
     referenceHref: 'https://repository.library.noaa.gov/view/noaa/74317'
   },
   {
+    title: 'Réchauffement mondial au départ (ancré sur 2025)',
+    icon: Activity,
+    confidence: 'Élevée',
+    kind: 'Observation annuelle utilisée comme valeur de départ',
+    text: 'Le moteur commence à +1,34 °C, valeur annuelle mondiale publiée par NOAA pour 2025 par rapport à 1850–1900. C’est le dernier millésime complet utilisé comme repère du départ 2026, pas une mesure de l’année 2026.',
+    nextStep: 'Mettre à jour avec la même série d’observations lorsqu’une nouvelle année complète est publiée.',
+    source: 'NOAA NCEI, température mondiale annuelle 2025',
+    href: 'https://www.ncei.noaa.gov/news/global-climate-202513',
+    reference: 'NOAA estime l’anomalie mondiale moyenne de 2025 à +1,34 °C par rapport à 1850–1900. L’OMM, en combinant huit jeux de données, estime +1,44 ± 0,13 °C. Ces valeurs ne sont pas contradictoires : les jeux diffèrent par leur couverture et leur méthode. Le moteur utilise la série NOAA.',
+    referenceConfidence: 'Élevée',
+    referenceSource: 'NOAA NCEI, bilan climatique annuel 2025',
+    referenceHref: 'https://www.ncei.noaa.gov/news/global-climate-202513'
+  },
+  {
     title: 'Température et CO₂ futurs',
     icon: Activity,
     confidence: 'Faible',
     kind: 'Projection conditionnelle',
-    text: 'Les courbes dépendent d’émissions et de paramètres propres à CLIMATOPEDY. Le cycle carbone reprend une structure de réservoirs, mais ne produit pas directement une projection FaIR ou du GIEC.',
-    nextStep: 'Utiliser des scénarios publiés, comparer le moteur aux observations historiques indépendantes et afficher la plage de plusieurs simulations.',
+    text: 'Le scénario « Fortes émissions » du moteur ne reproduit pas SSP5-8.5 : avec les réglages actuels, il atteint environ +2,4 °C et 475 ppm en 2100. Le GIEC évalue +4,4 °C [3,3–5,7] pour SSP5-8.5. Les courbes CLIMATOPEDY restent des expériences internes et ne doivent pas être lues comme une prévision.',
+    nextStep: 'Remplacer les paramètres fossiles et carbone par des trajectoires d’émissions publiées, puis comparer température et CO₂ sur une période historique tenue à l’écart du réglage.',
     source: 'NASA, projections climatiques CMIP6',
     href: 'https://www.nccs.nasa.gov/data-collections/nex-gddp-cmip6/',
-    reference: 'GIEC, moyenne 2081–2100 par rapport à 1850–1900 : SSP1-2.6 +1,8 °C [1,3–2,4]; SSP2-4.5 +2,7 °C [2,1–3,5]; SSP5-8.5 +4,4 °C [3,3–5,7]. Ces scénarios ne sont pas ceux du simulateur.',
-    referenceConfidence: 'Partielle',
+    reference: 'GIEC, moyenne 2081–2100 par rapport à 1850–1900 : SSP1-2.6 +1,8 °C [1,3–2,4]; SSP2-4.5 +2,7 °C [2,1–3,5]; SSP5-8.5 +4,4 °C [3,3–5,7]. La courbe interne « Fortes émissions » est actuellement très en dessous de ce dernier repère.',
+    referenceConfidence: 'Élevée',
     referenceSource: 'GIEC AR6, chapitre 4',
     referenceHref: 'https://www.ipcc.ch/report/ar6/wg1/chapter/chapter-4/'
   },
@@ -87,11 +101,11 @@ const domains: {
     icon: Thermometer,
     confidence: 'Faible',
     kind: 'Calcul avec entrées simplifiées',
-    text: 'La formule de Stull estime la température humide à partir de la température et de l’humidité. Les entrées régionales du simulateur sont des paramètres statiques, pas une série météo locale.',
+    text: 'La formule de Stull estime correctement Tw à partir d’une température et d’une humidité appropriées. Ici, les entrées régionales sont des paramètres statiques et un pic estival simplifié; le résultat n’est ni une observation météo locale ni une durée d’exposition.',
     nextStep: 'Calculer avec des données météo quotidiennes, puis comparer les résultats historiques aux stations météo avant de les projeter.',
     source: 'Stull, formule de température humide',
     href: 'https://doi.org/10.1175/JAMC-D-11-0143.1',
-    reference: 'La formule de Stull a une erreur absolue moyenne inférieure à 0,3 °C dans son domaine d’application. En laboratoire, une étude sur de jeunes adultes en bonne santé a mesuré 30,55 ± 0,98 °C dans des conditions humides précises; ce n’est pas un seuil universel ni un seuil de mortalité.',
+    reference: 'La formule de Stull a une erreur absolue moyenne inférieure à 0,3 °C dans son domaine d’application. Une étude en laboratoire a mesuré une limite critique moyenne de 30,55 ± 0,98 °C chez de jeunes adultes en bonne santé, dans des conditions précises. Le moteur ne dispose pas des séries quotidiennes nécessaires pour estimer la fréquence de ces expositions.',
     referenceConfidence: 'Partielle',
     referenceSource: 'Stull (2011) et Vecellio et al. (2022)',
     referenceHref: 'https://pubmed.ncbi.nlm.nih.gov/34913738/'
@@ -101,8 +115,8 @@ const domains: {
     icon: Waves,
     confidence: 'Faible',
     kind: 'Projection globale et indicateur régional simplifié',
-    text: 'Le niveau marin du moteur est global. L’indice de terres côtières ne représente pas l’altitude locale, les défenses ni les mouvements du sol.',
-    nextStep: 'Utiliser des projections régionales et, pour les zones touchées, des données d’altitude et de mouvement local du sol.',
+    text: 'La relation semi-empirique du moteur produit une courbe globale, sans vérifier sa performance sur les observations récentes. L’indice côtier interne ne représente ni l’altitude, ni les défenses, ni l’affaissement local; il ne permet pas d’estimer des hectares perdus par pays.',
+    nextStep: 'Afficher le repère AR6 selon le scénario sélectionné; ne conserver l’indice côtier que comme illustration sans le convertir en pertes de terres.',
     source: 'NASA, projections du GIEC AR6 par région',
     href: 'https://sealevel.nasa.gov/data_tools/17',
     reference: 'Hausse moyenne mondiale probable d’ici 2100, par rapport à 1995–2014 : 0,32–0,62 m sous SSP1-2.6; 0,44–0,76 m sous SSP2-4.5; 0,63–1,01 m sous SSP5-8.5. Ce ne sont pas des pertes de terres par pays.',
@@ -115,7 +129,7 @@ const domains: {
     icon: Sprout,
     confidence: 'Faible',
     kind: 'Projection agricole simplifiée',
-    text: 'Des sensibilités moyennes mondiales sont appliquées à des mélanges de cultures régionaux. La météo, les sols, l’irrigation et les pratiques agricoles ne sont pas simulés en détail.',
+    text: 'Le moteur applique des sensibilités moyennes mondiales à une composition régionale simplifiée. Le résultat n’est pas une prévision de rendement locale : météo, sols, calendrier, irrigation, CO₂, adaptation et échanges alimentaires ne sont pas modélisés ensemble.',
     nextStep: 'Comparer des modèles agricoles aux rendements observés dans le passé et montrer l’écart entre plusieurs modèles.',
     source: 'ISIMIP, modèles agricoles et protocole',
     href: 'https://www.isimip.org/protocol/',
@@ -129,8 +143,8 @@ const domains: {
     icon: Sprout,
     confidence: 'Très faible',
     kind: 'Calcul exploratoire',
-    text: 'Le chiffre découle d’un rendement simplifié et d’une population régionale. Il ne mesure pas les aliments consommés ou accessibles aux habitants.',
-    nextStep: 'Ajouter les données de production, échanges, pertes et disponibilité alimentaire; valider séparément chaque composante.',
+    text: 'Le calcul actuel multiplie une valeur calorique de départ par le rendement simulé puis par une règle de disponibilité de main-d’œuvre. Il ne modélise pas les aliments produits, importés, exportés, perdus ou accessibles; les kcal futures affichées ne sont donc pas des projections de disponibilité alimentaire.',
+    nextStep: 'Repartir des bilans alimentaires FAO par pays et groupe d’aliments, puis montrer un scénario conditionnel en faisant varier séparément les rendements et les échanges.',
     source: 'FAOSTAT, production et rendements agricoles',
     href: 'https://www.fao.org/faostat/',
     reference: 'Repère observé : en 2023, l’offre alimentaire mondiale moyenne a dépassé 3 000 kcal par personne et par jour. C’est une disponibilité apparente nationale moyenne, pas la consommation de chaque personne ni une projection future.',
@@ -143,8 +157,8 @@ const domains: {
     icon: Activity,
     confidence: 'Très faible',
     kind: 'Calcul exploratoire non validé en épidémiologie',
-    text: 'Les taux de décès viennent de formules internes. La température humide ou un déficit calorique ne permet pas, à lui seul, de déduire combien de personnes mourront.',
-    nextStep: 'Utiliser des liens entre météo et mortalité mesurés dans les données de santé, par âge et par région, puis vérifier leur performance sur des années non utilisées pour les régler.',
+    text: 'Le moteur transforme directement des seuils Tw, un déficit calorique et un manque d’énergie en taux de décès, sans fonction dose-réponse tirée de données sanitaires. Ces nombres n’ont pas de base scientifique suffisante pour être présentés comme des décès attendus, même avec une étiquette « exploratoire ».',
+    nextStep: 'Les nombres simulés ont été retirés de l’interface. Pour les rétablir un jour, il faudra des données météo quotidiennes et sanitaires par âge et par région, puis une validation indépendante.',
     source: 'OMS, méthodes d’évaluation des effets sanitaires',
     href: 'https://www.who.int/publications/i/item/9789241507691',
     reference: 'Repère publié : l’OMS estimait environ 250 000 décès supplémentaires par an entre 2030 et 2050 pour quatre causes étudiées. L’estimation repose sur des hypothèses de croissance et de progrès sanitaires; elle ne valide pas les décès calculés par CLIMATOPEDY.',
@@ -157,8 +171,8 @@ const domains: {
     icon: Users,
     confidence: 'Faible',
     kind: 'Projection démographique interne',
-    text: 'Le moteur agrège 34 zones. Avant 2026, leurs effectifs sont reconstruits en appliquant à ces zones l’évolution de la population mondiale, faute de séries historiques propres à chacune. Après 2026, les effectifs suivent des règles internes; les projections de l’ONU ne sont pas chargées directement.',
-    nextStep: 'Utiliser les projections de l’ONU comme référence démographique, puis isoler tout effet climatique calculé séparément.',
+    text: 'Le moteur agrège 34 zones couvrant environ 93 % du repère mondial 2025. Il utilise trois groupes d’âge et des taux internes; les règles de mortalité, fécondité et migration influencent encore la population simulée, sans constituer des projections nationales ou mondiales complètes.',
+    nextStep: 'Reprendre les séries de population et de structure par âge de l’ONU pour chaque zone, puis afficher séparément tout effet climatique hypothétique.',
     source: 'ONU, World Population Prospects 2024',
     href: 'https://population.un.org/wpp/',
     reference: 'ONU WPP 2024 estime la population mondiale à 8,16 milliards en 2025; son scénario central atteint 10,2 milliards en 2100 (plage probabiliste à 95 % : 9,0–11,4 milliards). Au départ, les 34 zones du moteur totalisent 7,597 milliards : environ 93 % du repère mondial 2025, soit près de 565 millions de personnes non représentées dans cette agrégation. Les trajectoires du moteur ne sont donc pas des totaux mondiaux complets.',
@@ -171,8 +185,8 @@ const domains: {
     icon: Users,
     confidence: 'Très faible',
     kind: 'Règle interne de déplacement',
-    text: 'Le moteur répartit des personnes selon des scores simplifiés. Ces chiffres ne sont ni des observations de migrations ni des prévisions validées.',
-    nextStep: 'S’appuyer sur des modèles publiés et leurs scénarios; tester toute nouvelle méthode sur des déplacements observés. Sinon, n’afficher que des exemples conditionnels.',
+    text: 'Le moteur calcule un flux annuel à partir d’un score de chaleur, de nourriture et de côte; il n’enlève pas systématiquement les mêmes personnes de la zone d’origine et n’estime pas un stock de migrants. Le chiffre ne correspond donc pas clairement à un flux observé ou à un total de personnes déplacées.',
+    nextStep: 'Les nombres de personnes et les trajets ont été retirés de l’interface. Un nouvel indicateur demandera un modèle de flux qui conserve les bilans de départs et d’arrivées, vérifié sur des observations.',
     source: 'Banque mondiale, scénarios Groundswell',
     href: 'https://www.worldbank.org/en/news/feature/2021/09/13/millions-on-the-move-in-their-own-countries-the-human-face-of-climate-change',
     reference: 'La Banque mondiale a estimé jusqu’à 216 millions de migrants climatiques internes d’ici 2050 dans six régions, selon des scénarios. Il s’agit de déplacements à l’intérieur d’un même pays; ce total n’est pas une prévision mondiale de migrations internationales.',
@@ -185,13 +199,13 @@ const domains: {
     icon: Zap,
     confidence: 'Faible',
     kind: 'Scénario énergétique interne',
-    text: 'Le rendement énergétique dépend de la ressource et de la méthode de calcul. La baisse future affichée dépend d’une formule et de réserves choisies dans le simulateur.',
-    nextStep: 'Préciser la définition et le périmètre de l’EROI, sourcer les données historiques et confronter les scénarios à des trajectoires énergétiques publiées.',
+    text: 'La formule interne fait baisser l’EROI en fonction du volume cumulé extrait et d’une réserve ultime choisie; son exposant et sa trajectoire ne sont pas ajustés à des séries mondiales de projets pétroliers. La baisse affichée est une hypothèse de scénario, pas une prévision.',
+    nextStep: 'Présenter l’EROI comme un curseur hypothétique ou remplacer la courbe par des séries de projets documentées, en gardant le même périmètre énergétique.',
     source: 'Hall, Lambert & Balogh, méthodes EROI',
     href: 'https://doi.org/10.1016/j.enpol.2013.05.049',
-    reference: 'Une étude d’ingénierie de cinq grands champs pétroliers a estimé des baisses de rendement énergétique net de 46 à 88 % sur les périodes étudiées. Les résultats varient selon le champ et la définition; ils ne donnent pas une trajectoire mondiale future.',
+    reference: 'Dans les cinq champs pétroliers étudiés, l’énergie nette récupérée par unité d’énergie investie a diminué, selon le champ, de 46 % à 88 % entre le début et la fin des périodes étudiées. Ces pourcentages décrivent cinq cas précis : ils ne signifient pas que le rendement mondial est passé de 88 % à 46 %.',
     referenceConfidence: 'Partielle',
-    referenceSource: 'Tripathi & Brandt (2017), cinq champs pétroliers',
+    referenceSource: 'Tripathi & Brandt (2017), étude de cinq champs pétroliers',
     referenceHref: 'https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0171083'
   }
 ];
@@ -215,7 +229,7 @@ export const ModelConfidenceGuide: React.FC = () => (
     <div className="mt-4 rounded-xl border border-sky-200 bg-sky-50 p-4">
       <h3 className="text-sm font-bold text-slate-900">Quand une projection peut-elle avoir une confiance partielle ?</h3>
       <p className="mt-1 text-sm leading-relaxed text-slate-700">
-        Il faut connaître les données et les hypothèses, utiliser une méthode adaptée au chiffre calculé, vérifier que la méthode reproduit correctement une période passée qu’elle n’a pas servi à régler, et montrer une plage de résultats obtenue avec plusieurs scénarios plausibles. C’est une règle de lecture de CLIMATOPEDY, pas une note officielle du GIEC.
+        Il faut connaître les données et les hypothèses, utiliser une méthode adaptée au chiffre calculé, vérifier la méthode sur des observations qu’elle n’a pas servi à régler, et montrer l’incertitude avec plusieurs scénarios ou une plage. Quand le calcul ne représente pas correctement la grandeur annoncée, la bonne correction est de changer l’indicateur, pas de relever sa note. C’est une règle de lecture de CLIMATOPEDY, pas une note officielle du GIEC.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-slate-700">
         On peut aussi explorer l’avenir en posant des hypothèses — par exemple sur les émissions ou l’adaptation. Il faut les nommer, expliquer pourquoi elles sont retenues et montrer comment le résultat change avec d’autres choix. Cela rend un scénario transparent; cela ne transforme pas l’hypothèse en fait.
@@ -267,7 +281,7 @@ export const ModelConfidenceGuide: React.FC = () => (
     </div>
 
     <p className="mt-4 rounded-lg bg-amber-50 p-3 text-xs leading-relaxed text-amber-950">
-      <strong>À retenir :</strong> une hypothèse aide à explorer un futur possible; elle ne devient pas une prévision fiable sans vérification. Si les critères ci-dessus ne sont pas remplis, CLIMATOPEDY garde un niveau faible ou présente le chiffre comme un exemple de scénario.
+      <strong>À retenir :</strong> les niveaux faibles signalent les calculs actuels qui ne sont pas assez vérifiés. Les repères scientifiques publiés, eux, peuvent avoir une confiance élevée. CLIMATOPEDY ne transforme pas un repère en confiance élevée pour ses propres résultats sans validation indépendante.
     </p>
   </section>
 );

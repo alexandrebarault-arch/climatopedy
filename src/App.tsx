@@ -376,7 +376,7 @@ export default function App() {
         {currentTab === 'tipping-points' && (
           <TippingPointsView
             currentSimulatedYear={currentYear}
-            currentSimulatedWarming={currentTrajectoryState?.surfaceTemperatureAnomaly ?? 1.3}
+            currentSimulatedWarming={currentTrajectoryState?.surfaceTemperatureAnomaly ?? 1.34}
           />
         )}
 

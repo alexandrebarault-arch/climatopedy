@@ -71,7 +71,7 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
   const initialPools: [number, number, number, number] = referencePools.map(pool => pool * poolScale) as [number, number, number, number];
   const initialCumulativeEmissions = 690.0; // GtC depuis 1750
   const initialCo2 = 278.0 + (initialPools.reduce((a, b) => a + b, 0) / 2.123);
-  const initialT1 = 1.35; // Anomalie thermique globale en 2026 (°C par rapport à 1850-1900)
+  const initialT1 = 1.34; // Repère NOAA pour l'anomalie mondiale 2025, utilisé au départ 2026 (1850-1900)
   const initialT2 = 0.55; // Océan profond
   const initialSeaLevel = 0.12; // Mètres depuis 2000
 
@@ -282,8 +282,8 @@ export function stepSimulation(
   COUNTRIES_DATA.forEach(staticC => {
     const cState = next.countries[staticC.id];
     
-    // Réchauffement additionnel par rapport à l'année de départ 2026 (anomalie globale T1 - 1.35°C)
-    const deltaTGlobalFrom2026 = Math.max(0, next.surfaceTemperatureAnomaly - 1.35);
+    // Réchauffement additionnel par rapport au repère observé utilisé au départ (+1.34°C en 2025)
+    const deltaTGlobalFrom2026 = Math.max(0, next.surfaceTemperatureAnomaly - 1.34);
 
     // Descente d'échelle thermique locale (température moyenne annuelle)
     const localDryBulb = staticC.baseTemp + deltaTGlobalFrom2026 * staticC.patternScaling;
@@ -429,11 +429,10 @@ export function stepSimulation(
     const { p0, p1, p2 } = cState.cohorts;
     const mu = cState.mortalityRates.total;
 
-    // dp0/dt = Naissances - passage à p1 (15 ans) - décès
+    // Les taux de mortalité restent un paramètre exploratoire interne. Ils modifient
+    // la dynamique de scénario, mais leurs sorties ne sont pas exposées comme estimations sanitaires.
     const dp0 = (cState.annualBirths - (p0 / 15.0) - p0 * mu) * dt;
-    // dp1/dt = arrivée de p0 - passage à p2 (50 ans) - décès + solde migratoire
     const dp1 = ((p0 / 15.0) - (p1 / 50.0) - p1 * mu + cState.netMigration) * dt;
-    // dp2/dt = arrivée de p1 - décès seniors (mortalité accentuée 1.4x)
     const dp2 = ((p1 / 50.0) - p2 * (mu * 1.4)) * dt;
 
     cState.cohorts.p0 = Math.max(0, p0 + dp0);

@@ -261,7 +261,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
             <div className="grid grid-cols-2 gap-2 text-[11px]">
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block">Ration par personne</span>
+                <span className="text-slate-500 block">Disponibilité alimentaire simulée</span>
                 <span
                   className={`text-base font-bold font-mono tabular-nums ${
                     dynState.calPerCapita < 2100 ? 'text-rose-700' : 'text-emerald-700'
@@ -269,7 +269,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
                 >
                   {Math.round(dynState.calPerCapita)} kcal/j
                 </span>
-                <span className="text-[10px] text-slate-400 block">Minimum pour vivre : 2 100 kcal/j</span>
+                <span className="text-[10px] text-slate-400 block">Repère interne du modèle : 2 100 kcal/j; ne mesure pas la consommation réelle ni la famine.</span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
@@ -293,49 +293,17 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             </div>
           </div>
 
-          {/* SECTION 4 : CAUSES DES DÉCÈS */}
+          {/* SECTION 4 : LIMITES DES ESTIMATIONS SANITAIRES */}
           <div className="bg-slate-50/80 rounded-xl p-3.5 border border-slate-200 space-y-2 shadow-2xs">
             <div className="flex items-center justify-between">
               <span className="font-semibold text-slate-900 flex items-center gap-1.5">
                 <Skull className="w-3.5 h-3.5 text-purple-600" />
-                Décès annuels calculés par le modèle
+                Estimation des décès
               </span>
-              <span className="font-mono text-purple-800 font-bold tabular-nums">
-                {(dynState.annualDeaths.total).toFixed(2)} M/an
-              </span>
+              <span className="text-xs font-semibold text-rose-800">Non estimée</span>
             </div>
 
-            <p className="text-[10px] text-slate-500">Toutes les valeurs ci-dessous sont des sorties exploratoires de CLIMATOPEDY, non validées comme estimations épidémiologiques.</p>
-
-            <div className="space-y-1.5 text-[11px]">
-              <div className="flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-rose-700 font-medium">Décès simulés associés à la chaleur humide :</span>
-                <span className="font-mono font-bold text-slate-900 tabular-nums">
-                  {(dynState.annualDeaths.thermal).toFixed(2)} M/an
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-amber-800 font-medium">Décès simulés associés au déficit calorique :</span>
-                <span className="font-mono font-bold text-slate-900 tabular-nums">
-                  {(dynState.annualDeaths.famine).toFixed(2)} M/an
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-purple-800 font-medium">Pénuries d'eau potable et santé :</span>
-                <span className="font-mono font-bold text-slate-900 tabular-nums">
-                  {(dynState.annualDeaths.sanitary).toFixed(2)} M/an
-                </span>
-              </div>
-
-              <div className="flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-600">Décès de base calculés par le modèle (autres causes) :</span>
-                <span className="font-mono text-slate-700 tabular-nums">
-                  {(dynState.annualDeaths.base).toFixed(2)} M/an
-                </span>
-              </div>
-            </div>
+            <p className="text-[10px] leading-relaxed text-slate-600">Les formules actuelles ne relient pas la chaleur ou l’alimentation à des données sanitaires observées. Elles ne permettent donc pas d’estimer les décès de cette zone. Les seuils thermiques restent des alertes du modèle, sans interprétation médicale.</p>
           </div>
 
           {/* SECTION 5 : MIGRATIONS & FRONTIÈRES */}
@@ -352,22 +320,13 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
             <div className="grid grid-cols-2 gap-2 text-[11px]">
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block">Besoin d'émigrer (Urgence)</span>
+                <span className="text-slate-500 block">Indice de pression interne</span>
                 <span className="text-sm font-bold font-mono text-amber-800 tabular-nums">
                   {(dynState.pushFactor * 100).toFixed(0)} / 100
                 </span>
               </div>
 
-              <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block">Bilan départs / arrivées</span>
-                <span
-                  className={`text-sm font-bold font-mono tabular-nums ${
-                    dynState.netMigration < 0 ? 'text-rose-700' : 'text-sky-700'
-                  }`}
-                >
-                  {dynState.netMigration > 0 ? `+${dynState.netMigration.toFixed(2)}` : dynState.netMigration.toFixed(2)} M/an
-                </span>
-              </div>
+              <p className="col-span-2 text-[10px] text-slate-500">Indice exploratoire sans conversion en nombre de personnes déplacées.</p>
             </div>
           </div>
         </div>

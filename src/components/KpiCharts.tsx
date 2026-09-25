@@ -123,7 +123,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   }, [timeRange]);
 
   // =========================================================
-  // 1. DÉMOGRAPHIE & MORTALITÉS
+  // 1. DÉMOGRAPHIE — la mortalité interne n'est pas un indicateur affiché
   // =========================================================
   const popMin = (startYear === 1900) ? 1.0 : 2.0; // Mds
   const popMax = 10.5; // Mds
@@ -134,15 +134,6 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
   const pathPop = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYPop(pt.worldPopulation).toFixed(1)}`).join(' ');
   const pathPopB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYPop(pt.worldPopulation).toFixed(1)}`).join(' ');
-
-  const deathMax = 220; // Millions / an
-  const getYDeath = (deathsM: number) => {
-    return PAD.top + plotH - (deathsM / deathMax) * plotH;
-  };
-  const pathDeathThermal = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYDeath(pt.worldDeathsAnnual.thermal).toFixed(1)}`).join(' ');
-  const pathDeathThermalB = visibleCompareTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYDeath(pt.worldDeathsAnnual.thermal).toFixed(1)}`).join(' ');
-  const pathDeathFamine = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYDeath(pt.worldDeathsAnnual.famine).toFixed(1)}`).join(' ');
-  const pathDeathTotal = visibleTrajectory.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${getX(pt.year).toFixed(1)},${getYDeath(pt.worldDeathsAnnual.total).toFixed(1)}`).join(' ');
 
   // =========================================================
   // 2. ÉNERGIE & MULTIPLICATEUR EROI
@@ -253,16 +244,6 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
       ? (compareTrajectory.find(t => t.year === displayYear) || currentSimStateB)
       : null;
 
-    const thermalDeathsFormatted = stateA.worldDeathsAnnual.thermal >= 1
-      ? `${stateA.worldDeathsAnnual.thermal.toFixed(2)} M/an`
-      : `${Math.round(stateA.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`;
-
-    const thermalDeathsFormattedB = stateB
-      ? (stateB.worldDeathsAnnual.thermal >= 1
-          ? `${stateB.worldDeathsAnnual.thermal.toFixed(2)} M/an`
-          : `${Math.round(stateB.worldDeathsAnnual.thermal * 1000).toLocaleString('fr-FR')} décès/an`)
-      : '';
-
     const seaLevelCm = Math.round(stateA.seaLevelRiseMeters * 100);
     const seaLevelVs2026 = Math.round((stateA.seaLevelRiseMeters - 0.12) * 100);
     const seaLevelCmB = stateB ? Math.round(stateB.seaLevelRiseMeters * 100) : 0;
@@ -273,8 +254,6 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
       isThisChartHovered,
       stateA,
       stateB,
-      thermalDeathsFormatted,
-      thermalDeathsFormattedB,
       seaLevelCm,
       seaLevelVs2026,
       seaLevelCmB
@@ -509,7 +488,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
   const getChartTitle = (id: ChartId) => {
     switch (id) {
       case 'demo':
-        return '1. Population des zones simulées & décès annuels';
+        return '1. Population des zones simulées';
       case 'energy':
         return "2. Énergie & Pétrole : Multiplicateur d'Énergie et Part Utile";
       case 'climate':
@@ -525,7 +504,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
     return (
       <div className={isExpanded ? 'w-full' : 'grid grid-cols-1 lg:grid-cols-2 gap-4'}>
         {/* ========================================================================= */}
-        {/* GRAPHIQUE 1 : DÉMOGRAPHIE & TOUTES LES CAUSES DE DÉCÈS */}
+        {/* GRAPHIQUE 1 : DÉMOGRAPHIE DES ZONES SIMULÉES */}
         {/* ========================================================================= */}
         {(!isExpanded ? (activeTab === 'all' || activeTab === 'demo') : expandedId === 'demo') && (
           <div className={isExpanded ? 'bg-white border border-slate-300 rounded-2xl p-5 sm:p-7 shadow-sm w-full flex flex-col gap-3' : 'bg-slate-50/60 border border-slate-200/90 rounded-xl p-3.5 flex flex-col gap-2 shadow-2xs'}>
@@ -533,7 +512,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className={`${isExpanded ? 'text-sm sm:text-base' : 'text-xs'} font-bold text-slate-900`}>
-                    1. Population des zones simulées &amp; décès annuels
+                    1. Population des zones simulées
                   </span>
                   {isExpanded && (
                     <span className="text-xs px-2 py-0.5 rounded-full font-mono bg-sky-100 text-sky-800 border border-sky-200 font-semibold">
@@ -581,19 +560,9 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   <span className="w-2 h-2 rounded-full bg-slate-900 inline-block shrink-0" />
                   Pop : {(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds
                 </span>
-                <span className="text-purple-800 font-semibold flex items-center gap-1 min-w-[8.5rem]">
-                  <span className="w-2 h-2 rounded-full bg-purple-600 inline-block shrink-0" />
-                  Décès totaux simulés : {d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an
-                </span>
-                <span className="text-amber-800 font-semibold flex items-center gap-1 min-w-[7.5rem]">
+                <span className="text-amber-800 font-semibold flex items-center gap-1 min-w-[8.5rem]">
                   <span className="w-2 h-2 rounded-full bg-amber-600 inline-block shrink-0" />
-                  Déficit calorique — décès simulés : {d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an
-                </span>
-                {/* Décès Canicule */}
-                <span className="text-rose-800 font-bold bg-rose-100/80 border border-rose-300 px-1.5 py-0.5 rounded flex items-center gap-1 min-w-[9.5rem]">
-                  <span className="w-2 h-2 rounded-full bg-rose-600 inline-block animate-pulse shrink-0" />
-                  Décès chaleur simulés : {d1.thermalDeathsFormatted}
-                  <TechTooltip term="stull" showIconOnly />
+                  Indicateurs démographiques internes — pas des prévisions de décès
                 </span>
               </div>
 
@@ -607,18 +576,12 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
                     Pop : {(d1.stateB.worldPopulation / 1000).toFixed(2)} Mds
                   </span>
-                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
-                    Canicules : {d1.thermalDeathsFormattedB}
-                  </span>
-                  <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
-                    Déficit calorique — décès simulés : {d1.stateB.worldDeathsAnnual.famine.toFixed(1)} M/an
-                  </span>
                 </div>
               )}
             </div>
 
             <p className="text-[10px] text-slate-600 leading-tight">
-              Population agrégée des 34 zones représentées (axe gauche, milliards; environ 7,6 milliards au départ), et sorties exploratoires de décès calculées par le modèle (axe droit, millions/an). Ce n’est pas un total mondial complet; les décès ne sont pas des estimations sanitaires validées.
+              Population agrégée des 34 zones représentées (axe gauche, milliards; environ 7,6 milliards au départ). Les courbes de décès ont été retirées : les formules du modèle ne permettent pas de les estimer de façon fiable.
             </p>
 
             {/* SVG Graphique 1 */}
@@ -635,9 +598,6 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <text x={PAD.left - 6} y={PAD.top + plotH / 2 + 3} fill="#0f172a" fontSize="8" textAnchor="end" fontFamily="monospace">6.5</text>
                 <text x={PAD.left - 6} y={PAD.top + plotH} fill="#0f172a" fontSize="8" textAnchor="end" fontFamily="monospace">{popMin} Mds</text>
 
-                {/* Axe vertical droit : Décès annuels (M/an) */}
-                <text x={W - PAD.right + 6} y={PAD.top + 4} fill="#7e22ce" fontSize="8" textAnchor="start" fontFamily="monospace">220M/an</text>
-                <text x={W - PAD.right + 6} y={PAD.top + plotH} fill="#7e22ce" fontSize="8" textAnchor="start" fontFamily="monospace">0M</text>
 
                 {/* Lignes horizontales discrètes */}
                 <line x1={PAD.left} y1={PAD.top} x2={W - PAD.right} y2={PAD.top} stroke="#e2e8f0" strokeWidth="0.8" strokeDasharray="3,3" />
@@ -649,20 +609,10 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 {/* Courbe 1 : Population agrégée des zones simulées */}
                 <path d={pathPop} fill="none" stroke="#0f172a" strokeWidth="2.5" strokeLinecap="round" />
 
-                {/* Courbe 2 : Total Décès Annuels (Violette) */}
-                <path d={pathDeathTotal} fill="none" stroke="#9333ea" strokeWidth="2" strokeLinecap="round" />
-
-                {/* Courbe 3 : Décès dus aux Famines (Orange) */}
-                <path d={pathDeathFamine} fill="none" stroke="#d97706" strokeWidth="1.8" strokeLinecap="round" />
-
-                {/* Courbe 4 : Décès par Canicules mortelles (Rouge fluo bien visible) */}
-                <path d={pathDeathThermal} fill="none" stroke="#dc2626" strokeWidth="2.5" strokeLinecap="round" />
-
                 {/* COURBES DE COMPARAISON TRAJECTOIRE B */}
                 {isCompareMode && visibleCompareTrajectory.length > 0 && (
                   <g className="compare-layer">
                     <path d={pathPopB} fill="none" stroke="#059669" strokeWidth="2.2" strokeDasharray="5 3" strokeLinecap="round" />
-                    <path d={pathDeathThermalB} fill="none" stroke="#e11d48" strokeWidth="2" strokeDasharray="3 3" strokeLinecap="round" />
                   </g>
                 )}
 
@@ -677,36 +627,6 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   </g>
                 )}
 
-                {/* Marqueur interactif sur la courbe des canicules */}
-                <g>
-                  <circle
-                    cx={currentX}
-                    cy={getYDeath(currentSimState.worldDeathsAnnual.thermal)}
-                    r="4"
-                    fill="#dc2626"
-                    stroke="#ffffff"
-                    strokeWidth="1.5"
-                  />
-                  <rect
-                    x={Math.max(PAD.left, Math.min(W - PAD.right - 54, currentX + 6))}
-                    y={Math.max(PAD.top, getYDeath(currentSimState.worldDeathsAnnual.thermal) - 16)}
-                    width="50"
-                    height="12"
-                    rx="3"
-                    fill="#b91c1c"
-                  />
-                  <text
-                    x={Math.max(PAD.left + 25, Math.min(W - PAD.right - 29, currentX + 31))}
-                    y={Math.max(PAD.top + 8.5, getYDeath(currentSimState.worldDeathsAnnual.thermal) - 7.5)}
-                    textAnchor="middle"
-                    fill="#ffffff"
-                    fontSize="7.5"
-                    fontWeight="bold"
-                    fontFamily="monospace"
-                  >
-                    🔴 {currentSimState.worldDeathsAnnual.thermal >= 1 ? currentSimState.worldDeathsAnnual.thermal.toFixed(1) + 'M' : Math.round(currentSimState.worldDeathsAnnual.thermal * 1000) + 'k'}
-                  </text>
-                </g>
 
                 {/* Marqueur sur la population */}
                 <circle
@@ -734,15 +654,8 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
 
             {/* Légende détaillée sous le graphique */}
             <div className="flex flex-col gap-1 text-[10.5px] text-slate-700 pt-1 border-t border-slate-200">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>⚫ <strong>Ligne noire :</strong> Population des zones simulées ({(d1.stateA.worldPopulation / 1000).toFixed(2)} Mds)</span>
-                <span>🟣 <strong>Ligne violette :</strong> Décès totaux simulés ({d1.stateA.worldDeathsAnnual.total.toFixed(1)} M/an)</span>
-                <span>🟠 <strong>Ligne orange :</strong> Décès simulés associés au déficit calorique ({d1.stateA.worldDeathsAnnual.famine.toFixed(1)} M/an)</span>
-              </div>
-              <div className="bg-rose-50 border border-rose-200 rounded p-1.5 text-rose-900 text-[10px]">
-                🔴 <strong>Ligne rouge (décès chaleur simulés) :</strong> {d1.thermalDeathsFormatted} en {d1.displayYear}.
-                Sortie exploratoire calculée par CLIMATOPEDY; elle ne constitue pas une estimation validée des décès attribuables à la chaleur.
-              </div>
+              <span>⚫ <strong>Ligne noire :</strong> Population des 34 zones représentées; ce total ne couvre pas toute la population mondiale.</span>
+              <span className="text-amber-900">Les décès simulés ne sont pas affichés, car le moteur ne permet pas de produire une estimation sanitaire fiable.</span>
             </div>
           </div>
         )}
@@ -834,7 +747,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </div>
 
             <p className="text-[10px] text-slate-600 leading-tight">
-              Pour 1 baril consommé à forer et raffiner, combien de barils d'énergie récolte-t-on ? (En 1900 : x100. En 2026 : x12. En dessous de x5, la société n'a plus assez d'énergie nette).
+              Le ratio compare l’énergie brute obtenue à l’énergie investie dans le périmètre choisi. Par exemple, un EROI de 5:1 correspond à 20 % d’énergie investie et 80 % d’énergie nette selon cette définition; cela ne fixe pas à lui seul un seuil de fonctionnement pour une société.
             </p>
 
             {/* SVG Graphique 2 */}
@@ -877,7 +790,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                   fontFamily="sans-serif"
                   fontWeight="bold"
                 >
-                  Seuil critique société moderne : moins de 10 barils obtenus pour 1 dépensé (x10)
+                  Repère de calcul : EROI 10:1
                 </text>
 
                 {/* Axe des abscisses */}
@@ -1234,7 +1147,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
               {/* Indicateurs numériques avec tabular-nums */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10.5px] font-mono mt-0.5 tabular-nums">
                 <span className="text-emerald-700 font-semibold min-w-[8.5rem]">
-                  Nourriture : {Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/hab/j
+                  Disponibilité simulée : {Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/hab/j
                 </span>
                 <span className="text-amber-800 font-semibold flex items-center gap-1 min-w-[9.5rem]">
                   Rendement moyen : {(d4.stateA.globalCropYieldComposite * 100).toFixed(0)}% du pic
@@ -1253,7 +1166,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                     {scenarioB?.shortName ?? 'Trajectoire B (Sobriété)'} :
                   </span>
                   <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-emerald-900">
-                    Calories : {Math.round(d4.stateB.globalAverageCaloriesPerCapita)} kcal/hab
+                    Disponibilité simulée : {Math.round(d4.stateB.globalAverageCaloriesPerCapita)} kcal/hab/j
                   </span>
                   <span className="bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-semibold text-amber-800">
                     Rendement : {(d4.stateB.globalCropYieldComposite * 100).toFixed(0)}%
@@ -1369,7 +1282,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             {/* Légende */}
             <div className="flex flex-col gap-1 text-[10.5px] text-slate-600 pt-1 border-t border-slate-200">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>🟢 <strong>Ligne verte :</strong> Ration alimentaire moyenne ({Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/habitant/jour)</span>
+                <span>🟢 <strong>Ligne verte :</strong> Disponibilité calorique simulée ({Math.round(d4.stateA.globalAverageCaloriesPerCapita)} kcal/habitant/jour)</span>
                 <span>🟠 <strong>Pointillé ambre :</strong> Rendements mondiaux des récoltes ({(d4.stateA.globalCropYieldComposite * 100).toFixed(0)}%)</span>
                 <span>🔴 <strong>Ligne rouge pointillée :</strong> Référence calorique utilisée par le modèle (2 100 kcal/jour)</span>
               </div>

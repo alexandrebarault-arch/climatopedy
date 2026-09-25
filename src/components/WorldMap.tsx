@@ -190,19 +190,12 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         if (cal >= 2700) return '#10b981';
         if (cal >= 2300) return '#eab308';
         if (cal >= 2100) return '#f97316';
-        if (cal >= 1800) return '#ef4444'; // Famine sous 2100 kcal
+        if (cal >= 1800) return '#ef4444';
         return '#7f1d1d';
       }
 
-      case 'mortality': {
-        const ratePer1000 = dyn.mortalityRates.total * 1000;
-        if (ratePer1000 < 8) return '#0284c7';
-        if (ratePer1000 < 14) return '#0d9488';
-        if (ratePer1000 < 22) return '#eab308';
-        if (ratePer1000 < 35) return '#ea580c';
-        if (ratePer1000 < 60) return '#dc2626';
-        return '#581c87';
-      }
+      case 'mortality':
+        return '#64748b';
 
       case 'population': {
         const base = staticC.basePop2026;
@@ -239,14 +232,6 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         return '#cbd5e1';
     }
   };
-
-  // Arcs de flux migratoires intercontinentaux
-  const migrationArcs = [
-    { from: [720, 195], to: [640, 100] },
-    { from: [500, 220], to: [500, 135] },
-    { from: [625, 180], to: [550, 118] },
-    { from: [250, 218], to: [200, 145] }
-  ];
 
   return (
     <div id="tour-worldmap" className="w-full rounded-xl bg-white border border-slate-200/90 p-4 shadow-xs flex flex-col gap-3">
@@ -290,7 +275,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               }`}
             >
               <Utensils className="w-3.5 h-3.5" />
-              <span>Déficit Alimentaire</span>
+              <span>Disponibilité alimentaire simulée</span>
             </button>
             <TechTooltip term="haber-bosch" showIconOnly className="ml-0.5 mr-1" />
           </div>
@@ -304,7 +289,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             }`}
           >
             <Skull className="w-3.5 h-3.5" />
-            <span>Surmortalité simulée</span>
+            <span>Estimation des décès : indisponible</span>
           </button>
 
           <button
@@ -695,30 +680,6 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               );
             })}
 
-            {/* FLUX MIGRATOIRES */}
-            {(activeMetric === 'migration' || simulationState.activeClimateRefugees > 10) && (
-              <g className="pointer-events-none">
-                {migrationArcs.map((arc, idx) => {
-                  const midX = (arc.from[0] + arc.to[0]) / 2;
-                  const midY = Math.min(arc.from[1], arc.to[1]) - 35;
-                  const pathD = `M ${arc.from[0]} ${arc.from[1]} Q ${midX} ${midY} ${arc.to[0]} ${arc.to[1]}`;
-
-                  return (
-                    <g key={idx}>
-                      <path
-                        d={pathD}
-                        fill="none"
-                        stroke="url(#migrGradient)"
-                        strokeWidth="2.0"
-                        strokeDasharray="5,4"
-                        className="animate-pulse"
-                      />
-                      <circle cx={arc.to[0]} cy={arc.to[1]} r="3.5" fill="#ef4444" stroke="#ffffff" strokeWidth="1" />
-                    </g>
-                  );
-                })}
-              </g>
-            )}
 
             {/* BALISES D'ALERTE VISUELLE D'URGENCE 'STULL TW' SUR LES CENTROÏDES DES PAYS */}
             {heatAlertsEnabled && (
@@ -1161,38 +1122,19 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Ration alimentaire */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
-                        <span className="text-slate-600">Ration par personne</span>
+                        <span className="text-slate-600">Disponibilité alimentaire simulée</span>
                         <span
                           className={`font-mono tabular-nums font-medium ${
                             isFamine ? 'text-rose-700 font-bold' : 'text-emerald-700'
                           }`}
                         >
-                          {Math.round(dyn.calPerCapita)} kcal/j {isFamine && '(sous le seuil du modèle)'}
+                          {Math.round(dyn.calPerCapita)} kcal/j {isFamine && '(sous le repère interne)'}
                         </span>
                       </div>
 
-                      {/* Surmortalité annuelle */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
-                        <span className="text-slate-600">Décès annuels calculés par le modèle (sortie exploratoire)</span>
-                        <span className="font-mono text-purple-800 font-medium tabular-nums">
-                          {dyn.annualDeaths.total.toFixed(2)} M/an{' '}
-                          <span className="text-slate-500 text-[10.5px]">
-                            ({(dyn.mortalityRates.total * 1000).toFixed(1)}‰)
-                          </span>
-                        </span>
-                      </div>
+                      <div className="py-1 border-b border-slate-100 text-[10px] text-rose-800">Les décès ne sont pas estimés : le calcul interne n’est pas validé par des données sanitaires.</div>
 
-                      {/* Solde migratoire */}
-                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
-                        <span className="text-slate-600">Départs / Arrivées de population</span>
-                        <span
-                          className={`font-mono tabular-nums ${
-                            dyn.netMigration < 0 ? 'text-rose-700' : 'text-sky-700'
-                          }`}
-                        >
-                          {dyn.netMigration > 0 ? `+${dyn.netMigration.toFixed(2)}` : dyn.netMigration.toFixed(2)} M/an
-                        </span>
-                      </div>
+                      <div className="py-1 border-b border-slate-100 text-[10px] text-slate-500">La carte n’estime pas de nombre de personnes déplacées.</div>
 
                       {/* Pyramide des âges */}
                       <div className="pt-1.5">

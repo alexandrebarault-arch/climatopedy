@@ -139,7 +139,7 @@ export const DesktopTutorialModal: React.FC<DesktopTutorialModalProps> = ({
         },
         {
           icon: <Layers className="w-4 h-4 text-amber-600" />,
-          text: 'L’indicateur compare les décès calculés dans les deux scénarios. C’est une sortie exploratoire, pas une estimation médicale de vies sauvées.'
+          text: 'La comparaison ne calcule pas de décès attribuables : les données sanitaires nécessaires ne sont pas intégrées au modèle.'
         }
       ],
       actionLabel: 'Ouvrir le Dashboard Comparatif',

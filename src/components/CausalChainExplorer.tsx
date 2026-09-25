@@ -280,7 +280,7 @@ export const CausalChainExplorer: React.FC = () => {
               <span className="font-semibold text-slate-800 block mb-1">
                 L'Effet de la Falaise (The Net Energy Cliff) :
               </span>
-              La fraction d'énergie nette dépend mathématiquement de l'EROI et du périmètre retenu. Ces ratios illustratifs ne définissent pas de seuil universel pour l'économie ou les services publics.
+              La fraction d’énergie nette dépend mathématiquement de l’EROI et du périmètre retenu. Ces exemples montrent le calcul; ils ne définissent pas de seuil universel pour l’économie ou les services publics.
             </div>
           </div>
         )}

@@ -22,7 +22,7 @@ export interface HistoricalBenchmark {
   globalCropYieldComposite: number; // 1.0 en 2026
 }
 
-// Points de repère historiques réels (ONU, NOAA Mauna Loa, HadCRUT5, NASA Sea Level, Hall & Lambert EROI, Vaclav Smil)
+// Série mixte : observations mondiales sourcées et paramètres internes; chaque variable doit conserver son périmètre et sa source.
 export const HISTORICAL_BENCHMARKS: HistoricalBenchmark[] = [
   {
     year: 1900,
@@ -210,7 +210,7 @@ export const HISTORICAL_BENCHMARKS: HistoricalBenchmark[] = [
     year: 2026,
     worldPopulation: 7597, // Somme de départ des 34 zones de COUNTRIES_DATA (millions)
     atmosphericCo2Ppm: 425.6,
-    surfaceTemperatureAnomaly: 1.35,
+    surfaceTemperatureAnomaly: 1.34,
     seaLevelRiseMeters: 0.12,
     currentEroi: 12.0,
     haberBoschNitrogenFactor: 1.00,
@@ -270,8 +270,8 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
   // faute de séries historiques propres à chaque zone; ce ne sont pas des observations zonales.
   const popRatio = b.worldPopulation / 7600;
 
-  // Anomalie thermique historique par rapport à 2026 (+1.35°C)
-  const deltaTempVs2026 = b.surfaceTemperatureAnomaly - 1.35;
+  // Anomalie thermique historique par rapport au repère de départ 2026 (+1.34°C, moyenne 2025)
+  const deltaTempVs2026 = b.surfaceTemperatureAnomaly - 1.34;
 
   const countryStates: Record<string, CountryDynamicState> = {};
 
