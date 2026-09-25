@@ -208,8 +208,8 @@ export const HISTORICAL_BENCHMARKS: HistoricalBenchmark[] = [
   },
   {
     year: 2026,
-    worldPopulation: 7600, // Calibré sur la somme exacte de countriesData
-    atmosphericCo2Ppm: 424,
+    worldPopulation: 7597, // Somme de départ des 34 zones de COUNTRIES_DATA (millions)
+    atmosphericCo2Ppm: 425.6,
     surfaceTemperatureAnomaly: 1.35,
     seaLevelRiseMeters: 0.12,
     currentEroi: 12.0,
@@ -266,7 +266,8 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
   const b = getInterpolatedHistoricalBenchmark(year);
   const netEnergyRatio = Math.max(0.01, 1.0 - (1.0 / b.currentEroi));
 
-  // Échelle de population mondiale par rapport à 2026
+  // Les effectifs historiques des zones sont reconstruits par mise à l'échelle de la série mondiale,
+  // faute de séries historiques propres à chaque zone; ce ne sont pas des observations zonales.
   const popRatio = b.worldPopulation / 7600;
 
   // Anomalie thermique historique par rapport à 2026 (+1.35°C)

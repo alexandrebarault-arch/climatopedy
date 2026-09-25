@@ -60,10 +60,15 @@ export function calculateEroiAndNetEnergy(cumulExtracted: number, qInf: number =
  * Initialise l'état biophysique complet pour l'année 2026
  */
 export function initializeSimulationState(scenarioConfig?: SimulationScenarioConfig): GlobalBiophysicalState {
-  // Concentrations et réservoirs initiaux 2026
-  // Paramétrage initial du simulateur (~424 ppm); ce n'est pas une moyenne annuelle observée pour 2026.
-  // Réservoirs FaIR étalonnés sur l'excédent historique (~146.0 ppm excédent * 2.123 GtC/ppm = 310 GtC)
-  const initialPools: [number, number, number, number] = [135.0, 95.0, 62.0, 18.0];
+  // Initialisation sur la dernière moyenne mondiale annuelle complète disponible : 425.6 ppm en 2025.
+  // On conserve la répartition interne préexistante des réservoirs et ajuste leur somme à cette observation.
+  // Cela ancre le CO₂ initial; ce n'est pas un réétalonnage des dynamiques futures du cycle du carbone.
+  const co2BaselinePpm = 425.6;
+  const referencePools: [number, number, number, number] = [135.0, 95.0, 62.0, 18.0];
+  const referencePoolSum = referencePools.reduce((a, b) => a + b, 0);
+  const calibratedPoolSum = (co2BaselinePpm - 278.0) * 2.123;
+  const poolScale = calibratedPoolSum / referencePoolSum;
+  const initialPools: [number, number, number, number] = referencePools.map(pool => pool * poolScale) as [number, number, number, number];
   const initialCumulativeEmissions = 690.0; // GtC depuis 1750
   const initialCo2 = 278.0 + (initialPools.reduce((a, b) => a + b, 0) / 2.123);
   const initialT1 = 1.35; // Anomalie thermique globale en 2026 (°C par rapport à 1850-1900)

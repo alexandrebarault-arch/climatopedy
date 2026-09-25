@@ -535,13 +535,13 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">
-                  <div>Population Mondiale Totale</div>
-                  <div className="text-[10px] text-slate-500 font-normal">Base démographique (dénominateur 100% ci-dessous)</div>
+                  <div>Population des zones simulées</div>
+                  <div className="text-[10px] text-slate-500 font-normal">34 zones; environ 7,6 milliards au départ, pas le total mondial complet</div>
                 </td>
                 <td className="py-2.5 px-3 font-mono text-rose-800">{popA_Mds} Mds</td>
                 <td className="py-2.5 px-3 font-mono text-emerald-800">{popB_Mds} Mds</td>
                 <td className="py-2.5 px-3 font-mono font-bold text-emerald-700">{deltaPopMds} Mds</td>
-                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Population et mortalité sont calculées selon les paramètres du modèle.</td>
+                <td className="py-2.5 px-3 text-slate-600 text-[11px]">Population des 34 zones représentées; mortalité exploratoire calculée selon les paramètres du modèle.</td>
               </tr>
               <tr>
                 <td className="py-2.5 px-3 font-semibold text-slate-900">

@@ -240,11 +240,11 @@ E_net(t) = E_gross(t) * (1 - 1 / EROI(t))`}
                 </thead>
                 <tbody className="divide-y divide-slate-200 text-[11px] font-mono text-slate-700">
                   <tr className="hover:bg-slate-50">
-                    <td className="p-2 font-sans font-medium text-slate-900">CO₂ atmosphérique initial du modèle</td>
+                    <td className="p-2 font-sans font-medium text-slate-900">CO₂ atmosphérique initial (moyenne mondiale annuelle 2025)</td>
                     <td className="p-2 text-sky-700 font-semibold">C_CO2(0)</td>
-                    <td className="p-2 font-bold text-slate-800">424.0</td>
+                    <td className="p-2 font-bold text-slate-800">425.6</td>
                     <td className="p-2">ppm</td>
-                    <td className="p-2 font-sans text-slate-500">Calculé à partir des réservoirs carbone initiaux du simulateur</td>
+                    <td className="p-2 font-sans text-slate-500">Ancré sur l’observation NOAA 2025; répartition des réservoirs conservée comme hypothèse interne</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
                     <td className="p-2 font-sans font-medium text-slate-900">Sensibilité climatique à l'équilibre (ECS)</td>

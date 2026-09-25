@@ -52,7 +52,7 @@ export const DesktopInteractiveTour: React.FC<DesktopInteractiveTourProps> = ({
       badgeColor: 'border-sky-300 bg-sky-50 text-sky-800',
       title: 'Voyagez de 2026 à 2200 dans le futur',
       simpleExplanation:
-        'En bas de votre écran se trouve la barre temporelle. Cliquez sur le bouton vert Play ▶️ ou faites glisser la réglette pour voir instantanément comment évoluent la météo, le rendement de l\'énergie et la population mondiale au fil des décennies.',
+        'En bas de votre écran se trouve la barre temporelle. Cliquez sur le bouton vert Play ▶️ ou faites glisser la réglette pour voir comment évoluent les indicateurs et la population des 34 zones représentées au fil des décennies. Cette agrégation ne couvre pas toute la population mondiale.',
       targetElementId: 'tour-timeline',
       tab: 'map',
       boxPlacement: 'right',

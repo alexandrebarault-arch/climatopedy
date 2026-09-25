@@ -449,10 +449,10 @@ export const YouthExplainerCard: React.FC = () => {
                 {/* Graphique 1 */}
                 <div className="p-3.5 rounded-xl bg-white border border-slate-200 flex flex-col gap-1.5 shadow-2xs">
                   <span className="font-semibold text-purple-800 flex items-center gap-1.5">
-                    <span>👥</span> 1. Démographie mondiale
+                    <span>👥</span> 1. Démographie des zones simulées
                   </span>
                   <p className="text-slate-700">
-                    <strong>Ligne noire/bleue :</strong> Population mondiale dans le modèle. La valeur 2026 est une donnée initiale de la simulation.
+                    <strong>Ligne noire/bleue :</strong> Population agrégée des 34 zones du modèle, et non population mondiale complète. La valeur de départ est un paramètre démographique de la simulation.
                   </p>
                   <p className="text-slate-500">
                     <strong>Lignes rouge et ambre :</strong> Décès calculés par le modèle selon ses paramètres; ces valeurs ne sont pas des estimations validées de mortalité attribuable.

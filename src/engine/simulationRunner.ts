@@ -60,7 +60,7 @@ export const SIMULATION_MILESTONES: MilestoneEvent[] = [
   {
     year: 2062,
     category: 'human',
-    title: 'Inflexion Démographique & Pic de Population Mondiale',
+    title: 'Inflexion démographique des zones représentées',
     description: 'Sortie conditionnelle du scénario CLIMATOPEDY : les variables de stress thermique, de disponibilité calorique et de démographie sont calculées par le modèle et ne constituent pas des projections démographiques ou sanitaires validées.'
   },
   {

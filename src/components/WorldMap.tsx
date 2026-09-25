@@ -1267,28 +1267,28 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     <div className="flex items-center justify-between text-xs">
                       <span className="text-slate-600 flex items-center gap-1.5">
                         <Users className="w-3.5 h-3.5 text-sky-600" />
-                        Population Mondiale
+                        Population des zones simulées
                       </span>
                       <span className="font-mono font-bold text-slate-900 text-sm">
                         {(simulationState.worldPopulation / 1000).toFixed(2)} Md
                       </span>
                     </div>
                     <div className="flex justify-between items-center text-[10.5px]">
-                      <span className="text-slate-500">Pic 2026 : 8.15 Md</span>
+                      <span className="text-slate-500">Base du modèle (34 zones) : 7,597 Md</span>
                       <span
                         className={`font-mono ${
-                          simulationState.worldPopulation < 8150 ? 'text-rose-700' : 'text-emerald-700'
+                          simulationState.worldPopulation < 7597 ? 'text-rose-700' : 'text-emerald-700'
                         }`}
                       >
-                        {simulationState.worldPopulation < 8150 ? (
+                        {simulationState.worldPopulation < 7597 ? (
                           <span className="flex items-center gap-0.5">
                             <TrendingDown className="w-3 h-3" />
-                            -{((8150 - simulationState.worldPopulation) / 10).toFixed(0)} M
+                            -{(7597 - simulationState.worldPopulation).toFixed(0)} M
                           </span>
                         ) : (
                           <span className="flex items-center gap-0.5">
                             <TrendingUp className="w-3 h-3" />
-                            +{(simulationState.worldPopulation - 8150).toFixed(0)} M
+                            +{(simulationState.worldPopulation - 7597).toFixed(0)} M
                           </span>
                         )}
                       </span>

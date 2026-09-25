@@ -39,10 +39,10 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
     <div id="tour-timeline" className="w-full rounded-xl bg-white border border-slate-200/90 p-4 shadow-xs flex flex-col gap-3">
       {/* Ligne 1 : Résumé des 6 macro-indicateurs biophysiques en temps réel */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-xs">
-        {/* Population Mondiale */}
+        {/* Population agrégée des zones simulées */}
         <div className="bg-slate-50 border border-slate-200/80 rounded-lg p-2.5 flex flex-col justify-between">
           <div>
-            <span className="text-[11px] text-slate-600 font-medium">Population Humaine</span>
+            <span className="text-[11px] text-slate-600 font-medium">Population des zones simulées</span>
             <div className="flex items-baseline gap-1 mt-0.5">
               <span className="text-lg font-bold font-mono text-slate-900 tabular-nums">
                 {(simulationState.worldPopulation / 1000).toFixed(2)}
