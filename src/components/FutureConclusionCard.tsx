@@ -17,6 +17,7 @@ import {
   Zap,
   TrendingDown
 } from 'lucide-react';
+import { MODEL_AUDIT_CRITERIA, MODEL_AUDIT_MAX_RATING, MODEL_AUDIT_SCORE } from '../data/modelAuditScore';
 
 export const FutureConclusionCard: React.FC = () => {
   const [activeEra, setActiveEra] = useState<'2050' | '2080' | '2100' | '2200'>('2050');
@@ -163,7 +164,7 @@ export const FutureConclusionCard: React.FC = () => {
       </div>
 
       {/* ========================================================================= */}
-      {/* BLOC 2 : CHIFFRE DE CONFIANCE SCIENTIFIQUE ENVERS LE TRAVAIL RÉALISÉ       */}
+      {/* BLOC 2 : INDICE D'AUDIT SCIENTIFIQUE ET BIOPHYSIQUE                      */}
       {/* ========================================================================= */}
       <div className="bg-slate-50/70 rounded-xl border border-slate-200 p-5 flex flex-col gap-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-200">
@@ -176,122 +177,57 @@ export const FutureConclusionCard: React.FC = () => {
                 <h2 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                   Indice de Confiance Scientifique &amp; Biophysique
                 </h2>
-                <span className="px-2 py-0.5 rounded bg-emerald-100 border border-emerald-300 text-emerald-800 font-mono font-bold text-xs">
-                  Évaluation Rigoureuse
+                <span className="px-2 py-0.5 rounded bg-sky-100 border border-sky-300 text-sky-800 font-mono font-bold text-xs">
+                  Barème d’audit explicite
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
-                Mesure de la robustesse mathématique, des fondements physiques et des marges d'incertitude épistémique
+                Synthèse des preuves disponibles sur les données, les méthodes, la validation et les incertitudes
               </p>
             </div>
           </div>
 
-          {/* CHIFFRE GLOBAL EN GRAND */}
-          <div className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-xl border border-emerald-300 shadow-2xs shrink-0 self-start sm:self-auto">
+          {/* SCORE D'AUDIT CALCULÉ À PARTIR DES CRITÈRES CI-DESSOUS */}
+          <div className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-xl border border-amber-300 shadow-2xs shrink-0 self-start sm:self-auto">
             <div className="text-right">
               <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-semibold">
-                Indice interne non validé
+                Score d’audit interne
               </span>
-              <span className="text-2xl sm:text-3xl font-mono font-bold text-emerald-700 tabular-nums">
-                88%
+              <span className="text-2xl sm:text-3xl font-mono font-bold text-amber-700 tabular-nums">
+                {MODEL_AUDIT_SCORE}/100
               </span>
             </div>
             <div className="h-9 w-[1px] bg-slate-200" />
             <div className="text-xs">
-              <span className="text-emerald-800 font-semibold block">Échelle propre au site</span>
-              <span className="text-[10px] text-slate-500">Non évaluée par le GIEC</span>
+              <span className="text-amber-800 font-semibold block">Barème CLIMATOPEDY</span>
+              <span className="text-[10px] text-slate-500">Ce n’est pas une probabilité</span>
             </div>
           </div>
         </div>
 
-        {/* DÉCOMPOSITION DÉTAILLÉE PAR PILIER SCIENTIFIQUE */}
+        {/* CRITÈRES D'AUDIT : NIVEAU SUR 4, POIDS ÉGAL */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
-          {/* Pilier 1 : Climat FaIR */}
-          <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col justify-between gap-2">
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-slate-800 font-semibold">1. Climatologie (FaIR)</span>
-                <span className="font-mono font-bold text-emerald-700">94%</span>
+          {MODEL_AUDIT_CRITERIA.map((criterion) => (
+            <div key={criterion.id} className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col justify-between gap-2">
+              <div>
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <span className="text-slate-800 font-semibold">{criterion.title}</span>
+                  <span className="font-mono font-bold text-slate-700 shrink-0">{criterion.rating}/{MODEL_AUDIT_MAX_RATING}</span>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-snug">{criterion.rationale}</p>
               </div>
-              <p className="text-[11px] text-slate-500 leading-snug">
-                CLIMATOPEDY calcule ici une réponse climatique simplifiée. Le pourcentage affiché est un indicateur interne et ne mesure pas une validation CMIP6.
-              </p>
-            </div>
-            <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-              <div className="bg-emerald-600 h-full rounded-full" style={{ width: '94%' }} />
-            </div>
-          </div>
-
-          {/* Pilier 2 : Thermodynamique Stull Tw */}
-          <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col justify-between gap-2">
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-slate-800 font-semibold">2. Thermodynamique (Tw)</span>
-                <span className="font-mono font-bold text-emerald-700">92%</span>
+              <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden" aria-hidden="true">
+                <div className="bg-amber-500 h-full rounded-full" style={{ width: `${(criterion.rating / MODEL_AUDIT_MAX_RATING) * 100}%` }} />
               </div>
-              <p className="text-[11px] text-slate-500 leading-snug">
-                Physique de l'évaporation d'eau éprouvée (Stull 2011) et seuils physiologiques publiés.
-              </p>
             </div>
-            <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-              <div className="bg-emerald-600 h-full rounded-full" style={{ width: '92%' }} />
-            </div>
-          </div>
-
-          {/* Pilier 3 : Énergie & EROI */}
-          <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col justify-between gap-2">
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-slate-800 font-semibold">3. Énergie Nette (EROI)</span>
-                <span className="font-mono font-bold text-amber-700">85%</span>
-              </div>
-              <p className="text-[11px] text-slate-500 leading-snug">
-                Lois de retour énergétique solides ; marge sur le rythme de déploiement des renouvelables.
-              </p>
-            </div>
-            <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-              <div className="bg-amber-500 h-full rounded-full" style={{ width: '85%' }} />
-            </div>
-          </div>
-
-          {/* Pilier 4 : Agronomie & Calories */}
-          <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col justify-between gap-2">
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-slate-800 font-semibold">4. Agronomie (Zhao PNAS)</span>
-                <span className="font-mono font-bold text-amber-700">83%</span>
-              </div>
-              <p className="text-[11px] text-slate-500 leading-snug">
-                Méta-analyse mondiale des rendements céréaliers ; marge sur les adaptations de semences.
-              </p>
-            </div>
-            <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-              <div className="bg-amber-500 h-full rounded-full" style={{ width: '83%' }} />
-            </div>
-          </div>
-
-          {/* Pilier 5 : Démographie & Comportements */}
-          <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-2xs flex flex-col justify-between gap-2">
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-slate-800 font-semibold">5. Sociologie &amp; États</span>
-                <span className="font-mono font-bold text-amber-700">78%</span>
-              </div>
-              <p className="text-[11px] text-slate-500 leading-snug">
-                Hypothèse de rigidité institutionnelle (SSP5-8.5). Le libre-arbitre humain reste ouvert.
-              </p>
-            </div>
-            <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-              <div className="bg-amber-500 h-full rounded-full" style={{ width: '78%' }} />
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Note sur l'éthique de la modélisation */}
-        <div className="p-3 rounded-lg bg-emerald-50/60 border border-emerald-200 text-[11.5px] text-emerald-900 flex items-start gap-2.5">
-          <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+        {/* PORTÉE DU SCORE */}
+        <div className="p-3 rounded-lg bg-amber-50/70 border border-amber-200 text-[11.5px] text-amber-950 flex items-start gap-2.5">
+          <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
           <div>
-            <strong className="text-emerald-950">À propos de cet indice :</strong> Les pourcentages présentés sont des indicateurs internes à CLIMATOPEDY. Ils ne correspondent pas à une évaluation indépendante, à un niveau de confiance du GIEC ou à une mesure validée de la précision du simulateur.
+            <strong>À propos de cet indice :</strong> le score résume un audit documentaire du modèle actuel. Il ne signifie pas que les sorties ont « {MODEL_AUDIT_SCORE} % de chances d’être vraies » et ne remplace pas une validation indépendante.
           </div>
         </div>
       </div>

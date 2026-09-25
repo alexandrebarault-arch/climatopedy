@@ -1,5 +1,6 @@
 import React from 'react';
 import { Activity, Database, Info, Sprout, Thermometer, Users, Waves, Zap } from 'lucide-react';
+import { MODEL_AUDIT_CRITERIA, MODEL_AUDIT_MAX_RATING, MODEL_AUDIT_SCORE } from '../data/modelAuditScore';
 
 type Confidence = 'Élevée' | 'Partielle' | 'Faible' | 'Très faible';
 type Traceability = 'Élevée' | 'Partielle';
@@ -225,6 +226,40 @@ export const ModelConfidenceGuide: React.FC = () => (
           Chaque fiche distingue <strong>la sortie calculée par CLIMATOPEDY</strong> du <strong>repère scientifique publié</strong>. « Traçabilité élevée » signifie que le chiffre cité correspond à la source, à sa période et à son périmètre; cela ne signifie pas que la projection de la source est certaine ni que CLIMATOPEDY l’a reproduite. La confiance de la sortie du site est évaluée séparément.
         </p>
       </div>
+    </div>
+
+    <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50/70 p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h3 className="text-sm font-bold text-slate-900">Comment est calculé l’Indice de Confiance Scientifique &amp; Biophysique ?</h3>
+          <p className="mt-1 text-sm leading-relaxed text-slate-700">
+            Cinq critères ont le même poids. Chacun reçoit une note d’audit de 0 à 4; chaque niveau vaut donc 5 points sur le total de 100.
+          </p>
+        </div>
+        <span className="rounded-lg border border-amber-300 bg-white px-3 py-1.5 font-mono text-sm font-bold text-amber-800">
+          ({MODEL_AUDIT_CRITERIA.map(({ rating }) => rating).join(' + ')}) ÷ {MODEL_AUDIT_CRITERIA.length * MODEL_AUDIT_MAX_RATING} × 100 = {MODEL_AUDIT_SCORE}/100
+        </span>
+      </div>
+
+      <p className="mt-2 text-xs leading-relaxed text-slate-700">
+        <strong>Échelle :</strong> 0 = preuve absente ou contredite; 1 = appui faible, surtout fondé sur des hypothèses; 2 = appui partiel avec des lacunes importantes; 3 = appui solide, mais avec des limites; 4 = méthode, données et validation indépendante documentées pour l’usage annoncé.
+      </p>
+
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-5">
+        {MODEL_AUDIT_CRITERIA.map((criterion) => (
+          <div key={criterion.id} className="rounded-lg border border-amber-100 bg-white p-3">
+            <div className="flex items-start justify-between gap-2">
+              <strong className="text-xs text-slate-800">{criterion.title}</strong>
+              <span className="shrink-0 font-mono text-xs font-bold text-amber-800">{criterion.rating}/{MODEL_AUDIT_MAX_RATING}</span>
+            </div>
+            <p className="mt-1 text-[11px] leading-relaxed text-slate-600">{criterion.rationale}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-3 text-xs leading-relaxed text-slate-700">
+        <strong>Portée :</strong> les notes sont des jugements d’audit explicites, attribués à partir du code, des données et des validations documentées. Leur somme est calculée automatiquement; ce score n’est ni une probabilité d’exactitude ni une évaluation du GIEC. Le niveau doit changer seulement si de nouvelles preuves, notamment des validations indépendantes, justifient une révision des notes.
+      </p>
     </div>
 
     <div className="mt-4 rounded-xl border border-sky-200 bg-sky-50 p-4">
