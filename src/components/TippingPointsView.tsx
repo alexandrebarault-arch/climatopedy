@@ -838,17 +838,27 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs border-collapse">
+          <table className="w-full min-w-[1180px] table-fixed text-left text-xs border-collapse">
+            <colgroup>
+              <col className="w-[14%]" />
+              <col className="w-[10%]" />
+              <col className="w-[8%]" />
+              <col className="w-[9%]" />
+              <col className="w-[16%]" />
+              <col className="w-[11%]" />
+              <col className="w-[24%]" />
+              <col className="w-[8%]" />
+            </colgroup>
             <thead>
               <tr className="bg-slate-50 text-slate-600 border-b border-slate-200 text-[11px] uppercase tracking-wider font-mono">
-                <th className="py-3.5 px-4 min-w-[200px]">Élément de bascule</th>
-                <th className="py-3.5 px-3 whitespace-nowrap">Catégorie</th>
-                <th className="py-3.5 px-3 whitespace-nowrap">Seuil estimé</th>
-                <th className="py-3.5 px-3 whitespace-nowrap">Fourchette</th>
-                <th className="py-3.5 px-3 whitespace-nowrap">Date établie par les sources</th>
-                <th className="py-3.5 px-3 whitespace-nowrap">Temps de bascule</th>
-                <th className="py-3.5 px-4 min-w-[360px]">Impact majeur mesurable</th>
-                <th className="py-3.5 px-3 text-center whitespace-nowrap">Fiche pour débutant</th>
+                <th className="py-2.5 px-2">Élément de bascule</th>
+                <th className="py-2.5 px-2">Catégorie</th>
+                <th className="py-2.5 px-2">Seuil estimé</th>
+                <th className="py-2.5 px-2">Fourchette</th>
+                <th className="py-2.5 px-2">Date établie par les sources</th>
+                <th className="py-2.5 px-2">Temps de bascule</th>
+                <th className="py-2.5 px-2">Impact majeur mesurable</th>
+                <th className="py-2.5 px-2 text-center">Fiche pour débutant</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-slate-700">
@@ -860,7 +870,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                     elem.id === activeElementId ? 'bg-sky-50/60 font-medium' : ''
                   }`}
                 >
-                  <td className="py-3.5 px-4 font-semibold text-slate-800">
+                  <td className="py-3 px-2 font-semibold text-slate-800">
                     <div className="flex items-center gap-2">
                       <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${
                         elem.thresholdEst <= 1.5 ? 'bg-rose-500' : elem.thresholdEst <= 2.0 ? 'bg-amber-500' : 'bg-indigo-500'
@@ -868,14 +878,16 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                       <span>{elem.name}</span>
                     </div>
                   </td>
-                  <td className="py-3.5 px-3 text-slate-600 whitespace-nowrap">{elem.categoryLabel}</td>
-                  <td className="py-3.5 px-3 font-mono font-bold text-rose-700 whitespace-nowrap">+{elem.thresholdEst.toFixed(1)}°C</td>
-                  <td className="py-3.5 px-3 font-mono text-slate-500 text-[11px] whitespace-nowrap">{elem.thresholdMin}°C – {elem.thresholdMax}°C</td>
-                  <td className="py-3.5 px-3 font-mono text-amber-800 font-semibold text-xs whitespace-nowrap">
+                  <td className="py-3 px-2 text-slate-600">{elem.categoryLabel}</td>
+                  <td className="py-3 px-2 font-mono font-bold text-rose-700 whitespace-nowrap">+{elem.thresholdEst.toFixed(1)}°C</td>
+                  <td className="py-3 px-2 font-mono text-slate-500 text-[11px]">
+                    {elem.thresholdMin}°C – {elem.thresholdMax}°C
+                  </td>
+                  <td className="py-3 px-2 font-mono text-amber-800 font-semibold text-xs leading-relaxed break-words">
                     {elem.estimatedYearTendency.split('(')[0].trim()}
                   </td>
-                  <td className="py-3.5 px-3 font-mono text-slate-700 whitespace-nowrap">{elem.timescaleYears}</td>
-                  <td className="py-3.5 px-4 text-slate-700 text-xs leading-relaxed whitespace-normal min-w-[360px]">
+                  <td className="py-3 px-2 font-mono text-slate-700 leading-relaxed break-words">{elem.timescaleYears}</td>
+                  <td className="py-3 px-2 text-slate-700 text-xs leading-relaxed">
                     <div className="text-slate-700 font-normal">
                       {elem.consequencePlain}
                     </div>
@@ -883,7 +895,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
                       💡 <strong>Dans votre assiette &amp; votre ville :</strong> {elem.concreteImpactEveryday}
                     </div>
                   </td>
-                  <td className="py-3.5 px-3 text-center whitespace-nowrap">
+                  <td className="py-3 px-2 text-center">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
