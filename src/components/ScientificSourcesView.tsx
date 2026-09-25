@@ -23,6 +23,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { AppTabType } from './TopBar';
+import { ModelConfidenceGuide } from './ModelConfidenceGuide';
 
 export interface ScientificSourceItem {
   id: string;
@@ -75,9 +76,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrl: 'https://github.com/OMS-NetZero/FAIR',
     secondaryUrlLabel: 'Code source ouvert (GitHub)',
     doi: '10.5194/gmd-11-2273-2018',
-    gaiaRole: 'Cœur du moteur climatique dans physicsModel.ts : calcul des 4 réservoirs de carbone atmosphérique (R1 à R4), de la constante de saturation alpha(t) et du forçage radiatif du CO2 (5.35 * ln(C/C0)).',
+    gaiaRole: 'Le moteur reprend la structure de réservoirs de carbone de FaIR, mais ne reproduit pas son calcul complet de alpha(t). Les résultats climatiques de CLIMATOPEDY ne sont donc pas des sorties du modèle FaIR.',
     keyDataOrQuote: 'FaIR est un modèle climatique réduit. L’article présente son architecture et évalue ses performances sur des scénarios d’émissions ; il ne conclut pas à une fidélité universelle supérieure à 99%.',
-    reproducibilityNotes: 'Réservoirs tau = [1000000, 394.4, 36.54, 4.304] ans ; coefficients a = [0.2173, 0.2240, 0.2824, 0.2763].'
+    reproducibilityNotes: 'Les coefficients et la formule réellement employés par CLIMATOPEDY sont définis dans physicsModel.ts; cette fiche décrit la publication FaIR, pas une exécution directe de son code.'
   },
   {
     id: 'ipcc-ar6-wg1',
@@ -379,9 +380,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     typeBadge: 'Rapport annuel inter-agences ONU',
     primaryUrl: 'https://www.fao.org/publications/home/fao-flagship-publications/the-state-of-food-security-and-nutrition-in-the-world/en',
     primaryUrlLabel: 'Portail des rapports phares de la FAO',
-    gaiaRole: 'Norme calorique vitale minimale (2 100 kcal / jour / habitant) et calcul des populations en déficit alimentaire aigu.',
-    keyDataOrQuote: 'Définit les seuils de faim chronique et de sous-alimentation sévère utilisés pour calculer la surmortalité nutritionnelle dans le moteur démographique.',
-    reproducibilityNotes: 'Données utilisées pour étalonner la capacité de charge alimentaire des continents.'
+    gaiaRole: 'La page cite ce rapport pour donner un contexte à la sécurité alimentaire. Dans le moteur, 2 100 kcal/jour est un seuil de calcul choisi par CLIMATOPEDY; le dépôt ne montre pas un chargement des données de ce rapport.',
+    keyDataOrQuote: 'Le rapport présente des indicateurs mondiaux de sécurité alimentaire et de nutrition. Il ne valide pas à lui seul la fonction de mortalité alimentaire du simulateur.',
+    reproducibilityNotes: 'Les calories régionales et la surmortalité sont calculées par des formules internes simplifiées, sans validation épidémiologique documentée.'
   },
 
   // 6. DÉMOGRAPHIE & LIMITES PLANÉTAIRES
@@ -398,9 +399,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     typeBadge: 'Données démographiques officielles ONU',
     primaryUrl: 'https://population.un.org/wpp/',
     primaryUrlLabel: 'Portail officiel des données démographiques ONU',
-    gaiaRole: 'Point de départ de la population mondiale (8.15 milliards en 2026), structure par tranche d\'âge et pyramides des âges de référence.',
-    keyDataOrQuote: 'Base empirique pour la mortalité de base (hors crise) et la fertilité naturelle avant perturbation biophysique.',
-    reproducibilityNotes: 'Séries historiques démographiques de 1950 à 2024 vérifiées et alignées.'
+    gaiaRole: 'L’ONU publie des estimations et projections par pays et par âge. Dans le moteur consulté, les populations et répartitions par âge sont des paramètres inscrits dans countriesData.ts; le code ne charge pas directement les tables WPP.',
+    keyDataOrQuote: 'WPP 2024 est la révision officielle des estimations et projections démographiques des Nations Unies. Sa publication ne valide pas les trajectoires démographiques propres à CLIMATOPEDY.',
+    reproducibilityNotes: 'La population du simulateur est la somme de paramètres régionaux arrondis; l’historique est interpolé entre des repères. Aucun alignement annuel complet sur WPP n’est établi par le code consulté.'
   },
   {
     id: 'richardson-boundaries-2023',
@@ -473,9 +474,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     typeBadge: 'Système d\'observation de la Terre (Union Européenne)',
     primaryUrl: 'https://climate.copernicus.eu/',
     primaryUrlLabel: 'Portail officiel Copernicus Climate Change Service',
-    gaiaRole: 'Validation de l\'anomalie de température actuelle (+1.3°C à +1.4°C en moyenne globale lissée) et des températures de surface de la mer (SST).',
-    keyDataOrQuote: 'Fournit la réanalyse climatique mondiale la plus précise par assimilation de milliards d\'observations satellites et in situ.',
-    reproducibilityNotes: 'Données horaires et mensuelles librement accessibles sous licence ouverte Copernicus.'
+    gaiaRole: 'ERA5 est une réanalyse climatique de référence. Les températures et humidités régionales de countriesData.ts sont des paramètres statiques; le moteur consulté ne charge pas directement les champs ERA5 pour calculer ses projections.',
+    keyDataOrQuote: 'ERA5 combine observations et modèle météorologique pour produire une réanalyse; ses données peuvent servir à contrôler des entrées si elles sont effectivement extraites et comparées.',
+    reproducibilityNotes: 'Aucun traitement ou appariement d’ERA5 aux régions du simulateur n’est documenté dans le code consulté.'
   },
   {
     id: 'nasa-gistemp-v4',
@@ -756,11 +757,11 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-mono font-semibold shadow-2xs">
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                <span>100% Liens Vérifiés &amp; Actifs</span>
+                <span>Sources et méthodes à consulter</span>
               </span>
               <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-50 border border-sky-300 text-sky-800 text-xs font-mono font-semibold shadow-2xs">
                 <ShieldCheck className="w-3.5 h-3.5 text-sky-600" />
-                <span>Évalué par les pairs (Peer-reviewed)</span>
+                <span>Études, rapports et données</span>
               </span>
             </div>
           </div>
@@ -769,14 +770,11 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             <div className="flex items-center gap-2">
               <BookOpen className="w-6 h-6 text-sky-600 shrink-0" />
               <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
-                Sources Scientifiques, Données &amp; Imagerie Vérifiables
+                Sources, données et images
               </h1>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 max-w-4xl leading-relaxed">
-              Pour permettre à chaque chercheur, enseignant, étudiant ou citoyen de <strong>vérifier et d'auditer l'intégrité du travail</strong>, 
-              cette page recense l'intégralité des publications académiques à comité de lecture (<em>Nature, Science, PNAS</em>), 
-              des rapports d'institutions internationales (<em>GIEC, ONU, FAO, NOAA</em>), des relevés d'observatoires satellites 
-              et des photographies documentaires libres qui fondent <strong>CLIMATOPEDY</strong>.
+              Cette page rassemble des sources utiles pour comprendre les faits présentés et les méthodes du simulateur. Une source peut appuyer un fait ou inspirer un calcul sans valider tous les résultats de CLIMATOPEDY. Les niveaux de confiance ci-dessous expliquent ce que les chiffres permettent de conclure.
             </p>
           </div>
 
@@ -785,9 +783,9 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-start gap-2.5">
               <Scale className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-slate-800 block font-semibold">Zéro Boîte Noire</strong>
+                <strong className="text-slate-800 block font-semibold">Comment le simulateur calcule</strong>
                 <span className="text-slate-600 text-[11px] leading-snug block mt-0.5">
-                  Toutes les équations (FaIR, Stull Tw, EROI, Zhao) sont formulées analytiquement en open-source.
+                  Certaines formules sont inspirées d’études publiées; d’autres paramètres sont des choix propres au simulateur.
                 </span>
               </div>
             </div>
@@ -795,9 +793,9 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-start gap-2.5">
               <Database className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="text-slate-800 block font-semibold">Jeux de données de référence</strong>
+                <strong className="text-slate-800 block font-semibold">À propos des sources</strong>
                 <span className="text-slate-600 text-[11px] leading-snug block mt-0.5">
-                  CLIMATOPEDY utilise des séries de Mauna Loa (CO₂), ERA5 Copernicus (températures) et des données démographiques de l'ONU comme références d'entrée; cela ne constitue pas une validation indépendante de toutes les sorties du modèle.
+                  Une publication listée ici n’est pas forcément une donnée directement utilisée dans le code ni une validation des résultats par pays.
                 </span>
               </div>
             </div>
@@ -814,6 +812,8 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
           </div>
         </div>
       </div>
+
+      <ModelConfidenceGuide />
 
       {/* 2. Onglets Principaux : Publications Académiques vs Imagerie & Photographies */}
       <div className="flex items-center gap-3 border-b border-slate-200 pb-2 text-xs sm:text-sm">
@@ -917,14 +917,9 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                         {source.categoryLabel}
                       </span>
                       <span className="px-2 py-0.5 rounded text-[10px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 flex items-center gap-1">
-                        <CheckCircle className="w-3 h-3 text-emerald-600" />
-                        <span>Lien vérifié</span>
+                        <BookOpen className="w-3 h-3 text-emerald-600" />
+                        <span>Référence citée</span>
                       </span>
-                      {source.peerReviewed && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono text-indigo-800 bg-indigo-50 border border-indigo-200">
-                          Évalué par les pairs
-                        </span>
-                      )}
                       <span className="text-xs text-slate-500">· {source.year}</span>
                     </div>
 
