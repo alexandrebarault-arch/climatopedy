@@ -1172,9 +1172,9 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
                 <span>🔴 <strong>Ligne rouge :</strong> Réchauffement (+{d3.stateA.surfaceTemperatureAnomaly.toFixed(2)}°C depuis 1850)</span>
               </div>
               <div className="bg-sky-50 border border-sky-200 rounded p-1.5 text-sky-900 text-[10px]">
-                🌊 <strong>Pointillé bleu (Montée des océans) :</strong> {d3.seaLevelCm >= 0 ? '+' : ''}{d3.seaLevelCm} cm en {d3.displayYear} (soit {d3.seaLevelVs2026 >= 0 ? `+${d3.seaLevelVs2026} cm de plus qu'aujourd'hui` : `${d3.seaLevelVs2026} cm par rapport à aujourd'hui`}, projection jusqu'à +{endYear === 2200 ? '260 cm en 2200' : '75 cm en 2100'}).
+                🌊 <strong>Pointillé bleu (niveau marin moyen simulé par CLIMATOPEDY) :</strong> {d3.seaLevelCm >= 0 ? '+' : ''}{d3.seaLevelCm} cm en {d3.displayYear} (soit {d3.seaLevelVs2026 >= 0 ? `+${d3.seaLevelVs2026} cm de plus qu'en 2026` : `${d3.seaLevelVs2026} cm par rapport à 2026`}; sortie conditionnelle du modèle jusqu'à +{endYear === 2200 ? '260 cm en 2200' : '75 cm en 2100'}).
                 <br />
-                Chaque tranche de 10 cm supplémentaire submerge les deltas côtiers très fertiles (Mékong, Bangladesh, Nil) et salinise les réserves d'eau douce souterraines.
+                Cette courbe ne calcule ni le niveau marin relatif régional, ni les superficies submergées, ni la salinisation locale. Le GIEC distingue les projections mondiales et régionales (<a href="https://www.ipcc.ch/report/ar6/wg1/figures/chapter-9/figure-9-28/" target="_blank" rel="noreferrer" className="font-semibold underline">AR6, figure 9.28</a>).
               </div>
             </div>
           </div>
@@ -1263,7 +1263,7 @@ export const KpiCharts: React.FC<KpiChartsProps> = ({
             </div>
 
             <p className="text-[10px] text-slate-600 leading-tight">
-              Calories quotidiennes disponibles par être humain comparées au minimum vital absolu de 2 100 kcal/jour fixé par l'Organisation des Nations Unies.
+              Calories et rendements sont des sorties conditionnelles de CLIMATOPEDY. La ligne à 2 100 kcal/jour est un repère utilisé par le modèle, pas un besoin universel fixe; les besoins énergétiques moyens varient avec la structure de la population (<a href="https://www.fao.org/4/x8622e/x8622e05.htm" target="_blank" rel="noreferrer" className="font-semibold underline">FAO</a>).
             </p>
 
             {/* SVG Graphique 4 */}

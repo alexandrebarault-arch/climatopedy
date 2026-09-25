@@ -196,6 +196,12 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
         </div>
       </div>
 
+      {simulationState.year >= 2026 && (
+        <p className="text-[10px] text-slate-500">
+          Pour les années simulées, ces indicateurs sont conditionnels aux paramètres de CLIMATOPEDY; leur précision affichée ne constitue pas une validation empirique.
+        </p>
+      )}
+
       {/* Ligne 2 : Commandes de lecture, scrubber temporel séculaire (1900-2100) et jalons */}
       <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 border-t border-slate-200">
         {/* Contrôles de transport Play / Pause / Step / Reset */}
