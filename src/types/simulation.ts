@@ -53,6 +53,8 @@ export interface CountryDynamicState {
   id: string;
   cohorts: DemographicCohorts;
   dryBulbTemp: number;     // Température moyenne annuelle (°C)
+  annualMinTemp: number;   // Moyenne annuelle des Tmin quotidiennes (°C)
+  annualMaxTemp: number;   // Moyenne annuelle des Tmax quotidiennes (°C)
   summerMaxTemp: number;   // Température de pic caniculaire estival sous abri (°C)
   summerHumidity: number;  // Humidité relative estivale caniculaire (%)
   wetBulbTemp: number;     // Tw moyen annuel (°C)

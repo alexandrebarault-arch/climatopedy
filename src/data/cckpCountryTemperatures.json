@@ -1,0 +1,803 @@
+{
+  "source": "World Bank Climate Change Knowledge Portal CMIP6-x0.25",
+  "baselinePeriod": "2020-2039",
+  "baselineScenario": "ssp245",
+  "futurePeriod": "2080-2099",
+  "aggregation": "mean of constituent-country national aggregates for app regions",
+  "baseline": {
+    "fra": {
+      "tasmax": 16.23,
+      "tasmin": 8.19,
+      "tas": 12.21
+    },
+    "gbr": {
+      "tasmax": 12.94,
+      "tasmin": 7.45,
+      "tas": 10.2
+    },
+    "ind": {
+      "tasmax": 30.14,
+      "tasmin": 19.81,
+      "tas": 24.98
+    },
+    "idn": {
+      "tasmax": 29.49,
+      "tasmin": 22.8,
+      "tas": 26.15
+    },
+    "jpn": {
+      "tasmax": 16.43,
+      "tasmin": 9.85,
+      "tas": 13.15
+    },
+    "mex": {
+      "tasmax": 28.16,
+      "tasmin": 16.05,
+      "tas": 22.1
+    },
+    "nga": {
+      "tasmax": 33.23,
+      "tasmin": 22.94,
+      "tas": 28.09
+    },
+    "pak": {
+      "tasmax": 27.69,
+      "tasmin": 15.33,
+      "tas": 21.51
+    },
+    "sca": {
+      "tasmax": 7.49,
+      "tasmin": 1.7,
+      "tas": 4.59
+    },
+    "usa": {
+      "tasmax": 16.59,
+      "tasmin": 5.93,
+      "tas": 11.26
+    },
+    "eth": {
+      "tasmax": 29.52,
+      "tasmin": 18.91,
+      "tas": 24.21
+    },
+    "sea": {
+      "tasmax": 30.03,
+      "tasmin": 22.79,
+      "tas": 26.41
+    },
+    "cod": {
+      "tasmax": 29.57,
+      "tasmin": 21.12,
+      "tas": 25.33
+    },
+    "chn": {
+      "tasmax": 13.34,
+      "tasmin": 2.72,
+      "tas": 8.03
+    },
+    "arg": {
+      "tasmax": 21.26,
+      "tasmin": 10.25,
+      "tas": 15.76
+    },
+    "seu": {
+      "tasmax": 17.75,
+      "tasmin": 8.76,
+      "tas": 13.25
+    },
+    "sau": {
+      "tasmax": 33.27,
+      "tasmin": 19.76,
+      "tas": 26.52
+    },
+    "naf": {
+      "tasmax": 28.13,
+      "tasmin": 16.0,
+      "tas": 22.06
+    },
+    "egy": {
+      "tasmax": 30.24,
+      "tasmin": 17.63,
+      "tas": 23.93
+    },
+    "cas": {
+      "tasmax": 13.84,
+      "tasmin": 3.03,
+      "tas": 8.44
+    },
+    "rus": {
+      "tasmax": 1.66,
+      "tasmin": -6.65,
+      "tas": -2.5
+    },
+    "and": {
+      "tasmax": 27.33,
+      "tasmin": 18.99,
+      "tas": 23.17
+    },
+    "bgd": {
+      "tasmax": 30.17,
+      "tasmin": 21.93,
+      "tas": 26.05
+    },
+    "can": {
+      "tasmax": 1.78,
+      "tasmin": -6.07,
+      "tas": -2.14
+    },
+    "cen_am": {
+      "tasmax": 28.66,
+      "tasmin": 23.84,
+      "tas": 26.25
+    },
+    "ukr": {
+      "tasmax": 14.14,
+      "tasmin": 6.04,
+      "tas": 10.08
+    },
+    "bra": {
+      "tasmax": 30.7,
+      "tasmin": 21.91,
+      "tas": 26.31
+    },
+    "aus": {
+      "tasmax": 29.14,
+      "tasmin": 17.21,
+      "tas": 23.17
+    },
+    "eaf": {
+      "tasmax": 28.56,
+      "tasmin": 19.42,
+      "tas": 24.0
+    },
+    "eeu": {
+      "tasmax": 15.22,
+      "tasmin": 6.67,
+      "tas": 10.93
+    },
+    "irn": {
+      "tasmax": 25.2,
+      "tasmin": 12.69,
+      "tas": 18.95
+    },
+    "deu": {
+      "tasmax": 13.04,
+      "tasmin": 5.74,
+      "tas": 9.38
+    },
+    "zaf": {
+      "tasmax": 25.71,
+      "tasmin": 12.5,
+      "tas": 19.1
+    },
+    "tur": {
+      "tasmax": 18.14,
+      "tasmin": 7.41,
+      "tas": 12.78
+    }
+  },
+  "future": {
+    "ssp585": {
+      "fra": {
+        "tasmax": 20.01,
+        "tasmin": 11.57,
+        "tas": 15.71
+      },
+      "gbr": {
+        "tasmax": 15.3,
+        "tasmin": 9.75,
+        "tas": 12.5
+      },
+      "ind": {
+        "tasmax": 33.61,
+        "tasmin": 23.65,
+        "tas": 28.66
+      },
+      "idn": {
+        "tasmax": 32.3,
+        "tasmin": 25.54,
+        "tas": 28.99
+      },
+      "jpn": {
+        "tasmax": 20.2,
+        "tasmin": 13.63,
+        "tas": 17.16
+      },
+      "mex": {
+        "tasmax": 32.09,
+        "tasmin": 19.69,
+        "tas": 25.91
+      },
+      "nga": {
+        "tasmax": 36.64,
+        "tasmin": 26.56,
+        "tas": 31.45
+      },
+      "pak": {
+        "tasmax": 31.85,
+        "tasmin": 19.65,
+        "tas": 25.66
+      },
+      "sca": {
+        "tasmax": 11.01,
+        "tasmin": 5.54,
+        "tas": 8.06
+      },
+      "usa": {
+        "tasmax": 21.02,
+        "tasmin": 10.38,
+        "tas": 15.61
+      },
+      "eth": {
+        "tasmax": 32.8,
+        "tasmin": 22.56,
+        "tas": 27.68
+      },
+      "sea": {
+        "tasmax": 33.05,
+        "tasmin": 25.79,
+        "tas": 29.44
+      },
+      "cod": {
+        "tasmax": 32.96,
+        "tasmin": 24.6,
+        "tas": 28.52
+      },
+      "chn": {
+        "tasmax": 17.75,
+        "tasmin": 7.11,
+        "tas": 12.51
+      },
+      "arg": {
+        "tasmax": 24.25,
+        "tasmin": 13.2,
+        "tas": 18.69
+      },
+      "seu": {
+        "tasmax": 22.03,
+        "tasmin": 12.51,
+        "tas": 17.26
+      },
+      "sau": {
+        "tasmax": 37.69,
+        "tasmin": 24.51,
+        "tas": 31.24
+      },
+      "naf": {
+        "tasmax": 32.37,
+        "tasmin": 20.17,
+        "tas": 26.29
+      },
+      "egy": {
+        "tasmax": 34.24,
+        "tasmin": 21.87,
+        "tas": 28.18
+      },
+      "cas": {
+        "tasmax": 18.57,
+        "tasmin": 7.66,
+        "tas": 13.17
+      },
+      "rus": {
+        "tasmax": 7.23,
+        "tasmin": -0.7,
+        "tas": 3.23
+      },
+      "and": {
+        "tasmax": 31.25,
+        "tasmin": 22.68,
+        "tas": 26.94
+      },
+      "bgd": {
+        "tasmax": 33.65,
+        "tasmin": 25.52,
+        "tas": 29.63
+      },
+      "can": {
+        "tasmax": 7.41,
+        "tasmin": -0.02,
+        "tas": 3.76
+      },
+      "cen_am": {
+        "tasmax": 31.61,
+        "tasmin": 26.63,
+        "tas": 29.17
+      },
+      "ukr": {
+        "tasmax": 18.66,
+        "tasmin": 10.36,
+        "tas": 14.52
+      },
+      "bra": {
+        "tasmax": 34.7,
+        "tasmin": 25.69,
+        "tas": 30.06
+      },
+      "aus": {
+        "tasmax": 32.74,
+        "tasmin": 20.79,
+        "tas": 26.71
+      },
+      "eaf": {
+        "tasmax": 31.77,
+        "tasmin": 22.78,
+        "tas": 27.14
+      },
+      "eeu": {
+        "tasmax": 19.51,
+        "tasmin": 10.61,
+        "tas": 15.12
+      },
+      "irn": {
+        "tasmax": 29.81,
+        "tasmin": 17.12,
+        "tas": 23.52
+      },
+      "deu": {
+        "tasmax": 16.74,
+        "tasmin": 9.12,
+        "tas": 13.02
+      },
+      "zaf": {
+        "tasmax": 29.86,
+        "tasmin": 16.34,
+        "tas": 23.13
+      },
+      "tur": {
+        "tasmax": 22.73,
+        "tasmin": 11.39,
+        "tas": 16.97
+      }
+    },
+    "ssp245": {
+      "fra": {
+        "tasmax": 17.63,
+        "tasmin": 9.43,
+        "tas": 13.52
+      },
+      "gbr": {
+        "tasmax": 13.82,
+        "tasmin": 8.3,
+        "tas": 11.06
+      },
+      "ind": {
+        "tasmax": 31.63,
+        "tasmin": 21.38,
+        "tas": 26.5
+      },
+      "idn": {
+        "tasmax": 30.64,
+        "tasmin": 23.95,
+        "tas": 27.3
+      },
+      "jpn": {
+        "tasmax": 17.91,
+        "tasmin": 11.34,
+        "tas": 14.61
+      },
+      "mex": {
+        "tasmax": 29.72,
+        "tasmin": 17.45,
+        "tas": 23.58
+      },
+      "nga": {
+        "tasmax": 34.76,
+        "tasmin": 24.49,
+        "tas": 29.62
+      },
+      "pak": {
+        "tasmax": 29.47,
+        "tasmin": 17.08,
+        "tas": 23.27
+      },
+      "sca": {
+        "tasmax": 8.85,
+        "tasmin": 3.24,
+        "tas": 6.05
+      },
+      "usa": {
+        "tasmax": 18.44,
+        "tasmin": 7.77,
+        "tas": 13.11
+      },
+      "eth": {
+        "tasmax": 30.98,
+        "tasmin": 20.43,
+        "tas": 25.69
+      },
+      "sea": {
+        "tasmax": 31.29,
+        "tasmin": 24.04,
+        "tas": 27.66
+      },
+      "cod": {
+        "tasmax": 31.0,
+        "tasmin": 22.56,
+        "tas": 26.76
+      },
+      "chn": {
+        "tasmax": 15.17,
+        "tasmin": 4.47,
+        "tas": 9.82
+      },
+      "arg": {
+        "tasmax": 22.49,
+        "tasmin": 11.42,
+        "tas": 16.95
+      },
+      "seu": {
+        "tasmax": 19.44,
+        "tasmin": 10.17,
+        "tas": 14.79
+      },
+      "sau": {
+        "tasmax": 35.06,
+        "tasmin": 21.59,
+        "tas": 28.33
+      },
+      "naf": {
+        "tasmax": 29.77,
+        "tasmin": 17.53,
+        "tas": 23.65
+      },
+      "egy": {
+        "tasmax": 31.78,
+        "tasmin": 19.19,
+        "tas": 25.49
+      },
+      "cas": {
+        "tasmax": 15.77,
+        "tasmin": 4.84,
+        "tas": 10.3
+      },
+      "rus": {
+        "tasmax": 3.92,
+        "tasmin": -4.21,
+        "tas": -0.15
+      },
+      "and": {
+        "tasmax": 28.85,
+        "tasmin": 20.46,
+        "tas": 24.66
+      },
+      "bgd": {
+        "tasmax": 31.72,
+        "tasmin": 23.38,
+        "tas": 27.53
+      },
+      "can": {
+        "tasmax": 4.11,
+        "tasmin": -3.56,
+        "tas": 0.27
+      },
+      "cen_am": {
+        "tasmax": 29.88,
+        "tasmin": 25.01,
+        "tas": 27.45
+      },
+      "ukr": {
+        "tasmax": 15.83,
+        "tasmin": 7.64,
+        "tas": 11.75
+      },
+      "bra": {
+        "tasmax": 32.22,
+        "tasmin": 23.37,
+        "tas": 27.79
+      },
+      "aus": {
+        "tasmax": 30.61,
+        "tasmin": 18.6,
+        "tas": 24.61
+      },
+      "eaf": {
+        "tasmax": 29.98,
+        "tasmin": 20.87,
+        "tas": 25.42
+      },
+      "eeu": {
+        "tasmax": 16.84,
+        "tasmin": 8.16,
+        "tas": 12.5
+      },
+      "irn": {
+        "tasmax": 27.11,
+        "tasmin": 14.42,
+        "tas": 20.78
+      },
+      "deu": {
+        "tasmax": 14.42,
+        "tasmin": 6.98,
+        "tas": 10.7
+      },
+      "zaf": {
+        "tasmax": 27.45,
+        "tasmin": 14.06,
+        "tas": 20.75
+      },
+      "tur": {
+        "tasmax": 19.96,
+        "tasmin": 8.98,
+        "tas": 14.47
+      }
+    },
+    "ssp126": {
+      "fra": {
+        "tasmax": 16.64,
+        "tasmin": 8.52,
+        "tas": 12.57
+      },
+      "gbr": {
+        "tasmax": 13.16,
+        "tasmin": 7.6,
+        "tas": 10.38
+      },
+      "ind": {
+        "tasmax": 30.81,
+        "tasmin": 20.35,
+        "tas": 25.58
+      },
+      "idn": {
+        "tasmax": 29.82,
+        "tasmin": 23.09,
+        "tas": 26.46
+      },
+      "jpn": {
+        "tasmax": 16.89,
+        "tasmin": 10.29,
+        "tas": 13.59
+      },
+      "mex": {
+        "tasmax": 28.59,
+        "tasmin": 16.37,
+        "tas": 22.48
+      },
+      "nga": {
+        "tasmax": 33.78,
+        "tasmin": 23.38,
+        "tas": 28.58
+      },
+      "pak": {
+        "tasmax": 28.36,
+        "tasmin": 15.83,
+        "tas": 22.09
+      },
+      "sca": {
+        "tasmax": 7.82,
+        "tasmin": 2.08,
+        "tas": 4.94
+      },
+      "usa": {
+        "tasmax": 17.17,
+        "tasmin": 6.48,
+        "tas": 11.83
+      },
+      "eth": {
+        "tasmax": 29.94,
+        "tasmin": 19.29,
+        "tas": 24.61
+      },
+      "sea": {
+        "tasmax": 30.5,
+        "tasmin": 23.19,
+        "tas": 26.85
+      },
+      "cod": {
+        "tasmax": 30.04,
+        "tasmin": 21.5,
+        "tas": 25.77
+      },
+      "chn": {
+        "tasmax": 14.06,
+        "tasmin": 3.33,
+        "tas": 8.7
+      },
+      "arg": {
+        "tasmax": 21.55,
+        "tasmin": 10.51,
+        "tas": 16.03
+      },
+      "seu": {
+        "tasmax": 18.27,
+        "tasmin": 9.13,
+        "tas": 13.7
+      },
+      "sau": {
+        "tasmax": 33.78,
+        "tasmin": 20.12,
+        "tas": 26.96
+      },
+      "naf": {
+        "tasmax": 28.59,
+        "tasmin": 16.29,
+        "tas": 22.44
+      },
+      "egy": {
+        "tasmax": 30.6,
+        "tasmin": 17.87,
+        "tas": 24.23
+      },
+      "cas": {
+        "tasmax": 14.5,
+        "tasmin": 3.56,
+        "tas": 9.04
+      },
+      "rus": {
+        "tasmax": 2.5,
+        "tasmin": -5.81,
+        "tas": -1.66
+      },
+      "and": {
+        "tasmax": 27.76,
+        "tasmin": 19.41,
+        "tas": 23.59
+      },
+      "bgd": {
+        "tasmax": 31.03,
+        "tasmin": 22.57,
+        "tas": 26.79
+      },
+      "can": {
+        "tasmax": 2.63,
+        "tasmin": -5.19,
+        "tas": -1.28
+      },
+      "cen_am": {
+        "tasmax": 29.05,
+        "tasmin": 24.17,
+        "tas": 26.61
+      },
+      "ukr": {
+        "tasmax": 14.78,
+        "tasmin": 6.56,
+        "tas": 10.67
+      },
+      "bra": {
+        "tasmax": 31.13,
+        "tasmin": 22.32,
+        "tas": 26.72
+      },
+      "aus": {
+        "tasmax": 29.56,
+        "tasmin": 17.52,
+        "tas": 23.54
+      },
+      "eaf": {
+        "tasmax": 28.95,
+        "tasmin": 19.76,
+        "tas": 24.35
+      },
+      "eeu": {
+        "tasmax": 15.77,
+        "tasmin": 7.13,
+        "tas": 11.44
+      },
+      "irn": {
+        "tasmax": 25.82,
+        "tasmin": 13.16,
+        "tas": 19.49
+      },
+      "deu": {
+        "tasmax": 13.48,
+        "tasmin": 6.11,
+        "tas": 9.78
+      },
+      "zaf": {
+        "tasmax": 26.26,
+        "tasmin": 12.9,
+        "tas": 19.58
+      },
+      "tur": {
+        "tasmax": 18.67,
+        "tasmin": 7.81,
+        "tas": 13.24
+      }
+    }
+  },
+  "snapshotDate": "2026-09-26",
+  "apiTemplate": "cmip6-x0.25_climatology_tas,tasmin,tasmax_climatology_annual_{period}_median_{scenario}_ensemble_all_mean/all_countries",
+  "multiCountryMembers": {
+    "cen_am": [
+      "BLZ",
+      "CRI",
+      "SLV",
+      "GTM",
+      "HND",
+      "NIC",
+      "PAN",
+      "CUB",
+      "DOM",
+      "HTI",
+      "JAM",
+      "TTO",
+      "BHS",
+      "BRB",
+      "ATG",
+      "DMA",
+      "GRD",
+      "KNA",
+      "LCA",
+      "VCT"
+    ],
+    "and": [
+      "COL",
+      "ECU",
+      "PER",
+      "BOL",
+      "VEN"
+    ],
+    "deu": [
+      "DEU",
+      "BEL",
+      "NLD",
+      "CHE",
+      "AUT",
+      "LUX"
+    ],
+    "gbr": [
+      "GBR",
+      "IRL"
+    ],
+    "seu": [
+      "ESP",
+      "PRT",
+      "ITA",
+      "GRC",
+      "HRV",
+      "SVN",
+      "BIH",
+      "ALB",
+      "MNE",
+      "MKD",
+      "SRB"
+    ],
+    "eeu": [
+      "POL",
+      "CZE",
+      "SVK",
+      "HUN",
+      "ROU",
+      "BGR",
+      "MDA"
+    ],
+    "sca": [
+      "SWE",
+      "NOR",
+      "FIN",
+      "DNK",
+      "ISL"
+    ],
+    "naf": [
+      "MAR",
+      "DZA",
+      "TUN",
+      "LBY"
+    ],
+    "eaf": [
+      "KEN",
+      "TZA",
+      "UGA",
+      "RWA",
+      "BDI",
+      "SSD"
+    ],
+    "sea": [
+      "THA",
+      "VNM",
+      "KHM",
+      "LAO",
+      "MMR",
+      "MYS",
+      "SGP",
+      "PHL",
+      "BRN"
+    ],
+    "cas": [
+      "KAZ",
+      "UZB",
+      "TKM",
+      "TJK",
+      "KGZ"
+    ]
+  }
+}

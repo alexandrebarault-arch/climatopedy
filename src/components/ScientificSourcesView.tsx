@@ -101,6 +101,42 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     reproducibilityNotes: 'Le curseur comparatif CLIMATOPEDY est un contrôle du simulateur réglable de 2°C à 4,5°C; ces bornes ne sont pas les plages d\'évaluation du GIEC.'
   },
   {
+    id: 'cckp-country-climate-data',
+    category: 'climate',
+    categoryLabel: 'Climat & Cycle du Carbone',
+    title: 'Données climatiques agrégées par pays et projections CMIP6',
+    englishTitle: 'Climate Change Knowledge Portal: observed and projected climate data',
+    authors: 'Banque mondiale, Climate Change Knowledge Portal (CCKP)',
+    year: 2026,
+    publisher: 'World Bank Group',
+    peerReviewed: false,
+    typeBadge: 'Données climatiques nationales',
+    primaryUrl: 'https://climateknowledgeportal.worldbank.org/download-data',
+    primaryUrlLabel: 'Portail des téléchargements CCKP',
+    secondaryUrl: 'https://worldbank.github.io/climateknowledgeportal/README.html',
+    secondaryUrlLabel: 'Documentation des données et de l’API',
+    gaiaRole: 'Les normales CMIP6-x0.25 de tas, tasmin et tasmax (2020–2039) fournissent les écarts entre moyenne annuelle et moyennes des minima/maxima quotidiens. Les changements 2080–2099 alimentent les trajectoires thermiques par pays.',
+    keyDataOrQuote: 'Les valeurs futures sont des médianes d’ensemble conditionnelles à SSP1-2.6, SSP2-4.5 ou SSP5-8.5; elles décrivent des moyennes de période, pas une prévision météorologique pour 2100.',
+    reproducibilityNotes: 'Les sorties CCKP sont conservées localement dans cckpCountryTemperatures.json. Le tas est recalé sur la base 2026 de CLIMATOPEDY; les changements de tasmin/tasmax suivent les écarts du modèle. Correspondances : bau→SSP5-8.5, sobriety→SSP1-2.6, autres réglages→SSP2-4.5. Ces trajectoires locales sont des analogies et restent distinctes du calcul thermique mondial interne. Les zones multi-pays sont la moyenne simple des agrégats nationaux des membres déclarés. La climatologie 2080–2099 sert de valeur de fin de siècle à l’horizon 2100; au-delà, le changement climatique local est maintenu à ce niveau faute de projection CCKP intégrée après 2099. Les années historiques antérieures à 2026 restent reconstruites à partir des anomalies mondiales interpolées; le CRU observé n’a pas été intégré car son endpoint API public renvoyait un jeu vide lors de cette mise à jour.'
+  },
+  {
+    id: 'meteo-france-national-normal',
+    category: 'observatories',
+    categoryLabel: 'Observatoires & Données Satellites en Direct',
+    title: 'Normales climatiques françaises 1991–2020',
+    englishTitle: 'France climate normals 1991–2020',
+    authors: 'Météo-France',
+    year: 2022,
+    publisher: 'Météo-France',
+    peerReviewed: false,
+    typeBadge: 'Normale climatique nationale',
+    primaryUrl: 'https://education.meteofrance.fr/actualites/de-nouvelles-normales-pour-qualifier-le-climat-en-france',
+    primaryUrlLabel: 'Présentation officielle des nouvelles normales',
+    gaiaRole: 'Ancre observée de la température moyenne annuelle française dans countriesData.ts : 12,97 °C, arrondie à 13,0 °C.',
+    keyDataOrQuote: 'La normale 1991–2020 de la température moyenne annuelle en France est de 12,97 °C.',
+    reproducibilityNotes: 'Cette référence nationale ancre la moyenne de la France uniquement. Les températures quotidiennes moyennes Tmin/Tmax et les autres zones utilisent les données CCKP, puis sont recalées selon la méthode décrite dans la fiche World Bank CCKP.'
+  },
+  {
     id: 'vermeer-rahmstorf-2009',
     category: 'climate',
     categoryLabel: 'Climat & Cycle du Carbone',
@@ -197,6 +233,25 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     gaiaRole: 'L’étude synthétise des estimations de seuils pour plusieurs éléments de bascule. Les valeurs affichées par Climatopedy ne sont pas la matrice exacte de l’article.',
     keyDataOrQuote: 'Les auteurs estiment que plusieurs éléments pourraient être déclenchés dans la plage de réchauffement de 1,5 à moins de 2°C; leurs seuils sont incertains et varient selon l’élément.',
     reproducibilityNotes: 'Données intégrées dans les jauges de risque en temps réel selon le réchauffement simulé.'
+  },
+  {
+    id: 'global-tipping-points-report-2025',
+    category: 'tipping',
+    categoryLabel: 'Points de Bascule (Tipping Points)',
+    title: 'Rapport Global Tipping Points 2025',
+    englishTitle: 'Global Tipping Points Report 2025',
+    authors: 'Équipe éditoriale et contributeurs du Global Tipping Points Report',
+    year: 2025,
+    publisher: 'University of Exeter et partenaires internationaux',
+    peerReviewed: false,
+    typeBadge: 'Évaluation scientifique interdisciplinaire',
+    primaryUrl: 'https://global-tipping-points.org/resources-gtp/',
+    primaryUrlLabel: 'Rapports et ressources officiels',
+    secondaryUrl: 'https://global-tipping-points.org/',
+    secondaryUrlLabel: 'Synthèse du programme',
+    gaiaRole: 'Actualise la synthèse des connaissances sur les points de bascule climatiques et sociétaux après le rapport de 2023.',
+    keyDataOrQuote: 'Le rapport 2025 est une synthèse de recherche interdisciplinaire; il ne fournit pas une probabilité unique de bascule pour les seuils internes affichés par le simulateur.',
+    reproducibilityNotes: 'Ajouté comme référence actuelle. Les seuils numériques des jauges du modèle ne sont pas modifiés sans correspondance explicite entre leur définition et les évaluations du rapport.'
   },
   {
     id: 'lenton-2019-nature',
@@ -394,15 +449,15 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     authors: 'Organisation des Nations Unies pour l’alimentation et l’agriculture (FAO)',
     year: 2025,
     publisher: 'Organisation des Nations Unies pour l\'Alimentation et l\'Agriculture (FAO)',
-    peerReviewed: true,
+    peerReviewed: false,
     typeBadge: 'Données officielles de disponibilité alimentaire',
     primaryUrl: 'https://www.fao.org/faostat/en/#data/FBS',
     primaryUrlLabel: 'Jeu de données FAOSTAT Food Balances',
     secondaryUrl: 'https://www.fao.org/statistics/highlights-archive/highlights-detail/food-balance-sheets-2010-2023/',
     secondaryUrlLabel: 'Présentation FAO des bilans 2010–2023',
-    gaiaRole: 'Source à intégrer pour ancrer les disponibilités alimentaires par pays et groupe d’aliments. Les valeurs inscrites aujourd’hui dans countriesData.ts ne sont pas chargées depuis FAOSTAT.',
+    gaiaRole: 'Référence retenue pour documenter la disponibilité calorique nationale. Les valeurs des zones composites ne sont pas remplacées : elles agrègent plusieurs pays, alors que leur modèle alimentaire actuel dépend aussi de mélanges agricoles et de paramètres non fournis par les bilans FAO.',
     keyDataOrQuote: 'La FAO publie les disponibilités alimentaires apparentes en kcal par personne et par jour. Il s’agit d’une moyenne issue des bilans nationaux, pas de l’alimentation consommée par chaque personne.',
-    reproducibilityNotes: 'Pour produire une projection alimentaire, apparier le bilan par groupe d’aliments avec des projections de rendement, pertes, stocks et commerce; ne pas appliquer directement la variation du rendement d’une culture à l’ensemble des calories.'
+    reproducibilityNotes: 'Dernière série examinée : édition FAOSTAT 2010–2023, licence CC BY 4.0. La disponibilité apparente n’est ni l’ingestion réelle ni la distribution entre ménages. Une mise à jour des calories simulées nécessite un appariement cohérent des pays constitutifs et une conversion documentée vers le modèle agronomique; elle n’est donc pas appliquée dans cette version.'
   },
 
   // 6. DÉMOGRAPHIE & LIMITES PLANÉTAIRES
@@ -556,15 +611,17 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     title: 'Budget Carbone Mondial Annuel (Global Carbon Budget)',
     englishTitle: 'Global Carbon Budget',
     authors: 'P. Friedlingstein, M. W. Jones, M. O\'Sullivan, et al. (Global Carbon Project)',
-    year: 2023,
+    year: 2026,
     publisher: 'Earth System Science Data',
     peerReviewed: true,
     typeBadge: 'Synthèse internationale annuelle',
-    primaryUrl: 'https://www.globalcarbonproject.org/',
-    primaryUrlLabel: 'Site officiel du Global Carbon Project',
-    gaiaRole: 'Bilan comptable annuel des émissions fossiles (~37 Gt CO2/an) et de déforestation (~4 Gt CO2/an) injectées dans FaIR.',
-    keyDataOrQuote: 'Comptabilise la répartition des émissions entre l\'atmosphère (48%), les puits océaniques (26%) et les puits terrestres (29%).',
-    reproducibilityNotes: 'Publié annuellement avec l\'ensemble des fichiers de données ouverts.'
+    primaryUrl: 'https://essd.copernicus.org/articles/18/3211/2026/',
+    primaryUrlLabel: 'Global Carbon Budget 2025 — article de synthèse',
+    secondaryUrl: 'https://www.globalcarbonproject.org/',
+    secondaryUrlLabel: 'Données et publications du Global Carbon Project',
+    gaiaRole: 'Référence actualisée du bilan mondial du carbone. Elle permet de comparer les repères d’émissions du modèle; les entrées d’émissions internes de CLIMATOPEDY ne sont pas automatiquement remplacées par les comptes du GCB.',
+    keyDataOrQuote: 'Le GCB estime les émissions fossiles à 10,3 ± 0,5 GtC en 2024 et projette 10,4 GtC (38,1 GtCO₂) pour 2025; ce dernier chiffre est une estimation préliminaire, pas un relevé définitif.',
+    reproducibilityNotes: 'Conserver séparément les flux fossiles, le changement d’usage des terres, les puits et leurs incertitudes. Le modèle interne doit être recalibré avant de convertir ce bilan en trajectoire d’émissions.'
   },
   {
     id: 'noaa-coral-reef-watch',
@@ -745,14 +802,14 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
   const [copiedDoi, setCopiedDoi] = useState<string | null>(null);
 
   const categories = [
-    { id: 'all', label: 'Toutes les disciplines (20)' },
-    { id: 'climate', label: 'Climat & Cycle du Carbone (3)' },
-    { id: 'wetbulb', label: 'Thermodynamique & Tw Humain (3)' },
-    { id: 'tipping', label: 'Points de Bascule (5)' },
-    { id: 'energy', label: 'Énergie & Falaise EROI (3)' },
-    { id: 'agriculture', label: 'Agriculture & Haber-Bosch (3)' },
-    { id: 'demography', label: 'Démographie & Limites (3)' },
-    { id: 'observatories', label: 'Observatoires Satellites (5)' }
+    { id: 'all', label: 'Toutes les disciplines' },
+    { id: 'climate', label: 'Climat & Cycle du Carbone' },
+    { id: 'wetbulb', label: 'Thermodynamique & Tw Humain' },
+    { id: 'tipping', label: 'Points de Bascule' },
+    { id: 'energy', label: 'Énergie & Falaise EROI' },
+    { id: 'agriculture', label: 'Agriculture & Haber-Bosch' },
+    { id: 'demography', label: 'Démographie & Limites' },
+    { id: 'observatories', label: 'Observatoires Satellites' }
   ];
 
   const filteredSources = useMemo(() => {
@@ -880,7 +937,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
           }`}
         >
           <BookOpen className="w-4 h-4" />
-          <span>Publications Scientifiques &amp; Modèles (20)</span>
+          <span>Publications Scientifiques &amp; Modèles ({SCIENTIFIC_SOURCES_LIST.length})</span>
         </button>
 
         <button
@@ -892,7 +949,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
           }`}
         >
           <Camera className="w-4 h-4" />
-          <span>Photographies Documentaires &amp; Imagerie (12)</span>
+          <span>Photographies Documentaires &amp; Imagerie ({IMAGE_SOURCES_LIST.length})</span>
         </button>
       </div>
 
@@ -934,7 +991,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
                     : 'bg-white text-slate-600 hover:text-slate-800 hover:bg-slate-50 border border-slate-200 shadow-2xs'
                 }`}
               >
-                {cat.label}
+                {cat.label} ({cat.id === 'all' ? SCIENTIFIC_SOURCES_LIST.length : SCIENTIFIC_SOURCES_LIST.filter(source => source.category === cat.id).length})
               </button>
             ))}
           </div>
@@ -946,7 +1003,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between text-xs text-slate-500 px-1 font-mono">
             <span>
-              Affichage de <strong className="text-slate-800 font-bold">{filteredSources.length}</strong> publication(s) vérifiée(s)
+              Affichage de <strong className="text-slate-800 font-bold">{filteredSources.length}</strong> référence(s)
             </span>
             <button
               onClick={() => onNavigateTab('spec')}

@@ -212,7 +212,8 @@ export const COUNTRIES_DATA: CountryStaticData[] = [
     `,
     basePop2026: 68,
     baseCohortSplit: [0.17, 0.61, 0.22],
-    baseTemp: 12.2,
+    // Normale annuelle Météo-France 1991-2020 : 12,97 °C, arrondie à 13,0 °C.
+    baseTemp: 13.0,
     baseHumidity: 74,
     summerMaxTemp: 35.5,
     summerHumidity: 38,

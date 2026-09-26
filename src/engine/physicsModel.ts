@@ -1,4 +1,5 @@
 import { COUNTRIES_DATA } from '../data/countriesData';
+import { getCountryTemperatures } from './countryTemperatures';
 import {
   CountryDynamicState,
   GlobalBiophysicalState,
@@ -88,7 +89,8 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
     totalWorldPop += c.basePop2026;
 
     // À l'année de base 2026, les températures de base de countriesData reflètent fidèlement le climat présent
-    const dryBulb = c.baseTemp;
+    const temperatures = getCountryTemperatures(c.id, c.baseTemp, 2026, scenarioConfig?.id);
+    const dryBulb = temperatures.tas;
     const summerMax = c.summerMaxTemp;
     const wetBulb = calculateWetBulbStull(dryBulb, c.baseHumidity);
     // Calcul rigoureux de Roland Stull (2011) sur les canicules estivales observables aujourd'hui (2026)
@@ -109,6 +111,8 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
       id: c.id,
       cohorts,
       dryBulbTemp: dryBulb,
+      annualMinTemp: temperatures.tasmin,
+      annualMaxTemp: temperatures.tasmax,
       summerMaxTemp: summerMax,
       summerHumidity: c.summerHumidity,
       wetBulbTemp: wetBulb,
@@ -282,12 +286,14 @@ export function stepSimulation(
   COUNTRIES_DATA.forEach(staticC => {
     const cState = next.countries[staticC.id];
     
-    // Réchauffement additionnel par rapport au repère observé utilisé au départ (+1.34°C en 2025)
-    const deltaTGlobalFrom2026 = Math.max(0, next.surfaceTemperatureAnomaly - 1.34);
-
-    // Descente d'échelle thermique locale (température moyenne annuelle)
-    const localDryBulb = staticC.baseTemp + deltaTGlobalFrom2026 * staticC.patternScaling;
+    // Les températures annuelles suivent les deltas CMIP6 nationaux; le pic de canicule reste un indicateur distinct du modèle.
+    const temperatures = getCountryTemperatures(staticC.id, staticC.baseTemp, next.year, scenarioConfig?.id);
+    const localDryBulb = temperatures.tas;
     cState.dryBulbTemp = localDryBulb;
+    cState.annualMinTemp = temperatures.tasmin;
+    cState.annualMaxTemp = temperatures.tasmax;
+
+    const deltaTGlobalFrom2026 = Math.max(0, next.surfaceTemperatureAnomaly - 1.34);
 
     // Descente d'échelle du pic caniculaire estival sous abri (amplification des extrêmes continentaux x1.15)
     const localSummerMax = staticC.summerMaxTemp + deltaTGlobalFrom2026 * staticC.patternScaling * 1.15;

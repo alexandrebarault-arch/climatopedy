@@ -917,11 +917,6 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               const isWarning = tw >= 26.0 && tw < 29.0;
               const popChangePct = ((dyn.cohorts.total - activeCountryData.basePop2026) / activeCountryData.basePop2026) * 100;
               const isFamine = dyn.calPerCapita < 2100;
-              // Estimation pédagogique du minimum annuel : écart froid égal à 60 % de
-              // l'écart entre moyenne annuelle et pic estival dans les données de base.
-              const estimatedBaseMinTemp = activeCountryData.baseTemp -
-                (activeCountryData.summerMaxTemp - activeCountryData.baseTemp) * 0.6;
-              const estimatedMinTemp = dyn.dryBulbTemp - (activeCountryData.baseTemp - estimatedBaseMinTemp);
 
               return (
                 <div className="flex flex-col gap-3 h-full justify-between">
@@ -1073,7 +1068,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Sun className="w-3.5 h-3.5 text-amber-600" />
-                          Maximum estival à l'ombre
+                          Pic caniculaire estival simulé
                         </span>
                         <span className="font-mono text-amber-800 tabular-nums font-semibold">
                           {dyn.summerMaxTemp.toFixed(1)}°C{' '}
@@ -1083,14 +1078,25 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         </span>
                       </div>
 
-                      {/* Minimum annuel estimé à partir de la moyenne et du pic estival */}
+                      {/* Moyenne annuelle des températures maximales quotidiennes */}
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600 flex items-center gap-1">
+                          <Thermometer className="w-3.5 h-3.5 text-rose-500" />
+                          Moyenne des maximales quotidiennes
+                        </span>
+                        <span className="font-mono text-rose-800 tabular-nums font-medium">
+                          {dyn.annualMaxTemp.toFixed(1)}°C
+                        </span>
+                      </div>
+
+                      {/* Moyenne annuelle des températures minimales quotidiennes */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Thermometer className="w-3.5 h-3.5 text-indigo-500" />
-                          Minimum estimé (hypothèse du modèle)
+                          Moyenne des minimales quotidiennes
                         </span>
                         <span className="font-mono text-indigo-800 tabular-nums font-medium">
-                          {estimatedMinTemp.toFixed(1)}°C
+                          {dyn.annualMinTemp.toFixed(1)}°C
                         </span>
                       </div>
 
@@ -1105,7 +1111,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         </span>
                       </div>
                       <p className="text-[9.5px] leading-snug text-slate-500">
-                        Minimum estimé : la moyenne du pays est abaissée de 60 % de l'écart entre cette moyenne et le pic estival de référence. Ce n'est pas une mesure météorologique.
+                        Tmax et Tmin sont les moyennes annuelles des maximales et minimales quotidiennes, et non des records absolus. Le passé est reconstruit à partir des anomalies mondiales; les écarts futurs proviennent des projections CMIP6 du CCKP, recalées sur la moyenne 2026 de CLIMATOPEDY. BAU suit SSP5-8.5, sobriété SSP1-2.6 et les autres réglages SSP2-4.5, par analogie : ces trajectoires locales ne sont pas couplées au calcul thermique mondial du moteur. Les zones composées sont des moyennes de pays. Après 2100, la valeur reste au niveau de fin de siècle disponible. Le pic estival demeure une hypothèse distincte.
                       </p>
 
                       {/* Température moyenne annuelle */}

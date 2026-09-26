@@ -6,6 +6,7 @@ import {
   DemographicCohorts
 } from '../types/simulation';
 import { calculateWetBulbStull } from './physicsModel';
+import { getHistoricalCountryTemperatures } from './countryTemperatures';
 
 export interface HistoricalBenchmark {
   year: number;
@@ -282,6 +283,7 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
     const p2 = countryPop * c.baseCohortSplit[2];
 
     const dryBulb = c.baseTemp + deltaTempVs2026 * c.patternScaling;
+    const temperatures = getHistoricalCountryTemperatures(c.id, dryBulb, c.baseTemp);
     const summerMax = c.summerMaxTemp + deltaTempVs2026 * c.patternScaling;
     const wetBulb = calculateWetBulbStull(dryBulb, c.baseHumidity);
     const wetBulbPeak = calculateWetBulbStull(summerMax, c.summerHumidity);
@@ -301,6 +303,8 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
       id: c.id,
       cohorts,
       dryBulbTemp: dryBulb,
+      annualMinTemp: temperatures.tasmin,
+      annualMaxTemp: temperatures.tasmax,
       summerMaxTemp: summerMax,
       summerHumidity: c.summerHumidity,
       wetBulbTemp: wetBulb,

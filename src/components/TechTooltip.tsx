@@ -124,8 +124,12 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
     const rect = triggerRef.current?.getBoundingClientRect();
     if (rect) {
       const width = Math.min(320, window.innerWidth - 24);
+      const leftOfTrigger = rect.left - width - 12;
+      const preferredLeft = leftOfTrigger >= 12
+        ? leftOfTrigger
+        : rect.right + 12;
       setPopoverPosition({
-        left: Math.max(12, Math.min(rect.left + rect.width / 2 - width / 2, window.innerWidth - width - 12)),
+        left: Math.max(12, Math.min(preferredLeft, window.innerWidth - width - 12)),
         top: Math.max(12, rect.top - 12)
       });
     }

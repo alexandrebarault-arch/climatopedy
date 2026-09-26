@@ -7,6 +7,10 @@ interface ClimatopedyHeaderProps {
 
 export const ClimatopedyHeader: React.FC<ClimatopedyHeaderProps> = ({ onOpenTutorial }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const lastUpdate = new Intl.DateTimeFormat('fr-FR', {
+    dateStyle: 'long',
+    timeStyle: 'short'
+  }).format(new Date(__BUILD_TIMESTAMP__));
 
   return (
     <header className="rounded-2xl bg-white border border-slate-200/90 p-4 sm:p-5 shadow-xs relative overflow-hidden animate-in fade-in duration-300">
@@ -55,7 +59,7 @@ export const ClimatopedyHeader: React.FC<ClimatopedyHeaderProps> = ({ onOpenTuto
             </p>
           </div>
           <span className="text-[11px] sm:text-xs text-slate-500 whitespace-nowrap sm:pt-1">
-            Dernière mise à jour : 25 septembre 2026
+            Dernière mise à jour : {lastUpdate}
           </span>
         </div>
 
