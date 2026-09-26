@@ -31,10 +31,7 @@ export interface CountryStaticData {
   pathSvg: string;    // SVG path dans la projection Plate Carrée [-180..180, -90..90]
   basePop2026: number; // Millions
   baseCohortSplit: [number, number, number]; // [% 0-14, % 15-64, % 65+]
-  baseTemp: number;   // Température moyenne annuelle (°C)
   baseHumidity: number; // Humidité relative moyenne annuelle (%)
-  summerMaxTemp: number; // Hypothèse ponctuelle de canicule, pas une normale ou un record mesuré (°C)
-  summerHumidity: number; // Humidité relative associée à l'hypothèse de canicule (%)
   patternScaling: number; // Multiplicateur de réchauffement régional vs mondial
   baseCaloriesDay: number; // Kcal/habitant/jour initial
   cropMix: {

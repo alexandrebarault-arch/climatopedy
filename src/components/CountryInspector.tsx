@@ -3,6 +3,10 @@ import { COUNTRIES_DATA } from '../data/countriesData';
 import { GlobalBiophysicalState } from '../types/simulation';
 import { X, Thermometer, Utensils, Skull, Users, ShieldAlert, AlertTriangle } from 'lucide-react';
 import { TechTooltip } from './TechTooltip';
+import climatePanelData from '../data/climatePanelData.json';
+import { ClimatePanelFile } from '../types/climatePanel';
+
+const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
 interface CountryInspectorProps {
   countryId: string | null;
@@ -32,6 +36,8 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   const dynState = simulationState.countries[countryId];
 
   if (!staticData || !dynState) return null;
+  const climate = climateRows.get(countryId);
+  if (!climate) return null;
 
   const popChangePct = ((dynState.cohorts.total - staticData.basePop2026) / staticData.basePop2026) * 100;
   const isLethalHeat = dynState.wetBulbPeak >= 31.0;
@@ -203,16 +209,16 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px]">
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Scénario de canicule (hypothèse)</span>
+                <span className="text-slate-500 block text-[10px]">Pic chaud P99 estimé</span>
                 <span className="text-sm font-bold font-mono text-amber-700 tabular-nums">
                   {dynState.summerMaxTemp.toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Humidité du scénario</span>
+                <span className="text-slate-500 block text-[10px]">Humidité estimée</span>
                 <span className="text-sm font-bold font-mono text-sky-700 tabular-nums">
-                  {dynState.summerHumidity}%
+                  {dynState.summerHumidity.toFixed(0)}%
                 </span>
               </div>
 
@@ -225,48 +231,49 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
                     dynState.wetBulbPeak >= 31.0 ? 'text-rose-700 font-extrabold' : 'text-emerald-700'
                   }`}
                 >
-                  {dynState.wetBulbPeak.toFixed(1)}°C
+                  {(Math.floor(simulationState.year) === 2026 ? climate.heatwaveWetBulbC : dynState.wetBulbPeak).toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Moy. des maximales quotidiennes (estimée)</span>
+                <span className="text-slate-500 block text-[10px]">Moy. des Tmax quotidiennes (proxy)</span>
                 <span className="text-sm font-bold font-mono text-rose-700 tabular-nums">
-                  {dynState.annualMaxTemp.toFixed(1)}°C
+                  {(Math.floor(simulationState.year) === 2026 ? climate.annualMeanDailyMaxTempC : dynState.annualMaxTemp).toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Moy. des minimales quotidiennes (estimée)</span>
+                <span className="text-slate-500 block text-[10px]">Moy. des Tmin quotidiennes (proxy)</span>
                 <span className="text-sm font-bold font-mono text-indigo-800 tabular-nums">
-                  {dynState.annualMinTemp.toFixed(1)}°C
+                  {(Math.floor(simulationState.year) === 2026 ? climate.annualMeanDailyMinTempC : dynState.annualMinTemp).toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
                 <span className="text-slate-500 block text-[10px]">
-                  {Math.floor(simulationState.year) === 2026
-                    ? staticData.id === 'fra' ? 'Normale annuelle (1991–2020)' : 'Référence annuelle du modèle'
-                    : 'Moyenne annuelle simulée'}
+                  {Math.floor(simulationState.year) === 2026 ? 'Moyenne annuelle (proxy)' : 'Moyenne annuelle projetée'}
                 </span>
                 <span className="text-sm font-bold font-mono text-slate-800 tabular-nums">
-                  {dynState.dryBulbTemp.toFixed(1)}°C
+                  {(Math.floor(simulationState.year) === 2026 ? climate.annualMeanTempC : dynState.dryBulbTemp).toFixed(1)}°C
                 </span>
+                <span className="text-[9px] text-slate-400 block">{Math.floor(simulationState.year) === 2026 ? 'Normale du point représentatif, pas moyenne nationale' : 'Projection locale conditionnelle au scénario'}</span>
               </div>
             </div>
 
-            {staticData.id === 'fra' && (
+            {climate.absoluteAirTemperatureRecord ? (
               <div className="bg-amber-50 p-2.5 rounded-lg border border-amber-200 shadow-2xs">
-                <span className="text-amber-900 text-[10px] font-medium">Record absolu de température de l’air en France : </span>
-                <span className="text-sm font-bold font-mono text-amber-900 tabular-nums">46,0°C</span>
-                <span className="text-[10px] text-amber-900"> à Vérargues (Hérault), le 28 juin 2019 · </span>
-                <a className="text-[10px] underline text-amber-900" href="https://meteofrance.com/meteo-a-z/quelle-est-la-temperature-la-plus-elevee-enregistree-en-france" target="_blank" rel="noreferrer">Météo-France</a>
+                <span className="text-amber-900 text-[10px] font-medium">Record officiel documenté de la zone : </span>
+                <span className="text-sm font-bold font-mono text-amber-900 tabular-nums">{climate.absoluteAirTemperatureRecord.valueC.toFixed(1)}°C</span>
+                <span className="text-[10px] text-amber-900"> à {climate.absoluteAirTemperatureRecord.location}, {climate.absoluteAirTemperatureRecord.date} · </span>
+                <a className="text-[10px] underline text-amber-900" href={climate.absoluteAirTemperatureRecord.sourceUrl} target="_blank" rel="noreferrer">{climate.absoluteAirTemperatureRecord.sourceLabel}</a>
+                <span className="block text-[9px] text-amber-800">Couverture des records : {climate.recordCoverage.sourcedMembers}/{climate.recordCoverage.totalMembers} pays membres documentés.</span>
               </div>
-            )}
+            ) : <p className="text-[10px] text-slate-500">Record absolu : indisponible faute de source vérifiée intégrée.</p>}
 
             <p className="text-[10px] leading-relaxed text-slate-500">
-              Tw est la température au thermomètre mouillé, calculée à partir de la température de l’air et de l’humidité du scénario; ce n’est ni une température mesurée ni la température maximale enregistrée. Les moyennes des maximales et minimales quotidiennes ne sont pas des records.
+              Normales 1991–2020 issues d’un point NASA POWER/MERRA-2, utilisé comme proxy de la zone. Le P99 chaud et l’humidité sont estimés; l’humidité n’est pas simultanée à la Tmax. Tw est calculée, jamais une température mesurée. Les moyennes des maximales et minimales quotidiennes ne sont pas des records.
             </p>
+            <p className="text-[9px] text-slate-400">Données générées le {new Date(climate.provenance.generatedAt).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Paris' })} · référence 1991–2020.</p>
 
             {staticData.id === 'fra' && Math.floor(simulationState.year) === 2026 && (
               <p className="text-[10px] leading-relaxed text-sky-900 bg-sky-50 border border-sky-100 rounded-lg p-2.5">

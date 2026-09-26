@@ -1,0 +1,2571 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-26T15:26:50.625Z",
+  "source": "NASA POWER daily meteorology, MERRA-2 reanalysis, 1991–2020",
+  "sourceUrl": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,T2MDEW,T2M_MAX,T2M_MIN&community=RE&start=19910101&end=20201231&time-standard=LST",
+  "rows": [
+    {
+      "id": "usa",
+      "type": "country",
+      "annualMeanTempC": 12.934863113706871,
+      "annualMeanDailyMinTempC": 6.976413579120278,
+      "annualMeanDailyMaxTempC": 19.537806169008885,
+      "heatwaveScenarioTempC": 41.39,
+      "heatwaveScenarioHumidityPct": 20.970039225009977,
+      "heatwaveWetBulbC": 24.00652839368915,
+      "absoluteAirTemperatureRecord": {
+        "valueC": 56.7,
+        "location": "Greenland Ranch, Death Valley (Californie)",
+        "date": "1913-07-10",
+        "sourceLabel": "NOAA / National Centers for Environmental Information",
+        "sourceUrl": "https://www.ncei.noaa.gov/news/earths-hottest-temperature",
+        "memberIso3": "USA",
+        "memberName": "United States of America",
+        "coverage": {
+          "sourcedMembers": 1,
+          "totalMembers": 1
+        },
+        "isGroupedZone": false,
+        "quality": "observed"
+      },
+      "recordCoverage": {
+        "sourcedMembers": 1,
+        "totalMembers": 1
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          -98,
+          39
+        ],
+        "sourcePointCoordinates": [
+          -98,
+          39
+        ],
+        "sourcePointElevationM": 465.71,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "observed"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Record absolu d’air observé et publié par le service météorologique cité."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys."
+        ]
+      }
+    },
+    {
+      "id": "can",
+      "type": "country",
+      "annualMeanTempC": -1.4558468698667653,
+      "annualMeanDailyMinTempC": -6.297591713816375,
+      "annualMeanDailyMaxTempC": 3.1006707428362916,
+      "heatwaveScenarioTempC": 29.178100000000004,
+      "heatwaveScenarioHumidityPct": 34.78581938211814,
+      "heatwaveWetBulbC": 18.756015262978334,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 1
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          -106,
+          56
+        ],
+        "sourcePointCoordinates": [
+          -106,
+          56
+        ],
+        "sourcePointElevationM": 468.12,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "mex",
+      "type": "country",
+      "annualMeanTempC": 16.52493885745579,
+      "annualMeanDailyMinTempC": 9.421635334915155,
+      "annualMeanDailyMaxTempC": 24.964600292024013,
+      "heatwaveScenarioTempC": 34.001099999999994,
+      "heatwaveScenarioHumidityPct": 14.028858842636101,
+      "heatwaveWetBulbC": 16.619236998773637,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 1
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          -102,
+          23
+        ],
+        "sourcePointCoordinates": [
+          -102,
+          23
+        ],
+        "sourcePointElevationM": 2094.2,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "cen_am",
+      "type": "grouped-zone",
+      "annualMeanTempC": 26.294926081401773,
+      "annualMeanDailyMinTempC": 23.511336922796207,
+      "annualMeanDailyMaxTempC": 30.061620733710473,
+      "heatwaveScenarioTempC": 35.36,
+      "heatwaveScenarioHumidityPct": 43.18375995522365,
+      "heatwaveWetBulbC": 25.50062476302616,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 14
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          -84,
+          14
+        ],
+        "sourcePointCoordinates": [
+          -84,
+          14
+        ],
+        "sourcePointElevationM": 40.13,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "bra",
+      "type": "country",
+      "annualMeanTempC": 25.7808678590986,
+      "annualMeanDailyMinTempC": 21.76939496258427,
+      "annualMeanDailyMaxTempC": 30.28894506296778,
+      "heatwaveScenarioTempC": 40.01620000000001,
+      "heatwaveScenarioHumidityPct": 18.865257804402155,
+      "heatwaveWetBulbC": 22.299223744869682,
+      "absoluteAirTemperatureRecord": {
+        "valueC": 44.8,
+        "location": "Araçuaí (Minas Gerais)",
+        "date": "2023-11-19",
+        "sourceLabel": "INMET — Instituto Nacional de Meteorologia",
+        "sourceUrl": "https://portal.inmet.gov.br/noticias/primavera-2023-foi-marcada-por-temperaturas-elevadas-seca-no-centro-norte-do-pa%C3%ADs-e-chuva-intensa-na-regi%C3%A3o-sul",
+        "memberIso3": "BRA",
+        "memberName": "Brazil",
+        "coverage": {
+          "sourcedMembers": 1,
+          "totalMembers": 1
+        },
+        "isGroupedZone": false,
+        "quality": "observed"
+      },
+      "recordCoverage": {
+        "sourcedMembers": 1,
+        "totalMembers": 1
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          -53,
+          -10
+        ],
+        "sourcePointCoordinates": [
+          -53,
+          -10
+        ],
+        "sourcePointElevationM": 327.36,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "observed"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Record absolu d’air observé et publié par le service météorologique cité."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys."
+        ]
+      }
+    },
+    {
+      "id": "arg",
+      "type": "grouped-zone",
+      "annualMeanTempC": 16.487222120824992,
+      "annualMeanDailyMinTempC": 10.01931465595912,
+      "annualMeanDailyMaxTempC": 24.338865668917812,
+      "heatwaveScenarioTempC": 39.753299999999996,
+      "heatwaveScenarioHumidityPct": 22.090715752678435,
+      "heatwaveWetBulbC": 23.26617386233202,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 5
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          -64,
+          -34
+        ],
+        "sourcePointCoordinates": [
+          -64,
+          -34
+        ],
+        "sourcePointElevationM": 164.61,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          1,
+          2,
+          3,
+          10,
+          11,
+          12
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "and",
+      "type": "grouped-zone",
+      "annualMeanTempC": 25.433944150392453,
+      "annualMeanDailyMinTempC": 22.630623288921395,
+      "annualMeanDailyMaxTempC": 28.670344040883336,
+      "heatwaveScenarioTempC": 34.5763,
+      "heatwaveScenarioHumidityPct": 43.445169972520986,
+      "heatwaveWetBulbC": 24.90584044511899,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 8
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          -74,
+          -4
+        ],
+        "sourcePointCoordinates": [
+          -74,
+          -4
+        ],
+        "sourcePointElevationM": 128.82,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          1,
+          2,
+          9,
+          10,
+          11,
+          12
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "fra",
+      "type": "country",
+      "annualMeanTempC": 10.975230881547734,
+      "annualMeanDailyMinTempC": 6.481518525278311,
+      "annualMeanDailyMaxTempC": 15.878576382551588,
+      "heatwaveScenarioTempC": 35.68720000000005,
+      "heatwaveScenarioHumidityPct": 20.65240630740276,
+      "heatwaveWetBulbC": 19.97921888824527,
+      "absoluteAirTemperatureRecord": {
+        "valueC": 46,
+        "location": "Vérargues (Hérault)",
+        "date": "2019-06-28",
+        "sourceLabel": "Météo-France",
+        "sourceUrl": "https://meteofrance.com/meteo-a-z/quelle-est-la-temperature-la-plus-elevee-enregistree-en-france",
+        "memberIso3": "FRA",
+        "memberName": "France",
+        "coverage": {
+          "sourcedMembers": 1,
+          "totalMembers": 1
+        },
+        "isGroupedZone": false,
+        "quality": "observed"
+      },
+      "recordCoverage": {
+        "sourcedMembers": 1,
+        "totalMembers": 1
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          2.5,
+          46.5
+        ],
+        "sourcePointCoordinates": [
+          2.5,
+          46.5
+        ],
+        "sourcePointElevationM": 308.45,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "observed"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Record absolu d’air observé et publié par le service météorologique cité."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys."
+        ]
+      }
+    },
+    {
+      "id": "deu",
+      "type": "grouped-zone",
+      "annualMeanTempC": 8.372080671655432,
+      "annualMeanDailyMinTempC": 4.305856908194915,
+      "annualMeanDailyMaxTempC": 12.642203869319163,
+      "heatwaveScenarioTempC": 32.24240000000002,
+      "heatwaveScenarioHumidityPct": 29.892162882451714,
+      "heatwaveWetBulbC": 20.03600026905316,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 6
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          10,
+          51.5
+        ],
+        "sourcePointCoordinates": [
+          10,
+          51.5
+        ],
+        "sourcePointElevationM": 301.01,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "gbr",
+      "type": "grouped-zone",
+      "annualMeanTempC": 8.57820587698484,
+      "annualMeanDailyMinTempC": 5.615839569264473,
+      "annualMeanDailyMaxTempC": 11.526200949078302,
+      "heatwaveScenarioTempC": 24.08,
+      "heatwaveScenarioHumidityPct": 57.20263672279086,
+      "heatwaveWetBulbC": 18.27286668286321,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 2
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          -2.5,
+          54
+        ],
+        "sourcePointCoordinates": [
+          -2.5,
+          54
+        ],
+        "sourcePointElevationM": 168.68,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "med_eu",
+      "type": "grouped-zone",
+      "annualMeanTempC": 17.970192553385612,
+      "annualMeanDailyMinTempC": 16.95351889030839,
+      "annualMeanDailyMaxTempC": 19.051123380178876,
+      "heatwaveScenarioTempC": 29.40620000000001,
+      "heatwaveScenarioHumidityPct": 56.86180175547824,
+      "heatwaveWetBulbC": 22.94821894644604,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 6
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          8,
+          40
+        ],
+        "sourcePointCoordinates": [
+          8.4,
+          40.1
+        ],
+        "sourcePointElevationM": 6.32,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "eeu",
+      "type": "grouped-zone",
+      "annualMeanTempC": 8.378738820952702,
+      "annualMeanDailyMinTempC": 3.994822960394254,
+      "annualMeanDailyMaxTempC": 12.98004289103852,
+      "heatwaveScenarioTempC": 33.616200000000006,
+      "heatwaveScenarioHumidityPct": 30.483282763082947,
+      "heatwaveWetBulbC": 21.218226632259103,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 14
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          22,
+          50
+        ],
+        "sourcePointCoordinates": [
+          22,
+          50
+        ],
+        "sourcePointElevationM": 266.48,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "sca",
+      "type": "grouped-zone",
+      "annualMeanTempC": 3.3422759627669407,
+      "annualMeanDailyMinTempC": -0.2007537871874406,
+      "annualMeanDailyMaxTempC": 6.663340938127408,
+      "heatwaveScenarioTempC": 25.85,
+      "heatwaveScenarioHumidityPct": 51.57752677601562,
+      "heatwaveWetBulbC": 18.977883209578458,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 9
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          16,
+          62
+        ],
+        "sourcePointCoordinates": [
+          16,
+          62
+        ],
+        "sourcePointElevationM": 239.96,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "ukr",
+      "type": "grouped-zone",
+      "annualMeanTempC": 8.595270122285076,
+      "annualMeanDailyMinTempC": 3.8590107683883956,
+      "annualMeanDailyMaxTempC": 13.510251870779259,
+      "heatwaveScenarioTempC": 35.741099999999996,
+      "heatwaveScenarioHumidityPct": 25.58360575997848,
+      "heatwaveWetBulbC": 21.499925155666304,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 3
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          32,
+          49
+        ],
+        "sourcePointCoordinates": [
+          32,
+          49
+        ],
+        "sourcePointElevationM": 166.71,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "rus",
+      "type": "country",
+      "annualMeanTempC": -2.567991421792312,
+      "annualMeanDailyMinTempC": -6.5719383099105935,
+      "annualMeanDailyMaxTempC": 0.9169903267019548,
+      "heatwaveScenarioTempC": 28.238100000000003,
+      "heatwaveScenarioHumidityPct": 50.935181690122945,
+      "heatwaveWetBulbC": 20.93936580441242,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 1
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          75,
+          61
+        ],
+        "sourcePointCoordinates": [
+          75,
+          61
+        ],
+        "sourcePointElevationM": 46.65,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "tur",
+      "type": "country",
+      "annualMeanTempC": 10.890212630041994,
+      "annualMeanDailyMinTempC": 4.748955101295847,
+      "annualMeanDailyMaxTempC": 17.871733893046148,
+      "heatwaveScenarioTempC": 37.24050000000002,
+      "heatwaveScenarioHumidityPct": 15.11749119734608,
+      "heatwaveWetBulbC": 19.066577757646748,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 1
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          35,
+          39
+        ],
+        "sourcePointCoordinates": [
+          35,
+          39
+        ],
+        "sourcePointElevationM": 1165.6,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "sau",
+      "type": "grouped-zone",
+      "annualMeanTempC": 25.29758806351521,
+      "annualMeanDailyMinTempC": 17.898860193465943,
+      "annualMeanDailyMaxTempC": 33.24332998722397,
+      "heatwaveScenarioTempC": 44.588100000000004,
+      "heatwaveScenarioHumidityPct": 7.242605125068277,
+      "heatwaveWetBulbC": 19.5623183535866,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 6
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          45,
+          24
+        ],
+        "sourcePointCoordinates": [
+          45,
+          24
+        ],
+        "sourcePointElevationM": 904.6,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "irn",
+      "type": "grouped-zone",
+      "annualMeanTempC": 18.79452363569989,
+      "annualMeanDailyMinTempC": 11.705774776419068,
+      "annualMeanDailyMaxTempC": 26.715623288921314,
+      "heatwaveScenarioTempC": 43.06240000000002,
+      "heatwaveScenarioHumidityPct": 6.565148171895619,
+      "heatwaveWetBulbC": 18.33834338487006,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 7
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          54,
+          32.5
+        ],
+        "sourcePointCoordinates": [
+          54,
+          32.5
+        ],
+        "sourcePointElevationM": 1279.76,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "nafr",
+      "type": "grouped-zone",
+      "annualMeanTempC": 21.542845409746242,
+      "annualMeanDailyMinTempC": 14.459286366125223,
+      "annualMeanDailyMaxTempC": 29.211162620916262,
+      "heatwaveScenarioTempC": 43.25620000000001,
+      "heatwaveScenarioHumidityPct": 7.454785414563773,
+      "heatwaveWetBulbC": 18.966632622109287,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 5
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          14,
+          28
+        ],
+        "sourcePointCoordinates": [
+          14,
+          28
+        ],
+        "sourcePointElevationM": 558.93,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "egy",
+      "type": "grouped-zone",
+      "annualMeanTempC": 21.576698302610055,
+      "annualMeanDailyMinTempC": 14.674020806716541,
+      "annualMeanDailyMaxTempC": 29.254035407921144,
+      "heatwaveScenarioTempC": 42.74050000000002,
+      "heatwaveScenarioHumidityPct": 7.8444179735482225,
+      "heatwaveWetBulbC": 18.90917669894239,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 3
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          30.5,
+          26.5
+        ],
+        "sourcePointCoordinates": [
+          30.5,
+          26.5
+        ],
+        "sourcePointElevationM": 274.7,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "nga",
+      "type": "grouped-zone",
+      "annualMeanTempC": 24.7936320496441,
+      "annualMeanDailyMinTempC": 19.799580215367758,
+      "annualMeanDailyMaxTempC": 31.238072640992943,
+      "heatwaveScenarioTempC": 40.382600000000004,
+      "heatwaveScenarioHumidityPct": 10.690365424642723,
+      "heatwaveWetBulbC": 19.06702810101078,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 15
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          8,
+          9.5
+        ],
+        "sourcePointCoordinates": [
+          8,
+          9.5
+        ],
+        "sourcePointElevationM": 648.01,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "eth",
+      "type": "grouped-zone",
+      "annualMeanTempC": 25.141460120459975,
+      "annualMeanDailyMinTempC": 19.08643000547544,
+      "annualMeanDailyMaxTempC": 32.52431921883555,
+      "heatwaveScenarioTempC": 38.321099999999994,
+      "heatwaveScenarioHumidityPct": 18.403101132468148,
+      "heatwaveWetBulbC": 20.997008158923673,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 5
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          40,
+          9
+        ],
+        "sourcePointCoordinates": [
+          40,
+          9
+        ],
+        "sourcePointElevationM": 1134.33,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          9
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "cod",
+      "type": "grouped-zone",
+      "annualMeanTempC": 24.577944880452502,
+      "annualMeanDailyMinTempC": 21.24271673663086,
+      "annualMeanDailyMaxTempC": 28.435072093447776,
+      "heatwaveScenarioTempC": 35.7532,
+      "heatwaveScenarioHumidityPct": 28.634093977545856,
+      "heatwaveWetBulbC": 22.351216089276644,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 7
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          23,
+          -2.5
+        ],
+        "sourcePointCoordinates": [
+          23,
+          -2.5
+        ],
+        "sourcePointElevationM": 473.73,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "eaf",
+      "type": "grouped-zone",
+      "annualMeanTempC": 22.040339478006892,
+      "annualMeanDailyMinTempC": 16.08503194013499,
+      "annualMeanDailyMaxTempC": 29.52529293666722,
+      "heatwaveScenarioTempC": 35.08989999999999,
+      "heatwaveScenarioHumidityPct": 22.25981613637018,
+      "heatwaveWetBulbC": 20.063237266457172,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 5
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          36,
+          -4
+        ],
+        "sourcePointCoordinates": [
+          36,
+          -4
+        ],
+        "sourcePointElevationM": 1258,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          1,
+          2,
+          3,
+          10,
+          11,
+          12
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "zaf",
+      "type": "grouped-zone",
+      "annualMeanTempC": 18.717506844314563,
+      "annualMeanDailyMinTempC": 10.714739003467724,
+      "annualMeanDailyMaxTempC": 27.38755247307905,
+      "heatwaveScenarioTempC": 39.719899999999996,
+      "heatwaveScenarioHumidityPct": 9.979659698294757,
+      "heatwaveWetBulbC": 18.335709115645564,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 11
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          25,
+          -29
+        ],
+        "sourcePointCoordinates": [
+          25,
+          -29
+        ],
+        "sourcePointElevationM": 1200.4,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          1,
+          2,
+          3,
+          10,
+          11,
+          12
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "ind",
+      "type": "grouped-zone",
+      "annualMeanTempC": 26.707447526920983,
+      "annualMeanDailyMinTempC": 20.54742836284005,
+      "annualMeanDailyMaxTempC": 33.46404544624929,
+      "heatwaveScenarioTempC": 46.7281,
+      "heatwaveScenarioHumidityPct": 9.984031648227214,
+      "heatwaveWetBulbC": 22.38014742587426,
+      "absoluteAirTemperatureRecord": {
+        "valueC": 51,
+        "location": "Phalodi (Rajasthan)",
+        "date": "2016-05-19",
+        "sourceLabel": "India Meteorological Department",
+        "sourceUrl": "https://metnet.imd.gov.in/docs/imdnews/ar2016.pdf",
+        "memberIso3": "IND",
+        "memberName": "India",
+        "coverage": {
+          "sourcedMembers": 1,
+          "totalMembers": 4
+        },
+        "isGroupedZone": true,
+        "quality": "observed"
+      },
+      "recordCoverage": {
+        "sourcedMembers": 1,
+        "totalMembers": 4
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          79,
+          21
+        ],
+        "sourcePointCoordinates": [
+          79,
+          21
+        ],
+        "sourcePointElevationM": 336.97,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "observed"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Maximum des records nationaux documentés dans le registre pour 1 membre(s) sur 4; couverture partielle, pas un maximum régional exhaustif."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Record de zone partiel : 1 membre(s) sur 4 disposent d’un record national sourcé dans le registre."
+        ]
+      }
+    },
+    {
+      "id": "pak",
+      "type": "grouped-zone",
+      "annualMeanTempC": 21.43677769665995,
+      "annualMeanDailyMinTempC": 14.764930644278117,
+      "annualMeanDailyMaxTempC": 29.029983573644767,
+      "heatwaveScenarioTempC": 42.631099999999996,
+      "heatwaveScenarioHumidityPct": 5.273081097656043,
+      "heatwaveWetBulbC": 17.338874790220917,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 2
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          68,
+          30
+        ],
+        "sourcePointCoordinates": [
+          68,
+          30
+        ],
+        "sourcePointElevationM": 1105.94,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "bgd",
+      "type": "country",
+      "annualMeanTempC": 25.917917503194047,
+      "annualMeanDailyMinTempC": 21.32499726227411,
+      "annualMeanDailyMaxTempC": 31.22675305712726,
+      "heatwaveScenarioTempC": 42.2,
+      "heatwaveScenarioHumidityPct": 24.10703448912437,
+      "heatwaveWetBulbC": 25.68184249739325,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 1
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          90,
+          23.8
+        ],
+        "sourcePointCoordinates": [
+          90,
+          23.8
+        ],
+        "sourcePointElevationM": 11.26,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "chn",
+      "type": "grouped-zone",
+      "annualMeanTempC": 8.046565066617958,
+      "annualMeanDailyMinTempC": 2.3778609235261916,
+      "annualMeanDailyMaxTempC": 15.104071910932706,
+      "heatwaveScenarioTempC": 31.591099999999997,
+      "heatwaveScenarioHumidityPct": 31.066594399479303,
+      "heatwaveWetBulbC": 19.817633060078375,
+      "absoluteAirTemperatureRecord": {
+        "valueC": 52.2,
+        "location": "Sanbao (Xinjiang)",
+        "date": "2023-07-16",
+        "sourceLabel": "National Climate Center, cité par le portail du gouvernement de Jiyuan",
+        "sourceUrl": "https://zrzyghj.jiyuan.gov.cn/zwfw/kxpj/t927293.html",
+        "memberIso3": "CHN",
+        "memberName": "China",
+        "coverage": {
+          "sourcedMembers": 1,
+          "totalMembers": 4
+        },
+        "isGroupedZone": true,
+        "quality": "observed"
+      },
+      "recordCoverage": {
+        "sourcedMembers": 1,
+        "totalMembers": 4
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          105,
+          35
+        ],
+        "sourcePointCoordinates": [
+          105,
+          35
+        ],
+        "sourcePointElevationM": 1944.68,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "observed"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Maximum des records nationaux documentés dans le registre pour 1 membre(s) sur 4; couverture partielle, pas un maximum régional exhaustif."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Record de zone partiel : 1 membre(s) sur 4 disposent d’un record national sourcé dans le registre."
+        ]
+      }
+    },
+    {
+      "id": "jpn",
+      "type": "grouped-zone",
+      "annualMeanTempC": 11.570919875889754,
+      "annualMeanDailyMinTempC": 7.989881365212664,
+      "annualMeanDailyMaxTempC": 15.281367037780635,
+      "heatwaveScenarioTempC": 32.2781,
+      "heatwaveScenarioHumidityPct": 49.96980763337167,
+      "heatwaveWetBulbC": 24.249753851262806,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 2
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          137,
+          36.5
+        ],
+        "sourcePointCoordinates": [
+          137,
+          36.5
+        ],
+        "sourcePointElevationM": 475.22,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "sea",
+      "type": "grouped-zone",
+      "annualMeanTempC": 26.2926984851249,
+      "annualMeanDailyMinTempC": 21.76524091987592,
+      "annualMeanDailyMaxTempC": 31.554582953093572,
+      "heatwaveScenarioTempC": 40.9463,
+      "heatwaveScenarioHumidityPct": 25.620017296574712,
+      "heatwaveWetBulbC": 25.283443436038592,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 6
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          102,
+          15
+        ],
+        "sourcePointCoordinates": [
+          102,
+          15
+        ],
+        "sourcePointElevationM": 226.26,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "idn",
+      "type": "grouped-zone",
+      "annualMeanTempC": 25.997482204781743,
+      "annualMeanDailyMinTempC": 23.23313652126301,
+      "annualMeanDailyMaxTempC": 29.310044716189246,
+      "heatwaveScenarioTempC": 34.76109999999999,
+      "heatwaveScenarioHumidityPct": 42.47651183816527,
+      "heatwaveWetBulbC": 24.854460185587488,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 5
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          115,
+          -2
+        ],
+        "sourcePointCoordinates": [
+          115,
+          -2
+        ],
+        "sourcePointElevationM": 38.1,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          3,
+          4,
+          5,
+          9,
+          10,
+          11
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "casia",
+      "type": "grouped-zone",
+      "annualMeanTempC": 9.519707063332728,
+      "annualMeanDailyMinTempC": 3.4283528016061298,
+      "annualMeanDailyMaxTempC": 15.775625114071843,
+      "heatwaveScenarioTempC": 41.602199999999996,
+      "heatwaveScenarioHumidityPct": 10.480844421109666,
+      "heatwaveWetBulbC": 19.67599738640169,
+      "absoluteAirTemperatureRecord": null,
+      "recordCoverage": {
+        "sourcedMembers": 0,
+        "totalMembers": 8
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          67,
+          46
+        ],
+        "sourcePointCoordinates": [
+          67,
+          46
+        ],
+        "sourcePointElevationM": 183.36,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "unavailable"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Aucun record d’air documenté dans le registre pour cette zone; non estimé."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Le record absolu reste indisponible faute de source historique intégrée; aucune température simulée ou réanalysée n’est utilisée à sa place."
+        ]
+      }
+    },
+    {
+      "id": "aus",
+      "type": "grouped-zone",
+      "annualMeanTempC": 22.585741923708756,
+      "annualMeanDailyMinTempC": 15.103583683153879,
+      "annualMeanDailyMaxTempC": 30.549900529293726,
+      "heatwaveScenarioTempC": 44.86,
+      "heatwaveScenarioHumidityPct": 10.266903414391518,
+      "heatwaveWetBulbC": 21.458367453348103,
+      "absoluteAirTemperatureRecord": {
+        "valueC": 50.7,
+        "location": "Oodnadatta Airport (Australie-Méridionale)",
+        "date": "1960-01-02",
+        "sourceLabel": "Bureau of Meteorology Australia",
+        "sourceUrl": "https://www.bom.gov.au/climate/extreme/records.shtml",
+        "memberIso3": "AUS",
+        "memberName": "Australia",
+        "coverage": {
+          "sourcedMembers": 1,
+          "totalMembers": 6
+        },
+        "isGroupedZone": true,
+        "quality": "observed"
+      },
+      "recordCoverage": {
+        "sourcedMembers": 1,
+        "totalMembers": 6
+      },
+      "provenance": {
+        "baselineReferencePeriod": "1991-2020",
+        "baselineDataset": "NASA MERRA-2 reanalysis via POWER Daily API (T2M, T2MDEW, T2M_MAX, T2M_MIN; native meteorological grid about 0.5° × 0.625°)",
+        "accessProvider": "NASA POWER Daily API, community=RE, daily time standard=LST",
+        "spatialMethod": "NASA POWER point query at COUNTRIES_DATA.center; if that point falls in the sea, the nearest land point is chosen on a 0.05° search grid within 2°; point proxy, no area weighting.",
+        "requestedCoordinates": [
+          134,
+          -25
+        ],
+        "sourcePointCoordinates": [
+          134,
+          -25
+        ],
+        "sourcePointElevationM": 386.44,
+        "dailyTimeStandard": "LST",
+        "warmSeasonMonths": [
+          1,
+          2,
+          3,
+          10,
+          11,
+          12
+        ],
+        "generatedAt": "2026-09-26T15:26:50.625Z",
+        "dataQuality": {
+          "annualMeanTempC": "proxy",
+          "annualMeanDailyMinTempC": "proxy",
+          "annualMeanDailyMaxTempC": "proxy",
+          "heatwaveScenarioTempC": "estimated",
+          "heatwaveScenarioHumidityPct": "estimated",
+          "heatwaveWetBulbC": "calculated",
+          "absoluteAirTemperatureRecord": "observed"
+        },
+        "methods": {
+          "annualMeanTempC": "Moyenne des températures quotidiennes moyennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMinTempC": "Moyenne arithmétique des Tmin quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "annualMeanDailyMaxTempC": "Moyenne arithmétique des Tmax quotidiennes MERRA-2 sur 1991–2020; point représentatif utilisé comme proxy de zone.",
+          "heatwaveScenarioTempC": "P99 linéaire des Tmax quotidiennes dans les six mois dont la moyenne MERRA-2 est la plus élevée; estimation de scénario, pas un record.",
+          "heatwaveScenarioHumidityPct": "Humidité estimée par formule de Magnus avec Tmax et point de rosée quotidien moyen des jours au-dessus du P99 chaud; les deux valeurs ne sont pas simultanées.",
+          "heatwaveWetBulbC": "Formule de Stull (2011) appliquée au P99 chaud et à son humidité associée; résultat calculé, soumis au domaine de validité publié.",
+          "absoluteAirTemperatureRecord": "Maximum des records nationaux documentés dans le registre pour 1 membre(s) sur 6; couverture partielle, pas un maximum régional exhaustif."
+        },
+        "uncertainty": {
+          "annualMeanTempC": null,
+          "annualMeanDailyMinTempC": null,
+          "annualMeanDailyMaxTempC": null,
+          "heatwaveScenarioTempC": null,
+          "heatwaveScenarioHumidityPct": null,
+          "heatwaveWetBulbC": null
+        },
+        "notes": [
+          "Un point NASA POWER près du centre déclaré représente chaque zone; si le centre de carte est en mer, le pipeline choisit le point terrestre le plus proche sur une grille de recherche de 0,05° (rayon maximal 2°). MERRA-2 est fourni sur une grille native d’environ 0,5° × 0,625°. Aucune moyenne surfacique n’est calculée; le biais peut être important pour les grands pays et zones groupées.",
+          "L’humidité utilise le point de rosée quotidien moyen associé à un jour chaud et le Tmax du même jour. La valeur RH est une estimation, pas une mesure horaire simultanée au pic de température.",
+          "Le P99 décrit la queue chaude de la réanalyse sur six mois climatologiquement chauds; il ne représente ni un record historique, ni une prévision météorologique, ni un seuil de canicule officiel.",
+          "Aucune marge d’incertitude numérique n’est fournie faute d’ensemble régional calibré pour ces proxys.",
+          "Record de zone partiel : 1 membre(s) sur 6 disposent d’un record national sourcé dans le registre."
+        ]
+      }
+    }
+  ]
+}

@@ -45,6 +45,21 @@ export function getCountryTemperatures(
   return { tas: blend('tas'), tasmin: blend('tasmin'), tasmax: blend('tasmax') };
 }
 
+/** CCKP late-century temperature change relative to its 2020–2039 baseline. */
+export function getProjectedTemperatureDelta(
+  countryId: string,
+  variable: keyof Metrics,
+  year: number,
+  scenarioId?: string
+): number {
+  const sourceId = getCountryId(countryId);
+  const baseline = data.baseline[sourceId];
+  const future = data.future[getScenario(scenarioId)]?.[sourceId];
+  if (!baseline || !future) throw new Error(`Données CCKP manquantes pour la zone ${countryId}.`);
+  const fraction = Math.max(0, Math.min(1, (year - 2026) / 74));
+  return (future[variable] - baseline[variable]) * fraction;
+}
+
 /** Reconstructs past annual min/max means using the same estimated local anomaly as tas. */
 export function getHistoricalCountryTemperatures(
   countryId: string,

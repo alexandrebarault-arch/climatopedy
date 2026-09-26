@@ -31,6 +31,10 @@ import {
 } from 'lucide-react';
 import { TechTooltip } from './TechTooltip';
 import { GreenZonesScientificModal } from './GreenZonesScientificModal';
+import climatePanelData from '../data/climatePanelData.json';
+import { ClimatePanelFile } from '../types/climatePanel';
+
+const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
 interface WorldMapProps {
   simulationState: GlobalBiophysicalState;
@@ -1064,16 +1068,19 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                     {/* BLOC 2 : MÉTRIQUES CLIMATIQUES & DÉMOGRAPHIQUES SIMPLIFIÉES */}
                     <div className="space-y-1.5 text-xs">
+                      {(() => {
+                        const climate = climateRows.get(activeCountryData.id);
+                        return climate ? <>
                       {/* Pic caniculaire estival */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Sun className="w-3.5 h-3.5 text-amber-600" />
-                          Scénario de canicule (hypothèse)
+                          Pic chaud P99 estimé
                         </span>
                         <span className="font-mono text-amber-800 tabular-nums font-semibold">
                           {dyn.summerMaxTemp.toFixed(1)}°C{' '}
                           <span className="text-slate-500 font-normal text-[10.5px]">
-                            (+{(dyn.summerMaxTemp - activeCountryData.summerMaxTemp).toFixed(1)}°C)
+                            (normale 1991–2020)
                           </span>
                         </span>
                       </div>
@@ -1085,7 +1092,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                           Moy. des maximales quotidiennes (estimée)
                         </span>
                         <span className="font-mono text-rose-800 tabular-nums font-medium">
-                          {dyn.annualMaxTemp.toFixed(1)}°C
+                          {climate.annualMeanDailyMaxTempC.toFixed(1)}°C
                         </span>
                       </div>
 
@@ -1096,7 +1103,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                           Moy. des minimales quotidiennes (estimée)
                         </span>
                         <span className="font-mono text-indigo-800 tabular-nums font-medium">
-                          {dyn.annualMinTemp.toFixed(1)}°C
+                          {climate.annualMeanDailyMinTempC.toFixed(1)}°C
                         </span>
                       </div>
 
@@ -1104,14 +1111,14 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Droplets className="w-3.5 h-3.5 text-sky-600" />
-                          Humidité du scénario (en %)
+                          Humidité estimée du P99
                         </span>
                         <span className="font-mono text-sky-800 tabular-nums font-medium">
-                          {dyn.summerHumidity}%
+                          {dyn.summerHumidity.toFixed(0)}%
                         </span>
                       </div>
                       <p className="text-[9.5px] leading-snug text-slate-500">
-                        Les moyennes des maximales et minimales quotidiennes ne sont pas des records. Hors référence française, les températures de départ sont des paramètres du modèle; le passé est reconstruit et le futur suit des analogies CMIP6. Le pic et l'humidité de canicule sont des hypothèses; Tw est calculée à partir de ces deux paramètres.
+                        Normales 1991–2020 d’un point NASA POWER/MERRA-2 représentatif, pas une moyenne nationale. P99 et humidité sont estimés; le record absolu est affiché dans la fiche pays s’il est sourcé.
                       </p>
 
                       {activeCountryData.id === 'fra' && displayYear === 2026 && (
@@ -1126,16 +1133,18 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <span className="text-slate-600 flex items-center gap-1">
                           <Thermometer className="w-3.5 h-3.5 text-slate-500" />
                           {displayYear === 2026
-                            ? activeCountryData.id === 'fra' ? 'Normale annuelle (1991–2020)' : 'Référence annuelle du modèle'
+                            ? 'Moyenne annuelle (1991–2020) · proxy'
                             : 'Moyenne annuelle simulée'}
                         </span>
                         <span className="font-mono text-slate-800 tabular-nums font-medium">
                           {dyn.dryBulbTemp.toFixed(1)}°C{' '}
                           <span className="text-slate-500 font-normal text-[10.5px]">
-                            (+{(dyn.dryBulbTemp - activeCountryData.baseTemp).toFixed(1)}°C)
+                            (point représentatif)
                           </span>
                         </span>
                       </div>
+                      </> : null;
+                      })()}
 
                       {/* Population résidente */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
