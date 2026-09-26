@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { RotateCcw, FileText, Network, Globe, HelpCircle, ShieldAlert, LayoutDashboard, Menu, X, BookOpen, Compass, Monitor } from 'lucide-react';
+import { SITE_SECTION_BY_ID, SiteSectionId } from '../data/siteSections';
 
-export type AppTabType = 'map' | 'comparative-dashboard' | 'tipping-points' | 'causal' | 'spec' | 'sources';
+export type AppTabType = SiteSectionId;
 
 interface TopBarProps {
   currentTab: AppTabType;
@@ -22,7 +23,7 @@ export const TopBar: React.FC<TopBarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isDefaultTab = currentTab === 'map';
+  const isDefaultTab = currentTab === SITE_SECTION_BY_ID.map.id;
 
   const handleTabClick = (tab: AppTabType) => {
     onSelectTab(tab);
@@ -30,7 +31,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   };
 
   const handleFaqClick = () => {
-    onSelectTab('map');
+    onSelectTab(SITE_SECTION_BY_ID.map.id);
     setMobileMenuOpen(false);
     setTimeout(() => {
       document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -43,83 +44,83 @@ export const TopBar: React.FC<TopBarProps> = ({
         {/* Navigation Desktop (visible dès lg, sans AUCUNE barre de scroll native) */}
         <nav id="tour-topbar-nav" className="hidden lg:flex items-center gap-1.5 xl:gap-2 2xl:gap-3 text-xs font-medium text-slate-600 min-w-0 overflow-x-auto no-scrollbar py-1 flex-1">
           <button
-            onClick={() => handleTabClick('map')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID.map.id)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
-              currentTab === 'map'
+              currentTab === SITE_SECTION_BY_ID.map.id
                 ? 'text-sky-800 bg-sky-50 border border-sky-200 font-semibold shadow-xs'
                 : 'hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <Globe className="w-3.5 h-3.5 text-sky-600" />
-            <span>Planisphère</span>
-            <span className="hidden xl:inline text-slate-500">&amp; Indicateurs</span>
+            <span>{SITE_SECTION_BY_ID.map.desktopLabel}</span>
+            <span className="hidden xl:inline text-slate-500">{SITE_SECTION_BY_ID.map.desktopSuffix}</span>
           </button>
 
           <button
-            onClick={() => handleTabClick('comparative-dashboard')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID['comparative-dashboard'].id)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
-              currentTab === 'comparative-dashboard'
+              currentTab === SITE_SECTION_BY_ID['comparative-dashboard'].id
                 ? 'text-emerald-800 bg-emerald-50 border border-emerald-300 font-bold shadow-xs'
                 : 'hover:text-emerald-700 hover:bg-slate-100'
             }`}
             title="Dashboard Comparatif Global : Cartes d'impact Scénario A vs B"
           >
             <LayoutDashboard className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Dashboard Comparatif</span>
+            <span>{SITE_SECTION_BY_ID['comparative-dashboard'].desktopLabel}</span>
             <span className="text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold">
               A vs B
             </span>
           </button>
 
           <button
-            onClick={() => handleTabClick('tipping-points')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID['tipping-points'].id)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
-              currentTab === 'tipping-points'
+              currentTab === SITE_SECTION_BY_ID['tipping-points'].id
                 ? 'text-rose-800 bg-rose-50 border border-rose-200 font-semibold shadow-xs'
                 : 'hover:text-rose-700 hover:bg-slate-100'
             }`}
             title="Consulter l'état des lieux scientifique des 9 points de bascule climatiques"
           >
             <ShieldAlert className="w-3.5 h-3.5 text-rose-600" />
-            <span>Points de Bascule</span>
+            <span>{SITE_SECTION_BY_ID['tipping-points'].desktopLabel}</span>
           </button>
 
           <button
-            onClick={() => handleTabClick('causal')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID.causal.id)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
-              currentTab === 'causal'
+              currentTab === SITE_SECTION_BY_ID.causal.id
                 ? 'text-amber-900 bg-amber-50 border border-amber-200 font-semibold shadow-xs'
                 : 'hover:text-amber-800 hover:bg-slate-100'
             }`}
           >
             <Network className="w-3.5 h-3.5 text-amber-600" />
-            <span>Enquête Énergie</span>
-            <span className="hidden xl:inline text-slate-500">&amp; Pétrole</span>
+            <span>{SITE_SECTION_BY_ID.causal.desktopLabel}</span>
+            <span className="hidden xl:inline text-slate-500">{SITE_SECTION_BY_ID.causal.desktopSuffix}</span>
           </button>
 
           <button
-            onClick={() => handleTabClick('spec')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID.spec.id)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
-              currentTab === 'spec'
+              currentTab === SITE_SECTION_BY_ID.spec.id
                 ? 'text-teal-800 bg-teal-50 border border-teal-200 font-semibold shadow-xs'
                 : 'hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <FileText className="w-3.5 h-3.5 text-teal-600" />
-            <span>Spécifications</span>
+            <span>{SITE_SECTION_BY_ID.spec.desktopLabel}</span>
           </button>
 
           <button
-            onClick={() => handleTabClick('sources')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID.sources.id)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap cursor-pointer shrink-0 ${
-              currentTab === 'sources'
+              currentTab === SITE_SECTION_BY_ID.sources.id
                 ? 'text-sky-800 bg-sky-50 border border-sky-200 font-semibold shadow-xs'
                 : 'hover:text-slate-900 hover:bg-slate-100'
             }`}
             title="Consulter l'ensemble des sources, données et publications scientifiques vérifiées"
           >
             <BookOpen className="w-3.5 h-3.5 text-sky-600" />
-            <span>Sources &amp; Données</span>
+            <span>{SITE_SECTION_BY_ID.sources.desktopLabel}</span>
           </button>
 
           <button
@@ -187,9 +188,9 @@ export const TopBar: React.FC<TopBarProps> = ({
           </span>
 
           <button
-            onClick={() => handleTabClick('map')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID.map.id)}
             className={`flex items-center justify-between p-2.5 rounded-lg text-xs font-medium text-left transition-colors ${
-              currentTab === 'map'
+              currentTab === SITE_SECTION_BY_ID.map.id
                 ? 'bg-sky-50 text-sky-800 border border-sky-200 font-semibold'
                 : 'text-slate-700 hover:bg-slate-50'
             }`}
@@ -197,17 +198,17 @@ export const TopBar: React.FC<TopBarProps> = ({
             <div className="flex items-center gap-2.5">
               <Globe className="w-4 h-4 text-sky-600 shrink-0" />
               <div>
-                <span className="block font-semibold text-slate-900">Planisphère &amp; Indicateurs</span>
+                <span className="block font-semibold text-slate-900">{SITE_SECTION_BY_ID.map.mobileLabel}</span>
                 <span className="block text-[11px] text-slate-500 font-normal">Cartes biophysiques, stress thermique et courbes KPI</span>
               </div>
             </div>
-            {currentTab === 'map' && <span className="w-2 h-2 rounded-full bg-sky-600" />}
+            {currentTab === SITE_SECTION_BY_ID.map.id && <span className="w-2 h-2 rounded-full bg-sky-600" />}
           </button>
 
           <button
-            onClick={() => handleTabClick('comparative-dashboard')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID['comparative-dashboard'].id)}
             className={`flex items-center justify-between p-2.5 rounded-lg text-xs font-medium text-left transition-colors ${
-              currentTab === 'comparative-dashboard'
+              currentTab === SITE_SECTION_BY_ID['comparative-dashboard'].id
                 ? 'bg-emerald-50 text-emerald-800 border border-emerald-300 font-bold'
                 : 'text-slate-700 hover:bg-slate-50'
             }`}
@@ -216,7 +217,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               <LayoutDashboard className="w-4 h-4 text-emerald-600 shrink-0" />
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="block font-semibold text-slate-900">Dashboard Comparatif Global</span>
+                  <span className="block font-semibold text-slate-900">{SITE_SECTION_BY_ID['comparative-dashboard'].mobileLabel}</span>
                   <span className="text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-emerald-100 text-emerald-800 border border-emerald-300">
                     A vs B
                   </span>
@@ -224,13 +225,13 @@ export const TopBar: React.FC<TopBarProps> = ({
                 <span className="block text-[11px] text-slate-500 font-normal">Cartes d'impact synthétisant les bénéfices de l'action</span>
               </div>
             </div>
-            {currentTab === 'comparative-dashboard' && <span className="w-2 h-2 rounded-full bg-emerald-600" />}
+            {currentTab === SITE_SECTION_BY_ID['comparative-dashboard'].id && <span className="w-2 h-2 rounded-full bg-emerald-600" />}
           </button>
 
           <button
-            onClick={() => handleTabClick('tipping-points')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID['tipping-points'].id)}
             className={`flex items-center justify-between p-2.5 rounded-lg text-xs font-medium text-left transition-colors ${
-              currentTab === 'tipping-points'
+              currentTab === SITE_SECTION_BY_ID['tipping-points'].id
                 ? 'bg-rose-50 text-rose-800 border border-rose-200 font-semibold'
                 : 'text-slate-700 hover:bg-slate-50'
             }`}
@@ -238,17 +239,17 @@ export const TopBar: React.FC<TopBarProps> = ({
             <div className="flex items-center gap-2.5">
               <ShieldAlert className="w-4 h-4 text-rose-600 shrink-0" />
               <div>
-                <span className="block font-semibold text-slate-900">Points de Bascule Climatiques</span>
+                <span className="block font-semibold text-slate-900">{SITE_SECTION_BY_ID['tipping-points'].mobileLabel}</span>
                 <span className="block text-[11px] text-slate-500 font-normal">Diagnostic des 9 seuils critiques du système Terre</span>
               </div>
             </div>
-            {currentTab === 'tipping-points' && <span className="w-2 h-2 rounded-full bg-rose-600" />}
+            {currentTab === SITE_SECTION_BY_ID['tipping-points'].id && <span className="w-2 h-2 rounded-full bg-rose-600" />}
           </button>
 
           <button
-            onClick={() => handleTabClick('causal')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID.causal.id)}
             className={`flex items-center justify-between p-2.5 rounded-lg text-xs font-medium text-left transition-colors ${
-              currentTab === 'causal'
+              currentTab === SITE_SECTION_BY_ID.causal.id
                 ? 'bg-amber-50 text-amber-900 border border-amber-200 font-semibold'
                 : 'text-slate-700 hover:bg-slate-50'
             }`}
@@ -256,17 +257,17 @@ export const TopBar: React.FC<TopBarProps> = ({
             <div className="flex items-center gap-2.5">
               <Network className="w-4 h-4 text-amber-600 shrink-0" />
               <div>
-                <span className="block font-semibold text-slate-900">Enquête Chaîne Matérielle &amp; Pétrole</span>
+                <span className="block font-semibold text-slate-900">{SITE_SECTION_BY_ID.causal.mobileLabel}</span>
                 <span className="block text-[11px] text-slate-500 font-normal">Traçabilité physique de l'EROI et d'Haber-Bosch</span>
               </div>
             </div>
-            {currentTab === 'causal' && <span className="w-2 h-2 rounded-full bg-amber-600" />}
+            {currentTab === SITE_SECTION_BY_ID.causal.id && <span className="w-2 h-2 rounded-full bg-amber-600" />}
           </button>
 
           <button
-            onClick={() => handleTabClick('spec')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID.spec.id)}
             className={`flex items-center justify-between p-2.5 rounded-lg text-xs font-medium text-left transition-colors ${
-              currentTab === 'spec'
+              currentTab === SITE_SECTION_BY_ID.spec.id
                 ? 'bg-teal-50 text-teal-800 border border-teal-200 font-semibold'
                 : 'text-slate-700 hover:bg-slate-50'
             }`}
@@ -274,17 +275,17 @@ export const TopBar: React.FC<TopBarProps> = ({
             <div className="flex items-center gap-2.5">
               <FileText className="w-4 h-4 text-teal-600 shrink-0" />
               <div>
-                <span className="block font-semibold text-slate-900">Spécification &amp; Algorithmes</span>
+                <span className="block font-semibold text-slate-900">{SITE_SECTION_BY_ID.spec.mobileLabel}</span>
                 <span className="block text-[11px] text-slate-500 font-normal">Formules biophysiques détaillées et équations différentielles</span>
               </div>
             </div>
-            {currentTab === 'spec' && <span className="w-2 h-2 rounded-full bg-teal-600" />}
+            {currentTab === SITE_SECTION_BY_ID.spec.id && <span className="w-2 h-2 rounded-full bg-teal-600" />}
           </button>
 
           <button
-            onClick={() => handleTabClick('sources')}
+            onClick={() => handleTabClick(SITE_SECTION_BY_ID.sources.id)}
             className={`flex items-center justify-between p-2.5 rounded-lg text-xs font-medium text-left transition-colors ${
-              currentTab === 'sources'
+              currentTab === SITE_SECTION_BY_ID.sources.id
                 ? 'bg-sky-50 text-sky-800 border border-sky-200 font-semibold'
                 : 'text-slate-700 hover:bg-slate-50'
             }`}
@@ -292,11 +293,11 @@ export const TopBar: React.FC<TopBarProps> = ({
             <div className="flex items-center gap-2.5">
               <BookOpen className="w-4 h-4 text-sky-600 shrink-0" />
               <div>
-                <span className="block font-semibold text-slate-900">Sources &amp; Données Scientifiques</span>
+                <span className="block font-semibold text-slate-900">{SITE_SECTION_BY_ID.sources.mobileLabel}</span>
                 <span className="block text-[11px] text-slate-500 font-normal">Publications à comité de lecture et bases de données vérifiées</span>
               </div>
             </div>
-            {currentTab === 'sources' && <span className="w-2 h-2 rounded-full bg-sky-600" />}
+            {currentTab === SITE_SECTION_BY_ID.sources.id && <span className="w-2 h-2 rounded-full bg-sky-600" />}
           </button>
 
           <button

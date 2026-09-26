@@ -76,7 +76,7 @@ git commit -m "Add model-qualified habitability status rules"
 - Create: `tests/siteStructure.test.ts`
 
 **Interfaces:**
-- `SITE_SECTIONS` is an `as const` six-entry list; each entry contains `id`, `desktopLabel`, `mobileLabel`, and `primaryView`.
+- `SITE_SECTIONS` is an `as const` six-entry list; each entry contains `id`, `desktopLabel`, `mobileLabel`, and `primaryView`, with optional `desktopSuffix` for the existing responsive map and causal labels.
 - `AppTabType` is derived from `SITE_SECTIONS[number]['id']` and re-exported from `TopBar.tsx` for existing consumers.
 - Contract IDs are exactly `map`, `comparative-dashboard`, `tipping-points`, `causal`, `spec`, and `sources`, each with its current primary view component.
 
@@ -119,7 +119,7 @@ git commit -m "Define and guard top-level site sections"
 
 - [ ] **Step 1: Add failing UI-wiring assertions**
 
-Add structural assertions that `WorldMap.tsx` and `CountryInspector.tsx` each call the shared status helper and gate record rendering through `shouldShowHistoricalTemperatureRecord`. They must fail before either view is wired to the helper.
+Add structural assertions that `WorldMap.tsx` and `CountryInspector.tsx` each call the shared status helper, and that `CountryInspector.tsx` gates its existing record card through `shouldShowHistoricalTemperatureRecord`. The tests must fail before the views are wired to the helpers.
 
 - [ ] **Step 2: Run the focused contract test and verify failure**
 
@@ -128,7 +128,7 @@ Expected: FAIL on missing helper wiring in the views.
 
 - [ ] **Step 3: Wire the two views**
 
-Place the same concise badge beside the selected zone name in both views. Show its explanation as nearby text or an accessible title/tooltip. Keep map fills and existing warnings unchanged. Wrap each record card in `shouldShowHistoricalTemperatureRecord(simulationState.year)`; do not alter record values or registry. If either simulation input is unavailable, render no status rather than a default category.
+Place the same concise badge beside the selected zone name in both views. Show its explanation as nearby text or an accessible title/tooltip. Keep map fills and existing warnings unchanged. Wrap the `CountryInspector` record card in `shouldShowHistoricalTemperatureRecord(simulationState.year)`; do not alter record values or registry. If either simulation input is unavailable, render no status rather than a default category.
 
 - [ ] **Step 4: Run focused tests and type checking**
 

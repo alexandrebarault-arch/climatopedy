@@ -18,7 +18,7 @@ La page Carte compose l’en-tête pédagogique, `WorldMap`, la chronologie, la 
 
 ### Visibilité des records futurs
 
-Un record absolu observé reste une référence historique et s’affiche dans les détails du pays uniquement pour les années simulées jusqu’à 2026 inclus. Il est masqué pour une année ultérieure, y compris 2100 et l’horizon 2100–2200. La valeur ne change pas dans le registre des sources ou les données. L’interface distingue clairement un record historique d’une valeur de scénario simulée.
+Un record absolu observé reste une référence historique et s’affiche dans la fiche pays `CountryInspector` uniquement pour les années simulées jusqu’à 2026 inclus. Il est masqué pour une année ultérieure, y compris 2100 et l’horizon 2100–2200. Il n’est pas actuellement rendu dans la carte d’analyse `WorldMap`. La valeur ne change pas dans le registre des sources ou les données. L’interface distingue clairement un record historique d’une valeur de scénario simulée.
 
 ### Indicateur d’habitabilité
 
@@ -50,8 +50,8 @@ Le document décrit la structure. Les tests protègent un petit ensemble de cont
 
 ## Fichiers envisagés
 
-- `src/components/WorldMap.tsx` : calculer et afficher le statut de la zone sélectionnée, et masquer les records dans le futur.
-- `src/components/CountryInspector.tsx` : afficher le même statut et appliquer la même règle de visibilité des records.
+- `src/components/WorldMap.tsx` : calculer et afficher le statut de la zone sélectionnée.
+- `src/components/CountryInspector.tsx` : afficher le même statut et masquer le record après 2026.
 - Un petit helper pur dans `src/engine/` ou `src/utils/` : retourner une clé, un libellé, une explication et une sévérité depuis le pic de Tw et les calories, avec des tests unitaires ciblés.
 - Un contrat partagé de sections du site, utilisé par la navigation et le rendu dans `App.tsx`.
 - `docs/site-architecture.md` : guide des pages, de leur fonctionnement et des flux de données.
