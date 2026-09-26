@@ -1068,7 +1068,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Sun className="w-3.5 h-3.5 text-amber-600" />
-                          Pic caniculaire estival simulé
+                          Scénario de canicule (hypothèse)
                         </span>
                         <span className="font-mono text-amber-800 tabular-nums font-semibold">
                           {dyn.summerMaxTemp.toFixed(1)}°C{' '}
@@ -1082,7 +1082,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Thermometer className="w-3.5 h-3.5 text-rose-500" />
-                          Moyenne des maximales quotidiennes
+                          Moy. des maximales quotidiennes (estimée)
                         </span>
                         <span className="font-mono text-rose-800 tabular-nums font-medium">
                           {dyn.annualMaxTemp.toFixed(1)}°C
@@ -1093,7 +1093,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Thermometer className="w-3.5 h-3.5 text-indigo-500" />
-                          Moyenne des minimales quotidiennes
+                          Moy. des minimales quotidiennes (estimée)
                         </span>
                         <span className="font-mono text-indigo-800 tabular-nums font-medium">
                           {dyn.annualMinTemp.toFixed(1)}°C
@@ -1104,21 +1104,30 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Droplets className="w-3.5 h-3.5 text-sky-600" />
-                          Humidité dans l'air (en %)
+                          Humidité du scénario (en %)
                         </span>
                         <span className="font-mono text-sky-800 tabular-nums font-medium">
                           {dyn.summerHumidity}%
                         </span>
                       </div>
                       <p className="text-[9.5px] leading-snug text-slate-500">
-                        Tmax et Tmin sont les moyennes annuelles des maximales et minimales quotidiennes, et non des records absolus. Le passé est reconstruit à partir des anomalies mondiales; les écarts futurs proviennent des projections CMIP6 du CCKP, recalées sur la moyenne 2026 de CLIMATOPEDY. BAU suit SSP5-8.5, sobriété SSP1-2.6 et les autres réglages SSP2-4.5, par analogie : ces trajectoires locales ne sont pas couplées au calcul thermique mondial du moteur. Les zones composées sont des moyennes de pays. Après 2100, la valeur reste au niveau de fin de siècle disponible. Le pic estival demeure une hypothèse distincte.
+                        Les moyennes des maximales et minimales quotidiennes ne sont pas des records. Hors référence française, les températures de départ sont des paramètres du modèle; le passé est reconstruit et le futur suit des analogies CMIP6. Le pic et l'humidité de canicule sont des hypothèses; Tw est calculée à partir de ces deux paramètres.
                       </p>
+
+                      {activeCountryData.id === 'fra' && displayYear === 2026 && (
+                        <p className="text-[9.5px] leading-snug text-sky-900 bg-sky-50 border border-sky-100 rounded-lg p-2">
+                          Été 2026 observé : 24,0 °C de moyenne sur 24 h (+3,6 °C à la normale) et 53 jours en vague de chaleur. C’est un bilan saisonnier, pas une moyenne annuelle.{' '}
+                          <a className="underline font-medium" href="https://meteofrance.com/presse/bilan-climatique-de-lete-2026-juin-juillet-aout" target="_blank" rel="noreferrer">Météo-France</a>
+                        </p>
+                      )}
 
                       {/* Température moyenne annuelle */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Thermometer className="w-3.5 h-3.5 text-slate-500" />
-                          Température moyenne sur l'année
+                          {displayYear === 2026
+                            ? activeCountryData.id === 'fra' ? 'Normale annuelle (1991–2020)' : 'Référence annuelle du modèle'
+                            : 'Moyenne annuelle simulée'}
                         </span>
                         <span className="font-mono text-slate-800 tabular-nums font-medium">
                           {dyn.dryBulbTemp.toFixed(1)}°C{' '}

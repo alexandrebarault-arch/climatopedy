@@ -203,14 +203,14 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px]">
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Pic caniculaire estival simulé</span>
+                <span className="text-slate-500 block text-[10px]">Scénario de canicule (hypothèse)</span>
                 <span className="text-sm font-bold font-mono text-amber-700 tabular-nums">
                   {dynState.summerMaxTemp.toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Humidité de l'air</span>
+                <span className="text-slate-500 block text-[10px]">Humidité du scénario</span>
                 <span className="text-sm font-bold font-mono text-sky-700 tabular-nums">
                   {dynState.summerHumidity}%
                 </span>
@@ -218,7 +218,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
                 <span className="text-slate-500 block text-[10px] flex items-center justify-between">
-                  <span>Temp. Humide (Tw)</span>
+                  <span>Tw calculée</span>
                 </span>
                 <span
                   className={`text-sm font-bold font-mono tabular-nums ${
@@ -230,21 +230,25 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Moy. des maximales quotidiennes</span>
+                <span className="text-slate-500 block text-[10px]">Moy. des maximales quotidiennes (estimée)</span>
                 <span className="text-sm font-bold font-mono text-rose-700 tabular-nums">
                   {dynState.annualMaxTemp.toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Moy. des minimales quotidiennes</span>
+                <span className="text-slate-500 block text-[10px]">Moy. des minimales quotidiennes (estimée)</span>
                 <span className="text-sm font-bold font-mono text-indigo-800 tabular-nums">
                   {dynState.annualMinTemp.toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Moyenne annuelle</span>
+                <span className="text-slate-500 block text-[10px]">
+                  {Math.floor(simulationState.year) === 2026
+                    ? staticData.id === 'fra' ? 'Normale annuelle (1991–2020)' : 'Référence annuelle du modèle'
+                    : 'Moyenne annuelle simulée'}
+                </span>
                 <span className="text-sm font-bold font-mono text-slate-800 tabular-nums">
                   {dynState.dryBulbTemp.toFixed(1)}°C
                 </span>
@@ -252,8 +256,15 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             </div>
 
             <p className="text-[10px] leading-relaxed text-slate-500">
-              Tmax et Tmin désignent ici les moyennes annuelles des maxima et minima quotidiens, pas les records absolus. Le passé est reconstruit à partir des anomalies mondiales; les écarts futurs viennent des projections CMIP6 du CCKP, recalées sur la moyenne 2026 du modèle. BAU correspond à SSP5-8.5, sobriété à SSP1-2.6 et les autres réglages à SSP2-4.5 : ce sont des analogies, distinctes du calcul thermique mondial du moteur. Les zones composées utilisent une moyenne de leurs pays constitutifs. Après 2100, la valeur est maintenue au niveau de fin de siècle disponible. Le pic estival reste une hypothèse distincte de canicule.
+              Les moyennes des maximales et minimales quotidiennes ne sont pas des records. Hors référence française, les températures de départ sont des paramètres du modèle; le passé est reconstruit et le futur suit des analogies CMIP6. Le pic et l'humidité de canicule sont des hypothèses; Tw est calculée à partir de ces deux paramètres.
             </p>
+
+            {staticData.id === 'fra' && Math.floor(simulationState.year) === 2026 && (
+              <p className="text-[10px] leading-relaxed text-sky-900 bg-sky-50 border border-sky-100 rounded-lg p-2.5">
+                En observation, Météo-France mesure pour l’été 2026 une moyenne de 24,0 °C sur 24 h (+3,6 °C par rapport à la normale) et 53 jours en vague de chaleur. Ce bilan saisonnier n’est pas une moyenne annuelle.{' '}
+                <a className="underline font-medium" href="https://meteofrance.com/presse/bilan-climatique-de-lete-2026-juin-juillet-aout" target="_blank" rel="noreferrer">Bilan Météo-France</a>
+              </p>
+            )}
 
             <div className="text-[11px] text-slate-700 bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
               <span className="font-semibold text-slate-900 block mb-0.5">Seuil d’alerte thermique du modèle :</span>

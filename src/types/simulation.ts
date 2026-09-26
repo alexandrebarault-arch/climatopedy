@@ -33,8 +33,8 @@ export interface CountryStaticData {
   baseCohortSplit: [number, number, number]; // [% 0-14, % 15-64, % 65+]
   baseTemp: number;   // Température moyenne annuelle (°C)
   baseHumidity: number; // Humidité relative moyenne annuelle (%)
-  summerMaxTemp: number; // Température maximale estivale de canicule sous abri (°C)
-  summerHumidity: number; // Humidité relative estivale caniculaire (%)
+  summerMaxTemp: number; // Hypothèse ponctuelle de canicule, pas une normale ou un record mesuré (°C)
+  summerHumidity: number; // Humidité relative associée à l'hypothèse de canicule (%)
   patternScaling: number; // Multiplicateur de réchauffement régional vs mondial
   baseCaloriesDay: number; // Kcal/habitant/jour initial
   cropMix: {

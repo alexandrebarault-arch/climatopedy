@@ -117,7 +117,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrlLabel: 'Documentation des données et de l’API',
     gaiaRole: 'Les normales CMIP6-x0.25 de tas, tasmin et tasmax (2020–2039) fournissent les écarts entre moyenne annuelle et moyennes des minima/maxima quotidiens. Les changements 2080–2099 alimentent les trajectoires thermiques par pays.',
     keyDataOrQuote: 'Les valeurs futures sont des médianes d’ensemble conditionnelles à SSP1-2.6, SSP2-4.5 ou SSP5-8.5; elles décrivent des moyennes de période, pas une prévision météorologique pour 2100.',
-    reproducibilityNotes: 'Les sorties CCKP sont conservées localement dans cckpCountryTemperatures.json. Le tas est recalé sur la base 2026 de CLIMATOPEDY; les changements de tasmin/tasmax suivent les écarts du modèle. Correspondances : bau→SSP5-8.5, sobriety→SSP1-2.6, autres réglages→SSP2-4.5. Ces trajectoires locales sont des analogies et restent distinctes du calcul thermique mondial interne. Les zones multi-pays sont la moyenne simple des agrégats nationaux des membres déclarés. La climatologie 2080–2099 sert de valeur de fin de siècle à l’horizon 2100; au-delà, le changement climatique local est maintenu à ce niveau faute de projection CCKP intégrée après 2099. Les années historiques antérieures à 2026 restent reconstruites à partir des anomalies mondiales interpolées; le CRU observé n’a pas été intégré car son endpoint API public renvoyait un jeu vide lors de cette mise à jour.'
+    reproducibilityNotes: 'Les sorties CCKP sont conservées localement dans cckpCountryTemperatures.json. Le tas est recalé sur la base 2026 de CLIMATOPEDY; les changements de tasmin/tasmax suivent les écarts du modèle. Correspondances : bau→SSP5-8.5, sobriety→SSP1-2.6, autres réglages→SSP2-4.5. Ces trajectoires locales sont des analogies et restent distinctes du calcul thermique mondial interne. Les zones multi-pays sont la moyenne simple des agrégats nationaux des membres déclarés. La climatologie 2080–2099 sert de valeur de fin de siècle à l’horizon 2100; au-delà, le changement climatique local est maintenu à ce niveau faute de projection CCKP intégrée après 2099. Les années historiques antérieures à 2026 restent reconstruites à partir des anomalies mondiales interpolées; le CRU observé n’a pas été intégré car son endpoint API public renvoyait un jeu vide lors de cette mise à jour. Les valeurs d’humidité estivale et de pic caniculaire dans countriesData.ts restent des hypothèses de scénario, sans source d’observation nationale.'
   },
   {
     id: 'meteo-france-national-normal',
@@ -135,6 +135,25 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     gaiaRole: 'Ancre observée de la température moyenne annuelle française dans countriesData.ts : 12,97 °C, arrondie à 13,0 °C.',
     keyDataOrQuote: 'La normale 1991–2020 de la température moyenne annuelle en France est de 12,97 °C.',
     reproducibilityNotes: 'Cette référence nationale ancre la moyenne de la France uniquement. Les températures quotidiennes moyennes Tmin/Tmax et les autres zones utilisent les données CCKP, puis sont recalées selon la méthode décrite dans la fiche World Bank CCKP.'
+  },
+  {
+    id: 'meteo-france-summer-2026',
+    category: 'observatories',
+    categoryLabel: 'Observatoires & Données Satellites en Direct',
+    title: 'Bilan observé de l’été 2026 en France',
+    englishTitle: 'France summer 2026 climate assessment',
+    authors: 'Météo-France',
+    year: 2026,
+    publisher: 'Météo-France',
+    peerReviewed: false,
+    typeBadge: 'Observations saisonnières',
+    primaryUrl: 'https://meteofrance.com/presse/bilan-climatique-de-lete-2026-juin-juillet-aout',
+    primaryUrlLabel: 'Bilan officiel de l’été 2026',
+    secondaryUrl: 'https://meteofrance.com/presse/bilan-climatique-de-juin-2026-le-mois-de-juin-le-plus-chaud-jamais-enregistre-avec-une',
+    secondaryUrlLabel: 'Bilan officiel de juin 2026',
+    gaiaRole: 'Point de comparaison observé pour la France en 2026; il permet de distinguer les conditions exceptionnelles de l’été des normales annuelles de référence et des scénarios thermiques du modèle.',
+    keyDataOrQuote: 'Météo-France estime la température moyenne sur 24 h de l’été 2026 à 24,0 °C, soit +3,6 °C par rapport à la normale; 53 jours ont été comptabilisés en vague de chaleur.',
+    reproducibilityNotes: 'Cette moyenne saisonnière jour-nuit ne peut pas être comparée directement à la normale annuelle 1991–2020, à une température maximale quotidienne moyenne ou au scénario ponctuel de canicule de CLIMATOPEDY. L’année 2026 n’est pas terminée.'
   },
   {
     id: 'vermeer-rahmstorf-2009',

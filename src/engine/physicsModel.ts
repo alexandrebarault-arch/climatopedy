@@ -93,7 +93,7 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
     const dryBulb = temperatures.tas;
     const summerMax = c.summerMaxTemp;
     const wetBulb = calculateWetBulbStull(dryBulb, c.baseHumidity);
-    // Calcul rigoureux de Roland Stull (2011) sur les canicules estivales observables aujourd'hui (2026)
+    // Calcul de Stull appliqué au couple chaleur-humidité hypothétique du scénario, pas à une observation 2026.
     const wetBulbPeak = calculateWetBulbStull(summerMax, c.summerHumidity);
 
     const cohorts: DemographicCohorts = { p0, p1, p2, total: c.basePop2026 };
