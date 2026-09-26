@@ -20,6 +20,10 @@ Après 2100, CCKP n’apporte pas de nouvelles projections. L’application prol
 
 Les cartes distinguent maintenant le **Tw du scénario caniculaire** de la **moyenne annuelle des Tmax quotidiennes**. Une humidité d’été estimée faible peut produire un Tw modéré dans un climat où l’air reste très chaud; le calque Tw ne représente donc pas la température maximale de l’air. Les valeurs sont calculées pour 34 zones représentatives et partagées par les pays associés à chacune. Le relevé exhaustif pays/polygone × année × scénario est généré dans `reports/temperature-trajectory-by-country-1901-2200.csv`, avec la méthode et la zone source.
 
+### Vérification de la France en 2026
+
+Les champs modélisés du panneau en 2026 ne sont pas des observations de l’année : ils démarrent à partir du point de référence NASA POWER/MERRA-2 (1991–2020), recalé sur l’ancre globale interne du modèle. Au 26 septembre 2026, l’année civile n’est pas complète et les mesures par pays ne sont pas injectées dans ces champs. On affiche donc séparément le bilan observé de Météo-France : moyenne nationale sur 24 h de 24,0 °C durant l’été juin–août (+3,6 °C à la normale), 53 jours de vague de chaleur et 178 franchissements de 40 °C sur son réseau principal. Ces statistiques nationales saisonnières ne sont pas interchangeables avec le P99 ponctuel, la moyenne annuelle simulée, ou une température maximale quotidienne moyenne du panneau. [Bilan climatique de l’été 2026 de Météo-France](https://meteofrance.com/presse/bilan-climatique-de-lete-2026-juin-juillet-aout).
+
 ## Records absolus
 
 Les records sont séparés des normales et des scénarios. Seuls les records intégrés avec une source officielle directe sont affichés. « Indisponible » signifie qu’aucune source vérifiée n’est intégrée; aucune extrapolation ne remplit ce manque. Une zone regroupée affiche, si disponible, le record maximal parmi ses membres documentés et le ratio de couverture : cela ne représente pas un maximum exhaustif de la région.

@@ -14,13 +14,15 @@ interface CountryInspectorProps {
   onClose: () => void;
   simulationState: GlobalBiophysicalState;
   onSelectCountry: (id: string) => void;
+  onSeekYear: (year: number) => void;
 }
 
 export const CountryInspector: React.FC<CountryInspectorProps> = ({
   countryId,
   onClose,
   simulationState,
-  onSelectCountry
+  onSelectCountry,
+  onSeekYear
 }) => {
   // Fermeture par touche Échap
   useEffect(() => {
@@ -123,6 +125,25 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
           </div>
         </div>
 
+        <div className="shrink-0 px-4 py-2 border-b border-slate-200 bg-white">
+          <div className="flex items-center justify-between gap-3">
+            <label htmlFor="country-year-slider" className="text-[11px] font-semibold text-slate-600">Année de la simulation</label>
+            <output htmlFor="country-year-slider" className="font-mono text-sm font-bold text-sky-800 tabular-nums">{modelYear}</output>
+          </div>
+          <input
+            id="country-year-slider"
+            type="range"
+            min={1900}
+            max={2200}
+            step={1}
+            value={modelYear}
+            onChange={(e) => onSeekYear(Number(e.target.value))}
+            aria-label={`Choisir l’année de simulation, actuellement ${modelYear}`}
+            className="mt-1 w-full h-2 accent-sky-600 cursor-pointer"
+          />
+          <div className="flex justify-between text-[9px] text-slate-400"><span>1900</span><span>2200</span></div>
+        </div>
+
         {/* Alertes critiques si seuils dépassés (termes limpides) */}
         {(isLethalHeat || isFamine) && (
           <div className="p-3 bg-rose-50 border-b border-rose-200 text-rose-800 text-xs flex items-start gap-2.5 shrink-0">
@@ -154,6 +175,13 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
           <p className="text-[10px] text-slate-600 bg-sky-50 border border-sky-100 rounded-lg p-2.5">
             Les valeurs projetées par pays sont des sorties de CLIMATOPEDY conditionnelles à ses paramètres. Les décimales affichées ne signifient pas que ces résultats sont validés à l’échelle nationale, notamment pour la démographie et la mortalité.
           </p>
+
+          {staticData.id === 'fra' && modelYear === 2026 && (
+            <p className="text-[10px] leading-relaxed text-amber-950 bg-amber-50 border border-amber-200 rounded-lg p-2.5">
+              <strong>France, observations 2026 :</strong> les chiffres du modèle ci-dessous partent de la normale locale 1991–2020 recalée; ils ne sont pas la météo observée en 2026. Au bilan complet de l’été (juin–août), Météo-France rapporte 24,0°C de moyenne nationale sur 24 h (+3,6°C), 53 jours de vagues de chaleur et 178 franchissements de 40°C sur son réseau principal. L’année civile 2026 est encore incomplète.{' '}
+              <a className="underline font-medium" href="https://meteofrance.com/presse/bilan-climatique-de-lete-2026-juin-juillet-aout" target="_blank" rel="noreferrer">Source Météo-France</a>
+            </p>
+          )}
 
           {/* SECTION 1 : POPULATION & ÂGES */}
           <div className="bg-slate-50/80 rounded-xl p-3.5 border border-slate-200 space-y-2.5 shadow-2xs">
@@ -232,7 +260,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
                 <span className="text-sm font-bold font-mono text-amber-700 tabular-nums">
                   {dynState.summerMaxTemp.toFixed(1)}°C
                 </span>
-                <span className="text-[9px] text-slate-400 block">{modelYear < 2026 ? 'Reconstruction' : modelYear === 2026 ? 'Référence 1991–2020' : post2100 ? 'TXx · extension exploratoire' : 'Delta TXx CMIP6'}</span>
+                <span className="text-[9px] text-slate-400 block">{modelYear < 2026 ? 'Reconstruction' : modelYear === 2026 ? 'Base MERRA-2 1991–2020 recalée' : post2100 ? 'TXx · extension exploratoire' : 'Delta TXx CMIP6'}</span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
@@ -307,7 +335,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               <span className="font-semibold text-slate-900 block mb-0.5">Seuil d’alerte thermique du modèle :</span>
               <span>
                 {dynState.wetBulbPeak === null
-                  ? 'Tw non calculable : les entrées dépassent le domaine d’usage de la formule de Stull (Ta −20 à 50°C, humidité 5 à 99%).'
+                  ? `Tw non calculable avec Stull : Ta ${dynState.summerMaxTemp.toFixed(1)}°C (domaine de Stull : −20 à 50°C), RH ${dynState.summerHumidity.toFixed(1)}% (domaine de Stull : 5 à 99%). Une valeur hors de ces limites n’est pas extrapolée.`
                   : dynState.wetBulbPeak >= 31.0
                   ? `Tw simulée ≥ 31°C, au-dessus du seuil d'alerte configuré dans le modèle. Ce seuil n'est pas une limite universelle de mortalité.`
                   : dynState.wetBulbPeak >= 28.0
