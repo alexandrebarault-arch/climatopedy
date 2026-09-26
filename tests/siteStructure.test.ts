@@ -92,7 +92,7 @@ test('map analysis and country inspector use the shared status and future record
   assert.match(inspector, /Non calculable/, 'country detail must represent an unavailable Tw explicitly');
   assert.match(map, /return getWetBulbColor\(dyn\.wetBulbPeak\)/, 'map fills must use the tested wet-bulb color scale');
   assert.match(map, /WET_BULB_COLOR_BANDS\.map/, 'legend swatches must use the same bands as the map');
-  assert.match(map, /normale proxy NASA 1991–2020/, 'map must distinguish its 2026 reference normal from observed weather');
+  assert.match(map, /normal local 1991–2020 est recalé/, 'map must distinguish its climate reference from observed annual weather');
 });
 
 test('site architecture guide covers the pages, shared state, data flow and verification commands', async () => {

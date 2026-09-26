@@ -9,6 +9,7 @@ import { calculateScenarioWetBulb, calculateWetBulbStull } from './physicsModel'
 import { getHistoricalCountryTemperatures } from './countryTemperatures';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
+import { getAnnualGlobalTemperatureAnomaly, GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C } from './temperatureReference';
 
 const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
@@ -286,9 +287,10 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
 
     const climate = climateRows.get(c.id);
     if (!climate) throw new Error(`Données de chaleur manquantes pour ${c.id}.`);
-    const referenceAnomaly = HISTORICAL_BENCHMARKS.filter(item => item.year >= 1991 && item.year <= 2020)
-      .reduce((total, item) => total + item.surfaceTemperatureAnomaly, 0) / HISTORICAL_BENCHMARKS.filter(item => item.year >= 1991 && item.year <= 2020).length;
-    const historicalDelta = (b.surfaceTemperatureAnomaly - referenceAnomaly) * c.patternScaling;
+    const annualGlobalAnomaly = year >= 1901 && year <= 2025
+      ? getAnnualGlobalTemperatureAnomaly(year)
+      : b.surfaceTemperatureAnomaly;
+    const historicalDelta = (annualGlobalAnomaly - GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C) * c.patternScaling;
     const dryBulb = climate.annualMeanTempC + historicalDelta;
     const baselineTemperatures = { tas: climate.annualMeanTempC, tasmin: climate.annualMeanDailyMinTempC, tasmax: climate.annualMeanDailyMaxTempC };
     const temperatures = getHistoricalCountryTemperatures(c.id, dryBulb, baselineTemperatures);

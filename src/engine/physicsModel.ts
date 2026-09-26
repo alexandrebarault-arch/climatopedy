@@ -1,5 +1,6 @@
 import { COUNTRIES_DATA } from '../data/countriesData';
 import { getCountryTemperatures } from './countryTemperatures';
+import { APP_2026_GLOBAL_ANOMALY_C, GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C } from './temperatureReference';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
 import {
@@ -82,7 +83,7 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
   const initialPools: [number, number, number, number] = referencePools.map(pool => pool * poolScale) as [number, number, number, number];
   const initialCumulativeEmissions = 690.0; // GtC depuis 1750
   const initialCo2 = 278.0 + (initialPools.reduce((a, b) => a + b, 0) / 2.123);
-  const initialT1 = 1.34; // Repère NOAA pour l'anomalie mondiale 2025, utilisé au départ 2026 (1850-1900)
+  const initialT1 = APP_2026_GLOBAL_ANOMALY_C; // Ancre interne retenue pour le départ 2026 (1850–1900)
   const initialT2 = 0.55; // Océan profond
   const initialSeaLevel = 0.12; // Mètres depuis 2000
 
@@ -103,9 +104,9 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
     const baselineTemperatures = { tas: climate.annualMeanTempC, tasmin: climate.annualMeanDailyMinTempC, tasmax: climate.annualMeanDailyMaxTempC };
     const temperatures = getCountryTemperatures(c.id, baselineTemperatures, 2026, scenarioConfig?.id);
     const dryBulb = temperatures.tas;
-    const summerMax = climate.heatwaveScenarioTempC;
+    const summerMax = climate.heatwaveScenarioTempC + (initialT1 - GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C) * c.patternScaling;
     const wetBulb = calculateWetBulbStull(dryBulb, c.baseHumidity);
-    const wetBulbPeak = climate.heatwaveWetBulbC;
+    const wetBulbPeak = calculateScenarioWetBulb(summerMax, climate.heatwaveScenarioHumidityPct);
 
     const cohorts: DemographicCohorts = { p0, p1, p2, total: c.basePop2026 };
     const baseMortalityRate = c.baseMortality / 1000.0; // En taux unitaire
@@ -301,7 +302,7 @@ export function stepSimulation(
     const climate = climateRows.get(staticC.id);
     if (!climate) throw new Error(`Données de chaleur manquantes pour ${staticC.id}.`);
     const baselineTemperatures = { tas: climate.annualMeanTempC, tasmin: climate.annualMeanDailyMinTempC, tasmax: climate.annualMeanDailyMaxTempC };
-    const temperatures = getCountryTemperatures(staticC.id, baselineTemperatures, next.year, scenarioConfig?.id);
+    const temperatures = getCountryTemperatures(staticC.id, baselineTemperatures, next.year, scenarioConfig?.id, next.surfaceTemperatureAnomaly);
     const localDryBulb = temperatures.tas;
     cState.dryBulbTemp = localDryBulb;
     cState.annualMinTemp = temperatures.tasmin;
