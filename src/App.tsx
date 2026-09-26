@@ -192,6 +192,7 @@ export default function App() {
   };
 
   const handleSeekYear = (year: number) => {
+    setIsPlaying(false);
     setCurrentYear(Math.max(1900, Math.min(2200, year)));
   };
 
@@ -405,6 +406,7 @@ export default function App() {
         onClose={() => setSelectedCountryId(null)}
         simulationState={currentTrajectoryState}
         onSelectCountry={setSelectedCountryId}
+        onSeekYear={handleSeekYear}
       />
 
       {/* Pop-up de recommandation d'usage pour utilisateurs mobiles */}

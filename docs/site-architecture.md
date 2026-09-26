@@ -35,7 +35,7 @@ Il n’y a pas de routeur par URL pour les pages : `currentTab` choisit la secti
 10. `AiFutureDebateCard` : module de discussion autour du futur.
 11. Une carte d’accès à la vue Sources & Données.
 
-`CountryInspector` est un panneau latéral global monté par `App`; il reçoit le pays sélectionné et l’état de simulation courant. Le record absolu de température est uniquement rendu dans ce panneau. Il reste visible jusqu’en 2026 inclus et est masqué pour toute année ultérieure, car il s’agit d’une observation historique et non d’une projection. La carte d’analyse interne à `WorldMap` n’affiche pas ce record.
+`CountryInspector` est un panneau latéral global monté par `App`; il reçoit le pays sélectionné et l’état de simulation courant. Son curseur d’année modifie l’année globale via `onSeekYear`, comme la chronologie principale; il ne crée pas une seconde trajectoire indépendante. Le record absolu de température est uniquement rendu dans ce panneau. Il reste visible jusqu’en 2026 inclus et est masqué pour toute année ultérieure, car il s’agit d’une observation historique et non d’une projection. La carte d’analyse interne à `WorldMap` n’affiche pas ce record.
 
 La FAQ dans la barre supérieure choisit la section Carte puis défile jusqu’à l’ancre `faq-section`. Le tutoriel desktop et l’avertissement mobile sont des fenêtres contextuelles, pas des sections supplémentaires. Le menu mobile reproduit les six sections et ces accès d’aide.
 

@@ -85,6 +85,10 @@ test('map analysis and country inspector use the shared status and future record
   }
 
   assert.match(inspector, /shouldShowHistoricalTemperatureRecord\(simulationState\.year\)/);
+  assert.match(inspector, /type="range"/, 'country details must expose the year selector');
+  assert.ok(inspector.includes('min={1900}'), 'country year selector must begin at the historical timeline boundary');
+  assert.ok(inspector.includes('max={2200}'), 'country year selector must reach the model horizon');
+  assert.match(inspector, /onSeekYear\(Number\(e\.target\.value\)\)/, 'year selector must seek the shared simulation');
   assert.match(inspector, /Delta TXx CMIP6/, 'future P99 must disclose its extreme-temperature proxy');
   assert.match(inspector, /Delta Hurs saison chaude/, 'future humidity must disclose its humidity anomaly source');
   assert.match(map, /dyn\.annualMaxTemp\.toFixed\(1\)/, 'map must display the active year\'s mean daily maximum');
@@ -92,6 +96,9 @@ test('map analysis and country inspector use the shared status and future record
   assert.match(map, /projection du scénario/, 'future P99 label must not call a projection a 1991–2020 normal');
   assert.match(map, /Tw non calculable/, 'map must explain a Tw outside Stull\'s supported input range');
   assert.match(inspector, /Non calculable/, 'country detail must represent an unavailable Tw explicitly');
+  assert.ok(inspector.includes('domaine de Stull'), 'country detail must explain the reason Tw is unavailable');
+  assert.ok(inspector.includes('France, observations 2026'), 'France details must distinguish current observations from model reference values');
+  assert.ok(inspector.includes('bilan-climatique-de-lete-2026-juin-juillet-aout'), 'France 2026 observations must link to their official source');
   assert.match(map, /return getWetBulbColor\(dyn\.wetBulbPeak\)/, 'map fills must use the tested wet-bulb color scale');
   assert.match(map, /WET_BULB_COLOR_BANDS\.map/, 'legend swatches must use the same bands as the map');
   assert.match(map, /normal local 1991–2020 est recalé/, 'map must distinguish its climate reference from observed annual weather');
