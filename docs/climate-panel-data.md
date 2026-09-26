@@ -30,6 +30,14 @@ Les records sont séparés des normales et des scénarios. Seuls les records int
 
 Les records actuellement documentés concernent la France, les États-Unis, le Brésil, l’Inde, la Chine et l’Australie. La liste versionnée et les liens sont dans `src/data/verifiedTemperatureRecords.ts`.
 
+## Contrôle qualité exhaustif
+
+`npm run audit:climate` vérifie la couverture des pays de la carte, les 300 années et les trois scénarios, soit une ligne distincte par pays/territoire × année × scénario. Le registre (`reports/temperature-quality-checklist-1901-2200.csv`) contrôle les unités/bornes physiques larges, l’ordre des températures Tmin/moyenne/Tmax, le P99 par rapport à la moyenne annuelle des Tmax, l’humidité 0–100 %, le recalcul de Tw et les sauts d’une année à l’autre. `reports/temperature-quality-issues-1901-2200.csv` ne contient que les anomalies et limites de formule attendues; le rapport Markdown donne les règles, résultats et bilan pour chaque pays.
+
+Une anomalie objective fait échouer la commande après écriture des rapports et fournit une piste de correction; les valeurs ne sont ni lissées ni remplacées automatiquement. « Conforme » veut dire cohérent avec les règles internes, et ne prouve pas que chaque pays-année est exacte par rapport à une observation nationale. En 1901–2025, la série est une reconstruction; 2026 est un ancrage de modèle; 2027–2100 est conditionnel aux scénarios; 2101–2200 est exploratoire. Les pays partageant l’une des 34 zones ont la même source climatique représentative. Les cas Tw hors du domaine publié sont signalés comme limites connues, pas comme données manquantes.
+
+`npm run build` exécute automatiquement `npm run audit:climate`; une anomalie calculatoire bloque donc le build et le déploiement au lieu de passer silencieusement.
+
 ## Sources
 
 - NASA POWER Daily API : <https://power.larc.nasa.gov/docs/services/api/temporal/daily/>
@@ -42,4 +50,4 @@ Les records actuellement documentés concernent la France, les États-Unis, le B
 
 ## Régénération et vérification
 
-Exécuter `npx tsx scripts/generateClimatePanelData.ts` pour récupérer les normales NASA POWER, puis `npx tsx scripts/generateCckpHeatHazardData.ts` pour récupérer les projections TXx/Hurs CCKP par zone. `npx tsx scripts/generateTemperatureTrajectoryAudit.ts` régénère ensuite les exports pays × année × scénario et le rapport 1901–2200. Lancer enfin `npm test`, `npm run lint` et `npm run build`.
+Exécuter `npx tsx scripts/generateClimatePanelData.ts` pour récupérer les normales NASA POWER, puis `npx tsx scripts/generateCckpHeatHazardData.ts` pour récupérer les projections TXx/Hurs CCKP par zone. `npm run audit:climate` régénère les exports, le rapport trajectoire et le registre complet des contrôles qualité pays × année × scénario. Lancer enfin `npm test`, `npm run lint` et `npm run build` (le build relance automatiquement l’audit).

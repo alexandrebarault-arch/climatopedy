@@ -170,10 +170,11 @@ test('full BAU trajectory keeps annual temperature baselines continuous and mark
 
 test('temperature trajectories remain complete, ordered, and do not reset in 2026 or plateau after 2100', async () => {
   const runner = await import('../src/engine/simulationRunner.ts');
-  const [{ COUNTRIES_DATA }, temperatureReference, physics] = await Promise.all([
+  const [{ COUNTRIES_DATA }, temperatureReference, physics, quality] = await Promise.all([
     import('../src/data/countriesData.ts'),
     import('../src/engine/temperatureReference.ts'),
-    import('../src/engine/physicsModel.ts')
+    import('../src/engine/physicsModel.ts'),
+    import('../src/engine/temperatureQuality.ts')
   ]);
   const scenarios = [runner.SCENARIO_BAU, runner.SCENARIO_DELAYED, runner.SCENARIO_SOBRIETY];
   const trajectories = scenarios.map(scenario => runner.generateFullTrajectory(scenario, 1901, 2200));
@@ -193,6 +194,9 @@ test('temperature trajectories remain complete, ordered, and do not reset in 202
         assert.ok(state.summerHumidity >= 0 && state.summerHumidity <= 100, `${country.id}/${scenarios[scenarioIndex].id} RH outside physical bounds in ${year}`);
         assert.ok(state.summerMaxTemp >= state.annualMaxTemp, `${country.id}/${scenarios[scenarioIndex].id} P99 falls below annual mean Tmax in ${year}`);
         assert.equal(state.wetBulbPeak, physics.calculateScenarioWetBulb(state.summerMaxTemp, state.summerHumidity), `${country.id}/${scenarios[scenarioIndex].id} Tw not recalculated from P99 and RH in ${year}`);
+        const previous = index > 0 ? scenarioTrajectory[index - 1].countries[country.id] : undefined;
+        const qualityResult = quality.auditTemperatureYear(state, physics.calculateScenarioWetBulb(state.summerMaxTemp, state.summerHumidity), previous);
+        assert.equal(qualityResult.errors.length, 0, `${country.id}/${scenarios[scenarioIndex].id} quality audit failed in ${year}: ${qualityResult.errors.map(issue => issue.code).join(',')}`);
       }
       const y2025 = scenarioTrajectory.find(state => state.year === 2025)!.countries[country.id].dryBulbTemp;
       const y2026 = scenarioTrajectory.find(state => state.year === 2026)!.countries[country.id].dryBulbTemp;

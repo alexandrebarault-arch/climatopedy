@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { COUNTRIES_DATA } from '../src/data/countriesData.ts';
 import { GEO_COUNTRY_FEATURES } from '../src/data/worldMapGeo.ts';
 import { generateFullTrajectory, SCENARIO_BAU, SCENARIO_DELAYED, SCENARIO_SOBRIETY } from '../src/engine/simulationRunner.ts';
+import { getTemperatureDataClass } from '../src/engine/temperatureQuality.ts';
 
 const years = 300;
 const scenarios = [SCENARIO_BAU, SCENARIO_DELAYED, SCENARIO_SOBRIETY];
@@ -25,7 +26,7 @@ for (let index = 0; index < years; index++) {
   for (const feature of GEO_COUNTRY_FEATURES) {
     const values: Array<string | number | null> = [
       year, feature.id, feature.name, feature.simCountryId,
-      year <= 2025 ? 'reconstitution_historique_zone' : year <= 2100 ? 'scenario_CCKP_CMIP6_interpole' : 'extension_exploratoire_post_2100'
+      getTemperatureDataClass(year)
     ];
     for (const trajectory of trajectories) {
       const country = trajectory[index].countries[feature.simCountryId];
