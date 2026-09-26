@@ -215,10 +215,14 @@ test('temperature trajectories remain complete, ordered, and do not reset in 202
   assert.ok(Number.isFinite(temperatureReference.GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C));
 });
 
-test('map offers air Tmax separately from wet-bulb temperature', async () => {
+test('map defaults to combined human impact while keeping Tmax and wet-bulb as diagnostic layers', async () => {
   const { readFile } = await import('node:fs/promises');
   const source = await readFile(new URL('../src/components/WorldMap.tsx', import.meta.url), 'utf8');
+  assert.match(source, /useState<MetricLayer>\('human_impact'\)/);
+  assert.match(source, /setActiveMetric\('human_impact'\)/);
   assert.match(source, /setActiveMetric\('air_temperature'\)/);
+  assert.match(source, /annualMeanDailyMaxTempC/);
+  assert.match(source, /dyn\.annualBirths/);
   assert.match(source, /dyn\.annualMaxTemp/);
   assert.match(source, /Moyenne annuelle des Tmax quotidiennes/);
 });

@@ -35,6 +35,7 @@ import { getHabitabilityStatus } from '../engine/habitabilityStatus';
 import { getWetBulbColor, WET_BULB_COLOR_BANDS, WET_BULB_UNAVAILABLE_COLOR } from '../utils/wetBulbScale';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
+import { getHumanImpactColor, getHumanImpactScore, HUMAN_IMPACT_COLOR_BANDS, HUMAN_IMPACT_UNAVAILABLE_COLOR } from '../utils/humanImpactScale';
 
 const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
@@ -54,7 +55,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   currentYear
 }) => {
   const displayYear = currentYear !== undefined ? Math.floor(currentYear) : Math.floor(simulationState.year);
-  const [activeMetric, setActiveMetric] = useState<MetricLayer>('air_temperature');
+  const [activeMetric, setActiveMetric] = useState<MetricLayer>('human_impact');
   const [twOverlayMode, setTwOverlayMode] = useState<TwOverlayMode>('aboveTwAlertThreshold');
   const [hoveredFeature, setHoveredFeature] = useState<ProcessedCountryFeature | null>(null);
 
@@ -176,6 +177,20 @@ export const WorldMap: React.FC<WorldMapProps> = ({
     if (!dyn || !staticC) return '#cbd5e1';
 
     switch (activeMetric) {
+      case 'human_impact': {
+        const referenceTmax = climateRows.get(simId)?.annualMeanDailyMaxTempC;
+        if (!Number.isFinite(referenceTmax)) return HUMAN_IMPACT_UNAVAILABLE_COLOR;
+        const score = getHumanImpactScore({
+          annualMaxTemp: dyn.annualMaxTemp,
+          referenceMaxTemp: referenceTmax!,
+          caloriesPerCapita: dyn.calPerCapita,
+          baseBirthRatePerThousand: staticC.baseCohortSplit[1] / 100 * 0.49 * (staticC.baseFertility / 30) * 1000,
+          birthRatePerThousand: dyn.cohorts.total > 0 ? dyn.annualBirths / dyn.cohorts.total * 1000 : 0,
+          populationMillions: dyn.cohorts.total,
+        });
+        return getHumanImpactColor(score);
+      }
+
       case 'wet_bulb': {
         return getWetBulbColor(dyn.wetBulbPeak);
       }
@@ -257,6 +272,19 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
         {/* Calques biophysiques commutables */}
         <div id="tour-map-metrics" className="flex flex-wrap items-center gap-1 bg-slate-100/90 p-1 rounded-lg border border-slate-200 text-xs">
+          <button
+            onClick={() => setActiveMetric('human_impact')}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
+              activeMetric === 'human_impact'
+                ? 'bg-rose-50 text-rose-900 font-semibold border border-rose-200 shadow-2xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+            title="Indice exploratoire combinant réchauffement des Tmax, déficit calorique et baisse du taux de natalité simulés; la population ajuste le nombre de personnes exposées."
+          >
+            <Activity className="w-3.5 h-3.5" />
+            <span>Impact humain</span>
+          </button>
+
           <div className="flex items-center">
             <button
               onClick={() => setActiveMetric('air_temperature')}
@@ -268,7 +296,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               title="Moyenne annuelle des températures maximales quotidiennes; ce n’est ni le record absolu ni le pic caniculaire"
             >
               <Thermometer className="w-3.5 h-3.5" />
-              <span>Tmax de l’air</span>
+              <span>Tmax seule</span>
             </button>
           </div>
 
@@ -911,11 +939,15 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 px-2 pt-2 border-t border-slate-200 mt-1">
             <div className="flex min-w-0 flex-col gap-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.'}>
-                  {activeMetric === 'air_temperature' ? 'Moyenne annuelle des Tmax quotidiennes · °C :' : activeMetric === 'wet_bulb' ? 'Pic caniculaire Tw estimé · °C :' : 'Couche sélectionnée :'}
+                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'human_impact' ? 'Indice exploratoire : réchauffement des Tmax par rapport à la normale locale 1991–2020 (40 %), déficit sous 2 100 kcal/j (40 %), baisse du taux de natalité simulé (20 %). La population module le score de 0,7 à 1,0 selon le nombre de personnes exposées. Ce score n’est pas une mesure scientifique validée.' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.'}>
+                  {activeMetric === 'human_impact' ? 'Impact humain combiné · score exploratoire :' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des Tmax quotidiennes · °C :' : activeMetric === 'wet_bulb' ? 'Pic caniculaire Tw estimé · °C :' : 'Couche sélectionnée :'}
                 </span>
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  {activeMetric === 'air_temperature' ? [
+                  {activeMetric === 'human_impact' ? HUMAN_IMPACT_COLOR_BANDS.map(band => (
+                    <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700">
+                      <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
+                    </span>
+                  )) : activeMetric === 'air_temperature' ? [
                     { label: '<15°', color: '#2563eb' }, { label: '15–20°', color: '#38bdf8' },
                     { label: '20–25°', color: '#2dd4bf' }, { label: '25–30°', color: '#facc15' },
                     { label: '30–35°', color: '#fb923c' }, { label: '35–40°', color: '#ef4444' },
@@ -935,7 +967,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                 </div>
               </div>
               <span className="text-[9px] text-slate-500">
-                Valeur zonale modélisée; le normal local 1991–2020 est recalé sur l’anomalie mondiale 2025. Après 2100, prolongation exploratoire du scénario interne.
+                {activeMetric === 'human_impact'
+                  ? 'Indice de visualisation conditionnel au modèle, non validé comme indicateur de bien-être; population = portée de l’exposition, pas dommage intrinsèque.'
+                  : 'Valeur zonale modélisée; le normal local 1991–2020 est recalé sur l’anomalie mondiale 2025. Après 2100, prolongation exploratoire du scénario interne.'}
               </span>
             </div>
 
