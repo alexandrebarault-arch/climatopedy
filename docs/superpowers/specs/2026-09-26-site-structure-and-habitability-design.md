@@ -26,11 +26,13 @@ Afficher un statut court à côté du nom de la zone dans la carte d’analyse e
 
 | Statut | Règle | Sens affiché |
 | --- | --- | --- |
-| Conditions favorables dans le modèle | `wetBulbPeak < 26 °C` et `calPerCapita >= 2 100 kcal/personne/jour` | Aucun des deux repères d’alerte retenus n’est franchi. |
-| Habitabilité sous contraintes | `wetBulbPeak < 31 °C` et (`wetBulbPeak >= 26 °C` ou `calPerCapita < 2 100 kcal/personne/jour`) | Au moins un repère thermique ou alimentaire du modèle est franchi. |
-| Contraintes majeures dans le modèle | `wetBulbPeak >= 31 °C` | Le seuil thermique élevé d’alerte du modèle est atteint. |
+| Contraintes faibles | `wetBulbPeak < 26 °C` et `calPerCapita >= 2 100 kcal/personne/jour` | Les deux repères sélectionnés restent sous leur seuil de contrainte. |
+| Contraintes modérées | `26 <= wetBulbPeak < 27 °C` ou `1 900 <= calPerCapita < 2 100` | Premier niveau de contrainte thermique ou alimentaire. |
+| Contraintes fortes | `27 <= wetBulbPeak < 28 °C` ou `1 700 <= calPerCapita < 1 900` | Niveau élevé sur au moins un des deux indicateurs. |
+| Contraintes majeures | `28 <= wetBulbPeak < 29 °C` ou `1 500 <= calPerCapita < 1 700` | Niveau élevé d'un indicateur dans le scénario modélisé. |
+| Contraintes très fortes | `wetBulbPeak >= 29 °C` ou `calPerCapita < 1 500` | Niveau le plus élevé des classes de visualisation choisies. |
 
-Si les repères thermique et alimentaire sont tous deux franchis, la catégorie thermique la plus élevée prévaut. Cela évite d’inventer un nouveau seuil alimentaire. Chaque statut indique qu’il s’agit d’un indicateur exploratoire, calculé à partir du pic de Tw simulé et du repère alimentaire de 2 100 kcal du modèle. Il ne détermine pas si un pays est réellement habitable ou inhabitable. L’interface n’emploie pas le verdict catégorique « inhabitable ». Les couleurs de carte, alertes et valeurs détaillées actuelles restent en place.
+Si les repères thermique et alimentaire donnent des catégories différentes, la plus contraignante prévaut. Les seuils intermédiaires servent à faire apparaître les évolutions dans la plage de valeurs simulée; ils ne sont pas des frontières scientifiques validées d’habitabilité. Le calque principal passe du jaune pâle à l’orange et au rouge sombre selon ces contraintes simulées; les couches Tmax et Tw restent disponibles séparément. Une absence de Tw et l’absence de stress calorique connu restent en gris « données indisponibles », jamais en classe favorable. Le libellé et la légende précisent que ce statut ne détermine pas si un pays est réellement habitable ou inhabitable.
 
 ## Contrat de structure et harnais de régression
 
@@ -77,4 +79,4 @@ Le document décrit la structure. Les tests protègent un petit ensemble de cont
 
 ## Point à valider
 
-Les trois statuts et leurs règles servent à interpréter les sorties du modèle ; ce ne sont pas des critères d’habitabilité validés scientifiquement. « Conditions favorables » signifie uniquement que les deux repères retenus ne sont pas franchis. Cela ne garantit ni la sécurité ni la qualité de vie.
+Les cinq classes et leurs règles servent à interpréter les sorties du modèle ; ce ne sont pas des critères d’habitabilité validés scientifiquement. « Contraintes faibles » signifie uniquement que les deux repères retenus ne sont pas franchis. Cela ne garantit ni la sécurité ni la qualité de vie.

@@ -1,5 +1,5 @@
 export type MetricLayer = 
-  | 'human_impact'  // Impact humain combiné exploratoire
+  | 'habitability'  // Contraintes climatiques et alimentaires modélisées
   | 'wet_bulb'       // Température au thermomètre mouillé Tw (Stull)
   | 'air_temperature' // Moyenne annuelle des maxima quotidiens de l'air
   | 'caloric_stress' // Déficit calorique & Rendements agricoles

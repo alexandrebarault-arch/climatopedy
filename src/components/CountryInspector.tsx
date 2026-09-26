@@ -49,8 +49,10 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   const showHistoricalRecord = shouldShowHistoricalTemperatureRecord(simulationState.year);
   const modelYear = Math.floor(simulationState.year);
   const post2100 = modelYear > 2100;
-  const habitabilityBadgeClass = habitabilityStatus?.severity === 'high'
-    ? 'bg-rose-50 text-rose-800 border-rose-200'
+  const habitabilityBadgeClass = habitabilityStatus?.severity === 'extreme' || habitabilityStatus?.severity === 'very-high'
+    ? 'bg-rose-100 text-rose-900 border-rose-300'
+    : habitabilityStatus?.severity === 'high'
+    ? 'bg-orange-50 text-orange-900 border-orange-200'
     : habitabilityStatus?.severity === 'medium'
     ? 'bg-amber-50 text-amber-900 border-amber-200'
     : 'bg-emerald-50 text-emerald-800 border-emerald-200';
