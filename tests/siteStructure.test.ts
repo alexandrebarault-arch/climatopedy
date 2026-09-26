@@ -40,3 +40,16 @@ test('map page retains its primary simulation and analysis anchors', () => {
     assert.ok(app.includes(`<${component}`), `map page must retain ${component}`);
   }
 });
+
+test('map analysis and country inspector use the shared status and future record rule', () => {
+  const map = readSource('../src/components/WorldMap.tsx');
+  const inspector = readSource('../src/components/CountryInspector.tsx');
+
+  for (const [name, source] of [['WorldMap', map], ['CountryInspector', inspector]] as const) {
+    assert.match(source, /getHabitabilityStatus/, `${name} must use the shared habitability rule`);
+    assert.match(source, /wetBulbPeak/, `${name} must use the active simulated wet-bulb peak`);
+    assert.match(source, /calPerCapita/, `${name} must use the active simulated calorie value`);
+  }
+
+  assert.match(inspector, /shouldShowHistoricalTemperatureRecord\(simulationState\.year\)/);
+});

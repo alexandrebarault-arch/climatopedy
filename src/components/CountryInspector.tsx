@@ -5,6 +5,7 @@ import { X, Thermometer, Utensils, Skull, Users, ShieldAlert, AlertTriangle } fr
 import { TechTooltip } from './TechTooltip';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
+import { getHabitabilityStatus, shouldShowHistoricalTemperatureRecord } from '../engine/habitabilityStatus';
 
 const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
@@ -42,6 +43,13 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   const popChangePct = ((dynState.cohorts.total - staticData.basePop2026) / staticData.basePop2026) * 100;
   const isLethalHeat = dynState.wetBulbPeak >= 31.0;
   const isFamine = dynState.calPerCapita < 2100;
+  const habitabilityStatus = getHabitabilityStatus(dynState.wetBulbPeak, dynState.calPerCapita);
+  const showHistoricalRecord = shouldShowHistoricalTemperatureRecord(simulationState.year);
+  const habitabilityBadgeClass = habitabilityStatus?.severity === 'high'
+    ? 'bg-rose-50 text-rose-800 border-rose-200'
+    : habitabilityStatus?.severity === 'medium'
+    ? 'bg-amber-50 text-amber-900 border-amber-200'
+    : 'bg-emerald-50 text-emerald-800 border-emerald-200';
 
   return (
     <>
@@ -68,6 +76,15 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               <span className="font-mono text-xs bg-white text-sky-800 px-2 py-0.5 rounded border border-slate-300 shrink-0 font-bold shadow-2xs">
                 {staticData.code}
               </span>
+              {habitabilityStatus && (
+                <span
+                  className={`max-w-[150px] truncate rounded border px-1.5 py-0.5 text-[9px] font-semibold ${habitabilityBadgeClass}`}
+                  title={habitabilityStatus.explanation}
+                  aria-label={`${habitabilityStatus.label}. ${habitabilityStatus.explanation}`}
+                >
+                  {habitabilityStatus.label}
+                </span>
+              )}
             </div>
 
             {/* Bouton Fermer (Croix) garanti 100% visible et prioritaire */}
@@ -260,7 +277,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               </div>
             </div>
 
-            {climate.absoluteAirTemperatureRecord ? (
+            {showHistoricalRecord && climate.absoluteAirTemperatureRecord ? (
               <div className="bg-amber-50 p-2.5 rounded-lg border border-amber-200 shadow-2xs">
                 <span className="text-amber-900 text-[10px] font-medium">Record officiel documenté de la zone : </span>
                 <span className="text-sm font-bold font-mono text-amber-900 tabular-nums">{climate.absoluteAirTemperatureRecord.valueC.toFixed(1)}°C</span>
@@ -268,7 +285,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
                 <a className="text-[10px] underline text-amber-900" href={climate.absoluteAirTemperatureRecord.sourceUrl} target="_blank" rel="noreferrer">{climate.absoluteAirTemperatureRecord.sourceLabel}</a>
                 <span className="block text-[9px] text-amber-800">Couverture des records : {climate.recordCoverage.sourcedMembers}/{climate.recordCoverage.totalMembers} pays membres documentés.</span>
               </div>
-            ) : <p className="text-[10px] text-slate-500">Record absolu : indisponible faute de source vérifiée intégrée.</p>}
+            ) : showHistoricalRecord ? <p className="text-[10px] text-slate-500">Record absolu : indisponible faute de source vérifiée intégrée.</p> : null}
 
             <p className="text-[10px] leading-relaxed text-slate-500">
               Normales 1991–2020 issues d’un point NASA POWER/MERRA-2, utilisé comme proxy de la zone. Le P99 chaud et l’humidité sont estimés; l’humidité n’est pas simultanée à la Tmax. Tw est calculée, jamais une température mesurée. Les moyennes des maximales et minimales quotidiennes ne sont pas des records.

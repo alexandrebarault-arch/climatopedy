@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { TechTooltip } from './TechTooltip';
 import { GreenZonesScientificModal } from './GreenZonesScientificModal';
+import { getHabitabilityStatus } from '../engine/habitabilityStatus';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
 
@@ -916,6 +917,12 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               if (!dyn) return null;
 
               const tw = dyn.wetBulbPeak;
+              const habitabilityStatus = getHabitabilityStatus(tw, dyn.calPerCapita);
+              const habitabilityBadgeClass = habitabilityStatus?.severity === 'high'
+                ? 'bg-rose-50 text-rose-800 border-rose-200'
+                : habitabilityStatus?.severity === 'medium'
+                ? 'bg-amber-50 text-amber-900 border-amber-200'
+                : 'bg-emerald-50 text-emerald-800 border-emerald-200';
               const isAboveTwAlertThreshold = tw >= 31.0;
               const isSevere = tw >= 29.0 && tw < 31.0;
               const isWarning = tw >= 26.0 && tw < 29.0;
@@ -959,6 +966,15 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <h3 className="text-base font-bold text-slate-900 tracking-tight">
                           {activeCountryData.frenchName}
                         </h3>
+                        {habitabilityStatus && (
+                          <span
+                            className={`max-w-full truncate rounded border px-1.5 py-0.5 text-[9px] font-semibold ${habitabilityBadgeClass}`}
+                            title={habitabilityStatus.explanation}
+                            aria-label={`${habitabilityStatus.label}. ${habitabilityStatus.explanation}`}
+                          >
+                            {habitabilityStatus.label}
+                          </span>
+                        )}
                         {activeFeature?.name && activeFeature.name !== activeCountryData.name && (
                           <span className="text-xs text-slate-500">
                             ({activeFeature.name})
