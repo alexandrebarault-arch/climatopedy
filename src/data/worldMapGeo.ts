@@ -1,6 +1,7 @@
 import { geoEquirectangular, geoPath } from 'd3-geo';
 import * as topojson from 'topojson-client';
 import worldAtlasData from 'world-atlas/countries-110m.json';
+import isoNumericToAlpha3 from './isoNumericToAlpha3.json';
 
 // Projection plane Plate Carrée (Equirectangular EPSG:4326)
 // Canvas dimensions : 1000px de large (-180° à +180°) par 500px de haut (+90° à -90°)
@@ -218,6 +219,7 @@ export const NAME_TO_SIM_ID: Record<string, string> = {
 
 export interface ProcessedCountryFeature {
   id: string; // ISO ou code de feature
+  iso3: string | null; // ISO 3166-1 alpha-3 du territoire cliqué, null pour les entités sans code ISO reconnu
   name: string; // Nom officiel
   simCountryId: string; // ID région simulation CLIMATOPEDY (ex: 'fra', 'usa')
   path: string; // Tracé SVG haute précision issu de Natural Earth
@@ -293,6 +295,7 @@ rawFeatures.forEach((feature) => {
       if (p) {
         processedList.push({
           id: 'fra_metro',
+          iso3: 'FRA',
           name: 'France',
           simCountryId: 'fra',
           path: p,
@@ -312,6 +315,7 @@ rawFeatures.forEach((feature) => {
       if (p) {
         processedList.push({
           id: 'fra_guyana',
+          iso3: 'GUF',
           name: 'Guyane Française',
           simCountryId: 'and', // Rattachée à la région nord-sud-américaine
           path: p,
@@ -331,6 +335,7 @@ rawFeatures.forEach((feature) => {
 
   processedList.push({
     id: String(feature.id || name),
+    iso3: (isoNumericToAlpha3.codes as Record<string, string>)[String(feature.id || '').padStart(3, '0')] || null,
     name,
     simCountryId: simId,
     path,

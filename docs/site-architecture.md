@@ -45,6 +45,7 @@ La FAQ dans la barre supérieure choisit la section Carte puis défile jusqu’�
 
 - `currentTab` : section affichée ; cette sélection n’est pas encodée dans l’URL.
 - `selectedCountryId` : pays épinglé dans la carte, transmis à `WorldMap` et `CountryInspector`.
+- `selectedCountryIso3`, `selectedCountryName` et `selectedCountryFeatureId` : identité exacte du polygone épinglé; ils permettent à `CountryInspector` de joindre des statistiques nationales au lieu d’hériter d’une zone de simulation multi-pays. Les actions ouvertes depuis une zone modèle n’infèrent un pays que si cette zone ne couvre qu’un ISO3.
 - `currentYear`, `isPlaying` et `playbackSpeed` : temps courant et lecture animée. Les contrôles de chronologie peuvent déplacer l’année entre 1900 et 2200.
 - `scenarioA` et `scenarioB` : scénarios de référence et de comparaison ; les trajectoires sont calculées avec `generateFullTrajectory` et mémorisées par `useMemo`.
 - `isCompareMode` et `customParams` : activation de la comparaison et paramètres réglables du scénario B.
@@ -75,10 +76,14 @@ Les paramètres numériques sont bornés lors du décodage. L’URL ne conserve 
 - `src/data/countriesData.ts` fournit les paramètres statiques utilisés par le moteur pour les 34 zones.
 - `src/data/cckpCountryTemperatures.json` et `src/data/climatePanelData.json` alimentent les séries thermiques et les valeurs de référence du panneau chaleur. `src/data/verifiedTemperatureRecords.ts` contient les records observés sourcés ou indique leur indisponibilité.
 - `src/data/worldMapGeo.ts` fournit les géométries et associations entre pays cartographiques et zones simulées.
+- `src/data/isoNumericToAlpha3.json` et `ProcessedCountryFeature.iso3` conservent la correspondance du territoire cliqué. Les territoires sans code ISO reconnu restent explicitement sans observation.
+- `src/data/countryContextObserved.json` fournit les dernières valeurs observées WDI pour l’eau, la sécurité alimentaire, l’électricité et la cuisson propre; chaque valeur conserve son année, son code d’indicateur et sa source.
+- `src/data/aqueductCountryWaterStress.json` fournit séparément le stress hydrique WRI par pays, pour 2030/2050/2080 et les scénarios opt/bau/pes. `WorldMap` l’affiche dans la couche facultative `water_stress`, indépendante du curseur climatique 1900–2200.
+- `docs/data-quality/country-context-country-by-country.json` est la liste de contrôle générée des correspondances, valeurs disponibles et lacunes par polygone.
 - `src/engine/physicsModel.ts`, `src/engine/countryTemperatures.ts`, `src/engine/historicalData.ts` et `src/engine/simulationRunner.ts` génèrent les états historiques et futurs consommés par la carte, le panneau pays et les graphiques.
 - `src/types/simulation.ts` décrit les états globaux et par pays. `src/types/climatePanel.ts` décrit les données climatiques et leur provenance.
 
-Les données bibliographiques de la vue Sources & Données sont décrites dans `src/components/ScientificSourcesView.tsx`. Les explications d’incertitude du modèle sont dans `ModelConfidenceGuide` et les éléments pédagogiques sont répartis dans les composants de page.
+Les données bibliographiques de la vue Sources & Données sont décrites dans `src/components/ScientificSourcesView.tsx`. Les explications d’incertitude du modèle sont dans `ModelConfidenceGuide` et les éléments pédagogiques sont répartis dans les composants de page. Les sources, années, limites et procédures de rafraîchissement des données nationales sont documentées dans `docs/data-quality/country-context-data.md`.
 
 ### Résumé du flux
 

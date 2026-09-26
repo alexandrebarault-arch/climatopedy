@@ -20,6 +20,7 @@ import { ClimatopedyHeader } from './components/ClimatopedyHeader';
 import { BookOpen, CheckCircle, FileText, ShieldAlert, Compass, Monitor } from 'lucide-react';
 import { generateFullTrajectory, SCENARIO_BAU, SCENARIO_SOBRIETY } from './engine/simulationRunner';
 import { SimulationScenarioConfig } from './types/simulation';
+import { getSoleNationalFeatureForSimulationZone } from './utils/mapCountryContext';
 import { 
   decodeSimulationParamsFromUrl, 
   syncUrlWithSimulationState, 
@@ -29,6 +30,16 @@ import {
 export default function App() {
   const [currentTab, setCurrentTab] = useState<AppTabType>('map');
   const [selectedCountryId, setSelectedCountryId] = useState<string | null>(null);
+  const [selectedCountryIso3, setSelectedCountryIso3] = useState<string | null>(null);
+  const [selectedCountryName, setSelectedCountryName] = useState<string | null>(null);
+  const [selectedCountryFeatureId, setSelectedCountryFeatureId] = useState<string | null>(null);
+  const handleSelectCountry = (countryId: string | null, iso3: string | null = null, countryName: string | null = null, featureId: string | null = null) => {
+    const soleNationalFeature = countryId && !featureId && !iso3 ? getSoleNationalFeatureForSimulationZone(countryId) : null;
+    setSelectedCountryId(countryId);
+    setSelectedCountryIso3(iso3 ?? soleNationalFeature?.iso3 ?? null);
+    setSelectedCountryName(countryName ?? soleNationalFeature?.name ?? null);
+    setSelectedCountryFeatureId(featureId ?? soleNationalFeature?.id ?? null);
+  };
 
   // Initialisation à partir des URL Search Params si disponibles
   const initialUrlState = useMemo(() => decodeSimulationParamsFromUrl(), []);
@@ -237,7 +248,9 @@ export default function App() {
             <WorldMap
               simulationState={currentTrajectoryState}
               selectedCountryId={selectedCountryId}
-              onSelectCountry={setSelectedCountryId}
+              selectedCountryIso3={selectedCountryIso3}
+              selectedCountryFeatureId={selectedCountryFeatureId}
+              onSelectCountry={handleSelectCountry}
               currentYear={currentYear}
             />
 
@@ -403,10 +416,12 @@ export default function App() {
       {/* Tiroir d'inspection granulaire d'un pays */}
       <CountryInspector
         countryId={selectedCountryId}
-        onClose={() => setSelectedCountryId(null)}
+        onClose={() => handleSelectCountry(null)}
         simulationState={currentTrajectoryState}
-        onSelectCountry={setSelectedCountryId}
+        onSelectCountry={(id) => handleSelectCountry(id)}
         onSeekYear={handleSeekYear}
+        nationalContextIso3={selectedCountryIso3}
+        nationalContextCountryName={selectedCountryName}
       />
 
       {/* Pop-up de recommandation d'usage pour utilisateurs mobiles */}

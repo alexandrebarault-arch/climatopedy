@@ -6,6 +6,7 @@ import { TechTooltip } from './TechTooltip';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
 import { getHabitabilityStatus, shouldShowHistoricalTemperatureRecord } from '../engine/habitabilityStatus';
+import countryContextFile from '../data/countryContextObserved.json';
 
 const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
@@ -15,6 +16,8 @@ interface CountryInspectorProps {
   simulationState: GlobalBiophysicalState;
   onSelectCountry: (id: string) => void;
   onSeekYear: (year: number) => void;
+  nationalContextIso3: string | null;
+  nationalContextCountryName: string | null;
 }
 
 export const CountryInspector: React.FC<CountryInspectorProps> = ({
@@ -22,7 +25,9 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   onClose,
   simulationState,
   onSelectCountry,
-  onSeekYear
+  onSeekYear,
+  nationalContextIso3,
+  nationalContextCountryName
 }) => {
   // Fermeture par touche Échap
   useEffect(() => {
@@ -48,6 +53,9 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   const habitabilityStatus = getHabitabilityStatus(dynState.wetBulbPeak, dynState.calPerCapita);
   const showHistoricalRecord = shouldShowHistoricalTemperatureRecord(simulationState.year);
   const modelYear = Math.floor(simulationState.year);
+  const nationalContext = nationalContextIso3
+    ? countryContextFile.countries.find(country => country.iso3 === nationalContextIso3)
+    : null;
   const post2100 = modelYear > 2100;
   const habitabilityBadgeClass = habitabilityStatus?.severity === 'extreme' || habitabilityStatus?.severity === 'very-high'
     ? 'bg-rose-100 text-rose-900 border-rose-300'
@@ -177,6 +185,55 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
           <p className="text-[10px] text-slate-600 bg-sky-50 border border-sky-100 rounded-lg p-2.5">
             Les valeurs projetées par pays sont des sorties de CLIMATOPEDY conditionnelles à ses paramètres. Les décimales affichées ne signifient pas que ces résultats sont validés à l’échelle nationale, notamment pour la démographie et la mortalité.
           </p>
+
+          <section className="rounded-xl border border-cyan-200 bg-cyan-50/50 p-3.5 space-y-2.5" aria-label="Indicateurs nationaux observés">
+            <div>
+              <h3 className="text-xs font-bold text-slate-900">Accès aux ressources — observations nationales</h3>
+              <p className="mt-1 text-[10px] font-semibold text-cyan-900">
+                {nationalContextCountryName
+                  ? `Pays cliqué : ${nationalContextCountryName}${nationalContextIso3 ? ` (${nationalContextIso3})` : ' — code ISO non reconnu'}`
+                  : `Sélection de zone de simulation : ${staticData.frenchName}. Aucun pays unique n’a été sélectionné.`}
+              </p>
+              <p className="mt-1 text-[10px] leading-relaxed text-slate-600">
+                La dernière année disponible varie selon la source. Ces observations ne changent pas avec l’année du curseur et ne sont pas des projections.
+              </p>
+            </div>
+            {nationalContextIso3 ? (
+              <div className="grid grid-cols-2 gap-2">
+                {([
+                  ['SH.H2O.SMDW.ZS', 'Eau potable gérée en toute sécurité'],
+                  ['SN.ITK.MSFI.ZS', 'Insécurité alimentaire modérée ou grave'],
+                  ['EG.ELC.ACCS.ZS', 'Accès à l’électricité'],
+                  ['EG.CFT.ACCS.ZS', 'Cuisson propre']
+                ] as const).map(([code, label]) => {
+                  const observation = nationalContext?.indicators[code] ?? null;
+                  const url = countryContextFile.metadata.indicatorDefinitions[code].url;
+                  return (
+                    <div key={code} className="rounded-lg border border-cyan-100 bg-white p-2.5">
+                      <span className="block text-[10px] leading-snug text-slate-600">{label}</span>
+                      {observation ? (
+                        <span className="mt-1 block font-mono text-sm font-bold text-slate-900 tabular-nums">
+                          {observation.value.toFixed(1)}% <span className="font-sans text-[9px] font-normal text-slate-500">({observation.year})</span>
+                        </span>
+                      ) : (
+                        <span className="mt-1 block text-[10px] text-slate-500">Pas de valeur nationale disponible</span>
+                      )}
+                      <a className="mt-1 inline-block text-[9px] text-sky-700 underline" href={url} target="_blank" rel="noreferrer">Source WDI</a>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="rounded-lg border border-amber-200 bg-amber-50 p-2.5 text-[10px] leading-relaxed text-amber-900">
+                {nationalContextCountryName
+                  ? `Le territoire ${nationalContextCountryName} n’a pas de code ISO reconnu; aucun chiffre national ne lui est attribué.`
+                  : `« ${staticData.frenchName} » est une zone de simulation couvrant plusieurs pays; aucun pays unique n’a été sélectionné, donc aucune donnée nationale n’est affichée.`}
+              </p>
+            )}
+            <p className="text-[9px] leading-relaxed text-slate-500">
+              Banque mondiale WDI (instantané du {countryContextFile.metadata.fetchedAt}; source actualisée le {countryContextFile.metadata.sourceUpdated}). Une valeur absente signifie « non disponible », jamais zéro. Les taux nationaux masquent des écarts locaux.
+            </p>
+          </section>
 
           {staticData.id === 'fra' && modelYear === 2026 && (
             <p className="text-[10px] leading-relaxed text-amber-950 bg-amber-50 border border-amber-200 rounded-lg p-2.5">

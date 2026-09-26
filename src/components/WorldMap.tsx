@@ -35,13 +35,18 @@ import { getHabitabilityColor, getHabitabilityStatus, HABITABILITY_COLOR_BANDS, 
 import { getWetBulbColor, WET_BULB_COLOR_BANDS, WET_BULB_UNAVAILABLE_COLOR } from '../utils/wetBulbScale';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
+import aqueductWaterStress from '../data/aqueductCountryWaterStress.json';
 
 const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
+type WaterStressRow = (typeof aqueductWaterStress.rows)[number];
+const waterStressRows = new Map(aqueductWaterStress.rows.map(row => [`${row.iso3}:${row.year}:${row.scenario}`, row]));
 
 interface WorldMapProps {
   simulationState: GlobalBiophysicalState;
   selectedCountryId: string | null;
-  onSelectCountry: (countryId: string | null) => void;
+  selectedCountryIso3: string | null;
+  selectedCountryFeatureId: string | null;
+  onSelectCountry: (countryId: string | null, iso3?: string | null, countryName?: string | null, featureId?: string | null) => void;
   currentYear?: number;
 }
 
@@ -50,11 +55,15 @@ type TwOverlayMode = 'aboveTwAlertThreshold' | 'critical' | 'all' | 'off';
 export const WorldMap: React.FC<WorldMapProps> = ({
   simulationState,
   selectedCountryId,
+  selectedCountryIso3,
+  selectedCountryFeatureId,
   onSelectCountry,
   currentYear
 }) => {
   const displayYear = currentYear !== undefined ? Math.floor(currentYear) : Math.floor(simulationState.year);
   const [activeMetric, setActiveMetric] = useState<MetricLayer>('habitability');
+  const [waterRiskYear, setWaterRiskYear] = useState<2030 | 2050 | 2080>(2050);
+  const [waterRiskScenario, setWaterRiskScenario] = useState<'opt' | 'bau' | 'pes'>('bau');
   const [twOverlayMode, setTwOverlayMode] = useState<TwOverlayMode>('aboveTwAlertThreshold');
   const [hoveredFeature, setHoveredFeature] = useState<ProcessedCountryFeature | null>(null);
 
@@ -90,7 +99,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   }, []);
 
   // Détermination de l'entité active à afficher dans la colonne de droite (Priorité : Survol > Sélection)
-  const activeFeature = hoveredFeature || (selectedCountryId ? GEO_COUNTRY_FEATURES.find(f => f.simCountryId === selectedCountryId) || null : null);
+  const activeFeature = hoveredFeature || (selectedCountryFeatureId ? GEO_COUNTRY_FEATURES.find(f => f.id === selectedCountryFeatureId) || null : null) || (selectedCountryId ? GEO_COUNTRY_FEATURES.find(f => f.simCountryId === selectedCountryId) || null : null);
 
   const activeCountryData = useMemo<CountryStaticData | null>(() => {
     if (!activeFeature) return null;
@@ -170,9 +179,14 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   }, [simulationState, heatAlertThreshold]);
 
   // Nuancier biophysique scientifique continu et contrasté (Élimine le monochrome sombre)
-  const getCountryFillColor = (simId: string): string => {
+  const getCountryFillColor = (simId: string, iso3: string | null): string => {
     const dyn = simulationState.countries[simId];
     const staticC = COUNTRIES_DATA.find((c) => c.id === simId);
+    if (activeMetric === 'water_stress') {
+      const waterRow = iso3 ? waterStressRows.get(`${iso3}:${waterRiskYear}:${waterRiskScenario}`) : undefined;
+      if (!waterRow) return '#cbd5e1';
+      return ['#22c55e', '#eab308', '#f97316', '#ef4444', '#7f1d1d'][waterRow.category] ?? '#cbd5e1';
+    }
     if (!dyn || !staticC) return '#cbd5e1';
 
     switch (activeMetric) {
@@ -365,7 +379,37 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             <ShieldAlert className="w-3.5 h-3.5" />
             <span>Exode</span>
           </button>
+
+          <button
+            onClick={() => setActiveMetric('water_stress')}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
+              activeMetric === 'water_stress'
+                ? 'bg-red-50 text-red-900 font-semibold border border-red-200 shadow-2xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+            title="Stress hydrique national Aqueduct agrégé. Il ne mesure pas l’accès des ménages à l’eau potable."
+          >
+            <Droplets className="w-3.5 h-3.5" />
+            <span>Stress hydrique projeté</span>
+          </button>
         </div>
+
+        {activeMetric === 'water_stress' && (
+          <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-700">
+            <label className="flex items-center gap-1.5">
+              <span>Horizon</span>
+              <select value={waterRiskYear} onChange={event => setWaterRiskYear(Number(event.target.value) as 2030 | 2050 | 2080)} className="rounded border border-slate-300 bg-white px-2 py-1">
+                <option value={2030}>2030</option><option value={2050}>2050</option><option value={2080}>2080</option>
+              </select>
+            </label>
+            <label className="flex items-center gap-1.5">
+              <span>Scénario</span>
+              <select value={waterRiskScenario} onChange={event => setWaterRiskScenario(event.target.value as 'opt' | 'bau' | 'pes')} className="rounded border border-slate-300 bg-white px-2 py-1">
+                <option value="opt">Optimiste</option><option value="bau">Tendanciel</option><option value="pes">Pessimiste</option>
+              </select>
+            </label>
+          </div>
+        )}
 
         {/* Bouton Explicatif Scientifique pour les Zones Vertes en 2100-2200 */}
         <button
@@ -651,13 +695,13 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
             {/* PAYS DU MONDE AVEC FRONTIÈRES NETTES, SYSTÈME D'ALERTE VISUELLE ET SURVOL FLUIDE */}
             {GEO_COUNTRY_FEATURES.map((feature) => {
-              const isSelected = selectedCountryId === feature.simCountryId;
+              const isSelected = selectedCountryId === feature.simCountryId && selectedCountryIso3 === feature.iso3 && selectedCountryFeatureId === feature.id;
               const isHovered = hoveredFeature?.id === feature.id;
               const dyn = simulationState.countries[feature.simCountryId];
               const tw = dyn?.wetBulbPeak ?? null;
               const isInHeatAlert = heatAlertsEnabled && tw !== null && tw >= heatAlertThreshold;
               const isAboveTwAlertThreshold = tw !== null && tw >= 31.0;
-              const fillColor = getCountryFillColor(feature.simCountryId);
+              const fillColor = getCountryFillColor(feature.simCountryId, feature.iso3);
 
               // Contour et style d'alerte
               let strokeColor = '#ffffff';
@@ -680,7 +724,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                 <g
                   key={feature.id}
                   className="cursor-pointer"
-                  onClick={() => onSelectCountry(isSelected ? null : feature.simCountryId)}
+                  onClick={() => onSelectCountry(isSelected ? null : feature.simCountryId, isSelected ? null : feature.iso3, isSelected ? null : feature.name, isSelected ? null : feature.id)}
                   onPointerEnter={() => onCountryPointerEnter(feature)}
                   onPointerLeave={onCountryPointerLeave}
                 >
@@ -927,8 +971,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 px-2 pt-2 border-t border-slate-200 mt-1">
             <div className="flex min-w-0 flex-col gap-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'habitability' ? 'Classes de visualisation issues des sorties du modèle : Tw à partir de 26, 27, 28 et 29 °C; calories sous 2 100, 1 900, 1 700 et 1 500 kcal/j. Le repère 2 100 est interne au modèle; les paliers intermédiaires ne sont pas des seuils scientifiques d’habitabilité. La contrainte la plus élevée prévaut. Ce classement ne déclare pas un pays habitable ou inhabitable.' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.'}>
-                  {activeMetric === 'habitability' ? 'Habitabilité · contraintes estimées :' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des Tmax quotidiennes · °C :' : activeMetric === 'wet_bulb' ? 'Pic caniculaire Tw estimé · °C :' : 'Couche sélectionnée :'}
+                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'habitability' ? 'Classes de visualisation issues des sorties du modèle : Tw à partir de 26, 27, 28 et 29 °C; calories sous 2 100, 1 900, 1 700 et 1 500 kcal/j. Le repère 2 100 est interne au modèle; les paliers intermédiaires ne sont pas des seuils scientifiques d’habitabilité. La contrainte la plus élevée prévaut. Ce classement ne déclare pas un pays habitable ou inhabitable.' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : activeMetric === 'water_stress' ? 'Stress hydrique Aqueduct 4.0, agrégé par pays à partir des bassins et pondéré par la demande en eau. Il ne décrit pas l’accès à l’eau potable du foyer.' : 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.'}>
+                  {activeMetric === 'habitability' ? 'Habitabilité · contraintes estimées :' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des Tmax quotidiennes · °C :' : activeMetric === 'wet_bulb' ? 'Pic caniculaire Tw estimé · °C :' : activeMetric === 'water_stress' ? `Stress hydrique Aqueduct · ${waterRiskYear} · ${waterRiskScenario.toUpperCase()} :` : 'Couche sélectionnée :'}
                 </span>
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                   {activeMetric === 'habitability' ? HABITABILITY_COLOR_BANDS.map(band => (
@@ -948,9 +992,20 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
                       <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
                     </span>
+                  )) : activeMetric === 'water_stress' ? [
+                    { label: 'Faible', color: '#22c55e' }, { label: 'Faible à modéré', color: '#eab308' },
+                    { label: 'Moyen à élevé', color: '#f97316' }, { label: 'Élevé', color: '#ef4444' },
+                    { label: 'Très élevé', color: '#7f1d1d' }
+                  ].map(band => (
+                    <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700">
+                      <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
+                    </span>
                   )) : null}
                   {activeMetric === 'wet_bulb' && <span className="inline-flex items-center gap-1 text-[10px] text-slate-600 font-mono" title="Valeur non calculée car hors du domaine d’usage de la formule de Stull">
                     <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: WET_BULB_UNAVAILABLE_COLOR }} />NC
+                  </span>}
+                  {activeMetric === 'water_stress' && <span className="inline-flex items-center gap-1 text-[10px] text-slate-600">
+                    <span className="w-2 h-2 rounded-sm bg-slate-300" />Donnée indisponible
                   </span>}
                   {activeMetric === 'habitability' && <span className="inline-flex items-center gap-1 text-[10px] text-slate-600" title="Données insuffisantes pour classer la zone">
                     <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: HABITABILITY_UNAVAILABLE_COLOR }} />Données indisponibles
@@ -958,7 +1013,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                 </div>
               </div>
               <span className="text-[9px] text-slate-500">
-                {activeMetric === 'habitability'
+                {activeMetric === 'water_stress'
+                  ? `WRI Aqueduct 4.0 · ${waterRiskYear} · ${aqueductWaterStress.metadata.scenarioLabels[waterRiskScenario]} · classeur ${aqueductWaterStress.metadata.workbookVintage} (catalogue ${aqueductWaterStress.metadata.catalogUpdated}). Agrégation nationale pondérée par la demande; indépendante des accès observés et du curseur climatique; absences en gris.`
+                  : activeMetric === 'habitability'
                   ? 'Classement exploratoire fondé sur chaleur humide et calories modélisées; les seuils ne sont pas des frontières scientifiques d’habitabilité.'
                   : 'Valeur zonale modélisée; le normal local 1991–2020 est recalé sur l’anomalie mondiale 2025. Après 2100, prolongation exploratoire du scénario interne.'}
               </span>
@@ -1299,7 +1356,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                   {/* Bouton d'inspection granulaire */}
                   <button
-                    onClick={() => onSelectCountry(activeCountryData.id)}
+                    onClick={() => onSelectCountry(activeCountryData.id, activeFeature?.iso3 ?? null, activeFeature?.name ?? null, activeFeature?.id ?? null)}
                     className="w-full mt-2 py-2 px-3 bg-sky-50 hover:bg-sky-100 text-sky-800 font-semibold text-xs rounded-lg border border-sky-200 flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
                   >
                     <span>Ouvrir l'inspecteur complet</span>

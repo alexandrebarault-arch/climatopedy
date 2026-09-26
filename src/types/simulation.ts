@@ -6,7 +6,8 @@ export type MetricLayer =
   | 'mortality'      // Taux brut de surmortalité annuelle
   | 'population'     // Densité & dépopulation relative
   | 'sea_level'      // Impact montée des mers sur les plaines côtières
-  | 'migration';     // Pression de répulsion migratoire
+  | 'migration'      // Pression de répulsion migratoire
+  | 'water_stress';  // Stress hydrique projeté séparément des accès observés
 
 export interface DemographicCohorts {
   p0: number; // 0-14 ans (millions)

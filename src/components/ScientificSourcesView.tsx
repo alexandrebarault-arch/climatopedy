@@ -27,7 +27,7 @@ import { ModelConfidenceGuide } from './ModelConfidenceGuide';
 
 export interface ScientificSourceItem {
   id: string;
-  category: 'climate' | 'wetbulb' | 'tipping' | 'energy' | 'agriculture' | 'demography' | 'observatories';
+  category: 'climate' | 'wetbulb' | 'tipping' | 'energy' | 'agriculture' | 'demography' | 'observatories' | 'water';
   categoryLabel: string;
   title: string;
   englishTitle?: string;
@@ -710,6 +710,82 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     gaiaRole: 'Suivi de l\'indice Degree Heating Weeks (DHW) et validation de l\'état de stress critique des barrières coralliennes tropicales.',
     keyDataOrQuote: 'Confirme le 4e événement mondial de blanchissement massif des coraux en 2023–2024 touchant plus de 54% des récifs mondiaux.',
     reproducibilityNotes: 'Résolution satellitaire de 5 km à l\'échelle de tous les récifs tropicaux du globe.'
+  },
+  {
+    id: 'jmp-household-wash-2025',
+    category: 'water',
+    categoryLabel: 'Accès à l’eau, alimentation et risques hydriques',
+    title: 'Rapport JMP 2025 : eau potable, assainissement et hygiène des ménages',
+    englishTitle: 'Progress on household drinking water, sanitation and hygiene 2000–2024',
+    authors: 'Programme commun OMS/UNICEF de suivi (JMP)',
+    year: 2025,
+    publisher: 'OMS / UNICEF',
+    peerReviewed: false,
+    typeBadge: 'Indicateur observé par pays',
+    primaryUrl: 'https://washdata.org/reports/jmp-2025-wash-households',
+    primaryUrlLabel: 'Rapport mondial JMP 2025',
+    secondaryUrl: 'https://api.worldbank.org/v2/country/all/indicator/SH.H2O.SMDW.ZS?format=json',
+    secondaryUrlLabel: 'Série WDI eau gérée en toute sécurité',
+    gaiaRole: 'La fiche pays présente la dernière observation disponible de la part de population utilisant un service d’eau potable géré en toute sécurité; cette série n’est pas extrapolée avec le curseur climatique.',
+    keyDataOrQuote: 'La définition JMP exige une source améliorée, disponible sur place, disponible quand nécessaire et exempte de contamination. Les points de données varient selon les pays.',
+    reproducibilityNotes: 'Indicateur WDI SH.H2O.SMDW.ZS. Valeur en pourcentage de la population; conserver l’année de l’observation propre à chaque pays et afficher « indisponible » en l’absence de valeur.'
+  },
+  {
+    id: 'fao-fies-wdi',
+    category: 'water',
+    categoryLabel: 'Accès à l’eau, alimentation et risques hydriques',
+    title: 'FAO FIES / ODD 2.1.2 : insécurité alimentaire modérée ou grave',
+    englishTitle: 'Prevalence of moderate or severe food insecurity in the population',
+    authors: 'Organisation des Nations unies pour l’alimentation et l’agriculture (FAO)',
+    year: 2026,
+    publisher: 'FAO / Banque mondiale WDI',
+    peerReviewed: false,
+    typeBadge: 'Enquête et estimation nationale',
+    primaryUrl: 'https://www.fao.org/sustainable-development-goals-data-portal/data/indicators/212-prevalence-of-moderate-or-severe-food-insecurity-in-the-population-based-on-the-food-insecurity-experience-scale/2/',
+    primaryUrlLabel: 'Métadonnées ODD 2.1.2 de la FAO',
+    secondaryUrl: 'https://api.worldbank.org/v2/country/all/indicator/SN.ITK.MSFI.ZS?format=json',
+    secondaryUrlLabel: 'Série WDI de la prévalence FIES',
+    gaiaRole: 'Indicateur observé affiché dans la fiche du pays pour contextualiser les contraintes alimentaires simulées séparément.',
+    keyDataOrQuote: 'La couverture, les enquêtes et les périodes de référence diffèrent selon les pays; certaines estimations sont lissées sur plusieurs années.',
+    reproducibilityNotes: 'Série WDI SN.ITK.MSFI.ZS; une part plus élevée signifie davantage de personnes en insécurité alimentaire. L’année source est conservée et aucune projection locale n’est créée.'
+  },
+  {
+    id: 'tracking-sdg7-wdi',
+    category: 'water',
+    categoryLabel: 'Accès à l’eau, alimentation et risques hydriques',
+    title: 'Tracking SDG 7 : accès à l’électricité et à la cuisson propre',
+    englishTitle: 'Tracking SDG 7: The Energy Progress Report',
+    authors: 'Banque mondiale, AIE, IRENA, UNSD, OMS',
+    year: 2026,
+    publisher: 'Partenariat Tracking SDG 7',
+    peerReviewed: false,
+    typeBadge: 'Indicateurs observés par pays',
+    primaryUrl: 'https://www.worldbank.org/en/news/press-release/2026/06/16/accelerating-universal-energy-access',
+    primaryUrlLabel: 'Synthèse officielle 2026',
+    secondaryUrl: 'https://api.worldbank.org/v2/country/all/indicator/EG.ELC.ACCS.ZS?format=json',
+    secondaryUrlLabel: 'Accès à l’électricité WDI',
+    gaiaRole: 'La fiche pays affiche séparément l’accès à l’électricité et l’accès aux combustibles et technologies propres pour cuisiner.',
+    keyDataOrQuote: 'Le rapport mondial 2026 présente des estimations d’accès mises à jour avec les dernières données disponibles, qui ne sont pas toutes de la même année.',
+    reproducibilityNotes: 'Séries WDI EG.ELC.ACCS.ZS et EG.CFT.ACCS.ZS; conserver le millésime de chaque série distinctement et ne pas traiter accès à l’électricité et cuisson propre comme un accès équivalent à toute énergie moderne.'
+  },
+  {
+    id: 'wri-aqueduct-40-country',
+    category: 'water',
+    categoryLabel: 'Accès à l’eau, alimentation et risques hydriques',
+    title: 'WRI Aqueduct 4.0 : stress hydrique actuel et scénarios futurs',
+    englishTitle: 'Aqueduct 4.0 Current and Future Country Rankings',
+    authors: 'World Resources Institute (WRI)',
+    year: 2026,
+    publisher: 'WRI Data Explorer',
+    peerReviewed: false,
+    typeBadge: 'Priorisation du risque hydrique',
+    primaryUrl: 'https://datasets.wri.org/datasets/aqueduct-40-current-and-future-country-rankings',
+    primaryUrlLabel: 'Table des classements pays WRI',
+    secondaryUrl: 'https://www.wri.org/research/aqueduct-40-updated-decision-relevant-global-water-risk-indicators',
+    secondaryUrlLabel: 'Note méthodologique Aqueduct 4.0',
+    gaiaRole: 'Couche cartographique facultative du stress hydrique agrégé par pays, avec horizons 2030, 2050 et 2080 et trois scénarios.',
+    keyDataOrQuote: 'Les indicateurs de bassin sont agrégés vers le pays, avec pondération de la demande en eau. Le WRI précise que ses indices de risque ne sont pas directement validables et doivent être complétés par une analyse locale.',
+    reproducibilityNotes: 'Instantané local du classeur Aqueduct40_rankings_download_Y2023M07D05.xlsx, onglet country_future, indicateur bws et agrégation Tot. Les codes scénario opt/bau/pes sont affichés avec leurs horizons source; les données d’accès potable restent séparées.'
   }
 ];
 
@@ -880,7 +956,8 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
     { id: 'energy', label: 'Énergie & Falaise EROI' },
     { id: 'agriculture', label: 'Agriculture & Haber-Bosch' },
     { id: 'demography', label: 'Démographie & Limites' },
-    { id: 'observatories', label: 'Observatoires Satellites' }
+    { id: 'observatories', label: 'Observatoires Satellites' },
+    { id: 'water', label: 'Eau, alimentation et risques' }
   ];
 
   const filteredSources = useMemo(() => {

@@ -1,0 +1,7052 @@
+{
+  "generatedAt": "2026-09-26",
+  "sourceFreshness": {
+    "worldBankUpdatedAt": "2026-07-13",
+    "observedSnapshotFetchedAt": "2026-09-26",
+    "aqueductCatalogUpdatedAt": "2026-09-22",
+    "aqueductSnapshotDownloadedAt": "2026-09-27",
+    "aqueductWorkbookVintage": "Aqueduct40_rankings_download_Y2023M07D05.xlsx"
+  },
+  "coverage": {
+    "mapFeatures": 177,
+    "recognizedUniqueIso3": 174,
+    "mapFeaturesWithoutIso3": [
+      "N. Cyprus",
+      "Somaliland",
+      "Kosovo"
+    ],
+    "observedIndicators": {
+      "SH.H2O.SMDW.ZS": {
+        "availableMapFeatures": 124,
+        "mapFeatures": 177
+      },
+      "SN.ITK.MSFI.ZS": {
+        "availableMapFeatures": 137,
+        "mapFeatures": 177
+      },
+      "EG.ELC.ACCS.ZS": {
+        "availableMapFeatures": 169,
+        "mapFeatures": 177
+      },
+      "EG.CFT.ACCS.ZS": {
+        "availableMapFeatures": 162,
+        "mapFeatures": 177
+      }
+    },
+    "aqueductCountries": 164,
+    "aqueductMappedIso3": 160,
+    "aqueductRows": 1476,
+    "expectedAqueductRows": 1476
+  },
+  "validation": {
+    "invalidObservedValues": [],
+    "invalidWaterRows": [],
+    "unsupportedWaterRows": [],
+    "incompleteWaterCountries": [],
+    "aqueductKeysUnique": true,
+    "aqueductExpectedHorizonsAndScenarios": true
+  },
+  "countryChecklist": [
+    {
+      "mapFeatureId": "242",
+      "countryName": "Fiji",
+      "iso3": "FJI",
+      "simulationZone": "aus",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 42.1107501060855,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 29.2,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 54.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "834",
+      "countryName": "Tanzania",
+      "iso3": "TZA",
+      "simulationZone": "eaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 31.3253989476029,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 58,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 52.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 9.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "732",
+      "countryName": "W. Sahara",
+      "iso3": "ESH",
+      "simulationZone": "nafr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "124",
+      "countryName": "Canada",
+      "iso3": "CAN",
+      "simulationZone": "can",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.890322656349,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "840",
+      "countryName": "United States of America",
+      "iso3": "USA",
+      "simulationZone": "usa",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 97.5676884437325,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "398",
+      "countryName": "Kazakhstan",
+      "iso3": "KAZ",
+      "simulationZone": "casia",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 91.5454182335736,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "860",
+      "countryName": "Uzbekistan",
+      "iso3": "UZB",
+      "simulationZone": "casia",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 81.9295048040968,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 24.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 78.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "598",
+      "countryName": "Papua New Guinea",
+      "iso3": "PNG",
+      "simulationZone": "idn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 57.3,
+          "year": 2019,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 43.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 10.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "360",
+      "countryName": "Indonesia",
+      "iso3": "IDN",
+      "simulationZone": "idn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 30.4609773643609,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 90.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "032",
+      "countryName": "Argentina",
+      "iso3": "ARG",
+      "simulationZone": "arg",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 33.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "152",
+      "countryName": "Chile",
+      "iso3": "CHL",
+      "simulationZone": "arg",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 97.8170551998161,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 19.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "180",
+      "countryName": "Dem. Rep. Congo",
+      "iso3": "COD",
+      "simulationZone": "cod",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 11.8726481819387,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 81.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 22.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "706",
+      "countryName": "Somalia",
+      "iso3": "SOM",
+      "simulationZone": "eth",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 79.5,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 54.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 5.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "404",
+      "countryName": "Kenya",
+      "iso3": "KEN",
+      "simulationZone": "eaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 73.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 77,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 31.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "729",
+      "countryName": "Sudan",
+      "iso3": "SDN",
+      "simulationZone": "egy",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 66,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 70.55,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "148",
+      "countryName": "Chad",
+      "iso3": "TCD",
+      "simulationZone": "cod",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 6.34082647389426,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 66.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 13.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 9.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "332",
+      "countryName": "Haiti",
+      "iso3": "HTI",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 83.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 53.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 4.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "214",
+      "countryName": "Dominican Rep.",
+      "iso3": "DOM",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 45.3324070681699,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 43.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 93.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "643",
+      "countryName": "Russia",
+      "iso3": "RUS",
+      "simulationZone": "rus",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 76.2607294162414,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 2.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "044",
+      "countryName": "Bahamas",
+      "iso3": "BHS",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 17.2,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "238",
+      "countryName": "Falkland Is.",
+      "iso3": "FLK",
+      "simulationZone": "arg",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "578",
+      "countryName": "Norway",
+      "iso3": "NOR",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.0624830632163,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "304",
+      "countryName": "Greenland",
+      "iso3": "GRL",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "260",
+      "countryName": "Fr. S. Antarctic Lands",
+      "iso3": "ATF",
+      "simulationZone": "rus",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "626",
+      "countryName": "Timor-Leste",
+      "iso3": "TLS",
+      "simulationZone": "idn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 53.7,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 94.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 19.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "710",
+      "countryName": "South Africa",
+      "iso3": "ZAF",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 68.0075638755656,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 20.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 90.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 89.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "426",
+      "countryName": "Lesotho",
+      "iso3": "LSO",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 31.320241708541,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 59.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 60.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 53.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "484",
+      "countryName": "Mexico",
+      "iso3": "MEX",
+      "simulationZone": "mex",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 42.9666311513801,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 19.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 85.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "858",
+      "countryName": "Uruguay",
+      "iso3": "URY",
+      "simulationZone": "arg",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 16.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "076",
+      "countryName": "Brazil",
+      "iso3": "BRA",
+      "simulationZone": "bra",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 88.6239660721414,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 13.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 96.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "068",
+      "countryName": "Bolivia",
+      "iso3": "BOL",
+      "simulationZone": "and",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 96.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 90.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "604",
+      "countryName": "Peru",
+      "iso3": "PER",
+      "simulationZone": "and",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 49.4283962319206,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 41,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 96.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 91.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "170",
+      "countryName": "Colombia",
+      "iso3": "COL",
+      "simulationZone": "and",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 74.33929919179,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 27.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 91.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "591",
+      "countryName": "Panama",
+      "iso3": "PAN",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 96,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "188",
+      "countryName": "Costa Rica",
+      "iso3": "CRI",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 80.5000742430698,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 15.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 96.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "558",
+      "countryName": "Nicaragua",
+      "iso3": "NIC",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 88.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 59.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "340",
+      "countryName": "Honduras",
+      "iso3": "HND",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 65.5162211788382,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 41.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 50.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "222",
+      "countryName": "El Salvador",
+      "iso3": "SLV",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 45.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "320",
+      "countryName": "Guatemala",
+      "iso3": "GTM",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 48.7871950677385,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 48.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 90.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 46.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "084",
+      "countryName": "Belize",
+      "iso3": "BLZ",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 45.5,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 82.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "862",
+      "countryName": "Venezuela",
+      "iso3": "VEN",
+      "simulationZone": "and",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 93.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "328",
+      "countryName": "Guyana",
+      "iso3": "GUY",
+      "simulationZone": "and",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 67.1744374324054,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 25.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 93,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "740",
+      "countryName": "Suriname",
+      "iso3": "SUR",
+      "simulationZone": "and",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 55.8472410362348,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 35.8,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 95.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "fra_metro",
+      "countryName": "France",
+      "iso3": "FRA",
+      "simulationZone": "fra",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.7127014746794,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 8.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "fra_guyana",
+      "countryName": "Guyane Française",
+      "iso3": "GUF",
+      "simulationZone": "and",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "218",
+      "countryName": "Ecuador",
+      "iso3": "ECU",
+      "simulationZone": "and",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 69.8869997038501,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 33.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "630",
+      "countryName": "Puerto Rico",
+      "iso3": "PRI",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.9402618391431,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "388",
+      "countryName": "Jamaica",
+      "iso3": "JAM",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 56.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 97.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 93,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "192",
+      "countryName": "Cuba",
+      "iso3": "CUB",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "716",
+      "countryName": "Zimbabwe",
+      "iso3": "ZWE",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 25.460563358156,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 68.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 62,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 30.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "072",
+      "countryName": "Botswana",
+      "iso3": "BWA",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 63.2910412393649,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 53.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 80.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 66.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "516",
+      "countryName": "Namibia",
+      "iso3": "NAM",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 55.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 59.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 48,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "686",
+      "countryName": "Senegal",
+      "iso3": "SEN",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 27.1931407050582,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 29.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 82.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 34.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "466",
+      "countryName": "Mali",
+      "iso3": "MLI",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 20.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 49.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "478",
+      "countryName": "Mauritania",
+      "iso3": "MRT",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 66.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 52.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 49.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "204",
+      "countryName": "Benin",
+      "iso3": "BEN",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 17.6968322374867,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 65.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 59,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "562",
+      "countryName": "Niger",
+      "iso3": "NER",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 50.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 21.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 5.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "566",
+      "countryName": "Nigeria",
+      "iso3": "NGA",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 29.904599188308,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 74.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 62.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 26.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "120",
+      "countryName": "Cameroon",
+      "iso3": "CMR",
+      "simulationZone": "cod",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 61.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 72,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 30.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "768",
+      "countryName": "Togo",
+      "iso3": "TGO",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 20.5232352790187,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 58.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 61.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 13.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "288",
+      "countryName": "Ghana",
+      "iso3": "GHA",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 42.9413892027374,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 44.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 91.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 32.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "384",
+      "countryName": "Côte d'Ivoire",
+      "iso3": "CIV",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 36.4489381559953,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 38.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 72.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 44.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "324",
+      "countryName": "Guinea",
+      "iso3": "GIN",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 53.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "624",
+      "countryName": "Guinea-Bissau",
+      "iso3": "GNB",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 23.9850167901073,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 62.5,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 43.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "430",
+      "countryName": "Liberia",
+      "iso3": "LBR",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 80.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 34.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "694",
+      "countryName": "Sierra Leone",
+      "iso3": "SLE",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 10.8953836036255,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 89.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 39.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "854",
+      "countryName": "Burkina Faso",
+      "iso3": "BFA",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 41.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 34,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 17,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "140",
+      "countryName": "Central African Rep.",
+      "iso3": "CAF",
+      "simulationZone": "cod",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 6.21748768966731,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 88.1,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 18.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "178",
+      "countryName": "Congo",
+      "iso3": "COG",
+      "simulationZone": "cod",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 45.8748419970802,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 53,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 40.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "266",
+      "countryName": "Gabon",
+      "iso3": "GAB",
+      "simulationZone": "cod",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 91.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "226",
+      "countryName": "Eq. Guinea",
+      "iso3": "GNQ",
+      "simulationZone": "cod",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 65.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 22.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "894",
+      "countryName": "Zambia",
+      "iso3": "ZMB",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 45.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 53.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 9.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "454",
+      "countryName": "Malawi",
+      "iso3": "MWI",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 18.1816539742083,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 81.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 15.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "508",
+      "countryName": "Mozambique",
+      "iso3": "MOZ",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 27.5429456975996,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 36.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 7.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "748",
+      "countryName": "eSwatini",
+      "iso3": "SWZ",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 38.2165357028722,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 59,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 89.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 50.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "024",
+      "countryName": "Angola",
+      "iso3": "AGO",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 78.5,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 55.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 50.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "108",
+      "countryName": "Burundi",
+      "iso3": "BDI",
+      "simulationZone": "eaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 70.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 20.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "376",
+      "countryName": "Israel",
+      "iso3": "ISR",
+      "simulationZone": "irn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.4619876940454,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 9.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "422",
+      "countryName": "Lebanon",
+      "iso3": "LBN",
+      "simulationZone": "irn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 47.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 42.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "450",
+      "countryName": "Madagascar",
+      "iso3": "MDG",
+      "simulationZone": "zaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 22.0559944937861,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 72.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 42.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "275",
+      "countryName": "Palestine",
+      "iso3": "PSE",
+      "simulationZone": "irn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 80.6420172046077,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 27,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "270",
+      "countryName": "Gambia",
+      "iso3": "GMB",
+      "simulationZone": "nga",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 48.1790034938582,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 54.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 69,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "788",
+      "countryName": "Tunisia",
+      "iso3": "TUN",
+      "simulationZone": "nafr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 64.9781072145301,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 25.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "012",
+      "countryName": "Algeria",
+      "iso3": "DZA",
+      "simulationZone": "nafr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 69.0291825248964,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 17.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "400",
+      "countryName": "Jordan",
+      "iso3": "JOR",
+      "simulationZone": "irn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 88.9502985282712,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "784",
+      "countryName": "United Arab Emirates",
+      "iso3": "ARE",
+      "simulationZone": "sau",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.6413172332089,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 3.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "634",
+      "countryName": "Qatar",
+      "iso3": "QAT",
+      "simulationZone": "sau",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 95.345241877961,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "414",
+      "countryName": "Kuwait",
+      "iso3": "KWT",
+      "simulationZone": "sau",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 8.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "368",
+      "countryName": "Iraq",
+      "iso3": "IRQ",
+      "simulationZone": "irn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 59.8272461307615,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "512",
+      "countryName": "Oman",
+      "iso3": "OMN",
+      "simulationZone": "sau",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 91.1011744135751,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "548",
+      "countryName": "Vanuatu",
+      "iso3": "VUT",
+      "simulationZone": "aus",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 19.1970839884387,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 23.3,
+          "year": 2020,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 65.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 20.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "116",
+      "countryName": "Cambodia",
+      "iso3": "KHM",
+      "simulationZone": "sea",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 29.9855761398875,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 40,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 58,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "764",
+      "countryName": "Thailand",
+      "iso3": "THA",
+      "simulationZone": "sea",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 5.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 86.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "418",
+      "countryName": "Laos",
+      "iso3": "LAO",
+      "simulationZone": "sea",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 35.1877230763634,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 35.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 96.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 11.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "104",
+      "countryName": "Myanmar",
+      "iso3": "MMR",
+      "simulationZone": "sea",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 59.7239750772507,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 32.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 80.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 53.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "704",
+      "countryName": "Vietnam",
+      "iso3": "VNM",
+      "simulationZone": "sea",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 58.5808391368178,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "408",
+      "countryName": "North Korea",
+      "iso3": "PRK",
+      "simulationZone": "chn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 66.6121349621259,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 61.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 14.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "410",
+      "countryName": "South Korea",
+      "iso3": "KOR",
+      "simulationZone": "jpn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.2826694575636,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 5.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "496",
+      "countryName": "Mongolia",
+      "iso3": "MNG",
+      "simulationZone": "chn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 43.360722296887,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 55.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "356",
+      "countryName": "India",
+      "iso3": "IND",
+      "simulationZone": "ind",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 76.4421942140842,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 76.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "050",
+      "countryName": "Bangladesh",
+      "iso3": "BGD",
+      "simulationZone": "bgd",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 59.1254259857148,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 28.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "064",
+      "countryName": "Bhutan",
+      "iso3": "BTN",
+      "simulationZone": "ind",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 65.5942159692749,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 91.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "524",
+      "countryName": "Nepal",
+      "iso3": "NPL",
+      "simulationZone": "ind",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 16.4868856683866,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 36.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 97.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 42.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "586",
+      "countryName": "Pakistan",
+      "iso3": "PAK",
+      "simulationZone": "pak",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 44.9737364064737,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 42.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 54.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "004",
+      "countryName": "Afghanistan",
+      "iso3": "AFG",
+      "simulationZone": "pak",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 30.5547223111169,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 80.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 87.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 38.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "762",
+      "countryName": "Tajikistan",
+      "iso3": "TJK",
+      "simulationZone": "casia",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 65.1080715172931,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 25.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 87.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "417",
+      "countryName": "Kyrgyzstan",
+      "iso3": "KGZ",
+      "simulationZone": "casia",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 73.8812993002318,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 79.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "795",
+      "countryName": "Turkmenistan",
+      "iso3": "TKM",
+      "simulationZone": "casia",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 94.8535459177809,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "364",
+      "countryName": "Iran",
+      "iso3": "IRN",
+      "simulationZone": "irn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 94.4122052108484,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 38.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 95.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "760",
+      "countryName": "Syria",
+      "iso3": "SYR",
+      "simulationZone": "irn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 89.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 88.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "051",
+      "countryName": "Armenia",
+      "iso3": "ARM",
+      "simulationZone": "casia",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 82.0728191880242,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "752",
+      "countryName": "Sweden",
+      "iso3": "SWE",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.7607966673045,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "112",
+      "countryName": "Belarus",
+      "iso3": "BLR",
+      "simulationZone": "ukr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 93.0597552933534,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 1.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "804",
+      "countryName": "Ukraine",
+      "iso3": "UKR",
+      "simulationZone": "ukr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 87.8683769430978,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 32.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "616",
+      "countryName": "Poland",
+      "iso3": "POL",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 88.6755462509034,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 3.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "040",
+      "countryName": "Austria",
+      "iso3": "AUT",
+      "simulationZone": "deu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.8915357232143,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "348",
+      "countryName": "Hungary",
+      "iso3": "HUN",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 15.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "498",
+      "countryName": "Moldova",
+      "iso3": "MDA",
+      "simulationZone": "ukr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 75.8158908711072,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 25.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "642",
+      "countryName": "Romania",
+      "iso3": "ROU",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 82.182992939047,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 18.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "440",
+      "countryName": "Lithuania",
+      "iso3": "LTU",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.7335742559147,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "428",
+      "countryName": "Latvia",
+      "iso3": "LVA",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 97.0114068663046,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 11.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "233",
+      "countryName": "Estonia",
+      "iso3": "EST",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.9439097263954,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "276",
+      "countryName": "Germany",
+      "iso3": "DEU",
+      "simulationZone": "deu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.9172979459354,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "100",
+      "countryName": "Bulgaria",
+      "iso3": "BGR",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.2070781494387,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 11.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "300",
+      "countryName": "Greece",
+      "iso3": "GRC",
+      "simulationZone": "med_eu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.6861554835288,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "792",
+      "countryName": "Turkey",
+      "iso3": "TUR",
+      "simulationZone": "tur",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 95.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "008",
+      "countryName": "Albania",
+      "iso3": "ALB",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 70.7937363898968,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 33,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 86.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "191",
+      "countryName": "Croatia",
+      "iso3": "HRV",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 87.2682692486734,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "756",
+      "countryName": "Switzerland",
+      "iso3": "CHE",
+      "simulationZone": "deu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.6999968881937,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "442",
+      "countryName": "Luxembourg",
+      "iso3": "LUX",
+      "simulationZone": "deu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.6530550152333,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 2.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "056",
+      "countryName": "Belgium",
+      "iso3": "BEL",
+      "simulationZone": "deu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.5471345182049,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 8.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "528",
+      "countryName": "Netherlands",
+      "iso3": "NLD",
+      "simulationZone": "deu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.9595063956065,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "620",
+      "countryName": "Portugal",
+      "iso3": "PRT",
+      "simulationZone": "med_eu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 95.2173479483637,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 11.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "724",
+      "countryName": "Spain",
+      "iso3": "ESP",
+      "simulationZone": "med_eu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.4584646653876,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "372",
+      "countryName": "Ireland",
+      "iso3": "IRL",
+      "simulationZone": "gbr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.1250111631294,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "540",
+      "countryName": "New Caledonia",
+      "iso3": "NCL",
+      "simulationZone": "aus",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.8652854148107,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "090",
+      "countryName": "Solomon Is.",
+      "iso3": "SLB",
+      "simulationZone": "aus",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 81.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 8.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "554",
+      "countryName": "New Zealand",
+      "iso3": "NZL",
+      "simulationZone": "aus",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 17.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "036",
+      "countryName": "Australia",
+      "iso3": "AUS",
+      "simulationZone": "aus",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 13.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "144",
+      "countryName": "Sri Lanka",
+      "iso3": "LKA",
+      "simulationZone": "ind",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 46.9329705143603,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 11.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 35.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "156",
+      "countryName": "China",
+      "iso3": "CHN",
+      "simulationZone": "chn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 88.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "158",
+      "countryName": "Taiwan",
+      "iso3": "TWN",
+      "simulationZone": "chn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "380",
+      "countryName": "Italy",
+      "iso3": "ITA",
+      "simulationZone": "med_eu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.7584358284994,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 1.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "208",
+      "countryName": "Denmark",
+      "iso3": "DNK",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.9188271389611,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "826",
+      "countryName": "United Kingdom",
+      "iso3": "GBR",
+      "simulationZone": "gbr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.8229506760395,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "352",
+      "countryName": "Iceland",
+      "iso3": "ISL",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "031",
+      "countryName": "Azerbaijan",
+      "iso3": "AZE",
+      "simulationZone": "casia",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 57.8118283196096,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 14,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "268",
+      "countryName": "Georgia",
+      "iso3": "GEO",
+      "simulationZone": "casia",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 70.526609726787,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 26.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 93.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "608",
+      "countryName": "Philippines",
+      "iso3": "PHL",
+      "simulationZone": "sea",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 48.4840577441825,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 32.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 94.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 59.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "458",
+      "countryName": "Malaysia",
+      "iso3": "MYS",
+      "simulationZone": "idn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 94.700361858312,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 16.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 83.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "096",
+      "countryName": "Brunei",
+      "iso3": "BRN",
+      "simulationZone": "idn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "705",
+      "countryName": "Slovenia",
+      "iso3": "SVN",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.5745942010052,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 8.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "246",
+      "countryName": "Finland",
+      "iso3": "FIN",
+      "simulationZone": "sca",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.646796710852,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 13.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "703",
+      "countryName": "Slovakia",
+      "iso3": "SVK",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.5715569148418,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "203",
+      "countryName": "Czechia",
+      "iso3": "CZE",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.1448728385564,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "232",
+      "countryName": "Eritrea",
+      "iso3": "ERI",
+      "simulationZone": "eth",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 55.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 12,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "392",
+      "countryName": "Japan",
+      "iso3": "JPN",
+      "simulationZone": "jpn",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.7270242077337,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 5.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "600",
+      "countryName": "Paraguay",
+      "iso3": "PRY",
+      "simulationZone": "arg",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 64.3647197417661,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 26.2,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 71.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "887",
+      "countryName": "Yemen",
+      "iso3": "YEM",
+      "simulationZone": "sau",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 73,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 86.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 47.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "682",
+      "countryName": "Saudi Arabia",
+      "iso3": "SAU",
+      "simulationZone": "sau",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "N. Cyprus",
+      "countryName": "N. Cyprus",
+      "iso3": null,
+      "simulationZone": "med_eu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": null
+    },
+    {
+      "mapFeatureId": "196",
+      "countryName": "Cyprus",
+      "iso3": "CYP",
+      "simulationZone": "med_eu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.7211088299984,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 1.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "504",
+      "countryName": "Morocco",
+      "iso3": "MAR",
+      "simulationZone": "nafr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 79.9818072279602,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "818",
+      "countryName": "Egypt",
+      "iso3": "EGY",
+      "simulationZone": "egy",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 78.9401588327765,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 30.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "434",
+      "countryName": "Libya",
+      "iso3": "LBY",
+      "simulationZone": "nafr",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 35.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 77.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "231",
+      "countryName": "Ethiopia",
+      "iso3": "ETH",
+      "simulationZone": "eth",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 13.547200922558,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 61.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 56.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 7.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "262",
+      "countryName": "Djibouti",
+      "iso3": "DJI",
+      "simulationZone": "eth",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 49.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 69.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 10,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "Somaliland",
+      "countryName": "Somaliland",
+      "iso3": null,
+      "simulationZone": "eth",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": null
+    },
+    {
+      "mapFeatureId": "800",
+      "countryName": "Uganda",
+      "iso3": "UGA",
+      "simulationZone": "eaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 18.0971227782691,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 54.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 55.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "646",
+      "countryName": "Rwanda",
+      "iso3": "RWA",
+      "simulationZone": "eaf",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 72,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 9.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "070",
+      "countryName": "Bosnia and Herz.",
+      "iso3": "BIH",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 86.400107879006,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 9.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 39.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "807",
+      "countryName": "Macedonia",
+      "iso3": "MKD",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 80.7905414925805,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 15.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 81.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "688",
+      "countryName": "Serbia",
+      "iso3": "SRB",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 74.9672634764971,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 9.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 83.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "499",
+      "countryName": "Montenegro",
+      "iso3": "MNE",
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 85.5009117879106,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 61.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    },
+    {
+      "mapFeatureId": "Kosovo",
+      "countryName": "Kosovo",
+      "iso3": null,
+      "simulationZone": "eeu",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      },
+      "aqueductFuture": null
+    },
+    {
+      "mapFeatureId": "780",
+      "countryName": "Trinidad and Tobago",
+      "iso3": "TTO",
+      "simulationZone": "cen_am",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 69.3692626736132,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 27.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": false,
+        "2030:bau": false,
+        "2030:pes": false,
+        "2050:opt": false,
+        "2050:bau": false,
+        "2050:pes": false,
+        "2080:opt": false,
+        "2080:bau": false,
+        "2080:pes": false
+      }
+    },
+    {
+      "mapFeatureId": "728",
+      "countryName": "S. Sudan",
+      "iso3": "SSD",
+      "simulationZone": "egy",
+      "observedIndicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 88.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 5.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      },
+      "aqueductFuture": {
+        "2030:opt": true,
+        "2030:bau": true,
+        "2030:pes": true,
+        "2050:opt": true,
+        "2050:bau": true,
+        "2050:pes": true,
+        "2080:opt": true,
+        "2080:bau": true,
+        "2080:pes": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,5842 @@
+{
+  "metadata": {
+    "fetchedAt": "2026-09-26",
+    "sourceUpdated": "2026-07-13",
+    "aggregateCodesExcluded": [
+      "AFE",
+      "AFR",
+      "AFW",
+      "ARB",
+      "BEA",
+      "BEC",
+      "BHI",
+      "BLA",
+      "BMN",
+      "BSS",
+      "CAA",
+      "CEA",
+      "CEB",
+      "CEU",
+      "CLA",
+      "CME",
+      "CSA",
+      "CSS",
+      "DEA",
+      "DEC",
+      "DLA",
+      "DMN",
+      "DNS",
+      "DSA",
+      "DSF",
+      "DSS",
+      "EAP",
+      "EAR",
+      "EAS",
+      "ECA",
+      "ECS",
+      "EMU",
+      "EUU",
+      "FXS",
+      "HIC",
+      "HPC",
+      "IBB",
+      "IBD",
+      "IBT",
+      "IDA",
+      "IDB",
+      "IDX",
+      "INX",
+      "LAC",
+      "LCN",
+      "LDC",
+      "LIC",
+      "LMC",
+      "LMY",
+      "LTE",
+      "MDE",
+      "MEA",
+      "MIC",
+      "MNA",
+      "NAC",
+      "NAF",
+      "NRS",
+      "NXS",
+      "OED",
+      "OSS",
+      "PRE",
+      "PSS",
+      "PST",
+      "RRS",
+      "SAS",
+      "SSA",
+      "SSF",
+      "SST",
+      "SXZ",
+      "TEA",
+      "TEC",
+      "TLA",
+      "TMN",
+      "TSA",
+      "TSS",
+      "UMC",
+      "WLD",
+      "XZN"
+    ],
+    "countryDirectoryUrl": "https://api.worldbank.org/v2/country?format=json",
+    "period": "latest non-null country observation from 2000–2025; years vary by indicator and country",
+    "indicatorDefinitions": {
+      "SH.H2O.SMDW.ZS": {
+        "label": "Safely managed drinking-water services",
+        "unit": "% population",
+        "source": "WHO/UNICEF JMP via World Bank WDI",
+        "url": "https://api.worldbank.org/v2/country/all/indicator/SH.H2O.SMDW.ZS?format=json"
+      },
+      "SN.ITK.MSFI.ZS": {
+        "label": "Moderate or severe food insecurity (FIES)",
+        "unit": "% population",
+        "source": "FAO via World Bank WDI",
+        "url": "https://api.worldbank.org/v2/country/all/indicator/SN.ITK.MSFI.ZS?format=json"
+      },
+      "EG.ELC.ACCS.ZS": {
+        "label": "Access to electricity",
+        "unit": "% population",
+        "source": "Tracking SDG 7 via World Bank WDI",
+        "url": "https://api.worldbank.org/v2/country/all/indicator/EG.ELC.ACCS.ZS?format=json"
+      },
+      "EG.CFT.ACCS.ZS": {
+        "label": "Access to clean fuels and technologies for cooking",
+        "unit": "% population",
+        "source": "WHO / Tracking SDG 7 via World Bank WDI",
+        "url": "https://api.worldbank.org/v2/country/all/indicator/EG.CFT.ACCS.ZS?format=json"
+      }
+    },
+    "limitations": [
+      "Observations are not interpolated or projected into future years.",
+      "Food insecurity is based on the FAO FIES indicator; reference periods and survey availability vary by country.",
+      "Missing values mean unavailable in this source snapshot, not zero.",
+      "National percentages can hide substantial differences between regions and populations."
+    ]
+  },
+  "countries": [
+    {
+      "iso3": "ABW",
+      "name": "Aruba",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "AFG",
+      "name": "Afghanistan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 30.5547223111169,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 80.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 87.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 38.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "AGO",
+      "name": "Angola",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 78.5,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 55.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 50.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ALB",
+      "name": "Albania",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 70.7937363898968,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 33,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 86.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "AND",
+      "name": "Andorra",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 90.6400018060858,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ARE",
+      "name": "United Arab Emirates",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.6413172332089,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 3.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ARG",
+      "name": "Argentina",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 33.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ARM",
+      "name": "Armenia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 82.0728191880242,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ASM",
+      "name": "American Samoa",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 90.5383360522023,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": null,
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "ATG",
+      "name": "Antigua and Barbuda",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 13.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "AUS",
+      "name": "Australia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 13.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "AUT",
+      "name": "Austria",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.8915357232143,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "AZE",
+      "name": "Azerbaijan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 57.8118283196096,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 14,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BDI",
+      "name": "Burundi",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 70.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 20.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BEL",
+      "name": "Belgium",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.5471345182049,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 8.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BEN",
+      "name": "Benin",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 17.6968322374867,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 65.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 59,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BFA",
+      "name": "Burkina Faso",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 41.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 34,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 17,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BGD",
+      "name": "Bangladesh",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 59.1254259857148,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 28.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BGR",
+      "name": "Bulgaria",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.2070781494387,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 11.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "BHR",
+      "name": "Bahrain",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.9039755631804,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BHS",
+      "name": "Bahamas, The",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 17.2,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BIH",
+      "name": "Bosnia and Herzegovina",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 86.400107879006,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 9.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 39.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BLR",
+      "name": "Belarus",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 93.0597552933534,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 1.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BLZ",
+      "name": "Belize",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 45.5,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 82.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BMU",
+      "name": "Bermuda",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "BOL",
+      "name": "Bolivia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 96.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 90.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BRA",
+      "name": "Brazil",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 88.6239660721414,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 13.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 96.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BRB",
+      "name": "Barbados",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 31.1,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BRN",
+      "name": "Brunei Darussalam",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BTN",
+      "name": "Bhutan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 65.5942159692749,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 91.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "BWA",
+      "name": "Botswana",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 63.2910412393649,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 53.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 80.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 66.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CAF",
+      "name": "Central African Republic",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 6.21748768966731,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 88.1,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 18.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CAN",
+      "name": "Canada",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.890322656349,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CHE",
+      "name": "Switzerland",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.6999968881937,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CHI",
+      "name": "Channel Islands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "CHL",
+      "name": "Chile",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 97.8170551998161,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 19.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CHN",
+      "name": "China",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 88.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CIV",
+      "name": "Cote d'Ivoire",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 36.4489381559953,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 38.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 72.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 44.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CMR",
+      "name": "Cameroon",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 61.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 72,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 30.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "COD",
+      "name": "Congo, Dem. Rep.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 11.8726481819387,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 81.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 22.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "COG",
+      "name": "Congo, Rep.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 45.8748419970802,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 53,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 40.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "COL",
+      "name": "Colombia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 74.33929919179,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 27.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 91.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "COM",
+      "name": "Comoros",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 79.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 91.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 10.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CPV",
+      "name": "Cabo Verde",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 32.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 83.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CRI",
+      "name": "Costa Rica",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 80.5000742430698,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 15.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 96.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CUB",
+      "name": "Cuba",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CUW",
+      "name": "Curacao",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "CYM",
+      "name": "Cayman Islands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "CYP",
+      "name": "Cyprus",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.7211088299984,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 1.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "CZE",
+      "name": "Czechia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.1448728385564,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "DEU",
+      "name": "Germany",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.9172979459354,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "DJI",
+      "name": "Djibouti",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 49.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 69.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 10,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "DMA",
+      "name": "Dominica",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 34.4,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 86.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "DNK",
+      "name": "Denmark",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.9188271389611,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "DOM",
+      "name": "Dominican Republic",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 45.3324070681699,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 43.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 93.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "DZA",
+      "name": "Algeria",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 69.0291825248964,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 17.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ECU",
+      "name": "Ecuador",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 69.8869997038501,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 33.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "EGY",
+      "name": "Egypt, Arab Rep.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 78.9401588327765,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 30.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ERI",
+      "name": "Eritrea",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 55.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 12,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ESP",
+      "name": "Spain",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.4584646653876,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "EST",
+      "name": "Estonia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.9439097263954,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ETH",
+      "name": "Ethiopia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 13.547200922558,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 61.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 56.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 7.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "FIN",
+      "name": "Finland",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.646796710852,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 13.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "FJI",
+      "name": "Fiji",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 42.1107501060855,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 29.2,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 54.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "FRA",
+      "name": "France",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.7127014746794,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 8.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "FRO",
+      "name": "Faroe Islands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "FSM",
+      "name": "Micronesia, Fed. Sts.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 88.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 13.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GAB",
+      "name": "Gabon",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 91.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GBR",
+      "name": "United Kingdom",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.8229506760395,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GEO",
+      "name": "Georgia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 70.526609726787,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 26.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 93.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GHA",
+      "name": "Ghana",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 42.9413892027374,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 44.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 91.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 32.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GIB",
+      "name": "Gibraltar",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "GIN",
+      "name": "Guinea",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 53.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GMB",
+      "name": "Gambia, The",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 48.1790034938582,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 54.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 69,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GNB",
+      "name": "Guinea-Bissau",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 23.9850167901073,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 62.5,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 43.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GNQ",
+      "name": "Equatorial Guinea",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 65.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 22.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GRC",
+      "name": "Greece",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.6861554835288,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GRD",
+      "name": "Grenada",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 89.9176799999318,
+          "year": 2017,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 17.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 84.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GRL",
+      "name": "Greenland",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "GTM",
+      "name": "Guatemala",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 48.7871950677385,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 48.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 90.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 46.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "GUM",
+      "name": "Guam",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 93.9971537831548,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "GUY",
+      "name": "Guyana",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 67.1744374324054,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 25.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 93,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "HKG",
+      "name": "Hong Kong SAR, China",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "HND",
+      "name": "Honduras",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 65.5162211788382,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 41.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 50.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "HRV",
+      "name": "Croatia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 87.2682692486734,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "HTI",
+      "name": "Haiti",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 83.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 53.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 4.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "HUN",
+      "name": "Hungary",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 15.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "IDN",
+      "name": "Indonesia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 30.4609773643609,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 90.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "IMN",
+      "name": "Isle of Man",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.9105964912281,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "IND",
+      "name": "India",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 76.4421942140842,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 76.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "IRL",
+      "name": "Ireland",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.1250111631294,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "IRN",
+      "name": "Iran, Islamic Rep.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 94.4122052108484,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 38.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 95.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "IRQ",
+      "name": "Iraq",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 59.8272461307615,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ISL",
+      "name": "Iceland",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ISR",
+      "name": "Israel",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.4619876940454,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 9.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ITA",
+      "name": "Italy",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.7584358284994,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 1.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "JAM",
+      "name": "Jamaica",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 56.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 97.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 93,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "JOR",
+      "name": "Jordan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 88.9502985282712,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "JPN",
+      "name": "Japan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.7270242077337,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 5.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "KAZ",
+      "name": "Kazakhstan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 91.5454182335736,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "KEN",
+      "name": "Kenya",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 73.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 77,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 31.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "KGZ",
+      "name": "Kyrgyz Republic",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 73.8812993002318,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 79.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "KHM",
+      "name": "Cambodia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 29.9855761398875,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 40,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 58,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "KIR",
+      "name": "Kiribati",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 15.0879416013618,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 42.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 97.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 16.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "KNA",
+      "name": "St. Kitts and Nevis",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 21.1,
+          "year": 2020,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "KOR",
+      "name": "Korea, Rep.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.2826694575636,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 5.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "KWT",
+      "name": "Kuwait",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 8.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "LAO",
+      "name": "Lao PDR",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 35.1877230763634,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 35.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 96.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 11.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "LBN",
+      "name": "Lebanon",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 47.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 42.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "LBR",
+      "name": "Liberia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 80.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 34.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "LBY",
+      "name": "Libya",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 35.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 77.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "LCA",
+      "name": "St. Lucia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 22.2,
+          "year": 2017,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 92.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "LIE",
+      "name": "Liechtenstein",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "LKA",
+      "name": "Sri Lanka",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 46.9329705143603,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 11.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 35.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "LSO",
+      "name": "Lesotho",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 31.320241708541,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 59.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 60.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 53.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "LTU",
+      "name": "Lithuania",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.7335742559147,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "LUX",
+      "name": "Luxembourg",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.6530550152333,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 2.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "LVA",
+      "name": "Latvia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 97.0114068663046,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 11.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MAC",
+      "name": "Macao SAR, China",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "MAF",
+      "name": "St. Martin (French part)",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.6254814641877,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "MAR",
+      "name": "Morocco",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 79.9818072279602,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MCO",
+      "name": "Monaco",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MDA",
+      "name": "Moldova",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 75.8158908711072,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 25.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MDG",
+      "name": "Madagascar",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 22.0559944937861,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 72.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 42.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MDV",
+      "name": "Maldives",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 13.4,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MEX",
+      "name": "Mexico",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 42.9666311513801,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 19.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 85.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MHL",
+      "name": "Marshall Islands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 97.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 64.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MKD",
+      "name": "North Macedonia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 80.7905414925805,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 15.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 81.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MLI",
+      "name": "Mali",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 20.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 49.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MLT",
+      "name": "Malta",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.8267685287143,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 9.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MMR",
+      "name": "Myanmar",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 59.7239750772507,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 32.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 80.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 53.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MNE",
+      "name": "Montenegro",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 85.5009117879106,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 61.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MNG",
+      "name": "Mongolia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 43.360722296887,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 4.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 55.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MNP",
+      "name": "Northern Mariana Islands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 81.4545454545454,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "MOZ",
+      "name": "Mozambique",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 27.5429456975996,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 36.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 7.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MRT",
+      "name": "Mauritania",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 66.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 52.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 49.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MUS",
+      "name": "Mauritius",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 31.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MWI",
+      "name": "Malawi",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 18.1816539742083,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 81.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 15.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "MYS",
+      "name": "Malaysia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 94.700361858312,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 16.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 83.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NAM",
+      "name": "Namibia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 55.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 59.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 48,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NCL",
+      "name": "New Caledonia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 96.8652854148107,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "NER",
+      "name": "Niger",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 50.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 21.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 5.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NGA",
+      "name": "Nigeria",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 29.904599188308,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 74.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 62.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 26.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NIC",
+      "name": "Nicaragua",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 88.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 59.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NLD",
+      "name": "Netherlands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.9595063956065,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NOR",
+      "name": "Norway",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.0624830632163,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NPL",
+      "name": "Nepal",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 16.4868856683866,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 36.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 97.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 42.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NRU",
+      "name": "Naoero",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 18.6631621110857,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 29.9,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "NZL",
+      "name": "New Zealand",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 17.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "OMN",
+      "name": "Oman",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 91.1011744135751,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PAK",
+      "name": "Pakistan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 44.9737364064737,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 42.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 95.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 54.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PAN",
+      "name": "Panama",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 96,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PER",
+      "name": "Peru",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 49.4283962319206,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 41,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 96.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 91.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PHL",
+      "name": "Philippines",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 48.4840577441825,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 32.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 94.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 59.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PLW",
+      "name": "Palau",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 90.7752173469518,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 28.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PNG",
+      "name": "Papua New Guinea",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 57.3,
+          "year": 2019,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 43.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 10.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "POL",
+      "name": "Poland",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 88.6755462509034,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 3.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PRI",
+      "name": "Puerto Rico (US)",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.9402618391431,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "PRK",
+      "name": "Korea, Dem. People's Rep.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 66.6121349621259,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 61.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 14.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PRT",
+      "name": "Portugal",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 95.2173479483637,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 11.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PRY",
+      "name": "Paraguay",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 64.3647197417661,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 26.2,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 71.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "PSE",
+      "name": "West Bank and Gaza",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 80.6420172046077,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 27,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "PYF",
+      "name": "French Polynesia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 90.448717948718,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "QAT",
+      "name": "Qatar",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 95.345241877961,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ROU",
+      "name": "Romania",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 82.182992939047,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 18.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "RUS",
+      "name": "Russian Federation",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 76.2607294162414,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 2.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "RWA",
+      "name": "Rwanda",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 72,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 9.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SAU",
+      "name": "Saudi Arabia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SDN",
+      "name": "Sudan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 66,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 70.55,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SEN",
+      "name": "Senegal",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 27.1931407050582,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 29.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 82.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 34.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SGP",
+      "name": "Singapore",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 9.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SLB",
+      "name": "Solomon Islands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 81.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 8.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SLE",
+      "name": "Sierra Leone",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 10.8953836036255,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 89.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 39.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SLV",
+      "name": "El Salvador",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 45.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 98.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SMR",
+      "name": "San Marino",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.9999961845643,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SOM",
+      "name": "Somalia, Fed. Rep.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 79.5,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 54.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 5.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SRB",
+      "name": "Serbia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 74.9672634764971,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 9.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 83.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SSD",
+      "name": "South Sudan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 88.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 5.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 0,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "STP",
+      "name": "Sao Tome and Principe",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 36.6800380926738,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 54.6,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 77.7,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 4.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SUR",
+      "name": "Suriname",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 55.8472410362348,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 35.8,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 95.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SVK",
+      "name": "Slovak Republic",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.5715569148418,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 7.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SVN",
+      "name": "Slovenia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.5745942010052,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 8.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SWE",
+      "name": "Sweden",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 99.7607966673045,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 6.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SWZ",
+      "name": "Eswatini",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 38.2165357028722,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 59,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 89.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 50.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SXM",
+      "name": "Sint Maarten (Dutch part)",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "SYC",
+      "name": "Seychelles",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 64.7022316280556,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 14.3,
+          "year": 2017,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "SYR",
+      "name": "Syrian Arab Republic",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 89.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 88.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TCA",
+      "name": "Turks and Caicos Islands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 47.0499187664591,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "TCD",
+      "name": "Chad",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 6.34082647389426,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 66.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 13.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 9.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TGO",
+      "name": "Togo",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 20.5232352790187,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 58.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 61.1,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 13.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "THA",
+      "name": "Thailand",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 5.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 86.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TJK",
+      "name": "Tajikistan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 65.1080715172931,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 25.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 87.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TKM",
+      "name": "Turkmenistan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 94.8535459177809,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TLS",
+      "name": "Timor-Leste",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 53.7,
+          "year": 2021,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 94.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 19.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TON",
+      "name": "Tonga",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 29.5984543183511,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 14.8,
+          "year": 2022,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 90.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TTO",
+      "name": "Trinidad and Tobago",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 69.3692626736132,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 27.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TUN",
+      "name": "Tunisia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 64.9781072145301,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 25.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 99.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TUR",
+      "name": "Turkiye",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 95.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TUV",
+      "name": "Tuvalu",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 8.72255043279915,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 77,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "TZA",
+      "name": "Tanzania",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 31.3253989476029,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 58,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 52.4,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 9.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "UGA",
+      "name": "Uganda",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 18.0971227782691,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 54.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 55.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 1.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "UKR",
+      "name": "Ukraine",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 87.8683769430978,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 32.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 94.9,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "URY",
+      "name": "Uruguay",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 16.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "USA",
+      "name": "United States",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 97.5676884437325,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 100,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "UZB",
+      "name": "Uzbekistan",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 81.9295048040968,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 24.4,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 78.1,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "VCT",
+      "name": "St. Vincent and the Grenadines",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 33.3,
+          "year": 2019,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 89.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "VEN",
+      "name": "Venezuela, RB",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 93.5,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "VGB",
+      "name": "British Virgin Islands",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "VIR",
+      "name": "Virgin Islands (U.S.)",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 98.6774837370682,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": null,
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": null
+      }
+    },
+    {
+      "iso3": "VNM",
+      "name": "Viet Nam",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 58.5808391368178,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 10.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 98.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "VUT",
+      "name": "Vanuatu",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 19.1970839884387,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 23.3,
+          "year": 2020,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 65.5,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 20.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "WSM",
+      "name": "Samoa",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 62.50194060138,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 18.6,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 100,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 39.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "YEM",
+      "name": "Yemen, Rep.",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 73,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 86.3,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 47.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ZAF",
+      "name": "South Africa",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 68.0075638755656,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 20.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 90.2,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 89.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ZMB",
+      "name": "Zambia",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": null,
+        "SN.ITK.MSFI.ZS": {
+          "value": 45.3,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 53.6,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 9.2,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    },
+    {
+      "iso3": "ZWE",
+      "name": "Zimbabwe",
+      "indicators": {
+        "SH.H2O.SMDW.ZS": {
+          "value": 25.460563358156,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        },
+        "SN.ITK.MSFI.ZS": {
+          "value": 68.8,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.ELC.ACCS.ZS": {
+          "value": 62,
+          "year": 2024,
+          "observationStatus": "",
+          "sourceDecimals": 1
+        },
+        "EG.CFT.ACCS.ZS": {
+          "value": 30.7,
+          "year": 2023,
+          "observationStatus": "",
+          "sourceDecimals": 0
+        }
+      }
+    }
+  ]
+}
