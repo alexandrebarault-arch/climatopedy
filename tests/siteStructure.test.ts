@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
 const expectedIds = ['map', 'comparative-dashboard', 'tipping-points', 'causal', 'spec', 'sources'];
@@ -52,4 +52,24 @@ test('map analysis and country inspector use the shared status and future record
   }
 
   assert.match(inspector, /shouldShowHistoricalTemperatureRecord\(simulationState\.year\)/);
+});
+
+test('site architecture guide covers the pages, shared state, data flow and verification commands', async () => {
+  const guideUrl = new URL('../docs/site-architecture.md', import.meta.url);
+  assert.ok(existsSync(guideUrl), 'the site architecture guide must exist');
+  const guide = readFileSync(guideUrl, 'utf8');
+  const { SITE_SECTIONS } = await import('../src/data/siteSections.ts');
+
+  for (const section of SITE_SECTIONS) assert.ok(guide.includes(`\`${section.id}\``), `guide must document ${section.id}`);
+  for (const component of [
+    'ClimatopedyHeader', 'WorldMap', 'TimelineController', 'ComparisonModePanel', 'KpiCharts',
+    'YouthExplainerCard', 'FutureConclusionCard', 'InteractiveFaqSection', 'AiFutureDebateCard',
+    'CountryInspector', 'ComparativeDashboardView', 'TippingPointsView', 'CausalChainExplorer',
+    'SpecModal', 'ScientificSourcesView'
+  ]) assert.ok(guide.includes(component), `guide must document ${component}`);
+  for (const parameter of ['scenB', 'oilRed', 'agro', 'resil', 'ecs', 'year']) {
+    assert.ok(guide.includes(`\`${parameter}\``), `guide must document URL parameter ${parameter}`);
+  }
+  for (const command of ['npm test', 'npm run lint', 'npm run build']) assert.ok(guide.includes(`\`${command}\``));
+  assert.match(guide, /Liste de contrôle avant de modifier la structure/i);
 });
