@@ -14,6 +14,7 @@ type PanelRow = {
   absoluteAirTemperatureRecord: null | { valueC: number; sourceUrl: string };
   provenance: {
     baselineReferencePeriod: string;
+    warmSeasonMonths: number[];
     dataQuality: Record<string, string>;
     methods: Record<string, string>;
     notes: string[];
@@ -169,29 +170,30 @@ test('full BAU trajectory keeps annual temperature baselines continuous and mark
 
 test('temperature trajectories remain complete, ordered, and do not reset in 2026 or plateau after 2100', async () => {
   const runner = await import('../src/engine/simulationRunner.ts');
-  const [{ COUNTRIES_DATA }, temperatureReference] = await Promise.all([import('../src/data/countriesData.ts'), import('../src/engine/temperatureReference.ts')]);
+  const [{ COUNTRIES_DATA }, temperatureReference, physics] = await Promise.all([
+    import('../src/data/countriesData.ts'),
+    import('../src/engine/temperatureReference.ts'),
+    import('../src/engine/physicsModel.ts')
+  ]);
   const scenarios = [runner.SCENARIO_BAU, runner.SCENARIO_DELAYED, runner.SCENARIO_SOBRIETY];
   const trajectories = scenarios.map(scenario => runner.generateFullTrajectory(scenario, 1901, 2200));
-  const trajectory = trajectories[0];
-  assert.equal(trajectory.length, 300);
-  assert.equal(trajectory[0].year, 1901);
-  assert.equal(trajectory.at(-1)?.year, 2200);
-
-  const at = (year: number) => trajectory.find(state => state.year === year)!;
-  for (const country of COUNTRIES_DATA) {
-    for (let year = 1901; year <= 2200; year++) {
-      const state = at(year).countries[country.id];
-      assert.ok(Number.isFinite(state.dryBulbTemp), `${country.id} has no mean temperature in ${year}`);
-      assert.ok(Number.isFinite(state.annualMinTemp) && Number.isFinite(state.annualMaxTemp), `${country.id} has incomplete extrema in ${year}`);
-      assert.ok(state.annualMinTemp <= state.dryBulbTemp && state.dryBulbTemp <= state.annualMaxTemp, `${country.id} temperature ordering fails in ${year}`);
-    }
-    assert.ok(Math.abs(at(2026).countries[country.id].dryBulbTemp - at(2025).countries[country.id].dryBulbTemp) < 0.15, `${country.id} has an artificial 2025–2026 reset`);
-    assert.ok(at(2200).countries[country.id].dryBulbTemp > at(2100).countries[country.id].dryBulbTemp, `${country.id} is frozen after 2100`);
-  }
   for (let scenarioIndex = 0; scenarioIndex < scenarios.length; scenarioIndex++) {
     const scenarioTrajectory = trajectories[scenarioIndex];
     assert.equal(scenarioTrajectory.length, 300, `${scenarios[scenarioIndex].id} must include all years 1901–2200`);
+    assert.equal(scenarioTrajectory[0].year, 1901);
+    assert.equal(scenarioTrajectory.at(-1)?.year, 2200);
     for (const country of COUNTRIES_DATA) {
+      for (let index = 0; index < scenarioTrajectory.length; index++) {
+        const state = scenarioTrajectory[index].countries[country.id];
+        const year = 1901 + index;
+        assert.ok(Number.isFinite(state.dryBulbTemp), `${country.id}/${scenarios[scenarioIndex].id} has no mean temperature in ${year}`);
+        assert.ok(Number.isFinite(state.annualMinTemp) && Number.isFinite(state.annualMaxTemp), `${country.id}/${scenarios[scenarioIndex].id} has incomplete extrema in ${year}`);
+        assert.ok(state.annualMinTemp <= state.dryBulbTemp && state.dryBulbTemp <= state.annualMaxTemp, `${country.id}/${scenarios[scenarioIndex].id} temperature ordering fails in ${year}`);
+        assert.ok(Number.isFinite(state.summerMaxTemp) && Number.isFinite(state.summerHumidity), `${country.id}/${scenarios[scenarioIndex].id} heat metrics missing in ${year}`);
+        assert.ok(state.summerHumidity >= 0 && state.summerHumidity <= 100, `${country.id}/${scenarios[scenarioIndex].id} RH outside physical bounds in ${year}`);
+        assert.ok(state.summerMaxTemp >= state.annualMaxTemp, `${country.id}/${scenarios[scenarioIndex].id} P99 falls below annual mean Tmax in ${year}`);
+        assert.equal(state.wetBulbPeak, physics.calculateScenarioWetBulb(state.summerMaxTemp, state.summerHumidity), `${country.id}/${scenarios[scenarioIndex].id} Tw not recalculated from P99 and RH in ${year}`);
+      }
       const y2025 = scenarioTrajectory.find(state => state.year === 2025)!.countries[country.id].dryBulbTemp;
       const y2026 = scenarioTrajectory.find(state => state.year === 2026)!.countries[country.id].dryBulbTemp;
       const y2100 = scenarioTrajectory.find(state => state.year === 2100)!.countries[country.id].dryBulbTemp;
@@ -215,6 +217,76 @@ test('map offers air Tmax separately from wet-bulb temperature', async () => {
   assert.match(source, /setActiveMetric\('air_temperature'\)/);
   assert.match(source, /dyn\.annualMaxTemp/);
   assert.match(source, /Moyenne annuelle des Tmax quotidiennes/);
+});
+
+test('heatwave P99 and humidity use separate CMIP6 extreme-temperature and warm-season humidity deltas', async () => {
+  const [projection, cckp, climatePanel, temperatureReference, physics] = await Promise.all([
+    import('../src/engine/heatHazardProjections.ts'),
+    import('../src/data/cckpHeatHazardProjections.json', { with: { type: 'json' } }),
+    import('../src/data/climatePanelData.json', { with: { type: 'json' } }),
+    import('../src/engine/temperatureReference.ts'),
+    import('../src/engine/physicsModel.ts')
+  ]);
+  const panel = (climatePanel.default as { rows: PanelRow[] }).rows.find(row => row.id === 'fra')!;
+  const data = cckp.default as {
+    zones: Record<string, {
+      warmSeasonMonths: number[];
+      baseline: { txx: number; hurs: number[] };
+      future: Record<string, { txx: number; hurs: number[] }>;
+    }>;
+  };
+  const zone = data.zones.fra;
+  const months = panel.provenance.warmSeasonMonths;
+  const warmMean = (values: number[]) => months.reduce((sum, month) => sum + values[month - 1], 0) / months.length;
+  const get = projection.projectHeatHazard as (input: {
+    countryId: string; referenceP99C: number; referenceHumidityPct: number; warmSeasonMonths: number[];
+    year: number; scenarioId?: string; globalTemperatureAnomaly?: number;
+  }) => { p99C: number; humidityPct: number; method: string };
+  const input = { countryId: 'fra', referenceP99C: panel.heatwaveScenarioTempC, referenceHumidityPct: panel.heatwaveScenarioHumidityPct, warmSeasonMonths: months, scenarioId: 'bau' };
+  const start = get({ ...input, year: 2026, globalTemperatureAnomaly: 1.34 });
+  const offset = (1.34 - temperatureReference.GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C) * 1.35;
+  assert.ok(Math.abs(start.p99C - (panel.heatwaveScenarioTempC + offset)) < 1e-10, '2026 P99 must preserve the NASA POWER baseline plus existing reference offset');
+  assert.equal(start.humidityPct, panel.heatwaveScenarioHumidityPct, '2026 humidity must preserve the heat-day estimate');
+
+  const at2100 = get({ ...input, year: 2100, globalTemperatureAnomaly: 2.41083138670827 });
+  const expectedP99 = panel.heatwaveScenarioTempC + offset + zone.future.ssp585.txx - zone.baseline.txx;
+  const expectedHumidity = panel.heatwaveScenarioHumidityPct + warmMean(zone.future.ssp585.hurs) - warmMean(zone.baseline.hurs);
+  assert.ok(Math.abs(at2100.p99C - expectedP99) < 1e-10, 'P99 should use CCKP TXx delta, not annual mean Tmax delta');
+  assert.ok(Math.abs(at2100.humidityPct - expectedHumidity) < 1e-10, 'summer humidity should use CCKP Hurs change for warm months');
+  assert.notEqual(at2100.humidityPct, start.humidityPct, 'future humidity must no longer be frozen at its baseline');
+  assert.equal(at2100.method, 'cmip6-delta');
+  const projectedTw = physics.calculateScenarioWetBulb(at2100.p99C, at2100.humidityPct);
+  assert.ok(projectedTw !== null && projectedTw < at2100.p99C, 'Tw must be recomputed from projected P99 and humidity');
+
+  const ssp126 = get({ ...input, year: 2100, scenarioId: 'sobriety', globalTemperatureAnomaly: 2.1904169375126314 });
+  assert.ok(at2100.p99C > ssp126.p99C, 'P99 should differ by pathway');
+  assert.notEqual(at2100.humidityPct, ssp126.humidityPct, 'Hurs should follow the selected pathway');
+  const at2200 = get({ ...input, year: 2200, globalTemperatureAnomaly: 2.696 });
+  assert.ok(at2200.p99C > at2100.p99C, 'P99 should continue only as an explicit post-2100 extrapolation');
+  assert.ok(at2200.humidityPct >= 0 && at2200.humidityPct <= 100);
+  assert.equal(at2200.method, 'post2100-extrapolation');
+});
+
+test('CCKP heat-hazard inputs cover every model zone and have complete scenario fields', async () => {
+  const [hazards, countries] = await Promise.all([
+    import('../src/data/cckpHeatHazardProjections.json', { with: { type: 'json' } }),
+    import('../src/data/countriesData.ts')
+  ]);
+  const data = hazards.default as { zones: Record<string, { members: string[]; baseline: { txx: number; hurs: number[] }; future: Record<string, { txx: number; hurs: number[] }> }> };
+  const { COUNTRIES_DATA } = countries;
+  assert.equal(Object.keys(data.zones).length, COUNTRIES_DATA.length);
+  for (const country of COUNTRIES_DATA) {
+    const zone = data.zones[country.id];
+    assert.ok(zone, `${country.id} is missing CCKP hazard projections`);
+    assert.ok(zone.members.length > 0, `${country.id} has no country members`);
+    assert.ok(Number.isFinite(zone.baseline.txx));
+    assert.equal(zone.baseline.hurs.length, 12);
+    for (const scenario of ['ssp126', 'ssp245', 'ssp585']) {
+      assert.ok(Number.isFinite(zone.future[scenario].txx), `${country.id}/${scenario} TXx missing`);
+      assert.equal(zone.future[scenario].hurs.length, 12, `${country.id}/${scenario} Hurs months missing`);
+      assert.ok(zone.future[scenario].hurs.every(value => Number.isFinite(value) && value >= 0 && value <= 100));
+    }
+  }
 });
 
 test('2026 simulation initializes the heat scenario and Tw from the adjusted 2026 baseline', async () => {

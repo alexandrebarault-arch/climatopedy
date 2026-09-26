@@ -1,6 +1,7 @@
 import { COUNTRIES_DATA } from '../data/countriesData';
 import { getCountryTemperatures } from './countryTemperatures';
-import { APP_2026_GLOBAL_ANOMALY_C, GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C } from './temperatureReference';
+import { APP_2026_GLOBAL_ANOMALY_C } from './temperatureReference';
+import { projectHeatHazard } from './heatHazardProjections';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
 import {
@@ -104,9 +105,18 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
     const baselineTemperatures = { tas: climate.annualMeanTempC, tasmin: climate.annualMeanDailyMinTempC, tasmax: climate.annualMeanDailyMaxTempC };
     const temperatures = getCountryTemperatures(c.id, baselineTemperatures, 2026, scenarioConfig?.id);
     const dryBulb = temperatures.tas;
-    const summerMax = climate.heatwaveScenarioTempC + (initialT1 - GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C) * c.patternScaling;
+    const heatHazard = projectHeatHazard({
+      countryId: c.id,
+      referenceP99C: climate.heatwaveScenarioTempC,
+      referenceHumidityPct: climate.heatwaveScenarioHumidityPct,
+      warmSeasonMonths: climate.provenance.warmSeasonMonths,
+      year: 2026,
+      scenarioId: scenarioConfig?.id,
+      globalTemperatureAnomaly: initialT1
+    });
+    const summerMax = heatHazard.p99C;
     const wetBulb = calculateWetBulbStull(dryBulb, c.baseHumidity);
-    const wetBulbPeak = calculateScenarioWetBulb(summerMax, climate.heatwaveScenarioHumidityPct);
+    const wetBulbPeak = calculateScenarioWetBulb(summerMax, heatHazard.humidityPct);
 
     const cohorts: DemographicCohorts = { p0, p1, p2, total: c.basePop2026 };
     const baseMortalityRate = c.baseMortality / 1000.0; // En taux unitaire
@@ -126,7 +136,7 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
       annualMinTemp: temperatures.tasmin,
       annualMaxTemp: temperatures.tasmax,
       summerMaxTemp: summerMax,
-      summerHumidity: climate.heatwaveScenarioHumidityPct,
+      summerHumidity: heatHazard.humidityPct,
       wetBulbTemp: wetBulb,
       wetBulbPeak,
       cropYieldFactor: 1.0,
@@ -308,19 +318,28 @@ export function stepSimulation(
     cState.annualMinTemp = temperatures.tasmin;
     cState.annualMaxTemp = temperatures.tasmax;
 
-    const deltaTGlobalFrom2026 = Math.max(0, next.surfaceTemperatureAnomaly - 1.34);
+    const deltaTGlobalFrom2026 = Math.max(0, next.surfaceTemperatureAnomaly - APP_2026_GLOBAL_ANOMALY_C);
 
-    // Descente d'échelle du pic caniculaire estival sous abri (amplification des extrêmes continentaux x1.15)
-    const localSummerMax = climate.heatwaveScenarioTempC + (temperatures.tasmax - baselineTemperatures.tasmax);
+    // Le P99 suit le delta TXx CCKP; l'humidité suit l'anomalie Hurs des mois chauds.
+    const heatHazard = projectHeatHazard({
+      countryId: staticC.id,
+      referenceP99C: climate.heatwaveScenarioTempC,
+      referenceHumidityPct: climate.heatwaveScenarioHumidityPct,
+      warmSeasonMonths: climate.provenance.warmSeasonMonths,
+      year: next.year,
+      scenarioId: scenarioConfig?.id,
+      globalTemperatureAnomaly: next.surfaceTemperatureAnomaly
+    });
+    const localSummerMax = heatHazard.p99C;
     cState.summerMaxTemp = localSummerMax;
-    cState.summerHumidity = climate.heatwaveScenarioHumidityPct;
+    cState.summerHumidity = heatHazard.humidityPct;
 
     // Calcul de la température humide moyenne annuelle
     const localWetBulb = calculateWetBulbStull(localDryBulb, staticC.baseHumidity);
     cState.wetBulbTemp = localWetBulb;
 
     // Calcul rigoureux de Roland Stull (2011) lors du pic caniculaire estival
-    cState.wetBulbPeak = calculateScenarioWetBulb(localSummerMax, climate.heatwaveScenarioHumidityPct);
+    cState.wetBulbPeak = calculateScenarioWetBulb(localSummerMax, heatHazard.humidityPct);
 
     // Perte surfacique côtière due au niveau marin (deltas, plaines rizicoles)
     cState.floodedArablePct = Math.min(0.35, staticC.coastalExposureScore * (next.seaLevelRiseMeters * 0.18));

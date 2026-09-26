@@ -45,6 +45,8 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   const isFamine = dynState.calPerCapita < 2100;
   const habitabilityStatus = getHabitabilityStatus(dynState.wetBulbPeak, dynState.calPerCapita);
   const showHistoricalRecord = shouldShowHistoricalTemperatureRecord(simulationState.year);
+  const modelYear = Math.floor(simulationState.year);
+  const post2100 = modelYear > 2100;
   const habitabilityBadgeClass = habitabilityStatus?.severity === 'high'
     ? 'bg-rose-50 text-rose-800 border-rose-200'
     : habitabilityStatus?.severity === 'medium'
@@ -230,13 +232,15 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
                 <span className="text-sm font-bold font-mono text-amber-700 tabular-nums">
                   {dynState.summerMaxTemp.toFixed(1)}°C
                 </span>
+                <span className="text-[9px] text-slate-400 block">{modelYear < 2026 ? 'Reconstruction' : modelYear === 2026 ? 'Référence 1991–2020' : post2100 ? 'TXx · extension exploratoire' : 'Delta TXx CMIP6'}</span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
-                <span className="text-slate-500 block text-[10px]">Humidité estimée</span>
+                <span className="text-slate-500 block text-[10px]">Humidité jours chauds</span>
                 <span className="text-sm font-bold font-mono text-sky-700 tabular-nums">
                   {dynState.summerHumidity.toFixed(0)}%
                 </span>
+                <span className="text-[9px] text-slate-400 block">{modelYear <= 2026 ? 'Proxy MERRA-2' : post2100 ? 'Hurs · extension exploratoire' : 'Delta Hurs saison chaude'}</span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
@@ -255,25 +259,25 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
                 <span className="text-slate-500 block text-[10px]">Moy. des Tmax quotidiennes (proxy)</span>
                 <span className="text-sm font-bold font-mono text-rose-700 tabular-nums">
-                  {(Math.floor(simulationState.year) === 2026 ? climate.annualMeanDailyMaxTempC : dynState.annualMaxTemp).toFixed(1)}°C
+                  {dynState.annualMaxTemp.toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
                 <span className="text-slate-500 block text-[10px]">Moy. des Tmin quotidiennes (proxy)</span>
                 <span className="text-sm font-bold font-mono text-indigo-800 tabular-nums">
-                  {(Math.floor(simulationState.year) === 2026 ? climate.annualMeanDailyMinTempC : dynState.annualMinTemp).toFixed(1)}°C
+                  {dynState.annualMinTemp.toFixed(1)}°C
                 </span>
               </div>
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
                 <span className="text-slate-500 block text-[10px]">
-                  {Math.floor(simulationState.year) === 2026 ? 'Moyenne annuelle (proxy)' : 'Moyenne annuelle projetée'}
+                  {modelYear === 2026 ? 'Moyenne annuelle référencée' : modelYear < 2026 ? 'Moyenne annuelle reconstruite' : 'Moyenne annuelle projetée'}
                 </span>
                 <span className="text-sm font-bold font-mono text-slate-800 tabular-nums">
-                  {(Math.floor(simulationState.year) === 2026 ? climate.annualMeanTempC : dynState.dryBulbTemp).toFixed(1)}°C
+                  {dynState.dryBulbTemp.toFixed(1)}°C
                 </span>
-                <span className="text-[9px] text-slate-400 block">{Math.floor(simulationState.year) === 2026 ? 'Normale du point représentatif, pas moyenne nationale' : 'Projection locale conditionnelle au scénario'}</span>
+                <span className="text-[9px] text-slate-400 block">{modelYear === 2026 ? 'Normale 1991–2020 recalée, pas météo observée' : modelYear < 2026 ? 'Reconstruction mondiale, pas mesure nationale' : post2100 ? 'Extension exploratoire post-2100' : 'Projection locale conditionnelle au scénario'}</span>
               </div>
             </div>
 
@@ -288,7 +292,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             ) : showHistoricalRecord ? <p className="text-[10px] text-slate-500">Record absolu : indisponible faute de source vérifiée intégrée.</p> : null}
 
             <p className="text-[10px] leading-relaxed text-slate-500">
-              Normales 1991–2020 issues d’un point NASA POWER/MERRA-2, utilisé comme proxy de la zone. Le P99 chaud et l’humidité sont estimés; l’humidité n’est pas simultanée à la Tmax. Tw est calculée, jamais une température mesurée. Les moyennes des maximales et minimales quotidiennes ne sont pas des records.
+              Le P99 de référence et l’humidité des jours chauds sont estimés sur un point NASA POWER/MERRA-2 1991–2020. Jusqu’en 2100, le P99 suit le delta TXx et l’humidité le delta Hurs moyen des mois chauds du CCKP; cette anomalie mensuelle n’est pas une mesure simultanée au P99. Après 2100, ces tendances sont extrapolées par le modèle et l’incertitude augmente. Tw est recalculée, jamais mesurée. Les moyennes de Tmax/Tmin ne sont pas des records.
             </p>
             <p className="text-[9px] text-slate-400">Données générées le {new Date(climate.provenance.generatedAt).toLocaleString('fr-FR', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Paris' })} · référence 1991–2020.</p>
 
