@@ -5,7 +5,7 @@ const modulePromise = import('../src/engine/habitabilityStatus.ts').catch(() => 
 
 test('habitability status uses the existing wet-bulb and calorie boundaries', async () => {
   const module = await modulePromise;
-  const getHabitabilityStatus = module.getHabitabilityStatus as ((wetBulbPeakC: number, caloriesKcalPerPersonDay: number) => {
+  const getHabitabilityStatus = module.getHabitabilityStatus as ((wetBulbPeakC: number | null, caloriesKcalPerPersonDay: number) => {
     key: string; label: string; explanation: string; severity: string;
   } | null) | undefined;
   assert.equal(typeof getHabitabilityStatus, 'function');
@@ -32,9 +32,11 @@ test('habitability status uses the existing wet-bulb and calorie boundaries', as
 
 test('habitability status is unavailable for non-finite inputs', async () => {
   const module = await modulePromise;
-  const getHabitabilityStatus = module.getHabitabilityStatus as ((wetBulbPeakC: number, caloriesKcalPerPersonDay: number) => unknown) | undefined;
+  const getHabitabilityStatus = module.getHabitabilityStatus as ((wetBulbPeakC: number | null, caloriesKcalPerPersonDay: number) => unknown) | undefined;
   assert.equal(typeof getHabitabilityStatus, 'function');
   assert.equal(getHabitabilityStatus?.(Number.NaN, 2100), null);
+  assert.equal(getHabitabilityStatus?.(null, 2100), null, 'unknown heat cannot be presented as favorable');
+  assert.equal((getHabitabilityStatus?.(null, 2000) as { key?: string })?.key, 'constrained', 'known food stress remains visible when Tw is unavailable');
   assert.equal(getHabitabilityStatus?.(25, Number.POSITIVE_INFINITY), null);
 });
 

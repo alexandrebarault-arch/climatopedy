@@ -55,7 +55,7 @@ export interface CountryDynamicState {
   summerMaxTemp: number;   // Température de pic caniculaire estival sous abri (°C)
   summerHumidity: number;  // Humidité relative estivale caniculaire (%)
   wetBulbTemp: number;     // Tw moyen annuel (°C)
-  wetBulbPeak: number;     // Tw extrême lors des pics estivaux (°C)
+  wetBulbPeak: number | null; // Tw extrême; null si les entrées sortent du domaine de Stull
   cropYieldFactor: number; // Facteur combiné (chaleur + intrants) (1.0 = normal)
   calPerCapita: number;    // Kcal / jour / hab
   calDeficitPct: number;   // % de déficit sous 2100 kcal

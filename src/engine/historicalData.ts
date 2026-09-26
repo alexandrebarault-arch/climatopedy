@@ -5,7 +5,7 @@ import {
   MortalityCauses,
   DemographicCohorts
 } from '../types/simulation';
-import { calculateWetBulbStull } from './physicsModel';
+import { calculateScenarioWetBulb, calculateWetBulbStull } from './physicsModel';
 import { getHistoricalCountryTemperatures } from './countryTemperatures';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
@@ -290,10 +290,11 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
       .reduce((total, item) => total + item.surfaceTemperatureAnomaly, 0) / HISTORICAL_BENCHMARKS.filter(item => item.year >= 1991 && item.year <= 2020).length;
     const historicalDelta = (b.surfaceTemperatureAnomaly - referenceAnomaly) * c.patternScaling;
     const dryBulb = climate.annualMeanTempC + historicalDelta;
-    const temperatures = getHistoricalCountryTemperatures(c.id, dryBulb, climate.annualMeanTempC);
+    const baselineTemperatures = { tas: climate.annualMeanTempC, tasmin: climate.annualMeanDailyMinTempC, tasmax: climate.annualMeanDailyMaxTempC };
+    const temperatures = getHistoricalCountryTemperatures(c.id, dryBulb, baselineTemperatures);
     const summerMax = climate.heatwaveScenarioTempC + historicalDelta;
     const wetBulb = calculateWetBulbStull(dryBulb, c.baseHumidity);
-    const wetBulbPeak = calculateWetBulbStull(summerMax, climate.heatwaveScenarioHumidityPct);
+    const wetBulbPeak = calculateScenarioWetBulb(summerMax, climate.heatwaveScenarioHumidityPct);
 
     const baseMortalityRate = c.baseMortality / 1000.0;
     const annualDeaths: MortalityCauses = {

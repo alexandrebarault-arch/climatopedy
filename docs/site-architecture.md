@@ -105,9 +105,13 @@ Le harnais actuel est constitué de tests Node intégrés à `npm test` :
 - chaque section doit rester raccordée aux libellés desktop/mobile de `TopBar`, à une branche de rendu dans `App` et à sa vue principale ;
 - la page Carte doit conserver ses points d’entrée majeurs : `WorldMap`, `TimelineController`, `ComparisonModePanel` et `KpiCharts` ;
 - le statut d’habitabilité et la visibilité des records doivent rester raccordés à leurs règles partagées ;
+- les métriques de températures annuelles affichées sur la carte doivent suivre l’année de l’état simulé ;
+- toute Tw hors du domaine publié de la formule de Stull reste indisponible et ne produit pas d’alerte thermique ;
 - ce guide doit couvrir les sections, les principaux composants, les paramètres d’URL et les commandes de vérification.
 
 Ces tests protègent des contrats structurels sélectionnés ; ils ne figent pas le HTML complet, les styles CSS ou tous les textes. Il n’y a pas actuellement de test navigateur ni de référence de captures d’écran.
+
+Les températures annuelles 2026 sont ancrées aux moyennes NASA POWER/MERRA-2 du point représentatif pour la moyenne, la moyenne des minima quotidiens et celle des maxima quotidiens. Les deltas nationaux CCKP/CMIP6 sont ensuite ajoutés séparément à chaque série; la carte et la fiche lisent les extrema de l’année simulée. Les reconstructions passées appliquent l’anomalie historique de la moyenne aux extrema de référence. Pour Tw, les entrées en dehors de Ta −20 à 50 °C ou de 5 à 99 % d’humidité rendent le calcul indisponible; ces cas sont omis des seuils thermiques et ne sont pas présentés comme des valeurs sûres.
 
 ### Liste de contrôle avant de modifier la structure
 

@@ -41,7 +41,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   if (!climate) return null;
 
   const popChangePct = ((dynState.cohorts.total - staticData.basePop2026) / staticData.basePop2026) * 100;
-  const isLethalHeat = dynState.wetBulbPeak >= 31.0;
+  const isLethalHeat = dynState.wetBulbPeak !== null && dynState.wetBulbPeak >= 31.0;
   const isFamine = dynState.calPerCapita < 2100;
   const habitabilityStatus = getHabitabilityStatus(dynState.wetBulbPeak, dynState.calPerCapita);
   const showHistoricalRecord = shouldShowHistoricalTemperatureRecord(simulationState.year);
@@ -127,15 +127,15 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
             <div className="space-y-0.5">
               <span className="font-bold text-rose-950 block">
-                Alerte thermique du modèle ({Math.floor(simulationState.year)})
+                Alerte du modèle ({Math.floor(simulationState.year)})
               </span>
-              {dynState.wetBulbPeak >= 32.0 ? (
+              {dynState.wetBulbPeak !== null && dynState.wetBulbPeak >= 32.0 ? (
                 <span className="block text-[11px] text-rose-800 font-bold">
                   • Seuil d'alerte du modèle dépassé : Tw simulée à {dynState.wetBulbPeak.toFixed(1)}°C. Cette valeur n'est pas une estimation médicale de mortalité.
                 </span>
               ) : isLethalHeat ? (
                 <span className="block text-[11px] text-rose-800">
-                  • Seuil d'alerte du modèle dépassé : Tw simulée à {dynState.wetBulbPeak.toFixed(1)}°C.
+                  • Seuil d'alerte du modèle dépassé : Tw simulée à {dynState.wetBulbPeak?.toFixed(1)}°C.
                 </span>
               ) : null}
               {isFamine && (
@@ -245,10 +245,10 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
                 </span>
                 <span
                   className={`text-sm font-bold font-mono tabular-nums ${
-                    dynState.wetBulbPeak >= 31.0 ? 'text-rose-700 font-extrabold' : 'text-emerald-700'
+                    dynState.wetBulbPeak !== null && dynState.wetBulbPeak >= 31.0 ? 'text-rose-700 font-extrabold' : dynState.wetBulbPeak === null ? 'text-slate-600' : 'text-emerald-700'
                   }`}
                 >
-                  {(Math.floor(simulationState.year) === 2026 ? climate.heatwaveWetBulbC : dynState.wetBulbPeak).toFixed(1)}°C
+                  {dynState.wetBulbPeak === null ? 'Non calculable' : `${dynState.wetBulbPeak.toFixed(1)}°C`}
                 </span>
               </div>
 
@@ -302,7 +302,9 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             <div className="text-[11px] text-slate-700 bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
               <span className="font-semibold text-slate-900 block mb-0.5">Seuil d’alerte thermique du modèle :</span>
               <span>
-                {dynState.wetBulbPeak >= 31.0
+                {dynState.wetBulbPeak === null
+                  ? 'Tw non calculable : les entrées dépassent le domaine d’usage de la formule de Stull (Ta −20 à 50°C, humidité 5 à 99%).'
+                  : dynState.wetBulbPeak >= 31.0
                   ? `Tw simulée ≥ 31°C, au-dessus du seuil d'alerte configuré dans le modèle. Ce seuil n'est pas une limite universelle de mortalité.`
                   : dynState.wetBulbPeak >= 28.0
                   ? 'Tw simulée ≥ 28°C, plage signalée par le modèle. Le niveau de risque individuel dépend des conditions d’exposition et de la physiologie.'

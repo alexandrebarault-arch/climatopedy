@@ -12,12 +12,13 @@ export interface HabitabilityStatus {
  * This is an exploratory model label, not a real-world habitability assessment.
  */
 export function getHabitabilityStatus(
-  wetBulbPeakC: number,
+  wetBulbPeakC: number | null,
   caloriesKcalPerPersonDay: number
 ): HabitabilityStatus | null {
-  if (!Number.isFinite(wetBulbPeakC) || !Number.isFinite(caloriesKcalPerPersonDay)) return null;
+  if (!Number.isFinite(caloriesKcalPerPersonDay)) return null;
+  const tw = wetBulbPeakC !== null && Number.isFinite(wetBulbPeakC) ? wetBulbPeakC : null;
 
-  if (wetBulbPeakC >= 31) {
+  if (tw !== null && tw >= 31) {
     return {
       key: 'major',
       label: 'Contraintes majeures dans le modèle',
@@ -26,9 +27,9 @@ export function getHabitabilityStatus(
     };
   }
 
-  if (wetBulbPeakC >= 26 || caloriesKcalPerPersonDay < 2100) {
+  if ((tw !== null && tw >= 26) || caloriesKcalPerPersonDay < 2100) {
     const reasons = [
-      wetBulbPeakC >= 26 ? 'le pic de Tw simulé atteint 26 °C' : null,
+      tw !== null && tw >= 26 ? 'le pic de Tw simulé atteint 26 °C' : null,
       caloriesKcalPerPersonDay < 2100 ? 'la disponibilité calorique simulée passe sous le repère de 2 100 kcal/jour' : null
     ].filter((reason): reason is string => reason !== null);
 
@@ -39,6 +40,8 @@ export function getHabitabilityStatus(
       severity: 'medium'
     };
   }
+
+  if (tw === null) return null;
 
   return {
     key: 'favorable',
