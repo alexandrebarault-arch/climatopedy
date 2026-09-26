@@ -61,9 +61,9 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
     icon: <Thermometer className="w-3.5 h-3.5 text-rose-600" />,
     badgeColor: 'border-rose-200 text-rose-800 bg-rose-50',
     definition:
-      'Température au thermomètre mouillé, calculée à partir des conditions atmosphériques. Ce n\'est pas la température ressentie par la peau.',
+      'Tw (température au thermomètre mouillé) est calculée à partir de la température de l’air et de l’humidité relative. Ici, elle utilise les valeurs du scénario de canicule : ce n’est pas une température maximale mesurée ni une mesure directe de la température ressentie par le corps.',
     analogy:
-      'L\'humidité élevée peut limiter l\'évaporation de la sueur. La capacité du corps à perdre de la chaleur dépend aussi de la température, de l\'activité, de l\'acclimatation et de l\'environnement.',
+      'À température de l’air égale, une humidité plus forte augmente généralement Tw et gêne l’évaporation de la sueur. Tw sert à décrire le stress chaleur-humidité; elle ne résume pas à elle seule l’exposition réelle d’une personne.',
     thresholdOrKeyFact:
       'Sherwood et Huber (2010) discutent une limite théorique autour de 35°C Tw pour une exposition prolongée. Ce n\'est pas un seuil universel de mortalité; Raymond et al. (2020) étudient des épisodes météorologiques extrêmes observés.',
     faqId: 'faq-stull'

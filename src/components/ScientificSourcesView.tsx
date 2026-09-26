@@ -137,6 +137,22 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     reproducibilityNotes: 'Cette référence nationale ancre la moyenne de la France uniquement. Les températures quotidiennes moyennes Tmin/Tmax et les autres zones utilisent les données CCKP, puis sont recalées selon la méthode décrite dans la fiche World Bank CCKP.'
   },
   {
+    id: 'meteo-france-national-heat-record',
+    category: 'observatories',
+    categoryLabel: 'Observatoires & Données Satellites en Direct',
+    title: 'Record absolu de température observée en France métropolitaine',
+    authors: 'Météo-France',
+    year: 2019,
+    publisher: 'Météo-France',
+    peerReviewed: false,
+    typeBadge: 'Record météorologique officiel',
+    primaryUrl: 'https://meteofrance.com/meteo-a-z/quelle-est-la-temperature-la-plus-elevee-enregistree-en-france',
+    primaryUrlLabel: 'Fiche officielle du record',
+    gaiaRole: 'Affiché dans la fiche France comme repère observé indépendant du scénario de canicule simulé et de la température humide Tw.',
+    keyDataOrQuote: '46,0 °C mesurés à Vérargues (Hérault) le 28 juin 2019; record absolu officiel pour la France métropolitaine.',
+    reproducibilityNotes: 'Record ponctuel de température de l’air observé en station. Il ne représente ni une moyenne nationale, ni la moyenne annuelle des maximales, ni une valeur de Tw. Cette donnée n’est affichée que pour la France métropolitaine; les zones agrégées ne reçoivent pas de record par extrapolation.'
+  },
+  {
     id: 'meteo-france-summer-2026',
     category: 'observatories',
     categoryLabel: 'Observatoires & Données Satellites en Direct',

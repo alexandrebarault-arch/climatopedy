@@ -218,7 +218,7 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
 
               <div className="bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
                 <span className="text-slate-500 block text-[10px] flex items-center justify-between">
-                  <span>Tw calculée</span>
+                  <span>Tw (thermomètre mouillé)</span>
                 </span>
                 <span
                   className={`text-sm font-bold font-mono tabular-nums ${
@@ -255,8 +255,17 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
               </div>
             </div>
 
+            {staticData.id === 'fra' && (
+              <div className="bg-amber-50 p-2.5 rounded-lg border border-amber-200 shadow-2xs">
+                <span className="text-amber-900 text-[10px] font-medium">Record absolu de température de l’air en France : </span>
+                <span className="text-sm font-bold font-mono text-amber-900 tabular-nums">46,0°C</span>
+                <span className="text-[10px] text-amber-900"> à Vérargues (Hérault), le 28 juin 2019 · </span>
+                <a className="text-[10px] underline text-amber-900" href="https://meteofrance.com/meteo-a-z/quelle-est-la-temperature-la-plus-elevee-enregistree-en-france" target="_blank" rel="noreferrer">Météo-France</a>
+              </div>
+            )}
+
             <p className="text-[10px] leading-relaxed text-slate-500">
-              Les moyennes des maximales et minimales quotidiennes ne sont pas des records. Hors référence française, les températures de départ sont des paramètres du modèle; le passé est reconstruit et le futur suit des analogies CMIP6. Le pic et l'humidité de canicule sont des hypothèses; Tw est calculée à partir de ces deux paramètres.
+              Tw est la température au thermomètre mouillé, calculée à partir de la température de l’air et de l’humidité du scénario; ce n’est ni une température mesurée ni la température maximale enregistrée. Les moyennes des maximales et minimales quotidiennes ne sont pas des records.
             </p>
 
             {staticData.id === 'fra' && Math.floor(simulationState.year) === 2026 && (
