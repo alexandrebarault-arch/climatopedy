@@ -10,9 +10,11 @@ Le scénario chaud correspond au 99e percentile des Tmax journalières des six m
 
 ## Futur et passé dans la simulation
 
-Le départ 2026 est ancré sur la normale NASA POWER 1991–2020. Les changements de `tas`, `tasmin` et `tasmax` entre le climat de référence et 2080–2099 proviennent des médianes d’ensemble CMIP6 du CCKP et sont interpolés linéairement vers 2100; ce dernier intervalle sert de proxy de fin de siècle. Les parcours sont conditionnels (BAU→SSP5-8.5, sobriété→SSP1-2.6, autre→SSP2-4.5), et non des prévisions.
+Le climat local de référence vient des normales NASA POWER 1991–2020. Le calcul des températures de la carte le recale avec l’écart entre l’anomalie mondiale de référence et l’ancre 2026 du modèle. Les changements de `tas`, `tasmin` et `tasmax` entre le climat de référence et 2080–2099 proviennent des médianes d’ensemble CMIP6 du CCKP et sont interpolés annuellement vers 2100; 2080–2099 sert de proxy de fin de siècle. Les parcours sont conditionnels (BAU→SSP5-8.5, sobriété→SSP1-2.6, autre→SSP2-4.5), et non des prévisions.
 
-Le P99 chaud évolue avec le changement de `tasmax` CCKP; faute de projection d’humidité intégrée, son humidité reste constante. Tw est recalculée à partir de ces deux valeurs. Pour le passé, l’anomalie thermique mondiale interpolée est appliquée au point de référence avec le facteur régional déjà déclaré dans le modèle. Ces séries historiques par zone sont reconstruites, pas observées localement.
+Le P99 chaud évolue avec le changement de `tasmax` CCKP; faute de projection d’humidité intégrée, son humidité reste constante. Tw est recalculée à partir de ces deux valeurs. Pour 1901–2025, l’anomalie annuelle mondiale NASA GISTEMP est recalée à l’ancre interne du site pour 2025, puis soustraite de la moyenne 1991–2020 et appliquée au point local avec le facteur régional. Ces séries par zone sont des reconstructions, pas des observations météorologiques nationales. Depuis 2026, le changement régional CCKP reste à son niveau de fin de siècle après 2100 et l’écart additionnel d’anomalie mondiale simulée par CLIMATOPEDY est appliqué au facteur régional. Cette prolongation jusqu’en 2200 est exploratoire, hors horizon CMIP6 et non validée.
+
+Les cartes distinguent maintenant le **Tw du scénario caniculaire** de la **moyenne annuelle des Tmax quotidiennes**. Une humidité d’été estimée faible peut produire un Tw modéré dans un climat où l’air reste très chaud; le calque Tw ne représente donc pas la température maximale de l’air. Les valeurs sont calculées pour 34 zones représentatives et partagées par les pays associés à chacune. Le relevé exhaustif pays/polygone × année × scénario est généré dans `reports/temperature-trajectory-by-country-1901-2200.csv`, avec la méthode et la zone source.
 
 ## Records absolus
 
@@ -24,10 +26,11 @@ Les records actuellement documentés concernent la France, les États-Unis, le B
 
 - NASA POWER Daily API : <https://power.larc.nasa.gov/docs/services/api/temporal/daily/>
 - NASA MERRA-2 : <https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/>
+- NASA GISTEMP v4 annual global anomalies (J-D) : <https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv> (consulté le 26 septembre 2026; série intégrée versionnée dans `src/data/nasaGistempAnnualAnomalies.json`)
 - Banque mondiale CCKP / données CMIP6 : <https://climateknowledgeportal.worldbank.org/download-data>
 - Alduchov & Eskridge (1996), formule de Magnus : <https://doi.org/10.1175/1520-0450(1996)035%3C0601:IMFAOS%3E2.0.CO;2>
 - Stull (2011), calcul de Tw : <https://doi.org/10.1175/JAMC-D-11-0143.1>
 
 ## Régénération et vérification
 
-Exécuter `npx tsx scripts/generateClimatePanelData.ts` pour interroger l’API et réécrire le fichier statique, puis `npm test`, `npm run lint` et `npm run build`. Le générateur échoue si une zone manque, si les données journalières sont incomplètes, si les extrema sont incohérents ou si une entrée ne peut pas produire Tw dans le domaine de Stull.
+Exécuter `npx tsx scripts/generateClimatePanelData.ts` pour interroger l’API et réécrire le fichier statique; `npx tsx scripts/generateTemperatureTrajectoryAudit.ts` régénère les exports et le rapport 1901–2200. Puis lancer `npm test`, `npm run lint` et `npm run build`. Le générateur de normales échoue si une zone manque, si les données journalières sont incomplètes, si les extrema sont incohérents ou si une entrée ne peut pas produire Tw dans le domaine de Stull.

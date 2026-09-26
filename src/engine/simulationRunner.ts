@@ -188,9 +188,9 @@ export function generateFullTrajectory(
 
   const trajectory: GlobalBiophysicalState[] = [];
 
-  // 1. Période historique 1900 à 2025 (identique pour tous les scénarios car déjà passée)
-  if (startYear <= 1900) {
-    for (let yr = 1900; yr < 2026; yr++) {
+  // 1. Période historique annuelle (identique pour tous les scénarios car déjà passée)
+  if (startYear <= 2025) {
+    for (let yr = Math.max(1900, startYear); yr < 2026; yr++) {
       trajectory.push(generateHistoricalState(yr));
     }
   }
@@ -208,6 +208,6 @@ export function generateFullTrajectory(
     trajectory.push(state);
   }
 
-  return trajectory;
+  return trajectory.filter(state => state.year >= startYear && state.year <= endYear);
 }
 

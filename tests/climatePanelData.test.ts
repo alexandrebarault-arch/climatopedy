@@ -119,22 +119,24 @@ test('future heat-scenario deltas are zero at baseline and use CCKP changes by S
   assert.equal(getProjectedTemperatureDelta?.('fra', 'tasmax', 2100, 'bau'), data.future.ssp585.fra.tasmax - data.baseline.fra.tasmax);
 });
 
-test('projected daily extrema are anchored to matching 2026 NASA metrics without a first-year jump', async () => {
-  const [module, panelModule, cckp] = await Promise.all([
+test('projected daily extrema share the 1991–2020 anomaly offset without a first-year jump', async () => {
+  const [module, panelModule, cckp, temperatureReference] = await Promise.all([
     import('../src/engine/countryTemperatures.ts'),
     import('../src/data/climatePanelData.json', { with: { type: 'json' } }),
-    import('../src/data/cckpCountryTemperatures.json', { with: { type: 'json' } })
+    import('../src/data/cckpCountryTemperatures.json', { with: { type: 'json' } }),
+    import('../src/engine/temperatureReference.ts')
   ]);
   const panel = (panelModule.default as { rows: PanelRow[] }).rows.find(row => row.id === 'fra')!;
   const data = cckp.default as { baseline: Record<string, { tasmax: number; tasmin: number }>; future: Record<string, Record<string, { tasmax: number; tasmin: number }>> };
   const baseline = { tas: panel.annualMeanTempC, tasmin: panel.annualMeanDailyMinTempC, tasmax: panel.annualMeanDailyMaxTempC };
+  const offset = (1.34 - temperatureReference.GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C) * 1.35;
   const current = module.getCountryTemperatures('fra', baseline, 2026);
   const firstFuture = module.getCountryTemperatures('fra', baseline, 2027);
-  assert.deepEqual(current, baseline);
+  assert.deepEqual(current, { tas: baseline.tas + offset, tasmin: baseline.tasmin + offset, tasmax: baseline.tasmax + offset });
   assert.ok(Math.abs(firstFuture.tasmax - current.tasmax) < 0.2, 'Tmax must not jump in the first projected year');
   assert.ok(Math.abs(firstFuture.tasmin - current.tasmin) < 0.2, 'Tmin must not jump in the first projected year');
-  assert.equal(firstFuture.tasmax, baseline.tasmax + (data.future.ssp245.fra.tasmax - data.baseline.fra.tasmax) / 74);
-  assert.equal(firstFuture.tasmin, baseline.tasmin + (data.future.ssp245.fra.tasmin - data.baseline.fra.tasmin) / 74);
+  assert.equal(firstFuture.tasmax, baseline.tasmax + offset + (data.future.ssp245.fra.tasmax - data.baseline.fra.tasmax) / 74);
+  assert.equal(firstFuture.tasmin, baseline.tasmin + offset + (data.future.ssp245.fra.tasmin - data.baseline.fra.tasmin) / 74);
 
   const historical = module.getHistoricalCountryTemperatures('fra', baseline.tas - 2, baseline);
   assert.equal(historical.tasmin, baseline.tasmin - 2, 'historical minimum follows the reconstructed mean anomaly without an extra source offset');
@@ -149,33 +151,86 @@ test('Stull wet-bulb estimates are unavailable outside the formula domain', asyn
 });
 
 test('full BAU trajectory keeps annual temperature baselines continuous and marks India Tw unavailable past Stull limits', async () => {
-  const runner = await import('../src/engine/simulationRunner.ts');
+  const [runner, temperatureReference] = await Promise.all([import('../src/engine/simulationRunner.ts'), import('../src/engine/temperatureReference.ts')]);
   const trajectory = runner.generateFullTrajectory(runner.SCENARIO_BAU, 2026, 2100);
   const year2026 = trajectory.find(state => state.year === 2026)!;
   const year2027 = trajectory.find(state => state.year === 2027)!;
   const year2100 = trajectory.find(state => state.year === 2100)!;
   const panel = loadPanelRows().find(row => row.id === 'fra')!;
 
-  assert.equal(year2026.countries.fra.annualMinTemp, panel.annualMeanDailyMinTempC);
-  assert.equal(year2026.countries.fra.annualMaxTemp, panel.annualMeanDailyMaxTempC);
+  const offset = (1.34 - temperatureReference.GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C) * 1.35;
+  assert.equal(year2026.countries.fra.annualMinTemp, panel.annualMeanDailyMinTempC + offset);
+  assert.equal(year2026.countries.fra.annualMaxTemp, panel.annualMeanDailyMaxTempC + offset);
   assert.ok(year2027.countries.fra.annualMaxTemp - year2026.countries.fra.annualMaxTemp < 0.2);
   assert.ok(year2027.countries.fra.annualMinTemp - year2026.countries.fra.annualMinTemp < 0.2);
   assert.ok(year2100.countries.ind.summerMaxTemp > 50);
   assert.equal(year2100.countries.ind.wetBulbPeak, null);
 });
 
-test('2026 simulation initializes the heat scenario and Tw from each climate-panel row', async () => {
-  const [engine, panelModule] = await Promise.all([
+test('temperature trajectories remain complete, ordered, and do not reset in 2026 or plateau after 2100', async () => {
+  const runner = await import('../src/engine/simulationRunner.ts');
+  const [{ COUNTRIES_DATA }, temperatureReference] = await Promise.all([import('../src/data/countriesData.ts'), import('../src/engine/temperatureReference.ts')]);
+  const scenarios = [runner.SCENARIO_BAU, runner.SCENARIO_DELAYED, runner.SCENARIO_SOBRIETY];
+  const trajectories = scenarios.map(scenario => runner.generateFullTrajectory(scenario, 1901, 2200));
+  const trajectory = trajectories[0];
+  assert.equal(trajectory.length, 300);
+  assert.equal(trajectory[0].year, 1901);
+  assert.equal(trajectory.at(-1)?.year, 2200);
+
+  const at = (year: number) => trajectory.find(state => state.year === year)!;
+  for (const country of COUNTRIES_DATA) {
+    for (let year = 1901; year <= 2200; year++) {
+      const state = at(year).countries[country.id];
+      assert.ok(Number.isFinite(state.dryBulbTemp), `${country.id} has no mean temperature in ${year}`);
+      assert.ok(Number.isFinite(state.annualMinTemp) && Number.isFinite(state.annualMaxTemp), `${country.id} has incomplete extrema in ${year}`);
+      assert.ok(state.annualMinTemp <= state.dryBulbTemp && state.dryBulbTemp <= state.annualMaxTemp, `${country.id} temperature ordering fails in ${year}`);
+    }
+    assert.ok(Math.abs(at(2026).countries[country.id].dryBulbTemp - at(2025).countries[country.id].dryBulbTemp) < 0.15, `${country.id} has an artificial 2025–2026 reset`);
+    assert.ok(at(2200).countries[country.id].dryBulbTemp > at(2100).countries[country.id].dryBulbTemp, `${country.id} is frozen after 2100`);
+  }
+  for (let scenarioIndex = 0; scenarioIndex < scenarios.length; scenarioIndex++) {
+    const scenarioTrajectory = trajectories[scenarioIndex];
+    assert.equal(scenarioTrajectory.length, 300, `${scenarios[scenarioIndex].id} must include all years 1901–2200`);
+    for (const country of COUNTRIES_DATA) {
+      const y2025 = scenarioTrajectory.find(state => state.year === 2025)!.countries[country.id].dryBulbTemp;
+      const y2026 = scenarioTrajectory.find(state => state.year === 2026)!.countries[country.id].dryBulbTemp;
+      const y2100 = scenarioTrajectory.find(state => state.year === 2100)!.countries[country.id].dryBulbTemp;
+      const y2200 = scenarioTrajectory.find(state => state.year === 2200)!.countries[country.id].dryBulbTemp;
+      assert.ok(Math.abs(y2026 - y2025) < 0.15, `${country.id}/${scenarios[scenarioIndex].id} discontinuity around 2026`);
+      assert.ok(y2200 > y2100, `${country.id}/${scenarios[scenarioIndex].id} frozen after 2100`);
+    }
+  }
+  const nasa = await import('../src/data/nasaGistempAnnualAnomalies.json', { with: { type: 'json' } });
+  const nasaFile = nasa.default as { rows: Array<{ year: number }> };
+  assert.equal(nasaFile.rows.length, 125);
+  assert.equal(nasaFile.rows[0].year, 1901);
+  assert.equal(nasaFile.rows.at(-1)?.year, 2025);
+  for (let year = 1901; year <= 2025; year++) assert.equal(nasaFile.rows[year - 1901].year, year, `missing NASA global anomaly for ${year}`);
+  assert.ok(Number.isFinite(temperatureReference.GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C));
+});
+
+test('map offers air Tmax separately from wet-bulb temperature', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const source = await readFile(new URL('../src/components/WorldMap.tsx', import.meta.url), 'utf8');
+  assert.match(source, /setActiveMetric\('air_temperature'\)/);
+  assert.match(source, /dyn\.annualMaxTemp/);
+  assert.match(source, /Moyenne annuelle des Tmax quotidiennes/);
+});
+
+test('2026 simulation initializes the heat scenario and Tw from the adjusted 2026 baseline', async () => {
+  const [engine, panelModule, temperatureReference] = await Promise.all([
     import('../src/engine/physicsModel.ts'),
-    import('../src/data/climatePanelData.json', { with: { type: 'json' } })
+    import('../src/data/climatePanelData.json', { with: { type: 'json' } }),
+    import('../src/engine/temperatureReference.ts')
   ]);
   const initial = engine.initializeSimulationState();
   const panel = (panelModule.default as { rows: PanelRow[] }).rows.find(row => row.id === 'fra');
   const state = initial.countries.fra;
   assert.ok(panel);
-  assert.equal(state.summerMaxTemp, panel?.heatwaveScenarioTempC);
+  const heatOffset = (1.34 - temperatureReference.GLOBAL_TEMPERATURE_REFERENCE_1991_2020_C) * 1.35;
+  assert.equal(state.summerMaxTemp, (panel?.heatwaveScenarioTempC ?? 0) + heatOffset);
   assert.equal(state.summerHumidity, panel?.heatwaveScenarioHumidityPct);
-  assert.equal(state.wetBulbPeak, panel?.heatwaveWetBulbC);
+  assert.ok(state.wetBulbPeak !== panel?.heatwaveWetBulbC, 'Tw must be recalculated from the adjusted air temperature');
 });
 
 test('all climate metrics are finite, ordered and traceable', () => {

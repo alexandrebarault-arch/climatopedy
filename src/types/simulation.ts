@@ -1,5 +1,6 @@
 export type MetricLayer = 
   | 'wet_bulb'       // Température au thermomètre mouillé Tw (Stull)
+  | 'air_temperature' // Moyenne annuelle des maxima quotidiens de l'air
   | 'caloric_stress' // Déficit calorique & Rendements agricoles
   | 'mortality'      // Taux brut de surmortalité annuelle
   | 'population'     // Densité & dépopulation relative

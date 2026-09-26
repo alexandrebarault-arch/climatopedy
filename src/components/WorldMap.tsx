@@ -54,7 +54,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   currentYear
 }) => {
   const displayYear = currentYear !== undefined ? Math.floor(currentYear) : Math.floor(simulationState.year);
-  const [activeMetric, setActiveMetric] = useState<MetricLayer>('wet_bulb');
+  const [activeMetric, setActiveMetric] = useState<MetricLayer>('air_temperature');
   const [twOverlayMode, setTwOverlayMode] = useState<TwOverlayMode>('aboveTwAlertThreshold');
   const [hoveredFeature, setHoveredFeature] = useState<ProcessedCountryFeature | null>(null);
 
@@ -180,6 +180,17 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         return getWetBulbColor(dyn.wetBulbPeak);
       }
 
+      case 'air_temperature': {
+        const tmax = dyn.annualMaxTemp;
+        if (tmax < 15) return '#2563eb';
+        if (tmax < 20) return '#38bdf8';
+        if (tmax < 25) return '#2dd4bf';
+        if (tmax < 30) return '#facc15';
+        if (tmax < 35) return '#fb923c';
+        if (tmax < 40) return '#ef4444';
+        return '#991b1b';
+      }
+
       case 'caloric_stress': {
         const cal = dyn.calPerCapita;
         if (cal >= 3200) return '#059669';
@@ -246,6 +257,21 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
         {/* Calques biophysiques commutables */}
         <div id="tour-map-metrics" className="flex flex-wrap items-center gap-1 bg-slate-100/90 p-1 rounded-lg border border-slate-200 text-xs">
+          <div className="flex items-center">
+            <button
+              onClick={() => setActiveMetric('air_temperature')}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
+                activeMetric === 'air_temperature'
+                  ? 'bg-orange-50 text-orange-800 font-semibold border border-orange-200 shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+              title="Moyenne annuelle des températures maximales quotidiennes; ce n’est ni le record absolu ni le pic caniculaire"
+            >
+              <Thermometer className="w-3.5 h-3.5" />
+              <span>Tmax de l’air</span>
+            </button>
+          </div>
+
           <div className="flex items-center">
             <button
               onClick={() => setActiveMetric('wet_bulb')}
@@ -885,22 +911,31 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 px-2 pt-2 border-t border-slate-200 mt-1">
             <div className="flex min-w-0 flex-col gap-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span className="font-semibold text-slate-800 text-[11px]" title="Pic de température humide calculé à partir du scénario de chaleur et d’humidité, pas température maximale de l’air">
-                  Pic caniculaire Tw estimé · °C :
+                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.'}>
+                  {activeMetric === 'air_temperature' ? 'Moyenne annuelle des Tmax quotidiennes · °C :' : activeMetric === 'wet_bulb' ? 'Pic caniculaire Tw estimé · °C :' : 'Couche sélectionnée :'}
                 </span>
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  {WET_BULB_COLOR_BANDS.map(band => (
+                  {activeMetric === 'air_temperature' ? [
+                    { label: '<15°', color: '#2563eb' }, { label: '15–20°', color: '#38bdf8' },
+                    { label: '20–25°', color: '#2dd4bf' }, { label: '25–30°', color: '#facc15' },
+                    { label: '30–35°', color: '#fb923c' }, { label: '35–40°', color: '#ef4444' },
+                    { label: '≥40°', color: '#991b1b' }
+                  ].map(band => (
                     <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
                       <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
                     </span>
-                  ))}
-                  <span className="inline-flex items-center gap-1 text-[10px] text-slate-600 font-mono" title="Valeur non calculée car hors du domaine d’usage de la formule de Stull">
+                  )) : activeMetric === 'wet_bulb' ? WET_BULB_COLOR_BANDS.map(band => (
+                    <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
+                      <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
+                    </span>
+                  )) : null}
+                  {activeMetric === 'wet_bulb' && <span className="inline-flex items-center gap-1 text-[10px] text-slate-600 font-mono" title="Valeur non calculée car hors du domaine d’usage de la formule de Stull">
                     <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: WET_BULB_UNAVAILABLE_COLOR }} />NC
-                  </span>
+                  </span>}
                 </div>
               </div>
               <span className="text-[9px] text-slate-500">
-                2026 = normale proxy NASA 1991–2020, pas l’observation météo de l’année; les années futures sont des scénarios, pas des prévisions météo.
+                Valeur zonale modélisée; le normal local 1991–2020 est recalé sur l’anomalie mondiale 2025. Après 2100, prolongation exploratoire du scénario interne.
               </span>
             </div>
 
