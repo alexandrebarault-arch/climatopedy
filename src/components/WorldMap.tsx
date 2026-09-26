@@ -917,6 +917,11 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               const isWarning = tw >= 26.0 && tw < 29.0;
               const popChangePct = ((dyn.cohorts.total - activeCountryData.basePop2026) / activeCountryData.basePop2026) * 100;
               const isFamine = dyn.calPerCapita < 2100;
+              // Estimation pédagogique du minimum annuel : écart froid égal à 60 % de
+              // l'écart entre moyenne annuelle et pic estival dans les données de base.
+              const estimatedBaseMinTemp = activeCountryData.baseTemp -
+                (activeCountryData.summerMaxTemp - activeCountryData.baseTemp) * 0.6;
+              const estimatedMinTemp = dyn.dryBulbTemp - (activeCountryData.baseTemp - estimatedBaseMinTemp);
 
               return (
                 <div className="flex flex-col gap-3 h-full justify-between">
@@ -1068,13 +1073,24 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Sun className="w-3.5 h-3.5 text-amber-600" />
-                          Pic de chaleur à l'ombre (été)
+                          Maximum estival à l'ombre
                         </span>
                         <span className="font-mono text-amber-800 tabular-nums font-semibold">
                           {dyn.summerMaxTemp.toFixed(1)}°C{' '}
                           <span className="text-slate-500 font-normal text-[10.5px]">
                             (+{(dyn.summerMaxTemp - activeCountryData.summerMaxTemp).toFixed(1)}°C)
                           </span>
+                        </span>
+                      </div>
+
+                      {/* Minimum annuel estimé à partir de la moyenne et du pic estival */}
+                      <div className="flex justify-between items-center py-1 border-b border-slate-100">
+                        <span className="text-slate-600 flex items-center gap-1">
+                          <Thermometer className="w-3.5 h-3.5 text-indigo-500" />
+                          Minimum estimé (hypothèse du modèle)
+                        </span>
+                        <span className="font-mono text-indigo-800 tabular-nums font-medium">
+                          {estimatedMinTemp.toFixed(1)}°C
                         </span>
                       </div>
 
@@ -1088,6 +1104,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                           {dyn.summerHumidity}%
                         </span>
                       </div>
+                      <p className="text-[9.5px] leading-snug text-slate-500">
+                        Minimum estimé : la moyenne du pays est abaissée de 60 % de l'écart entre cette moyenne et le pic estival de référence. Ce n'est pas une mesure météorologique.
+                      </p>
 
                       {/* Température moyenne annuelle */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { HelpCircle, ExternalLink, X, Zap, Thermometer, Wheat, Wind, Waves, AlertCircle } from 'lucide-react';
 
 export type TechTermKey = 'eroi' | 'haber-bosch' | 'fair' | 'stull' | 'slr' | 'ssp585';
@@ -111,13 +112,40 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
   showIconOnly = false
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [popoverPosition, setPopoverPosition] = useState({ top: 0, left: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const data = TECH_TERMS[term];
+
+  const openPopover = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    const rect = triggerRef.current?.getBoundingClientRect();
+    if (rect) {
+      const width = Math.min(320, window.innerWidth - 24);
+      setPopoverPosition({
+        left: Math.max(12, Math.min(rect.left + rect.width / 2 - width / 2, window.innerWidth - width - 12)),
+        top: Math.max(12, rect.top - 12)
+      });
+    }
+    setIsOpen(true);
+  };
+
+  const scheduleClose = () => {
+    closeTimerRef.current = setTimeout(() => setIsOpen(false), 140);
+  };
+
+  const togglePopover = () => {
+    if (isOpen) setIsOpen(false);
+    else openPopover();
+  };
 
   // Fermeture au clic extérieur ou touche Échap
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (!containerRef.current?.contains(target) && !popoverRef.current?.contains(target)) {
         setIsOpen(false);
       }
     };
@@ -130,6 +158,7 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
       document.addEventListener('keydown', handleEscape);
     }
     return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscape);
     };
@@ -155,16 +184,17 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
     <div
       ref={containerRef}
       className={`relative inline-flex items-center align-middle ${className}`}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseEnter={openPopover}
+      onMouseLeave={scheduleClose}
     >
       {/* Bouton déclencheur interactif */}
       {children ? (
         <button
+          ref={triggerRef}
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            setIsOpen((prev) => !prev);
+            togglePopover();
           }}
           className="inline-flex items-center gap-1 text-inherit border-b border-dotted border-sky-400 hover:border-sky-600 hover:text-sky-700 transition-colors cursor-help group text-left"
           title={`Cliquez pour comprendre le terme « ${data.title} »`}
@@ -176,10 +206,11 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
         </button>
       ) : showIconOnly ? (
         <button
+          ref={triggerRef}
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            setIsOpen((prev) => !prev);
+            togglePopover();
           }}
           className="p-0.5 rounded text-slate-400 hover:text-sky-600 hover:bg-slate-100 transition-colors cursor-pointer"
           title={`Définition : ${data.title}`}
@@ -189,10 +220,11 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
         </button>
       ) : (
         <button
+          ref={triggerRef}
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            setIsOpen((prev) => !prev);
+            togglePopover();
           }}
           className={`inline-flex items-center gap-1 text-[10px] font-medium px-1.5 py-0.5 rounded border transition-all cursor-pointer ${data.badgeColor} hover:brightness-105`}
           title={`Définition rapide : ${data.title}`}
@@ -204,10 +236,14 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
       )}
 
       {/* Popover / Infobulle riche au survol ou au clic */}
-      {isOpen && (
+      {isOpen && createPortal(
         <div
+          ref={popoverRef}
           onClick={(e) => e.stopPropagation()}
-          className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 sm:w-80 p-3.5 bg-white border border-slate-200 rounded-xl shadow-xl text-left animate-in fade-in zoom-in-95 duration-150 backdrop-blur-md"
+          onMouseEnter={() => { if (closeTimerRef.current) clearTimeout(closeTimerRef.current); }}
+          onMouseLeave={scheduleClose}
+          style={{ position: 'fixed', zIndex: 1000, top: popoverPosition.top, left: popoverPosition.left, transform: 'translateY(-100%)', width: `${Math.min(320, window.innerWidth - 24)}px`, maxHeight: '80vh', overflowY: 'auto' }}
+          className="p-3.5 bg-white border border-slate-200 rounded-xl shadow-xl text-left animate-in fade-in zoom-in-95 duration-150 backdrop-blur-md"
         >
           {/* Flèche vers le bas */}
           <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-white" />
@@ -261,7 +297,7 @@ export const TechTooltip: React.FC<TechTooltipProps> = ({
               <ExternalLink className="w-3 h-3" />
             </button>
           </div>
-        </div>
+        </div>, document.body
       )}
     </div>
   );
