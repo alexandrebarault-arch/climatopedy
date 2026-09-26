@@ -85,6 +85,8 @@ test('map analysis and country inspector use the shared status and future record
   }
 
   assert.match(inspector, /shouldShowHistoricalTemperatureRecord\(simulationState\.year\)/);
+  assert.match(inspector, /Delta TXx CMIP6/, 'future P99 must disclose its extreme-temperature proxy');
+  assert.match(inspector, /Delta Hurs saison chaude/, 'future humidity must disclose its humidity anomaly source');
   assert.match(map, /dyn\.annualMaxTemp\.toFixed\(1\)/, 'map must display the active year\'s mean daily maximum');
   assert.match(map, /dyn\.annualMinTemp\.toFixed\(1\)/, 'map must display the active year\'s mean daily minimum');
   assert.match(map, /projection du scénario/, 'future P99 label must not call a projection a 1991–2020 normal');
