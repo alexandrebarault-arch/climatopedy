@@ -105,6 +105,7 @@ Le harnais actuel est constitué de tests Node intégrés à `npm test` :
 - chaque section doit rester raccordée aux libellés desktop/mobile de `TopBar`, à une branche de rendu dans `App` et à sa vue principale ;
 - la page Carte doit conserver ses points d’entrée majeurs : `WorldMap`, `TimelineController`, `ComparisonModePanel` et `KpiCharts` ;
 - le statut d’habitabilité et la visibilité des records doivent rester raccordés à leurs règles partagées ;
+- `npm run audit:climate` doit contrôler les séries annuelles pays/année/scénario et écrire les registres de qualité complets avant une publication de données ;
 - les métriques de températures annuelles affichées sur la carte doivent suivre l’année de l’état simulé ;
 - toute Tw hors du domaine publié de la formule de Stull reste indisponible et ne produit pas d’alerte thermique ;
 - ce guide doit couvrir les sections, les principaux composants, les paramètres d’URL et les commandes de vérification.
