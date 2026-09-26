@@ -31,10 +31,7 @@ export interface CountryStaticData {
   pathSvg: string;    // SVG path dans la projection Plate Carrée [-180..180, -90..90]
   basePop2026: number; // Millions
   baseCohortSplit: [number, number, number]; // [% 0-14, % 15-64, % 65+]
-  baseTemp: number;   // Température moyenne annuelle (°C)
   baseHumidity: number; // Humidité relative moyenne annuelle (%)
-  summerMaxTemp: number; // Hypothèse ponctuelle de canicule, pas une normale ou un record mesuré (°C)
-  summerHumidity: number; // Humidité relative associée à l'hypothèse de canicule (%)
   patternScaling: number; // Multiplicateur de réchauffement régional vs mondial
   baseCaloriesDay: number; // Kcal/habitant/jour initial
   cropMix: {
@@ -58,7 +55,7 @@ export interface CountryDynamicState {
   summerMaxTemp: number;   // Température de pic caniculaire estival sous abri (°C)
   summerHumidity: number;  // Humidité relative estivale caniculaire (%)
   wetBulbTemp: number;     // Tw moyen annuel (°C)
-  wetBulbPeak: number;     // Tw extrême lors des pics estivaux (°C)
+  wetBulbPeak: number | null; // Tw extrême; null si les entrées sortent du domaine de Stull
   cropYieldFactor: number; // Facteur combiné (chaleur + intrants) (1.0 = normal)
   calPerCapita: number;    // Kcal / jour / hab
   calDeficitPct: number;   // % de déficit sous 2100 kcal

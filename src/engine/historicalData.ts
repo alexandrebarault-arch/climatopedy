@@ -5,8 +5,12 @@ import {
   MortalityCauses,
   DemographicCohorts
 } from '../types/simulation';
-import { calculateWetBulbStull } from './physicsModel';
+import { calculateScenarioWetBulb, calculateWetBulbStull } from './physicsModel';
 import { getHistoricalCountryTemperatures } from './countryTemperatures';
+import climatePanelData from '../data/climatePanelData.json';
+import { ClimatePanelFile } from '../types/climatePanel';
+
+const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
 export interface HistoricalBenchmark {
   year: number;
@@ -272,8 +276,6 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
   const popRatio = b.worldPopulation / 7600;
 
   // Anomalie thermique historique par rapport au repère de départ 2026 (+1.34°C, moyenne 2025)
-  const deltaTempVs2026 = b.surfaceTemperatureAnomaly - 1.34;
-
   const countryStates: Record<string, CountryDynamicState> = {};
 
   COUNTRIES_DATA.forEach(c => {
@@ -282,11 +284,17 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
     const p1 = countryPop * c.baseCohortSplit[1];
     const p2 = countryPop * c.baseCohortSplit[2];
 
-    const dryBulb = c.baseTemp + deltaTempVs2026 * c.patternScaling;
-    const temperatures = getHistoricalCountryTemperatures(c.id, dryBulb, c.baseTemp);
-    const summerMax = c.summerMaxTemp + deltaTempVs2026 * c.patternScaling;
+    const climate = climateRows.get(c.id);
+    if (!climate) throw new Error(`Données de chaleur manquantes pour ${c.id}.`);
+    const referenceAnomaly = HISTORICAL_BENCHMARKS.filter(item => item.year >= 1991 && item.year <= 2020)
+      .reduce((total, item) => total + item.surfaceTemperatureAnomaly, 0) / HISTORICAL_BENCHMARKS.filter(item => item.year >= 1991 && item.year <= 2020).length;
+    const historicalDelta = (b.surfaceTemperatureAnomaly - referenceAnomaly) * c.patternScaling;
+    const dryBulb = climate.annualMeanTempC + historicalDelta;
+    const baselineTemperatures = { tas: climate.annualMeanTempC, tasmin: climate.annualMeanDailyMinTempC, tasmax: climate.annualMeanDailyMaxTempC };
+    const temperatures = getHistoricalCountryTemperatures(c.id, dryBulb, baselineTemperatures);
+    const summerMax = climate.heatwaveScenarioTempC + historicalDelta;
     const wetBulb = calculateWetBulbStull(dryBulb, c.baseHumidity);
-    const wetBulbPeak = calculateWetBulbStull(summerMax, c.summerHumidity);
+    const wetBulbPeak = calculateScenarioWetBulb(summerMax, climate.heatwaveScenarioHumidityPct);
 
     const baseMortalityRate = c.baseMortality / 1000.0;
     const annualDeaths: MortalityCauses = {
@@ -306,7 +314,7 @@ export function generateHistoricalState(year: number): GlobalBiophysicalState {
       annualMinTemp: temperatures.tasmin,
       annualMaxTemp: temperatures.tasmax,
       summerMaxTemp: summerMax,
-      summerHumidity: c.summerHumidity,
+      summerHumidity: climate.heatwaveScenarioHumidityPct,
       wetBulbTemp: wetBulb,
       wetBulbPeak,
       cropYieldFactor: b.globalCropYieldComposite,

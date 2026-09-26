@@ -1,5 +1,7 @@
 import { COUNTRIES_DATA } from '../data/countriesData';
 import { getCountryTemperatures } from './countryTemperatures';
+import climatePanelData from '../data/climatePanelData.json';
+import { ClimatePanelFile } from '../types/climatePanel';
 import {
   CountryDynamicState,
   GlobalBiophysicalState,
@@ -7,6 +9,8 @@ import {
   DemographicCohorts,
   SimulationScenarioConfig
 } from '../types/simulation';
+
+const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
 // Constantes FaIR (Finite Amplitude Impulse Response) CMIP6
 export const FAIR_A_POOLS = [0.2173, 0.2240, 0.2838, 0.2749];
@@ -44,6 +48,12 @@ export function calculateWetBulbStull(ta: number, rh: number): number {
   const term5 = -4.686035;
 
   return term1 + term2 - term3 + term4 + term5;
+}
+
+/** Returns no Tw estimate when inputs are outside Stull's published domain. */
+export function calculateScenarioWetBulb(ta: number, rh: number): number | null {
+  if (!Number.isFinite(ta) || !Number.isFinite(rh) || ta < -20 || ta > 50 || rh < 5 || rh > 99) return null;
+  return calculateWetBulbStull(ta, rh);
 }
 
 /**
@@ -88,13 +98,14 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
     const p2 = c.basePop2026 * c.baseCohortSplit[2];
     totalWorldPop += c.basePop2026;
 
-    // À l'année de base 2026, les températures de base de countriesData reflètent fidèlement le climat présent
-    const temperatures = getCountryTemperatures(c.id, c.baseTemp, 2026, scenarioConfig?.id);
+    const climate = climateRows.get(c.id);
+    if (!climate) throw new Error(`Données de chaleur manquantes pour ${c.id}.`);
+    const baselineTemperatures = { tas: climate.annualMeanTempC, tasmin: climate.annualMeanDailyMinTempC, tasmax: climate.annualMeanDailyMaxTempC };
+    const temperatures = getCountryTemperatures(c.id, baselineTemperatures, 2026, scenarioConfig?.id);
     const dryBulb = temperatures.tas;
-    const summerMax = c.summerMaxTemp;
+    const summerMax = climate.heatwaveScenarioTempC;
     const wetBulb = calculateWetBulbStull(dryBulb, c.baseHumidity);
-    // Calcul de Stull appliqué au couple chaleur-humidité hypothétique du scénario, pas à une observation 2026.
-    const wetBulbPeak = calculateWetBulbStull(summerMax, c.summerHumidity);
+    const wetBulbPeak = climate.heatwaveWetBulbC;
 
     const cohorts: DemographicCohorts = { p0, p1, p2, total: c.basePop2026 };
     const baseMortalityRate = c.baseMortality / 1000.0; // En taux unitaire
@@ -114,7 +125,7 @@ export function initializeSimulationState(scenarioConfig?: SimulationScenarioCon
       annualMinTemp: temperatures.tasmin,
       annualMaxTemp: temperatures.tasmax,
       summerMaxTemp: summerMax,
-      summerHumidity: c.summerHumidity,
+      summerHumidity: climate.heatwaveScenarioHumidityPct,
       wetBulbTemp: wetBulb,
       wetBulbPeak,
       cropYieldFactor: 1.0,
@@ -287,7 +298,10 @@ export function stepSimulation(
     const cState = next.countries[staticC.id];
     
     // Les températures annuelles suivent les deltas CMIP6 nationaux; le pic de canicule reste un indicateur distinct du modèle.
-    const temperatures = getCountryTemperatures(staticC.id, staticC.baseTemp, next.year, scenarioConfig?.id);
+    const climate = climateRows.get(staticC.id);
+    if (!climate) throw new Error(`Données de chaleur manquantes pour ${staticC.id}.`);
+    const baselineTemperatures = { tas: climate.annualMeanTempC, tasmin: climate.annualMeanDailyMinTempC, tasmax: climate.annualMeanDailyMaxTempC };
+    const temperatures = getCountryTemperatures(staticC.id, baselineTemperatures, next.year, scenarioConfig?.id);
     const localDryBulb = temperatures.tas;
     cState.dryBulbTemp = localDryBulb;
     cState.annualMinTemp = temperatures.tasmin;
@@ -296,16 +310,16 @@ export function stepSimulation(
     const deltaTGlobalFrom2026 = Math.max(0, next.surfaceTemperatureAnomaly - 1.34);
 
     // Descente d'échelle du pic caniculaire estival sous abri (amplification des extrêmes continentaux x1.15)
-    const localSummerMax = staticC.summerMaxTemp + deltaTGlobalFrom2026 * staticC.patternScaling * 1.15;
+    const localSummerMax = climate.heatwaveScenarioTempC + (temperatures.tasmax - baselineTemperatures.tasmax);
     cState.summerMaxTemp = localSummerMax;
-    cState.summerHumidity = staticC.summerHumidity;
+    cState.summerHumidity = climate.heatwaveScenarioHumidityPct;
 
     // Calcul de la température humide moyenne annuelle
     const localWetBulb = calculateWetBulbStull(localDryBulb, staticC.baseHumidity);
     cState.wetBulbTemp = localWetBulb;
 
     // Calcul rigoureux de Roland Stull (2011) lors du pic caniculaire estival
-    cState.wetBulbPeak = calculateWetBulbStull(localSummerMax, staticC.summerHumidity);
+    cState.wetBulbPeak = calculateScenarioWetBulb(localSummerMax, climate.heatwaveScenarioHumidityPct);
 
     // Perte surfacique côtière due au niveau marin (deltas, plaines rizicoles)
     cState.floodedArablePct = Math.min(0.35, staticC.coastalExposureScore * (next.seaLevelRiseMeters * 0.18));
@@ -343,11 +357,11 @@ export function stepSimulation(
     // Amortie temporairement par les infrastructures si le pays a une haute résilience ET une énergie nette suffisante
     // (accentuée si investissement en sobriété et climatisation passive collective)
     const activeResilience = Math.min(0.95, staticC.resilienceIndex * resilienceBoost * Math.pow(next.netEnergyRatio, 0.8));
-    const effectiveTwPeak = cState.wetBulbPeak - (activeResilience * 2.2);
+    const effectiveTwPeak = cState.wetBulbPeak === null ? null : cState.wetBulbPeak - (activeResilience * 2.2);
     let muThermal = 0;
-    if (effectiveTwPeak >= 30.5) {
+    if (effectiveTwPeak !== null && effectiveTwPeak >= 30.5) {
       muThermal = 0.35 / (1.0 + Math.exp(-2.2 * (effectiveTwPeak - 31.8)));
-    } else if (effectiveTwPeak >= 29.5) {
+    } else if (effectiveTwPeak !== null && effectiveTwPeak >= 29.5) {
       muThermal = 0.0015 * ((effectiveTwPeak - 29.5) / 1.0);
     }
 
@@ -388,7 +402,7 @@ export function stepSimulation(
 
     // Calcul du Push Factor pour les migrations internationales
     const push = 
-      (effectiveTwPeak > 31.0 ? 0.45 : 0) +
+      (effectiveTwPeak !== null && effectiveTwPeak > 31.0 ? 0.45 : 0) +
       calorieDeficitFraction * 0.40 +
       cState.floodedArablePct * 0.15;
     countryPushFactors[staticC.id] = push;

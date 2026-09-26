@@ -26,7 +26,7 @@ function getCountryId(countryId: string): string {
  */
 export function getCountryTemperatures(
   countryId: string,
-  baseMean: number,
+  baselineMetrics: Metrics,
   year: number,
   scenarioId?: string
 ): Metrics {
@@ -38,25 +38,39 @@ export function getCountryTemperatures(
   // 2080–2099 is used as the late-century value at the app's 2100 endpoint.
   const fraction = Math.max(0, Math.min(1, (year - 2026) / 74));
   const blend = (key: keyof Metrics) => {
-    const currentOffset = baseline[key] - baseline.tas;
     const projectedChange = future[key] - baseline[key];
-    return baseMean + currentOffset + projectedChange * fraction;
+    return baselineMetrics[key] + projectedChange * fraction;
   };
   return { tas: blend('tas'), tasmin: blend('tasmin'), tasmax: blend('tasmax') };
+}
+
+/** CCKP late-century temperature change relative to its 2020–2039 baseline. */
+export function getProjectedTemperatureDelta(
+  countryId: string,
+  variable: keyof Metrics,
+  year: number,
+  scenarioId?: string
+): number {
+  const sourceId = getCountryId(countryId);
+  const baseline = data.baseline[sourceId];
+  const future = data.future[getScenario(scenarioId)]?.[sourceId];
+  if (!baseline || !future) throw new Error(`Données CCKP manquantes pour la zone ${countryId}.`);
+  const fraction = Math.max(0, Math.min(1, (year - 2026) / 74));
+  return (future[variable] - baseline[variable]) * fraction;
 }
 
 /** Reconstructs past annual min/max means using the same estimated local anomaly as tas. */
 export function getHistoricalCountryTemperatures(
   countryId: string,
   mean: number,
-  baseMean: number
+  baselineMetrics: Metrics
 ): Metrics {
   const baseline = data.baseline[getCountryId(countryId)];
   if (!baseline) throw new Error(`Données CCKP manquantes pour la zone ${countryId}.`);
-  const delta = mean - baseMean;
+  const delta = mean - baselineMetrics.tas;
   return {
     tas: mean,
-    tasmin: baseMean + (baseline.tasmin - baseline.tas) + delta,
-    tasmax: baseMean + (baseline.tasmax - baseline.tas) + delta
+    tasmin: baselineMetrics.tasmin + delta,
+    tasmax: baselineMetrics.tasmax + delta
   };
 }

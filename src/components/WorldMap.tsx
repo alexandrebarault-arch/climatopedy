@@ -31,6 +31,11 @@ import {
 } from 'lucide-react';
 import { TechTooltip } from './TechTooltip';
 import { GreenZonesScientificModal } from './GreenZonesScientificModal';
+import { getHabitabilityStatus } from '../engine/habitabilityStatus';
+import climatePanelData from '../data/climatePanelData.json';
+import { ClimatePanelFile } from '../types/climatePanel';
+
+const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
 interface WorldMapProps {
   simulationState: GlobalBiophysicalState;
@@ -117,6 +122,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
       if (!dyn) return;
 
       const tw = dyn.wetBulbPeak;
+      if (tw === null) return;
 
       if (tw >= 31.0) {
         aboveTwAlertThresholdCount++;
@@ -171,6 +177,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
     switch (activeMetric) {
       case 'wet_bulb': {
         const tw = dyn.wetBulbPeak;
+        if (tw === null) return '#94a3b8';
         // Échelle thermodynamique Roland Stull (2011) progressive par bandes climatiques
         if (tw < 8.0) return '#0284c7'; // Froid arctique/boréal (Bleu franc)
         if (tw < 14.0) return '#0ea5e9'; // Tempéré froid (Bleu ciel)
@@ -616,9 +623,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               const isSelected = selectedCountryId === feature.simCountryId;
               const isHovered = hoveredFeature?.id === feature.id;
               const dyn = simulationState.countries[feature.simCountryId];
-              const tw = dyn ? dyn.wetBulbPeak : 0;
-              const isInHeatAlert = heatAlertsEnabled && dyn && tw >= heatAlertThreshold;
-              const isAboveTwAlertThreshold = dyn ? tw >= 31.0 : false;
+              const tw = dyn?.wetBulbPeak ?? null;
+              const isInHeatAlert = heatAlertsEnabled && tw !== null && tw >= heatAlertThreshold;
+              const isAboveTwAlertThreshold = tw !== null && tw >= 31.0;
               const fillColor = getCountryFillColor(feature.simCountryId);
 
               // Contour et style d'alerte
@@ -688,7 +695,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   const dyn = simulationState.countries[staticC.id];
                   if (!dyn) return null;
                   const tw = dyn.wetBulbPeak;
-                  if (tw < heatAlertThreshold) return null;
+                  if (tw === null || tw < heatAlertThreshold) return null;
 
                   const [cx, cy] = SIM_CENTROIDS[staticC.id] || [500, 250];
                   const isExtreme = tw >= 35.0;
@@ -769,6 +776,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   if (!dyn) return null;
 
                   const tw = dyn.wetBulbPeak;
+                  if (tw === null) return null;
                   // Si le pays a déjà une balise d'alerte active, on évite le doublon
                   if (heatAlertsEnabled && tw >= heatAlertThreshold) return null;
 
@@ -835,6 +843,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                 const centroid = SIM_CENTROIDS[hoveredFeature.simCountryId] || [500, 250];
                 if (!dyn || !staticC) return null;
                 const tw = dyn.wetBulbPeak;
+                if (tw === null) return null;
                 const isAlert = heatAlertsEnabled && tw >= heatAlertThreshold;
                 const isLethal = tw >= 31.0;
 
@@ -912,9 +921,15 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               if (!dyn) return null;
 
               const tw = dyn.wetBulbPeak;
-              const isAboveTwAlertThreshold = tw >= 31.0;
-              const isSevere = tw >= 29.0 && tw < 31.0;
-              const isWarning = tw >= 26.0 && tw < 29.0;
+              const habitabilityStatus = getHabitabilityStatus(tw, dyn.calPerCapita);
+              const habitabilityBadgeClass = habitabilityStatus?.severity === 'high'
+                ? 'bg-rose-50 text-rose-800 border-rose-200'
+                : habitabilityStatus?.severity === 'medium'
+                ? 'bg-amber-50 text-amber-900 border-amber-200'
+                : 'bg-emerald-50 text-emerald-800 border-emerald-200';
+              const isAboveTwAlertThreshold = tw !== null && tw >= 31.0;
+              const isSevere = tw !== null && tw >= 29.0 && tw < 31.0;
+              const isWarning = tw !== null && tw >= 26.0 && tw < 29.0;
               const popChangePct = ((dyn.cohorts.total - activeCountryData.basePop2026) / activeCountryData.basePop2026) * 100;
               const isFamine = dyn.calPerCapita < 2100;
 
@@ -955,6 +970,15 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <h3 className="text-base font-bold text-slate-900 tracking-tight">
                           {activeCountryData.frenchName}
                         </h3>
+                        {habitabilityStatus && (
+                          <span
+                            className={`max-w-full truncate rounded border px-1.5 py-0.5 text-[9px] font-semibold ${habitabilityBadgeClass}`}
+                            title={habitabilityStatus.explanation}
+                            aria-label={`${habitabilityStatus.label}. ${habitabilityStatus.explanation}`}
+                          >
+                            {habitabilityStatus.label}
+                          </span>
+                        )}
                         {activeFeature?.name && activeFeature.name !== activeCountryData.name && (
                           <span className="text-xs text-slate-500">
                             ({activeFeature.name})
@@ -967,7 +991,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                     </div>
 
                     {/* BANNIÈRE D'ALERTE DE STRESS THERMIQUE CRITIQUE SI SEUIL DÉPASSÉ */}
-                    {heatAlertsEnabled && tw >= heatAlertThreshold && (
+                    {heatAlertsEnabled && tw !== null && tw >= heatAlertThreshold && (
                       <div className="mb-2.5 p-2.5 rounded-lg bg-rose-50 border border-rose-300 shadow-2xs text-xs space-y-1.5 animate-pulse">
                         <div className="flex items-center gap-1.5">
                           <AlertOctagon className="w-4 h-4 text-rose-600 shrink-0" />
@@ -1010,9 +1034,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         </div>
                         <div className="text-right">
                           <span className="text-xl font-mono font-bold text-slate-900 tabular-nums">
-                            {tw.toFixed(1)}°C
+                            {tw === null ? 'Non calculable' : `${tw.toFixed(1)}°C`}
                           </span>
-                          {heatAlertsEnabled && tw >= heatAlertThreshold && (
+                          {heatAlertsEnabled && tw !== null && tw >= heatAlertThreshold && (
                             <span className="block text-[9.5px] font-mono text-rose-700 font-bold">
                               &gt; Seuil {heatAlertThreshold.toFixed(1)}°C ⚠️
                             </span>
@@ -1025,9 +1049,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden flex relative">
                           <div
                             className={`h-full transition-all duration-300 ${
-                              tw >= 35.0 ? 'bg-purple-600' : isAboveTwAlertThreshold ? 'bg-rose-600' : isSevere ? 'bg-amber-500' : 'bg-emerald-500'
+                              tw !== null && tw >= 35.0 ? 'bg-purple-600' : isAboveTwAlertThreshold ? 'bg-rose-600' : isSevere ? 'bg-amber-500' : 'bg-emerald-500'
                             }`}
-                            style={{ width: `${Math.min(100, Math.max(5, ((tw - 10) / 25) * 100))}%` }}
+                            style={{ width: tw === null ? '0%' : `${Math.min(100, Math.max(5, ((tw - 10) / 25) * 100))}%` }}
                           />
                         </div>
                         <div className="flex justify-between text-[9px] font-mono text-slate-500">
@@ -1042,7 +1066,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                       {/* Lecture du seuil de Tw dans le modèle */}
                       <div className="pt-0.5 text-[11px] font-semibold">
-                        {isAboveTwAlertThreshold ? (
+                        {tw === null ? (
+                          <p className="text-slate-700 leading-tight">Tw non calculable : les entrées dépassent le domaine d’usage de la formule de Stull (Ta −20 à 50°C, humidité 5 à 99%).</p>
+                        ) : isAboveTwAlertThreshold ? (
                           <p className="text-rose-800 leading-tight">
                             Tw simulée ≥ 31°C; seuil d’alerte utilisé dans CLIMATOPEDY.
                           </p>
@@ -1064,16 +1090,19 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
                     {/* BLOC 2 : MÉTRIQUES CLIMATIQUES & DÉMOGRAPHIQUES SIMPLIFIÉES */}
                     <div className="space-y-1.5 text-xs">
+                      {(() => {
+                        const climate = climateRows.get(activeCountryData.id);
+                        return climate ? <>
                       {/* Pic caniculaire estival */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Sun className="w-3.5 h-3.5 text-amber-600" />
-                          Scénario de canicule (hypothèse)
+                          Pic chaud P99 estimé
                         </span>
                         <span className="font-mono text-amber-800 tabular-nums font-semibold">
                           {dyn.summerMaxTemp.toFixed(1)}°C{' '}
                           <span className="text-slate-500 font-normal text-[10.5px]">
-                            (+{(dyn.summerMaxTemp - activeCountryData.summerMaxTemp).toFixed(1)}°C)
+                            ({displayYear === 2026 ? 'normale 1991–2020' : 'projection du scénario'})
                           </span>
                         </span>
                       </div>
@@ -1104,14 +1133,14 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">
                         <span className="text-slate-600 flex items-center gap-1">
                           <Droplets className="w-3.5 h-3.5 text-sky-600" />
-                          Humidité du scénario (en %)
+                          Humidité estimée du P99
                         </span>
                         <span className="font-mono text-sky-800 tabular-nums font-medium">
-                          {dyn.summerHumidity}%
+                          {dyn.summerHumidity.toFixed(0)}%
                         </span>
                       </div>
                       <p className="text-[9.5px] leading-snug text-slate-500">
-                        Les moyennes des maximales et minimales quotidiennes ne sont pas des records. Hors référence française, les températures de départ sont des paramètres du modèle; le passé est reconstruit et le futur suit des analogies CMIP6. Le pic et l'humidité de canicule sont des hypothèses; Tw est calculée à partir de ces deux paramètres.
+                        Normales 1991–2020 d’un point NASA POWER/MERRA-2 représentatif, pas une moyenne nationale. P99 et humidité sont estimés; le record absolu est affiché dans la fiche pays s’il est sourcé.
                       </p>
 
                       {activeCountryData.id === 'fra' && displayYear === 2026 && (
@@ -1126,16 +1155,18 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <span className="text-slate-600 flex items-center gap-1">
                           <Thermometer className="w-3.5 h-3.5 text-slate-500" />
                           {displayYear === 2026
-                            ? activeCountryData.id === 'fra' ? 'Normale annuelle (1991–2020)' : 'Référence annuelle du modèle'
+                            ? 'Moyenne annuelle (1991–2020) · proxy'
                             : 'Moyenne annuelle simulée'}
                         </span>
                         <span className="font-mono text-slate-800 tabular-nums font-medium">
                           {dyn.dryBulbTemp.toFixed(1)}°C{' '}
                           <span className="text-slate-500 font-normal text-[10.5px]">
-                            (+{(dyn.dryBulbTemp - activeCountryData.baseTemp).toFixed(1)}°C)
+                            (point représentatif)
                           </span>
                         </span>
                       </div>
+                      </> : null;
+                      })()}
 
                       {/* Population résidente */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">

@@ -115,9 +115,45 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrlLabel: 'Portail des téléchargements CCKP',
     secondaryUrl: 'https://worldbank.github.io/climateknowledgeportal/README.html',
     secondaryUrlLabel: 'Documentation des données et de l’API',
-    gaiaRole: 'Les normales CMIP6-x0.25 de tas, tasmin et tasmax (2020–2039) fournissent les écarts entre moyenne annuelle et moyennes des minima/maxima quotidiens. Les changements 2080–2099 alimentent les trajectoires thermiques par pays.',
+    gaiaRole: 'Les changements CMIP6 du CCKP entre la période de base 2020–2039 et 2080–2099 alimentent les trajectoires thermiques futures par zone. Les normales de départ 1991–2020 sont calculées séparément avec NASA POWER/MERRA-2.',
     keyDataOrQuote: 'Les valeurs futures sont des médianes d’ensemble conditionnelles à SSP1-2.6, SSP2-4.5 ou SSP5-8.5; elles décrivent des moyennes de période, pas une prévision météorologique pour 2100.',
-    reproducibilityNotes: 'Les sorties CCKP sont conservées localement dans cckpCountryTemperatures.json. Le tas est recalé sur la base 2026 de CLIMATOPEDY; les changements de tasmin/tasmax suivent les écarts du modèle. Correspondances : bau→SSP5-8.5, sobriety→SSP1-2.6, autres réglages→SSP2-4.5. Ces trajectoires locales sont des analogies et restent distinctes du calcul thermique mondial interne. Les zones multi-pays sont la moyenne simple des agrégats nationaux des membres déclarés. La climatologie 2080–2099 sert de valeur de fin de siècle à l’horizon 2100; au-delà, le changement climatique local est maintenu à ce niveau faute de projection CCKP intégrée après 2099. Les années historiques antérieures à 2026 restent reconstruites à partir des anomalies mondiales interpolées; le CRU observé n’a pas été intégré car son endpoint API public renvoyait un jeu vide lors de cette mise à jour. Les valeurs d’humidité estivale et de pic caniculaire dans countriesData.ts restent des hypothèses de scénario, sans source d’observation nationale.'
+    reproducibilityNotes: 'Les sorties CCKP sont conservées localement dans cckpCountryTemperatures.json. Les anomalies de tas, tasmin et tasmax sont ajoutées à la normale ponctuelle NASA POWER/MERRA-2 1991–2020. Correspondances : bau→SSP5-8.5, sobriety→SSP1-2.6, autres réglages→SSP2-4.5. Ces trajectoires locales conditionnelles restent distinctes du calcul thermique mondial interne. Les zones multi-pays utilisent les agrégats nationaux fournis par CCKP. La climatologie 2080–2099 sert de valeur de fin de siècle à l’horizon 2100. Les états antérieurs à 2026 sont reconstruits avec les anomalies mondiales interpolées; ils ne sont pas des observations locales. L’humidité caniculaire future demeure constante faute de projection intégrée.'
+  },
+  {
+    id: 'nasa-power-merra2-daily',
+    category: 'climate',
+    categoryLabel: 'Climat & Cycle du Carbone',
+    title: 'NASA POWER : réanalyse météorologique quotidienne MERRA-2',
+    englishTitle: 'NASA POWER Daily API and MERRA-2 meteorological data',
+    authors: 'NASA Langley Research Center; Global Modeling and Assimilation Office',
+    year: 2026,
+    publisher: 'NASA POWER',
+    peerReviewed: false,
+    typeBadge: 'Réanalyse mondiale · proxy ponctuel',
+    primaryUrl: 'https://power.larc.nasa.gov/docs/services/api/temporal/daily/',
+    primaryUrlLabel: 'Documentation officielle de l’API quotidienne',
+    secondaryUrl: 'https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/',
+    secondaryUrlLabel: 'Documentation MERRA-2',
+    gaiaRole: 'Fournit pour chacune des 34 zones les normales 1991–2020 de la moyenne quotidienne, des Tmax et des Tmin, ainsi qu’un indicateur de chaleur P99 et une humidité associée estimée.',
+    keyDataOrQuote: 'Le calcul utilise T2M, T2MDEW, T2M_MAX et T2M_MIN à un point terrestre proche du centre de la zone. Une seule maille ne représente pas la moyenne surfacique des grands pays.',
+    reproducibilityNotes: 'Le script scripts/generateClimatePanelData.ts interroge l’API NASA POWER Daily (community=RE, temps local) et enregistre coordonnées, élévation, période, valeurs et méthode dans climatePanelData.json. RH au Tmax est estimée en combinant le point de rosée quotidien moyen au Tmax journalier; ce ne sont pas des mesures simultanées. Les valeurs P99 ne sont ni des records ni des prévisions.'
+  },
+  {
+    id: 'aldushov-eskridge-magnus-1996',
+    category: 'wetbulb',
+    categoryLabel: 'Thermodynamique & Physiologie Humaine',
+    title: 'Formulation de Magnus pour la pression de vapeur saturante',
+    englishTitle: 'Improved Magnus form approximation of saturation vapor pressure',
+    authors: 'O. A. Alduchov & R. E. Eskridge',
+    year: 1996,
+    publisher: 'Journal of Applied Meteorology (American Meteorological Society)',
+    peerReviewed: true,
+    typeBadge: 'Conversion thermodynamique',
+    primaryUrl: 'https://doi.org/10.1175/1520-0450(1996)035%3C0601:IMFAOS%3E2.0.CO;2',
+    primaryUrlLabel: 'Article AMS / DOI',
+    gaiaRole: 'Convertit la température et le point de rosée en humidité relative estimée pour le scénario chaud du panneau.',
+    keyDataOrQuote: 'La pression de vapeur est calculée avec une approximation exponentielle de type Magnus.',
+    reproducibilityNotes: 'Les constantes utilisées sont A=17,625 et B=243,04 °C dans src/engine/climatePanelMath.ts. Le point de rosée quotidien moyen NASA est associé au Tmax du jour; le résultat est donc une estimation non simultanée.'
   },
   {
     id: 'meteo-france-national-normal',
@@ -132,9 +168,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     typeBadge: 'Normale climatique nationale',
     primaryUrl: 'https://education.meteofrance.fr/actualites/de-nouvelles-normales-pour-qualifier-le-climat-en-france',
     primaryUrlLabel: 'Présentation officielle des nouvelles normales',
-    gaiaRole: 'Ancre observée de la température moyenne annuelle française dans countriesData.ts : 12,97 °C, arrondie à 13,0 °C.',
+    gaiaRole: 'Référence nationale utile pour contextualiser la France; le panneau utilise désormais partout le même protocole de points NASA POWER/MERRA-2 et n’ancre pas la France artificiellement à 13 °C.',
     keyDataOrQuote: 'La normale 1991–2020 de la température moyenne annuelle en France est de 12,97 °C.',
-    reproducibilityNotes: 'Cette référence nationale ancre la moyenne de la France uniquement. Les températures quotidiennes moyennes Tmin/Tmax et les autres zones utilisent les données CCKP, puis sont recalées selon la méthode décrite dans la fiche World Bank CCKP.'
+    reproducibilityNotes: 'La valeur nationale métropolitaine et le point ponctuel NASA POWER ne sont pas strictement comparables spatialement. La différence est signalée dans l’interface; les températures Tmin/Tmax sont calculées avec la même série ponctuelle NASA.'
   },
   {
     id: 'meteo-france-national-heat-record',
