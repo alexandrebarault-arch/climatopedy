@@ -90,6 +90,9 @@ test('map analysis and country inspector use the shared status and future record
   assert.match(map, /projection du scénario/, 'future P99 label must not call a projection a 1991–2020 normal');
   assert.match(map, /Tw non calculable/, 'map must explain a Tw outside Stull\'s supported input range');
   assert.match(inspector, /Non calculable/, 'country detail must represent an unavailable Tw explicitly');
+  assert.match(map, /return getWetBulbColor\(dyn\.wetBulbPeak\)/, 'map fills must use the tested wet-bulb color scale');
+  assert.match(map, /WET_BULB_COLOR_BANDS\.map/, 'legend swatches must use the same bands as the map');
+  assert.match(map, /normale proxy NASA 1991–2020/, 'map must distinguish its 2026 reference normal from observed weather');
 });
 
 test('site architecture guide covers the pages, shared state, data flow and verification commands', async () => {

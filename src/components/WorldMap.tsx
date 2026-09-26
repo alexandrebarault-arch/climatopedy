@@ -32,6 +32,7 @@ import {
 import { TechTooltip } from './TechTooltip';
 import { GreenZonesScientificModal } from './GreenZonesScientificModal';
 import { getHabitabilityStatus } from '../engine/habitabilityStatus';
+import { getWetBulbColor, WET_BULB_COLOR_BANDS, WET_BULB_UNAVAILABLE_COLOR } from '../utils/wetBulbScale';
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
 
@@ -176,19 +177,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
     switch (activeMetric) {
       case 'wet_bulb': {
-        const tw = dyn.wetBulbPeak;
-        if (tw === null) return '#94a3b8';
-        // Échelle thermodynamique Roland Stull (2011) progressive par bandes climatiques
-        if (tw < 8.0) return '#0284c7'; // Froid arctique/boréal (Bleu franc)
-        if (tw < 14.0) return '#0ea5e9'; // Tempéré froid (Bleu ciel)
-        if (tw < 18.0) return '#06b6d4'; // Tempéré doux (Cyan-bleu)
-        if (tw < 22.0) return '#0d9488'; // Tempéré chaud / Méditerranée (Sarcelle)
-        if (tw < 25.0) return '#10b981'; // Subtropical vivable (Émeraude)
-        if (tw < 27.0) return '#eab308'; // Début d'inconfort thermique (Jaune ambre)
-        if (tw < 29.0) return '#f97316'; // Stress thermique élevé (Orange vif)
-        if (tw < 31.0) return '#ef4444'; // Danger thermique sévère (Rouge vif)
-        if (tw < 33.0) return '#b91c1c'; // Niveau d'alerte du modèle
-        return '#701a75'; // Niveau supérieur d'alerte du modèle
+        return getWetBulbColor(dyn.wetBulbPeak);
       }
 
       case 'caloric_stress': {
@@ -894,14 +883,25 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 
           {/* Légende horizontale en bas du planisphère */}
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 px-2 pt-2 border-t border-slate-200 mt-1">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-slate-800 text-[11px]">Échelle Stull Tw :</span>
-              <div className="flex items-center gap-1">
-                <span className="text-[10px] text-sky-700 font-mono">&lt;14°C Boréal</span>
-                <span className="text-[10px] text-emerald-700 font-mono">22°C Vivable</span>
-                <div className="h-2 w-20 rounded bg-gradient-to-r from-sky-600 via-emerald-500 to-rose-600" />
-                <span className="text-[10px] text-rose-700 font-bold font-mono">&ge;31.0°C Seuil d’alerte du modèle</span>
+            <div className="flex min-w-0 flex-col gap-1">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span className="font-semibold text-slate-800 text-[11px]" title="Pic de température humide calculé à partir du scénario de chaleur et d’humidité, pas température maximale de l’air">
+                  Pic caniculaire Tw estimé · °C :
+                </span>
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  {WET_BULB_COLOR_BANDS.map(band => (
+                    <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
+                      <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
+                    </span>
+                  ))}
+                  <span className="inline-flex items-center gap-1 text-[10px] text-slate-600 font-mono" title="Valeur non calculée car hors du domaine d’usage de la formule de Stull">
+                    <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: WET_BULB_UNAVAILABLE_COLOR }} />NC
+                  </span>
+                </div>
               </div>
+              <span className="text-[9px] text-slate-500">
+                2026 = normale proxy NASA 1991–2020, pas l’observation météo de l’année; les années futures sont des scénarios, pas des prévisions météo.
+              </span>
             </div>
 
             <span className="text-[11px] text-slate-500 font-mono">
