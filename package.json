@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "npm run audit:climate && vite build",
+    "build": "npm run audit:climate && npm run audit:data-country && vite build",
     "preview": "vite preview",
     "test": "node --import tsx --test tests/*.test.ts",
     "audit:climate": "tsx scripts/generateTemperatureTrajectoryAudit.ts && tsx scripts/auditTemperatureQuality.ts",
     "audit:data-country": "tsx scripts/auditCountryContextData.ts",
+    "verify": "npm test && npm run lint && npm run build",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },

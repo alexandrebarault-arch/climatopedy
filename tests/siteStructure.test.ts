@@ -120,6 +120,6 @@ test('site architecture guide covers the pages, shared state, data flow and veri
   for (const parameter of ['scenB', 'oilRed', 'agro', 'resil', 'ecs', 'year']) {
     assert.ok(guide.includes(`\`${parameter}\``), `guide must document URL parameter ${parameter}`);
   }
-  for (const command of ['npm test', 'npm run lint', 'npm run build']) assert.ok(guide.includes(`\`${command}\``));
+  for (const command of ['npm test', 'npm run lint', 'npm run audit:data-country', 'npm run build', 'npm run verify']) assert.ok(guide.includes(`\`${command}\``));
   assert.match(guide, /Liste de contrôle avant de modifier la structure/i);
 });

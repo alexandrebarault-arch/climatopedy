@@ -111,6 +111,11 @@ Le harnais actuel est constitué de tests Node intégrés à `npm test` :
 - la page Carte doit conserver ses points d’entrée majeurs : `WorldMap`, `TimelineController`, `ComparisonModePanel` et `KpiCharts` ;
 - le statut d’habitabilité et la visibilité des records doivent rester raccordés à leurs règles partagées ;
 - `npm run audit:climate` doit contrôler les séries annuelles pays/année/scénario et écrire les registres de qualité complets avant une publication de données ;
+- le contrat WDI doit exclure tous les agrégats du répertoire pays officiel, préserver valeur/année/statut/précision source et ISO3, et ne jamais transformer une lacune en zéro ;
+- chaque polygone doit conserver son identité dans la fiche ; les entrées de zone ne résolvent un pays que si un seul ISO3 est rattaché ;
+- le rapport `country-context-country-by-country.json` doit avoir une fiche pour chaque polygone et neuf cases Aqueduct par ISO (3 horizons × 3 scénarios), y compris les absences explicites ;
+- Aqueduct n’accepte que 2030, 2050, 2080 et les scénarios `opt`, `bau`, `pes`; accès observé à l’eau et stress hydrique projeté restent distincts ;
+- le build de production doit lancer les audits climat et pays avant la compilation Vite ;
 - les métriques de températures annuelles affichées sur la carte doivent suivre l’année de l’état simulé ;
 - toute Tw hors du domaine publié de la formule de Stull reste indisponible et ne produit pas d’alerte thermique ;
 - ce guide doit couvrir les sections, les principaux composants, les paramètres d’URL et les commandes de vérification.
@@ -125,8 +130,9 @@ Les températures annuelles 2026 sont ancrées aux moyennes NASA POWER/MERRA-2 d
 2. Mettre à jour `SITE_SECTIONS` et les branchements de `TopBar`/`App` si nécessaire.
 3. Préserver ou modifier explicitement les responsabilités de l’état partagé et les données transmises entre vues.
 4. Mettre à jour les contrats et tests dans `tests/siteStructure.test.ts`.
-5. Mettre à jour l’inventaire et les flux de ce document.
-6. Exécuter les tests, le contrôle TypeScript et le build avant de fusionner.
+5. Pour une modification de données nationales ou cartographiques, mettre à jour `tests/countryContextData.test.ts` et le rapport généré avec `npm run audit:data-country`.
+6. Mettre à jour l’inventaire et les flux de ce document.
+7. Exécuter `npm run verify` avant de fusionner; la même commande est requise par GitHub Actions sur les pull requests vers `main`.
 
 ## Vérification locale
 
@@ -135,7 +141,9 @@ Depuis la racine du dépôt :
 ```powershell
 npm test
 npm run lint
+npm run audit:data-country
 npm run build
+npm run verify
 ```
 
-Les tests utilisent le runner Node et `tsx`. `npm run lint` exécute le contrôle TypeScript (`tsc --noEmit`) et `npm run build` assemble l’application Vite pour la production.
+Les tests utilisent le runner Node et `tsx`. `npm run lint` exécute le contrôle TypeScript (`tsc --noEmit`). `npm run build` lance d’abord les audits des trajectoires climat et des données pays, puis assemble l’application Vite. `npm run verify` est le point d’entrée complet : tests, contrôle TypeScript et build. GitHub Actions exécute ce point d’entrée sur les pull requests et les pushs vers `main`.

@@ -40,6 +40,6 @@ WDI et Aqueduct agrègent des sources, populations, périodes et méthodes diff�
 1. Rafraîchir les séries WDI et leurs années d’observation : `npx tsx scripts/updateCountryContextObserved.ts`.
 2. Rafraîchir Aqueduct après vérification de la version du classeur et de la date de mise à jour catalogue dans le portail WRI : installer les dépendances optionnelles avec `python -m pip install -r requirements-data.txt`, puis passer la date vérifiée, par exemple `python scripts/updateAqueductCountryWaterStress.py --catalog-updated 2026-09-22`. Le script rejette les horizons, scénarios, scores, clés dupliquées ou combinaisons pays incomplètes.
 3. Régénérer le contrôle détaillé : `npm run audit:data-country`.
-4. Vérifier les contrôles automatisés et la production avec `npm test`, `npm run lint` et `npm run build`.
+4. Lancer `npm run verify`; cette commande exécute toute la suite de tests, le contrôle TypeScript et le build, qui lance lui-même les audits climat et pays. GitHub Actions applique le même contrôle aux pull requests vers `main`.
 
 Le test contrôle les valeurs et années, les clés ISO, les entités sans code reconnu, l’unicité des lignes Aqueduct et ses horizons/scénarios. Le rapport JSON sert de liste de contrôle pays par pays et rend visibles les lacunes sans les combler par extrapolation.
