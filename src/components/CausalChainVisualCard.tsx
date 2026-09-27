@@ -16,9 +16,9 @@ interface StepMeta {
 
 const STEP_DATA: Record<number, StepMeta> = {
   0: {
-    title: 'Plateforme Pétrolière Offshore en Haute Mer',
-    subtitle: 'Appareil de forage semi-submersible, derrick et tête de puits sous-marine',
-    metric: '450 t d\'acier spécial API + 1 200 t de barytine par puits de 4 800 m',
+    title: 'Plateforme pétrolière en haute mer',
+    subtitle: 'Installation flottante qui fore le fond marin pour atteindre des gisements de pétrole.',
+    metric: 'Pour un puits de 4 800 m : 450 t d’acier pour les tubes et 1 200 t de barytine, une poudre minérale qui alourdit le liquide de forage pour maîtriser la pression.',
     photoUrl: '/images/visuals/oil_rig.jpg',
     photoCaption: 'Plateforme pétrolière de forage hauturier (Minke Field, Mer du Nord) opérant en eaux profondes.',
     sourceCredit: 'Photographie documentaire haute définition - Mer du Nord'
@@ -84,19 +84,20 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
       <rect x="0" y="30" width="600" height="110" fill="url(#oceanGrad)" />
       <line x1="300" y1="24" x2="300" y2="140" stroke="#cbd5e1" strokeWidth="4" />
 
-      {/* Bloc obturateur sous-marin (BOP) et son repère */}
+      {/* Vanne de sécurité sous-marine et son repère */}
       <rect x="284" y="132" width="32" height="22" fill="#dc2626" rx="2" />
       <path d="M 316 143 H 345 V 158" fill="none" stroke="#fca5a5" strokeWidth="1.5" />
-      <text x="350" y="157" fill="#fecaca" fontSize="10" fontFamily="monospace" fontWeight="bold">
-        BOP sous-marin · 700 bars
+      <text x="350" y="155" fill="#fecaca" fontSize="11" fontFamily="sans-serif" fontWeight="bold">
+        Vanne de sécurité du puits
       </text>
+      <text x="350" y="168" fill="#fecaca" fontSize="10" fontFamily="sans-serif">bloque les remontées incontrôlées</text>
 
       {/* Strates géologiques profondes */}
       <rect x="0" y="140" width="600" height="180" fill="url(#strataGrad)" />
       <ellipse cx="300" cy="278" rx="135" ry="20" fill="url(#oilRes)" stroke="#f59e0b" strokeWidth="1.5" />
-      <text x="300" y="282" fill="#fde68a" fontSize="10" fontWeight="bold" textAnchor="middle">
-        Gisement · grès poreux · 4 800 m
-      </text>
+      <text x="300" y="270" fill="#fde68a" fontSize="10" fontWeight="bold" textAnchor="middle">Réservoir de pétrole</text>
+      <text x="300" y="282" fill="#fde68a" fontSize="9" textAnchor="middle">roche pleine de minuscules trous</text>
+      <text x="300" y="294" fill="#fde68a" fontSize="9" textAnchor="middle">puits foré jusqu’à 4 800 m</text>
 
       {/* Cuvelage et trépan */}
       <line x1="300" y1="154" x2="300" y2="258" stroke="#f59e0b" strokeWidth="3" />
@@ -104,12 +105,14 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
 
       {/* Repères déportés pour garder la coupe et les libellés distincts */}
       <path d="M 296 85 H 205" fill="none" stroke="#7dd3fc" strokeWidth="1.5" />
-      <text x="195" y="81" fill="#bae6fd" fontSize="10" fontFamily="monospace" textAnchor="end">Riser marin · 2 500 m d'eau</text>
+      <text x="195" y="77" fill="#bae6fd" fontSize="10" fontFamily="sans-serif" textAnchor="end">Tube reliant la plateforme</text>
+      <text x="195" y="90" fill="#bae6fd" fontSize="10" fontFamily="sans-serif" textAnchor="end">au puits · 2 500 m d’eau</text>
       <path d="M 303 205 H 365" fill="none" stroke="#fcd34d" strokeWidth="1.5" />
-      <text x="373" y="209" fill="#fde68a" fontSize="10" fontFamily="monospace">Cuvelages acier API Q125</text>
+      <text x="373" y="202" fill="#fde68a" fontSize="10" fontFamily="sans-serif">Tubes d’acier qui maintiennent</text>
+      <text x="373" y="215" fill="#fde68a" fontSize="10" fontFamily="sans-serif">le puits ouvert dans la roche</text>
       <path d="M 305 258 H 375 V 244" fill="none" stroke="#7dd3fc" strokeWidth="1.5" />
-      <text x="383" y="242" fill="#7dd3fc" fontSize="10" fontFamily="monospace">Trépan PDC</text>
-      <text x="383" y="255" fill="#bae6fd" fontSize="9" fontFamily="monospace">diamants synthétiques</text>
+      <text x="383" y="242" fill="#7dd3fc" fontSize="10" fontFamily="sans-serif">Foret qui creuse la roche</text>
+      <text x="383" y="255" fill="#bae6fd" fontSize="9" fontFamily="sans-serif">pointe renforcée au diamant</text>
     </svg>
   );
 
@@ -274,7 +277,7 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
               title="Voir la coupe technique ou géotechnique"
             >
               <Layers className="w-3.5 h-3.5 text-sky-600" />
-              <span>Schéma d'Ingénierie</span>
+              <span>Schéma expliqué</span>
             </button>
           </div>
         </div>
@@ -323,8 +326,8 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
 
         {/* Barre de métrologie et d'ordre de grandeur en pied de carte */}
         <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-          <span className="text-slate-700">
-            ⚙️ Grandeur physique : <strong className="text-amber-800">{meta.metric}</strong>
+          <span className="text-slate-700 font-sans">
+            À retenir : <strong className="text-amber-800">{meta.metric}</strong>
           </span>
           <span className="text-[11px] text-slate-500">
             {meta.subtitle}
