@@ -36,6 +36,7 @@ import { getWetBulbColor, WET_BULB_COLOR_BANDS, WET_BULB_UNAVAILABLE_COLOR } fro
 import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
 import aqueductWaterStress from '../data/aqueductCountryWaterStress.json';
+import { aggregateWaterAccessForZone, getHouseholdWaterAccessProjection, getWaterStressProjection } from '../engine/waterAccessProjections';
 
 const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 type WaterStressRow = (typeof aqueductWaterStress.rows)[number];
@@ -48,6 +49,7 @@ interface WorldMapProps {
   selectedCountryFeatureId: string | null;
   onSelectCountry: (countryId: string | null, iso3?: string | null, countryName?: string | null, featureId?: string | null) => void;
   currentYear?: number;
+  scenarioId: string;
 }
 
 type TwOverlayMode = 'aboveTwAlertThreshold' | 'critical' | 'all' | 'off';
@@ -58,7 +60,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   selectedCountryIso3,
   selectedCountryFeatureId,
   onSelectCountry,
-  currentYear
+  currentYear,
+  scenarioId
 }) => {
   const displayYear = currentYear !== undefined ? Math.floor(currentYear) : Math.floor(simulationState.year);
   const [activeMetric, setActiveMetric] = useState<MetricLayer>('habitability');
@@ -190,8 +193,21 @@ export const WorldMap: React.FC<WorldMapProps> = ({
     if (!dyn || !staticC) return '#cbd5e1';
 
     switch (activeMetric) {
-      case 'habitability':
-        return getHabitabilityColor(getHabitabilityStatus(dyn.wetBulbPeak, dyn.calPerCapita)?.key ?? null);
+      case 'habitability': {
+        const waterAccess = getHouseholdWaterAccessProjection(iso3, displayYear, scenarioId);
+        const waterStress = getWaterStressProjection(iso3, displayYear, scenarioId);
+        return getHabitabilityColor(getHabitabilityStatus({
+          wetBulbPeakC: dyn.wetBulbPeak,
+          annualMeanDailyMaxTempC: dyn.annualMaxTemp,
+          hotSeasonP99C: dyn.summerMaxTemp,
+          caloriesKcalPerPersonDay: dyn.calPerCapita,
+          improvedWaterAccessPct: waterAccess?.valuePct ?? null,
+          nationalWaterStressCategory: waterStress?.category ?? null,
+          waterAccessSourceYear: waterAccess?.sourceYear,
+          waterAccessProjectionMethod: waterAccess?.method,
+          nationalWaterStressSourceYear: waterStress?.sourceYear
+        })?.key ?? null);
+      }
 
       case 'wet_bulb': {
         return getWetBulbColor(dyn.wetBulbPeak);
@@ -956,12 +972,12 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             )}
           </svg>
 
-          {/* Badge Année en cours centré en bas sur la carte */}
-          <div className="absolute bottom-12 sm:bottom-13 left-1/2 -translate-x-1/2 z-20 pointer-events-none select-none">
-            <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-slate-300 shadow-md">
+          {/* Badge Année en cours en haut de la carte, séparé de la légende */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none select-none">
+            <div className="flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-300 shadow-md">
               <span className="w-2 h-2 rounded-full bg-sky-600 animate-pulse shrink-0" />
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Année</span>
-              <span className="text-base sm:text-lg font-black font-mono text-slate-900 tabular-nums">
+              <span className="text-sm sm:text-base font-black font-mono text-slate-900 tabular-nums">
                 {displayYear}
               </span>
             </div>
@@ -971,7 +987,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 px-2 pt-2 border-t border-slate-200 mt-1">
             <div className="flex min-w-0 flex-col gap-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'habitability' ? 'Classes de visualisation issues des sorties du modèle : Tw à partir de 26, 27, 28 et 29 °C; calories sous 2 100, 1 900, 1 700 et 1 500 kcal/j. Le repère 2 100 est interne au modèle; les paliers intermédiaires ne sont pas des seuils scientifiques d’habitabilité. La contrainte la plus élevée prévaut. Ce classement ne déclare pas un pays habitable ou inhabitable.' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : activeMetric === 'water_stress' ? 'Stress hydrique Aqueduct 4.0, agrégé par pays à partir des bassins et pondéré par la demande en eau. Il ne décrit pas l’accès à l’eau potable du foyer.' : 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.'}>
+                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'habitability' ? 'Heuristiques de visualisation. La classe la plus contraignante est retenue parmi Tw, P99 chaud, moyenne annuelle des Tmax, calories simulées, accès projeté à une source améliorée et stress hydrique national. Les paliers ne sont pas des seuils médicaux ni des frontières scientifiques d’habitabilité. Les données manquantes restent signalées.' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : activeMetric === 'water_stress' ? 'Stress hydrique Aqueduct 4.0 publié à l’échelle nationale, construit à partir des bassins et pondéré par la demande en eau. Il ne décrit pas l’accès à l’eau potable du foyer.' : 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.'}>
                   {activeMetric === 'habitability' ? 'Habitabilité · contraintes estimées :' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des Tmax quotidiennes · °C :' : activeMetric === 'wet_bulb' ? 'Pic caniculaire Tw estimé · °C :' : activeMetric === 'water_stress' ? `Stress hydrique Aqueduct · ${waterRiskYear} · ${waterRiskScenario.toUpperCase()} :` : 'Couche sélectionnée :'}
                 </span>
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -1014,9 +1030,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               </div>
               <span className="text-[9px] text-slate-500">
                 {activeMetric === 'water_stress'
-                  ? `WRI Aqueduct 4.0 · ${waterRiskYear} · ${aqueductWaterStress.metadata.scenarioLabels[waterRiskScenario]} · classeur ${aqueductWaterStress.metadata.workbookVintage} (catalogue ${aqueductWaterStress.metadata.catalogUpdated}). Agrégation nationale pondérée par la demande; indépendante des accès observés et du curseur climatique; absences en gris.`
+                  ? `WRI Aqueduct 4.0 · ${waterRiskYear} · ${aqueductWaterStress.metadata.scenarioLabels[waterRiskScenario]} · classeur ${aqueductWaterStress.metadata.workbookVintage} (catalogue ${aqueductWaterStress.metadata.catalogUpdated}). Score national pondéré par la demande; indépendant des accès observés et du curseur climatique; absences en gris.`
                   : activeMetric === 'habitability'
-                  ? 'Classement exploratoire fondé sur chaleur humide et calories modélisées; les seuils ne sont pas des frontières scientifiques d’habitabilité.'
+                  ? 'Classe de contraintes selon la chaleur humide et sèche, les calories, l’accès projeté à une source d’eau améliorée et le stress hydrique. Données partielles; ce n’est pas un verdict d’habitabilité.'
                   : 'Valeur zonale modélisée; le normal local 1991–2020 est recalé sur l’anomalie mondiale 2025. Après 2100, prolongation exploratoire du scénario interne.'}
               </span>
             </div>
@@ -1038,7 +1054,20 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               if (!dyn) return null;
 
               const tw = dyn.wetBulbPeak;
-              const habitabilityStatus = getHabitabilityStatus(tw, dyn.calPerCapita);
+              const waterAccess = getHouseholdWaterAccessProjection(activeFeature?.iso3, displayYear, scenarioId);
+              const zoneWaterAccess = aggregateWaterAccessForZone(activeCountryData.id, displayYear, scenarioId);
+              const waterStress = getWaterStressProjection(activeFeature?.iso3, displayYear, scenarioId);
+              const habitabilityStatus = getHabitabilityStatus({
+                wetBulbPeakC: tw,
+                annualMeanDailyMaxTempC: dyn.annualMaxTemp,
+                hotSeasonP99C: dyn.summerMaxTemp,
+                caloriesKcalPerPersonDay: dyn.calPerCapita,
+                improvedWaterAccessPct: waterAccess?.valuePct ?? null,
+                nationalWaterStressCategory: waterStress?.category ?? null,
+                waterAccessSourceYear: waterAccess?.sourceYear,
+                waterAccessProjectionMethod: waterAccess?.method,
+                nationalWaterStressSourceYear: waterStress?.sourceYear
+              });
               const habitabilityBadgeClass = habitabilityStatus?.severity === 'extreme' || habitabilityStatus?.severity === 'very-high'
                 ? 'bg-rose-100 text-rose-900 border-rose-300'
                 : habitabilityStatus?.severity === 'high'
@@ -1286,6 +1315,30 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       </div>
                       </> : null;
                       })()}
+
+                      <section className="rounded-lg border border-cyan-200 bg-cyan-50/60 p-2.5 space-y-1.5" aria-label="Projections d’accès à l’eau et stress hydrique">
+                        <div className="text-[10px] font-semibold uppercase tracking-wide text-cyan-950">Eau potable &amp; ressources</div>
+                        <div className="flex justify-between gap-2 text-[10.5px]">
+                          <span className="text-slate-600">Accès projeté à une source améliorée</span>
+                          <span className="font-mono font-semibold text-slate-900">
+                            {waterAccess ? `${waterAccess.valuePct.toFixed(1)}% (${waterAccess.sourceYear}, ${waterAccess.ssp})${waterAccess.method === 'post-horizon-reference' ? ' · prolongement' : ''}` : 'Non projeté pour cette zone/année'}
+                          </span>
+                        </div>
+                        {zoneWaterAccess && zoneWaterAccess.totalCountries > 1 && (
+                          <div className="text-[9px] text-slate-600">
+                            Zone de simulation : {zoneWaterAccess.valuePct.toFixed(1)}% pondéré par la population · données pour {zoneWaterAccess.coveredCountries}/{zoneWaterAccess.totalCountries} pays ({zoneWaterAccess.ssp}, année source {zoneWaterAccess.sourceYear}{zoneWaterAccess.method === 'post-horizon-reference' ? ', maintien exploratoire' : ''}).
+                          </div>
+                        )}
+                        <div className="flex justify-between gap-2 text-[10.5px]">
+                          <span className="text-slate-600">Stress hydrique Aqueduct</span>
+                          <span className="font-mono font-semibold text-slate-900">
+                            {waterStress ? `${waterStress.label} (${waterStress.sourceYear})` : 'Donnée non disponible à cet horizon'}
+                          </span>
+                        </div>
+                        <p className="text-[9px] leading-snug text-slate-600">
+                          Accès « amélioré » projeté ≠ eau gérée en toute sécurité. Après 2095, le niveau d’accès 2095 est maintenu comme scénario exploratoire; le risque Aqueduct s’appuie sur son horizon 2080. Aucun de ces prolongements n’est une probabilité. Scénario source : {waterAccess?.ssp ?? '—'} / {waterAccess?.climateForcing ?? '—'}.
+                        </p>
+                      </section>
 
                       {/* Population résidente */}
                       <div className="flex justify-between items-center py-1 border-b border-slate-100">

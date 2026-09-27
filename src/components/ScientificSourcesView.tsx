@@ -769,6 +769,25 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     reproducibilityNotes: 'Séries WDI EG.ELC.ACCS.ZS et EG.CFT.ACCS.ZS; conserver le millésime de chaque série distinctement et ne pas traiter accès à l’électricité et cuisson propre comme un accès équivalent à toute énergie moderne.'
   },
   {
+    id: 'iiasa-wat-san-access-2026',
+    category: 'water',
+    categoryLabel: 'Accès à l’eau, alimentation et risques hydriques',
+    title: 'Projections mondiales de l’accès aux services d’eau et d’assainissement',
+    englishTitle: 'Projections of global access to water and sanitation services under climate change',
+    authors: 'Vinca et al.',
+    year: 2026,
+    publisher: 'npj Clean Water / IIASA SSP Extensions Explorer',
+    peerReviewed: true,
+    typeBadge: 'Projections nationales conditionnelles',
+    primaryUrl: 'https://doi.org/10.1038/s41545-026-00594-3',
+    primaryUrlLabel: 'Article scientifique',
+    secondaryUrl: 'https://ssp-extensions.apps.ece.iiasa.ac.at/explorer',
+    secondaryUrlLabel: 'Explorateur de scénarios IIASA',
+    gaiaRole: 'Projeter à l’échelle nationale la part de population ayant accès à une source améliorée selon les trajectoires SSP et les forçages climatiques disponibles.',
+    keyDataOrQuote: 'La source « améliorée » n’équivaut pas au service JMP géré en toute sécurité : disponibilité au besoin et qualité de l’eau ne sont pas établies par ce seul indicateur.',
+    reproducibilityNotes: 'Snapshot de l’API publique Wat-San-Access; horizons quinquennaux 2025–2095, 142 pays, SSP1–SSP5 et RCP2.6/RCP6.0. Les conditions de réutilisation de l’API n’étant pas établies comme licence ouverte, vérifier les droits avant redistribution hors du projet.'
+  },
+  {
     id: 'wri-aqueduct-40-country',
     category: 'water',
     categoryLabel: 'Accès à l’eau, alimentation et risques hydriques',

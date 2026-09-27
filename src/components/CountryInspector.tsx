@@ -7,6 +7,7 @@ import climatePanelData from '../data/climatePanelData.json';
 import { ClimatePanelFile } from '../types/climatePanel';
 import { getHabitabilityStatus, shouldShowHistoricalTemperatureRecord } from '../engine/habitabilityStatus';
 import countryContextFile from '../data/countryContextObserved.json';
+import { getHouseholdWaterAccessProjection, getWaterStressProjection } from '../engine/waterAccessProjections';
 
 const climateRows = new Map((climatePanelData as ClimatePanelFile).rows.map(row => [row.id, row]));
 
@@ -18,6 +19,7 @@ interface CountryInspectorProps {
   onSeekYear: (year: number) => void;
   nationalContextIso3: string | null;
   nationalContextCountryName: string | null;
+  scenarioId: string;
 }
 
 export const CountryInspector: React.FC<CountryInspectorProps> = ({
@@ -27,7 +29,8 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   onSelectCountry,
   onSeekYear,
   nationalContextIso3,
-  nationalContextCountryName
+  nationalContextCountryName,
+  scenarioId
 }) => {
   // Fermeture par touche Échap
   useEffect(() => {
@@ -48,11 +51,23 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
   if (!climate) return null;
 
   const popChangePct = ((dynState.cohorts.total - staticData.basePop2026) / staticData.basePop2026) * 100;
+  const modelYear = Math.floor(simulationState.year);
   const isLethalHeat = dynState.wetBulbPeak !== null && dynState.wetBulbPeak >= 31.0;
   const isFamine = dynState.calPerCapita < 2100;
-  const habitabilityStatus = getHabitabilityStatus(dynState.wetBulbPeak, dynState.calPerCapita);
+  const projectedWaterAccess = getHouseholdWaterAccessProjection(nationalContextIso3, modelYear, scenarioId);
+  const waterStress = getWaterStressProjection(nationalContextIso3, modelYear, scenarioId);
+  const habitabilityStatus = getHabitabilityStatus({
+    wetBulbPeakC: dynState.wetBulbPeak,
+    annualMeanDailyMaxTempC: dynState.annualMaxTemp,
+    hotSeasonP99C: dynState.summerMaxTemp,
+    caloriesKcalPerPersonDay: dynState.calPerCapita,
+    improvedWaterAccessPct: projectedWaterAccess?.valuePct ?? null,
+    nationalWaterStressCategory: waterStress?.category ?? null,
+    waterAccessSourceYear: projectedWaterAccess?.sourceYear,
+    waterAccessProjectionMethod: projectedWaterAccess?.method,
+    nationalWaterStressSourceYear: waterStress?.sourceYear
+  });
   const showHistoricalRecord = shouldShowHistoricalTemperatureRecord(simulationState.year);
-  const modelYear = Math.floor(simulationState.year);
   const nationalContext = nationalContextIso3
     ? countryContextFile.countries.find(country => country.iso3 === nationalContextIso3)
     : null;
@@ -232,6 +247,38 @@ export const CountryInspector: React.FC<CountryInspectorProps> = ({
             )}
             <p className="text-[9px] leading-relaxed text-slate-500">
               Banque mondiale WDI (instantané du {countryContextFile.metadata.fetchedAt}; source actualisée le {countryContextFile.metadata.sourceUpdated}). Une valeur absente signifie « non disponible », jamais zéro. Les taux nationaux masquent des écarts locaux.
+            </p>
+          </section>
+
+          <section className="rounded-xl border border-cyan-200 bg-cyan-50/50 p-3.5 space-y-2.5" aria-label="Projections futures d’accès à l’eau">
+            <div>
+              <h3 className="text-xs font-bold text-slate-900">Eau potable — scénarios d’accès futur</h3>
+              <p className="mt-1 text-[10px] leading-relaxed text-slate-600">
+                Projection par pays du modèle Wat-San-Access / IIASA; scénario {projectedWaterAccess?.ssp ?? 'associé à la trajectoire'} et horizon publié le plus proche. Le modèle de chaleur CLIMATOPEDY et la trajectoire socioéconomique de l’accès ne sont pas identiques.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {projectedWaterAccess ? (
+                <div className="rounded-lg border border-cyan-100 bg-white p-2.5">
+                  <span className="block text-[10px] text-slate-600">Population utilisant une source améliorée</span>
+                  <span className="mt-1 block font-mono text-sm font-bold text-slate-900 tabular-nums">{projectedWaterAccess.valuePct.toFixed(1)}%</span>
+                  <span className="block text-[9px] text-slate-500">{projectedWaterAccess.sourceYear} · {projectedWaterAccess.ssp} · forçage {projectedWaterAccess.climateForcing}{projectedWaterAccess.method === 'post-horizon-reference' ? ' · maintien exploratoire' : ''}</span>
+                </div>
+              ) : (
+                <div className="rounded-lg border border-amber-200 bg-amber-50 p-2.5">
+                  <span className="block text-[10px] text-amber-900">Accès à une source améliorée</span>
+                  <span className="mt-1 block text-[10px] font-semibold text-amber-900">Non projeté</span>
+                  <span className="block text-[9px] text-amber-800">aucune extrapolation après l’horizon source</span>
+                </div>
+              )}
+              <div className="rounded-lg border border-cyan-100 bg-white p-2.5">
+                  <span className="block text-[10px] text-slate-600">Stress hydrique projeté</span>
+                  <span className="mt-1 block font-mono text-sm font-bold text-slate-900">{waterStress?.label ?? 'Non disponible'}</span>
+                  <span className="block text-[9px] text-slate-500">Aqueduct {waterStress ? `${waterStress.sourceYear} · ${waterStress.sourceScenario.toUpperCase()}` : 'horizons publiés : 2030, 2050, 2080'}</span>
+              </div>
+            </div>
+            <p className="text-[9px] leading-relaxed text-slate-600">
+              « Source améliorée » n’est pas équivalent à « eau potable gérée en toute sécurité ». Après 2095, l’accès reste au dernier niveau publié et le stress prend le scénario Aqueduct de 2080 comme signal persistant : c’est un scénario exploratoire de stagnation, pas une estimation probabiliste ni une prévision validée. Source : <a className="text-sky-700 underline" href="https://doi.org/10.1038/s41545-026-00594-3" target="_blank" rel="noreferrer">Vinca et al. (2026), IIASA</a> · <a className="text-sky-700 underline" href="https://www.wri.org/research/aqueduct-40-updated-decision-relevant-global-water-risk-indicators" target="_blank" rel="noreferrer">WRI Aqueduct 4.0</a> · <a className="text-sky-700 underline" href="https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-4/" target="_blank" rel="noreferrer">GIEC AR6, chapitre Eau</a>.
             </p>
           </section>
 

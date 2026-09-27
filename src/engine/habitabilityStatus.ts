@@ -5,6 +5,8 @@ export interface HabitabilityStatus {
   label: string;
   explanation: string;
   severity: 'low' | 'medium' | 'high' | 'very-high' | 'extreme';
+  reasons: string[];
+  missingDimensions: string[];
 }
 
 export interface HabitabilityColorBand {
@@ -29,36 +31,82 @@ export function getHabitabilityColor(key: HabitabilityStatusKey | null): string 
 }
 
 /**
- * Groups the model's wet-bulb and calorie outputs into map classes.
- * These are visualization thresholds, not validated habitability boundaries.
+ * Summarizes available heat, food, household water-access and water-stress indicators.
+ * These display bands are conservative visualization heuristics, not habitability limits.
  */
-export function getHabitabilityStatus(
-  wetBulbPeakC: number | null,
-  caloriesKcalPerPersonDay: number
-): HabitabilityStatus | null {
-  if (!Number.isFinite(caloriesKcalPerPersonDay)) return null;
-  const tw = wetBulbPeakC !== null && Number.isFinite(wetBulbPeakC) ? wetBulbPeakC : null;
+export interface HabitabilityInputs {
+  wetBulbPeakC: number | null;
+  annualMeanDailyMaxTempC: number | null;
+  hotSeasonP99C: number | null;
+  caloriesKcalPerPersonDay: number | null;
+  improvedWaterAccessPct: number | null;
+  nationalWaterStressCategory: number | null;
+  waterAccessSourceYear?: number | null;
+  waterAccessProjectionMethod?: string | null;
+  nationalWaterStressSourceYear?: number | null;
+}
 
-  const heatLevel = tw === null ? null : tw >= 29 ? 4 : tw >= 28 ? 3 : tw >= 27 ? 2 : tw >= 26 ? 1 : 0;
-  const foodLevel = caloriesKcalPerPersonDay < 1500 ? 4
-    : caloriesKcalPerPersonDay < 1700 ? 3
-      : caloriesKcalPerPersonDay < 1900 ? 2
-        : caloriesKcalPerPersonDay < 2100 ? 1 : 0;
-  const level = Math.max(heatLevel ?? 0, foodLevel);
-  if (heatLevel === null && foodLevel === 0) return null;
-
+export function getHabitabilityStatus(input: HabitabilityInputs): HabitabilityStatus | null {
+  const metricLevels: Array<{ name: string; level: number | null; reason: string | null }> = [
+    {
+      name: 'chaleur humide',
+      level: isFiniteValue(input.wetBulbPeakC) ? input.wetBulbPeakC >= 29 ? 4 : input.wetBulbPeakC >= 28 ? 3 : input.wetBulbPeakC >= 27 ? 2 : input.wetBulbPeakC >= 26 ? 1 : 0 : null,
+      reason: isFiniteValue(input.wetBulbPeakC) && input.wetBulbPeakC >= 26 ? `Tw estimée à ${input.wetBulbPeakC.toFixed(1)} °C` : null
+    },
+    {
+      name: 'chaleur sèche',
+      level: isFiniteValue(input.hotSeasonP99C) ? input.hotSeasonP99C >= 50 ? 4 : input.hotSeasonP99C >= 45 ? 3 : input.hotSeasonP99C >= 40 ? 2 : input.hotSeasonP99C >= 35 ? 1 : 0 : null,
+      reason: isFiniteValue(input.hotSeasonP99C) && input.hotSeasonP99C >= 35 ? `P99 chaud estimé à ${input.hotSeasonP99C.toFixed(1)} °C` : null
+    },
+    {
+      name: 'chaleur moyenne quotidienne',
+      level: isFiniteValue(input.annualMeanDailyMaxTempC) ? input.annualMeanDailyMaxTempC >= 35 ? 3 : input.annualMeanDailyMaxTempC >= 32 ? 2 : input.annualMeanDailyMaxTempC >= 30 ? 1 : 0 : null,
+      reason: isFiniteValue(input.annualMeanDailyMaxTempC) && input.annualMeanDailyMaxTempC >= 30 ? `moyenne annuelle des Tmax à ${input.annualMeanDailyMaxTempC.toFixed(1)} °C` : null
+    },
+    {
+      name: 'disponibilité calorique',
+      level: isFiniteValue(input.caloriesKcalPerPersonDay) ? input.caloriesKcalPerPersonDay < 1500 ? 4 : input.caloriesKcalPerPersonDay < 1700 ? 3 : input.caloriesKcalPerPersonDay < 1900 ? 2 : input.caloriesKcalPerPersonDay < 2100 ? 1 : 0 : null,
+      reason: isFiniteValue(input.caloriesKcalPerPersonDay) && input.caloriesKcalPerPersonDay < 2100 ? `${Math.round(input.caloriesKcalPerPersonDay)} kcal/jour simulées` : null
+    },
+    {
+      name: 'accès à l’eau améliorée',
+      level: isFiniteValue(input.improvedWaterAccessPct) ? input.improvedWaterAccessPct < 25 ? 4 : input.improvedWaterAccessPct < 50 ? 3 : input.improvedWaterAccessPct < 75 ? 2 : input.improvedWaterAccessPct < 90 ? 1 : 0 : null,
+      reason: isFiniteValue(input.improvedWaterAccessPct) && input.improvedWaterAccessPct < 90
+        ? input.waterAccessProjectionMethod === 'post-horizon-reference'
+          ? `${input.improvedWaterAccessPct.toFixed(1)} % d’accès amélioré (niveau ${input.waterAccessSourceYear} maintenu à titre exploratoire)`
+          : `${input.improvedWaterAccessPct.toFixed(1)} % d’accès projeté à une source améliorée`
+        : input.waterAccessProjectionMethod === 'post-horizon-reference'
+          ? `niveau d’accès amélioré de ${input.waterAccessSourceYear} maintenu à titre exploratoire`
+          : null
+    },
+    {
+      name: 'stress hydrique national',
+      level: isFiniteValue(input.nationalWaterStressCategory) ? input.nationalWaterStressCategory >= 4 ? 3 : input.nationalWaterStressCategory >= 3 ? 2 : input.nationalWaterStressCategory >= 2 ? 1 : 0 : null,
+      reason: isFiniteValue(input.nationalWaterStressCategory) && input.nationalWaterStressCategory >= 2
+        ? `stress hydrique national Aqueduct de catégorie ${input.nationalWaterStressCategory}${input.nationalWaterStressSourceYear ? ` (horizon ${input.nationalWaterStressSourceYear})` : ''}`
+        : null
+    }
+  ];
+  const available = metricLevels.filter(item => item.level !== null);
+  if (!available.length) return null;
+  const level = Math.max(...available.map(item => item.level!));
+  // A low constraint class would otherwise imply low water risk where household access is unknown.
+  if (level === 0 && !isFiniteValue(input.improvedWaterAccessPct)) return null;
+  const reasons = available.filter(item => item.reason !== null).map(item => item.reason!);
+  const missingDimensions = metricLevels.filter(item => item.level === null).map(item => item.name);
   const keys: HabitabilityStatusKey[] = ['favorable', 'constrained', 'high', 'major', 'extreme'];
-  const labels = ['Contraintes faibles dans le modèle', 'Contraintes modérées dans le modèle', 'Contraintes fortes dans le modèle', 'Contraintes majeures dans le modèle', 'Contraintes très fortes dans le modèle'];
+  const labels = ['Contraintes faibles dans les indicateurs disponibles', 'Contraintes modérées dans le modèle', 'Contraintes fortes dans le modèle', 'Contraintes majeures dans le modèle', 'Contraintes très fortes dans le modèle'];
   const severities: HabitabilityStatus['severity'][] = ['low', 'medium', 'high', 'very-high', 'extreme'];
-  const reasons = [
-    heatLevel !== null && heatLevel > 0 ? `le pic de Tw simulé atteint ${tw!.toFixed(1)} °C` : null,
-    foodLevel > 0 ? `la disponibilité calorique simulée est de ${Math.round(caloriesKcalPerPersonDay)} kcal/jour` : null
-  ].filter((reason): reason is string => reason !== null);
-  const explanation = level === 0
-    ? 'Dans le modèle, aucun des deux repères retenus n’est franchi; cela ne garantit pas l’habitabilité réelle.'
-    : `Dans le modèle, ${reasons.join(' et ')}. Ces repères ne constituent pas un verdict d’habitabilité réelle.`;
+  const explanation = [
+    reasons.length ? `Classe déterminée par ${reasons.join(' et ')}` : 'Aucun seuil de contrainte des indicateurs disponibles n’est franchi',
+    missingDimensions.length ? `données manquantes : ${missingDimensions.join(', ')}` : null,
+    'Indicateurs partiels et modélisés; ce classement ne constitue pas un verdict d’habitabilité.'
+  ].filter(Boolean).join('. ') + '.';
+  return { key: keys[level], label: labels[level], explanation, severity: severities[level], reasons, missingDimensions };
+}
 
-  return { key: keys[level], label: labels[level], explanation, severity: severities[level] };
+function isFiniteValue(value: number | null): value is number {
+  return value !== null && Number.isFinite(value);
 }
 
 /** Historical station records are context for the present, never future projections. */

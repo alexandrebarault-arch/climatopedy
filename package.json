@@ -10,6 +10,7 @@
     "test": "node --import tsx --test tests/*.test.ts",
     "audit:climate": "tsx scripts/generateTemperatureTrajectoryAudit.ts && tsx scripts/auditTemperatureQuality.ts",
     "audit:data-country": "tsx scripts/auditCountryContextData.ts",
+    "audit:water-habitability": "tsx scripts/auditWaterHabitability.ts",
     "verify": "npm test && npm run lint && npm run build",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"

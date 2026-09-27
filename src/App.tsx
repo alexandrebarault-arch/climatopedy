@@ -252,6 +252,7 @@ export default function App() {
               selectedCountryFeatureId={selectedCountryFeatureId}
               onSelectCountry={handleSelectCountry}
               currentYear={currentYear}
+              scenarioId={scenarioA.id}
             />
 
             {/* 2. Contrôleur temporel (Timeline Scrubber & KPI Macro) */}
@@ -422,6 +423,7 @@ export default function App() {
         onSeekYear={handleSeekYear}
         nationalContextIso3={selectedCountryIso3}
         nationalContextCountryName={selectedCountryName}
+        scenarioId={scenarioA.id}
       />
 
       {/* Pop-up de recommandation d'usage pour utilisateurs mobiles */}
