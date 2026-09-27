@@ -32,8 +32,8 @@ const STEP_DATA: Record<number, StepMeta> = {
     sourceCredit: 'Unité industrielle de fractionnement d\'hydrocarbures'
   },
   2: {
-    title: 'Complexe Chimique Haber-Bosch & Synthèse d\'Engrais',
-    subtitle: 'Réformeur de méthane (CH₄) et réacteurs de synthèse sous 200 bars',
+    title: 'Procédé Haber-Bosch : fabriquer l’ammoniac des engrais',
+    subtitle: 'L’azote de l’air réagit avec l’hydrogène sous pression pour produire de l’ammoniac, utilisé dans les engrais.',
     metric: 'Alimente 50% de l\'humanité (4 milliards d\'humains)',
     photoUrl: '/images/visuals/chemical_plant.jpg',
     photoCaption: 'Complexe chimique de synthèse d\'ammoniac et d\'engrais azotés (ammonitrate, urée).',
@@ -78,32 +78,38 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
       {/* Surface marine & plateforme */}
       <rect x="0" y="0" width="600" height="30" fill="#0b1322" />
       <rect x="240" y="6" width="120" height="18" fill="#f59e0b" rx="2" />
-      <path d="M 285 8 L 297 -15 L 303 -15 L 315 8 Z" fill="none" stroke="#fbbf24" strokeWidth="2" />
+      <path d="M 285 6 L 297 0 L 303 0 L 315 6 Z" fill="none" stroke="#fbbf24" strokeWidth="2" />
 
       {/* Colonne d'eau océanique (2 500 m) */}
       <rect x="0" y="30" width="600" height="110" fill="url(#oceanGrad)" />
       <line x1="300" y1="24" x2="300" y2="140" stroke="#cbd5e1" strokeWidth="4" />
 
-      {/* Bloc Obturateur sous-marin (BOP - 350 t, 700 bars) */}
+      {/* Bloc obturateur sous-marin (BOP) et son repère */}
       <rect x="284" y="132" width="32" height="22" fill="#dc2626" rx="2" />
-      <text x="325" y="146" fill="#fca5a5" fontSize="10" fontFamily="monospace" fontWeight="bold">
-        BOP Sous-marin (700 bars)
+      <path d="M 316 143 H 345 V 158" fill="none" stroke="#fca5a5" strokeWidth="1.5" />
+      <text x="350" y="157" fill="#fecaca" fontSize="10" fontFamily="monospace" fontWeight="bold">
+        BOP sous-marin · 700 bars
       </text>
 
       {/* Strates géologiques profondes */}
       <rect x="0" y="140" width="600" height="180" fill="url(#strataGrad)" />
-      <ellipse cx="300" cy="285" rx="150" ry="22" fill="url(#oilRes)" stroke="#f59e0b" strokeWidth="1.5" />
-      <text x="300" y="289" fill="#fde68a" fontSize="11" fontWeight="bold" textAnchor="middle">
-        Gisement d'hydrocarbures (Grès poreux sous 4 800 m)
+      <ellipse cx="300" cy="278" rx="135" ry="20" fill="url(#oilRes)" stroke="#f59e0b" strokeWidth="1.5" />
+      <text x="300" y="282" fill="#fde68a" fontSize="10" fontWeight="bold" textAnchor="middle">
+        Gisement · grès poreux · 4 800 m
       </text>
 
       {/* Cuvelage et trépan */}
-      <line x1="300" y1="154" x2="300" y2="280" stroke="#f59e0b" strokeWidth="3" />
-      <circle cx="300" cy="280" r="5" fill="#38bdf8" />
+      <line x1="300" y1="154" x2="300" y2="258" stroke="#f59e0b" strokeWidth="3" />
+      <circle cx="300" cy="258" r="5" fill="#38bdf8" />
 
-      <text x="120" y="85" fill="#bae6fd" fontSize="10" fontFamily="monospace">Riser marin (2 500 m d'eau)</text>
-      <text x="365" y="225" fill="#fde68a" fontSize="10" fontFamily="monospace">Cuvelages acier API Q125</text>
-      <text x="415" y="283" fill="#7dd3fc" fontSize="10" fontFamily="monospace">Trépan PDC (Diamants synthétiques)</text>
+      {/* Repères déportés pour garder la coupe et les libellés distincts */}
+      <path d="M 296 85 H 205" fill="none" stroke="#7dd3fc" strokeWidth="1.5" />
+      <text x="195" y="81" fill="#bae6fd" fontSize="10" fontFamily="monospace" textAnchor="end">Riser marin · 2 500 m d'eau</text>
+      <path d="M 303 205 H 365" fill="none" stroke="#fcd34d" strokeWidth="1.5" />
+      <text x="373" y="209" fill="#fde68a" fontSize="10" fontFamily="monospace">Cuvelages acier API Q125</text>
+      <path d="M 305 258 H 375 V 244" fill="none" stroke="#7dd3fc" strokeWidth="1.5" />
+      <text x="383" y="242" fill="#7dd3fc" fontSize="10" fontFamily="monospace">Trépan PDC</text>
+      <text x="383" y="255" fill="#bae6fd" fontSize="9" fontFamily="monospace">diamants synthétiques</text>
     </svg>
   );
 
@@ -112,14 +118,14 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
     <div className="h-full w-full p-5 grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 items-center">
       <div className="p-3.5 rounded-lg bg-white border border-emerald-300 shadow-2xs space-y-2">
         <div className="flex justify-between items-center text-xs font-bold text-emerald-700">
-          <span>1930 · Spindletop</span>
+          <span>1901 · Spindletop, Texas</span>
           <span className="font-mono text-[10px] bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">100:1</span>
         </div>
         <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden flex">
           <div className="w-[99%] bg-emerald-500" />
           <div className="w-[1%] bg-rose-500" />
         </div>
-        <p className="text-[11px] text-slate-700 leading-snug"><strong>99% d'énergie nette</strong> pour bâtir l'économie mondiale moderne.</p>
+        <p className="text-[11px] text-slate-700 leading-snug"><strong>Spindletop :</strong> grand gisement pétrolier découvert au Texas en 1901, à l’origine du boom pétrolier texan. EROI estimé : 100 unités d’énergie produites pour 1 investie (99 nettes).</p>
       </div>
 
       <div className="p-3.5 rounded-lg bg-white border border-sky-300 shadow-2xs space-y-2">
@@ -196,7 +202,7 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
           <span>Parc Automobile</span>
           <span className="font-mono text-sky-700 font-bold">1,4 Milliard</span>
         </div>
-        <p className="text-[11px] text-slate-600">Véhicules thermiques en service. Renouvellement physique planétaire : 18 à 22 ans.</p>
+        <p className="text-[11px] text-slate-600">Voitures thermiques et électriques en circulation. Hypothèse de durée d’usage avant sortie du parc : 18 à 22 ans; elle varie selon le pays et l’usage.</p>
       </div>
 
       <div className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5">
