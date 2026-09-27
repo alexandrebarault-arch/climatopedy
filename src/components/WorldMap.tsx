@@ -987,8 +987,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 px-2 pt-2 border-t border-slate-200 mt-1">
             <div className="flex min-w-0 flex-col gap-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'habitability' ? 'Heuristiques de visualisation. La classe la plus contraignante est retenue parmi Tw, P99 chaud, moyenne annuelle des Tmax, calories simulées, accès projeté à une source améliorée et stress hydrique national. Les paliers ne sont pas des seuils médicaux ni des frontières scientifiques d’habitabilité. Les données manquantes restent signalées.' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : activeMetric === 'water_stress' ? 'Stress hydrique Aqueduct 4.0 publié à l’échelle nationale, construit à partir des bassins et pondéré par la demande en eau. Il ne décrit pas l’accès à l’eau potable du foyer.' : 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.'}>
-                  {activeMetric === 'habitability' ? 'Habitabilité · contraintes estimées :' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des Tmax quotidiennes · °C :' : activeMetric === 'wet_bulb' ? 'Pic caniculaire Tw estimé · °C :' : activeMetric === 'water_stress' ? `Stress hydrique Aqueduct · ${waterRiskYear} · ${waterRiskScenario.toUpperCase()} :` : 'Couche sélectionnée :'}
+                <span className="font-semibold text-slate-800 text-[11px]" title={activeMetric === 'habitability' ? 'Heuristiques de visualisation. La classe la plus contraignante est retenue parmi Tw, P99 chaud, moyenne annuelle des Tmax, calories simulées, accès projeté à une source améliorée et stress hydrique national. Les paliers ne sont pas des seuils médicaux ni des frontières scientifiques d’habitabilité. Les données manquantes restent signalées.' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des maxima quotidiens de température de l’air; ce n’est ni le record absolu ni le pic caniculaire.' : activeMetric === 'water_stress' ? 'Stress hydrique Aqueduct 4.0 publié à l’échelle nationale, construit à partir des bassins et pondéré par la demande en eau. Il ne décrit pas l’accès à l’eau potable du foyer.' : activeMetric === 'wet_bulb' ? 'Pic de température humide calculé à partir du scénario de chaleur et d’humidité; ce n’est pas la température maximale de l’air.' : activeMetric === 'caloric_stress' ? 'Disponibilité calorique simulée par personne et par jour.' : activeMetric === 'population' ? 'Variation de la population totale simulée par rapport à 2026.' : activeMetric === 'sea_level' ? 'Indice de menace côtière : exposition côtière multipliée par la hausse simulée du niveau marin.' : activeMetric === 'migration' ? 'Facteur de poussée migratoire simulé, entre 0 et 1.' : 'Cette estimation n’est pas disponible; la couleur uniforme ne représente aucune valeur.'}>
+                  {activeMetric === 'habitability' ? 'Habitabilité · contraintes estimées :' : activeMetric === 'air_temperature' ? 'Moyenne annuelle des Tmax quotidiennes · °C :' : activeMetric === 'wet_bulb' ? 'Pic caniculaire Tw estimé · °C :' : activeMetric === 'water_stress' ? `Stress hydrique Aqueduct · ${waterRiskYear} · ${waterRiskScenario.toUpperCase()} :` : activeMetric === 'caloric_stress' ? 'Disponibilité calorique simulée · kcal/personne/jour :' : activeMetric === 'population' ? 'Évolution de la population depuis 2026 :' : activeMetric === 'sea_level' ? 'Indice de menace côtière :' : activeMetric === 'migration' ? 'Facteur de poussée migratoire :' : 'Estimation des décès : indisponible'}
                 </span>
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                   {activeMetric === 'habitability' ? HABITABILITY_COLOR_BANDS.map(band => (
@@ -1005,6 +1005,38 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                       <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
                     </span>
                   )) : activeMetric === 'wet_bulb' ? WET_BULB_COLOR_BANDS.map(band => (
+                    <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
+                      <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
+                    </span>
+                  )) : activeMetric === 'caloric_stress' ? [
+                    { label: '≥3 200', color: '#059669' }, { label: '2 700–3 199', color: '#10b981' },
+                    { label: '2 300–2 699', color: '#eab308' }, { label: '2 100–2 299', color: '#f97316' },
+                    { label: '1 800–2 099', color: '#ef4444' }, { label: '<1 800', color: '#7f1d1d' }
+                  ].map(band => (
+                    <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
+                      <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
+                    </span>
+                  )) : activeMetric === 'population' ? [
+                    { label: '>+15 %', color: '#059669' }, { label: '0 à +15 %', color: '#0284c7' },
+                    { label: '−15 à 0 %', color: '#d97706' }, { label: '−35 à −15 %', color: '#dc2626' },
+                    { label: '≤−35 %', color: '#450a0a' }
+                  ].map(band => (
+                    <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
+                      <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
+                    </span>
+                  )) : activeMetric === 'sea_level' ? [
+                    { label: '<0,05', color: '#cbd5e1' }, { label: '0,05–0,15', color: '#0284c7' },
+                    { label: '0,15–0,30', color: '#0ea5e9' }, { label: '0,30–0,50', color: '#06b6d4' },
+                    { label: '≥0,50', color: '#38bdf8' }
+                  ].map(band => (
+                    <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
+                      <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
+                    </span>
+                  )) : activeMetric === 'migration' ? [
+                    { label: '<0,10', color: '#cbd5e1' }, { label: '0,10–0,25', color: '#eab308' },
+                    { label: '0,25–0,45', color: '#f97316' }, { label: '0,45–0,65', color: '#ef4444' },
+                    { label: '≥0,65', color: '#991b1b' }
+                  ].map(band => (
                     <span key={band.label} className="inline-flex items-center gap-1 text-[10px] text-slate-700 font-mono">
                       <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: band.color }} />{band.label}
                     </span>
@@ -1026,11 +1058,24 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                   {activeMetric === 'habitability' && <span className="inline-flex items-center gap-1 text-[10px] text-slate-600" title="Données insuffisantes pour classer la zone">
                     <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: HABITABILITY_UNAVAILABLE_COLOR }} />Données indisponibles
                   </span>}
+                  {activeMetric === 'mortality' && <span className="inline-flex items-center gap-1 text-[10px] text-slate-600">
+                    <span className="w-2 h-2 rounded-sm" style={{ backgroundColor: '#64748b' }} />Couche grisée · aucune donnée disponible
+                  </span>}
                 </div>
               </div>
               <span className="text-[9px] text-slate-500">
                 {activeMetric === 'water_stress'
                   ? `WRI Aqueduct 4.0 · ${waterRiskYear} · ${aqueductWaterStress.metadata.scenarioLabels[waterRiskScenario]} · classeur ${aqueductWaterStress.metadata.workbookVintage} (catalogue ${aqueductWaterStress.metadata.catalogUpdated}). Score national pondéré par la demande; indépendant des accès observés et du curseur climatique; absences en gris.`
+                  : activeMetric === 'mortality'
+                  ? 'Aucune estimation des décès n’est disponible. La carte est grisée pour cette couche.'
+                  : activeMetric === 'caloric_stress'
+                  ? 'Disponibilité calorique simulée par personne et par jour; seuils de couleur de la couche.'
+                  : activeMetric === 'population'
+                  ? 'Variation du total des cohortes simulées par rapport à la population de référence 2026.'
+                  : activeMetric === 'sea_level'
+                  ? 'Produit du score statique d’exposition côtière et de la hausse simulée du niveau marin; ce n’est pas une hauteur d’eau locale.'
+                  : activeMetric === 'migration'
+                  ? 'Facteur de poussée simulé; il ne représente pas un nombre de personnes déplacées.'
                   : activeMetric === 'habitability'
                   ? 'Classe de contraintes selon la chaleur humide et sèche, les calories, l’accès projeté à une source d’eau améliorée et le stress hydrique. Données partielles; ce n’est pas un verdict d’habitabilité.'
                   : 'Valeur zonale modélisée; le normal local 1991–2020 est recalé sur l’anomalie mondiale 2025. Après 2100, prolongation exploratoire du scénario interne.'}
