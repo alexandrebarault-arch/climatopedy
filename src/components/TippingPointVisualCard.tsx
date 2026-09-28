@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Radio, Layers, Camera, Maximize2, X } from 'lucide-react';
+import { TippingPointSchematic } from './TippingPointSchematic';
 
 interface TippingPointVisualCardProps {
   elementId: string;
@@ -164,193 +165,7 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
     photoCredit: 'Observation satellite système Terre'
   };
 
-  const renderSchematicSvg = () => {
-    switch (elementId) {
-      case 'greenland':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <defs>
-              <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#f1f5f9" />
-                <stop offset="50%" stopColor="#cbd5e1" />
-                <stop offset="100%" stopColor="#94a3b8" />
-              </linearGradient>
-              <radialGradient id="lakeGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#0284c7" />
-                <stop offset="70%" stopColor="#0369a1" />
-                <stop offset="100%" stopColor="#082f49" />
-              </radialGradient>
-            </defs>
-            <rect width="400" height="240" fill="#040814" />
-            <path d="M 20 40 Q 70 80 50 140 T 30 230 L 0 240 L 0 0 L 50 0 Z" fill="#1e293b" opacity="0.8" />
-            <path d="M 370 20 Q 340 90 360 160 T 390 240 L 400 240 L 400 0 Z" fill="#1e293b" opacity="0.8" />
-            <path d="M 50 160 C 90 60 180 30 260 35 C 320 40 360 90 350 170 C 330 210 290 225 200 220 C 110 215 65 200 50 160 Z" fill="url(#iceGrad)" />
-            <ellipse cx="160" cy="115" rx="16" ry="8" fill="url(#lakeGrad)" stroke="#38bdf8" strokeWidth="1" />
-            <ellipse cx="235" cy="125" rx="20" ry="10" fill="url(#lakeGrad)" stroke="#38bdf8" strokeWidth="1" />
-            <ellipse cx="195" cy="155" rx="13" ry="6" fill="url(#lakeGrad)" stroke="#38bdf8" strokeWidth="1" />
-            <path d="M 170 118 Q 185 130 195 155 T 215 205" fill="none" stroke="#0ea5e9" strokeWidth="2" />
-            <text x="140" y="185" fill="#0f172a" fontSize="11" fontFamily="sans-serif" fontWeight="bold">Lacs supraglaciaires & moulins</text>
-          </svg>
-        );
-
-      case 'wais':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <rect width="400" height="240" fill="#060913" />
-            <path d="M 0 240 L 0 180 Q 150 200 280 225 L 400 240 Z" fill="#1f2937" />
-            <path d="M 0 60 L 170 60 L 190 180 L 0 180 Z" fill="#cbd5e1" stroke="#94a3b8" />
-            <path d="M 170 60 C 230 65 300 75 350 85 L 350 150 C 290 145 230 150 190 180 Z" fill="#94a3b8" opacity="0.85" />
-            <circle cx="190" cy="180" r="5" fill="#facc15" />
-            <path d="M 400 195 C 320 190 250 185 190 182" fill="none" stroke="#ef4444" strokeWidth="3.5" strokeDasharray="4 3" />
-            <text x="180" y="170" fill="#facc15" fontSize="11" fontFamily="monospace" fontWeight="bold">Ligne d'échouage</text>
-            <text x="240" y="210" fill="#f87171" fontSize="10" fontFamily="sans-serif">Eau tiède circumpolaire intrusive</text>
-          </svg>
-        );
-
-      case 'corals':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <defs>
-              <linearGradient id="reefW" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#0891b2" />
-                <stop offset="100%" stopColor="#042f2e" />
-              </linearGradient>
-            </defs>
-            <rect width="400" height="240" fill="url(#reefW)" />
-            <path d="M 20 200 C 25 150 50 130 70 165 C 80 145 100 140 110 170 C 130 150 145 160 150 200 Z" fill="#ec4899" />
-            <path d="M 60 205 C 70 175 95 160 115 180 C 125 165 140 165 145 205 Z" fill="#10b981" />
-            <path d="M 180 205 C 190 165 215 150 235 175 C 245 155 260 160 265 205 Z" fill="#e2e8f0" stroke="#cbd5e1" />
-            <path d="M 260 205 C 270 155 305 140 325 165 C 335 145 360 150 365 205 Z" fill="#f8fafc" stroke="#e2e8f0" />
-            <line x1="170" y1="30" x2="170" y2="210" stroke="#f43f5e" strokeWidth="1.5" strokeDasharray="3 3" />
-            <text x="30" y="45" fill="#34d399" fontSize="11" fontWeight="bold">Sain (&lt; 28.5°C)</text>
-            <text x="185" y="45" fill="#fda4af" fontSize="11" fontWeight="bold">Stress thermique corallien</text>
-          </svg>
-        );
-
-      case 'amazon':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <rect width="400" height="240" fill="#064e3b" />
-            <path d="M 140 240 C 180 170 250 130 400 120 L 400 240 Z" fill="#78350f" opacity="0.9" />
-            <path d="M 0 140 Q 70 90 130 120 T 240 80 T 330 100 T 400 50" fill="none" stroke="#0284c7" strokeWidth="12" />
-            <circle cx="270" cy="160" r="5" fill="#ef4444" />
-            <circle cx="340" cy="180" r="5" fill="#ef4444" />
-            <text x="210" y="195" fill="#fef3c7" fontSize="11" fontWeight="bold">Front de Savanisation</text>
-          </svg>
-        );
-
-      case 'permafrost':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <rect width="400" height="240" fill="#1c1917" />
-            {/* Végétation de surface */}
-            <rect x="0" y="30" width="400" height="15" fill="#44403c" />
-            <path d="M 0 30 Q 100 25 200 32 T 400 30 L 400 45 L 0 45 Z" fill="#65a30d" opacity="0.7" />
-            {/* Couche active qui dégèle l'été */}
-            <rect x="0" y="45" width="400" height="35" fill="#78350f" opacity="0.85" />
-            <text x="15" y="65" fill="#fef3c7" fontSize="10" fontFamily="sans-serif" fontWeight="bold">Couche active (dégel estival s'épaississant)</text>
-            {/* Pergélisol profond */}
-            <rect x="0" y="80" width="400" height="160" fill="#1e293b" />
-            {/* Coins de glace (Ice wedges) */}
-            <polygon points="60,80 80,80 70,180" fill="#38bdf8" opacity="0.8" />
-            <polygon points="170,80 200,80 185,200" fill="#38bdf8" opacity="0.8" />
-            <polygon points="300,80 325,80 312,170" fill="#38bdf8" opacity="0.8" />
-            {/* Bulles de méthane CH4 qui remontent */}
-            <circle cx="120" cy="110" r="6" fill="#f59e0b" opacity="0.8" />
-            <circle cx="130" cy="85" r="8" fill="#f59e0b" opacity="0.9" />
-            <circle cx="125" cy="55" r="10" fill="#ef4444" opacity="0.9" />
-            <text x="140" y="60" fill="#f87171" fontSize="10" fontFamily="monospace" fontWeight="bold">Émissions CH4 &amp; CO2</text>
-            <text x="210" y="140" fill="#93c5fd" fontSize="11" fontFamily="sans-serif">Pergélisol millénaire pléistocène</text>
-          </svg>
-        );
-
-      case 'barents_ice':
-      case 'barents':
-      case 'arctic_summer_ice':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <rect width="400" height="240" fill="#0c4a6e" />
-            {/* Océan arctique sombre absorbant 90% */}
-            <rect x="200" y="40" width="200" height="200" fill="#082f49" />
-            <text x="220" y="80" fill="#38bdf8" fontSize="10" fontWeight="bold">Eau sombre libre</text>
-            <text x="220" y="98" fill="#f87171" fontSize="9">Absorbe 90% de la chaleur</text>
-            {/* Banquise blanche réfléchissant 85% */}
-            <rect x="0" y="40" width="200" height="30" fill="#f8fafc" stroke="#94a3b8" />
-            <text x="20" y="60" fill="#0f172a" fontSize="10" fontWeight="bold">Banquise blanche pérenne</text>
-            <text x="20" y="95" fill="#38bdf8" fontSize="9">Réfléchit 85% du soleil (Albédo)</text>
-            {/* Flèche d'atlantification chaude */}
-            <path d="M 280 230 C 270 170 310 140 330 110" fill="none" stroke="#f43f5e" strokeWidth="4" strokeDasharray="5 3" />
-            <text x="260" y="210" fill="#fb7185" fontSize="9" fontWeight="bold">Atlantification (eau tiède)</text>
-          </svg>
-        );
-
-      case 'amoc':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <rect width="400" height="240" fill="#020617" />
-            <rect x="0" y="0" width="400" height="240" fill="#0369a1" opacity="0.3" />
-            {/* Flux de surface chaud vers le nord */}
-            <path d="M 30 160 C 120 120 220 70 320 50" fill="none" stroke="#ef4444" strokeWidth="6" strokeLinecap="round" />
-            <text x="50" y="110" fill="#fca5a5" fontSize="10" fontWeight="bold">Courant chaud de surface (Gulf Stream)</text>
-            {/* Plongée d'eau dense au Groenland */}
-            <path d="M 320 50 Q 360 80 340 150 T 280 200" fill="none" stroke="#38bdf8" strokeWidth="5" strokeDasharray="4 3" />
-            <text x="260" y="140" fill="#7dd3fc" fontSize="9" fontWeight="bold">Plongée eau dense salée</text>
-            {/* Retour froid profond vers le sud */}
-            <path d="M 280 200 C 200 215 100 210 20 205" fill="none" stroke="#1d4ed8" strokeWidth="6" strokeLinecap="round" />
-            <text x="80" y="225" fill="#93c5fd" fontSize="9" fontWeight="bold">Retour profond d'eau froide abyssale</text>
-          </svg>
-        );
-
-      case 'boreal_forest':
-      case 'boreal':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <rect width="400" height="240" fill="#14532d" />
-            {/* Ciel enfumé */}
-            <rect x="0" y="0" width="400" height="90" fill="#78350f" opacity="0.6" />
-            {/* Arbres conifères */}
-            <polygon points="50,140 70,70 90,140" fill="#166534" />
-            <polygon points="100,150 120,60 140,150" fill="#166534" />
-            <polygon points="150,145 170,75 190,145" fill="#166534" />
-            {/* Front d'incendie et arbres brûlés */}
-            <polygon points="220,150 240,80 260,150" fill="#451a03" />
-            <polygon points="280,145 300,75 320,145" fill="#451a03" />
-            <circle cx="250" cy="110" r="14" fill="#ea580c" opacity="0.8" />
-            <circle cx="300" cy="100" r="18" fill="#ef4444" opacity="0.8" />
-            <text x="210" y="50" fill="#fed7aa" fontSize="11" fontWeight="bold">Méga-feux &amp; dépérissement</text>
-            <text x="30" y="190" fill="#86efac" fontSize="10">Taïga boréale saine</text>
-            <text x="230" y="190" fill="#fca5a5" fontSize="10">Perte de stockage carbone</text>
-          </svg>
-        );
-
-      case 'wilkes_basin':
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <rect width="400" height="240" fill="#082f49" />
-            {/* Socle rocheux en cuvette descendante (inlandsis marin) */}
-            <path d="M 0 240 L 0 160 Q 150 230 320 220 L 400 240 Z" fill="#1e293b" />
-            {/* Calotte glaciaire massive posée sur le socle */}
-            <path d="M 0 50 L 220 50 L 240 180 L 0 180 Z" fill="#f1f5f9" stroke="#cbd5e1" />
-            {/* Océan austral et intrusion d'eau tiède sous la calotte */}
-            <path d="M 400 195 C 330 200 260 190 230 185" fill="none" stroke="#f43f5e" strokeWidth="4" strokeDasharray="4 3" />
-            <circle cx="230" cy="185" r="5" fill="#f59e0b" />
-            <text x="180" y="170" fill="#fbbf24" fontSize="10" fontWeight="bold">Bouchon glaciaire côtier</text>
-            <text x="20" y="90" fill="#0284c7" fontSize="11" fontWeight="bold">Bassin de Wilkes (+3 à +4 m niveau marin)</text>
-            <text x="240" y="215" fill="#fda4af" fontSize="9">Intrusion eau circumpolaire tiède</text>
-          </svg>
-        );
-
-      default:
-        return (
-          <svg viewBox="0 0 400 240" className="w-full h-full object-cover">
-            <rect width="400" height="240" fill="#080e1a" />
-            <circle cx="200" cy="120" r="80" fill="#0284c7" opacity="0.3" filter="blur(14px)" />
-            <text x="120" y="125" fill="#38bdf8" fontSize="12" fontFamily="monospace">Coupe télémétrique orbitale active</text>
-          </svg>
-        );
-    }
-  };
-
+  const renderSchematicSvg = () => <TippingPointSchematic elementId={elementId} />;
   return (
     <>
       <div className={`relative rounded-xl overflow-hidden border border-slate-200 bg-white shadow-xs group flex flex-col transition-all duration-300 ${compact ? 'h-52 sm:h-60' : 'h-72 sm:h-80'}`}>
@@ -405,7 +220,7 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
         </div>
 
         {/* Zone Principale d'Affichage Visuel */}
-        <div className="relative flex-1 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
+        <div className="relative flex-1 w-full overflow-hidden bg-slate-50 flex items-center justify-center">
           {displayMode === 'photo' ? (
             <div
               className="relative w-full h-full cursor-pointer group/photo"
@@ -443,8 +258,6 @@ export const TippingPointVisualCard: React.FC<TippingPointVisualCardProps> = ({
           ) : (
             <div className="relative w-full h-full">
               {renderSchematicSvg()}
-              {/* Graticule radar */}
-              <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#38bdf80a_1px,transparent_1px),linear-gradient(to_bottom,#38bdf80a_1px,transparent_1px)] bg-[size:20px_20px]" />
             </div>
           )}
         </div>
