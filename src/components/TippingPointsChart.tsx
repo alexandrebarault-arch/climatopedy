@@ -28,6 +28,24 @@ interface TippingPointsChartProps {
   onSelectElement: (id: string) => void;
 }
 
+const wrapTippingPointName = (name: string, maxLineLength = 24): string[] => {
+  const lines: string[] = [];
+  let line = '';
+
+  for (const word of name.split(/\s+/)) {
+    const candidate = line ? `${line} ${word}` : word;
+    if (line && candidate.length > maxLineLength) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = candidate;
+    }
+  }
+
+  if (line) lines.push(line);
+  return lines;
+};
+
 export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
   elements,
   currentTemp,
@@ -377,6 +395,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                 const isTipped = currentTemp >= elem.thresholdEst;
 
                 const badge = getTimescaleBadge(elem.id);
+                const nameLines = wrapTippingPointName(elem.name);
 
                 return (
                   <g
@@ -413,13 +432,20 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                       />
                       <text
                         x="18"
-                        y="3.5"
                         fill={isSelected ? '#0369a1' : '#1e293b'}
-                        fontSize="10"
+                        fontSize="9"
                         fontWeight={isSelected ? 'bold' : '500'}
                         fontFamily="sans-serif"
                       >
-                        {elem.name.length > 25 ? elem.name.substring(0, 24) + '...' : elem.name}
+                        {nameLines.map((line, lineIndex) => (
+                          <tspan
+                            key={`${elem.id}-name-${lineIndex}`}
+                            x="18"
+                            y={((lineIndex - (nameLines.length - 1) / 2) * 10) + 3.5}
+                          >
+                            {line}
+                          </tspan>
+                        ))}
                       </text>
 
                       {/* Badge de vitesse de basculement */}
