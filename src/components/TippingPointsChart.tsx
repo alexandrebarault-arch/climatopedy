@@ -95,14 +95,14 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-xs relative overflow-hidden flex flex-col gap-4">
       {/* En-tête du graphique */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 border-b border-slate-100">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-600">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-3 border-b border-slate-100">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start gap-2">
+            <span className="p-1.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-600 shrink-0">
               <Thermometer className="w-4 h-4" />
             </span>
-            <h3 className="text-base sm:text-lg font-bold text-slate-800 tracking-tight">
-              Graphique Synthétique : Les Seuils Thermiques Critiques
+            <h3 className="min-w-0 text-base sm:text-lg font-bold text-slate-800 tracking-tight whitespace-normal break-words">
+              Points de bascule du climat : températures et risques
             </h3>
           </div>
           <p className="text-xs text-slate-600 mt-1">
@@ -112,7 +112,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
         </div>
 
         {/* Contrôles : mode d'affichage et rappel de la température */}
-        <div className="flex items-center gap-2.5 flex-wrap">
+        <div className="flex items-center gap-2.5 flex-wrap lg:shrink-0">
           <div className="bg-slate-100 border border-slate-200 p-0.5 rounded-lg flex items-center text-xs">
             <button
               onClick={() => setViewMode('embers')}

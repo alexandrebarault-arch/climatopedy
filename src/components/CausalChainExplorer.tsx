@@ -15,24 +15,24 @@ export const CausalChainExplorer: React.FC = () => {
     },
     {
       id: 'eroi_cliff',
-      title: '2. La Falaise de l\'EROI & l\'Autophagie',
-      subtitle: 'L\'équation biophysique : quand le forage dévore sa propre énergie.',
+      title: '2. Le rendement énergétique du pétrole',
+      subtitle: 'Quelle part de l’énergie extraite sert à l’extraction elle-même ?',
       icon: Zap,
-      badge: 'Thermodynamique Industrielle'
+      badge: 'Énergie nette'
     },
     {
       id: 'haber_bosch',
-      title: '3. Du Gaz aux Champs : Haber-Bosch',
-      subtitle: '50% des protéines humaines dépendent de la synthèse de l\'ammoniac.',
+      title: '3. Fabriquer les engrais : du gaz aux champs',
+      subtitle: 'Comment le gaz naturel et l’azote de l’air servent à fabriquer des engrais.',
       icon: Sprout,
-      badge: 'Chimie & Sécurité Alimentaire'
+      badge: 'Engrais et alimentation'
     },
     {
       id: 'societal_inertia',
-      title: '4. Le Piège de l\'Inertie Sociétale',
-      subtitle: 'Pourquoi l\'humanité est incapable de freiner sa dissipation d\'énergie.',
+      title: '4. Pourquoi les infrastructures ralentissent le changement',
+      subtitle: 'Les routes, usines et équipements durent des années; les remplacer prend du temps.',
       icon: Anchor,
-      badge: 'Dynamique des Systèmes'
+      badge: 'Infrastructures et transition'
     }
   ];
 

@@ -325,30 +325,30 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
               <div className="flex items-center gap-2 text-sky-800 font-semibold text-xs mb-1.5">
                 <span className="w-5 h-5 rounded-full bg-sky-100 border border-sky-300 flex items-center justify-center text-[11px] font-bold text-sky-800">1</span>
-                L'analogie de la chaise
+                Une chaise bascule quand elle perd son équilibre
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                Cette analogie illustre un changement d'état après un seuil. Les seuils et mécanismes réels varient selon les composantes du système climatique et comportent des incertitudes.
+                Une chaise reste debout tant que son point d'équilibre reste au-dessus de ses pieds. Si une poussée le fait dépasser cette base, elle bascule. L'image montre ce qu'est un seuil; les seuils du climat diffèrent selon le système et restent incertains.
               </p>
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
               <div className="flex items-center gap-2 text-amber-800 font-semibold text-xs mb-1.5">
                 <span className="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-[11px] font-bold text-amber-900">2</span>
-                L'analogie du gros glaçon
+                Une grande calotte de glace réagit lentement
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                Un grand volume de glace peut répondre lentement à un changement de température. Les délais de réponse des calottes sont estimés à partir de processus et de modèles; ils ne se déduisent pas directement de cette analogie.
+                Un gros glaçon met plus longtemps qu'un petit à fondre. De même, une immense calotte peut continuer à perdre de la glace longtemps après le début du réchauffement. L'image illustre cette lenteur; elle ne donne ni date précise ni vitesse de fonte.
               </p>
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
               <div className="flex items-center gap-2 text-rose-800 font-semibold text-xs mb-1.5">
                 <span className="w-5 h-5 rounded-full bg-rose-100 border border-rose-300 flex items-center justify-center text-[11px] font-bold text-rose-800">3</span>
-                L'effet domino (cascade)
+                Des dominos : une cascade possible, pas automatique
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                Les interactions entre calottes, circulation océanique, moussons et forêt amazonienne sont étudiées; cette chaîne ne constitue pas une conséquence déterministe établie.
+                Un changement dans un système climatique peut en influencer d'autres, par exemple en modifiant les courants océaniques ou les pluies. Mais les éléments du climat ne tombent pas mécaniquement les uns après les autres : ces liens sont étudiés et ne garantissent pas une cascade.
               </p>
             </div>
           </div>
