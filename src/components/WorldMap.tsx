@@ -1555,9 +1555,9 @@ export const WorldMap: React.FC<WorldMapProps> = ({
                         <span>Réchauffement Mondial</span>
                         <span
                           className="text-[9px] text-sky-800 bg-sky-50 px-1 py-0.5 rounded border border-sky-200 cursor-help font-mono"
-                          title="FaIR (Finite Amplitude Impulse Response) est le modèle climatique simplifié officiel du GIEC (AR6) simulant la hausse de température due aux émissions."
+                          title="FaIR (Finite Amplitude Impulse Response), modèle climatique réduit, simule la réponse de la température aux émissions. Il a contribué à certaines analyses du GIEC; le simulateur affiché ici est CLIMATOPEDY, pas une sortie directe de FaIR."
                         >
-                          FaIR ?
+                          Modèle climatique réduit FaIR ?
                         </span>
                       </span>
                       <span className="font-mono font-bold text-slate-900 text-sm">

@@ -37,7 +37,7 @@ export const FutureConclusionCard: React.FC = () => {
             </div>
             <div>
               <h2 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
-                Déchiffrage immédiat : Stull Tw, FaIR, EROI et Montée des Océans
+                Repères : température au thermomètre mouillé (Tw), modèle climatique réduit FaIR, rendement énergétique (EROI) et montée des océans
               </h2>
               <p className="text-xs text-slate-500">
                 Les concepts biophysiques clés traduits en français courant sans jargon
@@ -95,7 +95,7 @@ export const FutureConclusionCard: React.FC = () => {
             <div className="bg-white p-4 rounded-xl border border-sky-200 shadow-2xs flex flex-col gap-3">
               <div className="flex items-center gap-2 text-sky-800 font-bold text-sm">
                 <Globe2 className="w-4 h-4 text-sky-600" />
-                <span>2. « FaIR » = Un modèle climatique réduit</span>
+                <span>2. « FaIR » = un modèle climatique réduit</span>
               </div>
 
               <div className="space-y-2 text-slate-700 leading-relaxed">
@@ -106,7 +106,7 @@ export const FutureConclusionCard: React.FC = () => {
                   <strong>• À quoi sert-il ?</strong> FaIR est un modèle climatique réduit développé par Chris Smith et ses collègues. Il calcule rapidement la réponse climatique à des scénarios d'émissions; ses résultats dépendent des versions, paramètres et expériences utilisées.
                 </p>
                 <p>
-                  <strong>• Usage dans l'AR6 :</strong> FaIR a contribué à certaines analyses de l'AR6. Le GIEC évalue de nombreux modèles et sources de données; FaIR n'est pas son modèle officiel unique.
+                  <strong>• Usage dans l'AR6 :</strong> Le modèle climatique réduit FaIR a contribué à certaines analyses de l'AR6. Le GIEC évalue de nombreux modèles et sources de données; FaIR n'est pas son modèle officiel unique.
                 </p>
                 <div className="p-2.5 rounded-lg bg-sky-50 border border-sky-200 text-sky-900 text-[11.5px] font-medium">
                   🌡️ <strong>Anomalie thermique simulée :</strong> Les valeurs affichées pour 2026 proviennent des données initiales du modèle CLIMATOPEDY; elles ne sont pas une observation annuelle complète de 2026.

@@ -191,7 +191,7 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
         <div className="p-3 rounded-lg bg-emerald-50/70 border border-emerald-300 shadow-2xs">
           <span className="text-[10px] font-mono text-emerald-800 font-bold block">4. ALIMENTATION</span>
           <span className="text-xs font-bold text-emerald-900 mt-1 block">≈40% de la population</span>
-          <span className="text-[11px] text-slate-700 block mt-1">Smil (2001) : env. 40% dépendaient de l'azote de synthèse (estimation pour 2000).</span>
+          <span className="text-[11px] text-slate-700 block mt-1">Vaclav Smil, chercheur spécialiste de l'énergie, estimait qu'autour de 2000 les engrais azotés fabriqués industriellement contribuaient à nourrir environ 40% de la population mondiale.</span>
         </div>
       </div>
     </div>

@@ -37,13 +37,13 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
     definition:
       'Procédé chimique qui combine le gaz fossile (méthane) et l\'azote de l\'air pour fabriquer les engrais de synthèse mondiaux.',
     analogy:
-      'Smil estimait qu\'environ 40% de la population mondiale dépendait de l\'azote de synthèse vers 2000; Erisman et al. (2008) estimaient qu\'environ 48% de la population était nourrie par des cultures utilisant cet azote en 2008. Ce sont des estimations de production alimentaire à l\'échelle de la population, pas une mesure des atomes d\'azote de chaque individu.',
+      'Vaclav Smil, chercheur spécialiste de l\'énergie et de l\'histoire des techniques, estimait qu\'autour de 2000 les engrais azotés fabriqués industriellement contribuaient à nourrir environ 40% de la population mondiale. Jan Willem Erisman, chercheur spécialiste de l\'azote, et ses coauteurs estimaient qu\'en 2008 environ 48% de la population était nourrie grâce à des cultures ayant reçu ces engrais. Ces chiffres estiment la part de la population nourrie grâce à ces cultures; ils ne mesurent ni les atomes d\'azote présents dans le corps de chaque personne ni le nombre de personnes qui ne seraient pas nées sans ces engrais.',
     thresholdOrKeyFact:
       'Le gaz naturel est une matière première et une source d\'énergie importante pour la production conventionnelle d\'ammoniac. L\'ampleur d\'un effet sur les rendements dépend des solutions de remplacement et des conditions agricoles.',
     faqId: 'faq-haber-bosch'
   },
   fair: {
-    title: 'Modèle FaIR (utilisé dans des analyses du GIEC)',
+    title: 'Modèle climatique réduit FaIR (utilisé dans des analyses du GIEC)',
     subtitle: 'Finite Amplitude Impulse Response · Climatologie',
     icon: <Wind className="w-3.5 h-3.5 text-sky-600" />,
     badgeColor: 'border-sky-200 text-sky-800 bg-sky-50',
@@ -65,7 +65,7 @@ export const TECH_TERMS: Record<TechTermKey, TermData> = {
     analogy:
       'À température de l’air égale, une humidité plus forte augmente généralement Tw et gêne l’évaporation de la sueur. Tw sert à décrire le stress chaleur-humidité; elle ne résume pas à elle seule l’exposition réelle d’une personne.',
     thresholdOrKeyFact:
-      'Sherwood et Huber (2010) discutent une limite théorique autour de 35°C Tw pour une exposition prolongée. Ce n\'est pas un seuil universel de mortalité; Raymond et al. (2020) étudient des épisodes météorologiques extrêmes observés.',
+      'Sherwood et Huber (2010) discutent une limite théorique autour de 35°C Tw pour une exposition prolongée. Ce n\'est pas un seuil universel de mortalité; Raymond et les autres auteurs (2020) étudient des épisodes météorologiques extrêmes observés.',
     faqId: 'faq-stull'
   },
   slr: {

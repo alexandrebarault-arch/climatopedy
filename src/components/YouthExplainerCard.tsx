@@ -371,7 +371,7 @@ export const YouthExplainerCard: React.FC = () => {
                     Les 4 plantes magiques qui nourrissent le monde sont le <strong>blé, le riz, le maïs et le soja</strong>.
                   </p>
                   <p className="text-slate-500">
-                    Zhao et al. (2017) estiment, sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, des baisses moyennes mondiales par degré de réchauffement de 7,4% pour le maïs et 6,0% pour le blé. Les effets varient selon la région et la culture.
+                    Zhao et les autres auteurs (2017) estiment, sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, des baisses moyennes mondiales par degré de réchauffement de 7,4% pour le maïs et 6,0% pour le blé. Les effets varient selon la région et la culture.
                   </p>
                 </div>
 

@@ -49,7 +49,7 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
                   Synthèse des risques climatiques
                 </span>
                 <span className="text-[11px] font-mono text-slate-600">
-                  Steffen et al. (2018) · Armstrong McKay et al. (2022)
+                  Steffen et les autres auteurs (2018) · Armstrong McKay et les autres auteurs (2022)
                 </span>
               </div>
               <h2 id="all-tipping-title" className="text-lg sm:text-xl font-black text-slate-800 tracking-tight mt-1">
@@ -196,7 +196,7 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
                   </h4>
                 </div>
                 <p className="text-slate-700 text-xs sm:text-sm leading-relaxed pl-8">
-                  Sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, Zhao et al. (2017) estiment en moyenne une baisse des rendements mondiaux par degré de réchauffement : maïs 7,4%, blé 6,0%, riz 3,2% et soja 3,1%. Les effets varient selon les régions et les cultures.
+                  Sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, Zhao et les autres auteurs (2017) estiment en moyenne une baisse des rendements mondiaux par degré de réchauffement : maïs 7,4%, blé 6,0%, riz 3,2% et soja 3,1%. Les effets varient selon les régions et les cultures.
                 </p>
               </div>
             </div>
@@ -214,7 +214,7 @@ export const AllTippingPointsConsequencesModal: React.FC<AllTippingPointsConsequ
         {/* Pied de modal */}
         <div className="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
           <span className="text-[11px] font-mono text-slate-500">
-            Source : Armstrong McKay et al., Science 2022 · Steffen et al., PNAS 2018
+            Source : Armstrong McKay et les autres auteurs, Science 2022 · Steffen et les autres auteurs, PNAS 2018
           </span>
           <button
             onClick={onClose}

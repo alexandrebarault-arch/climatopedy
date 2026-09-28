@@ -11,6 +11,7 @@
     "audit:climate": "tsx scripts/generateTemperatureTrajectoryAudit.ts && tsx scripts/auditTemperatureQuality.ts",
     "audit:data-country": "tsx scripts/auditCountryContextData.ts",
     "audit:water-habitability": "tsx scripts/auditWaterHabitability.ts",
+    "audit:editorial": "tsx scripts/auditEditorialComprehension.ts",
     "verify": "npm test && npm run lint && npm run build",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"

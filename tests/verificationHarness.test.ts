@@ -21,6 +21,14 @@ test('production builds cannot skip the climate and national-data audits', () =>
   assert.ok(build.includes('vite build'));
 });
 
+test('the editorial audit is available as a standalone local command', () => {
+  const audit = packageJson.scripts['audit:editorial'];
+  assert.ok(audit, 'npm run audit:editorial must be available for local editorial review');
+  assert.match(audit, /auditEditorialComprehension\.ts/);
+  assert.doesNotMatch(packageJson.scripts.verify, /audit:editorial/);
+  assert.doesNotMatch(packageJson.scripts.build, /audit:editorial/);
+});
+
 test('GitHub Actions applies the canonical gate to pull requests and main updates', () => {
   const workflow = readFileSync(new URL('../.github/workflows/verify.yml', import.meta.url), 'utf8');
   assert.match(workflow, /pull_request:\s*\n\s*branches: \[main\]/);

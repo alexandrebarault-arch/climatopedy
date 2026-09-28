@@ -106,7 +106,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
             </h3>
           </div>
           <p className="text-xs text-slate-600 mt-1">
-            Représentation standardisée du consensus scientifique (Armstrong McKay et al., <em>Science</em> 2022). 
+            Représentation standardisée du consensus scientifique (Armstrong McKay et les autres auteurs, <em>Science</em> 2022).
             La ligne verticale rouge indique le niveau de réchauffement testé.
           </p>
         </div>

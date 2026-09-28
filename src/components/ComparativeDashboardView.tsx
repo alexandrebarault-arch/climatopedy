@@ -84,7 +84,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       deltaPositiveIsGood: deltaTemp < 0,
       benefitHeadline: `Réchauffement contenu de ${Math.abs(deltaTemp).toFixed(2)} °C`,
       mechanism: `En réduisant la combustion fossile dès 2027, le forçage radiatif cumulé est bridé, évitant d'activer les rétroactions positives irréversibles de fonte du pergélisol et d'albédo arctique.`,
-      scientificRef: 'FaIR v1.1 / GIEC AR6 WG1 SPM',
+      scientificRef: 'FaIR, modèle climatique réduit v1.1 / GIEC AR6 WG1 SPM',
       tooltipTerm: 'fair'
     },
     {
@@ -101,7 +101,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       deltaPositiveIsGood: true,
       benefitHeadline: 'Aucune estimation médicale de décès ou d’habitabilité',
       mechanism: `L’indice interne ne calcule pas l’exposition régionale à Tw et n’évalue pas l’habitabilité. Les sorties de mortalité ayant été retirées, cet indicateur ne doit pas être interprété comme un nombre de personnes protégées.`,
-      scientificRef: 'Sherwood & Huber (PNAS 2010) / Raymond et al. (2020)',
+      scientificRef: 'Sherwood & Huber (PNAS 2010) / Raymond et les autres auteurs (2020)',
       tooltipTerm: 'stull'
     },
     {
@@ -134,7 +134,7 @@ export const ComparativeDashboardView: React.FC<ComparativeDashboardViewProps> =
       deltaPositiveIsGood: deltaCalories > 0,
       benefitHeadline: `Écart de disponibilité alimentaire simulée : ${deltaCalories >= 0 ? '+' : ''}${deltaCalories} kcal/habitant/jour`,
       mechanism: `Les valeurs sont des sorties du modèle, obtenues en appliquant un facteur de rendement simplifié à des disponibilités de départ saisies manuellement. Elles ne tiennent pas compte des échanges, des stocks, des pertes, de l’accès économique ou de la composition réelle de l’alimentation.`,
-      scientificRef: 'Zhao et al. (PNAS 2017) / Erisman et al. (Nature Geo 2008)',
+      scientificRef: 'Zhao et les autres auteurs (PNAS 2017) / Jan Willem Erisman, chercheur spécialiste de l’azote, et les autres auteurs (Nature Geoscience, 2008)',
       tooltipTerm: 'haber-bosch'
     },
     {

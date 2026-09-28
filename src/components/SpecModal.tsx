@@ -30,7 +30,7 @@ export const SpecModal: React.FC = () => {
 - E_net(t) = E_gross(t) * (1 - 1 / EROI(t))
 - Seuils de rendement énergétique : paramètres internes du modèle, sans valeur universelle établie par cette formule.
 
-## 5. Rendements Céréaliers (Zhao et al. 2017)
+## 5. Rendements Céréaliers (Zhao et les autres auteurs 2017)
 - Dégradation thermique composite : Maïs (-7.4%/°C), Blé (-6.0%/°C), Riz (-3.2%/°C), Soja (-3.1%/°C)
 - Couplage aux intrants Haber-Bosch : Psi_inputs = (E_net / E_net0)^0.65 * (x_fert / x_fert0)^0.35`;
 
@@ -115,7 +115,7 @@ export const SpecModal: React.FC = () => {
           <div className="space-y-4">
             <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-2xs">
               <span className="text-sky-700 font-bold block mb-2 font-sans">
-                1. Cycle du Carbone FaIR v1.1 (4 Réservoirs Atmosphériques) :
+                1. Cycle du carbone du modèle climatique réduit FaIR v1.1 (4 réservoirs atmosphériques) :
               </span>
               <pre className="text-slate-800 leading-relaxed overflow-x-auto">
 {`dR_i / dt = a_i * E_CO2(t) - R_i / (alpha(t) * tau_i)     pour i ∈ {0, 1, 2, 3}
@@ -162,7 +162,7 @@ Paramétrisation de mortalité propre au modèle : mu_thermal = 0.40 / (1 + exp(
 
             <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-2xs">
               <span className="text-emerald-700 font-bold block mb-2 font-sans">
-                4. Rendements Céréaliers (Zhao et al. 2017) &amp; EROI :
+                4. Rendements Céréaliers (Zhao et les autres auteurs 2017) &amp; EROI :
               </span>
               <pre className="text-slate-800 leading-relaxed overflow-x-auto">
 {`Y_c,k(t) = Y_0,c,k * (1 - beta_c * Delta_T_k) * Psi_inputs(t)
@@ -272,7 +272,7 @@ E_net(t) = E_gross(t) * (1 - 1 / EROI(t))`}
                     <td className="p-2 text-amber-700 font-semibold">EROI_0</td>
                     <td className="p-2 font-bold text-slate-800">32.0</td>
                     <td className="p-2">ratio sans unité</td>
-                    <td className="p-2 font-sans text-slate-500">Cleveland, Hall et al.</td>
+                    <td className="p-2 font-sans text-slate-500">Cleveland, Hall et les autres auteurs</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
                     <td className="p-2 font-sans font-medium text-slate-900">Seuil critique thermomètre mouillé</td>
