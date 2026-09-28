@@ -4,8 +4,8 @@
 - Reference type: CURRENT_PRODUCT_REFERENCE
 - Product reference SHA: 907fcb63fede8dc53df7e861bfd0b5745bcdc831
 - Golden cases tested: 300
-- Golden cases unchanged: populated by comparison tests
-- Golden cases changed: 0 in the current run
+- Golden cases unchanged: 300
+- Golden cases changed: 0
 - Algorithms affected: none
 - Countries affected: none
 - Years affected: none
@@ -21,3 +21,4 @@
 - Invariant failures: 0
 - Known failures: migration order status is INCONCLUSIVE; existing legacy tests are tracked separately
 - Unexpected failures: 0
+- Changed paths: none
