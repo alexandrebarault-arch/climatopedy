@@ -1,0 +1,7 @@
+{
+  "goldenMasterVersion": "V0",
+  "referenceType": "CURRENT_PRODUCT_REFERENCE",
+  "productReferenceSha": "907fcb63fede8dc53df7e861bfd0b5745bcdc831",
+  "scientificValidationStatus": "NOT_VALIDATED",
+  "fixtureScope": "deterministic numerical subset; full matrix is declared in cases.ts"
+}
