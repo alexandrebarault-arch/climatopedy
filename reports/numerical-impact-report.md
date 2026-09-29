@@ -19,6 +19,6 @@
 - NaN count: 0
 - Infinity count: 0
 - Invariant failures: 0
-- Known failures: migration order status is INCONCLUSIVE; existing legacy tests are tracked separately
+- Known limitation: migration is ORDER_DEPENDENT; reversing country iteration changes outputs. Current behavior is characterized and not corrected.
 - Unexpected failures: 0
 - Changed paths: none

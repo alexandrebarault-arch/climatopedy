@@ -10,3 +10,8 @@ test('local harness commands are defined without changing GitHub Actions', () =>
   assert.equal(fs.existsSync('.githooks/pre-commit'), true);
   assert.equal(fs.existsSync('.github/workflows/verify.yml'), true);
 });
+
+test('impact report explains migration order dependence in plain language', () => {
+  const reportScript = fs.readFileSync('scripts/reportNumericalImpact.ts', 'utf8');
+  assert.match(reportScript, /migration is ORDER_DEPENDENT; reversing country iteration changes outputs/);
+});
