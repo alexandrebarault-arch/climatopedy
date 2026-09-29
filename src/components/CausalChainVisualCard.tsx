@@ -248,7 +248,7 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
         <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse shrink-0" />
-            <span className="text-xs font-mono font-bold text-amber-900 uppercase tracking-wide truncate">
+            <span className="text-xs font-mono font-bold text-amber-900 uppercase tracking-wide whitespace-normal break-words">
               {meta.title}
             </span>
           </div>

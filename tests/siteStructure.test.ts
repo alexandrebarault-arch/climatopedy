@@ -74,6 +74,14 @@ test('map page retains its primary simulation and analysis anchors', () => {
   }
 });
 
+test('causal chain navigation shows complete step subtitles without ellipsis truncation', () => {
+  const explorer = readSource('../src/components/CausalChainExplorer.tsx');
+  const visualCard = readSource('../src/components/CausalChainVisualCard.tsx');
+  assert.match(explorer, /step\.subtitle/);
+  assert.doesNotMatch(explorer, /line-clamp-1/);
+  assert.doesNotMatch(visualCard, /truncate/);
+});
+
 test('map analysis and country inspector use the shared status and future record rule', () => {
   const map = readSource('../src/components/WorldMap.tsx');
   const inspector = readSource('../src/components/CountryInspector.tsx');

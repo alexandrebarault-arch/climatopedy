@@ -86,7 +86,7 @@ export const CausalChainExplorer: React.FC = () => {
                 <span className="font-semibold text-xs block text-slate-800">
                   {step.title}
                 </span>
-                <span className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                <span className="text-[11px] text-slate-500 mt-0.5 leading-snug">
                   {step.subtitle}
                 </span>
               </div>
