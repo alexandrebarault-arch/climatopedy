@@ -23,4 +23,7 @@ test('project continuity handoff is versioned and names the required restart che
   assert.match(status, /git status --short/);
   assert.match(status, /git rev-parse HEAD/);
   assert.match(status, /ne doit jamais démarrer une modification/);
+  assert.match(status, /PRODUCT_REFERENCE_SHA/);
+  assert.match(status, /FINAL_HARNESS_SHA/);
+  assert.match(status, /snapshot produit de référence/);
 });

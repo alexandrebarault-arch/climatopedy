@@ -10,7 +10,25 @@ Ce fichier est le point d’entrée de continuité pour toute nouvelle discussio
 - Golden Master numérique : `V0 / CURRENT_PRODUCT_REFERENCE`
 - Site Golden Master : `V0 / CURRENT_PRODUCT_REFERENCE`
 
-Le SHA courant du harnais doit toujours être obtenu avec `git rev-parse HEAD`; il ne doit pas être recopié manuellement dans ce fichier après chaque commit.
+## Signification des deux SHA
+
+Ces deux identifiants ne désignent pas la même chose :
+
+- `PRODUCT_REFERENCE_SHA` est le snapshot produit de référence. Il reste volontairement fixe, même si le harnais évolue.
+- `FINAL_HARNESS_SHA` est le snapshot Git final de la branche du harnais. Il identifie le commit qui contient la version livrée du harnais et de sa documentation.
+
+La branche `codex/numerical-harness-v0` est un pointeur mobile vers le dernier `FINAL_HARNESS_SHA`; le nom de branche n'est donc pas un remplacement du SHA.
+
+Pour transmettre les références après un travail, exécuter :
+
+```powershell
+$productReferenceSha = '907fcb63fede8dc53df7e861bfd0b5745bcdc831'
+$finalHarnessSha = git rev-parse HEAD
+Write-Output "PRODUCT_REFERENCE_SHA = $productReferenceSha"
+Write-Output "FINAL_HARNESS_SHA     = $finalHarnessSha"
+```
+
+Le `FINAL_HARNESS_SHA` doit toujours être obtenu avec `git rev-parse HEAD`; il ne doit pas être recopié manuellement dans ce fichier après chaque commit.
 
 ## Commandes locales
 
