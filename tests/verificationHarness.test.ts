@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
 const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as {
@@ -29,9 +29,6 @@ test('the editorial audit is available as a standalone local command', () => {
   assert.doesNotMatch(packageJson.scripts.build, /audit:editorial/);
 });
 
-test('GitHub Actions applies the canonical gate to pull requests and main updates', () => {
-  const workflow = readFileSync(new URL('../.github/workflows/verify.yml', import.meta.url), 'utf8');
-  assert.match(workflow, /pull_request:\s*\n\s*branches: \[main\]/);
-  assert.match(workflow, /push:\s*\n\s*branches: \[main\]/);
-  assert.match(workflow, /run: npm run verify/);
+test('verification is local and the repository has no GitHub Actions workflow', () => {
+  assert.equal(existsSync(new URL('../.github/workflows/verify.yml', import.meta.url)), false);
 });
