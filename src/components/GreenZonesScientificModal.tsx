@@ -75,7 +75,7 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
                 <span>1. Thermodynamique du thermomètre mouillé (Tw)</span>
               </div>
               <p className="text-xs text-slate-600">
-                La température au thermomètre mouillé (Tw) combine température et humidité. Les études citées examinent des contraintes thermiques et des épisodes extrêmes dans des conditions données; elles ne définissent pas un seuil unique d'inhabitabilité valable pour toutes les personnes et toutes les expositions (<a href="https://www.pnas.org/doi/10.1073/pnas.0913352107" target="_blank" rel="noreferrer" className="text-sky-600 font-semibold underline">Sherwood &amp; Huber 2010 PNAS</a>, <a href="https://www.science.org/doi/10.1126/sciadv.aaw1838" target="_blank" rel="noreferrer" className="text-sky-600 font-semibold underline">Raymond et al. 2020 Science Advances</a>).
+                La température au thermomètre mouillé (Tw) combine température et humidité. Les études citées examinent des contraintes thermiques et des épisodes extrêmes dans des conditions données; elles ne définissent pas un seuil unique d'inhabitabilité valable pour toutes les personnes et toutes les expositions (<a href="https://www.pnas.org/doi/10.1073/pnas.0913352107" target="_blank" rel="noreferrer" className="text-sky-600 font-semibold underline">Sherwood &amp; Huber 2010 PNAS</a>, <a href="https://www.science.org/doi/10.1126/sciadv.aaw1838" target="_blank" rel="noreferrer" className="text-sky-600 font-semibold underline">Raymond et les autres auteurs 2020 Science Advances</a>).
               </p>
               <ul className="text-xs text-slate-600 list-disc list-inside space-y-1 pl-1">
                 <li>
@@ -94,7 +94,7 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
                 <span>2. « Verdissement Arctique » vs « Brunissement »</span>
               </div>
               <p className="text-xs text-slate-600">
-                La couleur verte reflète aussi un phénomène écologique réel observé par satellite (<a href="https://www.nature.com/articles/nclimate3004" target="_blank" rel="noreferrer" className="text-emerald-700 font-semibold underline">Zhu et al. 2016 Nature Climate Change</a>, GIEC AR6 GT1 Box TS.3) :
+                La couleur verte reflète aussi un phénomène écologique réel observé par satellite (<a href="https://www.nature.com/articles/nclimate3004" target="_blank" rel="noreferrer" className="text-emerald-700 font-semibold underline">Zhu et les autres auteurs 2016 Nature Climate Change</a>, GIEC AR6 GT1 Box TS.3) :
               </p>
               <ul className="text-xs text-slate-600 list-disc list-inside space-y-1 pl-1">
                 <li>
@@ -117,7 +117,7 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
               </p>
               <ul className="text-xs text-slate-600 list-disc list-inside space-y-1 pl-1">
                 <li>
-                  Zhao et al. (2017) estiment des effets moyens du réchauffement sur les rendements de plusieurs grandes cultures; cette étude ne démontre pas à elle seule une migration générale des cultures vers le nord.
+                  Zhao et les autres auteurs (2017) estiment des effets moyens du réchauffement sur les rendements de plusieurs grandes cultures; cette étude ne démontre pas à elle seule une migration générale des cultures vers le nord.
                 </li>
                 <li>
                   Les niveaux de calories et de population de cette carte sont des sorties de simulation; la publication citée n'établit pas un avantage alimentaire régional en cas de baisse des intrants.
@@ -173,9 +173,9 @@ export const GreenZonesScientificModal: React.FC<GreenZonesScientificModalProps>
             <span className="font-bold text-slate-800 block mb-1">Sources &amp; Publications Scientifiques de Référence :</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>• <strong>Sherwood &amp; Huber (2010)</strong>, <em>PNAS</em> : Limite d'adaptabilité humaine à la contrainte thermique mouillée.</div>
-              <div>• <strong>Raymond et al. (2020)</strong>, <em>Science Advances</em> : Émergence des seuils de chaleur et d'humidité létales.</div>
+              <div>• <strong>Raymond et les autres auteurs (2020)</strong>, <em>Science Advances</em> : Émergence des seuils de chaleur et d'humidité létales.</div>
               <div>• <strong>GIEC AR6 WG1 (2021)</strong>, <em>Chapitres 9 &amp; 11</em> : Montée des océans à 2300 et extrêmes climatiques régionaux.</div>
-              <div>• <strong>Zhu et al. (2016)</strong>, <em>Nature Climate Change</em> : Greening of the Earth and its drivers.</div>
+              <div>• <strong>Zhu et les autres auteurs (2016)</strong>, <em>Nature Climate Change</em> : Greening of the Earth and its drivers.</div>
             </div>
           </div>
 

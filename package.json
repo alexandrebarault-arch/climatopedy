@@ -16,6 +16,7 @@
     "harness:impact": "tsx scripts/reportNumericalImpact.ts",
     "harness:write-fixture": "tsx scripts/writeGoldenFixture.ts",
     "harness:install-hook": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/installLocalHarnessHook.ps1",
+    "audit:editorial": "tsx scripts/auditEditorialComprehension.ts",
     "verify": "npm test && npm run lint && npm run build",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"

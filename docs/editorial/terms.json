@@ -1,0 +1,88 @@
+{
+  "terms": [
+    {
+      "id": "smil",
+      "term": "\\bSmil\\b",
+      "category": "person",
+      "severity": "warning",
+      "readerExplanation": "Vaclav Smil est un chercheur spécialiste de l’énergie et de l’histoire des techniques.",
+      "explanationPattern": "(?:Vaclav\\s+Smil.{0,100}(?:chercheur|historien|spécialiste|professeur|économiste|auteur)|(?:chercheur|historien|spécialiste|professeur|économiste|auteur).{0,80}Vaclav\\s+Smil)"
+    },
+    {
+      "id": "erisman",
+      "term": "\\bErisman\\b",
+      "category": "person",
+      "severity": "warning",
+      "readerExplanation": "Jan Willem Erisman est un chercheur spécialiste de l’azote et de ses effets sur l’environnement.",
+      "explanationPattern": "(?:Jan\\s+Willem\\s+Erisman.{0,100}(?:chercheur|spécialiste|professeur|scientifique)|(?:chercheur|spécialiste|professeur|scientifique).{0,80}Jan\\s+Willem\\s+Erisman)"
+    },
+    {
+      "id": "et-al",
+      "term": "\\bet\\s+al\\.?",
+      "category": "citation",
+      "severity": "warning",
+      "readerExplanation": "« et al. » signifie que d’autres coauteurs ont participé à la publication.",
+      "explanationPattern": "et\\s+al\\.?[^.]{0,70}(?:autres\\s+coauteurs|autres\\s+auteurs|coauteurs\\s+de\\s+l’étude)"
+    },
+    {
+      "id": "reactive-nitrogen",
+      "term": "\\bazote\\s+réactif\\b",
+      "category": "notion",
+      "severity": "warning",
+      "readerExplanation": "L’azote réactif désigne des formes d’azote que les plantes et les écosystèmes peuvent utiliser.",
+      "explanationPattern": "azote\\s+réactif.{0,100}(?:forme|plante|culture|utilis[ée]|disponible)"
+    },
+    {
+      "id": "synthetic-nitrogen",
+      "term": "\\bazote\\s+(?:de\\s+synthèse|synthétique)\\b",
+      "category": "notion",
+      "severity": "warning",
+      "readerExplanation": "L’azote de synthèse est fabriqué industriellement puis utilisé notamment dans les engrais.",
+      "explanationPattern": "azote\\s+(?:de\\s+synthèse|synthétique).{0,100}(?:fabriqu|engrais|industrie|usine)"
+    },
+    {
+      "id": "synthetic-ammonia",
+      "term": "\\bammoniac(?:\\s+de\\s+synthèse|\\s+synthétique)\\b",
+      "category": "notion",
+      "severity": "warning",
+      "readerExplanation": "L’ammoniac est un composé d’azote et d’hydrogène, utilisé pour fabriquer des engrais.",
+      "explanationPattern": "ammoniac(?:\\s+de\\s+synthèse|\\s+synthétique).{0,100}(?:azote|hydrogène|engrais|fabriqu)"
+    },
+    {
+      "id": "fossil-depletion",
+      "term": "\\bdéplétion\\s+fossile\\b",
+      "category": "formulation à remplacer",
+      "severity": "error",
+      "readerExplanation": "Dites plutôt « baisse de la disponibilité des combustibles fossiles » ou nommez directement le combustible concerné."
+    },
+    {
+      "id": "scissor-effect",
+      "term": "\\beffet\\s+ciseau\\b",
+      "category": "formulation à remplacer",
+      "severity": "error",
+      "readerExplanation": "Décrivez directement les deux évolutions qui s’écartent l’une de l’autre."
+    },
+    {
+      "id": "aggregate-estimate",
+      "term": "\\bestimation\\s+agrégée\\b",
+      "category": "formulation à remplacer",
+      "severity": "error",
+      "readerExplanation": "Dites qu’il s’agit d’un chiffre calculé à l’échelle d’une population entière."
+    },
+    {
+      "id": "counterfactual",
+      "term": "\\bcontrefactuel(?:le)?s?\\b",
+      "category": "notion",
+      "severity": "error",
+      "readerExplanation": "Une comparaison avec une situation hypothétique qui aurait pu se produire autrement."
+    },
+    {
+      "id": "fair",
+      "term": "\\bFaIR\\b",
+      "category": "modèle scientifique",
+      "severity": "warning",
+      "readerExplanation": "FaIR est un modèle climatique réduit qui simule la réponse du climat à des émissions.",
+      "explanationPattern": "(?:modèle(?: climatique)? réduit|modèle de réponse impulsionnelle à amplitude finie|Finite Amplitude Impulse Response|reduced climate model|impulse response.*model)"
+    }
+  ]
+}

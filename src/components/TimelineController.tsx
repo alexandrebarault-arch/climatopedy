@@ -116,9 +116,9 @@ export const TimelineController: React.FC<TimelineControllerProps> = ({
               </span>
               <span
                 className="text-[9px] font-mono text-sky-800 bg-sky-50 px-1 py-0.2 rounded border border-sky-200 cursor-help"
-                title="FaIR a contribué à certaines analyses du GIEC AR6; cette valeur est une sortie du simulateur CLIMATOPEDY."
+                title="Le modèle climatique réduit FaIR a contribué à certaines analyses du GIEC AR6; cette valeur est une sortie du simulateur CLIMATOPEDY."
               >
-                FaIR / CLIMATOPEDY
+                Modèle réduit FaIR / CLIMATOPEDY
               </span>
             </div>
             <div className="flex items-baseline gap-1 mt-0.5">

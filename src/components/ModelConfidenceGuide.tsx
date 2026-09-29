@@ -105,11 +105,11 @@ const domains: {
     kind: 'Trajectoire globale calculée par le modèle',
     text: 'La simulation atteint environ 475 ppm de CO₂ atmosphérique en 2100. À l’échelle mondiale, cette valeur se situe dans l’enveloppe des concentrations de fin de siècle publiées pour plusieurs scénarios; elle est toutefois proche de la partie basse de cette enveloppe et ne correspond donc pas, à elle seule, à un scénario de fortes émissions reconnu.',
     actionDone: 'La concentration de départ est ancrée sur la moyenne mondiale NOAA 2025. Les scénarios SSP publiés couvrent environ 393 à 1 135 ppm en 2100; la valeur CLIMATOPEDY de 475 ppm est plausible dans cette enveloppe large, mais le moteur n’a pas démontré qu’elle suit un scénario d’émissions particulier. La confiance partielle porte sur l’ordre de grandeur planétaire, pas sur le libellé « fortes émissions » ni sur la trajectoire exacte.',
-    source: 'Meinshausen et al. (2020), concentrations mondiales SSP',
+    source: 'Meinshausen et les autres auteurs (2020), concentrations mondiales SSP',
     href: 'https://doi.org/10.5194/gmd-13-3571-2020',
     reference: 'La publication fournit les concentrations mondiales de CO₂ pour les scénarios SSP utilisés dans les travaux CMIP6; en 2100, les scénarios considérés couvrent environ 393 à 1 135 ppm. Cette grande amplitude traduit des hypothèses d’émissions différentes : l’appartenance à l’intervalle n’identifie pas le scénario le plus plausible et ne valide pas le modèle CLIMATOPEDY.',
     referenceTraceability: 'Élevée',
-    referenceSource: 'Meinshausen et al. (2020), Geoscientific Model Development',
+    referenceSource: 'Meinshausen et les autres auteurs (2020), Geoscientific Model Development',
     referenceHref: 'https://gmd.copernicus.org/articles/13/3571/2020/'
   },
   {
@@ -123,7 +123,7 @@ const domains: {
     href: 'https://doi.org/10.1175/JAMC-D-11-0143.1',
     reference: 'La formule de Stull a une erreur absolue moyenne inférieure à 0,3 °C dans son domaine d’application. Une étude en laboratoire a mesuré une limite critique moyenne de 30,55 ± 0,98 °C chez de jeunes adultes en bonne santé, dans des conditions précises. Le moteur ne dispose pas des séries quotidiennes nécessaires pour estimer la fréquence de ces expositions.',
     referenceTraceability: 'Élevée',
-    referenceSource: 'Stull (2011) et Vecellio et al. (2022)',
+    referenceSource: 'Stull (2011) et Vecellio et les autres auteurs (2022)',
     referenceHref: 'https://pubmed.ncbi.nlm.nih.gov/34913738/'
   },
   {
@@ -163,9 +163,9 @@ const domains: {
     actionDone: 'Les sensibilités moyennes Zhao sont données culture par culture avec leurs incertitudes; le texte précise qu’elles ne prédisent pas le rendement d’un pays.',
     source: 'ISIMIP, modèles agricoles et protocole',
     href: 'https://www.isimip.org/protocol/',
-    reference: 'Pour +1 °C de température moyenne mondiale, Zhao et al. estiment en moyenne : maïs −7,4 ± 4,5 %, blé −6,0 ± 2,9 %, riz −3,2 ± 3,7 %, soja −3,1 ± 5,0 %. Ces moyennes ne prédisent pas le rendement d’un pays; elles excluent notamment l’adaptation et l’effet fertilisant du CO₂.',
+    reference: 'Pour +1 °C de température moyenne mondiale, Zhao et les autres auteurs estiment en moyenne : maïs −7,4 ± 4,5 %, blé −6,0 ± 2,9 %, riz −3,2 ± 3,7 %, soja −3,1 ± 5,0 %. Ces moyennes ne prédisent pas le rendement d’un pays; elles excluent notamment l’adaptation et l’effet fertilisant du CO₂.',
     referenceTraceability: 'Élevée',
-    referenceSource: 'Zhao et al. (2017), synthèse de quatre méthodes',
+    referenceSource: 'Zhao et les autres auteurs (2017), synthèse de quatre méthodes',
     referenceHref: 'https://www.giss.nasa.gov/pubs/abs/zh09200d.html'
   },
   {
@@ -287,7 +287,7 @@ export const ModelConfidenceGuide: React.FC = () => (
       </div>
 
       <p className="mt-3 text-xs leading-relaxed text-slate-700">
-        <strong>Contrôle des ordres de grandeur :</strong> le scénario interne atteint environ +2,4 °C en 2100; le PNUE situe les trajectoires mondiales autour de +2,3 à +2,5 °C avec mise en œuvre complète des engagements et à 2,8 °C avec les politiques actuelles. Le CO₂ de 475 ppm se trouve dans l’enveloppe publiée de 393 à 1 135 ppm pour les scénarios SSP en 2100, mais près de sa partie basse; cette enveloppe large n’établit pas que le scénario interne correspond à de fortes émissions. La sortie de niveau marin proche de 0,8 m recoupe la plage AR6 de 0,63 à 1,01 m sous SSP5-8.5, mais CLIMATOPEDY prend 2000 comme référence et l’AR6 1995–2014. Ces comparaisons éclairent l’échelle planétaire, sans valider les calculs du site. Voir le <a className="text-sky-700 underline" href="https://www.unep.org/fr/resources/rapport-2025-sur-lecart-entre-les-besoins-et-les-perspectives-en-matiere-de-reduction-des" target="_blank" rel="noreferrer">PNUE, Emissions Gap Report 2025</a>, le <a className="text-sky-700 underline" href="https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/" target="_blank" rel="noreferrer">GIEC AR6</a> et <a className="text-sky-700 underline" href="https://doi.org/10.5194/gmd-13-3571-2020" target="_blank" rel="noreferrer">Meinshausen et al. (2020)</a>.
+        <strong>Contrôle des ordres de grandeur :</strong> le scénario interne atteint environ +2,4 °C en 2100; le PNUE situe les trajectoires mondiales autour de +2,3 à +2,5 °C avec mise en œuvre complète des engagements et à 2,8 °C avec les politiques actuelles. Le CO₂ de 475 ppm se trouve dans l’enveloppe publiée de 393 à 1 135 ppm pour les scénarios SSP en 2100, mais près de sa partie basse; cette enveloppe large n’établit pas que le scénario interne correspond à de fortes émissions. La sortie de niveau marin proche de 0,8 m recoupe la plage AR6 de 0,63 à 1,01 m sous SSP5-8.5, mais CLIMATOPEDY prend 2000 comme référence et l’AR6 1995–2014. Ces comparaisons éclairent l’échelle planétaire, sans valider les calculs du site. Voir le <a className="text-sky-700 underline" href="https://www.unep.org/fr/resources/rapport-2025-sur-lecart-entre-les-besoins-et-les-perspectives-en-matiere-de-reduction-des" target="_blank" rel="noreferrer">PNUE, Emissions Gap Report 2025</a>, le <a className="text-sky-700 underline" href="https://www.ipcc.ch/report/ar6/wg1/chapter/summary-for-policymakers/" target="_blank" rel="noreferrer">GIEC AR6</a> et <a className="text-sky-700 underline" href="https://doi.org/10.5194/gmd-13-3571-2020" target="_blank" rel="noreferrer">Meinshausen et les autres auteurs (2020)</a>.
       </p>
       <p className="mt-2 text-xs leading-relaxed text-slate-700">
         <strong>Limite :</strong> les notes sont des jugements d’audit explicites fondés sur le code, les données et les comparaisons documentées. L’indice ne donne pas une probabilité d’exactitude et ne valide pas les sorties régionales, sanitaires, démographiques ou agricoles, qui restent évaluées séparément dans les fiches ci-dessous.

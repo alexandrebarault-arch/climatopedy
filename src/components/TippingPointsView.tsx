@@ -63,7 +63,7 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     observedFactToday: 'Les observations satellitaires montrent une perte nette de masse de la calotte groenlandaise depuis le début des mesures gravimétriques GRACE; le taux moyen varie selon la période retenue.',
     consequencePlain: 'La fonte complète de la calotte groenlandaise correspond à environ 7 m d\'élévation moyenne du niveau marin à long terme. Ce n\'est pas une projection pour le XXIe siècle.',
     irreversibilityNotes: 'La réponse de la calotte dépend du réchauffement, de sa durée et des processus de surface et de dynamique glaciaire; les seuils et délais sont estimés avec incertitude.',
-    scientificSource: 'Armstrong McKay et al., Science 2022 ; GIEC AR6 WG1 Chapitre 9 ; NASA GRACE.',
+    scientificSource: 'Armstrong McKay et les autres auteurs, Science 2022 ; GIEC AR6 WG1 Chapitre 9 ; NASA GRACE.',
     statusToday: 'at_risk',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'La calotte du Groenland est une vaste masse de glace reposant sur un socle rocheux. Elle contribue au niveau marin lorsqu\'elle perd de la masse vers l\'océan.',
@@ -84,7 +84,7 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     observedFactToday: 'Les observations satellitaires et de terrain montrent un amincissement et un recul de plusieurs glaciers de l\'Antarctique occidental, dont Thwaites; les taux varient dans le temps et selon les secteurs.',
     consequencePlain: 'La perte complète de la calotte antarctique occidentale correspondrait à plusieurs mètres d\'élévation moyenne du niveau marin à long terme. Ce chiffre n\'est pas une projection pour le XXIe siècle.',
     irreversibilityNotes: 'Certains secteurs reposent sur un socle situé sous le niveau marin. La dynamique de retrait et la stabilité de ces secteurs font l\'objet d\'études et d\'incertitudes.',
-    scientificSource: 'Joughin et al., Science 2014 ; Rignot et al., GRL 2014 ; GIEC SROCC.',
+    scientificSource: 'Joughin et les autres auteurs, Science 2014 ; Rignot et les autres auteurs, GRL 2014 ; GIEC SROCC.',
     statusToday: 'at_risk',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'La calotte antarctique occidentale comprend des glaciers reposant en partie sur un socle situé sous le niveau marin; l\'eau océanique peut contribuer à leur fonte basale.',
@@ -105,7 +105,7 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     observedFactToday: 'En avril 2024, la NOAA a annoncé le quatrième épisode mondial de blanchissement des coraux. L\'agence a rapporté un stress thermique de niveau blanchissement sur une part importante des récifs suivis; ce stress ne signifie pas que tous les coraux sont morts.',
     consequencePlain: 'Les récifs coralliens fournissent des habitats et contribuent à la protection de certains littoraux. Le GIEC évalue une forte diminution de leur aire à mesure que le réchauffement augmente; ces estimations dépendent du niveau de réchauffement.',
     irreversibilityNotes: 'Un récif met 10 à 15 ans à se régénérer après un blanchissement. Si les vagues de chaleur marine reviennent chaque été, ils n\'ont plus le temps physique de survivre.',
-    scientificSource: 'IPCC Spécial 1.5°C (2018) ; NOAA Coral Reef Watch (2024) ; Hughes et al., Nature 2017.',
+    scientificSource: 'IPCC Spécial 1.5°C (2018) ; NOAA Coral Reef Watch (2024) ; Hughes et les autres auteurs, Nature 2017.',
     statusToday: 'tipping',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'Les coraux bâtisseurs de récifs vivent en association avec des algues. Un stress thermique peut provoquer le blanchissement; la mortalité dépend de l\'intensité et de la durée du stress et d\'autres facteurs.',
@@ -126,7 +126,7 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     observedFactToday: 'Réseau GTN-P : la température des sols arctiques à 10-20 m de profondeur s\'est réchauffée de +0,3°C à +0,6°C par décennie. Des cratères d\'effondrement (thermokarst) et des fuites de méthane sont observés en Sibérie.',
     consequencePlain: 'Le pergélisol contient une grande quantité de carbone organique. Le dégel peut favoriser des émissions de CO₂ et de méthane; l\'ampleur dépend de la zone, du rythme du dégel et des processus microbiens.',
     irreversibilityNotes: 'Le dégel peut rendre disponible de la matière organique à la décomposition microbienne. Les émissions associées dépendent des conditions locales et des processus biogéochimiques.',
-    scientificSource: 'Turetsky et al., Nature Geoscience 2020 ; Schuur et al., Nature 2015 ; GIEC AR6 Chapitre 5.',
+    scientificSource: 'Turetsky et les autres auteurs, Nature Geoscience 2020 ; Schuur et les autres auteurs, Nature 2015 ; GIEC AR6 Chapitre 5.',
     statusToday: 'at_risk',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'Le pergélisol désigne un sol gelé en permanence pendant au moins deux années consécutives. Il peut contenir de la matière organique accumulée au cours du temps.',
@@ -147,7 +147,7 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     observedFactToday: 'Les observations montrent une diminution de l\'étendue de la glace de mer arctique en septembre depuis le début des mesures satellitaires en 1979. Le taux dépend de la période calculée.',
     consequencePlain: 'Les liens entre la diminution de la glace de mer arctique et les régimes météorologiques des latitudes moyennes font l\'objet de recherches; leur ampleur et leur robustesse sont discutées.',
     irreversibilityNotes: 'La diminution de la glace de mer réduit l\'albédo de surface et modifie l\'absorption du rayonnement solaire; l\'effet varie selon la saison et la couverture nuageuse.',
-    scientificSource: 'Rantanen et al., Communications Earth & Environment 2022 ; Screen & Simmonds 2010.',
+    scientificSource: 'Rantanen et les autres auteurs, Communications Earth & Environment 2022 ; Screen & Simmonds 2010.',
     statusToday: 'at_risk',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'La glace de mer arctique présente un albédo supérieur à celui de l\'océan libre. Son étendue varie au cours de l\'année et diminue à long terme.',
@@ -165,10 +165,10 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     thresholdMin: 2.0,
     thresholdMax: 6.0,
     timescaleYears: '50 à 100 ans',
-    observedFactToday: 'Les mesures de flux de carbone rapportées par Gatti et al. (2021) indiquent des émissions nettes dans l\'est et le sud-est de l\'Amazonie étudiés, en lien notamment avec la déforestation et les sécheresses pendant la période d\'observation.',
+    observedFactToday: 'Les mesures de flux de carbone rapportées par Gatti et les autres auteurs (2021) indiquent des émissions nettes dans l\'est et le sud-est de l\'Amazonie étudiés, en lien notamment avec la déforestation et les sécheresses pendant la période d\'observation.',
     consequencePlain: 'La dégradation de l\'Amazonie pourrait modifier les stocks de carbone, les précipitations régionales et les écosystèmes. L\'ampleur et la distribution de ces changements restent incertaines.',
     irreversibilityNotes: 'Les seuils de risque proposés pour l\'Amazonie dépendent du réchauffement et du déboisement; leurs estimations varient selon les méthodes et les hypothèses des études.',
-    scientificSource: 'Nobre et al., Science Advances 2016 ; Gatti et al., Nature 2021 ; Lovejoy & Nobre 2018.',
+    scientificSource: 'Nobre et les autres auteurs, Science Advances 2016 ; Gatti et les autres auteurs, Nature 2021 ; Lovejoy & Nobre 2018.',
     statusToday: 'at_risk',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'L\'évapotranspiration de la végétation transfère de l\'eau vers l\'atmosphère et contribue aux précipitations régionales.',
@@ -189,7 +189,7 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     observedFactToday: 'Les estimations des changements récents de l\'AMOC dépendent de la série d\'observations et de la méthode. La période instrumentale directe est trop courte pour établir un classement robuste sur un millénaire.',
     consequencePlain: 'Les modèles montrent qu\'un fort affaiblissement ou un effondrement de l\'AMOC modifierait les températures et les précipitations régionales. L\'ampleur et la répartition de ces changements dépendent du scénario et du modèle.',
     irreversibilityNotes: 'Des états alternatifs de la circulation sont étudiés dans les modèles; les mécanismes et la possibilité d\'un basculement sous le climat futur restent associés à des incertitudes.',
-    scientificSource: 'Caesar et al., Nature 2018 ; Ditlevsen & Ditlevsen, Nature Comm. 2023 ; GIEC AR6 WG1.',
+    scientificSource: 'Caesar et les autres auteurs, Nature 2018 ; Ditlevsen & Ditlevsen, Nature Comm. 2023 ; GIEC AR6 WG1.',
     statusToday: 'at_risk',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'L\'AMOC est un système de courants de l\'Atlantique qui transporte chaleur, sel et eau entre les régions tropicales et nordiques. Elle comprend des courants de surface et des circulations profondes.',
@@ -210,7 +210,7 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     observedFactToday: 'La saison des feux de forêt au Canada en 2023 a été la plus étendue enregistrée dans le jeu de données national; les estimations d\'aire brûlée et d\'émissions dépendent des méthodes et sources utilisées.',
     consequencePlain: 'Les incendies émettent des gaz et des particules et peuvent modifier temporairement les flux de carbone des écosystèmes touchés.',
     irreversibilityNotes: 'Après un incendie, la composition et la structure de la végétation peuvent changer; la trajectoire de récupération dépend des conditions locales et de la fréquence des perturbations.',
-    scientificSource: 'Walker et al., Nature Communications 2019 ; Zheng et al., Science 2023.',
+    scientificSource: 'Walker et les autres auteurs, Nature Communications 2019 ; Zheng et les autres auteurs, Science 2023.',
     statusToday: 'safe',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'Les forêts boréales forment une vaste zone forestière des hautes latitudes de l\'hémisphère Nord.',
@@ -231,7 +231,7 @@ const TIPPING_ELEMENTS: TippingElement[] = [
     observedFactToday: 'Certains secteurs côtiers (glacier Totten) montrent des signes d\'accélération de l\'amincissement sous l\'effet d\'eaux profondes tièdes.',
     consequencePlain: 'La perte de glace associée au bassin de Wilkes pourrait contribuer à l\'élévation du niveau marin sur de longues périodes; l\'ampleur et les délais dépendent de la dynamique de la calotte.',
     irreversibilityNotes: 'La géométrie du socle et les processus de rétroaction influencent la stabilité de la glace; leur évolution fait l\'objet d\'études et comporte des incertitudes.',
-    scientificSource: 'Mengel & Levermann, Nature Climate Change 2014 ; Rignot et al., PNAS 2019.',
+    scientificSource: 'Mengel & Levermann, Nature Climate Change 2014 ; Rignot et les autres auteurs, PNAS 2019.',
     statusToday: 'safe',
     estimatedYearTendency: 'Aucune date précise établie par les sources citées',
     whatIsItSimple: 'Le bassin de Wilkes est une région de l\'Antarctique oriental présentant une topographie sous-glaciaire en partie située sous le niveau marin.',
@@ -325,30 +325,30 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
               <div className="flex items-center gap-2 text-sky-800 font-semibold text-xs mb-1.5">
                 <span className="w-5 h-5 rounded-full bg-sky-100 border border-sky-300 flex items-center justify-center text-[11px] font-bold text-sky-800">1</span>
-                L'analogie de la chaise
+                Une chaise bascule quand elle perd son équilibre
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                Cette analogie illustre un changement d'état après un seuil. Les seuils et mécanismes réels varient selon les composantes du système climatique et comportent des incertitudes.
+                Une chaise reste debout tant que son point d'équilibre reste au-dessus de ses pieds. Si une poussée le fait dépasser cette base, elle bascule. L'image montre ce qu'est un seuil; les seuils du climat diffèrent selon le système et restent incertains.
               </p>
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
               <div className="flex items-center gap-2 text-amber-800 font-semibold text-xs mb-1.5">
                 <span className="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center text-[11px] font-bold text-amber-900">2</span>
-                L'analogie du gros glaçon
+                Une grande calotte de glace réagit lentement
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                Un grand volume de glace peut répondre lentement à un changement de température. Les délais de réponse des calottes sont estimés à partir de processus et de modèles; ils ne se déduisent pas directement de cette analogie.
+                Un gros glaçon met plus longtemps qu'un petit à fondre. De même, une immense calotte peut continuer à perdre de la glace longtemps après le début du réchauffement. L'image illustre cette lenteur; elle ne donne ni date précise ni vitesse de fonte.
               </p>
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 shadow-2xs">
               <div className="flex items-center gap-2 text-rose-800 font-semibold text-xs mb-1.5">
                 <span className="w-5 h-5 rounded-full bg-rose-100 border border-rose-300 flex items-center justify-center text-[11px] font-bold text-rose-800">3</span>
-                L'effet domino (cascade)
+                Des dominos : une cascade possible, pas automatique
               </div>
               <p className="text-xs text-slate-600 leading-snug">
-                Les interactions entre calottes, circulation océanique, moussons et forêt amazonienne sont étudiées; cette chaîne ne constitue pas une conséquence déterministe établie.
+                Un changement dans un système climatique peut en influencer d'autres, par exemple en modifiant les courants océaniques ou les pluies. Mais les éléments du climat ne tombent pas mécaniquement les uns après les autres : ces liens sont étudiés et ne garantissent pas une cascade.
               </p>
             </div>
           </div>
@@ -837,7 +837,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
           <div className="flex items-center gap-2">
             <BookOpen className="w-4 h-4 text-sky-600" />
             <h3 className="text-sm font-bold text-slate-800">
-              Synthèse comparative des 9 points de bascule (Armstrong McKay et al. Science 2022)
+              Synthèse comparative des 9 points de bascule (Armstrong McKay et les autres auteurs Science 2022)
             </h3>
           </div>
           <div className="flex items-center gap-3">
@@ -940,7 +940,7 @@ export const TippingPointsView: React.FC<TippingPointsViewProps> = ({
           Les seuils sont des estimations incertaines issues de la littérature citée. Les dates affichées dans cette interface sont propres au scénario CLIMATOPEDY; elles ne sont pas des dates de franchissement établies par le GIEC ou par ces études.
         </p>
         <p className="text-slate-500">
-          Sources de référence : <em>Global Tipping Points Report 2023 (Université d'Exeter, COP28)</em> ; <em>Armstrong McKay et al., Science (2022)</em> ; <em>IPCC 6e Rapport d'Évaluation (Groupes I et II, 2021-2023)</em>.
+          Sources de référence : <em>Global Tipping Points Report 2023 (Université d'Exeter, COP28)</em> ; <em>Armstrong McKay et les autres auteurs, Science (2022)</em> ; <em>IPCC 6e Rapport d'Évaluation (Groupes I et II, 2021-2023)</em>.
         </p>
       </div>
 

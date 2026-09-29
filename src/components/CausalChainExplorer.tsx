@@ -15,24 +15,24 @@ export const CausalChainExplorer: React.FC = () => {
     },
     {
       id: 'eroi_cliff',
-      title: '2. La Falaise de l\'EROI & l\'Autophagie',
-      subtitle: 'L\'équation biophysique : quand le forage dévore sa propre énergie.',
+      title: '2. Le rendement énergétique du pétrole',
+      subtitle: 'Quelle part de l’énergie extraite sert à l’extraction elle-même ?',
       icon: Zap,
-      badge: 'Thermodynamique Industrielle'
+      badge: 'Énergie nette'
     },
     {
       id: 'haber_bosch',
-      title: '3. Du Gaz aux Champs : Haber-Bosch',
-      subtitle: '50% des protéines humaines dépendent de la synthèse de l\'ammoniac.',
+      title: '3. Fabriquer les engrais : du gaz aux champs',
+      subtitle: 'Comment le gaz naturel et l’azote de l’air servent à fabriquer des engrais.',
       icon: Sprout,
-      badge: 'Chimie & Sécurité Alimentaire'
+      badge: 'Engrais et alimentation'
     },
     {
       id: 'societal_inertia',
-      title: '4. Le Piège de l\'Inertie Sociétale',
-      subtitle: 'Pourquoi l\'humanité est incapable de freiner sa dissipation d\'énergie.',
+      title: '4. Pourquoi les infrastructures ralentissent le changement',
+      subtitle: 'Les routes, usines et équipements durent des années; les remplacer prend du temps.',
       icon: Anchor,
-      badge: 'Dynamique des Systèmes'
+      badge: 'Infrastructures et transition'
     }
   ];
 
@@ -340,14 +340,14 @@ export const CausalChainExplorer: React.FC = () => {
 
             <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-2">
               <span className="font-semibold text-slate-800 text-xs block">
-                Paramètres du modèle sur les rendements et les intrants (Zhao et al. 2017) :
+                Paramètres du modèle sur les rendements et les intrants (Zhao et les autres auteurs 2017) :
               </span>
               <p className="text-slate-700 text-xs">
                 CLIMATOPEDY utilise les paramètres ci-dessous dans ses scénarios. Ce sont des hypothèses de simulation, pas des prévisions de rendements validées :
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px] pt-1">
                 <div className="bg-rose-50 p-2.5 rounded border border-rose-200 text-rose-900">
-                  <span className="font-bold text-rose-800 block mb-0.5">Coefficients moyens mondiaux (Zhao et al. 2017) :</span>
+                  <span className="font-bold text-rose-800 block mb-0.5">Coefficients moyens mondiaux (Zhao et les autres auteurs 2017) :</span>
                   Sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, l’étude estime une baisse moyenne mondiale par degré de réchauffement de 7,4% pour le maïs, 6,0% pour le blé, 3,2% pour le riz et 3,1% pour le soja. CLIMATOPEDY applique ces moyennes comme paramètres aux pays; ce ne sont pas des coefficients mesurés propres à chaque pays.
                 </div>
                 <div className="bg-amber-50 p-2.5 rounded border border-amber-200 text-amber-900">

@@ -146,4 +146,4 @@ npm run build
 npm run verify
 ```
 
-Les tests utilisent le runner Node et `tsx`. `npm run lint` exécute le contrôle TypeScript (`tsc --noEmit`). `npm run build` lance d’abord les audits des trajectoires climat et des données pays, puis assemble l’application Vite. `npm run verify` est le point d’entrée complet : tests, contrôle TypeScript et build. GitHub Actions exécute ce point d’entrée sur les pull requests et les pushs vers `main`.
+Pour relire le vocabulaire destiné au public, lancer en plus `npm run audit:editorial` selon le [guide éditorial](editorial/README.md). Cette commande reste locale et n’est pas incluse dans `verify` ou `build`. Les tests utilisent le runner Node et `tsx`. `npm run lint` exécute le contrôle TypeScript (`tsc --noEmit`). `npm run build` lance d’abord les audits des trajectoires climat et des données pays, puis assemble l’application Vite. `npm run verify` est le point d’entrée complet : tests, contrôle TypeScript et build. GitHub Actions exécute ce point d’entrée sur les pull requests et les pushs vers `main`.

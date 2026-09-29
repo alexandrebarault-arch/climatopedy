@@ -109,7 +109,7 @@ export const InteractiveFaqSection: React.FC = () => {
       question: "Qu'est-ce que le procédé Haber-Bosch ?",
       shortSummary: "La synthèse industrielle d'ammoniac à partir d'azote et d'hydrogène, dont une grande partie sert à produire des engrais azotés.",
       tags: ['Haber-Bosch', 'engrais', 'azote', 'gaz naturel', 'agriculture', 'famine', 'blé', 'riz'],
-      scientificRef: 'Vaclav Smil (2001) · Enriching the Earth (MIT Press) · Erisman et al. (Nature Geoscience, 2008)',
+      scientificRef: 'Vaclav Smil, chercheur spécialiste de l’énergie (2001) · Enriching the Earth (MIT Press) · Jan Willem Erisman, chercheur spécialiste de l’azote, et les autres auteurs (Nature Geoscience, 2008)',
       fullAnswer: (
         <div className="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
           <p>
@@ -125,13 +125,13 @@ export const InteractiveFaqSection: React.FC = () => {
             <div className="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200">
               <span className="font-bold text-emerald-950 block">Estimations de la dépendance alimentaire :</span>
               <span className="text-slate-700">
-                Smil estimait qu'environ 40% de la population mondiale, autour de l'an 2000, dépendait de l'azote de synthèse pour l'alimentation. Erisman et al. ont estimé qu'environ 48% de la population était nourrie par des cultures utilisant cet azote en 2008. Ces estimations portent sur la production alimentaire à l'échelle de la population; elles ne mesurent pas la fraction des atomes d'azote du corps d'un individu.
+                Vaclav Smil, chercheur spécialiste de l'énergie et de l'histoire des techniques, estimait qu'autour de l'an 2000 les engrais azotés fabriqués industriellement contribuaient à nourrir environ 40% de la population mondiale. Jan Willem Erisman, chercheur spécialiste de l'azote, et ses coauteurs estimaient qu'en 2008 environ 48% de la population était nourrie grâce à des cultures ayant reçu ces engrais. Ces chiffres estiment la part de la population nourrie grâce à ces cultures; ils ne mesurent ni les atomes d'azote présents dans le corps de chaque personne ni le nombre de personnes qui ne seraient pas nées sans ces engrais.
               </span>
             </div>
             <div className="p-2.5 rounded-lg bg-rose-50 border border-rose-200">
-              <span className="font-bold text-rose-900 block">L'effet ciseau de la déplétion fossile :</span>
+              <span className="font-bold text-rose-900 block">Quand le gaz naturel devient moins disponible :</span>
               <span className="text-slate-700">
-                Le gaz naturel est une matière première et une source d'énergie importante pour la production conventionnelle d'ammoniac. L'étude citée ne permet pas de déduire une baisse mondiale uniforme des rendements ni une famine à partir d'une réduction de l'approvisionnement en gaz.
+                La fabrication classique de l'ammoniac utilise le gaz naturel comme matière première et comme source d'énergie. L'étude citée ne calcule pas l'effet d'une baisse de l'approvisionnement en gaz sur les récoltes à l'échelle mondiale; elle ne permet donc pas d'en déduire une famine.
               </span>
             </div>
           </div>
@@ -141,19 +141,19 @@ export const InteractiveFaqSection: React.FC = () => {
     {
       id: 'faq-fair',
       category: 'climate',
-      categoryLabel: 'Climat & Modèle FaIR',
+      categoryLabel: 'Climat & modèle réduit FaIR',
       categoryIcon: <Wind className="w-4 h-4 text-sky-600" />,
-      question: "Le modèle FaIR : comment calcule-t-il le climat mondial sans supercalculateur géant ?",
+      question: "Le modèle climatique réduit FaIR : comment calcule-t-il le climat mondial sans supercalculateur géant ?",
       shortSummary: "Un modèle climatique réduit qui relie émissions, concentrations et température.",
       tags: ['FaIR', 'GIEC', 'AR6', 'CO2', 'température', 'effet de serre', 'Smith'],
-      scientificRef: 'Smith et al. (Geosci. Model Dev., 2018) · GIEC AR6 WG1 Chapitre 7',
+      scientificRef: 'Smith et les autres auteurs (Geosci. Model Dev., 2018) · GIEC AR6 WG1 Chapitre 7',
       fullAnswer: (
         <div className="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
           <p>
             <strong>FaIR</strong> signifie <em>Finite Amplitude Impulse Response</em> (Modèle de réponse impulsionnelle à amplitude finie).
           </p>
           <p>
-            Les modèles de circulation générale couplée atmosphère-océan (comme ceux du CNRM ou de l'IPSL) nécessitent des semaines de calculs sur des supercalculateurs géants pour simuler un siècle de climat. FaIR a été développé par une équipe internationale menée par le Dr Chris Smith (Oxford/Leeds) pour résoudre ce problème :
+            Les modèles de circulation générale couplée atmosphère-océan (comme ceux du CNRM ou de l'IPSL) nécessitent des semaines de calculs sur des supercalculateurs géants pour simuler un siècle de climat. FaIR, modèle climatique réduit, a été développé par une équipe internationale menée par le Dr Chris Smith (Oxford/Leeds) pour calculer ces réponses plus rapidement :
           </p>
           <ul className="space-y-1.5 list-disc pl-5 text-slate-700">
             <li>
@@ -180,7 +180,7 @@ export const InteractiveFaqSection: React.FC = () => {
       question: "Qu'est-ce que la température au thermomètre mouillé (Tw) ?",
       shortSummary: "Une mesure météorologique qui combine température de l'air et humidité.",
       tags: ['Stull Tw', 'thermomètre mouillé', 'chaleur humide', 'canicule', 'hyperthermie', 'seuil létal', 'Raymond'],
-      scientificRef: 'Roland Stull (J. Appl. Meteor. Climatol., 2011) · Raymond et al. (Science Advances, 2020) · Sherwood & Huber (PNAS, 2010)',
+      scientificRef: 'Roland Stull (J. Appl. Meteor. Climatol., 2011) · Raymond et les autres auteurs (Science Advances, 2020) · Sherwood & Huber (PNAS, 2010)',
       fullAnswer: (
         <div className="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
           <p>
@@ -192,7 +192,7 @@ export const InteractiveFaqSection: React.FC = () => {
           <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg text-rose-900 space-y-2">
             <span className="font-bold text-rose-950 block">Limite théorique discutée par Sherwood et Huber (2010) :</span>
             <p className="text-xs">
-              Les auteurs discutent une limite théorique autour de 35°C Tw pour une exposition prolongée. Ce n'est pas un seuil universel de mortalité : la réponse dépend notamment de l'activité, de l'acclimatation, de l'âge et des conditions d'exposition. Raymond et al. étudient des épisodes météorologiques extrêmes observés; ils ne valident pas un seuil mortel à 31°C.
+              Les auteurs discutent une limite théorique autour de 35°C Tw pour une exposition prolongée. Ce n'est pas un seuil universel de mortalité : la réponse dépend notamment de l'activité, de l'acclimatation, de l'âge et des conditions d'exposition. Raymond et les autres auteurs étudient des épisodes météorologiques extrêmes observés; ils ne valident pas un seuil mortel à 31°C.
             </p>
           </div>
           <p>
@@ -288,7 +288,7 @@ export const InteractiveFaqSection: React.FC = () => {
       question: "Pourquoi le simulateur utilise-t-il l'hypothèse de rigidité comportementale (SSP5-8.5) ?",
       shortSummary: "Comprendre pourquoi modéliser la poursuite du modèle sans transition institutionnelle est crucial.",
       tags: ['SSP5-8.5', 'scénarios', 'rigidité', 'modélisation', 'bifurcation'],
-      scientificRef: 'O\'Neill et al. (Global Environ. Change, 2017) · Riahi et al. (2017)',
+      scientificRef: 'O\'Neill et les autres auteurs (Global Environ. Change, 2017) · Riahi et les autres auteurs (2017)',
       fullAnswer: (
         <div className="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
           <p>
@@ -316,7 +316,7 @@ export const InteractiveFaqSection: React.FC = () => {
       question: "L'agriculture biologique ou régénérative peut-elle remplacer Haber-Bosch rapidement ?",
       shortSummary: "Le défi du temps agronomique de transition, de la fixation biologique de l'azote et de la masse humaine.",
       tags: ['bio', 'agroécologie', 'azote', 'légumineuses', 'transition', 'rendement'],
-      scientificRef: 'Ponisio et al. (Proc. R. Soc. B, 2015) · Billen, Garnier et al. (One Earth, 2021)',
+      scientificRef: 'Ponisio et les autres auteurs (Proc. R. Soc. B, 2015) · Billen, Garnier et les autres auteurs (One Earth, 2021)',
       fullAnswer: (
         <div className="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
           <p>
@@ -427,7 +427,7 @@ export const InteractiveFaqSection: React.FC = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Rechercher un concept : EROI, Haber-Bosch, FaIR, Stull Tw, 31°C, canicule, engrais..."
+            placeholder="Rechercher un concept : rendement énergétique, procédé Haber-Bosch, modèle climatique réduit FaIR, thermomètre mouillé..."
             className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 focus:bg-white transition-all shadow-2xs"
           />
           {searchQuery && (
@@ -483,7 +483,7 @@ export const InteractiveFaqSection: React.FC = () => {
             }`}
           >
             <Wind className={`w-3 h-3 ${selectedCategory === 'climate' ? 'text-white' : 'text-sky-600'}`} />
-            <span>Climat &amp; FaIR</span>
+            <span>Climat &amp; modèle climatique réduit FaIR</span>
           </button>
           <button
             onClick={() => setSelectedCategory('survival')}
@@ -508,7 +508,7 @@ export const InteractiveFaqSection: React.FC = () => {
               Aucune question trouvée pour « {searchQuery} »
             </p>
             <p className="text-xs text-slate-500">
-              Essayez avec d'autres mots-clés comme "EROI", "Haber", "Tw", "FaIR" ou sélectionnez "Tous".
+              Essayez d'autres mots-clés : rendement énergétique, procédé Haber-Bosch, thermomètre mouillé ou modèle climatique réduit FaIR.
             </p>
             <button
               onClick={() => {

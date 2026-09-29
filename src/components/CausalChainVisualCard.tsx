@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, Camera, Radio, Maximize2, X, Info } from 'lucide-react';
+import { SocietalInertiaSchematic } from './SocietalInertiaSchematic';
 
 interface CausalChainVisualCardProps {
   stepIndex: number;
@@ -40,9 +41,9 @@ const STEP_DATA: Record<number, StepMeta> = {
     sourceCredit: 'Installation chimique de synthèse industrielle d\'ammoniac'
   },
   3: {
-    title: 'La Mégamachine Thermique : Flotte Commerciale Mondiale',
-    subtitle: 'Porte-conteneurs géants propulsés au fioul lourd (Heavy Fuel Oil)',
-    metric: '105 000 navires marchands transportent 90% des flux physiques de la planète',
+    title: 'Infrastructures durables et consommation d’énergie',
+    subtitle: 'Les équipements, les réseaux et les usages ne changent pas du jour au lendemain.',
+    metric: 'Une longue durée de vie peut ralentir le changement, sans le rendre impossible.',
     photoUrl: '/images/visuals/cargo_ship.jpg',
     photoCaption: 'Porte-conteneurs océanique transcontinental acheminant des milliers de conteneurs de marchandises.',
     sourceCredit: 'Marine marchande mondiale et logistique intermodale'
@@ -119,6 +120,9 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
   // ÉTAPE 1 : FALAISE DE L'EROI
   const renderEroiSchematic = () => (
     <div className="h-full w-full p-5 grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 items-center">
+      <p className="col-span-2 sm:col-span-4 text-[11px] text-slate-700 leading-snug">
+        Le rapport EROI compare l'énergie obtenue à celle dépensée pour l'extraire. À 12:1, 1 unité sur 12 sert au forage; les barres montrent cette part consommée et l'énergie restante à cette étape.
+      </p>
       <div className="p-3.5 rounded-lg bg-white border border-emerald-300 shadow-2xs space-y-2">
         <div className="flex justify-between items-center text-xs font-bold text-emerald-700">
           <span>1901 · Spindletop, Texas</span>
@@ -172,60 +176,35 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
   // ÉTAPE 2 : HABER-BOSCH
   const renderHaberBoschSchematic = () => (
     <div className="h-full w-full p-5 bg-slate-50 flex flex-col justify-center">
+      <p className="text-[11px] text-slate-700 leading-snug mb-3">
+        Le gaz naturel sert à fabriquer l'hydrogène; l'air fournit l'azote. Réunis dans une usine, ces deux gaz permettent de produire l'ammoniac, ensuite transformé en engrais.
+      </p>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="p-3 rounded-lg bg-white border border-sky-200 shadow-2xs">
-          <span className="text-[10px] font-mono text-sky-700 font-bold block">1. GAZ NATUREL</span>
+          <span className="text-[10px] font-mono text-sky-700 font-bold block">1. HYDROGÈNE À PARTIR DU GAZ</span>
           <span className="text-xs font-bold text-slate-800 mt-1 block">Méthane CH₄</span>
-          <span className="text-[11px] text-slate-600 block mt-1">Four vaporeformeur à 850°C avec vapeur.</span>
+          <span className="text-[11px] text-slate-600 block mt-1">Le gaz naturel et la vapeur servent à obtenir de l’hydrogène.</span>
         </div>
         <div className="p-3 rounded-lg bg-white border border-indigo-200 shadow-2xs">
-          <span className="text-[10px] font-mono text-indigo-700 font-bold block">2. CAPTURE AZOTE</span>
+          <span className="text-[10px] font-mono text-indigo-700 font-bold block">2. AZOTE DE L’AIR</span>
           <span className="text-xs font-bold text-slate-800 mt-1 block">Air N₂ (-196°C)</span>
-          <span className="text-[11px] text-slate-600 block mt-1">Distillation cryogénique de l'atmosphère.</span>
+          <span className="text-[11px] text-slate-600 block mt-1">L’azote, principal gaz de l’air, est séparé pour servir à la réaction.</span>
         </div>
         <div className="p-3 rounded-lg bg-amber-50/70 border border-amber-300 shadow-2xs">
-          <span className="text-[10px] font-mono text-amber-800 font-bold block">3. HAUTE PRESSION</span>
+          <span className="text-[10px] font-mono text-amber-800 font-bold block">3. RÉACTION HABER-BOSCH</span>
           <span className="text-xs font-bold text-amber-900 mt-1 block">Haber-Bosch (200 bars)</span>
-          <span className="text-[11px] text-slate-700 block mt-1">450°C sur lit catalytique de fer magnétite.</span>
+          <span className="text-[11px] text-slate-700 block mt-1">La chaleur et la pression font réagir l’hydrogène et l’azote pour former l’ammoniac.</span>
         </div>
         <div className="p-3 rounded-lg bg-emerald-50/70 border border-emerald-300 shadow-2xs">
-          <span className="text-[10px] font-mono text-emerald-800 font-bold block">4. ALIMENTATION</span>
+          <span className="text-[10px] font-mono text-emerald-800 font-bold block">4. ENGRAIS ET CULTURES</span>
           <span className="text-xs font-bold text-emerald-900 mt-1 block">≈40% de la population</span>
-          <span className="text-[11px] text-slate-700 block mt-1">Smil (2001) : env. 40% dépendaient de l'azote de synthèse (estimation pour 2000).</span>
+          <span className="text-[11px] text-slate-700 block mt-1">Vaclav Smil, chercheur spécialiste de l’énergie et de l’histoire des techniques, estimait qu’autour de 2000 ces engrais contribuaient à nourrir environ 40% de la population. C’est une estimation de production alimentaire, pas de la quantité d’azote dans le corps des personnes.</span>
         </div>
       </div>
     </div>
   );
 
   // ÉTAPE 3 : MÉGAMACHINE
-  const renderMegamachineSchematic = () => (
-    <div className="h-full w-full p-5 bg-slate-50 grid grid-cols-1 sm:grid-cols-3 gap-3.5 items-center">
-      <div className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5">
-        <div className="flex justify-between text-xs font-bold text-slate-800">
-          <span>Parc Automobile</span>
-          <span className="font-mono text-sky-700 font-bold">1,4 Milliard</span>
-        </div>
-        <p className="text-[11px] text-slate-600">Voitures thermiques et électriques en circulation. Hypothèse de durée d’usage avant sortie du parc : 18 à 22 ans; elle varie selon le pays et l’usage.</p>
-      </div>
-
-      <div className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5">
-        <div className="flex justify-between text-xs font-bold text-slate-800">
-          <span>Marine Marchande</span>
-          <span className="font-mono text-amber-800 font-bold">105 000 navires</span>
-        </div>
-        <p className="text-[11px] text-slate-600">Transportent 90% des biens matériels mondiaux avec du fioul lourd non électrifiable.</p>
-      </div>
-
-      <div className="p-3.5 rounded-lg bg-white border border-slate-200 shadow-2xs space-y-1.5">
-        <div className="flex justify-between text-xs font-bold text-slate-800">
-          <span>Centrales Thermiques</span>
-          <span className="font-mono text-rose-700 font-bold">26 000 unités</span>
-        </div>
-        <p className="text-[11px] text-slate-600">Actifs engagés pour 35 à 45 ans pour rentabiliser les investissements bancaires.</p>
-      </div>
-    </div>
-  );
-
   const renderSchematic = () => {
     switch (stepIndex) {
       case 0:
@@ -235,7 +214,7 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
       case 2:
         return renderHaberBoschSchematic();
       case 3:
-        return renderMegamachineSchematic();
+        return <SocietalInertiaSchematic />;
       default:
         return renderDrillingSchematic();
     }
@@ -262,7 +241,8 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
                   ? 'bg-white text-slate-800 font-bold shadow-2xs'
                   : 'text-slate-600 hover:text-slate-800'
               }`}
-              title="Voir la photographie documentaire haute définition"
+              title="Voir la photographie documentaire"
+              aria-pressed={viewMode === 'photo'}
             >
               <Camera className="w-3.5 h-3.5 text-sky-600" />
               <span>Photo Réelle</span>
@@ -274,10 +254,11 @@ export const CausalChainVisualCard: React.FC<CausalChainVisualCardProps> = ({ st
                   ? 'bg-white text-slate-800 font-bold shadow-2xs'
                   : 'text-slate-600 hover:text-slate-800'
               }`}
-              title="Voir la coupe technique ou géotechnique"
+              title="Voir le schéma explicatif de ce sujet"
+              aria-pressed={viewMode === 'schematic'}
             >
               <Layers className="w-3.5 h-3.5 text-sky-600" />
-              <span>Schéma expliqué</span>
+              <span>Schéma explicatif</span>
             </button>
           </div>
         </div>

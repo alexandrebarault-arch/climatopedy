@@ -28,6 +28,24 @@ interface TippingPointsChartProps {
   onSelectElement: (id: string) => void;
 }
 
+const wrapTippingPointName = (name: string, maxLineLength = 24): string[] => {
+  const lines: string[] = [];
+  let line = '';
+
+  for (const word of name.split(/\s+/)) {
+    const candidate = line ? `${line} ${word}` : word;
+    if (line && candidate.length > maxLineLength) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = candidate;
+    }
+  }
+
+  if (line) lines.push(line);
+  return lines;
+};
+
 export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
   elements,
   currentTemp,
@@ -95,24 +113,24 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-xs relative overflow-hidden flex flex-col gap-4">
       {/* En-tête du graphique */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 border-b border-slate-100">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-600">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-3 border-b border-slate-100">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start gap-2">
+            <span className="p-1.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-600 shrink-0">
               <Thermometer className="w-4 h-4" />
             </span>
-            <h3 className="text-base sm:text-lg font-bold text-slate-800 tracking-tight">
-              Graphique Synthétique : Les Seuils Thermiques Critiques
+            <h3 className="min-w-0 text-base sm:text-lg font-bold text-slate-800 tracking-tight whitespace-normal break-words">
+              Points de bascule du climat : températures et risques
             </h3>
           </div>
           <p className="text-xs text-slate-600 mt-1">
-            Représentation standardisée du consensus scientifique (Armstrong McKay et al., <em>Science</em> 2022). 
+            Représentation standardisée du consensus scientifique (Armstrong McKay et les autres auteurs, <em>Science</em> 2022).
             La ligne verticale rouge indique le niveau de réchauffement testé.
           </p>
         </div>
 
         {/* Contrôles : mode d'affichage et rappel de la température */}
-        <div className="flex items-center gap-2.5 flex-wrap">
+        <div className="flex items-center gap-2.5 flex-wrap lg:shrink-0">
           <div className="bg-slate-100 border border-slate-200 p-0.5 rounded-lg flex items-center text-xs">
             <button
               onClick={() => setViewMode('embers')}
@@ -377,6 +395,7 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                 const isTipped = currentTemp >= elem.thresholdEst;
 
                 const badge = getTimescaleBadge(elem.id);
+                const nameLines = wrapTippingPointName(elem.name);
 
                 return (
                   <g
@@ -413,13 +432,20 @@ export const TippingPointsChart: React.FC<TippingPointsChartProps> = ({
                       />
                       <text
                         x="18"
-                        y="3.5"
                         fill={isSelected ? '#0369a1' : '#1e293b'}
-                        fontSize="10"
+                        fontSize="9"
                         fontWeight={isSelected ? 'bold' : '500'}
                         fontFamily="sans-serif"
                       >
-                        {elem.name.length > 25 ? elem.name.substring(0, 24) + '...' : elem.name}
+                        {nameLines.map((line, lineIndex) => (
+                          <tspan
+                            key={`${elem.id}-name-${lineIndex}`}
+                            x="18"
+                            y={((lineIndex - (nameLines.length - 1) / 2) * 10) + 3.5}
+                          >
+                            {line}
+                          </tspan>
+                        ))}
                       </text>
 
                       {/* Badge de vitesse de basculement */}

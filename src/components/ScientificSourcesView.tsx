@@ -66,7 +66,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Climat & Cycle du Carbone',
     title: 'Modèle FaIR v1.3 : Modèle Climatique Réduit à Réponse Impulsionnelle',
     englishTitle: 'FAIR v1.3: a simple emissions-based impulse response and carbon cycle model',
-    authors: 'C. J. Smith, P. M. Forster, M. Allen, et al.',
+    authors: 'C. J. Smith, P. M. Forster, M. Allen, et les autres auteurs',
     year: 2018,
     publisher: 'Geoscientific Model Development (Copernicus Publications)',
     peerReviewed: true,
@@ -76,9 +76,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     secondaryUrl: 'https://github.com/OMS-NetZero/FAIR',
     secondaryUrlLabel: 'Code source ouvert (GitHub)',
     doi: '10.5194/gmd-11-2273-2018',
-    gaiaRole: 'Le moteur reprend la structure de réservoirs de carbone de FaIR, mais ne reproduit pas son calcul complet de alpha(t). Les résultats climatiques de CLIMATOPEDY ne sont donc pas des sorties du modèle FaIR.',
+    gaiaRole: 'FaIR est un modèle climatique réduit. Le moteur reprend sa structure de réservoirs de carbone, mais ne reproduit pas son calcul complet de alpha(t). Les résultats climatiques de CLIMATOPEDY ne sont donc pas des sorties du modèle FaIR.',
     keyDataOrQuote: 'FaIR est un modèle climatique réduit. L’article présente son architecture et évalue ses performances sur des scénarios d’émissions ; il ne conclut pas à une fidélité universelle supérieure à 99%.',
-    reproducibilityNotes: 'Les coefficients et la formule réellement employés par CLIMATOPEDY sont définis dans physicsModel.ts; cette fiche décrit la publication FaIR, pas une exécution directe de son code.'
+    reproducibilityNotes: 'Les coefficients et la formule réellement employés par CLIMATOPEDY sont définis dans physicsModel.ts; cette fiche décrit la publication sur le modèle climatique réduit FaIR, pas une exécution directe de son code.'
   },
   {
     id: 'ipcc-ar6-wg1',
@@ -291,7 +291,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Points de Bascule (Tipping Points)',
     title: 'Le Dépassement de 1.5°C Pourrait Déclencher de Multiples Points de Bascule Planétaires',
     englishTitle: 'Exceeding 1.5°C global warming could trigger multiple climate tipping points',
-    authors: 'David I. Armstrong McKay, Arie Staal, Timothy M. Lenton, et al.',
+    authors: 'David I. Armstrong McKay, Arie Staal, Timothy M. Lenton, et les autres auteurs',
     year: 2022,
     publisher: 'Science',
     peerReviewed: true,
@@ -330,7 +330,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Points de Bascule (Tipping Points)',
     title: 'Points de Bascule Climatiques : Trop Dangereux pour Spéculer',
     englishTitle: 'Climate tipping points — too risky to bet against',
-    authors: 'Timothy M. Lenton, Johan Rockström, Owen Gaffney, et al.',
+    authors: 'Timothy M. Lenton, Johan Rockström, Owen Gaffney, et les autres auteurs',
     year: 2019,
     publisher: 'Nature',
     peerReviewed: true,
@@ -348,7 +348,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Points de Bascule (Tipping Points)',
     title: 'Empreinte Observée d\'un Affaiblissement de la Circulation Méridienne Atlantique (AMOC)',
     englishTitle: 'Observed fingerprint of a weakening Atlantic Ocean overturning circulation',
-    authors: 'L. Caesar, S. Rahmstorf, A. Robinson, et al.',
+    authors: 'L. Caesar, S. Rahmstorf, A. Robinson, et les autres auteurs',
     year: 2018,
     publisher: 'Nature',
     peerReviewed: true,
@@ -357,7 +357,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrlLabel: 'Article scientifique (Nature)',
     doi: '10.1038/s41586-018-0006-5',
     gaiaRole: 'Calibrage de l\'élément de bascule AMOC et de la "bulle froide" en mer du Labrador dans la modélisation océanique.',
-    keyDataOrQuote: 'Caesar et al. (2018) infèrent un affaiblissement de l’AMOC à partir d’une empreinte de température de surface reconstruite. Ce résultat n’est pas une mesure instrumentale directe et continue du transport.',
+    keyDataOrQuote: 'Caesar et les autres auteurs (2018) infèrent un affaiblissement de l’AMOC à partir d’une empreinte de température de surface reconstruite. Ce résultat n’est pas une mesure instrumentale directe et continue du transport.',
     reproducibilityNotes: 'Données corrélées aux observations des bouées sub-surfaciques RAPID Array (26°N).'
   },
   {
@@ -384,7 +384,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Points de Bascule (Tipping Points)',
     title: 'Bilan de Masse de l\'Inlandsis du Groenland par Satellites Altimétriques',
     englishTitle: 'Mass balance of the Greenland Ice Sheet from 1992 to 2018',
-    authors: 'The IMBIE Team (Andrew Shepherd, Erik Ivins, et al.)',
+    authors: 'The IMBIE Team (Andrew Shepherd, Erik Ivins, et les autres auteurs)',
     year: 2020,
     publisher: 'Nature',
     peerReviewed: true,
@@ -424,7 +424,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Énergie, EROI & Métabolisme Industriel',
     title: 'Estimation de l\'EROI au Stade Final de Consommation pour les Énergies Fossiles',
     englishTitle: 'Estimation of global final-stage energy-return-on-investment for fossil fuels',
-    authors: 'Paul E. Brockway, Anne Owen, Lina I. Brand-Correa, et al.',
+    authors: 'Paul E. Brockway, Anne Owen, Lina I. Brand-Correa, et les autres auteurs',
     year: 2019,
     publisher: 'Nature Energy',
     peerReviewed: true,
@@ -460,7 +460,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Énergie, EROI & Métabolisme Industriel',
     title: 'Énergie et Civilisation : Une Histoire Biophysique de l\'Humanité',
     englishTitle: 'Energy and Civilization: A History',
-    authors: 'Vaclav Smil (Distinguished Professor Emeritus, University of Manitoba)',
+    authors: 'Vaclav Smil, chercheur spécialiste de l’énergie et de l’histoire des techniques',
     year: 2017,
     publisher: 'The MIT Press',
     peerReviewed: true,
@@ -481,7 +481,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Agriculture & Sécurité Alimentaire',
     title: 'L\'Élévation de Température Réduit les Rendements des Principales Cultures Mondiales',
     englishTitle: 'Temperature increase reduces global yields of major crops in four independent estimates',
-    authors: 'Chuang Zhao, Bing Liu, Shilong Piao, et al.',
+    authors: 'Chuang Zhao, Bing Liu, Shilong Piao, et les autres auteurs',
     year: 2017,
     publisher: 'Proceedings of the National Academy of Sciences (PNAS)',
     peerReviewed: true,
@@ -489,7 +489,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrl: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5584412/',
     primaryUrlLabel: 'Texte intégral en accès libre (PubMed Central)',
     doi: '10.1073/pnas.1701762114',
-    gaiaRole: 'Zhao et al. synthétisent des estimations moyennes mondiales de sensibilité des rendements; ces valeurs ne constituent pas des coefficients universels pour chaque pays ou année.',
+    gaiaRole: 'Zhao et les autres auteurs synthétisent des estimations moyennes mondiales de sensibilité des rendements; ces valeurs ne constituent pas des coefficients universels pour chaque pays ou année.',
     keyDataOrQuote: 'Sans fertilisation au CO₂, adaptation efficace ni amélioration génétique, l’étude estime qu’un degré supplémentaire de température moyenne mondiale réduirait en moyenne les rendements mondiaux du maïs de 7,4%, du blé de 6,0%, du riz de 3,2% et du soja de 3,1%. Les effets varient selon les régions.',
     reproducibilityNotes: 'CLIMATOPEDY applique ces moyennes mondiales comme paramètres avec un panier de cultures attribué à chaque pays. Cette extrapolation interne ne constitue pas une estimation locale validée; l’étude rapporte une forte hétérogénéité entre régions et cultures.'
   },
@@ -499,7 +499,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Agriculture & Sécurité Alimentaire',
     title: 'Comment un Siècle de Synthèse d\'Ammoniac a Révolutionné la Production Alimentaire',
     englishTitle: 'How a century of ammonia synthesis changed the world',
-    authors: 'Jan Willem Erisman, Mark A. Sutton, James Galloway, et al.',
+    authors: 'Jan Willem Erisman, chercheur spécialiste de l’azote, Mark A. Sutton, James Galloway et d’autres coauteurs',
     year: 2008,
     publisher: 'Nature Geoscience',
     peerReviewed: true,
@@ -507,9 +507,9 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     primaryUrl: 'https://www.nature.com/articles/ngeo325',
     primaryUrlLabel: 'Publication scientifique (Nature)',
     doi: '10.1038/ngeo325',
-    gaiaRole: 'Référence de contexte sur le rôle de l’azote réactif dans la production alimentaire. Cette estimation ne calibre pas une relation directe entre gaz fossile et calories dans le moteur.',
-    keyDataOrQuote: 'L\'analyse d\'Erisman et al. estime qu\'en 2008, environ 48% de la population mondiale était nourrie grâce à la production agricole utilisant de l\'azote réactif issu de la synthèse industrielle. C\'est une estimation agrégée de la contribution à l\'alimentation, pas un contrefactuel de naissance ni une mesure des atomes d\'azote individuels.',
-    reproducibilityNotes: 'L’étude estime la part de la population nourrie grâce à l’azote synthétique; elle ne mesure pas l’effet d’une rupture immédiate ni ne fournit une fonction de mortalité alimentaire.'
+    gaiaRole: 'Cette étude décrit comment les engrais azotés fabriqués industriellement ont contribué à la production alimentaire mondiale. Le modèle du site ne déduit pas directement de cette étude le lien entre le gaz naturel et les récoltes.',
+    keyDataOrQuote: 'En 2008, Jan Willem Erisman, chercheur spécialiste de l’azote, et ses coauteurs estimaient qu’environ 48% de la population mondiale était nourrie grâce à des cultures ayant reçu de l’azote réactif, c’est-à-dire une forme d’azote que les plantes peuvent utiliser, fabriqué industriellement pour les engrais. Ce chiffre estime la part de la population nourrie grâce à ces cultures. Il ne mesure ni les atomes d’azote présents dans le corps de chaque personne ni le nombre de personnes qui ne seraient pas nées sans ces engrais.',
+    reproducibilityNotes: 'L’étude estime la part de la population nourrie grâce à des cultures ayant utilisé de l’azote fabriqué industriellement; elle ne mesure pas ce qui se passerait en cas de rupture soudaine d’approvisionnement ni le nombre de personnes qui en seraient privées de nourriture.'
   },
   {
     id: 'fao-food-balances-2023',
@@ -555,7 +555,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Démographie & Limites Planétaires',
     title: 'La Terre au-delà de Six des Neuf Limites Planétaires',
     englishTitle: 'Earth beyond six of nine planetary boundaries',
-    authors: 'Katherine Richardson, Will Steffen, Wolfgang Lucht, et al.',
+    authors: 'Katherine Richardson, Will Steffen, Wolfgang Lucht, et les autres auteurs',
     year: 2023,
     publisher: 'Science Advances',
     peerReviewed: true,
@@ -681,7 +681,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Observatoires & Données Satellites en Direct',
     title: 'Budget Carbone Mondial Annuel (Global Carbon Budget)',
     englishTitle: 'Global Carbon Budget',
-    authors: 'P. Friedlingstein, M. W. Jones, M. O\'Sullivan, et al. (Global Carbon Project)',
+    authors: 'P. Friedlingstein, M. W. Jones, M. O\'Sullivan, et les autres auteurs (Global Carbon Project)',
     year: 2026,
     publisher: 'Earth System Science Data',
     peerReviewed: true,
@@ -774,7 +774,7 @@ export const SCIENTIFIC_SOURCES_LIST: ScientificSourceItem[] = [
     categoryLabel: 'Accès à l’eau, alimentation et risques hydriques',
     title: 'Projections mondiales de l’accès aux services d’eau et d’assainissement',
     englishTitle: 'Projections of global access to water and sanitation services under climate change',
-    authors: 'Vinca et al.',
+    authors: 'Vinca et les autres auteurs',
     year: 2026,
     publisher: 'npj Clean Water / IIASA SSP Extensions Explorer',
     peerReviewed: true,
@@ -1396,7 +1396,7 @@ export const ScientificSourcesView: React.FC<ScientificSourcesViewProps> = ({
             </span>
             <strong className="text-slate-800 block font-semibold">Auditer les Formules (ODE)</strong>
             <p className="text-slate-600 leading-snug">
-              Ouvrez l'onglet <strong>Spécifications</strong> pour copier l'intégralité du code mathématique (équations différentielles FaIR, formule de Stull, Vermeer &amp; Rahmstorf).
+              Ouvrez l'onglet <strong>Spécifications</strong> pour copier les équations du modèle climatique réduit FaIR, la formule de Stull et les équations de Vermeer et Rahmstorf sur la montée des océans.
             </p>
           </div>
 
