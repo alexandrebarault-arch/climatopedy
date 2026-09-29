@@ -26,4 +26,6 @@ test('project continuity handoff is versioned and names the required restart che
   assert.match(status, /PRODUCT_REFERENCE_SHA/);
   assert.match(status, /FINAL_HARNESS_SHA/);
   assert.match(status, /snapshot produit de référence/);
+  assert.match(status, /Fichiers générés par le build/);
+  assert.match(status, /Ne pas les supprimer/);
 });

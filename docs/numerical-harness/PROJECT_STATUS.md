@@ -50,6 +50,19 @@ Le hook `pre-commit` lance FAST avant le commit. Le hook `post-commit` relance F
 - La migration est caractérisée `ORDER_DEPENDENT`; elle n’est pas corrigée dans V0.
 - Les fixtures ne sont jamais régénérées automatiquement.
 
+## Fichiers générés par le build
+
+Le build (`npm.cmd run build`) régénère six artefacts d'audit suivis par Git :
+
+- `docs/data-quality/country-context-country-by-country.json` : données de contrôle utilisées par la qualité des données et certains tests ;
+- `reports/temperature-trajectory-by-country-1901-2200.csv` : trajectoires détaillées par pays ;
+- `reports/temperature-trajectory-audit-1901-2200.md` : synthèse de l'audit des trajectoires ;
+- `reports/temperature-quality-checklist-1901-2200.csv` : registre des contrôles qualité ;
+- `reports/temperature-quality-issues-1901-2200.csv` : anomalies et limites connues ;
+- `reports/temperature-quality-audit-1901-2200.md` : rapport global de qualité.
+
+Ces fichiers ne sont ni le site runtime ni les fixtures du harnais numérique V0. Leur présence dans `git status` après un build ne signifie donc pas que l'évolution du harnais les a modifiés. Ne pas les supprimer, réinitialiser ou commiter automatiquement ; les inclure seulement si la demande porte explicitement sur les audits ou les données générées.
+
 ## Problèmes connus hors périmètre V0
 
 - Des tests historiques du projet utilisent une ancienne signature d’habitabilité.
