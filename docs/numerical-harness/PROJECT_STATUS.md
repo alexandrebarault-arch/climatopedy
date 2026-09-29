@@ -42,6 +42,8 @@ npm.cmd run harness:full
 
 Le hook `pre-commit` lance FAST avant le commit. Le hook `post-commit` relance FAST et FULL après tout commit pertinent. Aucun workflow GitHub Actions n’est requis.
 
+La directive agent correspondante est versionnée dans `AGENTS.md` : le travail et les vérifications sont locaux ; GitHub reçoit uniquement les commits poussés et ne lance aucun workflow de validation.
+
 ## État validé
 
 - FAST couvre les vecteurs, invariants, données manquantes, proxies, horizons, agrégats et le contrat de site.
