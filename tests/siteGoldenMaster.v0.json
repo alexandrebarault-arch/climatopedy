@@ -1,0 +1,22 @@
+{
+  "version": "V0",
+  "referenceType": "CURRENT_PRODUCT_REFERENCE",
+  "pages": [
+    {"id": "map", "primaryView": "WorldMap", "requiredComponents": ["TimelineController", "ComparisonModePanel", "KpiCharts"]},
+    {"id": "comparative-dashboard", "primaryView": "ComparativeDashboardView", "requiredComponents": []},
+    {"id": "tipping-points", "primaryView": "TippingPointsView", "requiredComponents": []},
+    {"id": "causal", "primaryView": "CausalChainExplorer", "requiredComponents": []},
+    {"id": "spec", "primaryView": "SpecModal", "requiredComponents": []},
+    {"id": "sources", "primaryView": "ScientificSourcesView", "requiredComponents": []}
+  ],
+  "contentAnchors": [
+    {"file": "src/components/CountryInspector.tsx", "texts": ["Delta TXx CMIP6", "Delta Hurs saison chaude", "domaine de Stull"]},
+    {"file": "src/components/WorldMap.tsx", "texts": ["projection du scénario", "Tw non calculable", "normal local 1991–2020 est recalé"]},
+    {"file": "src/components/ScientificSourcesView.tsx", "texts": ["Sources", "Publications"]}
+  ],
+  "ownership": {
+    "map": ["src/App.tsx", "src/components/WorldMap.tsx", "src/components/CountryInspector.tsx", "src/components/TimelineController.tsx", "src/components/KpiCharts.tsx"],
+    "sources": ["src/App.tsx", "src/components/ScientificSourcesView.tsx"],
+    "navigation": ["src/data/siteSections.ts", "src/components/TopBar.tsx"]
+  }
+}

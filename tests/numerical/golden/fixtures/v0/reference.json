@@ -1,0 +1,43 @@
+{
+  "initial": {
+    "year": 2026,
+    "worldPopulation": 7597,
+    "currentEroi": 11.951907504100717,
+    "netEnergyRatio": 0.9163313471379444
+  },
+  "step": {
+    "year": 2027,
+    "worldPopulation": 7702.405313981261,
+    "atmosphericCo2Ppm": 428.6026711581924,
+    "currentEroi": 11.550118131932331,
+    "globalAverageCaloriesPerCapita": 2712.2574725743816,
+    "france": {
+      "id": "fra",
+      "cohorts": {
+        "p0": 11.86359280353443,
+        "p1": 41.02141907934903,
+        "p2": 15.587810726403557,
+        "total": 68.47282260928702
+      },
+      "dryBulbTemp": 11.801583584250437,
+      "annualMinTemp": 7.306925282035068,
+      "annualMaxTemp": 16.706145301470507,
+      "summerMaxTemp": 36.52855270270275,
+      "summerHumidity": 20.6270459470424,
+      "wetBulbTemp": 9.046717375189985,
+      "wetBulbPeak": 20.54804579550153,
+      "cropYieldFactor": 0.9319022904452436,
+      "calPerCapita": 3308.253131080615,
+      "calDeficitPct": 0,
+      "mortalityRates": {"base": 0.0096, "thermal": 0, "famine": 0, "sanitary": 0.000034705576606333624, "total": 0.009634705576606332},
+      "annualDeaths": {"base": 0.6527999999999999, "thermal": 0, "famine": 0, "sanitary": 0.0023599792092306865, "total": 0.6551599792092306},
+      "annualBirths": 1.1856366666666667,
+      "fertilityActual": 1.75,
+      "pushFactor": 0.0015635700774500817,
+      "netMigration": 0,
+      "borderClosure": 0.16599999999999998,
+      "floodedArablePct": 0.010423800516333879
+    }
+  },
+  "vector": {"currentEroi": 11.951907504100717, "netEnergyRatio": 0.9163313471379444}
+}

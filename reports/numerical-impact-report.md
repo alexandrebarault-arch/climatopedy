@@ -1,0 +1,24 @@
+# Numerical Impact Report
+
+- Golden master: V0
+- Reference type: CURRENT_PRODUCT_REFERENCE
+- Product reference SHA: 907fcb63fede8dc53df7e861bfd0b5745bcdc831
+- Golden cases tested: 300
+- Golden cases unchanged: 300
+- Golden cases changed: 0
+- Algorithms affected: none
+- Countries affected: none
+- Years affected: none
+- Scenarios affected: none
+- Median absolute delta: 0
+- Median relative delta: 0
+- P95 absolute delta: 0
+- P95 relative delta: 0
+- Largest positive deltas: none
+- Largest negative deltas: none
+- NaN count: 0
+- Infinity count: 0
+- Invariant failures: 0
+- Known limitation: migration is ORDER_DEPENDENT; reversing country iteration changes outputs. Current behavior is characterized and not corrected.
+- Unexpected failures: 0
+- Changed paths: none

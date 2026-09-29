@@ -3,22 +3,33 @@ import { test } from 'node:test';
 
 const modulePromise = import('../src/engine/habitabilityStatus.ts').catch(() => ({} as Record<string, unknown>));
 
+function inputs(wetBulbPeakC: number | null, caloriesKcalPerPersonDay: number, improvedWaterAccessPct: number | null = 100) {
+  return {
+    wetBulbPeakC,
+    annualMeanDailyMaxTempC: 25,
+    hotSeasonP99C: 30,
+    caloriesKcalPerPersonDay,
+    improvedWaterAccessPct,
+    nationalWaterStressCategory: 0
+  };
+}
+
 test('habitability status advances through heat and calorie constraint levels', async () => {
   const module = await modulePromise;
-  const getHabitabilityStatus = module.getHabitabilityStatus as ((wetBulbPeakC: number | null, caloriesKcalPerPersonDay: number) => {
+  const getHabitabilityStatus = module.getHabitabilityStatus as ((input: ReturnType<typeof inputs>) => {
     key: string; label: string; explanation: string; severity: string;
   } | null) | undefined;
   assert.equal(typeof getHabitabilityStatus, 'function');
 
-  const favorable = getHabitabilityStatus?.(25.99, 2100);
-  const moderateHeat = getHabitabilityStatus?.(26, 2100);
-  const highHeat = getHabitabilityStatus?.(27, 2100);
-  const majorHeat = getHabitabilityStatus?.(28, 2100);
-  const extremeHeat = getHabitabilityStatus?.(29, 2100);
-  const moderateFood = getHabitabilityStatus?.(25, 2099);
-  const highFood = getHabitabilityStatus?.(25, 1899);
-  const majorFood = getHabitabilityStatus?.(25, 1699);
-  const extremeFood = getHabitabilityStatus?.(25, 1499);
+  const favorable = getHabitabilityStatus?.(inputs(25.99, 2100));
+  const moderateHeat = getHabitabilityStatus?.(inputs(26, 2100));
+  const highHeat = getHabitabilityStatus?.(inputs(27, 2100));
+  const majorHeat = getHabitabilityStatus?.(inputs(28, 2100));
+  const extremeHeat = getHabitabilityStatus?.(inputs(29, 2100));
+  const moderateFood = getHabitabilityStatus?.(inputs(25, 2099));
+  const highFood = getHabitabilityStatus?.(inputs(25, 1899));
+  const majorFood = getHabitabilityStatus?.(inputs(25, 1699));
+  const extremeFood = getHabitabilityStatus?.(inputs(25, 1499));
 
   assert.equal(favorable?.key, 'favorable');
   assert.equal(moderateHeat?.key, 'constrained');
@@ -29,10 +40,10 @@ test('habitability status advances through heat and calorie constraint levels', 
   assert.equal(highFood?.key, 'high');
   assert.equal(majorFood?.key, 'major');
   assert.equal(extremeFood?.key, 'extreme');
-  assert.equal(getHabitabilityStatus?.(29, 1499)?.key, 'extreme', 'the strongest modeled constraint determines the map class');
+  assert.equal(getHabitabilityStatus?.(inputs(29, 1499))?.key, 'extreme', 'the strongest modeled constraint determines the map class');
   for (const status of [favorable, moderateHeat, highHeat, majorHeat, extremeHeat, moderateFood, highFood, majorFood, extremeFood]) {
     assert.ok(status?.label);
-    assert.match(status?.explanation ?? '', /modèle/i);
+    assert.match(status?.explanation ?? '', /modélis/i);
     assert.doesNotMatch(`${status?.label} ${status?.explanation}`, /inhabitable/i);
   }
 });
@@ -48,14 +59,18 @@ test('habitability classes map from pale yellow through progressively darker red
   assert.equal(getHabitabilityColor?.(null), '#94a3b8');
 });
 
-test('habitability status is unavailable for non-finite inputs', async () => {
+test('habitability status treats non-finite inputs as missing dimensions', async () => {
   const module = await modulePromise;
-  const getHabitabilityStatus = module.getHabitabilityStatus as ((wetBulbPeakC: number | null, caloriesKcalPerPersonDay: number) => unknown) | undefined;
+  const getHabitabilityStatus = module.getHabitabilityStatus as ((input: ReturnType<typeof inputs>) => unknown) | undefined;
   assert.equal(typeof getHabitabilityStatus, 'function');
-  assert.equal(getHabitabilityStatus?.(Number.NaN, 2100), null);
-  assert.equal(getHabitabilityStatus?.(null, 2100), null, 'unknown heat cannot be presented as favorable');
-  assert.equal((getHabitabilityStatus?.(null, 2000) as { key?: string })?.key, 'constrained', 'known food stress remains visible when Tw is unavailable');
-  assert.equal(getHabitabilityStatus?.(25, Number.POSITIVE_INFINITY), null);
+  const missingHeat = getHabitabilityStatus?.(inputs(Number.NaN, 2100)) as { key?: string; missingDimensions?: string[] } | null;
+  assert.equal(missingHeat?.key, 'favorable');
+  assert.ok(missingHeat?.missingDimensions?.includes('chaleur humide'));
+  assert.equal(getHabitabilityStatus?.(inputs(null, 2100, null)), null, 'unknown heat cannot be presented as favorable');
+  assert.equal((getHabitabilityStatus?.(inputs(null, 2000, null)) as { key?: string })?.key, 'constrained', 'known food stress remains visible when Tw is unavailable');
+  const missingFood = getHabitabilityStatus?.(inputs(25, Number.POSITIVE_INFINITY)) as { key?: string; missingDimensions?: string[] } | null;
+  assert.equal(missingFood?.key, 'favorable');
+  assert.ok(missingFood?.missingDimensions?.includes('disponibilité calorique'));
 });
 
 test('historical temperature records are hidden after the 2026 baseline', async () => {

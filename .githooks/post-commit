@@ -1,0 +1,20 @@
+#!/bin/sh
+
+changed=$(git diff-tree --no-commit-id --name-only -r HEAD)
+relevant=0
+for file in $changed; do
+  case "$file" in
+    src/*|tests/*|scripts/*|package.json|docs/numerical-harness/*|tests/siteGoldenMaster.v0.json)
+      relevant=1
+      break
+      ;;
+  esac
+done
+
+if [ "$relevant" -eq 0 ]; then
+  exit 0
+fi
+
+echo "Relevant commit detected: running local Numerical Harness FAST and FULL..."
+npm run harness:fast || echo "Warning: HARNESS FAST failed after commit."
+npm run harness:full || echo "Warning: HARNESS FULL failed after commit. Review the report."

@@ -222,7 +222,9 @@ test('map defaults to modeled habitability constraints while keeping Tmax and we
   assert.match(source, /setActiveMetric\('habitability'\)/);
   assert.match(source, /HABITABILITY_COLOR_BANDS/);
   assert.match(source, /setActiveMetric\('air_temperature'\)/);
-  assert.match(source, /getHabitabilityStatus\(dyn\.wetBulbPeak, dyn\.calPerCapita\)/);
+  assert.match(source, /getHabitabilityStatus\(\{/);
+  assert.match(source, /wetBulbPeakC:\s*dyn\.wetBulbPeak/);
+  assert.match(source, /caloriesKcalPerPersonDay:\s*dyn\.calPerCapita/);
   assert.match(source, /dyn\.annualMaxTemp/);
   assert.match(source, /Moyenne annuelle des Tmax quotidiennes/);
 });
