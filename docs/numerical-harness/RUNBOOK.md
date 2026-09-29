@@ -1,5 +1,9 @@
 # Runbook local
 
+## Reprise dans une nouvelle discussion
+
+Lire d’abord `PROJECT_STATUS.md`, puis vérifier le worktree, la branche et le SHA courant. Les fichiers versionnés sont la source de vérité ; l’historique d’une conversation précédente ne doit pas être supposé complet.
+
 1. `npm ci` dans le worktree si `node_modules` est absent.
 2. `npm run harness:fast` avant un commit ou une modification numérique.
 3. `npm run harness:full` pour la matrice complète et le rapport.

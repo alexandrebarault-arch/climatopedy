@@ -9,3 +9,5 @@ Pour activer le contrôle local avant commit, exécuter `npm run harness:install
 Le contrat sémantique de structure et de contenu du site est documenté dans [SITE_GOLDEN_MASTER_V0.md](SITE_GOLDEN_MASTER_V0.md) et vérifié par `tests/siteGoldenMaster.test.ts`.
 
 Règle de commits : le hook local lance FAST avant le commit, puis FAST et FULL après un commit pertinent. En cas d’échec post-commit, consulter le rapport et corriger explicitement dans un nouveau commit.
+
+Pour reprendre le travail dans une nouvelle discussion, commencer par [PROJECT_STATUS.md](PROJECT_STATUS.md), puis vérifier le worktree et le SHA courant avant toute modification.

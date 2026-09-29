@@ -16,3 +16,11 @@ test('impact report explains migration order dependence in plain language', () =
   const reportScript = fs.readFileSync('scripts/reportNumericalImpact.ts', 'utf8');
   assert.match(reportScript, /migration is ORDER_DEPENDENT; reversing country iteration changes outputs/);
 });
+
+test('project continuity handoff is versioned and names the required restart checks', () => {
+  const status = fs.readFileSync('docs/numerical-harness/PROJECT_STATUS.md', 'utf8');
+  assert.match(status, /Product reference SHA/);
+  assert.match(status, /git status --short/);
+  assert.match(status, /git rev-parse HEAD/);
+  assert.match(status, /ne doit jamais démarrer une modification/);
+});
