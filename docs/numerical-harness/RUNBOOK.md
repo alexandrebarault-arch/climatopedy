@@ -7,3 +7,5 @@
 5. Installer le garde local une seule fois avec `npm run harness:install-hook`.
 
 Le hook est opt-in, local au worktree et n’exécute aucun service distant.
+
+Après un commit qui touche le code, les données, les scripts, les tests ou le contrat du site, le hook `post-commit` relance automatiquement FAST puis FULL. Le commit n’est pas annulé rétroactivement : en cas d’échec, le rapport doit être lu et la correction traitée dans un nouveau commit.

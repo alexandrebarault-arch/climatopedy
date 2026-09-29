@@ -8,6 +8,7 @@ test('local harness commands are defined without changing GitHub Actions', () =>
   assert.equal(packageJson.scripts['harness:fast'], 'tsx scripts/harnessFast.ts');
   assert.equal(packageJson.scripts['harness:full'], 'tsx scripts/harnessFull.ts');
   assert.equal(fs.existsSync('.githooks/pre-commit'), true);
+  assert.equal(fs.existsSync('.githooks/post-commit'), true);
   assert.equal(fs.existsSync('.github/workflows/verify.yml'), true);
 });
 
